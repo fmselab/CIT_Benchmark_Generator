@@ -10,4 +10,6 @@ public abstract class Parameter {
 	public String getName() {
 		return name; 
 	}
+	
+	public abstract int getCardinality();
 }

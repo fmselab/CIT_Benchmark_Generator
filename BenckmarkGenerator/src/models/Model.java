@@ -57,5 +57,15 @@ public class Model {
 		Parameter selected = filtered.get(Randomizer.generate(0, filtered.size()-1));
 		return selected;
 	}
+	
+	public int getModelSize() {
+		// Product of all the cardinalities of the model
+		int prod = 1;
+		
+		for (Parameter p : paramsList)
+			prod *= p.getCardinality();
+		
+		return prod;
+	}
 		
 }

@@ -20,6 +20,11 @@ public class BooleanParameter extends Parameter{
 		
 		return "true";
 	}
+
+	@Override
+	public int getCardinality() {
+		return 2;
+	}
 	
 	
 }

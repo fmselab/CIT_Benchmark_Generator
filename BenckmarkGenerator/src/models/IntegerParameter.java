@@ -28,4 +28,9 @@ public class IntegerParameter extends Parameter {
 	public String getRandomValue() {
 		return new Integer(Randomizer.generate(startFrom, endTo)).toString();
 	}
+
+	@Override
+	public int getCardinality() {
+		return this.endTo - this.startFrom + 1;
+	}
 }

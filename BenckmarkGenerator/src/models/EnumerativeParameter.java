@@ -38,5 +38,10 @@ public class EnumerativeParameter extends Parameter{
 	public String getRandomValue() {
 		return valuesList.get(Randomizer.generate(0, valuesList.size()-1));
 	}
+
+	@Override
+	public int getCardinality() {
+		return this.valuesList.size();
+	}
 	
 }
