@@ -8,13 +8,6 @@ import models.IntegerParameter;
 import models.Model;
 
 public class WithoutConstraintGeneratorSameCardinality implements Generator {
-
-	public static int N_PARAMS_MAX = 500;
-	public static int N_PARAMS_MIN = 1;
-	public static int DIM_ENUMS_MAX = 50;
-	public static int LOWER_BOUND_INT = -100;
-	public static int UPPER_BOUND_INT = 100;
-	public static int MAX_CARDINALITY = 500;
 	
 	@Override
 	public Model generate(Category type) {
@@ -24,11 +17,11 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 		m.setName("model" + timestamp.getTime());
 		
 		// Number of parameters
-		int n = Randomizer.generate(N_PARAMS_MIN, N_PARAMS_MAX);
+		int n = Randomizer.generate(GeneratorConfiguration.N_PARAMS_MIN, GeneratorConfiguration.N_PARAMS_MAX);
 		int from = 0; 
 		
 		// Cardinality
-		int cardinality = Randomizer.generate(1, MAX_CARDINALITY); 
+		int cardinality = Randomizer.generate(1, GeneratorConfiguration.MAX_CARDINALITY); 
 				
 		// Generate the benchmark
 		switch (type) {
@@ -65,7 +58,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 							m.addParameter(new BooleanParameter("Par" + i));
 					} else {
 						// Define a new integer parameter
-						from = Randomizer.generate(LOWER_BOUND_INT, UPPER_BOUND_INT);
+						from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT, GeneratorConfiguration.UPPER_BOUND_INT);
 						
 						// Define a new integer parameter
 						m.addParameter(new IntegerParameter("Par" + i, from, from + cardinality - 1));
@@ -97,7 +90,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 								break;
 							case 1:
 								// Define a new integer parameter
-								from = Randomizer.generate(LOWER_BOUND_INT, UPPER_BOUND_INT);
+								from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT, GeneratorConfiguration.UPPER_BOUND_INT);
 								
 								// Define a new integer parameter
 								m.addParameter(new IntegerParameter("Par" + i, from, from + cardinality - 1));

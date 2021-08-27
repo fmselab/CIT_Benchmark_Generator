@@ -12,31 +12,19 @@ import models.Model;
 import models.Parameter;
 
 public class WithConstraintGenerator extends WithoutConstraintGenerator{
-
-	public static int N_PARAMS_MAX = 100;
-	public static int N_PARAMS_MIN = 1;
-	public static int N_CONSTRAINTS_MAX = 100;
-	public static int N_CONSTRAINTS_MIN = 1;
-	public static int MAX_CONSTRAINTS_COMPLEXITY = 10;
 	
 	@Override
 	public Model generate(Category type) {
-		// Compile the model with the parameters and not the constraints
-		int oldNParamsMax = WithoutConstraintGenerator.N_PARAMS_MAX;
-		int oldNParamsMin = WithoutConstraintGenerator.N_PARAMS_MIN;		
-		WithoutConstraintGenerator.N_PARAMS_MAX = N_PARAMS_MAX;
-		WithoutConstraintGenerator.N_PARAMS_MIN = N_PARAMS_MIN;		
+		// Compile the model with the parameters and not the constraints	
 		Model m = super.generate(type);
-		WithoutConstraintGenerator.N_PARAMS_MAX = oldNParamsMax;
-		WithoutConstraintGenerator.N_PARAMS_MIN = oldNParamsMin;	
 		
 		// Add the constraints
-		int nConstraint = Randomizer.generate(N_CONSTRAINTS_MIN, N_CONSTRAINTS_MAX);
+		int nConstraint = Randomizer.generate(GeneratorConfiguration.N_CONSTRAINTS_MIN, GeneratorConfiguration.N_CONSTRAINTS_MAX);
 		for (int i=0; i<nConstraint; i++) {
 			Constraint c;
 			
 			// Extract the complexity of the constraint (i.e., the number of parameters included)
-			int complexity = Randomizer.generate(1, MAX_CONSTRAINTS_COMPLEXITY);
+			int complexity = Randomizer.generate(1, GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
 			c = generateConstraintFromComplexity(m, complexity, type);
 			
 			// Add the constraint
