@@ -2,6 +2,7 @@ package main;
 
 import generators.Category;
 import generators.Generator;
+import generators.GeneratorConfiguration;
 import generators.WithConstraintGenerator;
 import models.Model;
 
@@ -12,20 +13,26 @@ public class Main {
 	public static void main(String[] args) {
 		
 		Generator g = new WithConstraintGenerator();
+		
+		GeneratorConfiguration.DIM_ENUMS_MAX = 5;
+		GeneratorConfiguration.LOWER_BOUND_INT = 2;
+		GeneratorConfiguration.UPPER_BOUND_INT = 5;
+		GeneratorConfiguration.MAX_CARDINALITY = 5;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 3;
+		GeneratorConfiguration.N_PARAMS_MAX = 5;
+		GeneratorConfiguration.N_PARAMS_MIN = 1;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = 5;
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
+		GeneratorConfiguration.MIN_SIZE = 0;
+		GeneratorConfiguration.MAX_SIZE = -1;
+		
+		
+		
 		Model m1 = g.generate(Category.ONLY_BOOLEAN);
 		System.out.println(m1.toString());
 		System.out.println("Size: " + m1.getModelSize());
+		System.out.println("Size: " + m1.getTupleValidityRatio());
+		System.out.println("Size: " + m1.getTestValidityRatio());
 		
-		Model m2 = g.generate(Category.ALSO_ENUMS);
-		System.out.println(m2.toString());
-		System.out.println("Size: " + m2.getModelSize());
-		
-		Model m3 = g.generate(Category.ALSO_INTEGERS);
-		System.out.println(m3.toString());
-		System.out.println("Size: " + m3.getModelSize());
-		
-		Model m4 = g.generate(Category.CONSTRAINTS_WITH_RELATIONAL);
-		System.out.println(m4.toString());
-		System.out.println("Size: " + m4.getModelSize());
 	}
 }
