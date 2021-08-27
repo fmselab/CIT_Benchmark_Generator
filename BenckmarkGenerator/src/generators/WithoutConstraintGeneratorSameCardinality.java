@@ -59,7 +59,6 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 	
 			case ALSO_INTEGERS:
 				// With also integer ranges
-				boolean computeParams = true;
 				for (int i=0; i<n; i++) {
 					// If the cardinality is 2, we can use also booleans
 					if (cardinality == 2 && Randomizer.generate(0, 1) == 0) {
@@ -70,7 +69,6 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 						
 						// Define a new integer parameter
 						m.addParameter(new IntegerParameter("Par" + i, from, from + cardinality - 1));
-						computeParams = true;
 					}
 				}			
 				
@@ -103,7 +101,6 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 								
 								// Define a new integer parameter
 								m.addParameter(new IntegerParameter("Par" + i, from, from + cardinality - 1));
-								computeParams = true;
 								break;
 						}						
 					}					
