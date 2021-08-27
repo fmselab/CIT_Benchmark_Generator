@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,12 +59,12 @@ public class Model {
 		return selected;
 	}
 	
-	public int getModelSize() {
+	public BigInteger getModelSize() {
 		// Product of all the cardinalities of the model
-		int prod = 1;
+		BigInteger prod = new BigInteger("1");
 		
 		for (Parameter p : paramsList)
-			prod *= p.getCardinality();
+			prod = prod.multiply(BigInteger.valueOf(p.getCardinality()));
 		
 		return prod;
 	}
