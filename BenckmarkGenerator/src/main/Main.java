@@ -1,5 +1,8 @@
 package main;
 
+import ctwedge.ctWedge.CitModel;
+import ctwedge.generator.acts.ACTSTranslator;
+import ctwedge.generator.util.Utility;
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
@@ -34,5 +37,9 @@ public class Main {
 		System.out.println("Size: " + m1.getTupleValidityRatio());
 		System.out.println("Size: " + m1.getTestValidityRatio());
 		
+		// Convert the model as ACTS
+		CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+		ACTSTranslator translator = new ACTSTranslator();
+		translator.convertModel(ctwedgeModel, true, 2, "");
 	}
 }
