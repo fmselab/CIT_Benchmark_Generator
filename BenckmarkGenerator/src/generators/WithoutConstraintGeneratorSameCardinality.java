@@ -21,7 +21,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 		int from = 0; 
 		
 		// Cardinality
-		int cardinality = Randomizer.generate(1, GeneratorConfiguration.MAX_CARDINALITY); 
+		int cardinality = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY, GeneratorConfiguration.MAX_CARDINALITY); 
 				
 		// Generate the benchmark
 		switch (type) {

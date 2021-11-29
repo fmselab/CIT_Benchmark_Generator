@@ -13,5 +13,5 @@ public class GeneratorConfiguration {
 	public static int MAX_CONSTRAINTS_COMPLEXITY = 10;
 	public static int MIN_SIZE = 0;
 	public static int MAX_SIZE = -1;
-	
+	public static int MIN_CARDINALITY = 2;	
 }
