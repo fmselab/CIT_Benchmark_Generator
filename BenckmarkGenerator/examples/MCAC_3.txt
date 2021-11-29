@@ -1,0 +1,23 @@
+[System]
+-- specify system name
+Name: MCAC_3
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6, PAR0_7, PAR0_8, PAR0_9, PAR0_10, PAR0_11, PAR0_12, PAR0_13, PAR0_14, PAR0_15, PAR0_16, PAR0_17, PAR0_18, PAR0_19, PAR0_20, PAR0_21, PAR0_22, PAR0_23, PAR0_24, PAR0_25, PAR0_26, PAR0_27, PAR0_28, PAR0_29, PAR0_30, PAR0_31, PAR0_32, PAR0_33, PAR0_34, PAR0_35, PAR0_36, PAR0_37, PAR0_38, PAR0_39
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14, PAR2_15, PAR2_16, PAR2_17, PAR2_18, PAR2_19, PAR2_20, PAR2_21, PAR2_22, PAR2_23, PAR2_24, PAR2_25, PAR2_26, PAR2_27, PAR2_28
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13
+Par4 (boolean) : true, false
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, PAR5_9, PAR5_10, PAR5_11, PAR5_12, PAR5_13, PAR5_14, PAR5_15, PAR5_16, PAR5_17, PAR5_18, PAR5_19, PAR5_20, PAR5_21, PAR5_22, PAR5_23, PAR5_24, PAR5_25, PAR5_26, PAR5_27, PAR5_28
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8
+Par7 (boolean) : true, false
+
+[Relation]
+-- this section is optional
+-- general format Rx : (p1, p2, ..., pk, Strength)
+
+[Constraint]
+-- this section is also optional
+(((NOT)=("PAR3_5"))&&((Par1)!=(false)))=>((NOT)!=("PAR2_21"))
+

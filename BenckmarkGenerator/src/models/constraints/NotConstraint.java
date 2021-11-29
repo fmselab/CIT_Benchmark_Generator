@@ -1,7 +1,6 @@
 package models.constraints;
 
-public class NotConstraint extends Constraint {
-	String expression;
+public class NotConstraint extends AtomicConstraint {
 
 	public NotConstraint() {
 		this.expression = "";
@@ -22,6 +21,6 @@ public class NotConstraint extends Constraint {
 	}
 	
 	public String toString() {
-		return "(NOT" + expression + ")";
+		return "(NOT (" + expression + "))";
 	}
 }
