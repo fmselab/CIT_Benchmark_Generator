@@ -5,6 +5,7 @@ import models.constraints.AtomicConstraint;
 import models.constraints.Constraint;
 import models.constraints.DoubleImpliesConstraint;
 import models.constraints.ImpliesConstraint;
+import models.constraints.NotConstraint;
 import models.constraints.OrConstraint;
 import models.BooleanParameter;
 import models.EnumerativeParameter;
@@ -24,7 +25,7 @@ public class WithConstraintGeneratorSameCardinality extends WithoutConstraintGen
 			Constraint c;
 			
 			// Extract the complexity of the constraint (i.e., the number of parameters included)
-			int complexity = Randomizer.generate(1, GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
+			int complexity = Randomizer.generate(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY, GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
 			c = generateConstraintFromComplexity(m, complexity, type);
 			
 			// Add the constraint
@@ -41,8 +42,12 @@ public class WithConstraintGeneratorSameCardinality extends WithoutConstraintGen
 		Parameter p;
 		
 		if (complexity <= 1) {
-			// Only an atomic constraint can be created
-			c = new AtomicConstraint();
+			// Only an atomic constraint can be created, 50% normal constraint, 50% not constraint
+			if (Randomizer.generate(0, 1) == 0) {
+				c = new AtomicConstraint();
+			} else {
+				c = new NotConstraint();
+			}			
 			
 			// Parameter of the atomic expression
 			p = m.getRandomParamenter();
