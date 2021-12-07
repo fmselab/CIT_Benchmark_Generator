@@ -23,10 +23,5 @@ Par15 (boolean) : true, false
 Par16 (boolean) : true, false
 Par17 (boolean) : true, false
 Par18 (boolean) : true, false
-Par19 (boolean) : true, false
-
-[Relation]
--- this section is optional
--- general format Rx : (p1, p2, ..., pk, Strength)
 
 

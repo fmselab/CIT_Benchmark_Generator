@@ -40,9 +40,13 @@ public class Main {
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
-			CitModel ctwedgeModel = Utility.loadModel(m1.toString());
-			ACTSTranslator translator = new ACTSTranslator();
-			translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+			}
 		}		
 	}
 	
