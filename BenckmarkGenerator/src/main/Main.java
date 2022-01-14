@@ -44,8 +44,16 @@ public class Main {
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				
+				// Check if the test suite is empty
+				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+					i--;
+					continue;
+				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
+				i--;
+				continue;
 			}
 		}		
 	}
@@ -73,9 +81,21 @@ public class Main {
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
-			CitModel ctwedgeModel = Utility.loadModel(m1.toString());
-			ACTSTranslator translator = new ACTSTranslator();
-			translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				
+				// Check if the test suite is empty
+				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+					i--;
+					continue;
+				}
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+				i--;
+				continue;
+			}
 		}		
 	}
 	
@@ -102,9 +122,21 @@ public class Main {
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
-			CitModel ctwedgeModel = Utility.loadModel(m1.toString());
-			ACTSTranslator translator = new ACTSTranslator();
-			translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				
+				// Check if the test suite is empty
+				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+					i--;
+					continue;
+				}
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+				i--;
+				continue;
+			}
 		}		
 	}
 	
@@ -135,9 +167,21 @@ public class Main {
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
-			CitModel ctwedgeModel = Utility.loadModel(m1.toString());
-			ACTSTranslator translator = new ACTSTranslator();
-			translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				
+				// Check if the test suite is empty
+				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+					i--;
+					continue;
+				}
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+				i--;
+				continue;
+			}
 		}		
 	}
 	
@@ -172,9 +216,21 @@ public class Main {
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
-			CitModel ctwedgeModel = Utility.loadModel(m1.toString());
-			ACTSTranslator translator = new ACTSTranslator();
-			translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				
+				// Check if the test suite is empty
+				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+					i--;
+					continue;
+				}
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+				i--;
+				continue;
+			}
 		}		
 	}
 	
@@ -209,18 +265,30 @@ public class Main {
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
-			CitModel ctwedgeModel = Utility.loadModel(m1.toString());
-			ACTSTranslator translator = new ACTSTranslator();
-			translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				
+				// Check if the test suite is empty
+				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+					i--;
+					continue;
+				}
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+				i--;
+				continue;
+			}
 		}		
 	}
 	 
 	public static void main(String[] args) throws IOException {
-		generateUniformBooleanNoConstraints();
-		generateUniformNoConstraints();
-		generateMCANoConstraints();
+		//generateUniformBooleanNoConstraints();
+		//generateUniformNoConstraints();
+		//generateMCANoConstraints();
 		generateBoolConstraints();
 		generateMCAConstraints();
-		generateNUMConstraints();
+		//generateNUMConstraints();
 	}
 }
