@@ -287,7 +287,7 @@ public class Main {
 		//generateUniformBooleanNoConstraints();
 		//generateUniformNoConstraints();
 		//generateMCANoConstraints();
-		generateBoolConstraints();
+		//generateBoolConstraints();
 		generateMCAConstraints();
 		//generateNUMConstraints();
 	}
