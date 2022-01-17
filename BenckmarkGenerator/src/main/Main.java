@@ -21,7 +21,7 @@ public class Main {
 	static int N_MODELS = 5;
 	static String PREFIX = "UNIFORM_BOOLEAN_";
 	
-	public static void generateUniformBooleanNoConstraints() throws IOException {
+	public static void generateUniformBooleanNoConstraints(boolean verify) throws IOException {
 		PREFIX = "UNIFORM_BOOLEAN_";
 		
 		// Define a new generator without considering the constraints
@@ -46,7 +46,7 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
 					i--;
 					continue;
 				}
@@ -58,7 +58,7 @@ public class Main {
 		}		
 	}
 	
-	public static void generateUniformNoConstraints() throws IOException {
+	public static void generateUniformNoConstraints(boolean verify) throws IOException {
 		PREFIX = "UNIFORM_ALL_";
 		
 		// Define a new generator without considering the constraints
@@ -87,7 +87,7 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
 					i--;
 					continue;
 				}
@@ -99,7 +99,7 @@ public class Main {
 		}		
 	}
 	
-	public static void generateMCANoConstraints() throws IOException {
+	public static void generateMCANoConstraints(boolean verify) throws IOException {
 		PREFIX = "MCA_";
 		
 		// Define a new generator without considering the constraints
@@ -128,7 +128,7 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
 					i--;
 					continue;
 				}
@@ -140,7 +140,7 @@ public class Main {
 		}		
 	}
 	
-	public static void generateBoolConstraints() throws IOException {
+	public static void generateBoolConstraints(boolean verify) throws IOException {
 		PREFIX = "BOOLC_";
 		
 		// Define a new generator without considering the constraints
@@ -173,7 +173,7 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
 					i--;
 					continue;
 				}
@@ -185,7 +185,7 @@ public class Main {
 		}		
 	}
 	
-	public static void generateMCAConstraints() throws IOException {
+	public static void generateMCAConstraints(boolean verify) throws IOException {
 		PREFIX = "MCAC_";
 		
 		// Define a new generator without considering the constraints
@@ -222,7 +222,7 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
 					i--;
 					continue;
 				}
@@ -234,7 +234,7 @@ public class Main {
 		}		
 	}
 	
-	public static void generateNUMConstraints() throws IOException {
+	public static void generateNUMConstraints(boolean verify) throws IOException {
 		PREFIX = "NUMC_";
 		
 		// Define a new generator without considering the constraints
@@ -271,7 +271,7 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
+				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
 					i--;
 					continue;
 				}
@@ -284,11 +284,11 @@ public class Main {
 	}
 	 
 	public static void main(String[] args) throws IOException {
-		//generateUniformBooleanNoConstraints();
-		//generateUniformNoConstraints();
-		//generateMCANoConstraints();
-		//generateBoolConstraints();
-		generateMCAConstraints();
-		//generateNUMConstraints();
+		//generateUniformBooleanNoConstraints(false);
+		//generateUniformNoConstraints(false);
+		//generateMCANoConstraints(false);
+		generateBoolConstraints(false);
+		generateMCAConstraints(false);
+		generateNUMConstraints(false);
 	}
 }

@@ -60,60 +60,60 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator{
 				case 0:
 					// =
 					// 50% comparison between parameters, 50% between parameter and its value
-					if (Randomizer.generate(0, 1) == 0) {
+					if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 						((AtomicConstraint)c).setExpression(p.getName() + " = " + p.getRandomValue());
 					} else {
-						((AtomicConstraint)c).setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getRandomValue());
+						((AtomicConstraint)c).setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getName());
 					}
 					break;
 					
 				case 1:
 					// !=
 					// 50% comparison between parameters, 50% between parameter and its value
-					if (Randomizer.generate(0, 1) == 0) {
+					if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 						((AtomicConstraint)c).setExpression(p.getName() + " != " + p.getRandomValue());
 					} else {
-						((AtomicConstraint)c).setExpression(p.getName() + " != " + m.getRandomParamenterOfClass(p).getRandomValue());
+						((AtomicConstraint)c).setExpression(p.getName() + " != " + m.getRandomParamenterOfClass(p).getName());
 					}
 					break;
 					
 				case 2:
 					// >
 					// 50% comparison between parameters, 50% between parameter and its value
-					if (Randomizer.generate(0, 1) == 0) {
+					if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 						((AtomicConstraint)c).setExpression(p.getName() + " > " + p.getRandomValue());
 					} else {
-						((AtomicConstraint)c).setExpression(p.getName() + " > " + m.getRandomParamenterOfClass(p).getRandomValue());
+						((AtomicConstraint)c).setExpression(p.getName() + " > " + m.getRandomParamenterOfClass(p).getName());
 					}
 					break;
 					
 				case 3:
 					// >=
 					// 50% comparison between parameters, 50% between parameter and its value
-					if (Randomizer.generate(0, 1) == 0) {
+					if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 						((AtomicConstraint)c).setExpression(p.getName() + " >= " + p.getRandomValue());
 					} else {
-						((AtomicConstraint)c).setExpression(p.getName() + " >= " + m.getRandomParamenterOfClass(p).getRandomValue());
+						((AtomicConstraint)c).setExpression(p.getName() + " >= " + m.getRandomParamenterOfClass(p).getName());
 					}
 					break;
 					
 				case 4:
 					// <
 					// 50% comparison between parameters, 50% between parameter and its value
-					if (Randomizer.generate(0, 1) == 0) {
+					if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 						((AtomicConstraint)c).setExpression(p.getName() + " < " + p.getRandomValue());
 					} else {
-						((AtomicConstraint)c).setExpression(p.getName() + " < " + m.getRandomParamenterOfClass(p).getRandomValue());
+						((AtomicConstraint)c).setExpression(p.getName() + " < " + m.getRandomParamenterOfClass(p).getName());
 					}
 					break;
 					
 				case 5:
 					// <=
 					// 50% comparison between parameters, 50% between parameter and its value
-					if (Randomizer.generate(0, 1) == 0) {
+					if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 						((AtomicConstraint)c).setExpression(p.getName() + " <= " + p.getRandomValue());
 					} else {
-						((AtomicConstraint)c).setExpression(p.getName() + " <= " + m.getRandomParamenterOfClass(p).getRandomValue());
+						((AtomicConstraint)c).setExpression(p.getName() + " <= " + m.getRandomParamenterOfClass(p).getName());
 					}		
 					break;
 			}
