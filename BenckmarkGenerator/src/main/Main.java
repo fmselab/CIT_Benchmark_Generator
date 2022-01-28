@@ -287,8 +287,8 @@ public class Main {
 		//generateUniformBooleanNoConstraints(false);
 		//generateUniformNoConstraints(false);
 		//generateMCANoConstraints(false);
-		generateBoolConstraints(false);
-		generateMCAConstraints(false);
-		generateNUMConstraints(false);
+		//generateBoolConstraints(true);
+		generateMCAConstraints(true);
+		//generateNUMConstraints(false);
 	}
 }
