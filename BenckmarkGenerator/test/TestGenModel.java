@@ -70,8 +70,29 @@ public class TestGenModel {
 	}
 	
 	@Test
+	public void testACTSTranslatorAdditionalModels() {
+		String path = "./examples/";
+		List<File> fileList = new ArrayList<>();
+		listFiles(new File(path), fileList);
+		for (File file : fileList) {
+			try {
+				if (file.getName().contains("ADD_MCAC_4")) {
+					System.out.println("Processing file " + file.getPath());
+					CitModel ctwedgeModel = Utility.loadModelFromPath(file.getPath());
+					ACTSTranslator translator = new ACTSTranslator();
+					translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				}
+			} catch (NotConvertableModel e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();			
+			}
+		}
+	}
+	
+	@Test
 	public void testModelACTS() throws Exception {
-		String path = "./examples/BOOLC_3.ctw";
+		String path = "./examples/ADD_BOOLC_3.ctw";
 		ACTSTranslator translator = new ACTSTranslator();
 		assert (translator.getTestSuite(Utility.loadModelFromPath(path), 2, 
 				false).getTests().size() > 0);
