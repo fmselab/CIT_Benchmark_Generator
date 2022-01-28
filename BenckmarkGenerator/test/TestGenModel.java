@@ -76,7 +76,7 @@ public class TestGenModel {
 		listFiles(new File(path), fileList);
 		for (File file : fileList) {
 			try {
-				if (file.getName().contains("ADD_MCAC_4")) {
+				if (file.getName().contains("ADD")) {
 					System.out.println("Processing file " + file.getPath());
 					CitModel ctwedgeModel = Utility.loadModelFromPath(file.getPath());
 					ACTSTranslator translator = new ACTSTranslator();
