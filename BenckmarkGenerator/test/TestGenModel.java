@@ -92,7 +92,7 @@ public class TestGenModel {
 	
 	@Test
 	public void testModelACTS() throws Exception {
-		String path = "./examples/ADD_BOOLC_3.ctw";
+		String path = "./examples/ADD_MCAC_0.ctw";
 		ACTSTranslator translator = new ACTSTranslator();
 		assert (translator.getTestSuite(Utility.loadModelFromPath(path), 2, 
 				false).getTests().size() > 0);
