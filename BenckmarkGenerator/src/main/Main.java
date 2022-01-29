@@ -4,10 +4,18 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.acts.ACTSTranslator;
 import ctwedge.generator.util.Utility;
+import ctwedge.util.TestSuite;
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
@@ -46,9 +54,31 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
-					i--;
-					continue;
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					}
 				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
@@ -87,9 +117,31 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
-					i--;
-					continue;
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					}
 				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
@@ -128,9 +180,31 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
-					i--;
-					continue;
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					}
 				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
@@ -173,9 +247,31 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
-					i--;
-					continue;
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					}
 				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
@@ -222,9 +318,31 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
-					i--;
-					continue;
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					}
 				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
@@ -271,9 +389,33 @@ public class Main {
 				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
 				
 				// Check if the test suite is empty
-				if (verify && Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null).getTests().size() <= 0) {
-					i--;
-					continue;
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					} else {
+						System.out.println(ts.getTests().size());
+					}
 				}
 			}catch (Exception e) {
 				System.out.println(m1.toString());
@@ -289,6 +431,6 @@ public class Main {
 		//generateMCANoConstraints(false);
 		//generateBoolConstraints(true);
 		generateMCAConstraints(true);
-		//generateNUMConstraints(false);
+		//generateNUMConstraints(true);
 	}
 }
