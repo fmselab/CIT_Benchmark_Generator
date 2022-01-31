@@ -14,4 +14,7 @@ Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PA
 
 [Constraint]
 -- this section is also optional
-(! (Par4 != "PAR4_33")) || (Par1 != "PAR1_7")((Par2 = 16) => (! (Par2 < 33)))&&((! (Par2 < 33)) => (Par2 = 16))((Par2 <= 72) && (Par4 = "PAR4_36")) => ((Par4 = "PAR4_10") => (Par2 = 20))
+(! (Par4 != "PAR4_33")) || (Par1 != "PAR1_7")
+((Par2 = 16) => (! (Par2 < 33)))&&((! (Par2 < 33)) => (Par2 = 16))
+((Par2 <= 72) && (Par4 = "PAR4_36")) => ((Par4 = "PAR4_10") => (Par2 = 20))
+
