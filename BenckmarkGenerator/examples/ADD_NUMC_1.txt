@@ -17,4 +17,6 @@ Par9 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-(((! (Par3 != true)) => (Par5 != "PAR5_1"))&&((Par5 != "PAR5_1") => (! (Par3 != true)))) && ((! (Par8 = false)) || (! (Par0 != true)))(((! (Par6 <= -23)) || (! (Par5 != "PAR5_1"))) => ((! (Par8 = false)) || (Par5 != "PAR5_2")))&&(((! (Par8 = false)) || (Par5 != "PAR5_2")) => ((! (Par6 <= -23)) || (! (Par5 != "PAR5_1"))))
+(((! (Par3 != true)) => (Par5 != "PAR5_1"))&&((Par5 != "PAR5_1") => (! (Par3 != true)))) && ((! (Par8 = false)) || (! (Par0 != true)))
+(((! (Par6 <= -23)) || (! (Par5 != "PAR5_1"))) => ((! (Par8 = false)) || (Par5 != "PAR5_2")))&&(((! (Par8 = false)) || (Par5 != "PAR5_2")) => ((! (Par6 <= -23)) || (! (Par5 != "PAR5_1"))))
+
