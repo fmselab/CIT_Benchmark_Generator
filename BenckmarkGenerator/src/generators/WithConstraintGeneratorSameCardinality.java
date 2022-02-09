@@ -136,8 +136,8 @@ public class WithConstraintGeneratorSameCardinality extends WithoutConstraintGen
 				break;
 			}
 			
-			c.setLeft(generateConstraintFromComplexity(m, complexity - 2, type));
-			c.setRight(generateConstraintFromComplexity(m, complexity - 2, type));
+			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
+			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
 		}
 		
 		return c;
