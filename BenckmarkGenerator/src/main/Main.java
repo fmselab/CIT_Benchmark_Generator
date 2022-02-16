@@ -26,7 +26,8 @@ import models.Model;
 
 public class Main {
 	
-	static int N_MODELS = 5;
+	private static final String BENCHMARK_FOLDER = "./examples/CTComp/";
+	static int N_MODELS = 50;
 	static String PREFIX = "UNIFORM_BOOLEAN_";
 	
 	public static void generateUniformBooleanNoConstraints(boolean verify) throws IOException {
@@ -44,14 +45,14 @@ public class Main {
 			Model m1 = g.generate(Category.ONLY_BOOLEAN);
 			m1.setName(PREFIX + i);
 			// Store the results in a new CTW file
-			FileWriter fo = new FileWriter(new File("./examples/" + PREFIX + i + ".ctw"));
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
 			try{
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
-				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
 				
 				// Check if the test suite is empty
 				if (verify) {
@@ -107,14 +108,14 @@ public class Main {
 			Model m1 = g.generate(Category.ALSO_ENUMS);
 			m1.setName(PREFIX + i);
 			// Store the results in a new CTW file
-			FileWriter fo = new FileWriter(new File("./examples/" + PREFIX + i + ".ctw"));
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
 			try{
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
-				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
 				
 				// Check if the test suite is empty
 				if (verify) {
@@ -170,14 +171,14 @@ public class Main {
 			Model m1 = g.generate(Category.ALSO_ENUMS);
 			m1.setName(PREFIX + i);
 			// Store the results in a new CTW file
-			FileWriter fo = new FileWriter(new File("./examples/" + PREFIX + i + ".ctw"));
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
 			try{
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
-				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
 				
 				// Check if the test suite is empty
 				if (verify) {
@@ -237,14 +238,14 @@ public class Main {
 			Model m1 = g.generate(Category.ONLY_BOOLEAN);
 			m1.setName(PREFIX + i);
 			// Store the results in a new CTW file
-			FileWriter fo = new FileWriter(new File("./examples/" + PREFIX + i + ".ctw"));
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
 			try{
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
-				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
 				
 				// Check if the test suite is empty
 				if (verify) {
@@ -308,14 +309,14 @@ public class Main {
 			Model m1 = g.generate(Category.ALSO_ENUMS);
 			m1.setName(PREFIX + i);
 			// Store the results in a new CTW file
-			FileWriter fo = new FileWriter(new File("./examples/" + PREFIX + i + ".ctw"));
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
 			try{
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
-				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
 				
 				// Check if the test suite is empty
 				if (verify) {
@@ -379,14 +380,14 @@ public class Main {
 			Model m1 = g.generate(Category.CONSTRAINTS_WITH_RELATIONAL);
 			m1.setName(PREFIX + i);
 			// Store the results in a new CTW file
-			FileWriter fo = new FileWriter(new File("./examples/" + PREFIX + i + ".ctw"));
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
 			fo.write(m1.toString());
 			fo.close();
 			// Convert the file in ACTS
 			try{
 				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
 				ACTSTranslator translator = new ACTSTranslator();
-				translator.convertModel(ctwedgeModel, true, 2, "./examples/");
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
 				
 				// Check if the test suite is empty
 				if (verify) {
@@ -426,11 +427,11 @@ public class Main {
 	}
 	 
 	public static void main(String[] args) throws IOException {
-		//generateUniformBooleanNoConstraints(false);
-		//generateUniformNoConstraints(false);
-		//generateMCANoConstraints(false);
-		//generateBoolConstraints(true);
-		generateMCAConstraints(true);
+//		generateUniformBooleanNoConstraints(false);
+//		generateUniformNoConstraints(false);
+//		generateMCANoConstraints(false);
+		generateBoolConstraints(true);
+//		generateMCAConstraints(true);
 		//generateNUMConstraints(true);
 	}
 }
