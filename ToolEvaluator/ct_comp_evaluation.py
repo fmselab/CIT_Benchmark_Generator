@@ -161,6 +161,34 @@ def extract_ranking(output_file):
 # ====================================================================================================
 
 # ====================================================================================================
+# General ranking
+def general_ranking(size, time):
+    print("********** Size ranking: **********")
+    print(size.groupby(by="ToolName").Score.sum())
+    print("********** Time ranking: **********")
+    print(time.groupby(by="ToolName").Score.sum())
+    print("********** Overall ranking: **********")
+    print(size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5)
+# ====================================================================================================
+
+
+def ranking_for_categories(size, time, categories):
+    for category in categories:
+        sizenew = size[size.ModelName.str.contains(category)]
+        timenew = time[time.ModelName.str.contains(category)]
+
+        print("***********************************")
+        print("*** CATEGORY: " + category + "***")
+        print("***********************************")
+        print("********** Size ranking: **********")
+        print(sizenew.groupby(by="ToolName").Score.sum())
+        print("********** Time ranking: **********")
+        print(timenew.groupby(by="ToolName").Score.sum())
+        print("********** Overall ranking: **********")
+        print(sizenew.groupby(by="ToolName").Score.sum() * 0.5 + timenew.groupby(by="ToolName").Score.sum() * 0.5)
+
+
+# ====================================================================================================
 # The program should be called by passing two arguments:
 # - the path in which the test suite files and results are stored
 # - the name of the output file, in which the aggregated results are stored
@@ -180,9 +208,8 @@ if __name__ == "__main__":
     [size, time] = extract_ranking(args.o)
 
     # Sum the results
-    print("********** Size ranking: **********")
-    print(size.groupby(by="ToolName").Score.sum())
-    print("********** Time ranking: **********")
-    print(time.groupby(by="ToolName").Score.sum())
-    print("********** Overall ranking: **********")
-    print(size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5)
+    general_ranking(size, time)
+
+    # Results per category
+    categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
+    ranking_for_categories(size, time, categories)
