@@ -108,6 +108,59 @@ def extract_best_results(output_file):
 # ====================================================================================================
 
 # ====================================================================================================
+# Extracts the ranking for each model
+def extract_ranking(output_file):
+    df_output = pd.read_csv(output_file + "_best.csv", delimiter=",")
+    model_names = df_output["ModelName"].unique()
+    tool_names = df_output["ToolName"].unique()
+    strengths = df_output["Strength"].unique()
+    df_ranking_time = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score"])
+    df_ranking_size = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score"])
+
+    for strength in strengths:
+        for modelName in model_names:
+            # Sort the results by time
+            vector = df_output[(df_output.ModelName.eq(modelName)) & (df_output.Strength.eq(strength))].sort_values(by=['TimeSeconds'], ascending=False).to_numpy()
+            point_counter = 0
+            score = 0
+            for res in vector:
+                if res[3] == -1:
+                    score = 0
+                else:
+                    score = point_counter + 1
+                    point_counter += 1
+                # Add in the dataframe
+                df_ranking_time = df_ranking_time.append({
+                    "ToolName": res[0],
+                    "ModelName": modelName,
+                    "Strength": strength,
+                    "Score": score
+                }, ignore_index=True)
+
+            # Sort the results by size
+            point_counter = 0
+            vector = df_output[(df_output.ModelName.eq(modelName)) & (df_output.Strength.eq(strength))].sort_values(by=['Size'], ascending=False).to_numpy()
+            score = 0
+            for res in vector:
+                if res[4] == -1:
+                    score = 0
+                else:
+                    score = point_counter + 1
+                    point_counter += 1
+                # Add in the dataframe
+                df_ranking_size = df_ranking_size.append({
+                    "ToolName": res[0],
+                    "ModelName": modelName,
+                    "Strength": strength,
+                    "Score": score
+                }, ignore_index=True)
+
+    df_ranking_size.to_csv(output_file + "_ranking_size.csv", index = False)
+    df_ranking_time.to_csv(output_file + "_ranking_time.csv", index = False)
+    return [df_ranking_size, df_ranking_time]
+# ====================================================================================================
+
+# ====================================================================================================
 # The program should be called by passing two arguments:
 # - the path in which the test suite files and results are stored
 # - the name of the output file, in which the aggregated results are stored
@@ -122,3 +175,6 @@ if __name__ == "__main__":
 
     # Extract the best results
     extract_best_results(args.o)
+
+    # Extract the ranking
+    extract_ranking(args.o)
