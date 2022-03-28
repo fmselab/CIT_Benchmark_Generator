@@ -96,6 +96,12 @@ def extract_best_results(output_file):
                     (df_output.Strength.eq(strength))]
                 min_time = filtered_df_output.TimeSeconds.min() if not math.isnan(filtered_df_output.TimeSeconds.min()) else -1
                 min_size = filtered_df_output.Size.min() if not math.isnan(filtered_df_output.Size.min()) else -1
+
+                # If timeout, then it is the worst
+                if min_time > 300:
+                    min_time = -1
+                    min_size = -1
+
                 df_aggregate = df_aggregate.append({
                     "ToolName": generatorName,
                     "ModelName": modelName,
