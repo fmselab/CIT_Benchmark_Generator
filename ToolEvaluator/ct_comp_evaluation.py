@@ -2,8 +2,12 @@ import argparse
 from os import listdir
 from os.path import isfile, join
 import csv
+from tarfile import DEFAULT_FORMAT
 import pandas as pd 
 import math
+import matplotlib.pyplot as plt
+
+categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
 
 # ====================================================================================================
 # Returns the time of the corresponding execution
@@ -102,6 +106,11 @@ def extract_best_results(output_file):
                     min_time = -1
                     min_size = -1
 
+                # If the size is 0 we consider it as a timeout
+                if min_size == 0:
+                    min_time = -1
+                    min_size = -1
+
                 df_aggregate = df_aggregate.append({
                     "ToolName": generatorName,
                     "ModelName": modelName,
@@ -111,6 +120,76 @@ def extract_best_results(output_file):
                 }, ignore_index=True)
 
     df_aggregate.to_csv(output_file + "_best.csv", index = False)
+
+    print_plots(df_aggregate)
+    print_plots_categories(df_aggregate, categories)
+# ====================================================================================================
+
+# ====================================================================================================
+# Print the plots
+def print_plots(df_aggregate):
+    # Extract a figure showing the behavior of the tools - TIME
+    datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+    dataCAGen = df_aggregate[(df_aggregate.ToolName.eq("cagen")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+    dataAppts = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+    dataIPOSolver = df_aggregate[(df_aggregate.ToolName.eq("iposolver")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+    
+    fig, ax = plt.subplots()
+    ax.set_title('Generation time')
+    plt.xlabel("Generator")
+    plt.ylabel("Time [sec.]")
+    ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver"])
+    ax.boxplot([datapMedici, dataCAGen, dataAppts, dataIPOSolver])
+    fig.savefig("figs/Tools_time.png")
+
+    # Extract a figure showing the behavior of the tools - Size
+    datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
+    dataCAGen = df_aggregate[(df_aggregate.ToolName.eq("cagen")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
+    dataAppts = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
+    dataIPOSolver = df_aggregate[(df_aggregate.ToolName.eq("iposolver")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
+
+    fig, ax = plt.subplots()
+    ax.set_title('Test suite size')
+    plt.xlabel("Generator")
+    plt.ylabel("# Test cases")
+    ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver"])
+    ax.boxplot([datapMedici, dataCAGen, dataAppts, dataIPOSolver])
+    fig.savefig("figs/Tools_size.png")
+# ====================================================================================================
+
+# ====================================================================================================
+# Print the plots filtered on categories
+def print_plots_categories(df_aggregate, categories):
+    for category in categories:
+        filtered_df = df_aggregate[df_aggregate.ModelName.str.contains(category)]
+
+        # Extract a figure showing the behavior of the tools - TIME
+        datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+        dataCAGen = filtered_df[(filtered_df.ToolName.eq("cagen")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+        dataAppts = filtered_df[(filtered_df.ToolName.eq("appts")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+        dataIPOSolver = filtered_df[(filtered_df.ToolName.eq("iposolver")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+        
+        fig, ax = plt.subplots()
+        plt.xlabel("Generator")
+        plt.ylabel("Time [sec.]")
+        ax.set_title('Generation time')
+        ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver"])
+        ax.boxplot([datapMedici, dataCAGen, dataAppts, dataIPOSolver])
+        fig.savefig("figs/Tools_time_" + category + ".png")
+
+        # Extract a figure showing the behavior of the tools - Size
+        datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
+        dataCAGen = filtered_df[(filtered_df.ToolName.eq("cagen")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
+        dataAppts = filtered_df[(filtered_df.ToolName.eq("appts")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
+        dataIPOSolver = filtered_df[(filtered_df.ToolName.eq("iposolver")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
+
+        fig, ax = plt.subplots()
+        ax.set_title('Test suite size')
+        ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver"])
+        plt.xlabel("Generator")
+        plt.ylabel("# Test cases")
+        ax.boxplot([datapMedici, dataCAGen, dataAppts, dataIPOSolver])
+        fig.savefig("figs/Tools_size_" + category + ".png")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -177,7 +256,8 @@ def general_ranking(size, time):
     print(size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5)
 # ====================================================================================================
 
-
+# ====================================================================================================
+# Ranking for categiries
 def ranking_for_categories(size, time, categories):
     for category in categories:
         sizenew = size[size.ModelName.str.contains(category)]
@@ -192,7 +272,7 @@ def ranking_for_categories(size, time, categories):
         print(timenew.groupby(by="ToolName").Score.sum())
         print("********** Overall ranking: **********")
         print(sizenew.groupby(by="ToolName").Score.sum() * 0.5 + timenew.groupby(by="ToolName").Score.sum() * 0.5)
-
+# ====================================================================================================
 
 # ====================================================================================================
 # The program should be called by passing two arguments:
@@ -210,12 +290,11 @@ if __name__ == "__main__":
     # Extract the best results
     extract_best_results(args.o)
 
-    # Extract the ranking
+    # Extract the ranking for each file
     [size, time] = extract_ranking(args.o)
 
-    # Sum the results
+    # Sum the results and extract the overall ranking
     general_ranking(size, time)
 
     # Results per category
-    categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
     ranking_for_categories(size, time, categories)

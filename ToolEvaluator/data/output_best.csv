@@ -329,7 +329,7 @@ cagen,BOOLC_23,2,0.01,1
 appts,BOOLC_23,2,2.74,1
 pmedici,MCAC_42,2,63.63,1854
 iposolver,MCAC_42,2,-1.0,-1
-cagen,MCAC_42,2,300.0,0
+cagen,MCAC_42,2,-1.0,-1
 appts,MCAC_42,2,-1.0,-1
 pmedici,MCA_11,2,9.2,1986
 iposolver,MCA_11,2,0.06,1935
@@ -429,7 +429,7 @@ cagen,MCAC_35,2,0.64,2386
 appts,MCAC_35,2,71.98,2352
 pmedici,MCAC_29,2,32.52,2153
 iposolver,MCAC_29,2,-1.0,-1
-cagen,MCAC_29,2,300.0,0
+cagen,MCAC_29,2,-1.0,-1
 appts,MCAC_29,2,25.73,1891
 pmedici,UNIFORM_BOOLEAN_44,2,1.87,12
 iposolver,UNIFORM_BOOLEAN_44,2,0.0,9
@@ -465,7 +465,7 @@ cagen,MCA_28,2,0.0,1300
 appts,MCA_28,2,36.67,1300
 pmedici,MCAC_32,2,79.62,289
 iposolver,MCAC_32,2,-1.0,-1
-cagen,MCAC_32,2,300.0,0
+cagen,MCAC_32,2,-1.0,-1
 appts,MCAC_32,2,204.16,276
 pmedici,UNIFORM_ALL_1,2,21.53,1355
 iposolver,UNIFORM_ALL_1,2,0.46,803
@@ -533,11 +533,11 @@ cagen,BOOLC_16,2,3.43,7
 appts,BOOLC_16,2,4.15,7
 pmedici,MCAC_22,2,163.55,2479
 iposolver,MCAC_22,2,-1.0,-1
-cagen,MCAC_22,2,300.0,0
+cagen,MCAC_22,2,-1.0,-1
 appts,MCAC_22,2,-1.0,-1
 pmedici,BOOLC_43,2,2.01,37
 iposolver,BOOLC_43,2,-1.0,-1
-cagen,BOOLC_43,2,300.0,0
+cagen,BOOLC_43,2,-1.0,-1
 appts,BOOLC_43,2,34.11,8
 pmedici,MCA_20,2,10.95,2140
 iposolver,MCA_20,2,0.06,1704
@@ -549,7 +549,7 @@ cagen,UNIFORM_ALL_0,2,0.0,220
 appts,UNIFORM_ALL_0,2,83.81,173
 pmedici,MCAC_26,2,9.29,2085
 iposolver,MCAC_26,2,-1.0,-1
-cagen,MCAC_26,2,300.0,0
+cagen,MCAC_26,2,-1.0,-1
 appts,MCAC_26,2,-1.0,-1
 pmedici,BOOLC_12,2,1.94,32
 iposolver,BOOLC_12,2,-1.0,-1
@@ -557,7 +557,7 @@ cagen,BOOLC_12,2,0.46,4
 appts,BOOLC_12,2,10.7,4
 pmedici,BOOLC_47,2,2.01,39
 iposolver,BOOLC_47,2,-1.0,-1
-cagen,BOOLC_47,2,300.0,0
+cagen,BOOLC_47,2,-1.0,-1
 appts,BOOLC_47,2,41.25,9
 pmedici,UNIFORM_BOOLEAN_45,2,1.8,14
 iposolver,UNIFORM_BOOLEAN_45,2,0.0,6
@@ -645,7 +645,7 @@ cagen,UNIFORM_BOOLEAN_17,2,0.0,4
 appts,UNIFORM_BOOLEAN_17,2,5.97,4
 pmedici,MCAC_38,2,50.14,25
 iposolver,MCAC_38,2,-1.0,-1
-cagen,MCAC_38,2,300.0,0
+cagen,MCAC_38,2,-1.0,-1
 appts,MCAC_38,2,-1.0,-1
 pmedici,UNIFORM_BOOLEAN_3,2,1.91,12
 iposolver,UNIFORM_BOOLEAN_3,2,0.0,9
@@ -657,7 +657,7 @@ cagen,UNIFORM_BOOLEAN_24,2,0.0,12
 appts,UNIFORM_BOOLEAN_24,2,14.69,8
 pmedici,BOOLC_30,2,1.96,37
 iposolver,BOOLC_30,2,-1.0,-1
-cagen,BOOLC_30,2,300.0,0
+cagen,BOOLC_30,2,-1.0,-1
 appts,BOOLC_30,2,54.7,8
 pmedici,UNIFORM_ALL_48,2,1.76,38
 iposolver,UNIFORM_ALL_48,2,0.0,32
@@ -765,7 +765,7 @@ cagen,MCA_10,2,0.01,1850
 appts,MCA_10,2,42.28,1850
 pmedici,MCAC_0,2,18.02,1090
 iposolver,MCAC_0,2,-1.0,-1
-cagen,MCAC_0,2,300.0,0
+cagen,MCAC_0,2,-1.0,-1
 appts,MCAC_0,2,121.96,837
 pmedici,MCA_32,2,6.51,1692
 iposolver,MCA_32,2,0.03,1628
@@ -777,7 +777,7 @@ cagen,MCAC_28,2,0.0,4
 appts,MCAC_28,2,6.48,4
 pmedici,MCAC_34,2,166.19,119
 iposolver,MCAC_34,2,-1.0,-1
-cagen,MCAC_34,2,300.0,0
+cagen,MCAC_34,2,-1.0,-1
 appts,MCAC_34,2,90.2,64
 pmedici,UNIFORM_ALL_29,2,6.08,467
 iposolver,UNIFORM_ALL_29,2,0.14,320
@@ -865,7 +865,7 @@ cagen,UNIFORM_ALL_23,2,0.01,289
 appts,UNIFORM_ALL_23,2,35.13,289
 pmedici,MCAC_43,2,-1.0,-1
 iposolver,MCAC_43,2,-1.0,-1
-cagen,MCAC_43,2,300.0,0
+cagen,MCAC_43,2,-1.0,-1
 appts,MCAC_43,2,-1.0,-1
 pmedici,MCAC_16,2,114.71,5551
 iposolver,MCAC_16,2,-1.0,-1
@@ -909,7 +909,7 @@ cagen,BOOLC_21,2,0.0,6
 appts,BOOLC_21,2,2.91,6
 pmedici,MCAC_15,2,-1.0,-1
 iposolver,MCAC_15,2,-1.0,-1
-cagen,MCAC_15,2,300.0,0
+cagen,MCAC_15,2,-1.0,-1
 appts,MCAC_15,2,49.68,2146
 pmedici,MCAC_47,2,1.9,33
 iposolver,MCAC_47,2,-1.0,-1
