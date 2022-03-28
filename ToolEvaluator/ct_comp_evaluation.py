@@ -247,7 +247,7 @@ def extract_ranking(output_file):
 
 # ====================================================================================================
 # General ranking
-def general_ranking(size, time):
+def overall_ranking(size, time):
     print("********** Size ranking: **********")
     print(size.groupby(by="ToolName").Score.sum())
     print("********** Time ranking: **********")
@@ -294,7 +294,7 @@ if __name__ == "__main__":
     [size, time] = extract_ranking(args.o)
 
     # Sum the results and extract the overall ranking
-    general_ranking(size, time)
+    overall_ranking(size, time)
 
     # Results per category
     ranking_for_categories(size, time, categories)
