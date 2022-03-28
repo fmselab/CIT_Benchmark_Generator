@@ -177,4 +177,12 @@ if __name__ == "__main__":
     extract_best_results(args.o)
 
     # Extract the ranking
-    extract_ranking(args.o)
+    [size, time] = extract_ranking(args.o)
+
+    # Sum the results
+    print("********** Size ranking: **********")
+    print(size.groupby(by="ToolName").Score.sum())
+    print("********** Time ranking: **********")
+    print(time.groupby(by="ToolName").Score.sum())
+    print("********** Overall ranking: **********")
+    print(size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5)
