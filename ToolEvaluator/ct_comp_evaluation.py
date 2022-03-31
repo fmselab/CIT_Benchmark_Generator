@@ -248,18 +248,77 @@ def extract_ranking(output_file):
 # ====================================================================================================
 # General ranking
 def overall_ranking(size, time):
+    out_file = open("data/" + "OVERALL_allStrengths.csv", 'w')
+    writer = csv.writer(out_file)
+    writer.writerow(["ToolName","EntryType","Score"])
+
     print("********** Size ranking: **********")
-    print(size.groupby(by="ToolName").Score.sum())
+    pdserie = size.groupby(by="ToolName").Score.sum()
+    print(pdserie)      
+    for i, v in pdserie.iteritems():
+        writer.writerow([i,"Size",v])
+
     print("********** Time ranking: **********")
-    print(time.groupby(by="ToolName").Score.sum())
+    pdserie = time.groupby(by="ToolName").Score.sum()
+    print(pdserie)      
+    for i, v in pdserie.iteritems():
+        writer.writerow([i,"Time",v])
+
     print("********** Overall ranking: **********")
-    print(size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5)
+    pdserie = size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5
+    print(pdserie)      
+    for i, v in pdserie.iteritems():
+        writer.writerow([i,"Overall",v])
+
+    out_file.close
 # ====================================================================================================
 
 # ====================================================================================================
-# Ranking for categiries
+# General ranking per strength
+def overall_ranking_strength(size, time):
+    strengths = size["Strength"].unique()
+
+    for strength in strengths:
+        out_file = open("data/" + "OVERALL_" + str(strength) + ".csv", 'w')
+        writer = csv.writer(out_file)
+        writer.writerow(["ToolName","EntryType","Score"])
+
+        sizenew = size[size.Strength.eq(strength)]
+        timenew = time[time.Strength.eq(strength)]
+
+        print("***********************************")
+        print("*** STRENGTH: " + str(strength) + "***")
+        print("***********************************")
+        print("********** Size ranking: **********")
+        pdserie = sizenew.groupby(by="ToolName").Score.sum()
+        print(pdserie)      
+        for i, v in pdserie.iteritems():
+            writer.writerow([i,"Size",v])
+
+        print("********** Time ranking: **********")
+        pdserie = timenew.groupby(by="ToolName").Score.sum()
+        print(pdserie)      
+        for i, v in pdserie.iteritems():
+            writer.writerow([i,"Time",v])
+
+        print("********** Overall ranking: **********")
+        pdserie = sizenew.groupby(by="ToolName").Score.sum() * 0.5 + timenew.groupby(by="ToolName").Score.sum() * 0.5
+        print(pdserie)      
+        for i, v in pdserie.iteritems():
+            writer.writerow([i,"Overall",v])
+
+        out_file.close
+# ====================================================================================================
+
+# ====================================================================================================
+# Ranking for categories
 def ranking_for_categories(size, time, categories):
     for category in categories:
+
+        out_file = open("data/" + category + "allStrengths.csv", 'w')
+        writer = csv.writer(out_file)
+        writer.writerow(["ToolName","EntryType","Score"])
+
         sizenew = size[size.ModelName.str.contains(category)]
         timenew = time[time.ModelName.str.contains(category)]
 
@@ -267,11 +326,67 @@ def ranking_for_categories(size, time, categories):
         print("*** CATEGORY: " + category + "***")
         print("***********************************")
         print("********** Size ranking: **********")
-        print(sizenew.groupby(by="ToolName").Score.sum())
+        pdserie = sizenew.groupby(by="ToolName").Score.sum()
+        print(pdserie)      
+        for i, v in pdserie.iteritems():
+            writer.writerow([i,"Size",v])
+
         print("********** Time ranking: **********")
-        print(timenew.groupby(by="ToolName").Score.sum())
+        pdserie = timenew.groupby(by="ToolName").Score.sum()
+        print(pdserie)      
+        for i, v in pdserie.iteritems():
+            writer.writerow([i,"Time",v])
+
         print("********** Overall ranking: **********")
-        print(sizenew.groupby(by="ToolName").Score.sum() * 0.5 + timenew.groupby(by="ToolName").Score.sum() * 0.5)
+        pdserie = sizenew.groupby(by="ToolName").Score.sum() * 0.5 + timenew.groupby(by="ToolName").Score.sum() * 0.5
+        print(pdserie)      
+        for i, v in pdserie.iteritems():
+            writer.writerow([i,"Overall",v])
+
+        out_file.close
+# ====================================================================================================
+
+# ====================================================================================================
+# Ranking for categiries
+def ranking_for_categories_and_strength(size, time, categories):
+    strengths = size["Strength"].unique()
+
+    for strength in strengths:
+        sizenew = size[size.Strength.eq(strength)]
+        timenew = time[time.Strength.eq(strength)]
+        print("***********************************")
+        print("*** STRENGTH: " + str(strength) + "***")
+        print("***********************************")
+        for category in categories:
+            out_file = open("data/" + category + str(strength) + ".csv", 'w')
+            writer = csv.writer(out_file)
+            writer.writerow(["ToolName","EntryType","Score"])
+
+            sizenew_c = sizenew[sizenew.ModelName.str.contains(category)]
+            timenew_c = timenew[timenew.ModelName.str.contains(category)]
+
+            print("***********************************")
+            print("*** CATEGORY: " + category + "***")
+            print("***********************************")
+            print("********** Size ranking: **********")
+            pdserie = sizenew_c.groupby(by="ToolName").Score.sum()
+            print(pdserie)      
+            for i, v in pdserie.iteritems():
+                writer.writerow([i,"Size",v])
+
+            print("********** Time ranking: **********")
+            pdserie = timenew_c.groupby(by="ToolName").Score.sum()
+            print(pdserie)      
+            for i, v in pdserie.iteritems():
+                writer.writerow([i,"Time",v])
+
+            print("********** Overall ranking: **********")
+            pdserie = sizenew_c.groupby(by="ToolName").Score.sum() * 0.5 + timenew_c.groupby(by="ToolName").Score.sum() * 0.5
+            print(pdserie)      
+            for i, v in pdserie.iteritems():
+                writer.writerow([i,"Overall",v])
+
+            out_file.close
 # ====================================================================================================
 
 # ====================================================================================================
@@ -295,6 +410,8 @@ if __name__ == "__main__":
 
     # Sum the results and extract the overall ranking
     overall_ranking(size, time)
+    overall_ranking_strength(size, time)
 
     # Results per category
     ranking_for_categories(size, time, categories)
+    ranking_for_categories_and_strength(size, time, categories)

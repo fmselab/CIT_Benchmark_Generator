@@ -1,0 +1,13 @@
+ToolName,EntryType,Score
+appts,Size,200
+cagen,Size,140
+iposolver,Size,110
+pmedici,Size,50
+appts,Time,50
+cagen,Time,200
+iposolver,Time,150
+pmedici,Time,100
+appts,Overall,125.0
+cagen,Overall,170.0
+iposolver,Overall,130.0
+pmedici,Overall,75.0
