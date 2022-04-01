@@ -1,4 +1,5 @@
 import argparse
+from gettext import find
 from os import listdir
 from os.path import isfile, join
 import csv
@@ -79,9 +80,30 @@ def main(file_path, output_file):
             iteraration = execution_info[4].split(".")[0]
         time = get_time(file, file_path)
         size = get_size(file, file_path)
+        if (not is_valid(tool_name, model_name, strength)):
+            time = -1
+            size = -1
         writer.writerow ([tool_name , model_name , strength , iteraration , time , size])
 
     out_file.close
+# ====================================================================================================
+
+# ====================================================================================================
+def is_valid(tool_name, model_name, strength):
+    try:
+        f = open("validation_files/const_tests_" + str(strength) + "_new.txt", "r")
+
+        for row in f:
+            find_str = tool_name + " - " + model_name + ": Ok"
+            if row.strip().startswith(find_str):
+                f.close
+                return True
+
+    except Exception as e:
+         print (str(e))
+         return False
+
+    return False
 # ====================================================================================================
 
 # ====================================================================================================
@@ -102,9 +124,9 @@ def extract_best_results(output_file):
                 min_size = filtered_df_output.Size.min() if not math.isnan(filtered_df_output.Size.min()) else -1
 
                 # If timeout, then it is the worst
-                if min_time > 300:
-                    min_time = -1
-                    min_size = -1
+                # if min_time > 300:
+                #    min_time = -1
+                #    min_size = -1
 
                 # If the size is 0 we consider it as a timeout
                 if min_size == 0:
