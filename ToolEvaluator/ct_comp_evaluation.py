@@ -9,6 +9,7 @@ import math
 import matplotlib.pyplot as plt
 
 categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
+strengths_vector = [2, 3, 4, 5]
 
 # ====================================================================================================
 # Returns the time of the corresponding execution
@@ -221,6 +222,7 @@ def extract_ranking(output_file):
     model_names = df_output["ModelName"].unique()
     tool_names = df_output["ToolName"].unique()
     strengths = df_output["Strength"].unique()
+    tool_names = ["pMEDICI", "CAGen", "Appts", "IPO Solver"]
     df_ranking_time = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score"])
     df_ranking_size = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score"])
 
@@ -287,7 +289,7 @@ def overall_ranking(size, time):
         writer.writerow([i,"Time",v])
 
     print("********** Overall ranking: **********")
-    pdserie = size.groupby(by="ToolName").Score.sum() * 0.5 + time.groupby(by="ToolName").Score.sum() * 0.5
+    pdserie = size.groupby(by="ToolName").Score.sum() * 0.5 + time[time.Strength != 5].groupby(by="ToolName").Score.sum() * 0.5
     print(pdserie)      
     for i, v in pdserie.iteritems():
         writer.writerow([i,"Overall",v])
@@ -301,6 +303,7 @@ def overall_ranking_strength(size, time):
     strengths = size["Strength"].unique()
 
     for strength in strengths:
+
         out_file = open("data/" + "OVERALL_" + str(strength) + ".csv", 'w')
         writer = csv.writer(out_file)
         writer.writerow(["ToolName","EntryType","Score"])
@@ -373,7 +376,12 @@ def ranking_for_categories(size, time, categories):
 def ranking_for_categories_and_strength(size, time, categories):
     strengths = size["Strength"].unique()
 
+    out_file2 = open("data/not_ValidInstances.csv", 'w')
+    writer2 = csv.writer(out_file2)
+    writer2.writerow(["ToolName","Strength","Category","NNotValid"])
+
     for strength in strengths:
+
         sizenew = size[size.Strength.eq(strength)]
         timenew = time[time.Strength.eq(strength)]
         print("***********************************")
@@ -386,6 +394,11 @@ def ranking_for_categories_and_strength(size, time, categories):
 
             sizenew_c = sizenew[sizenew.ModelName.str.contains(category)]
             timenew_c = timenew[timenew.ModelName.str.contains(category)]
+
+            # Compute the number of not valid instances
+            pdserie = sizenew_c[sizenew.Score == 0].groupby(by="ToolName").Score.count()
+            for i, v in pdserie.iteritems():
+                writer2.writerow([i,strength,category,v])
 
             print("***********************************")
             print("*** CATEGORY: " + category + "***")
@@ -409,6 +422,7 @@ def ranking_for_categories_and_strength(size, time, categories):
                 writer.writerow([i,"Overall",v])
 
             out_file.close
+    out_file2.close
 # ====================================================================================================
 
 # ====================================================================================================

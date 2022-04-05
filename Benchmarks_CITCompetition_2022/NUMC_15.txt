@@ -1,0 +1,16 @@
+[System]
+-- specify system name
+Name: NUMC_15
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (int) : 9, 10, 11, 12, 13, 14, 15
+
+[Constraint]
+-- this section is also optional
+(((((! (Par1 > 9)) => (Par0 != false))&&((Par0 != false) => (! (Par1 > 9)))) => (((! (Par0 != false)) => (! (Par0 != true)))&&((! (Par0 != true)) => (! (Par0 != false)))))&&((((! (Par0 != false)) => (! (Par0 != true)))&&((! (Par0 != true)) => (! (Par0 != false)))) => (((! (Par1 > 9)) => (Par0 != false))&&((Par0 != false) => (! (Par1 > 9)))))) => (((! (Par0 != false)) || (Par0 != false)) => ((! (Par0 != true)) => (Par0 != true)))
+((! (Par1 <= 13)) => (! (Par1 = 11)))&&((! (Par1 = 11)) => (! (Par1 <= 13)))
+(((Par1 != 14) => (Par1 = 11))&&((Par1 = 11) => (Par1 != 14))) => ((! (Par1 < 12)) => (Par1 < 15))
+((! (Par1 <= 10)) => (Par1 >= 15))&&((Par1 >= 15) => (! (Par1 <= 10)))
+

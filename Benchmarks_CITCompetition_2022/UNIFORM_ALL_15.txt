@@ -1,0 +1,10 @@
+[System]
+-- specify system name
+Name: UNIFORM_ALL_15
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3
+
+

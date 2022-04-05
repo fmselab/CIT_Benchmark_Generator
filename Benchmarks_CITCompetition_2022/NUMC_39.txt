@@ -1,0 +1,23 @@
+[System]
+-- specify system name
+Name: NUMC_39
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14, PAR2_15
+Par3 (int) : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Par4 (int) : -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4
+
+[Constraint]
+-- this section is also optional
+((((Par3 > 10) => (Par0 != true))&&((Par0 != true) => (Par3 > 10))) => ((Par5 != "PAR5_1") || (! (Par1 = false))))&&(((Par5 != "PAR5_1") || (! (Par1 = false))) => (((Par3 > 10) => (Par0 != true))&&((Par0 != true) => (Par3 > 10))))
+((((! (Par4 >= 5)) || (! (Par0 != false))) => (((Par0 = true) => (Par0 = true))&&((Par0 = true) => (Par0 = true))))&&((((Par0 = true) => (Par0 = true))&&((Par0 = true) => (Par0 = true))) => ((! (Par4 >= 5)) || (! (Par0 != false))))) || (((! (Par0 != true)) && (Par2 = "PAR2_8")) || ((Par5 = "PAR5_3") => (Par5 != "PAR5_1")))
+(Par5 = "PAR5_3") && (Par4 <= -20)
+((((Par4 <= 6) => (Par3 >= 12))&&((Par3 >= 12) => (Par4 <= 6))) => ((Par5 != "PAR5_1") && (! (Par1 = true))))&&(((Par5 != "PAR5_1") && (! (Par1 = true))) => (((Par4 <= 6) => (Par3 >= 12))&&((Par3 >= 12) => (Par4 <= 6))))
+((((! (Par0 = true)) => (Par5 = "PAR5_1"))&&((Par5 = "PAR5_1") => (! (Par0 = true)))) || (((Par2 = "PAR2_1") => (! (Par3 < 7)))&&((! (Par3 < 7)) => (Par2 = "PAR2_1")))) && ((((Par0 != false) => (! (Par4 > -21)))&&((! (Par4 > -21)) => (Par0 != false))) => ((Par3 != 10) => (! (Par4 > -21))))
+((((Par3 = 15) => (! (Par4 != -14)))&&((! (Par4 != -14)) => (Par3 = 15))) && ((Par3 < 1) => (! (Par0 = true)))) && ((((Par0 = false) => (! (Par4 != -17)))&&((! (Par4 != -17)) => (Par0 = false))) || ((! (Par3 != 3)) => (! (Par0 != false))))
+(((Par4 <= 8) => (! (Par2 = "PAR2_6"))) => ((Par4 >= -16) => (Par1 = true)))&&(((Par4 >= -16) => (Par1 = true)) => ((Par4 <= 8) => (! (Par2 = "PAR2_6"))))
+

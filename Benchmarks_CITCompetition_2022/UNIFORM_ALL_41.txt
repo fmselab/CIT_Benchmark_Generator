@@ -1,0 +1,28 @@
+[System]
+-- specify system name
+Name: UNIFORM_ALL_41
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2
+Par14 (enum) : PAR14_0, PAR14_1, PAR14_2
+Par15 (enum) : PAR15_0, PAR15_1, PAR15_2
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2
+Par17 (enum) : PAR17_0, PAR17_1, PAR17_2
+Par18 (enum) : PAR18_0, PAR18_1, PAR18_2
+Par19 (enum) : PAR19_0, PAR19_1, PAR19_2
+
+

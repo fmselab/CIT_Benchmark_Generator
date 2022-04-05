@@ -1,0 +1,17 @@
+[System]
+-- specify system name
+Name: NUMC_30
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9, PAR1_10, PAR1_11, PAR1_12, PAR1_13, PAR1_14, PAR1_15, PAR1_16, PAR1_17, PAR1_18, PAR1_19, PAR1_20, PAR1_21, PAR1_22, PAR1_23, PAR1_24, PAR1_25, PAR1_26
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (int) : -89, -88, -87, -86, -85, -84, -83, -82, -81, -80, -79, -78, -77, -76, -75, -74, -73, -72, -71, -70, -69, -68, -67, -66, -65, -64, -63, -62, -61, -60, -59, -58, -57, -56, -55, -54, -53, -52, -51, -50, -49, -48, -47, -46, -45, -44, -43
+
+[Constraint]
+-- this section is also optional
+((((Par1 = "PAR1_24") => (! (Par1 != "PAR1_25"))) => (((! (Par3 != true)) => (Par4 < -79))&&((Par4 < -79) => (! (Par3 != true)))))&&((((! (Par3 != true)) => (Par4 < -79))&&((Par4 < -79) => (! (Par3 != true)))) => ((Par1 = "PAR1_24") => (! (Par1 != "PAR1_25"))))) => ((((Par2 != false) => (Par2 = true))&&((Par2 = true) => (Par2 != false))) || ((Par0 != false) => (! (Par1 = "PAR1_16"))))
+(((Par3 != true) || (! (Par3 != false))) && ((! (Par0 = false)) => (! (Par0 != false)))) => (((Par4 != -86) && (Par0 = true)) || ((! (Par0 = false)) => (Par0 != false)))
+

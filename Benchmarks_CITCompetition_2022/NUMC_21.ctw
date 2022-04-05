@@ -1,0 +1,16 @@
+Model NUMC_21
+Parameters:
+Par0: [-9 .. 12]
+Par1 : Boolean
+
+Constraints:
+# (((not (Par1 = false)) => Par0 >= -4) => ((not (Par1 = true)) => (not (Par1 = true)))) #
+# ((((not (Par1 != true)) OR (not (Par1 = false))) <=> (Par1 != true <=> (not (Par1 = false)))) => (((not (Par0 = 0)) AND Par0 = 7) <=> (Par1 = true <=> Par1 = false))) #
+# (((not (Par1 != true)) <=> Par0 <= 12) OR (Par0 != -8 OR (not (Par1 != true)))) #
+# ((((not (Par1 = true)) <=> (not (Par1 = false))) AND (Par1 = true AND (not (Par1 != false)))) OR (((not (Par0 = -9)) OR (not (Par1 != true))) OR ((not (Par0 = 4)) <=> Par0 != -5))) #
+# (((Par0 <= 8 <=> Par0 >= 12) <=> ((not (Par0 >= 9)) OR Par1 = true)) => (((not (Par0 < -6)) => Par1 = false) => ((not (Par1 != true)) AND (not (Par1 = false))))) #
+# (((not (Par0 != 7)) => Par0 = 2) OR (Par0 > -6 OR (not (Par1 != false)))) #
+# (Par0 <= -3 <=> (not (Par1 = false))) #
+# (((not (Par0 = -1)) <=> (not (Par1 = false))) => (Par1 = false OR (not (Par0 >= 5)))) #
+# (((Par1 != true <=> (not (Par1 = false))) <=> ((not (Par1 != false)) AND Par0 > 0)) OR ((Par1 = false AND (not (Par1 = false))) <=> (Par1 != true <=> (not (Par0 > -8))))) #
+# ((Par0 <= 3 AND (not (Par1 != false))) AND (Par0 != 4 <=> Par0 != 6)) #

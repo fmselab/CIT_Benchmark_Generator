@@ -1,0 +1,11 @@
+Model NUMC_5
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3}
+Par4 : Boolean
+Par5 : Boolean
+
+Constraints:
+# (((not (Par4 = true)) OR Par0 = false) OR (Par4 = true => (not (Par3 = PAR3_1)))) #

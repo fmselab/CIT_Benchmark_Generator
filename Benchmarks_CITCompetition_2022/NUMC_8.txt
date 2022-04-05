@@ -1,0 +1,18 @@
+[System]
+-- specify system name
+Name: NUMC_8
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, PAR5_9, PAR5_10, PAR5_11, PAR5_12, PAR5_13, PAR5_14, PAR5_15
+
+[Constraint]
+-- this section is also optional
+! (Par4 != false)
+(((Par2 != false) => (! (Par1 = false))) => ((Par0 = false) || (Par5 != "PAR5_14"))) || ((((! (Par0 = true)) => (Par1 = false))&&((Par1 = false) => (! (Par0 = true)))) && (((Par3 != false) => (Par2 != true))&&((Par2 != true) => (Par3 != false))))
+

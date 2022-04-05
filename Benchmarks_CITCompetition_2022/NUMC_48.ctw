@@ -1,0 +1,13 @@
+Model NUMC_48
+Parameters:
+Par0: [-56 .. -15]
+Par1 : Boolean
+
+Constraints:
+# ((Par0 <= -35 <=> (not (Par0 > -38))) <=> (Par1 != false <=> (not (Par0 <= -45)))) #
+# ((((not (Par1 != false)) AND Par0 >= -39) AND ((not (Par0 <= -18)) <=> Par0 != -33)) => ((Par1 = false <=> (not (Par1 != true))) AND ((not (Par1 != true)) AND (not (Par0 <= -49))))) #
+# ((((not (Par1 = false)) AND Par1 = true) OR ((not (Par0 < -37)) <=> Par1 != false)) OR (((not (Par0 = -33)) <=> (not (Par1 = false))) AND (Par1 != true => Par1 = true))) #
+# ((not (Par0 < -54)) => Par0 < -40) #
+# ((Par1 != false <=> (not (Par0 != -39))) => ((not (Par0 <= -53)) <=> (not (Par0 <= -29)))) #
+# (((Par0 <= -42 <=> Par1 != false) <=> ((not (Par1 != false)) OR (not (Par0 < -31)))) OR ((Par0 >= -51 => (not (Par1 = true))) => (Par1 = false AND Par1 != true))) #
+# ((((not (Par1 != false)) => Par0 < -31) <=> (Par0 = -15 <=> Par1 = false)) AND ((Par1 = false OR Par1 != false) <=> (Par1 != false AND (not (Par1 = false))))) #

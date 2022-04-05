@@ -1,0 +1,22 @@
+[System]
+-- specify system name
+Name: BOOLC_13
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((Par1 = true) => (! (Par4 = true))) || ((! (Par0 = false)) => (Par2 != true))) => (((! (Par2 != false)) || (! (Par1 != false))) && ((Par1 != false) || (! (Par2 != true))))
+((Par5 != false) || (! (Par4 = true))) || ((Par3 = false) || (! (Par1 = false)))
+((((! (Par4 = true)) && (Par2 = false)) => ((Par2 = true) && (! (Par1 = false))))&&(((Par2 = true) && (! (Par1 = false))) => ((! (Par4 = true)) && (Par2 = false)))) || ((((! (Par5 != false)) => (Par5 = false))&&((Par5 = false) => (! (Par5 != false)))) => (((Par2 != false) => (Par3 = true))&&((Par3 = true) => (Par2 != false))))
+((Par0 != true) => (! (Par0 != true))) => ((! (Par3 = false)) => (Par5 != false))
+(((((! (Par5 != true)) => (! (Par1 != true)))&&((! (Par1 != true)) => (! (Par5 != true)))) => (((Par2 != false) => (! (Par3 != false)))&&((! (Par3 != false)) => (Par2 != false))))&&((((Par2 != false) => (! (Par3 != false)))&&((! (Par3 != false)) => (Par2 != false))) => (((! (Par5 != true)) => (! (Par1 != true)))&&((! (Par1 != true)) => (! (Par5 != true)))))) => (((Par0 = true) || (! (Par2 = false))) => ((! (Par4 = false)) && (Par1 != true)))
+(((Par0 != false) && (Par5 != false)) && (((Par0 = true) => (Par0 != true))&&((Par0 != true) => (Par0 = true)))) || (((((! (Par2 != true)) => (Par4 != false))&&((Par4 != false) => (! (Par2 != true)))) => ((! (Par1 != true)) || (Par0 = true)))&&(((! (Par1 != true)) || (Par0 = true)) => (((! (Par2 != true)) => (Par4 != false))&&((Par4 != false) => (! (Par2 != true))))))
+

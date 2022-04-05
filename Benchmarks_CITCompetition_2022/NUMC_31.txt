@@ -1,0 +1,17 @@
+[System]
+-- specify system name
+Name: NUMC_31
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5
+Par2 (int) : 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+((Par1 != "PAR1_0") => (Par2 <= 65)) => ((Par4 = false) => (Par0 != true))
+(((! (Par2 > 36)) => (! (Par1 != "PAR1_1")))&&((! (Par1 != "PAR1_1")) => (! (Par2 > 36)))) && ((! (Par3 != false)) || (Par2 = 45))
+

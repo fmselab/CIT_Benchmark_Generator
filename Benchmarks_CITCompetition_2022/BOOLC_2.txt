@@ -1,0 +1,35 @@
+[System]
+-- specify system name
+Name: BOOLC_2
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (boolean) : true, false
+Par15 (boolean) : true, false
+Par16 (boolean) : true, false
+Par17 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+((! (Par0 != false)) => (! (Par17 = false))) && (((! (Par0 != false)) => (Par7 != false))&&((Par7 != false) => (! (Par0 != false))))
+(((Par0 = true) || (Par11 != false)) => ((Par15 != true) && (! (Par5 != true))))&&(((Par15 != true) && (! (Par5 != true))) => ((Par0 = true) || (Par11 != false)))
+((((! (Par2 != true)) && (! (Par7 = false))) => ((! (Par11 != false)) && (Par9 != true)))&&(((! (Par11 != false)) && (Par9 != true)) => ((! (Par2 != true)) && (! (Par7 = false))))) => ((((Par17 != false) || (Par13 = false)) => ((! (Par0 = false)) && (! (Par12 != true))))&&(((! (Par0 = false)) && (! (Par12 != true))) => ((Par17 != false) || (Par13 = false))))
+(((Par6 != true) || (! (Par1 != true))) => (((Par13 != false) => (Par7 != false))&&((Par7 != false) => (Par13 != false))))&&((((Par13 != false) => (Par7 != false))&&((Par7 != false) => (Par13 != false))) => ((Par6 != true) || (! (Par1 != true))))
+(((Par14 != true) => (Par14 = true)) => ((! (Par14 != false)) && (! (Par2 != true))))&&(((! (Par14 != false)) && (! (Par2 != true))) => ((Par14 != true) => (Par14 = true)))
+(Par9 != true) && (Par15 != false)
+(((((! (Par15 = false)) => (Par17 != false)) => ((Par9 = true) && (Par1 != false)))&&(((Par9 = true) && (Par1 != false)) => ((! (Par15 = false)) => (Par17 != false)))) => (((Par17 = false) || (! (Par15 != false))) || ((! (Par12 = false)) && (! (Par11 != true)))))&&((((Par17 = false) || (! (Par15 != false))) || ((! (Par12 = false)) && (! (Par11 != true)))) => ((((! (Par15 = false)) => (Par17 != false)) => ((Par9 = true) && (Par1 != false)))&&(((Par9 = true) && (Par1 != false)) => ((! (Par15 = false)) => (Par17 != false)))))
+
