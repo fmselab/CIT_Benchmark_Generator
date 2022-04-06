@@ -1,13 +1,10 @@
 ToolName,EntryType,Score
 appts,Size,195
 cagen,Size,158
-iposolver,Size,0
 pmedici,Size,45
 appts,Time,93
 cagen,Time,226
-iposolver,Time,0
 pmedici,Time,79
 appts,Overall,144.0
 cagen,Overall,192.0
-iposolver,Overall,0.0
 pmedici,Overall,62.0

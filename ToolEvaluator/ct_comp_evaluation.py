@@ -138,6 +138,9 @@ def extract_best_results(output_file):
                 min_time = filtered_df_output.TimeSeconds.min() if not math.isnan(filtered_df_output.TimeSeconds.min()) else -1
                 min_size = filtered_df_output.Size.min() if not math.isnan(filtered_df_output.Size.min()) else -1
 
+                if min_size == -1:
+                    continue
+
                 # If the size is 0 we consider it as a timeout
                 if min_size == 0:
                     error_type = "Timeout"
