@@ -1,9 +1,11 @@
 import argparse
+from ftplib import error_perm
 from gettext import find
 from os import listdir
 from os.path import isfile, join
 import csv
 from tarfile import DEFAULT_FORMAT
+from numpy import mat
 import pandas as pd 
 import math
 import matplotlib.pyplot as plt
@@ -66,10 +68,11 @@ def main(file_path, output_file):
     writer = csv.writer(out_file)
 
     # Header
-    writer.writerow(["ToolName","ModelName","Strength","Iteration","TimeSeconds","Size"])
+    writer.writerow(["ToolName","ModelName","Strength","Iteration","ErrorType","TimeSeconds","Size"])
 
     for file in onlyfiles:
         execution_info = file.split("_")
+        error_type = ""
         tool_name = execution_info[0]
         if (execution_info[1] == "UNIFORM"):
             model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
@@ -79,12 +82,18 @@ def main(file_path, output_file):
             model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
             strength = execution_info[3]
             iteraration = execution_info[4].split(".")[0]
+
         time = get_time(file, file_path)
         size = get_size(file, file_path)
-        if (not is_valid(tool_name, model_name, strength)):
-            time = -1
-            size = -1
-        writer.writerow ([tool_name , model_name , strength , iteraration , time , size])
+
+        # Set timeout instances
+        if size == 0:
+            error_type = "Timeout"
+        # Set the Invalid instances
+        elif (not is_valid(tool_name, model_name, strength)):
+            error_type = "Invalid"
+
+        writer.writerow ([tool_name , model_name , strength , iteraration , error_type, time , size])
 
     out_file.close
 # ====================================================================================================
@@ -111,7 +120,7 @@ def is_valid(tool_name, model_name, strength):
 # Extracts the best results for each tool over the three iterations
 def extract_best_results(output_file):
     df_output = pd.read_csv(output_file + ".csv", delimiter=",")
-    df_aggregate = pd.DataFrame(columns=["ToolName","ModelName","Strength","TimeSeconds","Size"])
+    df_aggregate = pd.DataFrame(columns=["ToolName","ModelName","Strength","TimeSeconds","Size","ErrorType"])
     model_names = df_output["ModelName"].unique()
     generator_names = df_output["ToolName"].unique()
     strengths = df_output["Strength"].unique()
@@ -119,27 +128,30 @@ def extract_best_results(output_file):
     for strength in strengths:
         for modelName in model_names:
             for generatorName in generator_names:
+                error_type = ""
                 filtered_df_output = df_output[(df_output.ToolName.eq(generatorName)) & (df_output.ModelName.eq(modelName)) & \
                     (df_output.Strength.eq(strength))]
+
+                if math.isnan(filtered_df_output.TimeSeconds.min()):
+                    print(filtered_df_output)
+                
                 min_time = filtered_df_output.TimeSeconds.min() if not math.isnan(filtered_df_output.TimeSeconds.min()) else -1
                 min_size = filtered_df_output.Size.min() if not math.isnan(filtered_df_output.Size.min()) else -1
 
-                # If timeout, then it is the worst
-                # if min_time > 300:
-                #    min_time = -1
-                #    min_size = -1
-
                 # If the size is 0 we consider it as a timeout
                 if min_size == 0:
-                    min_time = -1
-                    min_size = -1
+                    error_type = "Timeout"
+                # Set the Invalid instances
+                elif (not is_valid(generatorName, modelName, strength)):
+                    error_type = "Invalid"
 
                 df_aggregate = df_aggregate.append({
                     "ToolName": generatorName,
                     "ModelName": modelName,
                     "Strength": strength,
                     "TimeSeconds": min_time,
-                    "Size": min_size
+                    "Size": min_size,
+                    "ErrorType": error_type
                 }, ignore_index=True)
 
     df_aggregate.to_csv(output_file + "_best.csv", index = False)
@@ -152,10 +164,10 @@ def extract_best_results(output_file):
 # Print the plots
 def print_plots(df_aggregate):
     # Extract a figure showing the behavior of the tools - TIME
-    datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
-    dataCAGen = df_aggregate[(df_aggregate.ToolName.eq("cagen")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
-    dataAppts = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
-    dataIPOSolver = df_aggregate[(df_aggregate.ToolName.eq("iposolver")) & (df_aggregate.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+    datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+    dataCAGen = df_aggregate[(df_aggregate.ToolName.eq("cagen")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+    dataAppts = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+    dataIPOSolver = df_aggregate[(df_aggregate.ToolName.eq("iposolver")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     
     fig, ax = plt.subplots()
     ax.set_title('Generation time')
@@ -166,10 +178,10 @@ def print_plots(df_aggregate):
     fig.savefig("figs/Tools_time.png")
 
     # Extract a figure showing the behavior of the tools - Size
-    datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
-    dataCAGen = df_aggregate[(df_aggregate.ToolName.eq("cagen")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
-    dataAppts = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
-    dataIPOSolver = df_aggregate[(df_aggregate.ToolName.eq("iposolver")) & (df_aggregate.TimeSeconds.gt(-0.1))].Size.to_numpy()
+    datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+    dataCAGen = df_aggregate[(df_aggregate.ToolName.eq("cagen")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+    dataAppts = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+    dataIPOSolver = df_aggregate[(df_aggregate.ToolName.eq("iposolver")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
 
     fig, ax = plt.subplots()
     ax.set_title('Test suite size')
@@ -187,10 +199,10 @@ def print_plots_categories(df_aggregate, categories):
         filtered_df = df_aggregate[df_aggregate.ModelName.str.contains(category)]
 
         # Extract a figure showing the behavior of the tools - TIME
-        datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
-        dataCAGen = filtered_df[(filtered_df.ToolName.eq("cagen")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
-        dataAppts = filtered_df[(filtered_df.ToolName.eq("appts")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
-        dataIPOSolver = filtered_df[(filtered_df.ToolName.eq("iposolver")) & (filtered_df.TimeSeconds.gt(-0.1))].TimeSeconds.to_numpy()
+        datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+        dataCAGen = filtered_df[(filtered_df.ToolName.eq("cagen")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+        dataAppts = filtered_df[(filtered_df.ToolName.eq("appts")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+        dataIPOSolver = filtered_df[(filtered_df.ToolName.eq("iposolver")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         
         fig, ax = plt.subplots()
         plt.xlabel("Generator")
@@ -201,10 +213,10 @@ def print_plots_categories(df_aggregate, categories):
         fig.savefig("figs/Tools_time_" + category + ".png")
 
         # Extract a figure showing the behavior of the tools - Size
-        datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
-        dataCAGen = filtered_df[(filtered_df.ToolName.eq("cagen")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
-        dataAppts = filtered_df[(filtered_df.ToolName.eq("appts")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
-        dataIPOSolver = filtered_df[(filtered_df.ToolName.eq("iposolver")) & (filtered_df.TimeSeconds.gt(-0.1))].Size.to_numpy()
+        datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+        dataCAGen = filtered_df[(filtered_df.ToolName.eq("cagen")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+        dataAppts = filtered_df[(filtered_df.ToolName.eq("appts")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+        dataIPOSolver = filtered_df[(filtered_df.ToolName.eq("iposolver")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
 
         fig, ax = plt.subplots()
         ax.set_title('Test suite size')
@@ -223,8 +235,8 @@ def extract_ranking(output_file):
     tool_names = df_output["ToolName"].unique()
     strengths = df_output["Strength"].unique()
     tool_names = ["pMEDICI", "CAGen", "Appts", "IPO Solver"]
-    df_ranking_time = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score"])
-    df_ranking_size = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score"])
+    df_ranking_time = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score", "ErrorType"])
+    df_ranking_size = pd.DataFrame(columns=["ToolName","ModelName","Strength","Score", "ErrorType"])
 
     for strength in strengths:
         for modelName in model_names:
@@ -233,8 +245,10 @@ def extract_ranking(output_file):
             point_counter = 0
             score = 0
             for res in vector:
-                if res[3] == -1:
+                error_type = ""
+                if res[5] in ["Timeout", "Invalid"]:
                     score = 0
+                    error_type = res[5]
                 else:
                     score = point_counter + 1
                     point_counter += 1
@@ -243,7 +257,8 @@ def extract_ranking(output_file):
                     "ToolName": res[0],
                     "ModelName": modelName,
                     "Strength": strength,
-                    "Score": score
+                    "Score": score,
+                    "ErrorType": error_type
                 }, ignore_index=True)
 
             # Sort the results by size
@@ -251,8 +266,10 @@ def extract_ranking(output_file):
             vector = df_output[(df_output.ModelName.eq(modelName)) & (df_output.Strength.eq(strength))].sort_values(by=['Size'], ascending=False).to_numpy()
             score = 0
             for res in vector:
-                if res[4] == -1:
+                error_type = ""
+                if res[5] in ["Timeout", "Invalid"]:
                     score = 0
+                    error_type = res[5]
                 else:
                     score = point_counter + 1
                     point_counter += 1
@@ -261,7 +278,8 @@ def extract_ranking(output_file):
                     "ToolName": res[0],
                     "ModelName": modelName,
                     "Strength": strength,
-                    "Score": score
+                    "Score": score,
+                    "ErrorType": error_type
                 }, ignore_index=True)
 
     df_ranking_size.to_csv(output_file + "_ranking_size.csv", index = False)
@@ -376,9 +394,12 @@ def ranking_for_categories(size, time, categories):
 def ranking_for_categories_and_strength(size, time, categories):
     strengths = size["Strength"].unique()
 
-    out_file2 = open("data/not_ValidInstances.csv", 'w')
+    out_file2 = open("data/InvalidInstances.csv", 'w')
+    out_file3 = open("data/TimedoutInstances.csv", 'w')
     writer2 = csv.writer(out_file2)
-    writer2.writerow(["ToolName","Strength","Category","NNotValid"])
+    writer2.writerow(["ToolName","Strength","Category","N_Invalid"])
+    writer3 = csv.writer(out_file3)
+    writer3.writerow(["ToolName","Strength","Category","N_TimeOut"])
 
     for strength in strengths:
 
@@ -396,9 +417,14 @@ def ranking_for_categories_and_strength(size, time, categories):
             timenew_c = timenew[timenew.ModelName.str.contains(category)]
 
             # Compute the number of not valid instances
-            pdserie = sizenew_c[sizenew.Score == 0].groupby(by="ToolName").Score.count()
+            pdserie = sizenew_c[sizenew.ErrorType.eq("Invalid")].groupby(by="ToolName").Score.count()
             for i, v in pdserie.iteritems():
                 writer2.writerow([i,strength,category,v])
+
+            # Compute the number of not timed out instances
+            pdserie = sizenew_c[sizenew.ErrorType.eq("Timeout")].groupby(by="ToolName").Score.count()
+            for i, v in pdserie.iteritems():
+                writer3.writerow([i,strength,category,v])
 
             print("***********************************")
             print("*** CATEGORY: " + category + "***")
@@ -423,6 +449,7 @@ def ranking_for_categories_and_strength(size, time, categories):
 
             out_file.close
     out_file2.close
+    out_file3.close
 # ====================================================================================================
 
 # ====================================================================================================
