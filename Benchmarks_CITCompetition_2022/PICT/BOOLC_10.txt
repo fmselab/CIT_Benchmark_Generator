@@ -1,0 +1,24 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : false, true
+Par8 : false, true
+Par9 : false, true
+Par10 : false, true
+
+
+IF (IF (IF (NOT ([Par5]<>"false")) THEN (NOT ([Par7]="true"))) THEN (IF (NOT ([Par9]<>"true")) THEN ([Par2]="true");
+IF ([Par2]="true") THEN (NOT ([Par9]<>"true")))) THEN ((IF ([Par10]="false") THEN (NOT ([Par2]="false"));
+IF (NOT ([Par2]="false")) THEN ([Par10]="false")) OR (IF (NOT ([Par10]="true")) THEN (NOT ([Par4]="false"));
+IF (NOT ([Par4]="false")) THEN (NOT ([Par10]="true"))));
+(NOT ([Par0]="true")) OR ([Par9]="true");
+((IF ([Par0]<>"false") THEN ([Par0]<>"true");
+IF ([Par0]<>"true") THEN ([Par0]<>"false")) AND (([Par1]="false") AND (NOT ([Par3]<>"true")))) OR ((IF (NOT ([Par9]<>"false")) THEN (NOT ([Par8]<>"false"));
+IF (NOT ([Par8]<>"false")) THEN (NOT ([Par9]<>"false"))) AND (([Par6]="false") AND ([Par10]="false")));
+IF ((NOT ([Par0]="true")) OR ([Par10]<>"true")) THEN (IF ([Par4]="true") THEN ([Par0]="true"));
+[Par10]<>"true";
+NOT ([Par6]<>"false");

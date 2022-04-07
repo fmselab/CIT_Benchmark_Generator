@@ -1,0 +1,16 @@
+Par0 : false, true
+Par1 : 9, 10, 11, 12, 13, 14, 15
+
+
+IF (IF (IF (NOT ([Par1]>9)) THEN ([Par0]<>"false");
+IF ([Par0]<>"false") THEN (NOT ([Par1]>9))) THEN (IF (NOT ([Par0]<>"false")) THEN (NOT ([Par0]<>"true"));
+IF (NOT ([Par0]<>"true")) THEN (NOT ([Par0]<>"false")));
+IF (IF (NOT ([Par0]<>"false")) THEN (NOT ([Par0]<>"true"));
+IF (NOT ([Par0]<>"true")) THEN (NOT ([Par0]<>"false"))) THEN (IF (NOT ([Par1]>9)) THEN ([Par0]<>"false");
+IF ([Par0]<>"false") THEN (NOT ([Par1]>9)))) THEN (IF ((NOT ([Par0]<>"false")) OR ([Par0]<>"false")) THEN (IF (NOT ([Par0]<>"true")) THEN ([Par0]<>"true")));
+IF (NOT ([Par1]<=13)) THEN (NOT ([Par1]=11));
+IF (NOT ([Par1]=11)) THEN (NOT ([Par1]<=13));
+IF (IF ([Par1]<>14) THEN ([Par1]=11);
+IF ([Par1]=11) THEN ([Par1]<>14)) THEN (IF (NOT ([Par1]<12)) THEN ([Par1]<15));
+IF (NOT ([Par1]<=10)) THEN ([Par1] >= 15);
+IF ([Par1] >= 15) THEN (NOT ([Par1]<=10));

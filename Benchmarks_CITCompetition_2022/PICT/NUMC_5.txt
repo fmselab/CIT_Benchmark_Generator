@@ -1,0 +1,9 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3
+Par4 : false, true
+Par5 : false, true
+
+
+((NOT ([Par4]="true")) OR ([Par0]="false")) OR (IF ([Par4]="true") THEN (NOT ([Par3]="PAR3_1")));

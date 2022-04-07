@@ -1,0 +1,39 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : false, true
+Par8 : false, true
+Par9 : false, true
+Par10 : false, true
+Par11 : false, true
+Par12 : false, true
+Par13 : false, true
+Par14 : false, true
+Par15 : false, true
+Par16 : false, true
+Par17 : false, true
+Par18 : false, true
+Par19 : false, true
+
+
+IF ((NOT ([Par15]="true")) OR ([Par8]<>"true")) THEN ((NOT ([Par15]<>"true")) AND (NOT ([Par18]<>"false")));
+IF (NOT ([Par0]="true")) THEN (NOT ([Par3]="false"));
+(((NOT ([Par5]<>"false")) OR ([Par6]="true")) AND (IF ([Par7]="true") THEN ([Par7]<>"false");
+IF ([Par7]<>"false") THEN ([Par7]="true"))) OR (IF (([Par1]="true") OR (NOT ([Par19]<>"false"))) THEN ((NOT ([Par4]<>"true")) OR (NOT ([Par15]<>"true"))));
+((([Par10]<>"true") OR ([Par10]="false")) OR ((NOT ([Par1]<>"false")) OR ([Par17]<>"true"))) OR (IF (IF (NOT ([Par15]<>"true")) THEN ([Par16]<>"false");
+IF ([Par16]<>"false") THEN (NOT ([Par15]<>"true"))) THEN ((NOT ([Par2]<>"false")) AND ([Par15]<>"true")));
+IF ((NOT ([Par13]<>"true")) AND (NOT ([Par8]="true"))) THEN ((NOT ([Par16]="false")) AND (NOT ([Par13]="true")));
+IF ((NOT ([Par16]="false")) AND (NOT ([Par13]="true"))) THEN ((NOT ([Par13]<>"true")) AND (NOT ([Par8]="true")));
+IF ([Par10]="true") THEN (NOT ([Par4]<>"true"));
+IF (NOT ([Par4]<>"true")) THEN ([Par10]="true");
+IF (IF (NOT ([Par1]<>"true")) THEN (NOT ([Par19]="true"));
+IF (NOT ([Par19]="true")) THEN (NOT ([Par1]<>"true"))) THEN (([Par7]="false") OR (NOT ([Par10]<>"true")));
+IF (([Par7]="false") OR (NOT ([Par10]<>"true"))) THEN (IF (NOT ([Par1]<>"true")) THEN (NOT ([Par19]="true"));
+IF (NOT ([Par19]="true")) THEN (NOT ([Par1]<>"true")));
+IF (IF ((NOT ([Par14]<>"true")) AND ([Par4]="true")) THEN ((NOT ([Par15]<>"false")) AND (NOT ([Par0]<>"true")))) THEN (IF ((NOT ([Par9]<>"true")) AND ([Par19]<>"true")) THEN (([Par16]="true") OR ([Par13]<>"false")));
+IF (IF ((NOT ([Par9]<>"true")) AND ([Par19]<>"true")) THEN (([Par16]="true") OR ([Par13]<>"false"))) THEN (IF ((NOT ([Par14]<>"true")) AND ([Par4]="true")) THEN ((NOT ([Par15]<>"false")) AND (NOT ([Par0]<>"true"))));
+((NOT ([Par1]<>"false")) OR ([Par1]<>"true")) OR ((NOT ([Par3]<>"true")) OR (NOT ([Par17]="false")));

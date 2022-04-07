@@ -1,0 +1,24 @@
+Par0 : false, true
+Par1 : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9, PAR1_10, PAR1_11, PAR1_12, PAR1_13, PAR1_14, PAR1_15, PAR1_16, PAR1_17, PAR1_18, PAR1_19, PAR1_20, PAR1_21, PAR1_22, PAR1_23, PAR1_24, PAR1_25, PAR1_26
+Par2 : false, true
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13, PAR3_14, PAR3_15, PAR3_16, PAR3_17, PAR3_18, PAR3_19, PAR3_20, PAR3_21, PAR3_22, PAR3_23, PAR3_24, PAR3_25, PAR3_26, PAR3_27, PAR3_28, PAR3_29, PAR3_30, PAR3_31, PAR3_32, PAR3_33, PAR3_34, PAR3_35, PAR3_36, PAR3_37, PAR3_38, PAR3_39, PAR3_40, PAR3_41
+Par4 : false, true
+Par5 : 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82
+Par6 : false, true
+
+
+(([Par1]<>"PAR1_17") AND ([Par2]="true")) AND (IF (NOT ([Par4]="true")) THEN (NOT ([Par1]<>"PAR1_9")));
+((IF ([Par0]<>"true") THEN (NOT ([Par6]="true"));
+IF (NOT ([Par6]="true")) THEN ([Par0]<>"true")) AND (([Par0]<>"true") OR ([Par1]<>"PAR1_0"))) OR ((IF ([Par0]="false") THEN (NOT ([Par1]<>"PAR1_0"));
+IF (NOT ([Par1]<>"PAR1_0")) THEN ([Par0]="false")) AND (IF (NOT ([Par6]="true")) THEN ([Par3]="PAR3_11");
+IF ([Par3]="PAR3_11") THEN (NOT ([Par6]="true"))));
+IF ([Par1]="PAR1_7") THEN (NOT ([Par4]<>"false"));
+IF (NOT ([Par4]<>"false")) THEN ([Par1]="PAR1_7");
+IF ((NOT ([Par4]="true")) OR (NOT ([Par4]="false"))) THEN (IF (NOT ([Par0]<>"true")) THEN ([Par2]="true"));
+IF (IF (NOT ([Par0]<>"true")) THEN ([Par2]="true")) THEN ((NOT ([Par4]="true")) OR (NOT ([Par4]="false")));
+((NOT ([Par1]<>"PAR1_24")) AND ([Par6]<>"false")) AND (IF ([Par0]="false") THEN ([Par1]="PAR1_3");
+IF ([Par1]="PAR1_3") THEN ([Par0]="false"));
+IF (IF (NOT ([Par5]>79)) THEN (NOT ([Par4]<>"true"));
+IF (NOT ([Par4]<>"true")) THEN (NOT ([Par5]>79))) THEN (([Par5]<56) AND ([Par0]<>"true"));
+IF (([Par5]<56) AND ([Par0]<>"true")) THEN (IF (NOT ([Par5]>79)) THEN (NOT ([Par4]<>"true"));
+IF (NOT ([Par4]<>"true")) THEN (NOT ([Par5]>79)));

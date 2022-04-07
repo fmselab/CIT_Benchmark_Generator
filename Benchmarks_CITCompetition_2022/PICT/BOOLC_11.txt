@@ -1,0 +1,12 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+
+
+((NOT ([Par0]="true")) OR ([Par1]<>"false")) OR (IF (NOT ([Par4]="true")) THEN (NOT ([Par2]<>"false")));
+(IF (IF ([Par0]<>"false") THEN ([Par3]<>"true");
+IF ([Par3]<>"true") THEN ([Par0]<>"false")) THEN ((NOT ([Par3]="false")) AND ([Par0]="true"));
+IF ((NOT ([Par3]="false")) AND ([Par0]="true")) THEN (IF ([Par0]<>"false") THEN ([Par3]<>"true");
+IF ([Par3]<>"true") THEN ([Par0]<>"false"))) AND ((([Par4]<>"false") AND ([Par2]<>"false")) AND (([Par4]<>"false") OR (NOT ([Par2]="true"))));

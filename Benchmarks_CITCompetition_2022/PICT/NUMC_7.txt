@@ -1,0 +1,37 @@
+Par0 : -75, -74, -73, -72, -71, -70, -69, -68, -67, -66, -65, -64, -63, -62, -61, -60, -59, -58, -57, -56, -55, -54, -53, -52, -51, -50, -49, -48, -47
+Par1 : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5
+Par2 : 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12
+Par4 : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12, PAR4_13, PAR4_14, PAR4_15, PAR4_16, PAR4_17, PAR4_18, PAR4_19, PAR4_20, PAR4_21, PAR4_22, PAR4_23, PAR4_24, PAR4_25, PAR4_26, PAR4_27, PAR4_28, PAR4_29, PAR4_30, PAR4_31, PAR4_32, PAR4_33, PAR4_34, PAR4_35, PAR4_36, PAR4_37, PAR4_38, PAR4_39, PAR4_40, PAR4_41, PAR4_42
+
+
+((NOT ([Par1]<>"PAR1_5")) AND (NOT ([Par1]<>"PAR1_3"))) OR (IF ([Par4]="PAR4_8") THEN ([Par0] >= -73));
+IF ((IF (NOT ([Par2]>74)) THEN (NOT ([Par4]="PAR4_10"));
+IF (NOT ([Par4]="PAR4_10")) THEN (NOT ([Par2]>74))) OR ((NOT ([Par1]<>"PAR1_1")) OR (NOT ([Par1]<>"PAR1_2")))) THEN ((IF (NOT ([Par1]="PAR1_5")) THEN ([Par1]="PAR1_3")) OR (IF (NOT ([Par4]<>"PAR4_33")) THEN (NOT ([Par2]<=71))));
+IF ((IF (NOT ([Par1]="PAR1_5")) THEN ([Par1]="PAR1_3")) OR (IF (NOT ([Par4]<>"PAR4_33")) THEN (NOT ([Par2]<=71)))) THEN ((IF (NOT ([Par2]>74)) THEN (NOT ([Par4]="PAR4_10"));
+IF (NOT ([Par4]="PAR4_10")) THEN (NOT ([Par2]>74))) OR ((NOT ([Par1]<>"PAR1_1")) OR (NOT ([Par1]<>"PAR1_2"))));
+(NOT ([Par0]<-56)) AND (NOT ([Par4]="PAR4_39"));
+[Par4]<>"PAR4_25";
+IF ((([Par2]<>78) AND ([Par2] >= 76)) OR ((NOT ([Par1]="PAR1_5")) AND (NOT ([Par4]<>"PAR4_10")))) THEN ((IF (NOT ([Par3]="PAR3_4")) THEN ([Par3]<>"PAR3_12");
+IF ([Par3]<>"PAR3_12") THEN (NOT ([Par3]="PAR3_4"))) AND (IF (NOT ([Par3]<>"PAR3_5")) THEN ([Par2] >= 71)));
+((([Par0]<-50) AND (NOT ([Par1]<>"PAR1_2"))) AND (([Par0]<-68) OR (NOT ([Par1]="PAR1_3")))) OR (IF (IF (NOT ([Par0] >= -54)) THEN ([Par1]="PAR1_5");
+IF ([Par1]="PAR1_5") THEN (NOT ([Par0] >= -54))) THEN ((NOT ([Par2]<>75)) OR (NOT ([Par4]="PAR4_9")));
+IF ((NOT ([Par2]<>75)) OR (NOT ([Par4]="PAR4_9"))) THEN (IF (NOT ([Par0] >= -54)) THEN ([Par1]="PAR1_5");
+IF ([Par1]="PAR1_5") THEN (NOT ([Par0] >= -54))));
+(IF ((NOT ([Par4]="PAR4_3")) AND (NOT ([Par3]<>"PAR3_10"))) THEN (IF ([Par0]=-67) THEN (NOT ([Par0]<-55)));
+IF (IF ([Par0]=-67) THEN (NOT ([Par0]<-55))) THEN ((NOT ([Par4]="PAR4_3")) AND (NOT ([Par3]<>"PAR3_10")))) AND (IF ((NOT ([Par0]<=-70)) OR ([Par3]="PAR3_0")) THEN (IF (NOT ([Par2]<>71)) THEN ([Par0] >= -48);
+IF ([Par0] >= -48) THEN (NOT ([Par2]<>71)));
+IF (IF (NOT ([Par2]<>71)) THEN ([Par0] >= -48);
+IF ([Par0] >= -48) THEN (NOT ([Par2]<>71))) THEN ((NOT ([Par0]<=-70)) OR ([Par3]="PAR3_0")));
+(IF (IF ([Par2]=70) THEN (NOT ([Par2] >= 72))) THEN (IF (NOT ([Par3]<>"PAR3_6")) THEN (NOT ([Par1]="PAR1_5")));
+IF (IF (NOT ([Par3]<>"PAR3_6")) THEN (NOT ([Par1]="PAR1_5"))) THEN (IF ([Par2]=70) THEN (NOT ([Par2] >= 72)))) OR ((IF ([Par4]="PAR4_39") THEN ([Par2]=75);
+IF ([Par2]=75) THEN ([Par4]="PAR4_39")) AND (([Par0]<-59) AND ([Par1]="PAR1_0")));
+IF (IF (IF (NOT ([Par3]<>"PAR3_3")) THEN (NOT ([Par1]="PAR1_0"))) THEN (([Par0]<>-74) AND (NOT ([Par2]>76)))) THEN (((NOT ([Par2]<76)) AND ([Par4]="PAR4_39")) AND (IF ([Par4]<>"PAR4_9") THEN ([Par1]<>"PAR1_1")));
+IF (IF (([Par4]="PAR4_23") OR ([Par1]<>"PAR1_3")) THEN (IF (NOT ([Par1]<>"PAR1_5")) THEN ([Par4]="PAR4_34"))) THEN ((([Par2]<78) OR (NOT ([Par4]="PAR4_26"))) AND ((NOT ([Par1]="PAR1_3")) OR ([Par3]<>"PAR3_5")));
+IF ((([Par2]<78) OR (NOT ([Par4]="PAR4_26"))) AND ((NOT ([Par1]="PAR1_3")) OR ([Par3]<>"PAR3_5"))) THEN (IF (([Par4]="PAR4_23") OR ([Par1]<>"PAR1_3")) THEN (IF (NOT ([Par1]<>"PAR1_5")) THEN ([Par4]="PAR4_34")));
+IF (((NOT ([Par3]<>"PAR3_6")) AND (NOT ([Par3]="PAR3_11"))) AND (IF ([Par2] >= 73) THEN ([Par3]<>"PAR3_12"))) THEN (IF (IF (NOT ([Par3]="PAR3_12")) THEN ([Par2]<>74);
+IF ([Par2]<>74) THEN (NOT ([Par3]="PAR3_12"))) THEN (([Par0]<=-69) AND (NOT ([Par3]="PAR3_4"))));
+IF ((NOT ([Par4]<>"PAR4_14")) AND (NOT ([Par3]<>"PAR3_1"))) THEN (IF ([Par0]<-70) THEN ([Par1]="PAR1_0");
+IF ([Par1]="PAR1_0") THEN ([Par0]<-70));
+IF (IF ([Par0]<-70) THEN ([Par1]="PAR1_0");
+IF ([Par1]="PAR1_0") THEN ([Par0]<-70)) THEN ((NOT ([Par4]<>"PAR4_14")) AND (NOT ([Par3]<>"PAR3_1")));

@@ -1,0 +1,24 @@
+Par0 : 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91
+Par1 : -34, -33, -32, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+Par2 : -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83
+
+
+(IF (NOT ([Par2] >= 73)) THEN (NOT ([Par2] >= 83))) OR (IF (NOT ([Par1]<>-13)) THEN ([Par2] >= 0));
+(IF (([Par1]<=-16) OR (NOT ([Par2]<70))) THEN (IF (NOT ([Par1]<=-17)) THEN (NOT ([Par2]>17));
+IF (NOT ([Par2]>17)) THEN (NOT ([Par1]<=-17)));
+IF (IF (NOT ([Par1]<=-17)) THEN (NOT ([Par2]>17));
+IF (NOT ([Par2]>17)) THEN (NOT ([Par1]<=-17))) THEN (([Par1]<=-16) OR (NOT ([Par2]<70)))) OR (IF ((NOT ([Par0]<83)) OR (NOT ([Par1]>-27))) THEN (IF (NOT ([Par1]<>-31)) THEN ([Par1]=9));
+IF (IF (NOT ([Par1]<>-31)) THEN ([Par1]=9)) THEN ((NOT ([Par0]<83)) OR (NOT ([Par1]>-27))));
+(IF ([Par1]<=-7) THEN (NOT ([Par1]<-22));
+IF (NOT ([Par1]<-22)) THEN ([Par1]<=-7)) AND (IF (NOT ([Par0]=83)) THEN (NOT ([Par0]=83)));
+((NOT ([Par2]=53)) OR ([Par2]<>79)) AND (([Par0]<59) OR (NOT ([Par2]>68)));
+IF (IF (IF ([Par1]<>12) THEN (NOT ([Par1] >= -29));
+IF (NOT ([Par1] >= -29)) THEN ([Par1]<>12)) THEN (([Par1]>4) OR (NOT ([Par2]>13)));
+IF (([Par1]>4) OR (NOT ([Par2]>13))) THEN (IF ([Par1]<>12) THEN (NOT ([Par1] >= -29));
+IF (NOT ([Par1] >= -29)) THEN ([Par1]<>12))) THEN ((([Par2]<=67) AND (NOT ([Par2]<=51))) AND (([Par2]=28) OR ([Par1]=-12)));
+(([Par0]<>79) AND (NOT ([Par0]<73))) OR ((NOT ([Par1]=-32)) OR (NOT ([Par1] >= -5)));
+IF (IF ((NOT ([Par1]<=-6)) OR ([Par2]>80)) THEN (([Par0]=90) OR ([Par1]=-20))) THEN (IF (([Par1]=-30) AND ([Par2]<66)) THEN (IF (NOT ([Par2]=16)) THEN (NOT ([Par2]=1)));
+IF (IF (NOT ([Par2]=16)) THEN (NOT ([Par2]=1))) THEN (([Par1]=-30) AND ([Par2]<66)));
+IF ((IF ([Par0]<=70) THEN (NOT ([Par2]>41));
+IF (NOT ([Par2]>41)) THEN ([Par0]<=70)) AND (IF (NOT ([Par2]<=25)) THEN (NOT ([Par0]<=72));
+IF (NOT ([Par0]<=72)) THEN (NOT ([Par2]<=25)))) THEN (((NOT ([Par1]<=-19)) AND (NOT ([Par0]<55))) OR (([Par0]<=63) OR (NOT ([Par1]>-19))));

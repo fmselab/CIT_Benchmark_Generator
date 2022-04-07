@@ -1,0 +1,20 @@
+Par0 : false, true
+Par1 : PAR1_0, PAR1_1
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+Par5 : PAR5_0, PAR5_1
+Par6 : false, true
+Par7 : PAR7_0, PAR7_1
+Par8 : false, true
+Par9 : PAR9_0, PAR9_1
+Par10 : PAR10_0, PAR10_1
+Par11 : PAR11_0, PAR11_1
+Par12 : false, true
+Par13 : PAR13_0, PAR13_1
+Par14 : false, true
+Par15 : false, true
+Par16 : PAR16_0, PAR16_1
+Par17 : false, true
+
+

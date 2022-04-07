@@ -1,0 +1,8 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+
+
+(NOT ([Par3]<>"false")) OR (NOT ([Par3]<>"false"));
+(([Par0]<>"false") OR ([Par0]="false")) OR (IF ([Par0]<>"false") THEN ([Par3]<>"true"));

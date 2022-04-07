@@ -1,0 +1,30 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14, PAR2_15
+Par3 : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Par4 : -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+Par5 : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4
+
+
+IF (IF ([Par3]>10) THEN ([Par0]<>"true");
+IF ([Par0]<>"true") THEN ([Par3]>10)) THEN (([Par5]<>"PAR5_1") OR (NOT ([Par1]="false")));
+IF (([Par5]<>"PAR5_1") OR (NOT ([Par1]="false"))) THEN (IF ([Par3]>10) THEN ([Par0]<>"true");
+IF ([Par0]<>"true") THEN ([Par3]>10));
+(IF ((NOT ([Par4] >= 5)) OR (NOT ([Par0]<>"false"))) THEN (IF ([Par0]="true") THEN ([Par0]="true");
+IF ([Par0]="true") THEN ([Par0]="true"));
+IF (IF ([Par0]="true") THEN ([Par0]="true");
+IF ([Par0]="true") THEN ([Par0]="true")) THEN ((NOT ([Par4] >= 5)) OR (NOT ([Par0]<>"false")))) OR (((NOT ([Par0]<>"true")) AND ([Par2]="PAR2_8")) OR (IF ([Par5]="PAR5_3") THEN ([Par5]<>"PAR5_1")));
+([Par5]="PAR5_3") AND ([Par4]<=-20);
+IF (IF ([Par4]<=6) THEN ([Par3] >= 12);
+IF ([Par3] >= 12) THEN ([Par4]<=6)) THEN (([Par5]<>"PAR5_1") AND (NOT ([Par1]="true")));
+IF (([Par5]<>"PAR5_1") AND (NOT ([Par1]="true"))) THEN (IF ([Par4]<=6) THEN ([Par3] >= 12);
+IF ([Par3] >= 12) THEN ([Par4]<=6));
+((IF (NOT ([Par0]="true")) THEN ([Par5]="PAR5_1");
+IF ([Par5]="PAR5_1") THEN (NOT ([Par0]="true"))) OR (IF ([Par2]="PAR2_1") THEN (NOT ([Par3]<7));
+IF (NOT ([Par3]<7)) THEN ([Par2]="PAR2_1"))) AND (IF (IF ([Par0]<>"false") THEN (NOT ([Par4]>-21));
+IF (NOT ([Par4]>-21)) THEN ([Par0]<>"false")) THEN (IF ([Par3]<>10) THEN (NOT ([Par4]>-21))));
+((IF ([Par3]=15) THEN (NOT ([Par4]<>-14));
+IF (NOT ([Par4]<>-14)) THEN ([Par3]=15)) AND (IF ([Par3]<1) THEN (NOT ([Par0]="true")))) AND ((IF ([Par0]="false") THEN (NOT ([Par4]<>-17));
+IF (NOT ([Par4]<>-17)) THEN ([Par0]="false")) OR (IF (NOT ([Par3]<>3)) THEN (NOT ([Par0]<>"false"))));
+IF (IF ([Par4]<=8) THEN (NOT ([Par2]="PAR2_6"))) THEN (IF ([Par4] >= -16) THEN ([Par1]="true"));
+IF (IF ([Par4] >= -16) THEN ([Par1]="true")) THEN (IF ([Par4]<=8) THEN (NOT ([Par2]="PAR2_6")));
