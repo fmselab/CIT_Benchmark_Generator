@@ -2,7 +2,5 @@ Par0 : false, true
 Par1 : false, true
 
 
-(IF ((NOT ([Par0]="false")) OR (NOT ([Par0]="true"))) THEN (([Par0]="false") OR (NOT ([Par0]="false")));
-IF (([Par0]="false") OR (NOT ([Par0]="false"))) THEN ((NOT ([Par0]="false")) OR (NOT ([Par0]="true")))) AND (IF ((NOT ([Par1]<>"false")) AND (NOT ([Par0]="true"))) THEN (([Par0]="false") AND ([Par0]<>"false")));
-(IF ([Par1]<>"false") THEN ([Par1]<>"true")) OR (IF (NOT ([Par1]="true")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par1]="true")));
+(((NOT ((NOT ([Par0]="false")) OR (NOT ([Par0]="true")))) OR (([Par0]="false") OR (NOT ([Par0]="false")))) AND ((NOT (([Par0]="false") OR (NOT ([Par0]="false")))) OR ((NOT ([Par0]="false")) OR (NOT ([Par0]="true"))))) AND ((NOT ((NOT ([Par1]<>"false")) AND (NOT ([Par0]="true")))) OR (([Par0]="false") AND ([Par0]<>"false")));
+((NOT ([Par1]<>"false")) OR ([Par1]<>"true")) OR (((NOT (NOT ([Par1]="true"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par1]="true"))));

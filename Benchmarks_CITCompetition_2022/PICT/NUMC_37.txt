@@ -14,6 +14,5 @@ Par12 : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, 
 Par13 : false, true
 
 
-IF (IF (NOT ([Par8]="PAR8_5")) THEN ([Par6]="PAR6_1")) THEN (IF ([Par13]="true") THEN (NOT ([Par9]="PAR9_11"));
-IF (NOT ([Par9]="PAR9_11")) THEN ([Par13]="true"));
+(NOT ((NOT (NOT ([Par8]="PAR8_5"))) OR ([Par6]="PAR6_1"))) OR (((NOT ([Par13]="true")) OR (NOT ([Par9]="PAR9_11"))) AND ((NOT (NOT ([Par9]="PAR9_11"))) OR ([Par13]="true")));
 (([Par6]="PAR6_1") OR ([Par12]<>"PAR12_4")) OR ((NOT ([Par13]="true")) AND (NOT ([Par5]<>"PAR5_2")));

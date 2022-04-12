@@ -7,6 +7,4 @@ Par5 : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, P
 
 
 NOT ([Par4]<>"false");
-(IF (IF ([Par2]<>"false") THEN (NOT ([Par1]="false"))) THEN (([Par0]="false") OR ([Par5]<>"PAR5_14"))) OR ((IF (NOT ([Par0]="true")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par0]="true"))) AND (IF ([Par3]<>"false") THEN ([Par2]<>"true");
-IF ([Par2]<>"true") THEN ([Par3]<>"false")));
+((NOT ((NOT ([Par2]<>"false")) OR (NOT ([Par1]="false")))) OR (([Par0]="false") OR ([Par5]<>"PAR5_14"))) OR ((((NOT (NOT ([Par0]="true"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par0]="true")))) AND (((NOT ([Par3]<>"false")) OR ([Par2]<>"true")) AND ((NOT ([Par2]<>"true")) OR ([Par3]<>"false"))));

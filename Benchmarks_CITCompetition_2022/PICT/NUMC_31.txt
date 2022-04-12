@@ -5,6 +5,5 @@ Par3 : false, true
 Par4 : false, true
 
 
-IF (IF ([Par1]<>"PAR1_0") THEN ([Par2]<=65)) THEN (IF ([Par4]="false") THEN ([Par0]<>"true"));
-(IF (NOT ([Par2]>36)) THEN (NOT ([Par1]<>"PAR1_1"));
-IF (NOT ([Par1]<>"PAR1_1")) THEN (NOT ([Par2]>36))) AND ((NOT ([Par3]<>"false")) OR ([Par2]=45));
+(NOT ((NOT ([Par1]<>"PAR1_0")) OR ([Par2]<=65))) OR ((NOT ([Par4]="false")) OR ([Par0]<>"true"));
+(((NOT (NOT ([Par2]>36))) OR (NOT ([Par1]<>"PAR1_1"))) AND ((NOT (NOT ([Par1]<>"PAR1_1"))) OR (NOT ([Par2]>36)))) AND ((NOT ([Par3]<>"false")) OR ([Par2]=45));

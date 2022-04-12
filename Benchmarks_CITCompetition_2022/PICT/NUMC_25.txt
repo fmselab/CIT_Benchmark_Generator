@@ -10,5 +10,4 @@ Par8 : false, true
 Par9 : false, true
 
 
-(IF ([Par6] >= 36) THEN ([Par7]="true");
-IF ([Par7]="true") THEN ([Par6] >= 36)) AND (([Par7]="false") AND (NOT ([Par3]<>"true")));
+(((NOT ([Par6] >= 36)) OR ([Par7]="true")) AND ((NOT ([Par7]="true")) OR ([Par6] >= 36))) AND (([Par7]="false") AND (NOT ([Par3]<>"true")));

@@ -5,4 +5,4 @@ Par3 : false, true
 
 
 (NOT ([Par3]<>"false")) OR (NOT ([Par3]<>"false"));
-(([Par0]<>"false") OR ([Par0]="false")) OR (IF ([Par0]<>"false") THEN ([Par3]<>"true"));
+(([Par0]<>"false") OR ([Par0]="false")) OR ((NOT ([Par0]<>"false")) OR ([Par3]<>"true"));

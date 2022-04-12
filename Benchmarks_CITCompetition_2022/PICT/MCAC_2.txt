@@ -18,13 +18,4 @@ Par16 : false, true
 Par17 : PAR17_0, PAR17_1
 
 
-IF (IF ((NOT ([Par10]<>"false")) OR ([Par16]="false")) THEN (IF (NOT ([Par6]="PAR6_0")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par6]="PAR6_0")));
-IF (IF (NOT ([Par6]="PAR6_0")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par6]="PAR6_0"))) THEN ((NOT ([Par10]<>"false")) OR ([Par16]="false"))) THEN ((IF ([Par7]<>"false") THEN (NOT ([Par7]<>"false"))) AND (IF ([Par4]<>"false") THEN (NOT ([Par3]<>"false"));
-IF (NOT ([Par3]<>"false")) THEN ([Par4]<>"false")));
-IF ((IF ([Par7]<>"false") THEN (NOT ([Par7]<>"false"))) AND (IF ([Par4]<>"false") THEN (NOT ([Par3]<>"false"));
-IF (NOT ([Par3]<>"false")) THEN ([Par4]<>"false"))) THEN (IF ((NOT ([Par10]<>"false")) OR ([Par16]="false")) THEN (IF (NOT ([Par6]="PAR6_0")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par6]="PAR6_0")));
-IF (IF (NOT ([Par6]="PAR6_0")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par6]="PAR6_0"))) THEN ((NOT ([Par10]<>"false")) OR ([Par16]="false")));
+((NOT (((NOT ((NOT ([Par10]<>"false")) OR ([Par16]="false"))) OR (((NOT (NOT ([Par6]="PAR6_0"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par6]="PAR6_0"))))) AND ((NOT (((NOT (NOT ([Par6]="PAR6_0"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par6]="PAR6_0"))))) OR ((NOT ([Par10]<>"false")) OR ([Par16]="false"))))) OR (((NOT ([Par7]<>"false")) OR (NOT ([Par7]<>"false"))) AND (((NOT ([Par4]<>"false")) OR (NOT ([Par3]<>"false"))) AND ((NOT (NOT ([Par3]<>"false"))) OR ([Par4]<>"false"))))) AND ((NOT (((NOT ([Par7]<>"false")) OR (NOT ([Par7]<>"false"))) AND (((NOT ([Par4]<>"false")) OR (NOT ([Par3]<>"false"))) AND ((NOT (NOT ([Par3]<>"false"))) OR ([Par4]<>"false"))))) OR (((NOT ((NOT ([Par10]<>"false")) OR ([Par16]="false"))) OR (((NOT (NOT ([Par6]="PAR6_0"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par6]="PAR6_0"))))) AND ((NOT (((NOT (NOT ([Par6]="PAR6_0"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par6]="PAR6_0"))))) OR ((NOT ([Par10]<>"false")) OR ([Par16]="false")))));

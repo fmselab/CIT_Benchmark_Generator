@@ -9,4 +9,4 @@ Par7 : false, true
 Par8 : 32, 33, 34
 
 
-(IF ([Par4]="false") THEN ([Par3]=-30)) AND (IF (NOT ([Par8]<34)) THEN (NOT ([Par1]="true")));
+((NOT ([Par4]="false")) OR ([Par3]=-30)) AND ((NOT (NOT ([Par8]<34))) OR (NOT ([Par1]="true")));

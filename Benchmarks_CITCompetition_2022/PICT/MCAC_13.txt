@@ -7,6 +7,6 @@ Par5 : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, P
 Par6 : PAR6_0, PAR6_1, PAR6_2
 
 
-((NOT ([Par3]<>"PAR3_7")) AND ([Par5]<>"PAR5_6")) AND (IF ([Par4]="PAR4_10") THEN (NOT ([Par1]<>"PAR1_0")));
+((NOT ([Par3]<>"PAR3_7")) AND ([Par5]<>"PAR5_6")) AND ((NOT ([Par4]="PAR4_10")) OR (NOT ([Par1]<>"PAR1_0")));
 NOT ([Par5]="PAR5_15");
-IF ([Par3]="PAR3_10") THEN ([Par2]="true");
+(NOT ([Par3]="PAR3_10")) OR ([Par2]="true");

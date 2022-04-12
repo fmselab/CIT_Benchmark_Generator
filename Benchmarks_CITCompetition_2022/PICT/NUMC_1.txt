@@ -7,7 +7,5 @@ Par5 : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, P
 Par6 : -93, -92, -91, -90, -89, -88, -87, -86, -85, -84, -83, -82, -81, -80, -79, -78, -77, -76, -75, -74, -73, -72, -71, -70, -69, -68, -67, -66, -65, -64, -63, -62, -61, -60, -59, -58, -57, -56, -55, -54, -53, -52, -51, -50, -49, -48, -47, -46, -45, -44, -43, -42, -41
 
 
-(IF (NOT ([Par4]<>"PAR4_22")) THEN ([Par5]="PAR5_25")) AND (IF ([Par0]="false") THEN ([Par1]<>"PAR1_1");
-IF ([Par1]<>"PAR1_1") THEN ([Par0]="false"));
-(IF (NOT ([Par5]<>"PAR5_28")) THEN ([Par5]="PAR5_28");
-IF ([Par5]="PAR5_28") THEN (NOT ([Par5]<>"PAR5_28"))) OR ((NOT ([Par1]<>"PAR1_2")) OR ([Par4]<>"PAR4_24"));
+((NOT (NOT ([Par4]<>"PAR4_22"))) OR ([Par5]="PAR5_25")) AND (((NOT ([Par0]="false")) OR ([Par1]<>"PAR1_1")) AND ((NOT ([Par1]<>"PAR1_1")) OR ([Par0]="false")));
+(((NOT (NOT ([Par5]<>"PAR5_28"))) OR ([Par5]="PAR5_28")) AND ((NOT ([Par5]="PAR5_28")) OR (NOT ([Par5]<>"PAR5_28")))) OR ((NOT ([Par1]<>"PAR1_2")) OR ([Par4]<>"PAR4_24"));

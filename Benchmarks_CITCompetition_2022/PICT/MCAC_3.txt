@@ -4,7 +4,4 @@ Par2 : false, true
 Par3 : false, true
 
 
-((IF (NOT ([Par1]<>"false")) THEN ([Par0]="PAR0_37")) OR (IF (NOT ([Par2]="false")) THEN ([Par0]<>"PAR0_47"))) AND (IF (IF ([Par2]="true") THEN ([Par0]="PAR0_3")) THEN (IF (NOT ([Par1]="false")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par1]="false")));
-IF (IF (NOT ([Par1]="false")) THEN ([Par1]="false");
-IF ([Par1]="false") THEN (NOT ([Par1]="false"))) THEN (IF ([Par2]="true") THEN ([Par0]="PAR0_3")));
+(((NOT (NOT ([Par1]<>"false"))) OR ([Par0]="PAR0_37")) OR ((NOT (NOT ([Par2]="false"))) OR ([Par0]<>"PAR0_47"))) AND (((NOT ((NOT ([Par2]="true")) OR ([Par0]="PAR0_3"))) OR (((NOT (NOT ([Par1]="false"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par1]="false"))))) AND ((NOT (((NOT (NOT ([Par1]="false"))) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR (NOT ([Par1]="false"))))) OR ((NOT ([Par2]="true")) OR ([Par0]="PAR0_3"))));

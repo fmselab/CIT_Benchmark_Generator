@@ -8,5 +8,4 @@ Par6 : false, true
 Par7 : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11, PAR7_12, PAR7_13, PAR7_14
 
 
-(([Par7]<>"PAR7_10") OR ([Par7]<>"PAR7_5")) OR (IF (NOT ([Par2]<>"false")) THEN (NOT ([Par5] >= -27));
-IF (NOT ([Par5] >= -27)) THEN (NOT ([Par2]<>"false")));
+(([Par7]<>"PAR7_10") OR ([Par7]<>"PAR7_5")) OR (((NOT (NOT ([Par2]<>"false"))) OR (NOT ([Par5] >= -27))) AND ((NOT (NOT ([Par5] >= -27))) OR (NOT ([Par2]<>"false"))));

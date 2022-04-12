@@ -3,6 +3,4 @@ Par1 : 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 5
 Par2 : -47, -46, -45, -44, -43, -42, -41, -40, -39, -38, -37, -36, -35, -34, -33, -32, -31, -30, -29, -28, -27, -26
 
 
-IF (((NOT ([Par0]="PAR0_10")) AND (NOT ([Par2]<>-43))) OR (IF ([Par0]="PAR0_9") THEN (NOT ([Par2]>-43));
-IF (NOT ([Par2]>-43)) THEN ([Par0]="PAR0_9"))) THEN (IF (IF (NOT ([Par2]>-30)) THEN (NOT ([Par2]<>-41));
-IF (NOT ([Par2]<>-41)) THEN (NOT ([Par2]>-30))) THEN (([Par2] >= -35) AND (NOT ([Par0]="PAR0_2"))));
+(NOT (((NOT ([Par0]="PAR0_10")) AND (NOT ([Par2]<>-43))) OR (((NOT ([Par0]="PAR0_9")) OR (NOT ([Par2]>-43))) AND ((NOT (NOT ([Par2]>-43))) OR ([Par0]="PAR0_9"))))) OR ((NOT (((NOT (NOT ([Par2]>-30))) OR (NOT ([Par2]<>-41))) AND ((NOT (NOT ([Par2]<>-41))) OR (NOT ([Par2]>-30))))) OR (([Par2] >= -35) AND (NOT ([Par0]="PAR0_2"))));

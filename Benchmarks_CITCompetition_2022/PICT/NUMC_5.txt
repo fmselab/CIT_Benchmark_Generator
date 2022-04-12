@@ -6,4 +6,4 @@ Par4 : false, true
 Par5 : false, true
 
 
-((NOT ([Par4]="true")) OR ([Par0]="false")) OR (IF ([Par4]="true") THEN (NOT ([Par3]="PAR3_1")));
+((NOT ([Par4]="true")) OR ([Par0]="false")) OR ((NOT ([Par4]="true")) OR (NOT ([Par3]="PAR3_1")));

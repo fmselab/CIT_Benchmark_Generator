@@ -18,5 +18,4 @@ Par16 : false, true
 Par17 : false, true
 
 
-IF ([Par7]="PAR7_3") THEN ([Par13]<>"PAR13_7");
-IF ([Par13]<>"PAR13_7") THEN ([Par7]="PAR7_3");
+((NOT ([Par7]="PAR7_3")) OR ([Par13]<>"PAR13_7")) AND ((NOT ([Par13]<>"PAR13_7")) OR ([Par7]="PAR7_3"));

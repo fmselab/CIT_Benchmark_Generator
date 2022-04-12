@@ -2,15 +2,5 @@ Par0 : false, true
 Par1 : false, true
 
 
-IF (IF (IF ([Par1]<>"false") THEN (NOT ([Par1]="false"));
-IF (NOT ([Par1]="false")) THEN ([Par1]<>"false")) THEN (IF ([Par1]="true") THEN (NOT ([Par0]<>"false")))) THEN (IF (IF ([Par0]="true") THEN ([Par1]="true");
-IF ([Par1]="true") THEN ([Par0]="true")) THEN (IF (NOT ([Par0]<>"false")) THEN ([Par1]<>"false");
-IF ([Par1]<>"false") THEN (NOT ([Par0]<>"false"))));
-IF (IF (IF ([Par0]="true") THEN ([Par1]="true");
-IF ([Par1]="true") THEN ([Par0]="true")) THEN (IF (NOT ([Par0]<>"false")) THEN ([Par1]<>"false");
-IF ([Par1]<>"false") THEN (NOT ([Par0]<>"false")))) THEN (IF (IF ([Par1]<>"false") THEN (NOT ([Par1]="false"));
-IF (NOT ([Par1]="false")) THEN ([Par1]<>"false")) THEN (IF ([Par1]="true") THEN (NOT ([Par0]<>"false"))));
-IF (([Par0]="true") AND (NOT ([Par0]="false"))) THEN (IF ([Par1]="false") THEN ([Par0]<>"true");
-IF ([Par0]<>"true") THEN ([Par1]="false"));
-IF (IF ([Par1]="false") THEN ([Par0]<>"true");
-IF ([Par0]<>"true") THEN ([Par1]="false")) THEN (([Par0]="true") AND (NOT ([Par0]="false")));
+((NOT ((NOT (((NOT ([Par1]<>"false")) OR (NOT ([Par1]="false"))) AND ((NOT (NOT ([Par1]="false"))) OR ([Par1]<>"false")))) OR ((NOT ([Par1]="true")) OR (NOT ([Par0]<>"false"))))) OR ((NOT (((NOT ([Par0]="true")) OR ([Par1]="true")) AND ((NOT ([Par1]="true")) OR ([Par0]="true")))) OR (((NOT (NOT ([Par0]<>"false"))) OR ([Par1]<>"false")) AND ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<>"false")))))) AND ((NOT ((NOT (((NOT ([Par0]="true")) OR ([Par1]="true")) AND ((NOT ([Par1]="true")) OR ([Par0]="true")))) OR (((NOT (NOT ([Par0]<>"false"))) OR ([Par1]<>"false")) AND ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<>"false")))))) OR ((NOT (((NOT ([Par1]<>"false")) OR (NOT ([Par1]="false"))) AND ((NOT (NOT ([Par1]="false"))) OR ([Par1]<>"false")))) OR ((NOT ([Par1]="true")) OR (NOT ([Par0]<>"false")))));
+((NOT (([Par0]="true") AND (NOT ([Par0]="false")))) OR (((NOT ([Par1]="false")) OR ([Par0]<>"true")) AND ((NOT ([Par0]<>"true")) OR ([Par1]="false")))) AND ((NOT (((NOT ([Par1]="false")) OR ([Par0]<>"true")) AND ((NOT ([Par0]<>"true")) OR ([Par1]="false")))) OR (([Par0]="true") AND (NOT ([Par0]="false"))));

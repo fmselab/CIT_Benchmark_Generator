@@ -2,28 +2,10 @@ Par0 : -56, -55, -54, -53, -52, -51, -50, -49, -48, -47, -46, -45, -44, -43, -42
 Par1 : false, true
 
 
-IF (IF ([Par0]<=-35) THEN (NOT ([Par0]>-38));
-IF (NOT ([Par0]>-38)) THEN ([Par0]<=-35)) THEN (IF ([Par1]<>"false") THEN (NOT ([Par0]<=-45));
-IF (NOT ([Par0]<=-45)) THEN ([Par1]<>"false"));
-IF (IF ([Par1]<>"false") THEN (NOT ([Par0]<=-45));
-IF (NOT ([Par0]<=-45)) THEN ([Par1]<>"false")) THEN (IF ([Par0]<=-35) THEN (NOT ([Par0]>-38));
-IF (NOT ([Par0]>-38)) THEN ([Par0]<=-35));
-IF (((NOT ([Par1]<>"false")) AND ([Par0] >= -39)) AND (IF (NOT ([Par0]<=-18)) THEN ([Par0]<>-33);
-IF ([Par0]<>-33) THEN (NOT ([Par0]<=-18)))) THEN ((IF ([Par1]="false") THEN (NOT ([Par1]<>"true"));
-IF (NOT ([Par1]<>"true")) THEN ([Par1]="false")) AND ((NOT ([Par1]<>"true")) AND (NOT ([Par0]<=-49))));
-(((NOT ([Par1]="false")) AND ([Par1]="true")) OR (IF (NOT ([Par0]<-37)) THEN ([Par1]<>"false");
-IF ([Par1]<>"false") THEN (NOT ([Par0]<-37)))) OR ((IF (NOT ([Par0]=-33)) THEN (NOT ([Par1]="false"));
-IF (NOT ([Par1]="false")) THEN (NOT ([Par0]=-33))) AND (IF ([Par1]<>"true") THEN ([Par1]="true")));
-IF (NOT ([Par0]<-54)) THEN ([Par0]<-40);
-IF (IF ([Par1]<>"false") THEN (NOT ([Par0]<>-39));
-IF (NOT ([Par0]<>-39)) THEN ([Par1]<>"false")) THEN (IF (NOT ([Par0]<=-53)) THEN (NOT ([Par0]<=-29));
-IF (NOT ([Par0]<=-29)) THEN (NOT ([Par0]<=-53)));
-(IF (IF ([Par0]<=-42) THEN ([Par1]<>"false");
-IF ([Par1]<>"false") THEN ([Par0]<=-42)) THEN ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<-31)));
-IF ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<-31))) THEN (IF ([Par0]<=-42) THEN ([Par1]<>"false");
-IF ([Par1]<>"false") THEN ([Par0]<=-42))) OR (IF (IF ([Par0] >= -51) THEN (NOT ([Par1]="true"))) THEN (([Par1]="false") AND ([Par1]<>"true")));
-(IF (IF (NOT ([Par1]<>"false")) THEN ([Par0]<-31)) THEN (IF ([Par0]=-15) THEN ([Par1]="false");
-IF ([Par1]="false") THEN ([Par0]=-15));
-IF (IF ([Par0]=-15) THEN ([Par1]="false");
-IF ([Par1]="false") THEN ([Par0]=-15)) THEN (IF (NOT ([Par1]<>"false")) THEN ([Par0]<-31))) AND (IF (([Par1]="false") OR ([Par1]<>"false")) THEN (([Par1]<>"false") AND (NOT ([Par1]="false")));
-IF (([Par1]<>"false") AND (NOT ([Par1]="false"))) THEN (([Par1]="false") OR ([Par1]<>"false")));
+((NOT (((NOT ([Par0]<=-35)) OR (NOT ([Par0]>-38))) AND ((NOT (NOT ([Par0]>-38))) OR ([Par0]<=-35)))) OR (((NOT ([Par1]<>"false")) OR (NOT ([Par0]<=-45))) AND ((NOT (NOT ([Par0]<=-45))) OR ([Par1]<>"false")))) AND ((NOT (((NOT ([Par1]<>"false")) OR (NOT ([Par0]<=-45))) AND ((NOT (NOT ([Par0]<=-45))) OR ([Par1]<>"false")))) OR (((NOT ([Par0]<=-35)) OR (NOT ([Par0]>-38))) AND ((NOT (NOT ([Par0]>-38))) OR ([Par0]<=-35))));
+(NOT (((NOT ([Par1]<>"false")) AND ([Par0] >= -39)) AND (((NOT (NOT ([Par0]<=-18))) OR ([Par0]<>-33)) AND ((NOT ([Par0]<>-33)) OR (NOT ([Par0]<=-18)))))) OR ((((NOT ([Par1]="false")) OR (NOT ([Par1]<>"true"))) AND ((NOT (NOT ([Par1]<>"true"))) OR ([Par1]="false"))) AND ((NOT ([Par1]<>"true")) AND (NOT ([Par0]<=-49))));
+(((NOT ([Par1]="false")) AND ([Par1]="true")) OR (((NOT (NOT ([Par0]<-37))) OR ([Par1]<>"false")) AND ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<-37))))) OR ((((NOT (NOT ([Par0]=-33))) OR (NOT ([Par1]="false"))) AND ((NOT (NOT ([Par1]="false"))) OR (NOT ([Par0]=-33)))) AND ((NOT ([Par1]<>"true")) OR ([Par1]="true")));
+(NOT (NOT ([Par0]<-54))) OR ([Par0]<-40);
+(NOT (((NOT ([Par1]<>"false")) OR (NOT ([Par0]<>-39))) AND ((NOT (NOT ([Par0]<>-39))) OR ([Par1]<>"false")))) OR (((NOT (NOT ([Par0]<=-53))) OR (NOT ([Par0]<=-29))) AND ((NOT (NOT ([Par0]<=-29))) OR (NOT ([Par0]<=-53))));
+(((NOT (((NOT ([Par0]<=-42)) OR ([Par1]<>"false")) AND ((NOT ([Par1]<>"false")) OR ([Par0]<=-42)))) OR ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<-31)))) AND ((NOT ((NOT ([Par1]<>"false")) OR (NOT ([Par0]<-31)))) OR (((NOT ([Par0]<=-42)) OR ([Par1]<>"false")) AND ((NOT ([Par1]<>"false")) OR ([Par0]<=-42))))) OR ((NOT ((NOT ([Par0] >= -51)) OR (NOT ([Par1]="true")))) OR (([Par1]="false") AND ([Par1]<>"true")));
+(((NOT ((NOT (NOT ([Par1]<>"false"))) OR ([Par0]<-31))) OR (((NOT ([Par0]=-15)) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR ([Par0]=-15)))) AND ((NOT (((NOT ([Par0]=-15)) OR ([Par1]="false")) AND ((NOT ([Par1]="false")) OR ([Par0]=-15)))) OR ((NOT (NOT ([Par1]<>"false"))) OR ([Par0]<-31)))) AND (((NOT (([Par1]="false") OR ([Par1]<>"false"))) OR (([Par1]<>"false") AND (NOT ([Par1]="false")))) AND ((NOT (([Par1]<>"false") AND (NOT ([Par1]="false")))) OR (([Par1]="false") OR ([Par1]<>"false"))));

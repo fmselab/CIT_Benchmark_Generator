@@ -15,6 +15,5 @@ Par13 : false, true
 Par14 : false, true
 
 
-IF (IF ([Par7]="true") THEN ([Par14]="true")) THEN (IF ([Par12]>56) THEN ([Par8]>-23);
-IF ([Par8]>-23) THEN ([Par12]>56));
+(NOT ((NOT ([Par7]="true")) OR ([Par14]="true"))) OR (((NOT ([Par12]>56)) OR ([Par8]>-23)) AND ((NOT ([Par8]>-23)) OR ([Par12]>56)));
 [Par2]<-48;

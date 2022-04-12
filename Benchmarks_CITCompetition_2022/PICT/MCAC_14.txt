@@ -9,12 +9,5 @@ Par7 : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, P
 Par8 : false, true
 
 
-IF ((NOT ([Par8]<>"true")) OR ([Par8]<>"false")) THEN ((NOT ([Par6]<>"true")) AND ([Par4]="true"));
-IF (IF (IF ([Par6]="false") THEN (NOT ([Par2]="PAR2_5"));
-IF (NOT ([Par2]="PAR2_5")) THEN ([Par6]="false")) THEN ((NOT ([Par6]="false")) AND ([Par0]<>"false"));
-IF ((NOT ([Par6]="false")) AND ([Par0]<>"false")) THEN (IF ([Par6]="false") THEN (NOT ([Par2]="PAR2_5"));
-IF (NOT ([Par2]="PAR2_5")) THEN ([Par6]="false"))) THEN ((([Par4]<>"false") AND (NOT ([Par1]="PAR1_30"))) OR ((NOT ([Par4]="true")) OR ([Par0]="true")));
-IF ((([Par4]<>"false") AND (NOT ([Par1]="PAR1_30"))) OR ((NOT ([Par4]="true")) OR ([Par0]="true"))) THEN (IF (IF ([Par6]="false") THEN (NOT ([Par2]="PAR2_5"));
-IF (NOT ([Par2]="PAR2_5")) THEN ([Par6]="false")) THEN ((NOT ([Par6]="false")) AND ([Par0]<>"false"));
-IF ((NOT ([Par6]="false")) AND ([Par0]<>"false")) THEN (IF ([Par6]="false") THEN (NOT ([Par2]="PAR2_5"));
-IF (NOT ([Par2]="PAR2_5")) THEN ([Par6]="false")));
+(NOT ((NOT ([Par8]<>"true")) OR ([Par8]<>"false"))) OR ((NOT ([Par6]<>"true")) AND ([Par4]="true"));
+((NOT (((NOT (((NOT ([Par6]="false")) OR (NOT ([Par2]="PAR2_5"))) AND ((NOT (NOT ([Par2]="PAR2_5"))) OR ([Par6]="false")))) OR ((NOT ([Par6]="false")) AND ([Par0]<>"false"))) AND ((NOT ((NOT ([Par6]="false")) AND ([Par0]<>"false"))) OR (((NOT ([Par6]="false")) OR (NOT ([Par2]="PAR2_5"))) AND ((NOT (NOT ([Par2]="PAR2_5"))) OR ([Par6]="false")))))) OR ((([Par4]<>"false") AND (NOT ([Par1]="PAR1_30"))) OR ((NOT ([Par4]="true")) OR ([Par0]="true")))) AND ((NOT ((([Par4]<>"false") AND (NOT ([Par1]="PAR1_30"))) OR ((NOT ([Par4]="true")) OR ([Par0]="true")))) OR (((NOT (((NOT ([Par6]="false")) OR (NOT ([Par2]="PAR2_5"))) AND ((NOT (NOT ([Par2]="PAR2_5"))) OR ([Par6]="false")))) OR ((NOT ([Par6]="false")) AND ([Par0]<>"false"))) AND ((NOT ((NOT ([Par6]="false")) AND ([Par0]<>"false"))) OR (((NOT ([Par6]="false")) OR (NOT ([Par2]="PAR2_5"))) AND ((NOT (NOT ([Par2]="PAR2_5"))) OR ([Par6]="false"))))));

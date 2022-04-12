@@ -10,4 +10,4 @@ Par8 : false, true
 Par9 : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6, PAR9_7, PAR9_8, PAR9_9, PAR9_10, PAR9_11, PAR9_12, PAR9_13, PAR9_14, PAR9_15, PAR9_16, PAR9_17, PAR9_18, PAR9_19, PAR9_20, PAR9_21, PAR9_22, PAR9_23, PAR9_24, PAR9_25, PAR9_26, PAR9_27, PAR9_28
 
 
-IF (IF (([Par8]<>"false") AND (NOT ([Par0]<-60))) THEN (([Par3]="false") AND ([Par0]<=-49))) THEN ((IF (NOT ([Par0]>-65)) THEN ([Par8]<>"false")) OR (([Par5]<>"true") AND (NOT ([Par1]<>"PAR1_4"))));
+(NOT ((NOT (([Par8]<>"false") AND (NOT ([Par0]<-60)))) OR (([Par3]="false") AND ([Par0]<=-49)))) OR (((NOT (NOT ([Par0]>-65))) OR ([Par8]<>"false")) OR (([Par5]<>"true") AND (NOT ([Par1]<>"PAR1_4"))));

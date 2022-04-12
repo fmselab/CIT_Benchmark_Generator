@@ -17,18 +17,8 @@ Par15 : false, true
 Par16 : false, true
 
 
-IF (IF (IF (NOT ([Par6]<>"true")) THEN (NOT ([Par14]="true"))) THEN (([Par10]="true") OR ([Par3]="true"))) THEN ((IF (NOT ([Par4]<>"true")) THEN (NOT ([Par0]<>"false"))) OR (IF (NOT ([Par9]<>"false")) THEN ([Par9]<>"true")));
-((IF ([Par2]="false") THEN (NOT ([Par13]<>"false"))) AND (IF ([Par8]="true") THEN ([Par14]<>"false");
-IF ([Par14]<>"false") THEN ([Par8]="true"))) AND ((IF (NOT ([Par6]<>"true")) THEN ([Par4]<>"true");
-IF ([Par4]<>"true") THEN (NOT ([Par6]<>"true"))) AND (IF (NOT ([Par10]<>"false")) THEN (NOT ([Par9]<>"true"));
-IF (NOT ([Par9]<>"true")) THEN (NOT ([Par10]<>"false"))));
+(NOT ((NOT ((NOT (NOT ([Par6]<>"true"))) OR (NOT ([Par14]="true")))) OR (([Par10]="true") OR ([Par3]="true")))) OR (((NOT (NOT ([Par4]<>"true"))) OR (NOT ([Par0]<>"false"))) OR ((NOT (NOT ([Par9]<>"false"))) OR ([Par9]<>"true")));
+(((NOT ([Par2]="false")) OR (NOT ([Par13]<>"false"))) AND (((NOT ([Par8]="true")) OR ([Par14]<>"false")) AND ((NOT ([Par14]<>"false")) OR ([Par8]="true")))) AND ((((NOT (NOT ([Par6]<>"true"))) OR ([Par4]<>"true")) AND ((NOT ([Par4]<>"true")) OR (NOT ([Par6]<>"true")))) AND (((NOT (NOT ([Par10]<>"false"))) OR (NOT ([Par9]<>"true"))) AND ((NOT (NOT ([Par9]<>"true"))) OR (NOT ([Par10]<>"false")))));
 (NOT ([Par14]="true")) AND (NOT ([Par2]="true"));
-(IF ([Par15]="false") THEN (NOT ([Par7]="true"));
-IF (NOT ([Par7]="true")) THEN ([Par15]="false")) OR (IF (NOT ([Par13]="false")) THEN ([Par14]<>"true");
-IF ([Par14]<>"true") THEN (NOT ([Par13]="false")));
-IF ((IF ([Par0]="true") THEN ([Par3]<>"true");
-IF ([Par3]<>"true") THEN ([Par0]="true")) AND (([Par11]="false") AND (NOT ([Par6]<>"true")))) THEN (IF (([Par12]="true") OR (NOT ([Par5]="true"))) THEN (([Par6]<>"true") OR ([Par9]="false"));
-IF (([Par6]<>"true") OR ([Par9]="false")) THEN (([Par12]="true") OR (NOT ([Par5]="true"))));
-IF (IF (([Par12]="true") OR (NOT ([Par5]="true"))) THEN (([Par6]<>"true") OR ([Par9]="false"));
-IF (([Par6]<>"true") OR ([Par9]="false")) THEN (([Par12]="true") OR (NOT ([Par5]="true")))) THEN ((IF ([Par0]="true") THEN ([Par3]<>"true");
-IF ([Par3]<>"true") THEN ([Par0]="true")) AND (([Par11]="false") AND (NOT ([Par6]<>"true"))));
+(((NOT ([Par15]="false")) OR (NOT ([Par7]="true"))) AND ((NOT (NOT ([Par7]="true"))) OR ([Par15]="false"))) OR (((NOT (NOT ([Par13]="false"))) OR ([Par14]<>"true")) AND ((NOT ([Par14]<>"true")) OR (NOT ([Par13]="false"))));
+((NOT ((((NOT ([Par0]="true")) OR ([Par3]<>"true")) AND ((NOT ([Par3]<>"true")) OR ([Par0]="true"))) AND (([Par11]="false") AND (NOT ([Par6]<>"true"))))) OR (((NOT (([Par12]="true") OR (NOT ([Par5]="true")))) OR (([Par6]<>"true") OR ([Par9]="false"))) AND ((NOT (([Par6]<>"true") OR ([Par9]="false"))) OR (([Par12]="true") OR (NOT ([Par5]="true")))))) AND ((NOT (((NOT (([Par12]="true") OR (NOT ([Par5]="true")))) OR (([Par6]<>"true") OR ([Par9]="false"))) AND ((NOT (([Par6]<>"true") OR ([Par9]="false"))) OR (([Par12]="true") OR (NOT ([Par5]="true")))))) OR ((((NOT ([Par0]="true")) OR ([Par3]<>"true")) AND ((NOT ([Par3]<>"true")) OR ([Par0]="true"))) AND (([Par11]="false") AND (NOT ([Par6]<>"true")))));

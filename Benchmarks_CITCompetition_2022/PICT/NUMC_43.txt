@@ -3,15 +3,10 @@ Par1 : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, P
 Par2 : false, true
 
 
-IF ((NOT ([Par0]>-29)) OR (NOT ([Par2]<>"true"))) THEN (([Par2]="false") OR (NOT ([Par0] >= -22)));
+(NOT ((NOT ([Par0]>-29)) OR (NOT ([Par2]<>"true")))) OR (([Par2]="false") OR (NOT ([Par0] >= -22)));
 ((NOT ([Par0]<>-28)) OR ([Par1]<>"PAR1_26")) OR (([Par0]<>-32) OR ([Par1]<>"PAR1_12"));
-IF (NOT ([Par0]>-30)) THEN ([Par1]="PAR1_30");
-IF ([Par1]="PAR1_30") THEN (NOT ([Par0]>-30));
-IF (IF (NOT ([Par1]="PAR1_2")) THEN ([Par1]<>"PAR1_23")) THEN ((NOT ([Par1]="PAR1_23")) AND (NOT ([Par2]="false")));
-IF ((NOT ([Par1]="PAR1_23")) AND (NOT ([Par2]="false"))) THEN (IF (NOT ([Par1]="PAR1_2")) THEN ([Par1]<>"PAR1_23"));
-IF (IF (NOT ([Par0]<=-32)) THEN (NOT ([Par0]<>-33));
-IF (NOT ([Par0]<>-33)) THEN (NOT ([Par0]<=-32))) THEN (IF ([Par2]<>"true") THEN (NOT ([Par2]="false")));
-IF (IF ([Par2]<>"true") THEN (NOT ([Par2]="false"))) THEN (IF (NOT ([Par0]<=-32)) THEN (NOT ([Par0]<>-33));
-IF (NOT ([Par0]<>-33)) THEN (NOT ([Par0]<=-32)));
+((NOT (NOT ([Par0]>-30))) OR ([Par1]="PAR1_30")) AND ((NOT ([Par1]="PAR1_30")) OR (NOT ([Par0]>-30)));
+((NOT ((NOT (NOT ([Par1]="PAR1_2"))) OR ([Par1]<>"PAR1_23"))) OR ((NOT ([Par1]="PAR1_23")) AND (NOT ([Par2]="false")))) AND ((NOT ((NOT ([Par1]="PAR1_23")) AND (NOT ([Par2]="false")))) OR ((NOT (NOT ([Par1]="PAR1_2"))) OR ([Par1]<>"PAR1_23")));
+((NOT (((NOT (NOT ([Par0]<=-32))) OR (NOT ([Par0]<>-33))) AND ((NOT (NOT ([Par0]<>-33))) OR (NOT ([Par0]<=-32))))) OR ((NOT ([Par2]<>"true")) OR (NOT ([Par2]="false")))) AND ((NOT ((NOT ([Par2]<>"true")) OR (NOT ([Par2]="false")))) OR (((NOT (NOT ([Par0]<=-32))) OR (NOT ([Par0]<>-33))) AND ((NOT (NOT ([Par0]<>-33))) OR (NOT ([Par0]<=-32)))));
 ([Par2]="false") OR (NOT ([Par0]=-31));
-IF (IF (([Par1]="PAR1_9") OR (NOT ([Par0] >= -31))) THEN (([Par2]<>"false") AND (NOT ([Par0]>-28)))) THEN (((NOT ([Par0]<-23)) OR (NOT ([Par2]<>"false"))) OR (IF (NOT ([Par1]="PAR1_4")) THEN (NOT ([Par0]<>-21))));
+(NOT ((NOT (([Par1]="PAR1_9") OR (NOT ([Par0] >= -31)))) OR (([Par2]<>"false") AND (NOT ([Par0]>-28))))) OR (((NOT ([Par0]<-23)) OR (NOT ([Par2]<>"false"))) OR ((NOT (NOT ([Par1]="PAR1_4"))) OR (NOT ([Par0]<>-21))));

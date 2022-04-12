@@ -10,4 +10,4 @@ Par8 : PAR8_0, PAR8_1
 Par9 : false, true
 
 
-((([Par1]<>"false") OR ([Par4]="true")) AND ((NOT ([Par4]="false")) OR ([Par2]="PAR2_0"))) AND (IF (IF ([Par2]<>"PAR2_1") THEN ([Par0]="false")) THEN (([Par4]="true") AND ([Par8]="PAR8_0")));
+((([Par1]<>"false") OR ([Par4]="true")) AND ((NOT ([Par4]="false")) OR ([Par2]="PAR2_0"))) AND ((NOT ((NOT ([Par2]<>"PAR2_1")) OR ([Par0]="false"))) OR (([Par4]="true") AND ([Par8]="PAR8_0")));

@@ -9,7 +9,5 @@ Par7 : false, true
 Par8 : false, true
 
 
-(IF ((NOT ([Par7]<>"false")) OR ([Par8]<>"false")) THEN ((NOT ([Par5]="PAR5_6")) AND (NOT ([Par0]="false")));
-IF ((NOT ([Par5]="PAR5_6")) AND (NOT ([Par0]="false"))) THEN ((NOT ([Par7]<>"false")) OR ([Par8]<>"false"))) OR ((IF (NOT ([Par7]<>"false")) THEN ([Par6] >= 6);
-IF ([Par6] >= 6) THEN (NOT ([Par7]<>"false"))) OR (([Par5]<>"PAR5_3") OR (NOT ([Par0]="true"))));
+(((NOT ((NOT ([Par7]<>"false")) OR ([Par8]<>"false"))) OR ((NOT ([Par5]="PAR5_6")) AND (NOT ([Par0]="false")))) AND ((NOT ((NOT ([Par5]="PAR5_6")) AND (NOT ([Par0]="false")))) OR ((NOT ([Par7]<>"false")) OR ([Par8]<>"false")))) OR ((((NOT (NOT ([Par7]<>"false"))) OR ([Par6] >= 6)) AND ((NOT ([Par6] >= 6)) OR (NOT ([Par7]<>"false")))) OR (([Par5]<>"PAR5_3") OR (NOT ([Par0]="true"))));
 (NOT ([Par6]<>3)) OR (NOT ([Par2]=7));

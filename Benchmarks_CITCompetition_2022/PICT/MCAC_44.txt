@@ -2,7 +2,4 @@ Par0 : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6, PAR0_7, PAR0_8, P
 Par1 : false, true
 
 
-IF (IF ([Par0]<>"PAR0_38") THEN (NOT ([Par0]="PAR0_16"));
-IF (NOT ([Par0]="PAR0_16")) THEN ([Par0]<>"PAR0_38")) THEN ((NOT ([Par0]="PAR0_31")) OR (NOT ([Par0]="PAR0_15")));
-IF ((NOT ([Par0]="PAR0_31")) OR (NOT ([Par0]="PAR0_15"))) THEN (IF ([Par0]<>"PAR0_38") THEN (NOT ([Par0]="PAR0_16"));
-IF (NOT ([Par0]="PAR0_16")) THEN ([Par0]<>"PAR0_38"));
+((NOT (((NOT ([Par0]<>"PAR0_38")) OR (NOT ([Par0]="PAR0_16"))) AND ((NOT (NOT ([Par0]="PAR0_16"))) OR ([Par0]<>"PAR0_38")))) OR ((NOT ([Par0]="PAR0_31")) OR (NOT ([Par0]="PAR0_15")))) AND ((NOT ((NOT ([Par0]="PAR0_31")) OR (NOT ([Par0]="PAR0_15")))) OR (((NOT ([Par0]<>"PAR0_38")) OR (NOT ([Par0]="PAR0_16"))) AND ((NOT (NOT ([Par0]="PAR0_16"))) OR ([Par0]<>"PAR0_38"))));

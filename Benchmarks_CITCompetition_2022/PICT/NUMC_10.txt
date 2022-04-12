@@ -17,5 +17,4 @@ Par15 : -38, -37, -36, -35, -34, -33, -32, -31, -30, -29, -28, -27, -26, -25, -2
 Par16 : false, true
 
 
-(([Par4]="false") AND (NOT ([Par16]="true"))) AND (IF (NOT ([Par4]<>"true")) THEN (NOT ([Par15]<=-9));
-IF (NOT ([Par15]<=-9)) THEN (NOT ([Par4]<>"true")));
+(([Par4]="false") AND (NOT ([Par16]="true"))) AND (((NOT (NOT ([Par4]<>"true"))) OR (NOT ([Par15]<=-9))) AND ((NOT (NOT ([Par15]<=-9))) OR (NOT ([Par4]<>"true"))));

@@ -11,8 +11,5 @@ Par9 : PAR9_0, PAR9_1
 Par10 : false, true
 
 
-IF (IF ([Par2]<>"PAR2_49") THEN (NOT ([Par6]=18));
-IF (NOT ([Par6]=18)) THEN ([Par2]<>"PAR2_49")) THEN (IF ([Par9]<>"PAR9_0") THEN (NOT ([Par6]<3)));
-IF (IF ([Par9]<>"PAR9_0") THEN (NOT ([Par6]<3))) THEN (IF ([Par2]<>"PAR2_49") THEN (NOT ([Par6]=18));
-IF (NOT ([Par6]=18)) THEN ([Par2]<>"PAR2_49"));
-(IF (NOT ([Par10]="false")) THEN ([Par0]="PAR0_0")) AND ((NOT ([Par4]<>"PAR4_0")) AND (NOT ([Par9]="PAR9_0")));
+((NOT (((NOT ([Par2]<>"PAR2_49")) OR (NOT ([Par6]=18))) AND ((NOT (NOT ([Par6]=18))) OR ([Par2]<>"PAR2_49")))) OR ((NOT ([Par9]<>"PAR9_0")) OR (NOT ([Par6]<3)))) AND ((NOT ((NOT ([Par9]<>"PAR9_0")) OR (NOT ([Par6]<3)))) OR (((NOT ([Par2]<>"PAR2_49")) OR (NOT ([Par6]=18))) AND ((NOT (NOT ([Par6]=18))) OR ([Par2]<>"PAR2_49"))));
+((NOT (NOT ([Par10]="false"))) OR ([Par0]="PAR0_0")) AND ((NOT ([Par4]<>"PAR4_0")) AND (NOT ([Par9]="PAR9_0")));
