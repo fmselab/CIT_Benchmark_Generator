@@ -1,0 +1,14 @@
+Model NUMC_25
+Parameters:
+Par0: [-38 .. 28]
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8,PAR3_9,PAR3_10,PAR3_11,PAR3_12,PAR3_13,PAR3_14,PAR3_15,PAR3_16,PAR3_17}
+
+Constraints:
+# ((((not (Par0 <= -36)) OR Par1 != false) <=> ((not (Par0 != -27)) OR (not (Par1 != false)))) => ((Par1 = true <=> (not (Par0 >= -10))) => (Par1 != true <=> (not (Par2 = true))))) #
+# (((Par0 <= -19 OR (not (Par0 >= -3))) <=> ((not (Par1 != true)) OR Par0 != 9)) <=> ((Par3 != PAR3_10 AND (not (Par0 < -19))) => (Par1 = false <=> (not (Par3 = PAR3_15))))) #
+# (((not (Par3 = PAR3_16)) AND (not (Par3 = PAR3_5))) <=> (Par1 = true AND Par1 = true)) #
+# ((Par0 <= -28 OR (not (Par2 = false))) => ((not (Par3 = PAR3_6)) => Par1 != true)) #
+# (((Par0 != -7 => Par3 != PAR3_14) <=> (Par2 = true OR (not (Par1 != true)))) <=> (((not (Par3 != PAR3_11)) <=> Par3 != PAR3_17) OR ((not (Par0 < 10)) => Par1 != false))) #
+# (((not (Par2 != true)) <=> Par2 != true) => (Par0 <= 25 => Par1 != false)) #

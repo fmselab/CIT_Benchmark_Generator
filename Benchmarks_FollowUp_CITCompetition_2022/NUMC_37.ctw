@@ -1,0 +1,12 @@
+Model NUMC_37
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8,PAR2_9,PAR2_10,PAR2_11,PAR2_12,PAR2_13,PAR2_14,PAR2_15,PAR2_16,PAR2_17,PAR2_18,PAR2_19,PAR2_20,PAR2_21,PAR2_22,PAR2_23,PAR2_24,PAR2_25,PAR2_26,PAR2_27,PAR2_28,PAR2_29,PAR2_30,PAR2_31,PAR2_32,PAR2_33,PAR2_34,PAR2_35,PAR2_36,PAR2_37,PAR2_38,PAR2_39,PAR2_40,PAR2_41,PAR2_42,PAR2_43}
+
+Constraints:
+# (((not (Par2 != PAR2_38)) => (not (Par0 = false))) AND ((not (Par2 = PAR2_16)) <=> Par2 = PAR2_0)) #
+# (((Par2 != PAR2_34 OR Par0 = true) <=> ((not (Par1 != false)) <=> (not (Par0 = false)))) <=> (((not (Par0 != false)) => (not (Par2 != PAR2_27))) OR ((not (Par0 != true)) => Par1 != false))) #
+# (((not (Par1 = true)) AND Par0 = false) => (Par2 != PAR2_30 AND Par0 != true)) #
+# (((not (Par1 = true)) OR (not (Par1 != true))) OR (Par0 = false OR Par2 != PAR2_30)) #
+# (((Par0 != true AND Par1 = true) <=> (Par0 = false <=> (not (Par1 = false)))) AND (((not (Par2 = PAR2_1)) => Par1 = false) <=> (Par1 = false AND Par2 != PAR2_35))) #

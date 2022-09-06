@@ -1,0 +1,16 @@
+Model NUMC_35
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4: [-62 .. 87]
+Par5 : Boolean
+Par6: [-76 .. -65]
+Par7 : Boolean
+Par8: {PAR8_0,PAR8_1,PAR8_2,PAR8_3,PAR8_4,PAR8_5,PAR8_6,PAR8_7,PAR8_8,PAR8_9,PAR8_10,PAR8_11,PAR8_12,PAR8_13,PAR8_14,PAR8_15,PAR8_16,PAR8_17,PAR8_18}
+
+Constraints:
+# (((Par0 = true AND (not (Par7 != false))) OR ((not (Par6 >= -75)) AND (not (Par0 = true)))) => (((not (Par8 = PAR8_6)) AND Par6 < -66) AND (Par7 != false => Par6 != -72))) #
+# ((not (Par5 = true)) OR Par3 != true) #
+# ((((not (Par6 = -66)) OR Par3 != true) AND (Par6 < -67 => Par8 = PAR8_8)) <=> ((Par1 = true OR (not (Par7 = false))) <=> (Par2 = true OR Par7 != false))) #

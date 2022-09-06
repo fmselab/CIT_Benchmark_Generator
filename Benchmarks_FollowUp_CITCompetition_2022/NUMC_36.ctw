@@ -1,0 +1,9 @@
+Model NUMC_36
+Parameters:
+Par0: [33 .. 80]
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+
+Constraints:
+# (((Par1 != false <=> Par1 != true) <=> (Par0 = 42 <=> Par1 != true)) <=> (((not (Par0 <= 48)) OR Par0 <= 53) <=> (Par0 != 80 <=> (not (Par1 != true))))) #

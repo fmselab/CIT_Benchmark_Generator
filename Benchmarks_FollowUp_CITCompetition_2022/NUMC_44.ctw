@@ -1,0 +1,17 @@
+Model NUMC_44
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4,PAR0_5,PAR0_6,PAR0_7,PAR0_8,PAR0_9,PAR0_10,PAR0_11,PAR0_12,PAR0_13,PAR0_14,PAR0_15,PAR0_16,PAR0_17}
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8,PAR2_9,PAR2_10,PAR2_11,PAR2_12,PAR2_13,PAR2_14,PAR2_15,PAR2_16,PAR2_17,PAR2_18,PAR2_19,PAR2_20,PAR2_21,PAR2_22,PAR2_23,PAR2_24,PAR2_25,PAR2_26,PAR2_27,PAR2_28,PAR2_29,PAR2_30,PAR2_31,PAR2_32,PAR2_33,PAR2_34,PAR2_35}
+Par3 : Boolean
+
+Constraints:
+# ((((not (Par2 != PAR2_11)) OR Par1 != false) OR (Par1 = true <=> Par3 = false)) <=> ((Par3 != true OR Par3 != false) OR (Par3 != true <=> Par0 != PAR0_16))) #
+# ((Par1 = true <=> Par0 != PAR0_0) <=> ((not (Par2 = PAR2_9)) OR (not (Par2 != PAR2_18)))) #
+# ((Par0 != PAR0_4 OR Par1 != true) => (Par0 = PAR0_17 OR (not (Par0 = PAR0_0)))) #
+# ((((not (Par1 != true)) AND (not (Par0 != PAR0_6))) <=> ((not (Par1 = true)) => (not (Par1 = true)))) => (((not (Par3 = false)) => (not (Par0 != PAR0_11))) => (Par1 != false <=> (not (Par3 != true))))) #
+# ((Par3 = false OR (not (Par0 = PAR0_0))) AND (Par0 != PAR0_1 <=> Par1 = false)) #
+# (((Par3 != true <=> Par1 != true) => (Par1 != true => Par0 = PAR0_2)) => ((Par1 = true OR Par3 != false) OR (Par1 = true OR Par2 != PAR2_7))) #
+# ((((not (Par0 != PAR0_2)) OR Par0 != PAR0_3) => (Par0 = PAR0_12 AND Par0 != PAR0_5)) AND (((not (Par0 != PAR0_10)) => (not (Par2 = PAR2_7))) => ((not (Par2 != PAR2_33)) OR (not (Par3 = false))))) #
+# ((not (Par0 != PAR0_15)) OR Par1 != true) #
+# (((Par0 != PAR0_12 AND (not (Par2 = PAR2_27))) => ((not (Par1 != false)) => Par2 != PAR2_29)) <=> ((Par3 != true => Par0 = PAR0_0) AND (Par1 != true AND (not (Par2 = PAR2_13))))) #

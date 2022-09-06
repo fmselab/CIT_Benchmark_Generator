@@ -1,0 +1,18 @@
+Model NUMC_19
+Parameters:
+Par0: [86 .. 87]
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8,PAR2_9,PAR2_10,PAR2_11,PAR2_12,PAR2_13,PAR2_14,PAR2_15,PAR2_16,PAR2_17,PAR2_18,PAR2_19}
+Par3 : Boolean
+
+Constraints:
+# (((not (Par3 != false)) => (not (Par0 <= 86))) OR (Par3 = true => (not (Par0 >= 86)))) #
+# (((Par3 != true OR (not (Par3 != true))) OR (Par1 != true => Par1 != true)) OR ((Par0 = 86 OR Par0 >= 86) => (Par3 != false AND (not (Par0 < 86))))) #
+# ((((not (Par3 != true)) AND Par0 >= 87) OR (Par0 != 87 AND Par3 = true)) AND (((not (Par3 = true)) OR Par1 = false) <=> ((not (Par0 = 86)) <=> Par1 = true))) #
+# (((not (Par2 = PAR2_13)) <=> (not (Par2 != PAR2_2))) => ((not (Par2 = PAR2_6)) AND Par2 = PAR2_0)) #
+# (((not (Par3 = false)) <=> (not (Par3 = true))) => (Par3 = false <=> (not (Par0 != 87)))) #
+# ((((not (Par3 = false)) <=> (not (Par2 != PAR2_18))) OR ((not (Par0 >= 87)) AND (not (Par2 != PAR2_1)))) OR ((Par2 = PAR2_3 AND (not (Par3 = false))) <=> ((not (Par1 != false)) AND (not (Par2 = PAR2_17))))) #
+# (((Par0 <= 86 <=> Par2 != PAR2_10) AND ((not (Par2 != PAR2_12)) <=> Par1 != false)) <=> (((not (Par3 = false)) AND (not (Par1 = false))) <=> (Par0 = 87 OR (not (Par3 = true))))) #
+# ((((not (Par3 != false)) <=> (not (Par1 != false))) <=> (Par0 >= 86 OR (not (Par0 >= 86)))) AND (((not (Par3 != false)) OR (not (Par2 != PAR2_15))) => ((not (Par0 = 86)) <=> Par1 = true))) #
+# ((not (Par2 != PAR2_0)) OR (not (Par1 = false))) #
+# (((Par1 != true OR (not (Par3 != true))) => (Par1 != false => Par2 = PAR2_14)) => (((not (Par1 = false)) AND Par1 = false) OR (Par3 = false AND Par1 != false))) #

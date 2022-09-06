@@ -1,0 +1,8 @@
+Model NUMC_21
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4,PAR0_5,PAR0_6,PAR0_7,PAR0_8,PAR0_9,PAR0_10,PAR0_11,PAR0_12,PAR0_13}
+Par1: [-66 .. 78]
+Par2 : Boolean
+
+Constraints:
+# (((Par2 = true => (not (Par1 > -20))) <=> (Par2 != true <=> (not (Par2 != true)))) AND ((Par1 != -62 <=> (not (Par1 <= 27))) <=> ((not (Par1 >= -28)) AND Par1 != -35))) #

@@ -1,0 +1,24 @@
+[System]
+-- specify system name
+Name: NUMC_43
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9, PAR1_10, PAR1_11, PAR1_12, PAR1_13, PAR1_14, PAR1_15, PAR1_16, PAR1_17
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14, PAR2_15, PAR2_16, PAR2_17, PAR2_18, PAR2_19, PAR2_20, PAR2_21, PAR2_22, PAR2_23, PAR2_24, PAR2_25, PAR2_26, PAR2_27, PAR2_28, PAR2_29, PAR2_30, PAR2_31, PAR2_32, PAR2_33, PAR2_34, PAR2_35, PAR2_36, PAR2_37, PAR2_38, PAR2_39, PAR2_40, PAR2_41
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13, PAR3_14, PAR3_15, PAR3_16, PAR3_17, PAR3_18, PAR3_19, PAR3_20, PAR3_21, PAR3_22, PAR3_23, PAR3_24, PAR3_25, PAR3_26, PAR3_27, PAR3_28, PAR3_29, PAR3_30, PAR3_31, PAR3_32, PAR3_33, PAR3_34, PAR3_35, PAR3_36, PAR3_37, PAR3_38, PAR3_39, PAR3_40, PAR3_41, PAR3_42, PAR3_43, PAR3_44
+Par4 (int) : -99, -98, -97, -96, -95, -94, -93, -92, -91, -90, -89, -88, -87, -86, -85, -84, -83, -82, -81, -80, -79, -78, -77, -76, -75, -74, -73, -72, -71, -70, -69, -68, -67, -66, -65, -64, -63, -62, -61, -60, -59, -58, -57, -56, -55, -54, -53, -52, -51, -50, -49, -48, -47, -46, -45, -44, -43, -42, -41, -40, -39, -38, -37, -36, -35, -34, -33, -32, -31
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11, PAR6_12, PAR6_13, PAR6_14, PAR6_15, PAR6_16, PAR6_17, PAR6_18, PAR6_19, PAR6_20, PAR6_21, PAR6_22, PAR6_23, PAR6_24, PAR6_25, PAR6_26, PAR6_27, PAR6_28, PAR6_29, PAR6_30, PAR6_31, PAR6_32, PAR6_33, PAR6_34
+Par7 (enum) : PAR7_0
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9, PAR8_10, PAR8_11, PAR8_12, PAR8_13, PAR8_14, PAR8_15, PAR8_16, PAR8_17, PAR8_18, PAR8_19, PAR8_20, PAR8_21, PAR8_22, PAR8_23, PAR8_24, PAR8_25, PAR8_26, PAR8_27, PAR8_28
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+Par11 (int) : -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8
+Par12 (int) : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42
+
+[Constraint]
+-- this section is also optional
+((! (Par9 = true)) && (! (Par10 = true))) => ((! (Par9 != true)) => (Par1 != "PAR1_15"))
+

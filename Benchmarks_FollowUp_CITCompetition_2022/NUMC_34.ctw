@@ -1,0 +1,12 @@
+Model NUMC_34
+Parameters:
+Par0 : Boolean
+Par1: [-100 .. 67]
+Par2: [4 .. 16]
+Par3 : Boolean
+
+Constraints:
+# ((Par0 = false <=> Par3 = false) <=> ((not (Par0 != true)) => (not (Par0 = false)))) #
+# ((((not (Par3 != false)) AND (not (Par0 != false))) AND ((not (Par1 < -81)) <=> (not (Par3 != false)))) <=> ((Par3 = true => (not (Par2 > 8))) OR ((not (Par3 = true)) <=> (not (Par0 = false))))) #
+# ((((not (Par3 = false)) OR Par1 != -89) => (Par3 = true => Par3 != true)) AND ((Par0 != false OR (not (Par3 = true))) AND (Par1 >= -27 => Par2 < 10))) #
+# ((((not (Par0 != false)) AND Par0 = false) => (Par2 < 8 OR Par2 < 9)) => (((not (Par0 != true)) AND Par2 != 4) => ((not (Par2 <= 15)) <=> (not (Par2 >= 10))))) #
