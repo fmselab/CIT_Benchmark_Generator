@@ -1,0 +1,23 @@
+[System]
+-- specify system name
+Name: UNIFORM_ALL_19
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (enum) : PAR9_0, PAR9_1
+Par10 (enum) : PAR10_0, PAR10_1
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (boolean) : true, false
+
+

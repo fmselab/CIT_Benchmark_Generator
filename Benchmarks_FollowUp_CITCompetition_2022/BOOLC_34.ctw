@@ -1,0 +1,13 @@
+Model BOOLC_34
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4 : Boolean
+Par5 : Boolean
+Par6 : Boolean
+Par7 : Boolean
+
+Constraints:
+# Par0 != true #

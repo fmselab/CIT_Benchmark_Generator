@@ -1,0 +1,23 @@
+[System]
+-- specify system name
+Name: MCAC_3
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6, PAR0_7, PAR0_8, PAR0_9, PAR0_10, PAR0_11, PAR0_12, PAR0_13, PAR0_14, PAR0_15, PAR0_16, PAR0_17, PAR0_18, PAR0_19, PAR0_20, PAR0_21, PAR0_22, PAR0_23, PAR0_24, PAR0_25, PAR0_26, PAR0_27, PAR0_28, PAR0_29, PAR0_30, PAR0_31, PAR0_32, PAR0_33, PAR0_34, PAR0_35, PAR0_36, PAR0_37, PAR0_38
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12, PAR4_13, PAR4_14, PAR4_15, PAR4_16, PAR4_17, PAR4_18, PAR4_19, PAR4_20, PAR4_21, PAR4_22
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((Par5 != false) => (! (Par3 = false))) => ((Par0 = "PAR0_9") => (! (Par1 = false)))) && (((! (Par5 != false)) => (Par7 != true)) && ((Par0 = "PAR0_11") => (Par4 = "PAR4_6")))
+(((Par7 = false) => (! (Par3 = true))) && (((Par4 = "PAR4_1") => (Par7 = false))&&((Par7 = false) => (Par4 = "PAR4_1")))) => (((Par7 = true) => (! (Par6 = false))) => ((Par1 = false) => (! (Par3 != true))))
+(((! (Par0 != "PAR0_32")) || (Par5 = true)) && ((! (Par3 != false)) => (Par5 = false))) && (((((Par2 = false) => (! (Par0 = "PAR0_0")))&&((! (Par0 = "PAR0_0")) => (Par2 = false))) => ((Par3 != true) => (Par5 = true)))&&(((Par3 != true) => (Par5 = true)) => (((Par2 = false) => (! (Par0 = "PAR0_0")))&&((! (Par0 = "PAR0_0")) => (Par2 = false)))))
+(((! (Par4 != "PAR4_9")) || (Par2 = true)) && ((Par0 = "PAR0_33") && (! (Par1 != true)))) && ((((Par0 = "PAR0_26") => (Par4 != "PAR4_5"))&&((Par4 != "PAR4_5") => (Par0 = "PAR0_26"))) => ((! (Par3 != false)) && (Par1 != false)))
+((! (Par2 = false)) => (Par4 = "PAR4_1"))&&((Par4 = "PAR4_1") => (! (Par2 = false)))
+

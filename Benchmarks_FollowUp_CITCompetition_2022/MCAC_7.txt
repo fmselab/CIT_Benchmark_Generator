@@ -1,0 +1,26 @@
+[System]
+-- specify system name
+Name: MCAC_7
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14, PAR2_15, PAR2_16, PAR2_17, PAR2_18, PAR2_19, PAR2_20, PAR2_21
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12, PAR4_13, PAR4_14, PAR4_15, PAR4_16, PAR4_17, PAR4_18, PAR4_19, PAR4_20, PAR4_21, PAR4_22, PAR4_23, PAR4_24, PAR4_25, PAR4_26, PAR4_27, PAR4_28, PAR4_29, PAR4_30
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, PAR5_9, PAR5_10, PAR5_11, PAR5_12
+Par6 (boolean) : true, false
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11, PAR7_12, PAR7_13, PAR7_14, PAR7_15, PAR7_16, PAR7_17, PAR7_18, PAR7_19, PAR7_20, PAR7_21, PAR7_22, PAR7_23, PAR7_24, PAR7_25, PAR7_26, PAR7_27, PAR7_28, PAR7_29, PAR7_30, PAR7_31, PAR7_32, PAR7_33, PAR7_34
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+((((! (Par3 != true)) => (Par0 != false))&&((Par0 != false) => (! (Par3 != true)))) => ((! (Par6 = false)) && (! (Par6 = false)))) || (((Par10 = false) => (! (Par7 != "PAR7_6"))) => ((Par5 != "PAR5_10") && (! (Par2 = "PAR2_2"))))
+(! (Par0 = false)) => (! (Par10 = true))
+(((! (Par5 != "PAR5_0")) => (! (Par0 = false)))&&((! (Par0 = false)) => (! (Par5 != "PAR5_0")))) => ((! (Par6 = true)) => (! (Par1 != false)))
+(((Par7 = "PAR7_17") && (Par8 = false)) && (((Par2 != "PAR2_4") => (! (Par2 = "PAR2_0")))&&((! (Par2 = "PAR2_0")) => (Par2 != "PAR2_4")))) => ((((! (Par1 != true)) && (! (Par10 != true))) => ((! (Par10 = true)) => (! (Par0 = false))))&&(((! (Par10 = true)) => (! (Par0 = false))) => ((! (Par1 != true)) && (! (Par10 != true)))))
+(Par0 = false) => (Par2 != "PAR2_4")
+

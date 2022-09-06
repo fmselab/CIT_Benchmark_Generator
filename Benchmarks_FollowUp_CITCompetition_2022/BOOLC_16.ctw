@@ -1,0 +1,11 @@
+Model BOOLC_16
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4 : Boolean
+Par5 : Boolean
+
+Constraints:
+# ((Par4 = true AND (not (Par0 != false))) AND (Par2 != true OR Par3 != true)) #

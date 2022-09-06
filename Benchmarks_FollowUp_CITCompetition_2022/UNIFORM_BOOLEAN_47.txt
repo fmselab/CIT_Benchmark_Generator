@@ -1,0 +1,18 @@
+[System]
+-- specify system name
+Name: UNIFORM_BOOLEAN_47
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+
+

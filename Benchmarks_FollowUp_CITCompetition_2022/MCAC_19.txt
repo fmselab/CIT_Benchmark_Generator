@@ -1,0 +1,27 @@
+[System]
+-- specify system name
+Name: MCAC_19
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12, PAR4_13, PAR4_14, PAR4_15
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11, PAR6_12, PAR6_13, PAR6_14, PAR6_15, PAR6_16, PAR6_17, PAR6_18, PAR6_19, PAR6_20
+Par7 (boolean) : true, false
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+Par11 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((Par11 != true) || (! (Par10 != true))) && ((! (Par1 = true)) && (! (Par11 != false)))) || ((((! (Par0 != false)) || (Par2 = true)) => ((Par1 = true) && (! (Par8 != "PAR8_1"))))&&(((Par1 = true) && (! (Par8 != "PAR8_1"))) => ((! (Par0 != false)) || (Par2 = true))))
+((Par1 != false) => (! (Par6 = "PAR6_13")))&&((! (Par6 = "PAR6_13")) => (Par1 != false))
+((((Par9 != true) || (Par5 != true)) || ((! (Par4 = "PAR4_8")) || (! (Par11 != false)))) => ((((Par2 != true) => (Par11 != false)) => ((! (Par3 != false)) || (! (Par3 = false))))&&(((! (Par3 != false)) || (! (Par3 = false))) => ((Par2 != true) => (Par11 != false)))))&&(((((Par2 != true) => (Par11 != false)) => ((! (Par3 != false)) || (! (Par3 = false))))&&(((! (Par3 != false)) || (! (Par3 = false))) => ((Par2 != true) => (Par11 != false)))) => (((Par9 != true) || (Par5 != true)) || ((! (Par4 = "PAR4_8")) || (! (Par11 != false)))))
+((Par5 != false) && (! (Par11 != false))) && ((! (Par9 != false)) => (Par1 = true))
+((((! (Par10 = false)) => (! (Par2 != false)))&&((! (Par2 != false)) => (! (Par10 = false)))) => (((Par8 != "PAR8_4") => (Par0 != true))&&((Par0 != true) => (Par8 != "PAR8_4")))) && (((Par2 != false) || (Par1 = true)) => ((! (Par0 = true)) && (Par3 = false)))
+

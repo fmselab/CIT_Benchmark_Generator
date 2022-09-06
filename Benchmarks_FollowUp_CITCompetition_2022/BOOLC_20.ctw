@@ -1,0 +1,34 @@
+Model BOOLC_20
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4 : Boolean
+Par5 : Boolean
+Par6 : Boolean
+Par7 : Boolean
+Par8 : Boolean
+Par9 : Boolean
+Par10 : Boolean
+Par11 : Boolean
+Par12 : Boolean
+Par13 : Boolean
+Par14 : Boolean
+Par15 : Boolean
+
+Constraints:
+# (not (Par2 = true)) #
+# ((Par9 = false <=> Par15 = true) => ((not (Par0 = true)) => Par5 != true)) #
+# ((((not (Par2 = true)) <=> (not (Par13 = false))) <=> ((not (Par1 != false)) OR (not (Par6 = true)))) OR ((Par2 = true OR (not (Par6 != false))) OR ((not (Par8 = false)) => Par13 != true))) #
+# (((Par13 = false => (not (Par4 != false))) => (Par4 = true AND Par15 != false)) OR ((Par1 = false AND (not (Par5 = false))) <=> ((not (Par12 = true)) <=> (not (Par6 != true))))) #
+# ((((not (Par14 = true)) AND Par11 != false) => ((not (Par15 = false)) AND Par3 != true)) AND (((not (Par11 != true)) OR (not (Par3 = false))) OR ((not (Par9 != false)) OR (not (Par4 != false))))) #
+# (((Par10 = false OR (not (Par5 = true))) OR (Par8 = false <=> (not (Par7 != true)))) OR ((Par7 != true <=> (not (Par2 != false))) => ((not (Par0 != true)) => (not (Par1 != false))))) #
+# (((not (Par15 = false)) AND Par9 != false) <=> (Par1 = true => (not (Par13 = true)))) #
+# (not (Par12 = false)) #
+# (((not (Par5 != true)) <=> Par12 = true) OR (Par14 = true AND (not (Par11 = false)))) #
+# ((not (Par14 != true)) <=> Par13 = true) #
+# ((Par8 != false <=> (not (Par11 = true))) OR (Par1 != true <=> (not (Par4 = false)))) #
+# (((Par4 != false AND Par10 != true) OR ((not (Par15 = false)) OR (not (Par14 = false)))) => ((Par5 = true OR (not (Par2 != false))) <=> ((not (Par8 = false)) => Par10 != false))) #
+# (((Par3 != true OR Par13 = false) AND (Par8 = true <=> Par14 = false)) => ((Par14 = true => (not (Par14 = false))) => (Par13 = false => Par4 = true))) #
+# ((((not (Par15 != true)) AND (not (Par7 != false))) => ((not (Par11 = true)) OR (not (Par8 = true)))) AND ((Par0 = true => Par9 = false) => (Par10 = true => (not (Par4 != false))))) #

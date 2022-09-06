@@ -1,0 +1,7 @@
+Model BOOLC_35
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+
+Constraints:
+# Par1 != false #

@@ -1,0 +1,29 @@
+[System]
+-- specify system name
+Name: MCAC_0
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11, PAR7_12, PAR7_13, PAR7_14, PAR7_15, PAR7_16, PAR7_17, PAR7_18, PAR7_19, PAR7_20, PAR7_21, PAR7_22, PAR7_23, PAR7_24, PAR7_25, PAR7_26, PAR7_27, PAR7_28, PAR7_29, PAR7_30
+Par8 (boolean) : true, false
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6
+Par10 (boolean) : true, false
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7, PAR11_8, PAR11_9
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9, PAR12_10, PAR12_11, PAR12_12, PAR12_13, PAR12_14, PAR12_15, PAR12_16, PAR12_17, PAR12_18, PAR12_19, PAR12_20, PAR12_21
+Par13 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(! (Par13 = false)) => (! (Par4 = true))
+((((! (Par5 = true)) => (! (Par7 = "PAR7_28")))&&((! (Par7 = "PAR7_28")) => (! (Par5 = true)))) || (((Par9 != "PAR9_2") => (Par2 != "PAR2_8"))&&((Par2 != "PAR2_8") => (Par9 != "PAR9_2")))) => (((Par12 != "PAR12_2") || (Par11 != "PAR11_1")) && ((! (Par0 = "PAR0_1")) => (! (Par4 != true))))
+((((((! (Par2 != "PAR2_11")) => (Par6 != "PAR6_1"))&&((Par6 != "PAR6_1") => (! (Par2 != "PAR2_11")))) => ((! (Par9 = "PAR9_6")) || (Par4 != true)))&&(((! (Par9 = "PAR9_6")) || (Par4 != true)) => (((! (Par2 != "PAR2_11")) => (Par6 != "PAR6_1"))&&((Par6 != "PAR6_1") => (! (Par2 != "PAR2_11")))))) => (((Par8 != true) => (Par7 = "PAR7_21")) && ((Par7 != "PAR7_10") && (! (Par12 != "PAR12_4")))))&&((((Par8 != true) => (Par7 = "PAR7_21")) && ((Par7 != "PAR7_10") && (! (Par12 != "PAR12_4")))) => (((((! (Par2 != "PAR2_11")) => (Par6 != "PAR6_1"))&&((Par6 != "PAR6_1") => (! (Par2 != "PAR2_11")))) => ((! (Par9 = "PAR9_6")) || (Par4 != true)))&&(((! (Par9 = "PAR9_6")) || (Par4 != true)) => (((! (Par2 != "PAR2_11")) => (Par6 != "PAR6_1"))&&((Par6 != "PAR6_1") => (! (Par2 != "PAR2_11")))))))
+((((! (Par3 = true)) => (! (Par7 = "PAR7_22")))&&((! (Par7 = "PAR7_22")) => (! (Par3 = true)))) && (((! (Par9 = "PAR9_4")) => (Par7 = "PAR7_3"))&&((Par7 = "PAR7_3") => (! (Par9 = "PAR9_4"))))) || (((! (Par3 = false)) && (! (Par12 != "PAR12_18"))) || ((! (Par7 = "PAR7_7")) && (Par9 != "PAR9_4")))
+(((Par12 != "PAR12_0") => (! (Par9 != "PAR9_6"))) && ((! (Par4 = false)) || (Par7 = "PAR7_21"))) => (((! (Par12 != "PAR12_20")) || (! (Par10 = false))) || ((Par8 = true) || (Par1 = true)))
+

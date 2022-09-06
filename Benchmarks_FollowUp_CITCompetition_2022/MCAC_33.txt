@@ -1,0 +1,16 @@
+[System]
+-- specify system name
+Name: MCAC_33
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(Par2 = false) => (! (Par0 = "PAR0_2"))
+(((Par1 = false) || (Par0 != "PAR0_0")) => ((! (Par2 = true)) => (! (Par0 = "PAR0_1"))))&&(((! (Par2 = true)) => (! (Par0 = "PAR0_1"))) => ((Par1 = false) || (Par0 != "PAR0_0")))
+
