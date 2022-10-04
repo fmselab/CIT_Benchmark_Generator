@@ -1,0 +1,5 @@
+Par0 : false, true
+Par1 : false, true
+
+
+[Par1]<>"false";

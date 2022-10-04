@@ -1,0 +1,25 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : false, true
+Par8 : false, true
+Par9 : false, true
+Par10 : false, true
+Par11 : false, true
+Par12 : false, true
+Par13 : false, true
+Par14 : false, true
+Par15 : false, true
+Par16 : false, true
+Par17 : false, true
+
+
+((NOT ((NOT ([Par7]="false"))))) OR ([Par13]<>"true");
+((NOT ([Par5]="true"))) AND ((NOT ([Par11]<>"false")));
+((NOT (((NOT ((NOT ([Par15]="false"))))) OR ([Par5]="false")))) OR (([Par2]<>"false") OR ((NOT ([Par13]="false"))));
+((((NOT ((NOT ([Par7]="true"))))) OR ([Par4]<>"true")) AND (((NOT ([Par4]<>"true"))) OR ((NOT ([Par7]="true"))))) OR (((NOT ([Par6]="true"))) AND ([Par16]<>"true"));
+((NOT ((((NOT ([Par7]="false"))) AND ((NOT ([Par0]="true")))) OR (([Par7]="false") AND ((NOT ([Par1]<>"false"))))))) OR ((((NOT ([Par8]="true"))) OR ((NOT ([Par15]="true")))) OR (((NOT ([Par4]="false"))) OR ([Par11]="false")));

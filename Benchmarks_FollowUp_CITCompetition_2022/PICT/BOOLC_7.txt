@@ -1,0 +1,9 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+
+
+((((NOT ([Par1]="false"))) OR ([Par0]="false")) AND (((NOT ([Par0]="false"))) OR ([Par1]="false"))) OR (((NOT ((NOT ([Par4]<>"false"))))) OR ([Par3]<>"false"));
+(((NOT ((((NOT ((NOT ([Par1]<>"false"))))) OR ((NOT ([Par4]="false")))) AND (((NOT ((NOT ([Par4]="false"))))) OR ((NOT ([Par1]<>"false"))))))) OR (((NOT ((NOT ([Par1]<>"false"))))) OR ([Par3]="true"))) AND (((NOT (((NOT ((NOT ([Par1]<>"false"))))) OR ([Par3]="true")))) OR ((((NOT ((NOT ([Par1]<>"false"))))) OR ((NOT ([Par4]="false")))) AND (((NOT ((NOT ([Par4]="false"))))) OR ((NOT ([Par1]<>"false"))))));

@@ -1,0 +1,8 @@
+Par0 : PAR0_0, PAR0_1, PAR0_2, PAR0_3
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+
+
+((NOT ([Par2]="false"))) OR ((NOT ([Par0]="PAR0_2")));
+(((NOT (([Par1]="false") OR ([Par0]<>"PAR0_0")))) OR (((NOT ((NOT ([Par2]="true"))))) OR ((NOT ([Par0]="PAR0_1"))))) AND (((NOT (((NOT ((NOT ([Par2]="true"))))) OR ((NOT ([Par0]="PAR0_1")))))) OR (([Par1]="false") OR ([Par0]<>"PAR0_0")));
