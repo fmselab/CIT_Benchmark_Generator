@@ -1,13 +1,4 @@
-ToolName,EntryType,Score
-appts,Size,454
-cagen,Size,350
-iposolver,Size,225
-pmedici,Size,73
-appts,Time,142
-cagen,Time,497
-iposolver,Time,321
-pmedici,Time,142
-appts,Overall,298.0
-cagen,Overall,423.5
-iposolver,Overall,273.0
-pmedici,Overall,107.5
+ToolName,EntryType,Score
+kali,Size,0
+kali,Time,0
+kali,Overall,0.0
