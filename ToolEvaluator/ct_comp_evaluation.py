@@ -64,10 +64,32 @@ def get_size(file, file_path):
 # ====================================================================================================
 
 # ====================================================================================================
+def is_meaningful(file):
+    execution_info = file.split("_")
+    if (execution_info[1] == "UNIFORM"):
+        model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
+        strength = execution_info[4]
+    else:
+        model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
+        strength = execution_info[3]
+
+    # Only the models having more parameters than the used strength are meaningful
+    df_output = pd.read_csv(validation_files_path + "ModelComplexity.csv", delimiter=";")
+    if df_output.loc[df_output['Model'] == model_name, 'nParams'].values[0] > int(strength):
+        return True
+
+    return False
+
+# ====================================================================================================
+
+# ====================================================================================================
 # Main function
 def main(file_path, output_file):
     # Fetch the files in the file_path
     onlyfiles = [f for f in listdir(file_path) if (isfile(join(file_path, f)) and f.endswith(".time"))]
+
+    # Exclude from the onlyfiles list the models where k<t
+    onlyfiles = [f for f in onlyfiles if is_meaningful(f)]
 
     # Output file
     out_file = open(output_file + ".csv", 'w')
