@@ -11,6 +11,7 @@ import math
 import matplotlib.pyplot as plt
 
 categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
+tools = ["appts", "acts", "pict", "iposolver", "cagen.new", "cagen", "pmedici", "pmedici.new", "casa"]
 strengths_vector = [2, 3, 4, 5, 6]
 #validation_files_path = "validation_files/"
 #output_files_path = "data/"
@@ -86,22 +87,25 @@ def is_meaningful(file):
 def export_statistics(only_files):
     out_file = open(output_files_path + "Meaningful_files.csv", 'w')
     models_considered = []
-    for strength in strengths_vector:
-        n_models = 0
-        for file in only_files:
-            execution_info = file.split("_")
-            if (execution_info[1] == "UNIFORM"):
-                model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
-                strength_file = execution_info[4]
-            else:
-                model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
-                strength_file = execution_info[3]
+    for tool in tools:
+        for strength in strengths_vector:
+            n_models = 0
+            for file in only_files:
+                execution_info = file.split("_")
+                toolname = execution_info[0]
+                if (toolname == tool):
+                    if (execution_info[1] == "UNIFORM"):
+                        model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
+                        strength_file = execution_info[4]
+                    else:
+                        model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
+                        strength_file = execution_info[3]
 
-            if (int(strength_file) == strength and model_name not in models_considered):
-                n_models = n_models + 1
-                models_considered.append(model_name)
-        out_file.write(str(strength) + "," + str(n_models) + "\n")
-        models_considered.clear()   
+                    if (int(strength_file) == strength and model_name not in models_considered):
+                        n_models = n_models + 1
+                        models_considered.append(model_name)
+            out_file.write(str(strength) + "," + tool + "," + str(n_models) + "\n")
+            models_considered.clear()   
     out_file.close()                
 
 # ====================================================================================================
