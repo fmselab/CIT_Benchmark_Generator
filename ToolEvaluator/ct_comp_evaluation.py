@@ -496,6 +496,15 @@ def ranking_for_categories_and_strength(size, time, categories):
 # ====================================================================================================
 
 # ====================================================================================================
+def summary_invalid_timeout():
+    invalid_file = pd.read_csv(output_files_path + "InvalidInstances.csv", delimiter=",")
+    timedout_file = pd.read_csv(output_files_path + "TimedoutInstances.csv", delimiter=",")
+
+    timedout_file.groupby(by=["ToolName", "Strength"]).N_TimeOut.sum().to_csv(output_files_path + "TimedoutInstancesGrouped.csv")
+    invalid_file.groupby(by=["ToolName", "Strength"]).N_Invalid.sum().to_csv(output_files_path + "InvalidInstancesGrouped.csv")
+# ====================================================================================================
+
+# ====================================================================================================
 # The program should be called by passing two arguments:
 # - the path in which the test suite files and results are stored
 # - the name of the output file, in which the aggregated results are stored
@@ -521,3 +530,6 @@ if __name__ == "__main__":
     # Results per category
     ranking_for_categories(size, time, categories)
     ranking_for_categories_and_strength(size, time, categories)
+
+    # Summary data about invalid and timeout instances
+    summary_invalid_timeout()
