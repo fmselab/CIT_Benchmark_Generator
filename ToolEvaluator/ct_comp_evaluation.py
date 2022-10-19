@@ -65,22 +65,18 @@ def get_size(file, file_path):
 # ====================================================================================================
 
 # ====================================================================================================
+# Determines if the given file is meaningful, i.e., if the number of patameter is greater than the
+# strength of the test
 def is_meaningful(file):
     execution_info = file.split("_")
-    if (execution_info[1] == "UNIFORM"):
-        model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
-        strength = execution_info[4]
-    else:
-        model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
-        strength = execution_info[3]
-
+    tool_name, model_name, strength, iteraration = extract_info_from_filename(execution_info)
+    
     # Only the models having more parameters than the used strength are meaningful
     df_output = pd.read_csv(validation_files_path + "ModelComplexity.csv", delimiter=";")
     if df_output.loc[df_output['Model'] == model_name, 'nParams'].values[0] >= int(strength):
         return True
 
     return False
-
 # ====================================================================================================
 
 # ====================================================================================================
@@ -92,22 +88,14 @@ def export_statistics(only_files):
             n_models = 0
             for file in only_files:
                 execution_info = file.split("_")
-                toolname = execution_info[0]
+                toolname, model_name, strength_file, iteration = extract_info_from_filename(execution_info)
                 if (toolname == tool):
-                    if (execution_info[1] == "UNIFORM"):
-                        model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
-                        strength_file = execution_info[4]
-                    else:
-                        model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
-                        strength_file = execution_info[3]
-
                     if (int(strength_file) == strength and model_name not in models_considered):
                         n_models = n_models + 1
                         models_considered.append(model_name)
             out_file.write(str(strength) + "," + tool + "," + str(n_models) + "\n")
             models_considered.clear()   
     out_file.close()                
-
 # ====================================================================================================
 
 # ====================================================================================================
@@ -132,15 +120,7 @@ def main(file_path, output_file):
     for file in onlyfiles:
         execution_info = file.split("_")
         error_type = ""
-        tool_name = execution_info[0]
-        if (execution_info[1] == "UNIFORM"):
-            model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
-            strength = execution_info[4]
-            iteraration = execution_info[5].split(".")[0]
-        else:
-            model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
-            strength = execution_info[3]
-            iteraration = execution_info[4].split(".")[0]
+        tool_name, model_name, strength, iteraration = extract_info_from_filename(execution_info)
 
         time = get_time(file, file_path)
         size = get_size(file, file_path)
@@ -155,6 +135,21 @@ def main(file_path, output_file):
         writer.writerow ([tool_name , model_name , strength , iteraration , error_type, time , size])
 
     out_file.close
+# ====================================================================================================
+
+# ====================================================================================================
+# Extracts info from the file name
+def extract_info_from_filename(execution_info):
+    tool_name = execution_info[0]
+    if (execution_info[1] == "UNIFORM"):
+        model_name = execution_info[1] + "_" + execution_info[2] + "_" + execution_info[3].split(".")[0]
+        strength = execution_info[4]
+        iteraration = execution_info[5].split(".")[0]
+    else:
+        model_name = execution_info[1] + "_" + execution_info[2].split(".")[0]
+        strength = execution_info[3]
+        iteraration = execution_info[4].split(".")[0]
+    return tool_name,model_name,strength,iteraration
 # ====================================================================================================
 
 # ====================================================================================================
@@ -527,6 +522,7 @@ def ranking_for_categories_and_strength(size, time, categories):
 # ====================================================================================================
 
 # ====================================================================================================
+# Extract the number of timed-out and invalid instances for each tool
 def summary_invalid_timeout():
     invalid_file = pd.read_csv(output_files_path + "InvalidInstances.csv", delimiter=",")
     timedout_file = pd.read_csv(output_files_path + "TimedoutInstances.csv", delimiter=",")
@@ -562,5 +558,5 @@ if __name__ == "__main__":
     ranking_for_categories(size, time, categories)
     ranking_for_categories_and_strength(size, time, categories)
 
-    # Summary data about invalid and timeout instances
+    # Summary data on invalid and timeout instances
     summary_invalid_timeout()
