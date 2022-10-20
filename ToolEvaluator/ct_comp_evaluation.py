@@ -234,7 +234,7 @@ def print_plots(df_aggregate):
     plt.xlabel("Generator")
     plt.ylabel("Time [sec.]")
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-    ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT])
+    ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
     fig.savefig(output_figs_path + "Tools_time.png")
 
     # Extract a figure showing the behavior of the tools - Size
@@ -251,7 +251,7 @@ def print_plots(df_aggregate):
     plt.xlabel("Generator")
     plt.ylabel("# Test cases")
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-    ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT])
+    ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
     fig.savefig(output_figs_path + "Tools_size.png")
 # ====================================================================================================
 
@@ -276,7 +276,7 @@ def print_plots_categories(df_aggregate, categories):
         plt.ylabel("Time [sec.]")
         ax.set_title('Generation time')
         ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-        ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT])
+        ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
         fig.savefig(output_figs_path + "Tools_time_" + category + ".png")
 
         # Extract a figure showing the behavior of the tools - Size
@@ -294,7 +294,7 @@ def print_plots_categories(df_aggregate, categories):
         plt.ylabel("# Test cases")
         ax.set_title('Test suite size')
         ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-        ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT])
+        ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
         fig.savefig(output_figs_path + "Tools_size_" + category + ".png")
 # ====================================================================================================
 
