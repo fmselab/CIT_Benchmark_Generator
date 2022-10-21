@@ -10,6 +10,7 @@ from numpy import mat
 import pandas as pd 
 import math
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
 tools = ["appts", "acts", "pict", "iposolver", "cagen.new", "cagen", "pmedici", "pmedici.new", "casa"]
@@ -20,7 +21,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = True
+compute_data = False
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -226,6 +227,7 @@ def extract_best_results(output_file):
     print_plots_categories(df_aggregate, categories)
 # ====================================================================================================
 
+# ====================================================================================================
 def export_boxplot(plot_title, ylabel, data, file_name):
     fig, ax = plt.subplots()
     ax.set_title(plot_title)
@@ -237,6 +239,7 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     fig = ax.get_figure()
     fig.tight_layout()
     fig.savefig(output_figs_path + file_name+ ".png")
+# ====================================================================================================
 
 # ====================================================================================================
 # Print the plots
@@ -494,7 +497,36 @@ def export_histograms(category, filter_by):
 # ====================================================================================================
 # Export the histograms grouping data for strength
 def export_histograms_t(category, filter_by):
-    pass
+    dfAll = pd.DataFrame()
+    for strength in strengths_vector:
+        df = pd.read_csv(output_files_path + category + str(strength) + ".csv", delimiter=",")
+        df = df[df.EntryType.eq(filter_by)]
+        # Add a column to the dataframe, with all values equal to strength
+        df["Strength"] = strength
+        # Concatenate the df dataframe with dfAll
+        dfAll = pd.concat([dfAll, df])
+    # Remove the column "EntryType" from the dataframe
+    dfAll = dfAll.drop(columns=["EntryType"])
+
+    # Seaborn Barplot with the Scores reached by all the tools for each strength
+    ax1 = sns.catplot(x="ToolName", y="Score", hue="Strength", data=dfAll, kind="bar")
+    # Set the labels    
+    ax1.set_xlabels("Tool")
+    ax1.set_ylabels("Score")
+    # Set label rotation for the x axis
+    ax1.set_xticklabels(rotation=90)
+    # Set the title of the plot
+    ax1.fig.suptitle(filter_by + " overall ranking ")
+    # Show all borders of the plots
+    ax1.despine(right=False, top=False, left=False, bottom=False)
+    # Hide the catplot legend   
+    ax1._legend.set_visible(False)
+    # Show the borders around the legend    
+    plt.legend(loc='upper right', shadow=True, ncol=2)
+    # Adapt the plot size to fit the labels
+    plt.tight_layout()
+    # Save the histogram to file
+    plt.savefig(output_figs_path + category + "PerStrength_" + filter_by + ".png")
 # ====================================================================================================
 
 # ====================================================================================================
