@@ -232,6 +232,7 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     plt.xlabel("Generator")
     plt.ylabel(ylabel)
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
+    plt.xticks(rotation=90)
     ax.boxplot(data, showfliers=False)
     fig = ax.get_figure()
     fig.tight_layout()
