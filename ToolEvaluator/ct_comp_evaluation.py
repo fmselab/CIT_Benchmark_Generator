@@ -21,7 +21,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = False
+compute_data = True
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -234,7 +234,7 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     plt.xlabel("Generator")
     plt.ylabel(ylabel)
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-    plt.xticks(rotation=90)
+    plt.xticks(rotation=45)
     ax.boxplot(data, showfliers=False)
     fig = ax.get_figure()
     fig.tight_layout()
@@ -494,6 +494,7 @@ def export_histograms(category, filter_by):
     # Set labels
     ax.set_xlabel("Tool")
     ax.set_ylabel("Score")
+    plt.xticks(rotation=45)
     # Hide the legend of the plots
     ax.legend().set_visible(False)
     # Adapt the plot size to fit the labels
@@ -523,7 +524,7 @@ def export_histograms_t(category, filter_by):
     ax1.set_xlabels("Tool")
     ax1.set_ylabels("Score")
     # Set label rotation for the x axis
-    ax1.set_xticklabels(rotation=90)
+    ax1.set_xticklabels(rotation=45)
     # Set the title of the plot
     ax1.fig.suptitle(filter_by + " ranking for " + category[:-1])
     # Show all borders of the plots
