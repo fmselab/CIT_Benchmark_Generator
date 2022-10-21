@@ -20,6 +20,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
+compute_data = False
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -243,6 +244,8 @@ def print_plots(df_aggregate):
     plt.ylabel("Time [sec.]")
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
     ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
+    fig = ax.get_figure()
+    fig.tight_layout()
     fig.savefig(output_figs_path + "Tools_time.png")
 
     # Extract a figure showing the behavior of the tools - Size
@@ -260,6 +263,8 @@ def print_plots(df_aggregate):
     plt.ylabel("# Test cases")
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
     ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
+    fig = ax.get_figure()
+    fig.tight_layout()
     fig.savefig(output_figs_path + "Tools_size.png")
 # ====================================================================================================
 
@@ -284,6 +289,8 @@ def print_plots_categories(df_aggregate, categories):
         ax.set_title('Generation time')
         ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
         ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
+        fig = ax.get_figure()
+        fig.tight_layout()
         fig.savefig(output_figs_path + "Tools_time_" + category + ".png")
 
         # Extract a figure showing the behavior of the tools - Size
@@ -302,6 +309,8 @@ def print_plots_categories(df_aggregate, categories):
         ax.set_title('Test suite size')
         ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
         ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
+        fig = ax.get_figure()
+        fig.tight_layout()
         fig.savefig(output_figs_path + "Tools_size_" + category + ".png")
 # ====================================================================================================
 
@@ -364,6 +373,14 @@ def extract_ranking(output_file):
 # ====================================================================================================
 
 # ====================================================================================================
+# Extracts the ranking for each model
+def get_stats(pdserie, writer, item_name):
+    print(pdserie)      
+    for i, v in pdserie.iteritems():
+        writer.writerow([i,item_name,v])
+# ====================================================================================================
+
+# ====================================================================================================
 # General ranking
 def overall_ranking(size, time):
     out_file = open(output_files_path + "OVERALL_allStrengths.csv", 'w')
@@ -372,21 +389,15 @@ def overall_ranking(size, time):
 
     print("********** Size ranking: **********")
     pdserie = size.groupby(by="ToolName").Score.sum()
-    print(pdserie)      
-    for i, v in pdserie.iteritems():
-        writer.writerow([i,"Size",v])
+    get_stats(pdserie, writer, "Size")
 
     print("********** Time ranking: **********")
     pdserie = time.groupby(by="ToolName").Score.sum()
-    print(pdserie)      
-    for i, v in pdserie.iteritems():
-        writer.writerow([i,"Time",v])
+    get_stats(pdserie, writer, "Time")
 
     print("********** Overall ranking: **********")
     pdserie = size.groupby(by="ToolName").Score.sum() * 0.5 + time[time.Strength != 5].groupby(by="ToolName").Score.sum() * 0.5
-    print(pdserie)      
-    for i, v in pdserie.iteritems():
-        writer.writerow([i,"Overall",v])
+    get_stats(pdserie, writer, "Overall")
 
     out_file.close
 # ====================================================================================================
@@ -394,9 +405,7 @@ def overall_ranking(size, time):
 # ====================================================================================================
 # General ranking per strength
 def overall_ranking_strength(size, time):
-    strengths = size["Strength"].unique()
-
-    for strength in strengths:
+    for strength in strengths_vector:
 
         out_file = open(output_files_path + "OVERALL_" + str(strength) + ".csv", 'w')
         writer = csv.writer(out_file)
@@ -410,21 +419,15 @@ def overall_ranking_strength(size, time):
         print("***********************************")
         print("********** Size ranking: **********")
         pdserie = sizenew.groupby(by="ToolName").Score.sum()
-        print(pdserie)      
-        for i, v in pdserie.iteritems():
-            writer.writerow([i,"Size",v])
+        get_stats(pdserie, writer, "Size")
 
         print("********** Time ranking: **********")
         pdserie = timenew.groupby(by="ToolName").Score.sum()
-        print(pdserie)      
-        for i, v in pdserie.iteritems():
-            writer.writerow([i,"Time",v])
+        get_stats(pdserie, writer, "Time")
 
         print("********** Overall ranking: **********")
         pdserie = sizenew.groupby(by="ToolName").Score.sum() * 0.5 + timenew.groupby(by="ToolName").Score.sum() * 0.5
-        print(pdserie)      
-        for i, v in pdserie.iteritems():
-            writer.writerow([i,"Overall",v])
+        get_stats(pdserie, writer, "Overall")
 
         out_file.close
 # ====================================================================================================
@@ -467,11 +470,27 @@ def ranking_for_categories(size, time, categories):
 
 # ====================================================================================================
 # Histograms for categories
-def histogram_for_categories(categories):
+def histogram_for_categories():
     for category in categories:
         export_histograms(category, "Size")
         export_histograms(category, "Time")
         export_histograms(category, "Overall")
+# ====================================================================================================
+
+# ====================================================================================================
+# Histograms Overall
+def histogram_overall():
+    export_histograms("OVERALL_", "Size")
+    export_histograms("OVERALL_", "Time")
+    export_histograms("OVERALL_", "Overall")
+# ====================================================================================================
+
+# ====================================================================================================
+# Histograms Overall for strength
+def histogram_overall_for_strength():
+    export_histograms_t("OVERALL_", "Size")
+    export_histograms_t("OVERALL_", "Time")
+    export_histograms_t("OVERALL_", "Overall")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -480,7 +499,34 @@ def export_histograms(category, filter_by):
     # Reads the file out_file in a pandas dataframe
     df = pd.read_csv(output_files_path + category + "allStrengths.csv", delimiter=",")
     # Plot an histogram where EntryType is "Size", use on the x axis the "ToolName" and on the y axis the "Score"
-    df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + category[:-1])
+    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + category[:-1])
+    # Set labels
+    ax.set_xlabel("Tool")
+    ax.set_ylabel("Score")
+    # Hide the legend of the plots
+    ax.legend().set_visible(False)
+    # Adapt the plot size to fit the labels
+    fig = ax.get_figure()
+    fig.tight_layout()
+    # Save the histogram to file
+    plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".png")
+# ====================================================================================================
+
+# ====================================================================================================
+# Export the histograms grouping data for strength
+def export_histograms_t(category, filter_by):
+    # Reads the file out_file in a pandas dataframe
+    df = pd.read_csv(output_files_path + category + "allStrengths.csv", delimiter=",")
+    # Plot an histogram where EntryType is "Size", use on the x axis the "ToolName" and on the y axis the "Score"
+    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + category[:-1])
+    # Set labels
+    ax.set_xlabel("Tool")
+    ax.set_ylabel("Score")
+    # Hide the legend of the plots
+    ax.legend().set_visible(False)
+    # Adapt the plot size to fit the labels
+    fig = ax.get_figure()
+    fig.tight_layout()
     # Save the histogram to file
     plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".png")
 # ====================================================================================================
@@ -568,23 +614,30 @@ if __name__ == "__main__":
     arg_parser.add_argument("--o", help="output file name")
     args = arg_parser.parse_args()
 
-    # Evaluate the results by fetching the files
-    main(args.r, args.o)
+    if compute_data:
+        # Evaluate the results by fetching the files
+        main(args.r, args.o)
 
-    # Extract the best results
-    extract_best_results(args.o)
+        # Extract the best results
+        extract_best_results(args.o)
 
-    # Extract the ranking for each file
-    [size, time] = extract_ranking(args.o)
+        # Extract the ranking for each file
+        [size, time] = extract_ranking(args.o)
 
-    # Sum the results and extract the overall ranking
-    overall_ranking(size, time)
-    overall_ranking_strength(size, time)
+        # Sum the results and extract the overall ranking
+        overall_ranking(size, time)
+        
+        overall_ranking_strength(size, time)
 
-    # Results per category
-    ranking_for_categories(size, time, categories)
-    histogram_for_categories(categories)
-    ranking_for_categories_and_strength(size, time, categories)
+        # Results per category
+        ranking_for_categories(size, time, categories)
+        
+        ranking_for_categories_and_strength(size, time, categories)
 
-    # Summary data on invalid and timeout instances
-    summary_invalid_timeout()
+        # Summary data on invalid and timeout instances
+        summary_invalid_timeout()
+
+    # Export historgrams
+    histogram_overall()
+    histogram_overall_for_strength()
+    histogram_for_categories()
