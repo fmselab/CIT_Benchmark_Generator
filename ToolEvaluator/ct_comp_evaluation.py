@@ -21,7 +21,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = True
+compute_data = False
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -454,17 +454,17 @@ def ranking_for_categories(size, time, categories):
 # Histograms for categories
 def histogram_for_categories():
     for category in categories:
-        export_histograms(category, "Size")
-        export_histograms(category, "Time")
-        export_histograms(category, "Overall")
+        export_histograms([category], "Size")
+        export_histograms([category], "Time")
+        export_histograms([category], "Overall")
 # ====================================================================================================
 
 # ====================================================================================================
 # Histograms Overall
 def histogram_overall():
-    export_histograms("OVERALL_", "Size")
-    export_histograms("OVERALL_", "Time")
-    export_histograms("OVERALL_", "Overall")
+    export_histograms(["OVERALL_"], "Size")
+    export_histograms(["OVERALL_"], "Time")
+    export_histograms(["OVERALL_"], "Overall")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -487,10 +487,18 @@ def histogram_overall_for_category_strength():
 # ====================================================================================================
 # Export the histograms
 def export_histograms(category, filter_by):
+    df = pd.DataFrame()
+    cat_str = ""
     # Reads the file out_file in a pandas dataframe
-    df = pd.read_csv(output_files_path + category + "allStrengths.csv", delimiter=",")
+    for ct in category:
+        df = pd.concat([pd.read_csv(output_files_path + ct + "allStrengths.csv", delimiter=","), df])
+        cat_str = cat_str + ct[:-1] + " "
+
+    # Create a new dataframe with ToolName, EntryType and with Score equals to the sum of the scores for each tool and entry type
+    df = df.groupby(by=["ToolName", "EntryType"]).Score.sum().reset_index()
+    
     # Plot an histogram where EntryType is "Size", use on the x axis the "ToolName" and on the y axis the "Score"
-    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + category[:-1])
+    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + cat_str[:-1].replace(" ", " and "))
     # Set labels
     ax.set_xlabel("Tool")
     ax.set_ylabel("Score")
@@ -500,8 +508,9 @@ def export_histograms(category, filter_by):
     # Adapt the plot size to fit the labels
     fig = ax.get_figure()
     fig.tight_layout()
+    cat_str = cat_str.replace(" ", "_")
     # Save the histogram to file
-    plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".pdf")
+    plt.savefig(output_figs_path + cat_str + "Allstrength_" + filter_by + ".pdf")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -650,3 +659,12 @@ if __name__ == "__main__":
     histogram_overall_for_strength()
     histogram_for_categories()
     histogram_overall_for_category_strength()
+
+    # Export histpgrams per group
+    export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Overall')
+    export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Time')
+    export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Size')
+
+    export_histograms(["BOOLC_","MCAC_"], 'Overall')
+    export_histograms(["BOOLC_","MCAC_"], 'Time')
+    export_histograms(["BOOLC_","MCAC_"], 'Size')
