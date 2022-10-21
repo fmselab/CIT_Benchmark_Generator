@@ -226,6 +226,17 @@ def extract_best_results(output_file):
     print_plots_categories(df_aggregate, categories)
 # ====================================================================================================
 
+def export_boxplot(plot_title, ylabel, data, file_name):
+    fig, ax = plt.subplots()
+    ax.set_title(plot_title)
+    plt.xlabel("Generator")
+    plt.ylabel(ylabel)
+    ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
+    ax.boxplot(data, showfliers=False)
+    fig = ax.get_figure()
+    fig.tight_layout()
+    fig.savefig(output_figs_path + file_name+ ".png")
+
 # ====================================================================================================
 # Print the plots
 def print_plots(df_aggregate):
@@ -238,15 +249,7 @@ def print_plots(df_aggregate):
     dataCAGenNew = df_aggregate[(df_aggregate.ToolName.eq("cagen.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
 
-    fig, ax = plt.subplots()
-    ax.set_title('Generation time')
-    plt.xlabel("Generator")
-    plt.ylabel("Time [sec.]")
-    ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-    ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
-    fig = ax.get_figure()
-    fig.tight_layout()
-    fig.savefig(output_figs_path + "Tools_time.png")
+    export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_time')
 
     # Extract a figure showing the behavior of the tools - Size
     datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
@@ -257,15 +260,7 @@ def print_plots(df_aggregate):
     dataCAGenNew = df_aggregate[(df_aggregate.ToolName.eq("cagen.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
 
-    fig, ax = plt.subplots()
-    ax.set_title('Test suite size')
-    plt.xlabel("Generator")
-    plt.ylabel("# Test cases")
-    ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-    ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
-    fig = ax.get_figure()
-    fig.tight_layout()
-    fig.savefig(output_figs_path + "Tools_size.png")
+    export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_size')
 # ====================================================================================================
 
 # ====================================================================================================
@@ -283,15 +278,7 @@ def print_plots_categories(df_aggregate, categories):
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         
-        fig, ax = plt.subplots()
-        plt.xlabel("Generator")
-        plt.ylabel("Time [sec.]")
-        ax.set_title('Generation time')
-        ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-        ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
-        fig = ax.get_figure()
-        fig.tight_layout()
-        fig.savefig(output_figs_path + "Tools_time_" + category + ".png")
+        export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], "Tools_time_" + category)
 
         # Extract a figure showing the behavior of the tools - Size
         datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
@@ -302,16 +289,7 @@ def print_plots_categories(df_aggregate, categories):
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         
-
-        fig, ax = plt.subplots()
-        plt.xlabel("Generator")
-        plt.ylabel("# Test cases")
-        ax.set_title('Test suite size')
-        ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-        ax.boxplot([datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], showfliers=False)
-        fig = ax.get_figure()
-        fig.tight_layout()
-        fig.savefig(output_figs_path + "Tools_size_" + category + ".png")
+        export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_size_' + category)
 # ====================================================================================================
 
 # ====================================================================================================
