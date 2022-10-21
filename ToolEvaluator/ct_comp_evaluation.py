@@ -476,6 +476,15 @@ def histogram_overall_for_strength():
 # ====================================================================================================
 
 # ====================================================================================================
+# Histograms Overall for category and strength
+def histogram_overall_for_category_strength():
+    for category in categories:
+        export_histograms_t(category, "Size")
+        export_histograms_t(category, "Time")
+        export_histograms_t(category, "Overall")
+# ====================================================================================================
+
+# ====================================================================================================
 # Export the histograms
 def export_histograms(category, filter_by):
     # Reads the file out_file in a pandas dataframe
@@ -516,7 +525,7 @@ def export_histograms_t(category, filter_by):
     # Set label rotation for the x axis
     ax1.set_xticklabels(rotation=90)
     # Set the title of the plot
-    ax1.fig.suptitle(filter_by + " overall ranking ")
+    ax1.fig.suptitle(filter_by + " ranking for " + category[:-1])
     # Show all borders of the plots
     ax1.despine(right=False, top=False, left=False, bottom=False)
     # Hide the catplot legend   
@@ -639,3 +648,4 @@ if __name__ == "__main__":
     histogram_overall()
     histogram_overall_for_strength()
     histogram_for_categories()
+    histogram_overall_for_category_strength()
