@@ -1,6 +1,7 @@
 import argparse
 from ftplib import error_perm
 from gettext import find
+from nis import cat
 from os import listdir
 from os.path import isfile, join
 import csv
@@ -21,7 +22,7 @@ output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
 
 # ====================================================================================================
-# Returns the time of the corresponding execution
+# Returns the time of the corresponding execution - Extracts it from the .time files
 def get_time(file, file_path):
     # Time file
     try:
@@ -42,13 +43,15 @@ def get_time(file, file_path):
 
         f.close
     except:
+        # If time is not found, return -1 to signal the error
         time_seconds = -1
 
     return time_seconds
 # ====================================================================================================
 
 # ====================================================================================================
-# Returns the size of the corresponding execution
+# Returns the size of the corresponding execution, by counting the number of rows of the .out file 
+# containing the test suite
 def get_size(file, file_path):
     # Test suite file
     try:
@@ -80,6 +83,8 @@ def is_meaningful(file):
 # ====================================================================================================
 
 # ====================================================================================================
+# Exports, for each tool and for each strength the number of meaningful instances, i.e., those models 
+# for which the number of parameters is higher than the strength
 def export_statistics(only_files):
     out_file = open(output_files_path + "Meaningful_files.csv", 'w')
     models_considered = []
@@ -138,7 +143,8 @@ def main(file_path, output_file):
 # ====================================================================================================
 
 # ====================================================================================================
-# Extracts info from the file name
+# Extracts info from the file name: the model name, the generator, the strength and the iteration 
+# number
 def extract_info_from_filename(execution_info):
     tool_name = execution_info[0]
     if (execution_info[1] == "UNIFORM"):
@@ -153,6 +159,8 @@ def extract_info_from_filename(execution_info):
 # ====================================================================================================
 
 # ====================================================================================================
+# It searches in the validation files if the generator, with a given given and streght, produces
+# a valid test suite (i.e., if in the validation file there is an OK)
 def is_valid(tool_name, model_name, strength):
     try:
         f = open(validation_files_path + "const_tests_" + str(strength) + "_new.txt", "r")
@@ -270,7 +278,6 @@ def print_plots_categories(df_aggregate, categories):
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         
-
         fig, ax = plt.subplots()
         plt.xlabel("Generator")
         plt.ylabel("Time [sec.]")
@@ -459,7 +466,27 @@ def ranking_for_categories(size, time, categories):
 # ====================================================================================================
 
 # ====================================================================================================
-# Ranking for categiries
+# Histograms for categories
+def histogram_for_categories(categories):
+    for category in categories:
+        export_histograms(category, "Size")
+        export_histograms(category, "Time")
+        export_histograms(category, "Overall")
+# ====================================================================================================
+
+# ====================================================================================================
+# Export the histograms
+def export_histograms(category, filter_by):
+    # Reads the file out_file in a pandas dataframe
+    df = pd.read_csv(output_files_path + category + "allStrengths.csv", delimiter=",")
+    # Plot an histogram where EntryType is "Size", use on the x axis the "ToolName" and on the y axis the "Score"
+    df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + category[:-1])
+    # Save the histogram to file
+    plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".png")
+# ====================================================================================================
+
+# ====================================================================================================
+# Ranking for categories and strengths
 def ranking_for_categories_and_strength(size, time, categories):
     strengths = size["Strength"].unique()
 
@@ -556,6 +583,7 @@ if __name__ == "__main__":
 
     # Results per category
     ranking_for_categories(size, time, categories)
+    histogram_for_categories(categories)
     ranking_for_categories_and_strength(size, time, categories)
 
     # Summary data on invalid and timeout instances
