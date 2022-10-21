@@ -231,10 +231,11 @@ def extract_best_results(output_file):
 def export_boxplot(plot_title, ylabel, data, file_name):
     fig, ax = plt.subplots()
     ax.set_title(plot_title)
-    plt.xlabel("Generator")
-    plt.ylabel(ylabel)
+    plt.xlabel("Generator", fontisize=14)
+    plt.ylabel(ylabel, fontisize=14)
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
-    plt.xticks(rotation=45)
+    plt.xticks(fontsize=14, rotation=45)
+    plt.yticks(fontsize=14)
     ax.boxplot(data, showfliers=False)
     fig = ax.get_figure()
     fig.tight_layout()
@@ -498,15 +499,19 @@ def export_histograms(category, filter_by):
     df = df.groupby(by=["ToolName", "EntryType"]).Score.sum().reset_index()
     
     # Plot an histogram where EntryType is "Size", use on the x axis the "ToolName" and on the y axis the "Score"
-    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + cat_str[:-1].replace(" ", " and "))
+    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score")
     # Set labels
     ax.set_xlabel("Tool")
+    ax.xaxis.get_label().set_fontsize(14)
     ax.set_ylabel("Score")
-    plt.xticks(rotation=45)
+    ax.yaxis.get_label().set_fontsize(14)
+    plt.xticks(fontsize=14, rotation=45)
+    plt.yticks(fontsize=14)
     # Hide the legend of the plots
     ax.legend().set_visible(False)
     # Adapt the plot size to fit the labels
     fig = ax.get_figure()
+    fig.suptitle(filter_by + " ranking for " + cat_str[:-1].replace(" ", " and "), fontsize=15)
     fig.tight_layout()
     cat_str = cat_str.replace(" ", "_")
     # Save the histogram to file
@@ -530,12 +535,13 @@ def export_histograms_t(category, filter_by):
     # Seaborn Barplot with the Scores reached by all the tools for each strength
     ax1 = sns.catplot(x="ToolName", y="Score", hue="Strength", data=dfAll, kind="bar")
     # Set the labels    
-    ax1.set_xlabels("Tool")
-    ax1.set_ylabels("Score")
+    ax1.set_xlabels("Tool", fontsize=14)
+    ax1.set_ylabels("Score", fontsize=14)
     # Set label rotation for the x axis
-    ax1.set_xticklabels(rotation=45)
+    ax1.set_xticklabels(fontsize=14, rotation=45)
+    ax1.set_yticklabels(fontsize=14)
     # Set the title of the plot
-    ax1.fig.suptitle(filter_by + " ranking for " + category[:-1])
+    ax1.fig.suptitle(filter_by + " ranking for " + category[:-1], fontsize=15)
     # Show all borders of the plots
     ax1.despine(right=False, top=False, left=False, bottom=False)
     # Hide the catplot legend   
