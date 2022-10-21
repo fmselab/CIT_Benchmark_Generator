@@ -238,7 +238,7 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     ax.boxplot(data, showfliers=False)
     fig = ax.get_figure()
     fig.tight_layout()
-    fig.savefig(output_figs_path + file_name+ ".png")
+    fig.savefig(output_figs_path + file_name+ ".pdf")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -501,7 +501,7 @@ def export_histograms(category, filter_by):
     fig = ax.get_figure()
     fig.tight_layout()
     # Save the histogram to file
-    plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".png")
+    plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".pdf")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -536,7 +536,7 @@ def export_histograms_t(category, filter_by):
     # Adapt the plot size to fit the labels
     plt.tight_layout()
     # Save the histogram to file
-    plt.savefig(output_figs_path + category + "PerStrength_" + filter_by + ".png")
+    plt.savefig(output_figs_path + category + "PerStrength_" + filter_by + ".pdf")
 # ====================================================================================================
 
 # ====================================================================================================
