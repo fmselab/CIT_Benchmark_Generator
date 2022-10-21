@@ -20,7 +20,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = False
+compute_data = True
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -493,20 +493,7 @@ def export_histograms(category, filter_by):
 # ====================================================================================================
 # Export the histograms grouping data for strength
 def export_histograms_t(category, filter_by):
-    # Reads the file out_file in a pandas dataframe
-    df = pd.read_csv(output_files_path + category + "allStrengths.csv", delimiter=",")
-    # Plot an histogram where EntryType is "Size", use on the x axis the "ToolName" and on the y axis the "Score"
-    ax = df[df.EntryType.eq(filter_by)].plot.bar(x="ToolName", y="Score", title=filter_by + " ranking for " + category[:-1])
-    # Set labels
-    ax.set_xlabel("Tool")
-    ax.set_ylabel("Score")
-    # Hide the legend of the plots
-    ax.legend().set_visible(False)
-    # Adapt the plot size to fit the labels
-    fig = ax.get_figure()
-    fig.tight_layout()
-    # Save the histogram to file
-    plt.savefig(output_figs_path + category + "Allstrength_" + filter_by + ".png")
+    pass
 # ====================================================================================================
 
 # ====================================================================================================
