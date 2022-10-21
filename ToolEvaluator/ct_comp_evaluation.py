@@ -531,7 +531,7 @@ def export_histograms_t(category, filter_by):
     # Hide the catplot legend   
     ax1._legend.set_visible(False)
     # Show the borders around the legend    
-    plt.legend(loc='upper right', shadow=True, ncol=2)
+    plt.legend(loc='upper right', shadow=True, ncol=2, title="Strength")
     # Adapt the plot size to fit the labels
     plt.tight_layout()
     # Save the histogram to file
