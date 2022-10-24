@@ -511,7 +511,6 @@ def export_histograms(category, filter_by):
     ax.legend().set_visible(False)
     # Adapt the plot size to fit the labels
     fig = ax.get_figure()
-    fig.suptitle(filter_by + " ranking for " + cat_str[:-1].replace(" ", " and "), fontsize=15)
     fig.tight_layout()
     cat_str = cat_str.replace(" ", "_")
     # Save the histogram to file
@@ -541,7 +540,6 @@ def export_histograms_t(category, filter_by):
     ax1.set_xticklabels(fontsize=14, rotation=45)
     ax1.set_yticklabels(fontsize=14)
     # Set the title of the plot
-    ax1.fig.suptitle(filter_by + " ranking for " + category[:-1], fontsize=15)
     # Show all borders of the plots
     ax1.despine(right=False, top=False, left=False, bottom=False)
     # Hide the catplot legend   
