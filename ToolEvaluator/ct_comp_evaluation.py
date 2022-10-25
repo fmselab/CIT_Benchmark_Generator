@@ -231,7 +231,7 @@ def extract_best_results(output_file):
 def export_boxplot(plot_title, ylabel, data, file_name):
     fig, ax = plt.subplots()
     ax.set_title(plot_title)
-    plt.xlabel("Generator", fontsize=14)
+    plt.xlabel("Tool", fontsize=14)
     plt.ylabel(ylabel, fontsize=14)
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
     plt.xticks(fontsize=14, rotation=45)
@@ -248,14 +248,17 @@ def export_scatterplot(ylabel, data, yname, file_name):
     # Scatterplot on data using 'X' as a marker for points
     ax.scatter(data["ToolName"], data[yname], marker='x', color='blue', s=100, alpha=0.5)
     #ax = data.plot.scatter(x='ToolName', y=yname, c='None')
-    plt.xlabel("Generator", fontsize=14)
+    plt.xlabel("Tool", fontsize=14)
     plt.ylabel(ylabel, fontsize=14)
     #ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
     plt.xticks(fontsize=14, rotation=45)
     plt.yticks(fontsize=14)
     fig = ax.get_figure()
     fig.tight_layout()
-    fig.savefig(output_figs_path + file_name+ "_scatter.pdf")
+    if file_name.endswith("_"):
+        fig.savefig(output_figs_path + file_name+ "scatter.pdf")
+    else:
+        fig.savefig(output_figs_path + file_name+ "_scatter.pdf")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -269,11 +272,15 @@ def print_plots(df_aggregate):
     datapMediciNew = df_aggregate[(df_aggregate.ToolName.eq("pmedici.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     dataCAGenNew = df_aggregate[(df_aggregate.ToolName.eq("cagen.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
-
+    # Boxplot
     export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_time')
+    # Scatter plot using timeouts = 310
     df_aggregate_temp = df_aggregate
     df_aggregate_temp.loc[df_aggregate_temp.ErrorType.isin(["Timeout", "Invalid"]), 'TimeSeconds'] = 310
     export_scatterplot('Time [sec.]', df_aggregate_temp, 'TimeSeconds', 'Tools_time')
+    # Scatter plot removing timeouts and invalid
+    df_aggregate_temp = df_aggregate[(~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))]
+    export_scatterplot('Time [sec.]', df_aggregate_temp, 'TimeSeconds', 'Tools_time_wo_invalid_')
 
     # Extract a figure showing the behavior of the tools - Size
     datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
@@ -283,8 +290,9 @@ def print_plots(df_aggregate):
     datapMediciNew = df_aggregate[(df_aggregate.ToolName.eq("pmedici.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
     dataCAGenNew = df_aggregate[(df_aggregate.ToolName.eq("cagen.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
-
+    # Boxplot
     export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_size')
+    # Scatter plot removing timeouts and invalid
     export_scatterplot('# Test cases', df_aggregate[~df_aggregate.ErrorType.isin(["Timeout", "Invalid"])], 'Size', 'Tools_size')
 # ====================================================================================================
 
@@ -302,11 +310,15 @@ def print_plots_categories(df_aggregate, categories):
         datapMediciNew = filtered_df[(filtered_df.ToolName.eq("pmedici.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
-        
+        # Boxplot
         export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], "Tools_time_" + category)
+        # Scatter plot
         df_aggregate_temp = filtered_df
         df_aggregate_temp.loc[df_aggregate_temp.ErrorType.isin(["Timeout", "Invalid"]), 'TimeSeconds'] = 310
         export_scatterplot('Time [sec.]', df_aggregate_temp, 'TimeSeconds', 'Tools_time_' + category)
+        # Scatter plot removing timeouts and invalid
+        df_aggregate_temp = filtered_df[(~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))]
+        export_scatterplot('Time [sec.]', df_aggregate_temp, 'TimeSeconds', 'Tools_time_wo_invalid_' + category)
 
         # Extract a figure showing the behavior of the tools - Size
         datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
@@ -316,8 +328,9 @@ def print_plots_categories(df_aggregate, categories):
         datapMediciNew = filtered_df[(filtered_df.ToolName.eq("pmedici.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
-        
+        # Boxplot
         export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_size_' + category)
+        # Scatter plot removing timeouts and invalid
         export_scatterplot('# Test cases', filtered_df[~filtered_df.ErrorType.isin(["Timeout", "Invalid"])], 'Size', 'Tools_size_' + category)
 # ====================================================================================================
 
