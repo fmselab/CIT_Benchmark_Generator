@@ -21,7 +21,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = False
+compute_data = True
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -231,8 +231,8 @@ def extract_best_results(output_file):
 def export_boxplot(plot_title, ylabel, data, file_name):
     fig, ax = plt.subplots()
     ax.set_title(plot_title)
-    plt.xlabel("Generator", fontisize=14)
-    plt.ylabel(ylabel, fontisize=14)
+    plt.xlabel("Generator", fontsize=14)
+    plt.ylabel(ylabel, fontsize=14)
     ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
     plt.xticks(fontsize=14, rotation=45)
     plt.yticks(fontsize=14)
@@ -240,6 +240,22 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     fig = ax.get_figure()
     fig.tight_layout()
     fig.savefig(output_figs_path + file_name+ ".pdf")
+# ====================================================================================================
+
+# ====================================================================================================
+def export_scatterplot(ylabel, data, yname, file_name):
+    fig, ax = plt.subplots()
+    # Scatterplot on data using 'X' as a marker for points
+    ax.scatter(data["ToolName"], data[yname], marker='x', color='blue', s=100, alpha=0.5)
+    #ax = data.plot.scatter(x='ToolName', y=yname, c='None')
+    plt.xlabel("Generator", fontsize=14)
+    plt.ylabel(ylabel, fontsize=14)
+    #ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT"])
+    plt.xticks(fontsize=14, rotation=45)
+    plt.yticks(fontsize=14)
+    fig = ax.get_figure()
+    fig.tight_layout()
+    fig.savefig(output_figs_path + file_name+ "_scatter.pdf")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -255,6 +271,9 @@ def print_plots(df_aggregate):
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
 
     export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_time')
+    df_aggregate_temp = df_aggregate
+    df_aggregate_temp.loc[df_aggregate_temp.ErrorType.isin(["Timeout", "Invalid"]), 'TimeSeconds'] = 310
+    export_scatterplot('Time [sec.]', df_aggregate_temp, 'TimeSeconds', 'Tools_time')
 
     # Extract a figure showing the behavior of the tools - Size
     datapMedici = df_aggregate[(df_aggregate.ToolName.eq("pmedici")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
@@ -266,6 +285,7 @@ def print_plots(df_aggregate):
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
 
     export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_size')
+    export_scatterplot('# Test cases', df_aggregate[~df_aggregate.ErrorType.isin(["Timeout", "Invalid"])], 'Size', 'Tools_size')
 # ====================================================================================================
 
 # ====================================================================================================
@@ -284,6 +304,9 @@ def print_plots_categories(df_aggregate, categories):
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         
         export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], "Tools_time_" + category)
+        df_aggregate_temp = filtered_df
+        df_aggregate_temp.loc[df_aggregate_temp.ErrorType.isin(["Timeout", "Invalid"]), 'TimeSeconds'] = 310
+        export_scatterplot('Time [sec.]', df_aggregate_temp, 'TimeSeconds', 'Tools_time_' + category)
 
         # Extract a figure showing the behavior of the tools - Size
         datapMedici = filtered_df[(filtered_df.ToolName.eq("pmedici")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
@@ -295,6 +318,7 @@ def print_plots_categories(df_aggregate, categories):
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         
         export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT], 'Tools_size_' + category)
+        export_scatterplot('# Test cases', filtered_df[~filtered_df.ErrorType.isin(["Timeout", "Invalid"])], 'Size', 'Tools_size_' + category)
 # ====================================================================================================
 
 # ====================================================================================================
@@ -559,10 +583,13 @@ def ranking_for_categories_and_strength(size, time, categories):
 
     out_file2 = open(output_files_path + "InvalidInstances.csv", 'w')
     out_file3 = open(output_files_path + "TimedoutInstances.csv", 'w')
+    out_file4 = open(output_files_path + "ValidInstances.csv", 'w')
     writer2 = csv.writer(out_file2)
     writer2.writerow(["ToolName","Strength","Category","N_Invalid"])
     writer3 = csv.writer(out_file3)
-    writer3.writerow(["ToolName","Strength","Category","N_TimeOut"])
+    writer3.writerow(["ToolName","Strength","Category","N_TimeOut"]) 
+    writer4 = csv.writer(out_file4)
+    writer4.writerow(["ToolName","Strength","Category","N_Valid"])
 
     for strength in strengths:
 
@@ -584,10 +611,15 @@ def ranking_for_categories_and_strength(size, time, categories):
             for i, v in pdserie.iteritems():
                 writer2.writerow([i,strength,category,v])
 
-            # Compute the number of not timed out instances
+            # Compute the number of timed out instances
             pdserie = sizenew_c[sizenew.ErrorType.eq("Timeout")].groupby(by="ToolName").Score.count()
             for i, v in pdserie.iteritems():
                 writer3.writerow([i,strength,category,v])
+
+            # Compute the number of not timed out and not invalild instances
+            pdserie = sizenew_c[~sizenew_c.ErrorType.isin(["Timeout", "Invalid"])].groupby(by="ToolName").Score.count()
+            for i, v in pdserie.iteritems():
+                writer4.writerow([i,strength,category,v])
 
             print("***********************************")
             print("*** CATEGORY: " + category + "***")
@@ -620,9 +652,11 @@ def ranking_for_categories_and_strength(size, time, categories):
 def summary_invalid_timeout():
     invalid_file = pd.read_csv(output_files_path + "InvalidInstances.csv", delimiter=",")
     timedout_file = pd.read_csv(output_files_path + "TimedoutInstances.csv", delimiter=",")
+    valid_file = pd.read_csv(output_files_path + "ValidInstances.csv", delimiter=",")
 
     timedout_file.groupby(by=["ToolName", "Strength"]).N_TimeOut.sum().to_csv(output_files_path + "TimedoutInstancesGrouped.csv")
     invalid_file.groupby(by=["ToolName", "Strength"]).N_Invalid.sum().to_csv(output_files_path + "InvalidInstancesGrouped.csv")
+    valid_file.groupby(by=["ToolName", "Strength"]).N_Valid.sum().to_csv(output_files_path + "ValidInstancesGrouped.csv")
 # ====================================================================================================
 
 # ====================================================================================================
