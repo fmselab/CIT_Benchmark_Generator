@@ -21,7 +21,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = True
+compute_data = False
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -508,18 +508,18 @@ def histogram_overall():
 # ====================================================================================================
 # Histograms Overall for strength
 def histogram_overall_for_strength():
-    export_histograms_t("OVERALL_", "Size")
-    export_histograms_t("OVERALL_", "Time")
-    export_histograms_t("OVERALL_", "Overall")
+    export_histograms_t(["OVERALL_"], "Size")
+    export_histograms_t(["OVERALL_"], "Time")
+    export_histograms_t(["OVERALL_"], "Overall")
 # ====================================================================================================
 
 # ====================================================================================================
 # Histograms Overall for category and strength
 def histogram_overall_for_category_strength():
     for category in categories:
-        export_histograms_t(category, "Size")
-        export_histograms_t(category, "Time")
-        export_histograms_t(category, "Overall")
+        export_histograms_t([category], "Size")
+        export_histograms_t([category], "Time")
+        export_histograms_t([category], "Overall")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -558,13 +558,16 @@ def export_histograms(category, filter_by):
 # Export the histograms grouping data for strength
 def export_histograms_t(category, filter_by):
     dfAll = pd.DataFrame()
-    for strength in strengths_vector:
-        df = pd.read_csv(output_files_path + category + str(strength) + ".csv", delimiter=",")
-        df = df[df.EntryType.eq(filter_by)]
-        # Add a column to the dataframe, with all values equal to strength
-        df["Strength"] = strength
-        # Concatenate the df dataframe with dfAll
-        dfAll = pd.concat([dfAll, df])
+    cat_str = ""
+    for ct in category:
+        for strength in strengths_vector:
+            df = pd.read_csv(output_files_path + ct + str(strength) + ".csv", delimiter=",")
+            df = df[df.EntryType.eq(filter_by)]
+            # Add a column to the dataframe, with all values equal to strength
+            df["Strength"] = strength
+            # Concatenate the df dataframe with dfAll
+            dfAll = pd.concat([dfAll, df])
+        cat_str = cat_str + ct[:-1] + " "
     # Remove the column "EntryType" from the dataframe
     dfAll = dfAll.drop(columns=["EntryType"])
 
@@ -586,7 +589,8 @@ def export_histograms_t(category, filter_by):
     # Adapt the plot size to fit the labels
     plt.tight_layout()
     # Save the histogram to file
-    plt.savefig(output_figs_path + category + "PerStrength_" + filter_by + ".pdf")
+    cat_str = cat_str.replace(" ", "_")
+    plt.savefig(output_figs_path + cat_str + "PerStrength_" + filter_by + ".pdf")
 # ====================================================================================================
 
 # ====================================================================================================
@@ -716,6 +720,14 @@ if __name__ == "__main__":
     export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Time')
     export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Size')
 
+    export_histograms_t(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Overall')
+    export_histograms_t(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Time')
+    export_histograms_t(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Size')
+
     export_histograms(["BOOLC_","MCAC_"], 'Overall')
     export_histograms(["BOOLC_","MCAC_"], 'Time')
     export_histograms(["BOOLC_","MCAC_"], 'Size')
+
+    export_histograms_t(["BOOLC_","MCAC_"], 'Overall')
+    export_histograms_t(["BOOLC_","MCAC_"], 'Time')
+    export_histograms_t(["BOOLC_","MCAC_"], 'Size')
