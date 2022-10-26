@@ -677,10 +677,10 @@ def summary_invalid_timeout():
 # ====================================================================================================
 
 # ====================================================================================================
-def histogram_category_group(f, categories):
-    f(categories, 'Overall')
-    f(categories, 'Time')
-    f(categories, 'Size')
+def histogram_category_group(f, category_list):
+    f(category_list, 'Overall')
+    f(category_list, 'Time')
+    f(category_list, 'Size')
 # ====================================================================================================
 
 # ====================================================================================================
@@ -704,13 +704,11 @@ if __name__ == "__main__":
         [size, time] = extract_ranking(args.o)
 
         # Sum the results and extract the overall ranking
-        overall_ranking(size, time)
-        
+        overall_ranking(size, time)        
         overall_ranking_strength(size, time)
 
         # Results per category
-        ranking_for_categories(size, time, categories)
-        
+        ranking_for_categories(size, time, categories)        
         ranking_for_categories_and_strength(size, time, categories)
 
         # Summary data on invalid and timeout instances
