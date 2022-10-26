@@ -572,7 +572,7 @@ def export_histograms_t(category, filter_by):
     dfAll = dfAll.drop(columns=["EntryType"])
 
     # Seaborn Barplot with the Scores reached by all the tools for each strength
-    ax1 = sns.catplot(x="ToolName", y="Score", hue="Strength", data=dfAll, kind="bar")
+    ax1 = sns.catplot(x="ToolName", y="Score", hue="Strength", data=dfAll, kind="bar", ci=None)
     # Set the labels    
     ax1.set_xlabels("Tool", fontsize=14)
     ax1.set_ylabels("Score", fontsize=14)
