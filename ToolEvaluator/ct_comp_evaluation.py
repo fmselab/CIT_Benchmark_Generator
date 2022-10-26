@@ -677,6 +677,13 @@ def summary_invalid_timeout():
 # ====================================================================================================
 
 # ====================================================================================================
+def histogram_category_group(f, categories):
+    f(categories, 'Overall')
+    f(categories, 'Time')
+    f(categories, 'Size')
+# ====================================================================================================
+
+# ====================================================================================================
 # The program should be called by passing two arguments:
 # - the path in which the test suite files and results are stored
 # - the name of the output file, in which the aggregated results are stored
@@ -716,18 +723,7 @@ if __name__ == "__main__":
     histogram_overall_for_category_strength()
 
     # Export histpgrams per group
-    export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Overall')
-    export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Time')
-    export_histograms(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Size')
-
-    export_histograms_t(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Overall')
-    export_histograms_t(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Time')
-    export_histograms_t(["UNIFORM_ALL_","UNIFORM_BOOLEAN_"], 'Size')
-
-    export_histograms(["BOOLC_","MCAC_"], 'Overall')
-    export_histograms(["BOOLC_","MCAC_"], 'Time')
-    export_histograms(["BOOLC_","MCAC_"], 'Size')
-
-    export_histograms_t(["BOOLC_","MCAC_"], 'Overall')
-    export_histograms_t(["BOOLC_","MCAC_"], 'Time')
-    export_histograms_t(["BOOLC_","MCAC_"], 'Size')
+    histogram_category_group(export_histograms, ["UNIFORM_ALL_","UNIFORM_BOOLEAN_"])
+    histogram_category_group(export_histograms_t, ["UNIFORM_ALL_","UNIFORM_BOOLEAN_"])
+    histogram_category_group(export_histograms, ["BOOLC_","MCAC_"])
+    histogram_category_group(export_histograms_t, ["BOOLC_","MCAC_"])
