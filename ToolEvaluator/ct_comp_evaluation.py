@@ -14,7 +14,7 @@ import seaborn as sns
 
 categories = ["MCAC_", "MCA_", "NUMC_", "BOOLC_", "UNIFORM_BOOLEAN_", "UNIFORM_ALL_"]
 categories_order = ["UNIFORM", "MCA", "BOOLC", "MCAC", "NUMC"]
-tools = ["appts", "acts", "pict", "iposolver", "cagen.new", "cagen", "pmedici", "pmedici.new", "wca"]
+tools = ["appts", "acts", "pict", "iposolver", "cagen.new", "cagen", "pmedici", "pmedici.new", "wca", "casa"]
 strengths_vector = [2, 3, 4, 5, 6]
 #validation_files_path = "validation_files/"
 #output_files_path = "data/"
@@ -22,7 +22,7 @@ strengths_vector = [2, 3, 4, 5, 6]
 validation_files_path = "/Users/andrea/Desktop/CTCompFollowUp/ValidationResults/"
 output_files_path = "/Users/andrea/Desktop/CTCompFollowUp/data/"
 output_figs_path = "/Users/andrea/Desktop/CTCompFollowUp/figs/"
-compute_data = False
+compute_data = True
 
 # ====================================================================================================
 # Returns the time of the corresponding execution - Extracts it from the .time files
@@ -234,7 +234,7 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     ax.set_title(plot_title)
     plt.xlabel("Tool", fontsize=14)
     plt.ylabel(ylabel, fontsize=14)
-    ax.set_xticklabels(["pMEDICI", "CAGen", "Appts", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT", "APPTS"])
+    ax.set_xticklabels(["pMEDICI", "CAGen", "ACTS", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT", "APPTS", "WCA", "CASA"])
     plt.xticks(fontsize=14, rotation=45)
     plt.yticks(fontsize=14)
     ax.boxplot(data, showfliers=False)
@@ -273,8 +273,10 @@ def print_plots(df_aggregate):
     dataCAGenNew = df_aggregate[(df_aggregate.ToolName.eq("cagen.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     dataAPPTS = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+    dataWCA = df_aggregate[(df_aggregate.ToolName.eq("wca")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+    dataCASA = df_aggregate[(df_aggregate.ToolName.eq("casa")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
     # Boxplot
-    export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS], 'Tools_time')
+    export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS, dataWCA, dataCASA], 'Tools_time')
     # Scatter plot using timeouts = 310
     df_aggregate_temp = df_aggregate
     df_aggregate_temp.loc[df_aggregate_temp.ErrorType.isin(["Timeout", "Invalid"]), 'TimeSeconds'] = 310
@@ -292,8 +294,10 @@ def print_plots(df_aggregate):
     dataCAGenNew = df_aggregate[(df_aggregate.ToolName.eq("cagen.new")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
     dataPICT = df_aggregate[(df_aggregate.ToolName.eq("pict")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
     dataAPPTS = df_aggregate[(df_aggregate.ToolName.eq("appts")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+    dataWCA = df_aggregate[(df_aggregate.ToolName.eq("wca")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+    dataCASA = df_aggregate[(df_aggregate.ToolName.eq("casa")) & (~df_aggregate.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
     # Boxplot
-    export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS], 'Tools_size')
+    export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS, dataWCA, dataCASA], 'Tools_size')
     # Scatter plot removing timeouts and invalid
     export_scatterplot('# Test cases', df_aggregate[~df_aggregate.ErrorType.isin(["Timeout", "Invalid"])], 'Size', 'Tools_size')
 # ====================================================================================================
@@ -313,8 +317,10 @@ def print_plots_categories(df_aggregate, categories):
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         dataAPPTS = filtered_df[(filtered_df.ToolName.eq("appts")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+        dataWCA = filtered_df[(filtered_df.ToolName.eq("wca")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
+        dataCASA = filtered_df[(filtered_df.ToolName.eq("casa")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].TimeSeconds.to_numpy()
         # Boxplot
-        export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS], "Tools_time_" + category)
+        export_boxplot('Generation time', 'Time [sec.]', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS, dataWCA, dataCASA], "Tools_time_" + category)
         # Scatter plot
         df_aggregate_temp = filtered_df
         df_aggregate_temp.loc[df_aggregate_temp.ErrorType.isin(["Timeout", "Invalid"]), 'TimeSeconds'] = 310
@@ -332,8 +338,10 @@ def print_plots_categories(df_aggregate, categories):
         dataCAGenNew = filtered_df[(filtered_df.ToolName.eq("cagen.new")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         dataPICT = filtered_df[(filtered_df.ToolName.eq("pict")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         dataAPPTS = filtered_df[(filtered_df.ToolName.eq("appts")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+        dataWCA = filtered_df[(filtered_df.ToolName.eq("wca")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
+        dataCASA = filtered_df[(filtered_df.ToolName.eq("casa")) & (~filtered_df.ErrorType.isin(["Timeout", "Invalid"]))].Size.to_numpy()
         # Boxplot
-        export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS], 'Tools_size_' + category)
+        export_boxplot('Test suite size', '# Test cases', [datapMedici, dataCAGen, dataACTS, dataIPOSolver, dataCAGenNew, datapMediciNew, dataPICT, dataAPPTS, dataWCA], 'Tools_size_' + category)
         # Scatter plot removing timeouts and invalid
         export_scatterplot('# Test cases', filtered_df[~filtered_df.ErrorType.isin(["Timeout", "Invalid"])], 'Size', 'Tools_size_' + category)
 # ====================================================================================================
@@ -589,7 +597,7 @@ def export_histograms_t(category, filter_by):
     # Hide the catplot legend   
     ax1._legend.set_visible(False)
     # Show the borders around the legend    
-    plt.legend(loc='upper right', shadow=True, ncol=2, title="Strength")
+    plt.legend(loc='upper right', shadow=True, ncol=2, title="Strength", fancybox=True, framealpha=0.3)
     # Adapt the plot size to fit the labels
     plt.tight_layout()
     # Save the histogram to file
@@ -694,6 +702,8 @@ def plot_timeouts():
     # Merge the categories UNIFORM_ALL and UNIFORM_BOOL into the UNIFORM one
     timedout_file["Category"] = timedout_file["Category"].replace("UNIFORM_ALL", "UNIFORM")
     timedout_file["Category"] = timedout_file["Category"].replace("UNIFORM_BOOLEAN", "UNIFORM")
+    # Summ all the N_TimeOut for each tool and category
+    timedout_file = timedout_file.groupby(by=["ToolName", "Category"]).N_TimeOut.sum().reset_index()
     ax1 = sns.catplot(x="ToolName", y="N_TimeOut", hue="Category", data=timedout_file, kind="bar", ci=None, hue_order=categories_order)
     # Set the labels    
     ax1.set_xlabels("Tool", fontsize=14)
@@ -707,7 +717,7 @@ def plot_timeouts():
     # Hide the catplot legend   
     ax1._legend.set_visible(False)
     # Show the borders around the legend    
-    plt.legend(loc='upper left', shadow=True, ncol=1, title="Category")
+    plt.legend(loc='upper right', shadow=True, ncol=2, title="Category", fancybox=True, framealpha=0.3)
     # Adapt the plot size to fit the labels
     plt.tight_layout()
     # Save the histogram to file
