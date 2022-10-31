@@ -235,7 +235,7 @@ def export_boxplot(plot_title, ylabel, data, file_name):
     plt.xlabel("Tool", fontsize=14)
     plt.ylabel(ylabel, fontsize=14)
     ax.set_xticklabels(["pMEDICI", "CAGen", "ACTS", "IPO Solver", "CAGen (new)", "pMEDICI (new)", "PICT", "APPTS", "WCA", "CASA"])
-    plt.xticks(fontsize=14, rotation=45)
+    plt.xticks(fontsize=14, rotation=90)
     plt.yticks(fontsize=14)
     ax.boxplot(data, showfliers=False)
     fig = ax.get_figure()
@@ -251,7 +251,7 @@ def export_scatterplot(ylabel, data, yname, file_name):
     #ax = data.plot.scatter(x='ToolName', y=yname, c='None')
     plt.xlabel("Tool", fontsize=14)
     plt.ylabel(ylabel, fontsize=14)
-    plt.xticks(fontsize=14, rotation=45)
+    plt.xticks(fontsize=14, rotation=90)
     plt.yticks(fontsize=14)
     fig = ax.get_figure()
     fig.tight_layout()
@@ -554,7 +554,7 @@ def export_histograms(category, filter_by):
     ax.xaxis.get_label().set_fontsize(14)
     ax.set_ylabel("Score")
     ax.yaxis.get_label().set_fontsize(14)
-    plt.xticks(fontsize=14, rotation=45)
+    plt.xticks(fontsize=14, rotation=90)
     plt.yticks(fontsize=14)
     # Hide the legend of the plots
     ax.legend().set_visible(False)
@@ -589,7 +589,7 @@ def export_histograms_t(category, filter_by):
     ax1.set_xlabels("Tool", fontsize=14)
     ax1.set_ylabels("Score", fontsize=14)
     # Set label rotation for the x axis
-    ax1.set_xticklabels(fontsize=14, rotation=45)
+    ax1.set_xticklabels(fontsize=14, rotation=90)
     ax1.set_yticklabels(fontsize=14)
     # Set the title of the plot
     # Show all borders of the plots
@@ -709,7 +709,7 @@ def plot_timeouts():
     ax1.set_xlabels("Tool", fontsize=14)
     ax1.set_ylabels("# Timeouts", fontsize=14)
     # Set label rotation for the x axis
-    ax1.set_xticklabels(fontsize=14, rotation=45)
+    ax1.set_xticklabels(fontsize=14, rotation=90)
     ax1.set_yticklabels(fontsize=14)
     # Set the title of the plot
     # Show all borders of the plots
