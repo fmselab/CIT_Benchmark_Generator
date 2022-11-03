@@ -697,6 +697,8 @@ def plot_timeouts():
     # and those considered invalid are actually timedout
     invalid_file = invalid_file[invalid_file.ToolName.eq("ACTS")]
     timedout_file = pd.concat([timedout_file, invalid_file])
+    invalid_file = invalid_file[invalid_file.ToolName.eq("WCA")]
+    timedout_file = pd.concat([timedout_file, invalid_file])
     # Remove from the column Category the last character
     timedout_file["Category"] = timedout_file["Category"].str[:-1]
     # Merge the categories UNIFORM_ALL and UNIFORM_BOOL into the UNIFORM one
