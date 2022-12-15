@@ -1,0 +1,26 @@
+Model MCAC_4
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3,PAR4_4,PAR4_5,PAR4_6,PAR4_7,PAR4_8,PAR4_9,PAR4_10,PAR4_11,PAR4_12,PAR4_13,PAR4_14,PAR4_15,PAR4_16,PAR4_17,PAR4_18,PAR4_19,PAR4_20,PAR4_21,PAR4_22,PAR4_23,PAR4_24,PAR4_25,PAR4_26,PAR4_27,PAR4_28,PAR4_29,PAR4_30,PAR4_31,PAR4_32}
+Par5 : Boolean
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8,PAR6_9,PAR6_10,PAR6_11,PAR6_12,PAR6_13,PAR6_14,PAR6_15,PAR6_16,PAR6_17,PAR6_18,PAR6_19,PAR6_20,PAR6_21,PAR6_22,PAR6_23,PAR6_24,PAR6_25,PAR6_26,PAR6_27,PAR6_28,PAR6_29,PAR6_30,PAR6_31,PAR6_32}
+Par7: {PAR7_0,PAR7_1,PAR7_2,PAR7_3,PAR7_4,PAR7_5,PAR7_6,PAR7_7,PAR7_8,PAR7_9,PAR7_10,PAR7_11,PAR7_12}
+Par8: {PAR8_0,PAR8_1,PAR8_2,PAR8_3}
+Par9 : Boolean
+Par10 : Boolean
+
+Constraints:
+# ((Par6 = PAR6_23 AND (not (Par4 = PAR4_6))) OR (Par5 != false AND Par7 = PAR7_0)) #
+# ((not (Par10 = false)) => (not (Par4 = PAR4_13))) #
+# (((Par9 = false => Par0 != true) AND ((not (Par7 = PAR7_1)) OR (not (Par8 = PAR8_3)))) AND (((not (Par7 != PAR7_5)) <=> Par4 = PAR4_29) <=> ((not (Par8 = PAR8_0)) AND Par9 = false))) #
+# ((((not (Par6 = PAR6_15)) AND Par8 != PAR8_3) => (Par2 = true AND (not (Par0 != true)))) AND (((not (Par10 != true)) OR (not (Par5 = true))) AND (Par0 = false AND (not (Par2 = false))))) #
+# ((((not (Par8 = PAR8_2)) => Par7 != PAR7_0) <=> (Par9 != true => Par5 != false)) <=> (((not (Par7 != PAR7_0)) AND (not (Par1 = true))) OR ((not (Par1 = true)) OR Par0 != true))) #
+# (((not (Par9 = true)) OR (not (Par7 != PAR7_2))) AND ((not (Par4 = PAR4_23)) AND (not (Par6 != PAR6_23)))) #
+# (((Par0 = true <=> (not (Par0 != true))) => (Par7 = PAR7_10 <=> (not (Par5 != true)))) <=> (((not (Par5 = false)) OR Par3 != false) => (Par1 = false OR Par1 = true))) #
+# (Par2 = true OR (not (Par0 != false))) #
+# (Par8 = PAR8_3 OR (not (Par0 = true))) #
+# (Par5 != false AND (not (Par5 != true))) #
+# (((not (Par4 != PAR4_29)) AND Par9 != false) OR (Par8 != PAR8_1 AND (not (Par8 = PAR8_2)))) #

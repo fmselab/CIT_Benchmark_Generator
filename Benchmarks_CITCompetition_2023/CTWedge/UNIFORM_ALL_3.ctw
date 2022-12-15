@@ -1,0 +1,5 @@
+Model UNIFORM_ALL_3
+Parameters:
+Par0 : Boolean
+Par1: {PAR1_0,PAR1_1}
+Par2 : Boolean
