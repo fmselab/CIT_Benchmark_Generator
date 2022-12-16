@@ -1,0 +1,17 @@
+Model HIGHLY_CONSTRAINED_4
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8,PAR2_9,PAR2_10,PAR2_11,PAR2_12,PAR2_13,PAR2_14,PAR2_15,PAR2_16,PAR2_17,PAR2_18,PAR2_19,PAR2_20,PAR2_21,PAR2_22,PAR2_23,PAR2_24,PAR2_25,PAR2_26,PAR2_27,PAR2_28,PAR2_29,PAR2_30}
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8,PAR3_9,PAR3_10}
+Par4 : Boolean
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6,PAR5_7,PAR5_8,PAR5_9,PAR5_10,PAR5_11,PAR5_12}
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8,PAR6_9,PAR6_10,PAR6_11,PAR6_12,PAR6_13,PAR6_14,PAR6_15,PAR6_16,PAR6_17,PAR6_18,PAR6_19,PAR6_20,PAR6_21,PAR6_22,PAR6_23,PAR6_24,PAR6_25,PAR6_26,PAR6_27,PAR6_28,PAR6_29,PAR6_30,PAR6_31,PAR6_32,PAR6_33,PAR6_34,PAR6_35,PAR6_36,PAR6_37,PAR6_38,PAR6_39,PAR6_40}
+
+Constraints:
+# ((Par2 != PAR2_19 AND Par3 != PAR3_1) => ((not (Par2 != PAR2_4)) AND Par1 != false)) #
+# (((Par6 != PAR6_27 OR (not (Par1 != true))) <=> (Par1 != false OR (not (Par6 != PAR6_40)))) => ((Par3 != PAR3_7 <=> Par5 = PAR5_5) <=> ((not (Par4 != false)) => Par6 = PAR6_12))) #
+# (((Par1 != true OR Par2 = PAR2_10) AND (Par1 != false AND Par1 = true)) AND ((Par3 = PAR3_0 => (not (Par5 != PAR5_10))) => (Par5 = PAR5_9 AND (not (Par1 != true))))) #
+# Par2 != PAR2_23 #
+# (((Par4 != false <=> Par4 != false) AND (Par2 != PAR2_30 <=> Par2 != PAR2_22)) <=> (((not (Par1 != false)) => Par5 != PAR5_3) OR (Par2 = PAR2_8 OR Par4 != false))) #
+# ((((not (Par2 = PAR2_1)) OR Par2 = PAR2_25) AND ((not (Par1 = true)) => Par1 != true)) OR ((Par2 != PAR2_1 AND Par5 != PAR5_9) AND ((not (Par5 != PAR5_1)) AND Par4 = false))) #

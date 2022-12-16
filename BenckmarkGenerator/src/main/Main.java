@@ -21,11 +21,13 @@ import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.acts.ACTSTranslator;
 import ctwedge.generator.medici.MediciCITGenerator;
 import ctwedge.generator.util.Utility;
+import ctwedge.modelanalyzer.AllInCNF;
 import ctwedge.util.TestSuite;
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
 import generators.WithConstraintGenerator;
+import generators.WithConstraintGeneratorCNF;
 import generators.WithoutConstraintGenerator;
 import generators.WithoutConstraintGeneratorSameCardinality;
 import models.Model;
@@ -432,7 +434,7 @@ public class Main {
 		}		
 	}
 	
-	public static void getenerateHighlyConstrained(Boolean verify) throws IOException {
+	public static void generateHighlyConstrained(Boolean verify) throws IOException {
 		PREFIX = "HIGHLY_CONSTRAINED_";
 		
 		// Define a new generator without considering the constraints
@@ -550,6 +552,77 @@ public class Main {
 			}
 		}		
 	}
+	
+	public static void generateCNFConstraints(boolean verify) throws IOException {
+		PREFIX = "CNF_";
+		
+		// Define a new generator without considering the constraints
+		Generator g = new WithConstraintGeneratorCNF();
+		
+		// Using k in the range [2, 20]
+		GeneratorConfiguration.N_PARAMS_MAX = 20;
+		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		
+		// Using c in the range [1, 100]
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = 100;
+		
+		// Using d in the range [1, 20]
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		
+		// Using v in the range [2, 20]
+		GeneratorConfiguration.MIN_CARDINALITY=2;
+		GeneratorConfiguration.MAX_CARDINALITY=20;
+		
+		// Generate models with only boolean parameters
+		for (int i = 0; i<N_MODELS; i++) {
+			Model m1 = g.generate(Category.ALSO_ENUMS);
+			m1.setName(PREFIX + i);
+			// Store the results in a new CTW file
+			FileWriter fo = new FileWriter(new File(BENCHMARK_FOLDER + PREFIX + i + ".ctw"));
+			fo.write(m1.toString());
+			fo.close();
+			// Convert the file in ACTS
+			try{
+				CitModel ctwedgeModel = Utility.loadModel(m1.toString());
+				ACTSTranslator translator = new ACTSTranslator();
+				translator.convertModel(ctwedgeModel, true, 2, BENCHMARK_FOLDER);
+				
+				// Check if the test suite is empty
+				if (verify) {
+					TestSuite ts = null;
+					ExecutorService executor = Executors.newCachedThreadPool();
+					Callable<Object> task = new Callable<Object>() {
+					   public Object call() throws Exception {
+					      return Utility.getTestSuite(m1.toString(), new ACTSTranslator(), 2, false, null);
+					   }
+					};
+					Future<Object> future = executor.submit(task);
+					try {
+					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					} catch (TimeoutException ex) {
+					   ts = null;
+					} catch (InterruptedException e) {
+					   ts = null;
+					} catch (ExecutionException e) {
+					   ts = null;
+					} finally {
+					   future.cancel(true); // may or may not desire this
+					}
+					
+					if (ts == null || (ts != null && ts.getTests().size() <= 0)) {
+						i--;
+						continue;
+					}
+				}
+			}catch (Exception e) {
+				System.out.println(m1.toString());
+				i--;
+				continue;
+			}
+		}		
+	}
 	 
 	public static void main(String[] args) throws IOException {
 //		generateUniformBooleanNoConstraints(false);
@@ -558,6 +631,7 @@ public class Main {
 //		generateBoolConstraints(true);
 //		generateMCAConstraints(true);
 //		generateNUMConstraints(true);
-		getenerateHighlyConstrained(true);
+//		generateHighlyConstrained(true);
+		generateCNFConstraints(true);
 	}
 }
