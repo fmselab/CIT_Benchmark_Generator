@@ -1,0 +1,42 @@
+ParkingAssistant : false, true
+Sensors : false, true
+DistanceSensors : false, true
+SensorFusion : false, true
+DistanceSensorTypes : false, true
+InfraredSensor : false, true
+UltrasonicSensor : false, true
+DrivenWaySensors : false, true
+PulseLengthSensorV2 : false, true
+DirectionPositionSensors : false, true
+DirectionSensors : false, true
+CompassSensors : false, true
+PositionSensors : false, true
+GPSSensor : false, true
+Controller : false, true
+ControllerDir : ControllerWithDir, ControllerWithoutDir, NONE
+LocationBasedServ : false, true
+
+
+[ParkingAssistant] = "true"="TRUE";
+(((NOT ([Sensors] = "true"="TRUE"))) OR ([ParkingAssistant] = "true"="TRUE")) AND (((NOT ([ParkingAssistant] = "true"="TRUE"))) OR ([Sensors] = "true"="TRUE"));
+(((NOT ([DistanceSensors] = "true"="TRUE"))) OR ([Sensors] = "true"="TRUE")) AND (((NOT ([Sensors] = "true"="TRUE"))) OR ([DistanceSensors] = "true"="TRUE"));
+((NOT ([SensorFusion] = "true"="TRUE"))) OR ([DistanceSensors] = "true"="TRUE");
+(((NOT ([DistanceSensorTypes] = "true"="TRUE"))) OR ([DistanceSensors] = "true"="TRUE")) AND (((NOT ([DistanceSensors] = "true"="TRUE"))) OR ([DistanceSensorTypes] = "true"="TRUE"));
+((NOT ([DistanceSensorTypes] = "true"="TRUE"))) OR (([InfraredSensor] = "true"="TRUE") OR ([UltrasonicSensor] = "true"="TRUE"));
+((NOT ([InfraredSensor] = "true"="TRUE"))) OR ([DistanceSensorTypes] = "true"="TRUE");
+((NOT ([UltrasonicSensor] = "true"="TRUE"))) OR ([DistanceSensorTypes] = "true"="TRUE");
+(((NOT ([DrivenWaySensors] = "true"="TRUE"))) OR ([Sensors] = "true"="TRUE")) AND (((NOT ([Sensors] = "true"="TRUE"))) OR ([DrivenWaySensors] = "true"="TRUE"));
+(((NOT ([PulseLengthSensorV2] = "true"="TRUE"))) OR ([DrivenWaySensors] = "true"="TRUE")) AND (((NOT ([DrivenWaySensors] = "true"="TRUE"))) OR ([PulseLengthSensorV2] = "true"="TRUE"));
+(((NOT ([DirectionPositionSensors] = "true"="TRUE"))) OR ([Sensors] = "true"="TRUE")) AND (((NOT ([Sensors] = "true"="TRUE"))) OR ([DirectionPositionSensors] = "true"="TRUE"));
+((NOT ([DirectionPositionSensors] = "true"="TRUE"))) OR (([DirectionSensors] = "true"="TRUE") OR ([PositionSensors] = "true"="TRUE"));
+((NOT ([DirectionSensors] = "true"="TRUE"))) OR ([DirectionPositionSensors] = "true"="TRUE");
+(((NOT ([CompassSensors] = "true"="TRUE"))) OR ([DirectionSensors] = "true"="TRUE")) AND (((NOT ([DirectionSensors] = "true"="TRUE"))) OR ([CompassSensors] = "true"="TRUE"));
+((NOT ([PositionSensors] = "true"="TRUE"))) OR ([DirectionPositionSensors] = "true"="TRUE");
+(((NOT ([GPSSensor] = "true"="TRUE"))) OR ([PositionSensors] = "true"="TRUE")) AND (((NOT ([PositionSensors] = "true"="TRUE"))) OR ([GPSSensor] = "true"="TRUE"));
+(((NOT ([Controller] = "true"="TRUE"))) OR ([ParkingAssistant] = "true"="TRUE")) AND (((NOT ([ParkingAssistant] = "true"="TRUE"))) OR ([Controller] = "true"="TRUE"));
+(((NOT ([ControllerDir]<>"NONE"))) OR ([Controller] = "true"="TRUE")) AND (((NOT ([Controller] = "true"="TRUE"))) OR ([ControllerDir]<>"NONE"));
+((NOT ([LocationBasedServ] = "true"="TRUE"))) OR ([Controller] = "true"="TRUE");
+((NOT ([SensorFusion] = "true"="TRUE"))) OR ([InfraredSensor] = "true"="TRUE");
+((NOT ([SensorFusion] = "true"="TRUE"))) OR ([UltrasonicSensor] = "true"="TRUE");
+((NOT ([ControllerDir]="ControllerWithDir"))) OR ([DirectionSensors] = "true"="TRUE");
+((NOT ([LocationBasedServ] = "true"="TRUE"))) OR ([PositionSensors] = "true"="TRUE");

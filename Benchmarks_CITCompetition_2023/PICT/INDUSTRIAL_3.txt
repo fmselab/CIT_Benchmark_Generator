@@ -1,0 +1,63 @@
+p1 : false, true
+p2 : false, true
+p3 : false, true
+p4 : false, true
+p5 : v1, v2, v3, v4, v5, v6
+p6 : v1, v2, v3, v4, v5, v6, v7, v8, v9, v10
+p7 : false, true
+p8 : v1, v2, v3, v4
+p9 : false, true
+p10 : false, true
+p11 : v1, v2, v3
+
+
+([p3] = "true") OR ([p2] = "true");
+((NOT ([p3] = "true"))) OR ((NOT ([p2] = "true")));
+([p4] = "true") OR ([p2] = "true");
+((NOT ([p4] = "true"))) OR ((NOT ([p2] = "true")));
+([p5]<>"v2") OR ([p2] = "true");
+([p5]<>"v6") OR ([p2] = "true");
+([p6]<>"v1") OR ([p2] = "true");
+([p6]<>"v2") OR ([p2] = "true");
+([p6]<>"v3") OR ([p2] = "true");
+([p6]<>"v4") OR ([p2] = "true");
+([p6]<>"v5") OR ([p2] = "true");
+([p6]<>"v6") OR ([p2] = "true");
+([p6]<>"v7") OR ([p2] = "true");
+([p6]<>"v8") OR ([p2] = "true");
+([p6]<>"v9") OR ([p2] = "true");
+([p6]<>"v10") OR ((NOT ([p2] = "true")));
+((([p7] = "true") OR ([p5]="v3")) OR ([p5]="v4")) OR ([p5]="v5");
+((NOT ([p7] = "true"))) OR ([p5]<>"v3");
+((NOT ([p7] = "true"))) OR ([p5]<>"v4");
+((NOT ([p7] = "true"))) OR ([p5]<>"v5");
+([p8]<>"v1") OR ((NOT ([p1] = "true")));
+(((((((((([p8]<>"v1") OR ([p5]="v1")) OR ([p5]="v2")) OR ([p5]="v3")) OR ([p5]="v4")) OR ([p5]="v5")) OR ([p6]="v1")) OR ([p6]="v2")) OR ([p6]="v3")) OR ([p6]="v4")) OR ([p6]="v5");
+([p8]<>"v2") OR ([p2] = "true");
+([p8]<>"v2") OR ((NOT ([p1] = "true")));
+(((((((((([p8]<>"v2") OR ([p5]="v1")) OR ([p5]="v2")) OR ([p5]="v3")) OR ([p5]="v4")) OR ([p5]="v5")) OR ([p6]="v1")) OR ([p6]="v2")) OR ([p6]="v3")) OR ([p6]="v4")) OR ([p6]="v5");
+([p8]<>"v3") OR ([p1] = "true");
+([p8]<>"v4") OR ((NOT ([p1] = "true")));
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p5]<>"v1");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p5]<>"v2");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p5]<>"v3");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p5]<>"v4");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p5]<>"v5");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p6]<>"v1");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p6]<>"v2");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p6]<>"v3");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p6]<>"v4");
+(([p8]<>"v4") OR ([p1] = "true")) OR ([p6]<>"v5");
+((([p9] = "true") OR ([p5]="v3")) OR ([p5]="v4")) OR ([p5]="v5");
+([p9] = "true") OR ([p7] = "true");
+(((NOT ([p9] = "true"))) OR ((NOT ([p7] = "true")))) OR ([p5]<>"v3");
+(((NOT ([p9] = "true"))) OR ((NOT ([p7] = "true")))) OR ([p5]<>"v4");
+(((NOT ([p9] = "true"))) OR ((NOT ([p7] = "true")))) OR ([p5]<>"v5");
+((([p10] = "true") OR ([p5]="v3")) OR ([p5]="v4")) OR ([p5]="v5");
+([p10] = "true") OR ([p6]<>"v7");
+(((NOT ([p10] = "true"))) OR ([p6]="v7")) OR ([p5]<>"v3");
+(((NOT ([p10] = "true"))) OR ([p6]="v7")) OR ([p5]<>"v4");
+(((NOT ([p10] = "true"))) OR ([p6]="v7")) OR ([p5]<>"v5");
+([p11]<>"v1") OR ([p2] = "true");
+([p11]<>"v2") OR ([p2] = "true");
+([p11]<>"v3") OR ((NOT ([p2] = "true")));

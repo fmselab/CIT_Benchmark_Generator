@@ -45,8 +45,8 @@ public class Main {
 		Generator g = new WithoutConstraintGenerator();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Generate models with only boolean params
 		for (int i = 0; i<N_MODELS; i++) {
@@ -104,12 +104,12 @@ public class Main {
 		Generator g = new WithoutConstraintGeneratorSameCardinality();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
-		GeneratorConfiguration.MAX_CARDINALITY=20;
+		GeneratorConfiguration.MAX_CARDINALITY=15;
 		
 		// Generate models with also enum parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -167,12 +167,13 @@ public class Main {
 		Generator g = new WithoutConstraintGenerator();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
-		GeneratorConfiguration.MAX_CARDINALITY=20;
+		GeneratorConfiguration.MAX_CARDINALITY=15;
+		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with also enum parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -231,7 +232,7 @@ public class Main {
 		
 		// Using k in the range [2, 20]
 		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using c in the range [1, 100]
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
@@ -297,8 +298,8 @@ public class Main {
 		Generator g = new WithConstraintGenerator();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using c in the range [1, 100]
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
@@ -311,6 +312,7 @@ public class Main {
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
 		GeneratorConfiguration.MAX_CARDINALITY=20;
+		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -368,8 +370,8 @@ public class Main {
 		Generator g = new WithConstraintGenerator();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using c in the range [1, 100]
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
@@ -381,7 +383,8 @@ public class Main {
 		
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
-		GeneratorConfiguration.MAX_CARDINALITY=20;
+		GeneratorConfiguration.MAX_CARDINALITY=15;
+		GeneratorConfiguration.DIM_ENUMS_MAX = 15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -441,8 +444,8 @@ public class Main {
 		Generator g = new WithConstraintGenerator();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using c in the range [1, 100]
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
@@ -454,7 +457,8 @@ public class Main {
 		
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
-		GeneratorConfiguration.MAX_CARDINALITY=20;
+		GeneratorConfiguration.MAX_CARDINALITY=15;
+		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -560,8 +564,8 @@ public class Main {
 		Generator g = new WithConstraintGeneratorCNF();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 20;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		GeneratorConfiguration.N_PARAMS_MAX = 30;
+		GeneratorConfiguration.N_PARAMS_MIN = 6;
 		
 		// Using c in the range [1, 100]
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
@@ -573,7 +577,8 @@ public class Main {
 		
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
-		GeneratorConfiguration.MAX_CARDINALITY=20;
+		GeneratorConfiguration.MAX_CARDINALITY=15;
+		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -630,8 +635,8 @@ public class Main {
 //		generateMCANoConstraints(false);
 //		generateBoolConstraints(true);
 //		generateMCAConstraints(true);
-//		generateNUMConstraints(true);
-//		generateHighlyConstrained(true);
+		generateNUMConstraints(true);
+		generateHighlyConstrained(true);
 		generateCNFConstraints(true);
 	}
 }

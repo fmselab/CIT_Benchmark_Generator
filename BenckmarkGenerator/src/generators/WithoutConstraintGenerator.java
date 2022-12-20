@@ -98,7 +98,9 @@ public class WithoutConstraintGenerator implements Generator {
 							// Define a new enumerative parameter
 							while (computeParams) {
 								from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT, GeneratorConfiguration.UPPER_BOUND_INT);
-								to = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT, GeneratorConfiguration.UPPER_BOUND_INT);
+								nValues = Randomizer.generate(1, GeneratorConfiguration.DIM_ENUMS_MAX);
+								//to = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT, GeneratorConfiguration.UPPER_BOUND_INT);
+								to = from + nValues;
 								
 								if (from <= to) 
 									computeParams = false;

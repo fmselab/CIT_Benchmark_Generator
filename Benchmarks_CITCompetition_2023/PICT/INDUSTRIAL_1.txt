@@ -1,0 +1,241 @@
+p1 : false, true
+p2 : false, true
+p3 : false, true
+p4 : false, true
+p5 : false, true
+p6 : false, true
+p7 : false, true
+p8 : false, true
+p9 : false, true
+p10 : false, true
+p11 : false, true
+p12 : false, true
+p13 : false, true
+p14 : false, true
+p15 : false, true
+p16 : false, true
+p17 : false, true
+p18 : false, true
+p19 : false, true
+p20 : false, true
+p21 : false, true
+p22 : v1, v2, v3
+p23 : false, true
+p24 : false, true
+p25 : false, true
+p26 : false, true
+p27 : false, true
+p28 : v1, v2, v3
+p29 : v1, v2, v3
+p30 : v1, v2, v3
+p31 : v1, v2, v3
+p32 : v1, v2, v3
+p33 : v1, v2, v3
+p34 : v1, v2, v3
+p35 : v1, v2, v3
+p36 : v1, v2, v3
+p37 : false, true
+p38 : false, true
+p39 : false, true
+p40 : false, true
+p41 : false, true
+p42 : false, true
+p43 : false, true
+p44 : false, true
+p45 : false, true
+p46 : false, true
+p47 : false, true
+p48 : false, true
+p49 : false, true
+p50 : false, true
+p51 : false, true
+p52 : false, true
+p53 : false, true
+p54 : false, true
+p55 : false, true
+p56 : false, true
+p57 : false, true
+p58 : false, true
+p59 : false, true
+p60 : false, true
+p61 : false, true
+p62 : false, true
+p63 : false, true
+p64 : false, true
+p65 : false, true
+p66 : false, true
+p67 : false, true
+p68 : false, true
+p69 : false, true
+p70 : false, true
+p71 : false, true
+p72 : false, true
+p73 : false, true
+p74 : false, true
+p75 : false, true
+p76 : false, true
+p77 : false, true
+p78 : false, true
+p79 : false, true
+p80 : false, true
+p81 : false, true
+p82 : false, true
+p83 : false, true
+p84 : false, true
+p85 : false, true
+p86 : false, true
+p87 : false, true
+p88 : false, true
+p89 : false, true
+p90 : false, true
+p91 : false, true
+p92 : false, true
+p93 : false, true
+p94 : false, true
+p95 : false, true
+p96 : false, true
+p97 : false, true
+p98 : false, true
+p99 : false, true
+p100 : false, true
+p101 : false, true
+p102 : false, true
+p103 : false, true
+p104 : false, true
+p105 : false, true
+p106 : false, true
+p107 : false, true
+p108 : false, true
+p109 : false, true
+p110 : false, true
+p111 : false, true
+p112 : false, true
+p113 : false, true
+p114 : false, true
+p115 : false, true
+p116 : false, true
+p117 : false, true
+p118 : false, true
+p119 : false, true
+p120 : false, true
+p121 : false, true
+p122 : false, true
+p123 : false, true
+p124 : false, true
+p125 : false, true
+p126 : false, true
+p127 : false, true
+p128 : false, true
+p129 : false, true
+p130 : false, true
+p131 : false, true
+p132 : false, true
+p133 : false, true
+p134 : false, true
+p135 : false, true
+p136 : false, true
+p137 : false, true
+p138 : false, true
+p139 : false, true
+p140 : false, true
+p141 : false, true
+p142 : false, true
+p143 : false, true
+p144 : false, true
+p145 : false, true
+p146 : false, true
+p147 : false, true
+p148 : false, true
+p149 : false, true
+p150 : false, true
+p151 : false, true
+p152 : false, true
+p153 : false, true
+p154 : false, true
+p155 : false, true
+p156 : false, true
+p157 : false, true
+p158 : false, true
+p159 : false, true
+p160 : false, true
+p161 : false, true
+p162 : false, true
+p163 : false, true
+p164 : false, true
+p165 : false, true
+p166 : false, true
+p167 : false, true
+p168 : false, true
+p169 : false, true
+p170 : false, true
+p171 : false, true
+p172 : false, true
+p173 : false, true
+p174 : false, true
+p175 : false, true
+p176 : false, true
+p177 : false, true
+p178 : false, true
+p179 : false, true
+p180 : false, true
+p181 : false, true
+p182 : false, true
+p183 : false, true
+p184 : false, true
+p185 : false, true
+p186 : false, true
+p187 : false, true
+p188 : false, true
+p189 : false, true
+p190 : false, true
+p191 : false, true
+p192 : false, true
+p193 : false, true
+p194 : false, true
+p195 : false, true
+p196 : false, true
+p197 : false, true
+p198 : false, true
+p199 : false, true
+
+
+((NOT ([p1] = "true"))) OR ([p2] = "true");
+([p2] = "true") OR ((NOT ([p3] = "true")));
+((NOT ([p4] = "true"))) OR ([p5] = "true");
+([p5] = "true") OR ((NOT ([p6] = "true")));
+((NOT ([p7] = "true"))) OR ([p8] = "true");
+((NOT ([p9] = "true"))) OR ([p10] = "true");
+((NOT ([p11] = "true"))) OR ([p12] = "true");
+([p10] = "true") OR ((NOT ([p13] = "true")));
+([p10] = "true") OR ((NOT ([p15] = "true")));
+((NOT ([p16] = "true"))) OR ([p17] = "true");
+((NOT ([p13] = "true"))) OR ([p14] = "true");
+((NOT ([p13] = "true"))) OR ([p18] = "true");
+((NOT ([p13] = "true"))) OR ([p19] = "true");
+([p14] = "true") OR ((NOT ([p15] = "true")));
+((NOT ([p15] = "true"))) OR ([p18] = "true");
+((NOT ([p15] = "true"))) OR ([p19] = "true");
+([p2] = "true") OR ((NOT ([p20] = "true")));
+([p2] = "true") OR ((NOT ([p21] = "true")));
+([p22]<>"v1") OR ([p36]<>"v2");
+([p22]<>"v1") OR ([p36]<>"v3");
+(((NOT ([p23] = "true"))) OR ([p24] = "true")) OR ([p25] = "true");
+(((NOT ([p23] = "true"))) OR ([p24] = "true")) OR ((NOT ([p25] = "true")));
+(((NOT ([p23] = "true"))) OR ((NOT ([p24] = "true")))) OR ([p25] = "true");
+([p25] = "true") OR ((NOT ([p26] = "true")));
+((NOT ([p13] = "true"))) OR ([p25] = "true");
+([p25] = "true") OR ((NOT ([p27] = "true")));
+([p8] = "true") OR ([p28]<>"v2");
+([p8] = "true") OR ([p28]<>"v3");
+([p8] = "true") OR ([p29]<>"v2");
+([p8] = "true") OR ([p29]<>"v3");
+([p8] = "true") OR ([p30]<>"v2");
+([p8] = "true") OR ([p30]<>"v3");
+([p31]<>"v2") OR ([p32]<>"v1");
+([p31]<>"v3") OR ([p32]<>"v1");
+([p32]<>"v1") OR ([p33]<>"v2");
+([p32]<>"v1") OR ([p33]<>"v3");
+([p24] = "true") OR ([p34]<>"v2");
+([p24] = "true") OR ([p34]<>"v3");
+([p24] = "true") OR ([p35]<>"v2");
+([p24] = "true") OR ([p35]<>"v3");

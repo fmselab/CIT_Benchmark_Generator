@@ -4,32 +4,36 @@ Name: CNF_0
 
 [Parameter]
 -- general syntax is parameter_name : value1, value2, ...
-Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6, PAR0_7, PAR0_8, PAR0_9, PAR0_10, PAR0_11, PAR0_12, PAR0_13, PAR0_14, PAR0_15, PAR0_16, PAR0_17, PAR0_18, PAR0_19, PAR0_20, PAR0_21, PAR0_22, PAR0_23, PAR0_24, PAR0_25, PAR0_26, PAR0_27, PAR0_28, PAR0_29, PAR0_30, PAR0_31, PAR0_32, PAR0_33, PAR0_34, PAR0_35, PAR0_36, PAR0_37, PAR0_38, PAR0_39, PAR0_40, PAR0_41, PAR0_42, PAR0_43, PAR0_44, PAR0_45, PAR0_46, PAR0_47, PAR0_48
-Par1 (enum) : PAR1_0, PAR1_1, PAR1_2
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7
 Par2 (boolean) : true, false
-Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13, PAR3_14, PAR3_15, PAR3_16, PAR3_17, PAR3_18, PAR3_19, PAR3_20, PAR3_21
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5
 Par4 (boolean) : true, false
 Par5 (boolean) : true, false
-Par6 (boolean) : true, false
-Par7 (boolean) : true, false
-Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9, PAR8_10, PAR8_11, PAR8_12, PAR8_13, PAR8_14, PAR8_15, PAR8_16, PAR8_17, PAR8_18, PAR8_19, PAR8_20, PAR8_21, PAR8_22, PAR8_23, PAR8_24, PAR8_25, PAR8_26, PAR8_27, PAR8_28, PAR8_29, PAR8_30, PAR8_31, PAR8_32, PAR8_33, PAR8_34, PAR8_35, PAR8_36, PAR8_37, PAR8_38, PAR8_39, PAR8_40, PAR8_41, PAR8_42, PAR8_43, PAR8_44, PAR8_45, PAR8_46, PAR8_47, PAR8_48
-Par9 (boolean) : true, false
-Par10 (boolean) : true, false
-Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7, PAR11_8, PAR11_9, PAR11_10, PAR11_11, PAR11_12, PAR11_13, PAR11_14, PAR11_15, PAR11_16, PAR11_17, PAR11_18, PAR11_19, PAR11_20, PAR11_21, PAR11_22, PAR11_23, PAR11_24, PAR11_25, PAR11_26, PAR11_27, PAR11_28, PAR11_29, PAR11_30, PAR11_31, PAR11_32, PAR11_33
-Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9, PAR12_10, PAR12_11, PAR12_12, PAR12_13, PAR12_14, PAR12_15, PAR12_16, PAR12_17, PAR12_18, PAR12_19, PAR12_20, PAR12_21, PAR12_22, PAR12_23, PAR12_24, PAR12_25, PAR12_26, PAR12_27, PAR12_28, PAR12_29, PAR12_30, PAR12_31, PAR12_32, PAR12_33, PAR12_34, PAR12_35, PAR12_36, PAR12_37, PAR12_38, PAR12_39, PAR12_40, PAR12_41, PAR12_42, PAR12_43
-Par13 (boolean) : true, false
-Par14 (enum) : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6, PAR14_7, PAR14_8, PAR14_9, PAR14_10, PAR14_11, PAR14_12, PAR14_13, PAR14_14, PAR14_15, PAR14_16, PAR14_17, PAR14_18
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11, PAR7_12, PAR7_13, PAR7_14
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4, PAR13_5, PAR13_6, PAR13_7, PAR13_8, PAR13_9, PAR13_10, PAR13_11, PAR13_12, PAR13_13
+Par14 (boolean) : true, false
 Par15 (boolean) : true, false
 Par16 (boolean) : true, false
-Par17 (enum) : PAR17_0, PAR17_1, PAR17_2, PAR17_3
-Par18 (enum) : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7, PAR18_8, PAR18_9, PAR18_10, PAR18_11, PAR18_12, PAR18_13, PAR18_14
+Par17 (enum) : PAR17_0, PAR17_1, PAR17_2, PAR17_3, PAR17_4, PAR17_5, PAR17_6, PAR17_7, PAR17_8, PAR17_9, PAR17_10
+Par18 (enum) : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7, PAR18_8, PAR18_9, PAR18_10, PAR18_11, PAR18_12
 Par19 (boolean) : true, false
+Par20 (enum) : PAR20_0, PAR20_1, PAR20_2
+Par21 (boolean) : true, false
+Par22 (enum) : PAR22_0, PAR22_1
+Par23 (enum) : PAR23_0, PAR23_1, PAR23_2, PAR23_3, PAR23_4, PAR23_5
+Par24 (boolean) : true, false
+Par25 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-! (Par3 != "PAR3_4")
-(((! (Par13 = false)) && (! (Par4 = true))) && ((! (Par11 = "PAR11_24")) && (Par0 != "PAR0_7"))) && (((Par11 != "PAR11_8") && (Par8 = "PAR8_7")) && ((Par18 = "PAR18_6") && (! (Par14 != "PAR14_5"))))
-((Par7 != true) && (Par17 = "PAR17_3")) && ((Par19 != false) && (! (Par14 = "PAR14_1")))
-(! (Par0 != "PAR0_12")) || (! (Par13 = true))
-(Par6 = false) || (Par1 = "PAR1_2")
+(((Par19 = false) || (Par20 != "PAR20_0")) && ((Par11 = "PAR11_4") || (Par25 = false))) && (((Par18 = "PAR18_10") || (Par14 = false)) && ((Par21 != true) || (! (Par20 = "PAR20_2"))))
+(((! (Par13 = "PAR13_11")) && (Par20 != "PAR20_2")) && ((Par8 = "PAR8_4") && (Par8 != "PAR8_1"))) && (((Par4 != true) && (Par25 = true)) && ((! (Par19 != true)) && (! (Par25 = false))))
+((! (Par15 != true)) && (! (Par3 = "PAR3_2"))) && ((Par14 != false) && (Par10 = "PAR10_4"))
 

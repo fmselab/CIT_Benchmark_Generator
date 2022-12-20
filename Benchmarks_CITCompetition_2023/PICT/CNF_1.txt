@@ -1,0 +1,21 @@
+Par0 : PAR0_0
+Par1 : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9
+Par2 : false, true
+Par3 : PAR3_0, PAR3_1, PAR3_2
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10
+Par8 : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8
+Par9 : false, true
+Par10 : false, true
+Par11 : false, true
+Par12 : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8
+Par13 : false, true
+Par14 : false, true
+Par15 : PAR15_0, PAR15_1, PAR15_2
+Par16 : false, true
+Par17 : false, true
+
+
+((((NOT ([Par2]<>"true"))) OR ([Par4]="false")) AND (([Par3]<>"PAR3_2") OR ((NOT ([Par15]<>"PAR15_2"))))) AND ((([Par10]<>"false") OR ((NOT ([Par9]<>"false")))) AND (([Par0]<>"PAR0_0") OR ((NOT ([Par4]="true")))));

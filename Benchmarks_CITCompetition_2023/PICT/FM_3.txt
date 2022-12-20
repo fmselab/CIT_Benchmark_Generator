@@ -1,0 +1,67 @@
+AmbientAssistedLiving : false, true
+Sensor : false, true
+LightMonit : false, true
+TempMonit : false, true
+GlucMonit : false, true
+Others : false, true
+Humidity : false, true
+Accelerometer : false, true
+Glucose : false, true
+Light : false, true
+Temperature : false, true
+FallMonit : false, true
+SenEncryp : false, true
+Smartphone : false, true
+Video : false, true
+SmartphoneType : Android, iPhone, NONE
+FailTrans : false, true
+Diabetes : false, true
+PhEncryp : false, true
+Alarm : false, true
+Camera : false, true
+Transmission : false, true
+Rec : false, true
+CamEncryp : false, true
+FallRec : false, true
+Services : false, true
+VideoSurveillance : false, true
+Encryption : false, true
+LightControl : false, true
+GlucoseControl : false, true
+FallDetection : false, true
+HeatControl : false, true
+
+
+[AmbientAssistedLiving] = "true"="TRUE";
+(((NOT ([Sensor] = "true"="TRUE"))) OR ([AmbientAssistedLiving] = "true"="TRUE")) AND (((NOT ([AmbientAssistedLiving] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE"));
+((NOT ([LightMonit] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE");
+((NOT ([TempMonit] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE");
+((NOT ([GlucMonit] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE");
+((NOT ([Others] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE");
+((NOT ([Others] = "true"="TRUE"))) OR ((((([Humidity] = "true"="TRUE") OR ([Accelerometer] = "true"="TRUE")) OR ([Glucose] = "true"="TRUE")) OR ([Light] = "true"="TRUE")) OR ([Temperature] = "true"="TRUE"));
+((NOT ([Humidity] = "true"="TRUE"))) OR ([Others] = "true"="TRUE");
+((NOT ([Accelerometer] = "true"="TRUE"))) OR ([Others] = "true"="TRUE");
+((NOT ([Glucose] = "true"="TRUE"))) OR ([Others] = "true"="TRUE");
+((NOT ([Light] = "true"="TRUE"))) OR ([Others] = "true"="TRUE");
+((NOT ([Temperature] = "true"="TRUE"))) OR ([Others] = "true"="TRUE");
+((NOT ([FallMonit] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE");
+((NOT ([SenEncryp] = "true"="TRUE"))) OR ([Sensor] = "true"="TRUE");
+(((NOT ([Smartphone] = "true"="TRUE"))) OR ([AmbientAssistedLiving] = "true"="TRUE")) AND (((NOT ([AmbientAssistedLiving] = "true"="TRUE"))) OR ([Smartphone] = "true"="TRUE"));
+((NOT ([Video] = "true"="TRUE"))) OR ([Smartphone] = "true"="TRUE");
+((NOT ([SmartphoneType]<>"NONE"))) OR ([Smartphone] = "true"="TRUE");
+((NOT ([FailTrans] = "true"="TRUE"))) OR ([Smartphone] = "true"="TRUE");
+((NOT ([Diabetes] = "true"="TRUE"))) OR ([Smartphone] = "true"="TRUE");
+((NOT ([PhEncryp] = "true"="TRUE"))) OR ([Smartphone] = "true"="TRUE");
+(((NOT ([Alarm] = "true"="TRUE"))) OR ([AmbientAssistedLiving] = "true"="TRUE")) AND (((NOT ([AmbientAssistedLiving] = "true"="TRUE"))) OR ([Alarm] = "true"="TRUE"));
+(((NOT ([Camera] = "true"="TRUE"))) OR ([AmbientAssistedLiving] = "true"="TRUE")) AND (((NOT ([AmbientAssistedLiving] = "true"="TRUE"))) OR ([Camera] = "true"="TRUE"));
+((NOT ([Transmission] = "true"="TRUE"))) OR ([Camera] = "true"="TRUE");
+((NOT ([Rec] = "true"="TRUE"))) OR ([Camera] = "true"="TRUE");
+((NOT ([CamEncryp] = "true"="TRUE"))) OR ([Camera] = "true"="TRUE");
+((NOT ([FallRec] = "true"="TRUE"))) OR ([Camera] = "true"="TRUE");
+(((NOT ([Services] = "true"="TRUE"))) OR ([AmbientAssistedLiving] = "true"="TRUE")) AND (((NOT ([AmbientAssistedLiving] = "true"="TRUE"))) OR ([Services] = "true"="TRUE"));
+((NOT ([VideoSurveillance] = "true"="TRUE"))) OR ([Services] = "true"="TRUE");
+((NOT ([Encryption] = "true"="TRUE"))) OR ([Services] = "true"="TRUE");
+((NOT ([LightControl] = "true"="TRUE"))) OR ([Services] = "true"="TRUE");
+((NOT ([GlucoseControl] = "true"="TRUE"))) OR ([Services] = "true"="TRUE");
+((NOT ([FallDetection] = "true"="TRUE"))) OR ([Services] = "true"="TRUE");
+((NOT ([HeatControl] = "true"="TRUE"))) OR ([Services] = "true"="TRUE");

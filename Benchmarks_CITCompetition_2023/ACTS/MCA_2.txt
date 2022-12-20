@@ -5,11 +5,11 @@ Name: MCA_2
 [Parameter]
 -- general syntax is parameter_name : value1, value2, ...
 Par0 (boolean) : true, false
-Par1 (boolean) : true, false
-Par2 (boolean) : true, false
-Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13, PAR3_14, PAR3_15, PAR3_16, PAR3_17
-Par4 (boolean) : true, false
-Par5 (boolean) : true, false
-Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9, PAR1_10, PAR1_11, PAR1_12
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10
+Par5 (enum) : PAR5_0, PAR5_1
+Par6 (boolean) : true, false
 
 

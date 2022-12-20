@@ -1,0 +1,85 @@
+SmartHome : false, true
+HeatingManagement : false, true
+ManualHeating : false, true
+SmartHeating : false, true
+WindowsManagement : false, true
+ManualWindows : false, true
+ElectronicWindows : false, true
+LightManagement : false, true
+ManualLight : false, true
+SmartLight : false, true
+Pre_definedValues : false, true
+GUI : false, true
+TouchScreen : false, true
+Internet : false, true
+PresenceSimulator : false, true
+LightSimulation : false, true
+BlindSimulation : false, true
+MusicSimulation : false, true
+FireControl : false, true
+FirstAidGroup : false, true
+FirstAidGroup_1 : false, true
+FireDepartment : false, true
+OtherGroup : false, true
+FireSprinklers : false, true
+IrrigationSprinklers : false, true
+SimpleControl : false, true
+SmartSprinklers : false, true
+Alarm : false, true
+Siren : false, true
+Bell : false, true
+Lights : false, true
+Security : false, true
+AuthenticationDevice : false, true
+Keypad : false, true
+RetinaScanner : false, true
+FingerPrintReader : false, true
+IntrusionDetectionDevice : false, true
+GlassbreakSensors : false, true
+Cameras : false, true
+
+
+[SmartHome] = "true"="TRUE";
+(((NOT ([HeatingManagement] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([HeatingManagement] = "true"="TRUE"));
+(((NOT ([ManualHeating] = "true"="TRUE"))) OR ([HeatingManagement] = "true"="TRUE")) AND (((NOT ([HeatingManagement] = "true"="TRUE"))) OR ([ManualHeating] = "true"="TRUE"));
+((NOT ([SmartHeating] = "true"="TRUE"))) OR ([HeatingManagement] = "true"="TRUE");
+(((NOT ([WindowsManagement] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([WindowsManagement] = "true"="TRUE"));
+(((NOT ([ManualWindows] = "true"="TRUE"))) OR ([WindowsManagement] = "true"="TRUE")) AND (((NOT ([WindowsManagement] = "true"="TRUE"))) OR ([ManualWindows] = "true"="TRUE"));
+((NOT ([ElectronicWindows] = "true"="TRUE"))) OR ([WindowsManagement] = "true"="TRUE");
+(((NOT ([LightManagement] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([LightManagement] = "true"="TRUE"));
+(((NOT ([ManualLight] = "true"="TRUE"))) OR ([LightManagement] = "true"="TRUE")) AND (((NOT ([LightManagement] = "true"="TRUE"))) OR ([ManualLight] = "true"="TRUE"));
+((NOT ([SmartLight] = "true"="TRUE"))) OR ([LightManagement] = "true"="TRUE");
+((NOT ([Pre_definedValues] = "true"="TRUE"))) OR ([LightManagement] = "true"="TRUE");
+(((NOT ([GUI] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([GUI] = "true"="TRUE"));
+(((NOT ([TouchScreen] = "true"="TRUE"))) OR ([GUI] = "true"="TRUE")) AND (((NOT ([GUI] = "true"="TRUE"))) OR ([TouchScreen] = "true"="TRUE"));
+((NOT ([Internet] = "true"="TRUE"))) OR ([GUI] = "true"="TRUE");
+((NOT ([PresenceSimulator] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE");
+((NOT ([PresenceSimulator] = "true"="TRUE"))) OR ((([LightSimulation] = "true"="TRUE") OR ([BlindSimulation] = "true"="TRUE")) OR ([MusicSimulation] = "true"="TRUE"));
+((NOT ([LightSimulation] = "true"="TRUE"))) OR ([PresenceSimulator] = "true"="TRUE");
+((NOT ([BlindSimulation] = "true"="TRUE"))) OR ([PresenceSimulator] = "true"="TRUE");
+((NOT ([MusicSimulation] = "true"="TRUE"))) OR ([PresenceSimulator] = "true"="TRUE");
+(((NOT ([FireControl] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([FireControl] = "true"="TRUE"));
+(((NOT ([FirstAidGroup] = "true"="TRUE"))) OR ([FireControl] = "true"="TRUE")) AND (((NOT ([FireControl] = "true"="TRUE"))) OR ([FirstAidGroup] = "true"="TRUE"));
+(((NOT ([FirstAidGroup_1] = "true"="TRUE"))) OR ([FirstAidGroup] = "true"="TRUE")) AND (((NOT ([FirstAidGroup] = "true"="TRUE"))) OR ([FirstAidGroup_1] = "true"="TRUE"));
+((NOT ([FirstAidGroup_1] = "true"="TRUE"))) OR (([FireDepartment] = "true"="TRUE") OR ([OtherGroup] = "true"="TRUE"));
+((NOT ([FireDepartment] = "true"="TRUE"))) OR ([FirstAidGroup_1] = "true"="TRUE");
+((NOT ([OtherGroup] = "true"="TRUE"))) OR ([FirstAidGroup_1] = "true"="TRUE");
+((NOT ([FireSprinklers] = "true"="TRUE"))) OR ([FirstAidGroup] = "true"="TRUE");
+((NOT ([IrrigationSprinklers] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE");
+(((NOT ([SimpleControl] = "true"="TRUE"))) OR ([IrrigationSprinklers] = "true"="TRUE")) AND (((NOT ([IrrigationSprinklers] = "true"="TRUE"))) OR ([SimpleControl] = "true"="TRUE"));
+((NOT ([SmartSprinklers] = "true"="TRUE"))) OR ([IrrigationSprinklers] = "true"="TRUE");
+(((NOT ([Alarm] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([Alarm] = "true"="TRUE"));
+((NOT ([Alarm] = "true"="TRUE"))) OR ((([Siren] = "true"="TRUE") OR ([Bell] = "true"="TRUE")) OR ([Lights] = "true"="TRUE"));
+((NOT ([Siren] = "true"="TRUE"))) OR ([Alarm] = "true"="TRUE");
+((NOT ([Bell] = "true"="TRUE"))) OR ([Alarm] = "true"="TRUE");
+((NOT ([Lights] = "true"="TRUE"))) OR ([Alarm] = "true"="TRUE");
+(((NOT ([Security] = "true"="TRUE"))) OR ([SmartHome] = "true"="TRUE")) AND (((NOT ([SmartHome] = "true"="TRUE"))) OR ([Security] = "true"="TRUE"));
+(((NOT ([AuthenticationDevice] = "true"="TRUE"))) OR ([Security] = "true"="TRUE")) AND (((NOT ([Security] = "true"="TRUE"))) OR ([AuthenticationDevice] = "true"="TRUE"));
+((NOT ([AuthenticationDevice] = "true"="TRUE"))) OR ((([Keypad] = "true"="TRUE") OR ([RetinaScanner] = "true"="TRUE")) OR ([FingerPrintReader] = "true"="TRUE"));
+((NOT ([Keypad] = "true"="TRUE"))) OR ([AuthenticationDevice] = "true"="TRUE");
+((NOT ([RetinaScanner] = "true"="TRUE"))) OR ([AuthenticationDevice] = "true"="TRUE");
+((NOT ([FingerPrintReader] = "true"="TRUE"))) OR ([AuthenticationDevice] = "true"="TRUE");
+((NOT ([IntrusionDetectionDevice] = "true"="TRUE"))) OR ([Security] = "true"="TRUE");
+((NOT ([IntrusionDetectionDevice] = "true"="TRUE"))) OR (([GlassbreakSensors] = "true"="TRUE") OR ([Cameras] = "true"="TRUE"));
+((NOT ([GlassbreakSensors] = "true"="TRUE"))) OR ([IntrusionDetectionDevice] = "true"="TRUE");
+((NOT ([Cameras] = "true"="TRUE"))) OR ([IntrusionDetectionDevice] = "true"="TRUE");
