@@ -1,0 +1,33 @@
+[System]
+-- specify system name
+Name: MCA_21
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12, PAR4_13, PAR4_14
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11, PAR6_12
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (enum) : PAR14_0, PAR14_1
+Par15 (enum) : PAR15_0
+Par16 (boolean) : true, false
+Par17 (boolean) : true, false
+Par18 (enum) : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7
+Par19 (enum) : PAR19_0, PAR19_1, PAR19_2, PAR19_3, PAR19_4, PAR19_5, PAR19_6, PAR19_7, PAR19_8, PAR19_9, PAR19_10, PAR19_11
+Par20 (enum) : PAR20_0, PAR20_1, PAR20_2, PAR20_3, PAR20_4, PAR20_5, PAR20_6, PAR20_7, PAR20_8, PAR20_9, PAR20_10, PAR20_11, PAR20_12, PAR20_13
+Par21 (boolean) : true, false
+Par22 (enum) : PAR22_0, PAR22_1, PAR22_2, PAR22_3
+Par23 (enum) : PAR23_0, PAR23_1, PAR23_2, PAR23_3
+Par24 (enum) : PAR24_0, PAR24_1, PAR24_2, PAR24_3, PAR24_4, PAR24_5
+
+

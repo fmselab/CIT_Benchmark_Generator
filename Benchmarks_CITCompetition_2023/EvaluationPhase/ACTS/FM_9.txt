@@ -1,0 +1,37 @@
+[System]
+-- specify system name
+Name: FM_9
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+HelpSystem (boolean) : true, false
+Priority (boolean) : true, false
+PH (boolean) : true, false
+PI (boolean) : true, false
+PL (boolean) : true, false
+Level (enum) : BG, IT, AD, NONE
+Method (enum) : PR, PB, NONE
+Activity (enum) : PS, CT, NONE
+SensorInput (enum) : S1, S2, S3, S4, NONE
+SensorPosition (boolean) : true, false
+NotPressed (boolean) : true, false
+Pressed (boolean) : true, false
+Sound (enum) : Sound1, Sound2, NONE
+
+[Constraint]
+-- this section is also optional
+HelpSystem = TRUE
+((Priority = TRUE) => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Priority = TRUE))
+(Priority = TRUE) => (((PH = TRUE) || (PI = TRUE)) || (PL = TRUE))
+(PH = TRUE) => (Priority = TRUE)
+(PI = TRUE) => (Priority = TRUE)
+(PL = TRUE) => (Priority = TRUE)
+((Level != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Level != "NONE"))
+((Method != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Method != "NONE"))
+((Activity != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Activity != "NONE"))
+((SensorInput != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (SensorInput != "NONE"))
+((SensorPosition = TRUE) => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (SensorPosition = TRUE))
+((NotPressed = TRUE) => (SensorPosition = TRUE))&&((SensorPosition = TRUE) => (NotPressed = TRUE))
+((Pressed = TRUE) => (SensorPosition = TRUE))&&((SensorPosition = TRUE) => (Pressed = TRUE))
+((Sound != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Sound != "NONE"))
+

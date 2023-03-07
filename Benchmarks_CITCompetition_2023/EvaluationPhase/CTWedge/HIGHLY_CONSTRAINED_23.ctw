@@ -1,0 +1,19 @@
+Model HIGHLY_CONSTRAINED_23
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8}
+Par3: {PAR3_0,PAR3_1,PAR3_2}
+Par4 : Boolean
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6}
+Par6 : Boolean
+Par7 : Boolean
+
+Constraints:
+# ((Par2 = PAR2_4 AND Par5 = PAR5_2) <=> (Par1 != true AND Par7 = true)) #
+# (((not (Par1 = false)) OR (not (Par0 != true))) => ((not (Par4 != true)) AND (not (Par5 != PAR5_2)))) #
+# ((((not (Par4 != false)) AND (not (Par7 != false))) OR (Par5 != PAR5_4 <=> Par7 = false)) => ((Par6 = false <=> Par0 != false) => (Par4 = true => Par3 = PAR3_0))) #
+# Par4 != false #
+# ((((not (Par0 = false)) => Par5 != PAR5_2) AND ((not (Par6 != true)) AND Par4 = false)) OR (((not (Par7 != false)) <=> (not (Par6 != false))) AND (Par5 = PAR5_0 OR (not (Par5 = PAR5_2))))) #
+# ((((not (Par3 != PAR3_0)) AND Par0 != true) AND (Par6 != true => Par6 = true)) OR ((Par3 = PAR3_0 AND Par6 = false) OR ((not (Par0 != true)) AND Par7 = false))) #
+# ((Par2 = PAR2_7 => (not (Par3 != PAR3_0))) => ((not (Par5 = PAR5_6)) => (not (Par5 = PAR5_6)))) #

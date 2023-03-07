@@ -1,0 +1,75 @@
+[System]
+-- specify system name
+Name: FM_3
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+AmbientAssistedLiving (boolean) : true, false
+Sensor (boolean) : true, false
+LightMonit (boolean) : true, false
+TempMonit (boolean) : true, false
+GlucMonit (boolean) : true, false
+Others (boolean) : true, false
+Humidity (boolean) : true, false
+Accelerometer (boolean) : true, false
+Glucose (boolean) : true, false
+Light (boolean) : true, false
+Temperature (boolean) : true, false
+FallMonit (boolean) : true, false
+SenEncryp (boolean) : true, false
+Smartphone (boolean) : true, false
+Video (boolean) : true, false
+SmartphoneType (enum) : Android, iPhone, NONE
+FailTrans (boolean) : true, false
+Diabetes (boolean) : true, false
+PhEncryp (boolean) : true, false
+Alarm (boolean) : true, false
+Camera (boolean) : true, false
+Transmission (boolean) : true, false
+Rec (boolean) : true, false
+CamEncryp (boolean) : true, false
+FallRec (boolean) : true, false
+Services (boolean) : true, false
+VideoSurveillance (boolean) : true, false
+Encryption (boolean) : true, false
+LightControl (boolean) : true, false
+GlucoseControl (boolean) : true, false
+FallDetection (boolean) : true, false
+HeatControl (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+AmbientAssistedLiving = TRUE
+((Sensor = TRUE) => (AmbientAssistedLiving = TRUE))&&((AmbientAssistedLiving = TRUE) => (Sensor = TRUE))
+(LightMonit = TRUE) => (Sensor = TRUE)
+(TempMonit = TRUE) => (Sensor = TRUE)
+(GlucMonit = TRUE) => (Sensor = TRUE)
+(Others = TRUE) => (Sensor = TRUE)
+(Others = TRUE) => (((((Humidity = TRUE) || (Accelerometer = TRUE)) || (Glucose = TRUE)) || (Light = TRUE)) || (Temperature = TRUE))
+(Humidity = TRUE) => (Others = TRUE)
+(Accelerometer = TRUE) => (Others = TRUE)
+(Glucose = TRUE) => (Others = TRUE)
+(Light = TRUE) => (Others = TRUE)
+(Temperature = TRUE) => (Others = TRUE)
+(FallMonit = TRUE) => (Sensor = TRUE)
+(SenEncryp = TRUE) => (Sensor = TRUE)
+((Smartphone = TRUE) => (AmbientAssistedLiving = TRUE))&&((AmbientAssistedLiving = TRUE) => (Smartphone = TRUE))
+(Video = TRUE) => (Smartphone = TRUE)
+(SmartphoneType != "NONE") => (Smartphone = TRUE)
+(FailTrans = TRUE) => (Smartphone = TRUE)
+(Diabetes = TRUE) => (Smartphone = TRUE)
+(PhEncryp = TRUE) => (Smartphone = TRUE)
+((Alarm = TRUE) => (AmbientAssistedLiving = TRUE))&&((AmbientAssistedLiving = TRUE) => (Alarm = TRUE))
+((Camera = TRUE) => (AmbientAssistedLiving = TRUE))&&((AmbientAssistedLiving = TRUE) => (Camera = TRUE))
+(Transmission = TRUE) => (Camera = TRUE)
+(Rec = TRUE) => (Camera = TRUE)
+(CamEncryp = TRUE) => (Camera = TRUE)
+(FallRec = TRUE) => (Camera = TRUE)
+((Services = TRUE) => (AmbientAssistedLiving = TRUE))&&((AmbientAssistedLiving = TRUE) => (Services = TRUE))
+(VideoSurveillance = TRUE) => (Services = TRUE)
+(Encryption = TRUE) => (Services = TRUE)
+(LightControl = TRUE) => (Services = TRUE)
+(GlucoseControl = TRUE) => (Services = TRUE)
+(FallDetection = TRUE) => (Services = TRUE)
+(HeatControl = TRUE) => (Services = TRUE)
+

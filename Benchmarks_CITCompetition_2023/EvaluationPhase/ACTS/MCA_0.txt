@@ -1,0 +1,26 @@
+[System]
+-- specify system name
+Name: MCA_0
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11
+Par7 (boolean) : true, false
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6, PAR9_7, PAR9_8, PAR9_9, PAR9_10, PAR9_11, PAR9_12
+Par10 (boolean) : true, false
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4, PAR13_5, PAR13_6, PAR13_7, PAR13_8
+Par14 (enum) : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6
+Par15 (boolean) : true, false
+Par16 (boolean) : true, false
+Par17 (boolean) : true, false
+
+

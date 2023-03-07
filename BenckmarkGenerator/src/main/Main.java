@@ -34,8 +34,8 @@ import models.Model;
 
 public class Main {
 	
-	private static final String BENCHMARK_FOLDER = "./examples/CTComp/";
-	static int N_MODELS = 5;
+	private static final String BENCHMARK_FOLDER = "./examples/CTComp2023/";
+	static int N_MODELS = 30;
 	static String PREFIX = "UNIFORM_BOOLEAN_";
 	
 	public static void generateUniformBooleanNoConstraints(boolean verify) throws IOException {
@@ -635,8 +635,8 @@ public class Main {
 //		generateMCANoConstraints(false);
 //		generateBoolConstraints(true);
 //		generateMCAConstraints(true);
-		generateNUMConstraints(true);
-		generateHighlyConstrained(true);
-		generateCNFConstraints(true);
+//		generateNUMConstraints(true);
+//		generateHighlyConstrained(true);
+//		generateCNFConstraints(true);
 	}
 }

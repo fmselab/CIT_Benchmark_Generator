@@ -1,0 +1,32 @@
+[System]
+-- specify system name
+Name: CNF_28
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, PAR5_9, PAR5_10, PAR5_11, PAR5_12
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11, PAR6_12, PAR6_13, PAR6_14
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (enum) : PAR9_0
+Par10 (boolean) : true, false
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9
+Par13 (boolean) : true, false
+Par14 (enum) : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6, PAR14_7, PAR14_8, PAR14_9, PAR14_10, PAR14_11, PAR14_12
+Par15 (enum) : PAR15_0
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4
+Par17 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((Par3 != true) || (! (Par3 != true))) && ((Par11 = "PAR11_1") || (Par14 != "PAR14_9"))) && (((Par7 = false) || (! (Par16 != "PAR16_1"))) && ((Par2 = "PAR2_0") || (! (Par9 = "PAR9_0"))))
+(((Par2 = "PAR2_2") || (Par4 = true)) && ((! (Par7 = true)) || (Par17 = true))) && (((Par9 = "PAR9_0") || (Par11 = "PAR11_2")) && ((Par14 = "PAR14_12") || (! (Par10 = false))))
+(Par15 = "PAR15_0") && (Par0 = "PAR0_2")
+(((! (Par8 != true)) || (! (Par6 = "PAR6_11"))) && ((! (Par11 != "PAR11_6")) || (Par5 != "PAR5_2"))) && (((! (Par8 = false)) || (! (Par14 = "PAR14_9"))) && ((Par1 != false) || (Par1 != false)))
+

@@ -1,0 +1,40 @@
+[System]
+-- specify system name
+Name: CNF_8
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9, PAR1_10, PAR1_11
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7, PAR11_8, PAR11_9, PAR11_10, PAR11_11, PAR11_12
+Par12 (boolean) : true, false
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4, PAR13_5, PAR13_6, PAR13_7, PAR13_8
+Par14 (enum) : PAR14_0
+Par15 (boolean) : true, false
+Par16 (boolean) : true, false
+Par17 (enum) : PAR17_0, PAR17_1, PAR17_2, PAR17_3, PAR17_4, PAR17_5, PAR17_6, PAR17_7, PAR17_8, PAR17_9, PAR17_10, PAR17_11, PAR17_12
+Par18 (boolean) : true, false
+Par19 (enum) : PAR19_0, PAR19_1, PAR19_2, PAR19_3, PAR19_4, PAR19_5, PAR19_6, PAR19_7, PAR19_8
+Par20 (enum) : PAR20_0, PAR20_1, PAR20_2, PAR20_3, PAR20_4, PAR20_5, PAR20_6, PAR20_7, PAR20_8
+Par21 (enum) : PAR21_0, PAR21_1, PAR21_2, PAR21_3, PAR21_4, PAR21_5, PAR21_6, PAR21_7, PAR21_8, PAR21_9, PAR21_10, PAR21_11
+Par22 (boolean) : true, false
+Par23 (enum) : PAR23_0
+Par24 (enum) : PAR24_0, PAR24_1, PAR24_2
+Par25 (boolean) : true, false
+Par26 (enum) : PAR26_0, PAR26_1, PAR26_2, PAR26_3, PAR26_4, PAR26_5, PAR26_6, PAR26_7, PAR26_8, PAR26_9, PAR26_10, PAR26_11, PAR26_12, PAR26_13
+
+[Constraint]
+-- this section is also optional
+(! (Par1 = "PAR1_5")) || (Par7 = true)
+(((! (Par18 != false)) || (! (Par9 != true))) && ((! (Par18 != true)) || (Par3 = true))) && (((! (Par3 != false)) || (Par11 != "PAR11_9")) && ((! (Par3 != false)) || (Par15 != true)))
+((! (Par21 != "PAR21_6")) && (Par18 != true)) && ((! (Par10 = "PAR10_2")) && (Par8 = true))
+

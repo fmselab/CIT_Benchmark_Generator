@@ -1,0 +1,27 @@
+[System]
+-- specify system name
+Name: NUMC_11
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : 48, 49, 50, 51, 52, 53, 54, 55
+Par1 (int) : 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14
+Par3 (int) : 96, 97, 98, 99, 100, 101, 102, 103
+Par4 (int) : 22, 23, 24, 25, 26
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9
+Par7 (int) : -67, -66, -65, -64, -63, -62, -61, -60, -59, -58, -57, -56, -55
+Par8 (boolean) : true, false
+Par9 (int) : 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80
+Par10 (int) : -1, 0, 1, 2, 3, 4, 5, 6, 7
+Par11 (enum) : PAR11_0, PAR11_1
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7
+Par13 (enum) : PAR13_0
+
+[Constraint]
+-- this section is also optional
+((((! (Par0 < 48)) => (! (Par1 >= 82)))&&((! (Par1 >= 82)) => (! (Par0 < 48)))) => (((! (Par12 != "PAR12_7")) => (! (Par1 != 74)))&&((! (Par1 != 74)) => (! (Par12 != "PAR12_7"))))) && (((Par5 != false) && (! (Par3 != 101))) => ((! (Par10 <= 3)) => (! (Par8 = false))))
+(((((! (Par10 >= 7)) => (! (Par10 >= 0)))&&((! (Par10 >= 0)) => (! (Par10 >= 7)))) => ((! (Par8 = true)) && (! (Par13 = "PAR13_0"))))&&(((! (Par8 = true)) && (! (Par13 = "PAR13_0"))) => (((! (Par10 >= 7)) => (! (Par10 >= 0)))&&((! (Par10 >= 0)) => (! (Par10 >= 7)))))) && (((Par11 != "PAR11_0") || (! (Par5 != true))) => ((Par8 != false) || (Par12 = "PAR12_3")))
+((((Par7 >= -61) || (Par6 = "PAR6_3")) => ((Par13 != "PAR13_0") || (Par11 = "PAR11_0")))&&(((Par13 != "PAR13_0") || (Par11 = "PAR11_0")) => ((Par7 >= -61) || (Par6 = "PAR6_3")))) && (((! (Par4 > 25)) && (Par6 != "PAR6_9")) => ((! (Par0 > 50)) || (! (Par1 >= 72))))
+

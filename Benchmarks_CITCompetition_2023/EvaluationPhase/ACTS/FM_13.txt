@@ -1,0 +1,27 @@
+[System]
+-- specify system name
+Name: FM_13
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+SmartHotel (boolean) : true, false
+Automatedillumination (boolean) : true, false
+Security (boolean) : true, false
+Alarm (boolean) : true, false
+Siren (boolean) : true, false
+VisualAlarm (boolean) : true, false
+TemperatureControl (boolean) : true, false
+Heating (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+SmartHotel = TRUE
+(Automatedillumination = TRUE) => (SmartHotel = TRUE)
+(Security = TRUE) => (SmartHotel = TRUE)
+(Alarm = TRUE) => (Security = TRUE)
+(Alarm = TRUE) => ((Siren = TRUE) || (VisualAlarm = TRUE))
+(Siren = TRUE) => (Alarm = TRUE)
+(VisualAlarm = TRUE) => (Alarm = TRUE)
+(TemperatureControl = TRUE) => (SmartHotel = TRUE)
+(Heating = TRUE) => (TemperatureControl = TRUE)
+

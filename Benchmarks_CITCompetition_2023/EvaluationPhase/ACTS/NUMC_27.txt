@@ -1,0 +1,31 @@
+[System]
+-- specify system name
+Name: NUMC_27
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5
+Par8 (int) : 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94
+Par9 (int) : 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67
+Par10 (int) : 48, 49, 50, 51, 52, 53
+Par11 (int) : -68, -67, -66, -65, -64, -63, -62, -61
+Par12 (boolean) : true, false
+Par13 (int) : 53, 54, 55, 56, 57
+Par14 (enum) : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6
+Par15 (boolean) : true, false
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4, PAR16_5, PAR16_6, PAR16_7, PAR16_8, PAR16_9, PAR16_10
+
+[Constraint]
+-- this section is also optional
+(((Par6 != "PAR6_10") || (Par5 = true)) => (((Par6 != "PAR6_0") => (Par6 = "PAR6_4"))&&((Par6 = "PAR6_4") => (Par6 != "PAR6_0"))))&&((((Par6 != "PAR6_0") => (Par6 = "PAR6_4"))&&((Par6 = "PAR6_4") => (Par6 != "PAR6_0"))) => ((Par6 != "PAR6_10") || (Par5 = true)))
+((((! (Par12 != true)) || (! (Par9 > 56))) && ((! (Par11 >= -67)) && (Par16 != "PAR16_7"))) => (((Par3 = false) => (! (Par12 != false))) => ((Par14 != "PAR14_5") && (! (Par15 != false)))))&&((((Par3 = false) => (! (Par12 != false))) => ((Par14 != "PAR14_5") && (! (Par15 != false)))) => (((! (Par12 != true)) || (! (Par9 > 56))) && ((! (Par11 >= -67)) && (Par16 != "PAR16_7"))))
+((! (Par12 = false)) && (Par6 != "PAR6_10")) => ((Par12 = true) && (Par8 <= 89))
+((((! (Par4 = true)) => (! (Par0 != false)))&&((! (Par0 != false)) => (! (Par4 = true)))) => ((Par8 < 80) || (Par1 = "PAR1_0"))) => (((((Par0 = false) => (! (Par11 = -65)))&&((! (Par11 = -65)) => (Par0 = false))) => ((! (Par11 <= -65)) && (Par8 > 94)))&&(((! (Par11 <= -65)) && (Par8 > 94)) => (((Par0 = false) => (! (Par11 = -65)))&&((! (Par11 = -65)) => (Par0 = false)))))
+

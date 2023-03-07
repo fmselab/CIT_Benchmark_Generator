@@ -1,0 +1,189 @@
+[System]
+-- specify system name
+Name: INDUSTRIAL_5
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+p1 (enum) : v1, v2, v3
+p2 (enum) : v1, v2, v3, v4
+p3 (boolean) : true, false
+p4 (enum) : v1, v2, v3
+p5 (enum) : v1, v2, v3
+p6 (enum) : v1, v2, v3
+p7 (enum) : v1, v2, v3
+p8 (boolean) : true, false
+p9 (boolean) : true, false
+p10 (boolean) : true, false
+p11 (boolean) : true, false
+p12 (boolean) : true, false
+p13 (boolean) : true, false
+p14 (boolean) : true, false
+p15 (enum) : v1, v2, v3
+p16 (boolean) : true, false
+p17 (boolean) : true, false
+p18 (boolean) : true, false
+p19 (enum) : v1, v2, v3, v4
+p20 (boolean) : true, false
+p21 (boolean) : true, false
+p22 (boolean) : true, false
+p23 (boolean) : true, false
+p24 (boolean) : true, false
+p25 (boolean) : true, false
+p26 (boolean) : true, false
+p27 (boolean) : true, false
+p28 (boolean) : true, false
+p29 (boolean) : true, false
+p30 (boolean) : true, false
+p31 (boolean) : true, false
+p32 (boolean) : true, false
+p33 (boolean) : true, false
+p34 (boolean) : true, false
+p35 (boolean) : true, false
+p36 (boolean) : true, false
+p37 (boolean) : true, false
+p38 (boolean) : true, false
+p39 (boolean) : true, false
+p40 (enum) : v1, v2, v3, v4
+p41 (boolean) : true, false
+p42 (boolean) : true, false
+p43 (boolean) : true, false
+p44 (enum) : v1, v2, v3, v4
+p45 (boolean) : true, false
+p46 (boolean) : true, false
+p47 (boolean) : true, false
+p48 (boolean) : true, false
+p49 (boolean) : true, false
+p50 (boolean) : true, false
+p51 (boolean) : true, false
+p52 (boolean) : true, false
+p53 (boolean) : true, false
+p54 (boolean) : true, false
+p55 (boolean) : true, false
+p56 (boolean) : true, false
+p57 (boolean) : true, false
+p58 (boolean) : true, false
+p59 (boolean) : true, false
+p60 (boolean) : true, false
+p61 (boolean) : true, false
+p62 (boolean) : true, false
+p63 (boolean) : true, false
+p64 (boolean) : true, false
+p65 (boolean) : true, false
+p66 (boolean) : true, false
+p67 (enum) : v1, v2, v3, v4, v5
+p68 (boolean) : true, false
+p69 (boolean) : true, false
+p70 (boolean) : true, false
+p71 (boolean) : true, false
+p72 (enum) : v1, v2, v3
+p73 (boolean) : true, false
+p74 (boolean) : true, false
+p75 (boolean) : true, false
+p76 (boolean) : true, false
+p77 (boolean) : true, false
+p78 (boolean) : true, false
+p79 (boolean) : true, false
+p80 (boolean) : true, false
+p81 (boolean) : true, false
+p82 (boolean) : true, false
+p83 (boolean) : true, false
+p84 (boolean) : true, false
+p85 (boolean) : true, false
+p86 (boolean) : true, false
+p87 (boolean) : true, false
+p88 (boolean) : true, false
+p89 (boolean) : true, false
+p90 (boolean) : true, false
+p91 (boolean) : true, false
+p92 (boolean) : true, false
+p93 (boolean) : true, false
+p94 (boolean) : true, false
+p95 (boolean) : true, false
+p96 (boolean) : true, false
+p97 (boolean) : true, false
+p98 (boolean) : true, false
+p99 (boolean) : true, false
+p100 (boolean) : true, false
+p101 (boolean) : true, false
+p102 (boolean) : true, false
+p103 (boolean) : true, false
+p104 (boolean) : true, false
+p105 (boolean) : true, false
+p106 (boolean) : true, false
+p107 (boolean) : true, false
+p108 (boolean) : true, false
+p109 (boolean) : true, false
+p110 (boolean) : true, false
+p111 (boolean) : true, false
+p112 (boolean) : true, false
+p113 (boolean) : true, false
+p114 (boolean) : true, false
+p115 (boolean) : true, false
+p116 (boolean) : true, false
+p117 (enum) : v1, v2, v3, v4, v5, v6
+p118 (boolean) : true, false
+p119 (boolean) : true, false
+p120 (boolean) : true, false
+p121 (boolean) : true, false
+p122 (boolean) : true, false
+p123 (boolean) : true, false
+p124 (boolean) : true, false
+p125 (boolean) : true, false
+p126 (boolean) : true, false
+p127 (boolean) : true, false
+p128 (boolean) : true, false
+p129 (boolean) : true, false
+p130 (boolean) : true, false
+p131 (boolean) : true, false
+p132 (boolean) : true, false
+p133 (boolean) : true, false
+p134 (boolean) : true, false
+p135 (boolean) : true, false
+p136 (boolean) : true, false
+p137 (boolean) : true, false
+p138 (boolean) : true, false
+p139 (boolean) : true, false
+p140 (boolean) : true, false
+p141 (boolean) : true, false
+p142 (boolean) : true, false
+p143 (boolean) : true, false
+p144 (enum) : v1, v2, v3
+p145 (boolean) : true, false
+p146 (boolean) : true, false
+p147 (boolean) : true, false
+p148 (boolean) : true, false
+p149 (boolean) : true, false
+p150 (boolean) : true, false
+p151 (boolean) : true, false
+p152 (boolean) : true, false
+p153 (boolean) : true, false
+p154 (boolean) : true, false
+p155 (boolean) : true, false
+p156 (boolean) : true, false
+p157 (boolean) : true, false
+p158 (boolean) : true, false
+p159 (boolean) : true, false
+p160 (boolean) : true, false
+p161 (boolean) : true, false
+p162 (boolean) : true, false
+p163 (boolean) : true, false
+p164 (boolean) : true, false
+p165 (boolean) : true, false
+p166 (boolean) : true, false
+p167 (boolean) : true, false
+p168 (boolean) : true, false
+p169 (boolean) : true, false
+p170 (boolean) : true, false
+p171 (boolean) : true, false
+p172 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((p36 || p45) || p46) || p47) || p166
+((p45 || p46) || p167) || p168
+p16 || p169
+p170 || p171
+p79 || p80
+(p92 || p100) || p172
+((p36 || p45) || p46) || p134
+

@@ -1,0 +1,47 @@
+[System]
+-- specify system name
+Name: NUMC_25
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (int) : -48, -47, -46, -45, -44, -43, -42, -41, -40, -39, -38
+Par2 (boolean) : true, false
+Par3 (int) : 57, 58
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2
+Par5 (int) : 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11, PAR6_12
+Par7 (int) : -50, -49, -48, -47, -46, -45, -44, -43, -42, -41, -40, -39, -38, -37, -36
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9, PAR8_10, PAR8_11
+Par9 (boolean) : true, false
+Par10 (int) : 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (int) : 35, 36, 37, 38, 39, 40, 41
+Par14 (boolean) : true, false
+Par15 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((((! (Par2 = false)) && (Par1 < -47)) => ((Par10 > 54) || (! (Par12 != true))))&&(((Par10 > 54) || (! (Par12 != true))) => ((! (Par2 = false)) && (Par1 < -47)))) => ((((! (Par0 != false)) && (Par15 = true)) => (((Par6 = "PAR6_7") => (! (Par10 != 57)))&&((! (Par10 != 57)) => (Par6 = "PAR6_7"))))&&((((Par6 = "PAR6_7") => (! (Par10 != 57)))&&((! (Par10 != 57)) => (Par6 = "PAR6_7"))) => ((! (Par0 != false)) && (Par15 = true)))))&&(((((! (Par0 != false)) && (Par15 = true)) => (((Par6 = "PAR6_7") => (! (Par10 != 57)))&&((! (Par10 != 57)) => (Par6 = "PAR6_7"))))&&((((Par6 = "PAR6_7") => (! (Par10 != 57)))&&((! (Par10 != 57)) => (Par6 = "PAR6_7"))) => ((! (Par0 != false)) && (Par15 = true)))) => ((((! (Par2 = false)) && (Par1 < -47)) => ((Par10 > 54) || (! (Par12 != true))))&&(((Par10 > 54) || (! (Par12 != true))) => ((! (Par2 = false)) && (Par1 < -47)))))
+(((((! (Par1 >= -38)) && (Par0 != false)) => ((! (Par7 <= -42)) => (! (Par14 != true))))&&(((! (Par7 <= -42)) => (! (Par14 != true))) => ((! (Par1 >= -38)) && (Par0 != false)))) => (((Par12 = true) || (Par9 = false)) || ((Par11 = false) || (! (Par11 != true)))))&&((((Par12 = true) || (Par9 = false)) || ((Par11 = false) || (! (Par11 != true)))) => ((((! (Par1 >= -38)) && (Par0 != false)) => ((! (Par7 <= -42)) => (! (Par14 != true))))&&(((! (Par7 <= -42)) => (! (Par14 != true))) => ((! (Par1 >= -38)) && (Par0 != false)))))
+(((! (Par9 = false)) => (Par5 >= 39)) => (((! (Par8 = "PAR8_4")) => (Par6 != "PAR6_12"))&&((Par6 != "PAR6_12") => (! (Par8 = "PAR8_4"))))) && ((((! (Par1 <= -40)) => (Par1 >= -47))&&((Par1 >= -47) => (! (Par1 <= -40)))) && ((! (Par8 = "PAR8_9")) || (! (Par2 = true))))
+(Par12 = true) => (! (Par11 != true))
+((Par11 = true) => (! (Par9 = false))) || (((Par11 = false) => (! (Par10 >= 54)))&&((! (Par10 >= 54)) => (Par11 = false)))
+((! (Par13 = 37)) => (! (Par1 != -39))) && ((! (Par2 = false)) => (! (Par13 < 36)))
+((Par15 = false) => (! (Par8 != "PAR8_4"))) => ((Par14 != false) && (! (Par5 != 47)))
+(((Par1 >= -48) => (! (Par6 != "PAR6_6")))&&((! (Par6 != "PAR6_6")) => (Par1 >= -48))) || ((! (Par12 = false)) => (Par6 != "PAR6_8"))
+((((Par3 > 58) || (! (Par10 != 64))) || (((Par6 = "PAR6_4") => (Par11 != false))&&((Par11 != false) => (Par6 = "PAR6_4")))) => ((((Par3 > 58) => (Par5 != 37))&&((Par5 != 37) => (Par3 > 58))) && ((Par14 != false) => (! (Par8 = "PAR8_2")))))&&(((((Par3 > 58) => (Par5 != 37))&&((Par5 != 37) => (Par3 > 58))) && ((Par14 != false) => (! (Par8 = "PAR8_2")))) => (((Par3 > 58) || (! (Par10 != 64))) || (((Par6 = "PAR6_4") => (Par11 != false))&&((Par11 != false) => (Par6 = "PAR6_4")))))
+((Par10 = 54) && (! (Par5 >= 40))) => ((! (Par14 = false)) || (! (Par10 = 59)))
+((Par11 != false) || (! (Par1 = -44))) || (((! (Par10 <= 64)) => (Par0 != true))&&((Par0 != true) => (! (Par10 <= 64))))
+! (Par0 != true)
+((Par5 >= 43) || (Par4 != "PAR4_0")) => ((! (Par4 != "PAR4_1")) => (Par8 = "PAR8_1"))
+(((! (Par10 = 64)) && (Par0 != false)) => ((Par13 > 38) && (Par4 = "PAR4_1")))&&(((Par13 > 38) && (Par4 = "PAR4_1")) => ((! (Par10 = 64)) && (Par0 != false)))
+((((! (Par14 != false)) || (! (Par2 != false))) => (((Par6 != "PAR6_4") => (! (Par6 = "PAR6_3")))&&((! (Par6 = "PAR6_3")) => (Par6 != "PAR6_4")))) => (((((! (Par13 > 37)) => (Par14 = true))&&((Par14 = true) => (! (Par13 > 37)))) => ((Par4 = "PAR4_2") && (Par15 = false)))&&(((Par4 = "PAR4_2") && (Par15 = false)) => (((! (Par13 > 37)) => (Par14 = true))&&((Par14 = true) => (! (Par13 > 37)))))))&&((((((! (Par13 > 37)) => (Par14 = true))&&((Par14 = true) => (! (Par13 > 37)))) => ((Par4 = "PAR4_2") && (Par15 = false)))&&(((Par4 = "PAR4_2") && (Par15 = false)) => (((! (Par13 > 37)) => (Par14 = true))&&((Par14 = true) => (! (Par13 > 37)))))) => (((! (Par14 != false)) || (! (Par2 != false))) => (((Par6 != "PAR6_4") => (! (Par6 = "PAR6_3")))&&((! (Par6 = "PAR6_3")) => (Par6 != "PAR6_4")))))
+(((! (Par9 = false)) => (Par3 < 57)) && ((Par5 < 41) || (Par13 > 37))) && ((((Par6 != "PAR6_5") => (! (Par8 = "PAR8_5")))&&((! (Par8 = "PAR8_5")) => (Par6 != "PAR6_5"))) && ((Par7 >= -45) || (! (Par6 != "PAR6_9"))))
+(((Par3 <= 57) || (! (Par8 = "PAR8_6"))) && ((! (Par11 != true)) && (Par7 != -45))) || ((((Par15 != true) => (Par7 > -44))&&((Par7 > -44) => (Par15 != true))) && ((Par4 != "PAR4_1") => (Par15 != true)))
+(! (Par0 != true)) && (! (Par11 != true))
+(((Par3 < 57) => (! (Par9 != false)))&&((! (Par9 != false)) => (Par3 < 57))) => ((Par12 != true) => (! (Par7 < -46)))
+(! (Par6 = "PAR6_5")) && (Par4 != "PAR4_0")
+(((! (Par8 = "PAR8_8")) => (! (Par15 != false))) || ((! (Par7 != -48)) && (! (Par2 = false)))) || (((! (Par14 != false)) || (! (Par15 = true))) => ((Par6 = "PAR6_10") || (! (Par5 >= 38))))
+

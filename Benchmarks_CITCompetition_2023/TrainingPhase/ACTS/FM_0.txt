@@ -1,0 +1,93 @@
+[System]
+-- specify system name
+Name: FM_0
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+SmartHome (boolean) : true, false
+HeatingManagement (boolean) : true, false
+ManualHeating (boolean) : true, false
+SmartHeating (boolean) : true, false
+WindowsManagement (boolean) : true, false
+ManualWindows (boolean) : true, false
+ElectronicWindows (boolean) : true, false
+LightManagement (boolean) : true, false
+ManualLight (boolean) : true, false
+SmartLight (boolean) : true, false
+Pre_definedValues (boolean) : true, false
+GUI (boolean) : true, false
+TouchScreen (boolean) : true, false
+Internet (boolean) : true, false
+PresenceSimulator (boolean) : true, false
+LightSimulation (boolean) : true, false
+BlindSimulation (boolean) : true, false
+MusicSimulation (boolean) : true, false
+FireControl (boolean) : true, false
+FirstAidGroup (boolean) : true, false
+FirstAidGroup_1 (boolean) : true, false
+FireDepartment (boolean) : true, false
+OtherGroup (boolean) : true, false
+FireSprinklers (boolean) : true, false
+IrrigationSprinklers (boolean) : true, false
+SimpleControl (boolean) : true, false
+SmartSprinklers (boolean) : true, false
+Alarm (boolean) : true, false
+Siren (boolean) : true, false
+Bell (boolean) : true, false
+Lights (boolean) : true, false
+Security (boolean) : true, false
+AuthenticationDevice (boolean) : true, false
+Keypad (boolean) : true, false
+RetinaScanner (boolean) : true, false
+FingerPrintReader (boolean) : true, false
+IntrusionDetectionDevice (boolean) : true, false
+GlassbreakSensors (boolean) : true, false
+Cameras (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+SmartHome = TRUE
+((HeatingManagement = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (HeatingManagement = TRUE))
+((ManualHeating = TRUE) => (HeatingManagement = TRUE))&&((HeatingManagement = TRUE) => (ManualHeating = TRUE))
+(SmartHeating = TRUE) => (HeatingManagement = TRUE)
+((WindowsManagement = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (WindowsManagement = TRUE))
+((ManualWindows = TRUE) => (WindowsManagement = TRUE))&&((WindowsManagement = TRUE) => (ManualWindows = TRUE))
+(ElectronicWindows = TRUE) => (WindowsManagement = TRUE)
+((LightManagement = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (LightManagement = TRUE))
+((ManualLight = TRUE) => (LightManagement = TRUE))&&((LightManagement = TRUE) => (ManualLight = TRUE))
+(SmartLight = TRUE) => (LightManagement = TRUE)
+(Pre_definedValues = TRUE) => (LightManagement = TRUE)
+((GUI = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (GUI = TRUE))
+((TouchScreen = TRUE) => (GUI = TRUE))&&((GUI = TRUE) => (TouchScreen = TRUE))
+(Internet = TRUE) => (GUI = TRUE)
+(PresenceSimulator = TRUE) => (SmartHome = TRUE)
+(PresenceSimulator = TRUE) => (((LightSimulation = TRUE) || (BlindSimulation = TRUE)) || (MusicSimulation = TRUE))
+(LightSimulation = TRUE) => (PresenceSimulator = TRUE)
+(BlindSimulation = TRUE) => (PresenceSimulator = TRUE)
+(MusicSimulation = TRUE) => (PresenceSimulator = TRUE)
+((FireControl = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (FireControl = TRUE))
+((FirstAidGroup = TRUE) => (FireControl = TRUE))&&((FireControl = TRUE) => (FirstAidGroup = TRUE))
+((FirstAidGroup_1 = TRUE) => (FirstAidGroup = TRUE))&&((FirstAidGroup = TRUE) => (FirstAidGroup_1 = TRUE))
+(FirstAidGroup_1 = TRUE) => ((FireDepartment = TRUE) || (OtherGroup = TRUE))
+(FireDepartment = TRUE) => (FirstAidGroup_1 = TRUE)
+(OtherGroup = TRUE) => (FirstAidGroup_1 = TRUE)
+(FireSprinklers = TRUE) => (FirstAidGroup = TRUE)
+(IrrigationSprinklers = TRUE) => (SmartHome = TRUE)
+((SimpleControl = TRUE) => (IrrigationSprinklers = TRUE))&&((IrrigationSprinklers = TRUE) => (SimpleControl = TRUE))
+(SmartSprinklers = TRUE) => (IrrigationSprinklers = TRUE)
+((Alarm = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (Alarm = TRUE))
+(Alarm = TRUE) => (((Siren = TRUE) || (Bell = TRUE)) || (Lights = TRUE))
+(Siren = TRUE) => (Alarm = TRUE)
+(Bell = TRUE) => (Alarm = TRUE)
+(Lights = TRUE) => (Alarm = TRUE)
+((Security = TRUE) => (SmartHome = TRUE))&&((SmartHome = TRUE) => (Security = TRUE))
+((AuthenticationDevice = TRUE) => (Security = TRUE))&&((Security = TRUE) => (AuthenticationDevice = TRUE))
+(AuthenticationDevice = TRUE) => (((Keypad = TRUE) || (RetinaScanner = TRUE)) || (FingerPrintReader = TRUE))
+(Keypad = TRUE) => (AuthenticationDevice = TRUE)
+(RetinaScanner = TRUE) => (AuthenticationDevice = TRUE)
+(FingerPrintReader = TRUE) => (AuthenticationDevice = TRUE)
+(IntrusionDetectionDevice = TRUE) => (Security = TRUE)
+(IntrusionDetectionDevice = TRUE) => ((GlassbreakSensors = TRUE) || (Cameras = TRUE))
+(GlassbreakSensors = TRUE) => (IntrusionDetectionDevice = TRUE)
+(Cameras = TRUE) => (IntrusionDetectionDevice = TRUE)
+

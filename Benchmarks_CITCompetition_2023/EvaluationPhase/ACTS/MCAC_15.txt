@@ -1,0 +1,27 @@
+[System]
+-- specify system name
+Name: MCAC_15
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (enum) : PAR3_0
+Par4 (boolean) : true, false
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, PAR5_9, PAR5_10, PAR5_11
+Par6 (boolean) : true, false
+Par7 (enum) : PAR7_0
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6, PAR9_7, PAR9_8, PAR9_9, PAR9_10, PAR9_11, PAR9_12, PAR9_13, PAR9_14
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10, PAR10_11, PAR10_12, PAR10_13, PAR10_14
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7, PAR11_8, PAR11_9, PAR11_10, PAR11_11, PAR11_12, PAR11_13, PAR11_14
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (enum) : PAR14_0, PAR14_1
+
+[Constraint]
+-- this section is also optional
+(! (Par0 = "PAR0_0")) || (! (Par3 != "PAR3_0"))
+((Par4 != true) && (Par6 != false)) || ((Par7 = "PAR7_0") || (! (Par12 = false)))
+

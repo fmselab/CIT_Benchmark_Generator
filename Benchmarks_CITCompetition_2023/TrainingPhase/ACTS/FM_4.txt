@@ -1,0 +1,50 @@
+[System]
+-- specify system name
+Name: FM_4
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+ParkingAssistant (boolean) : true, false
+Sensors (boolean) : true, false
+DistanceSensors (boolean) : true, false
+SensorFusion (boolean) : true, false
+DistanceSensorTypes (boolean) : true, false
+InfraredSensor (boolean) : true, false
+UltrasonicSensor (boolean) : true, false
+DrivenWaySensors (boolean) : true, false
+PulseLengthSensorV2 (boolean) : true, false
+DirectionPositionSensors (boolean) : true, false
+DirectionSensors (boolean) : true, false
+CompassSensors (boolean) : true, false
+PositionSensors (boolean) : true, false
+GPSSensor (boolean) : true, false
+Controller (boolean) : true, false
+ControllerDir (enum) : ControllerWithDir, ControllerWithoutDir, NONE
+LocationBasedServ (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+ParkingAssistant = TRUE
+((Sensors = TRUE) => (ParkingAssistant = TRUE))&&((ParkingAssistant = TRUE) => (Sensors = TRUE))
+((DistanceSensors = TRUE) => (Sensors = TRUE))&&((Sensors = TRUE) => (DistanceSensors = TRUE))
+(SensorFusion = TRUE) => (DistanceSensors = TRUE)
+((DistanceSensorTypes = TRUE) => (DistanceSensors = TRUE))&&((DistanceSensors = TRUE) => (DistanceSensorTypes = TRUE))
+(DistanceSensorTypes = TRUE) => ((InfraredSensor = TRUE) || (UltrasonicSensor = TRUE))
+(InfraredSensor = TRUE) => (DistanceSensorTypes = TRUE)
+(UltrasonicSensor = TRUE) => (DistanceSensorTypes = TRUE)
+((DrivenWaySensors = TRUE) => (Sensors = TRUE))&&((Sensors = TRUE) => (DrivenWaySensors = TRUE))
+((PulseLengthSensorV2 = TRUE) => (DrivenWaySensors = TRUE))&&((DrivenWaySensors = TRUE) => (PulseLengthSensorV2 = TRUE))
+((DirectionPositionSensors = TRUE) => (Sensors = TRUE))&&((Sensors = TRUE) => (DirectionPositionSensors = TRUE))
+(DirectionPositionSensors = TRUE) => ((DirectionSensors = TRUE) || (PositionSensors = TRUE))
+(DirectionSensors = TRUE) => (DirectionPositionSensors = TRUE)
+((CompassSensors = TRUE) => (DirectionSensors = TRUE))&&((DirectionSensors = TRUE) => (CompassSensors = TRUE))
+(PositionSensors = TRUE) => (DirectionPositionSensors = TRUE)
+((GPSSensor = TRUE) => (PositionSensors = TRUE))&&((PositionSensors = TRUE) => (GPSSensor = TRUE))
+((Controller = TRUE) => (ParkingAssistant = TRUE))&&((ParkingAssistant = TRUE) => (Controller = TRUE))
+((ControllerDir != "NONE") => (Controller = TRUE))&&((Controller = TRUE) => (ControllerDir != "NONE"))
+(LocationBasedServ = TRUE) => (Controller = TRUE)
+(SensorFusion = TRUE) => (InfraredSensor = TRUE)
+(SensorFusion = TRUE) => (UltrasonicSensor = TRUE)
+(ControllerDir = "ControllerWithDir") => (DirectionSensors = TRUE)
+(LocationBasedServ = TRUE) => (PositionSensors = TRUE)
+

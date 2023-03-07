@@ -1,0 +1,46 @@
+[System]
+-- specify system name
+Name: NUMC_2
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : -46, -45, -44, -43, -42, -41, -40
+Par1 (int) : 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27
+Par2 (int) : 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (int) : 0, 1
+Par6 (int) : 67, 68, 69, 70, 71, 72, 73, 74
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (int) : 32, 33, 34, 35, 36
+Par11 (int) : 42, 43, 44, 45
+Par12 (int) : -72, -71, -70, -69, -68, -67
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4, PAR13_5, PAR13_6
+Par14 (boolean) : true, false
+Par15 (boolean) : true, false
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4, PAR16_5, PAR16_6, PAR16_7
+Par17 (int) : -21, -20, -19, -18, -17, -16, -15, -14
+Par18 (int) : 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106
+Par19 (boolean) : true, false
+Par20 (int) : -65, -64, -63, -62, -61, -60, -59, -58, -57
+Par21 (boolean) : true, false
+Par22 (int) : -90, -89, -88, -87, -86, -85, -84
+
+[Constraint]
+-- this section is also optional
+((((Par20 = -60) => (! (Par10 < 36))) => ((! (Par22 >= -90)) && (! (Par21 = true))))&&(((! (Par22 >= -90)) && (! (Par21 = true))) => ((Par20 = -60) => (! (Par10 < 36))))) || (((Par16 = "PAR16_7") => (Par13 != "PAR13_3")) => ((Par14 = true) => (! (Par8 != false))))
+((! (Par16 != "PAR16_1")) => (! (Par15 = false)))&&((! (Par15 = false)) => (! (Par16 != "PAR16_1")))
+(((Par17 <= -14) => (Par21 != false)) => ((Par9 != true) => (! (Par12 != -72))))&&(((Par9 != true) => (! (Par12 != -72))) => ((Par17 <= -14) => (Par21 != false)))
+(((Par15 = false) || (Par12 > -71)) || (((! (Par15 != false)) => (Par4 = true))&&((Par4 = true) => (! (Par15 != false))))) => (((Par0 < -45) || (Par13 = "PAR13_6")) && (((! (Par16 = "PAR16_3")) => (! (Par20 != -62)))&&((! (Par20 != -62)) => (! (Par16 = "PAR16_3")))))
+((! (Par9 = true)) && (! (Par12 >= -71))) || ((! (Par5 <= 0)) => (! (Par11 <= 44)))
+(((((! (Par11 >= 44)) => (! (Par7 = true)))&&((! (Par7 = true)) => (! (Par11 >= 44)))) => (((Par20 >= -62) => (! (Par6 <= 70)))&&((! (Par6 <= 70)) => (Par20 >= -62))))&&((((Par20 >= -62) => (! (Par6 <= 70)))&&((! (Par6 <= 70)) => (Par20 >= -62))) => (((! (Par11 >= 44)) => (! (Par7 = true)))&&((! (Par7 = true)) => (! (Par11 >= 44)))))) && ((((! (Par14 != false)) => (Par4 = false))&&((Par4 = false) => (! (Par14 != false)))) => ((Par22 <= -88) => (Par8 != false)))
+((((! (Par12 <= -71)) && (Par17 > -17)) => ((Par0 < -40) && (Par0 <= -44)))&&(((Par0 < -40) && (Par0 <= -44)) => ((! (Par12 <= -71)) && (Par17 > -17)))) => (((((! (Par13 != "PAR13_2")) => (Par5 >= 1))&&((Par5 >= 1) => (! (Par13 != "PAR13_2")))) => ((Par0 > -45) => (Par3 = false)))&&(((Par0 > -45) => (Par3 = false)) => (((! (Par13 != "PAR13_2")) => (Par5 >= 1))&&((Par5 >= 1) => (! (Par13 != "PAR13_2"))))))
+(((! (Par21 = false)) && (Par16 = "PAR16_1")) && ((! (Par14 != true)) || (Par18 < 100))) && (((Par15 != false) && (! (Par17 < -15))) || ((Par19 != true) || (Par9 = false)))
+(((Par14 != false) || (Par5 != 1)) || ((Par5 > 1) => (! (Par3 != false)))) || ((((Par10 <= 35) && (Par1 >= 22)) => ((Par10 < 36) => (Par14 = true)))&&(((Par10 < 36) => (Par14 = true)) => ((Par10 <= 35) && (Par1 >= 22))))
+(((! (Par3 != true)) => (! (Par20 != -62))) || ((! (Par18 = 98)) && (! (Par20 <= -59)))) || (((Par4 = true) || (Par16 = "PAR16_0")) => ((Par2 < 37) || (! (Par3 != false))))
+(! (Par14 = true)) || (Par11 <= 45)
+((((Par7 = false) && (Par17 > -20)) && ((! (Par6 > 72)) => (Par8 = false))) => ((((Par12 <= -70) || (! (Par3 != false))) => ((Par21 = true) => (! (Par12 = -68))))&&(((Par21 = true) => (! (Par12 = -68))) => ((Par12 <= -70) || (! (Par3 != false))))))&&(((((Par12 <= -70) || (! (Par3 != false))) => ((Par21 = true) => (! (Par12 = -68))))&&(((Par21 = true) => (! (Par12 = -68))) => ((Par12 <= -70) || (! (Par3 != false))))) => (((Par7 = false) && (Par17 > -20)) && ((! (Par6 > 72)) => (Par8 = false))))
+((((! (Par8 != false)) => (Par1 <= 17))&&((Par1 <= 17) => (! (Par8 != false)))) && ((! (Par1 < 22)) => (Par4 = false))) || (((! (Par16 != "PAR16_1")) && (! (Par15 = true))) && ((! (Par4 != false)) || (! (Par8 != false))))
+

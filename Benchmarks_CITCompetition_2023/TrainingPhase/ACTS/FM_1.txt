@@ -1,0 +1,32 @@
+[System]
+-- specify system name
+Name: FM_1
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Smartwatch (boolean) : true, false
+SmartPay (boolean) : true, false
+SmartKey (boolean) : true, false
+CarKey (boolean) : true, false
+HomeKey (boolean) : true, false
+ManageHealth (boolean) : true, false
+HeartBeat (boolean) : true, false
+EnergyBurnt (boolean) : true, false
+Language (enum) : English, Chinese, Korean, NONE
+Speaker (enum) : Poly, Plain, NONE
+
+[Constraint]
+-- this section is also optional
+Smartwatch = TRUE
+(SmartPay = TRUE) => (Smartwatch = TRUE)
+(SmartKey = TRUE) => (Smartwatch = TRUE)
+(SmartKey = TRUE) => ((CarKey = TRUE) || (HomeKey = TRUE))
+(CarKey = TRUE) => (SmartKey = TRUE)
+(HomeKey = TRUE) => (SmartKey = TRUE)
+(ManageHealth = TRUE) => (Smartwatch = TRUE)
+(ManageHealth = TRUE) => ((HeartBeat = TRUE) || (EnergyBurnt = TRUE))
+(HeartBeat = TRUE) => (ManageHealth = TRUE)
+(EnergyBurnt = TRUE) => (ManageHealth = TRUE)
+((Language != "NONE") => (Smartwatch = TRUE))&&((Smartwatch = TRUE) => (Language != "NONE"))
+((Speaker != "NONE") => (Smartwatch = TRUE))&&((Smartwatch = TRUE) => (Speaker != "NONE"))
+

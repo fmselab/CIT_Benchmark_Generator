@@ -1,0 +1,32 @@
+[System]
+-- specify system name
+Name: NUMC_6
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : -52, -51, -50, -49, -48
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7
+Par8 (int) : -89, -88
+Par9 (boolean) : true, false
+Par10 (int) : 57, 58, 59, 60, 61, 62, 63, 64, 65, 66
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7
+Par12 (int) : 2, 3, 4
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4, PAR13_5, PAR13_6, PAR13_7, PAR13_8
+Par14 (boolean) : true, false
+Par15 (int) : 75, 76, 77, 78, 79, 80, 81, 82
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4, PAR16_5, PAR16_6, PAR16_7
+
+[Constraint]
+-- this section is also optional
+((Par11 != "PAR11_1") && (Par16 = "PAR16_0")) && ((! (Par9 != false)) || (! (Par16 != "PAR16_2")))
+(((! (Par13 != "PAR13_3")) || (! (Par9 != false))) => ((! (Par7 = "PAR7_7")) || (Par13 = "PAR13_4"))) => (((! (Par8 = -88)) && (Par1 = "PAR1_0")) => ((Par13 = "PAR13_6") => (Par7 = "PAR7_3")))
+(((! (Par16 != "PAR16_4")) => (Par12 < 3)) && ((Par13 != "PAR13_5") || (Par14 = true))) || (((Par3 = true) => (! (Par7 != "PAR7_7"))) || ((Par13 = "PAR13_2") => (Par12 > 4)))
+(((! (Par8 = -89)) && (! (Par0 > -50))) || ((Par11 != "PAR11_7") => (! (Par0 > -52)))) && ((((Par14 = false) || (! (Par11 = "PAR11_2"))) => ((Par16 != "PAR16_6") && (Par2 != "PAR2_1")))&&(((Par16 != "PAR16_6") && (Par2 != "PAR2_1")) => ((Par14 = false) || (! (Par11 = "PAR11_2")))))
+((! (Par8 != -88)) || (! (Par10 <= 64))) || ((! (Par5 != false)) => (Par11 = "PAR11_1"))
+

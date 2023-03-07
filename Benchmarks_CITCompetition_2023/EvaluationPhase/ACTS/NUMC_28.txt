@@ -1,0 +1,27 @@
+[System]
+-- specify system name
+Name: NUMC_28
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (int) : -72, -71, -70, -69, -68, -67, -66, -65, -64, -63, -62
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12, PAR2_13, PAR2_14
+Par3 (int) : -28, -27
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (int) : -66, -65, -64, -63, -62, -61, -60, -59
+Par7 (int) : -27, -26, -25, -24, -23
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7
+Par9 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+((Par4 = true) || (Par4 != true)) => ((! (Par2 != "PAR2_11")) || (Par3 > -28))
+((Par2 = "PAR2_1") => (! (Par3 <= -28))) || ((Par2 = "PAR2_8") || (! (Par0 != false)))
+(((((! (Par6 <= -62)) => (! (Par7 > -23)))&&((! (Par7 > -23)) => (! (Par6 <= -62)))) => ((! (Par8 = "PAR8_6")) || (Par0 = false)))&&(((! (Par8 = "PAR8_6")) || (Par0 = false)) => (((! (Par6 <= -62)) => (! (Par7 > -23)))&&((! (Par7 > -23)) => (! (Par6 <= -62)))))) => (((! (Par2 != "PAR2_6")) => (! (Par0 != false))) => ((! (Par2 = "PAR2_10")) || (Par4 = true)))
+(((Par0 = false) && (! (Par5 = false))) => ((! (Par9 != false)) && (Par1 = -68))) => (((! (Par0 != true)) && (Par0 != true)) || (((! (Par2 = "PAR2_12")) => (Par6 != -66))&&((Par6 != -66) => (! (Par2 = "PAR2_12")))))
+(((! (Par0 != false)) => (Par1 >= -65)) || ((Par3 <= -28) || (! (Par9 = false)))) => ((((Par0 != true) => (Par6 = -60))&&((Par6 = -60) => (Par0 != true))) || ((! (Par2 != "PAR2_14")) || (Par3 < -28)))
+((((! (Par9 != true)) && (! (Par2 = "PAR2_13"))) => ((! (Par6 >= -61)) || (! (Par9 = false))))&&(((! (Par6 >= -61)) || (! (Par9 = false))) => ((! (Par9 != true)) && (! (Par2 = "PAR2_13"))))) || ((((Par3 != -27) && (Par3 >= -28)) => ((! (Par1 = -72)) && (Par1 <= -71)))&&(((! (Par1 = -72)) && (Par1 <= -71)) => ((Par3 != -27) && (Par3 >= -28))))
+(! (Par5 = false)) && (Par3 <= -28)
+

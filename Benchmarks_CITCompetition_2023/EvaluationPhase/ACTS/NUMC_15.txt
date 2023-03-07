@@ -1,0 +1,24 @@
+[System]
+-- specify system name
+Name: NUMC_15
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : -56, -55, -54, -53, -52, -51, -50, -49, -48
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (int) : 85, 86, 87
+Par4 (int) : -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (int) : -82, -81, -80, -79, -78
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9, PAR8_10, PAR8_11, PAR8_12, PAR8_13, PAR8_14
+Par9 (int) : -42, -41, -40, -39, -38, -37, -36, -35, -34, -33
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10, PAR10_11, PAR10_12, PAR10_13, PAR10_14
+Par11 (int) : 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
+
+[Constraint]
+-- this section is also optional
+(((! (Par10 != "PAR10_13")) || (! (Par5 != false))) && ((! (Par0 >= -49)) => (Par8 = "PAR8_7"))) => (((Par6 != true) || (Par0 <= -48)) => ((! (Par3 > 85)) || (Par7 > -78)))
+(! (Par7 < -78)) => (! (Par1 = false))
+

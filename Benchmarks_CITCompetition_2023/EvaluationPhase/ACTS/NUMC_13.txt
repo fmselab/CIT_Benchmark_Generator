@@ -1,0 +1,36 @@
+[System]
+-- specify system name
+Name: NUMC_13
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8
+Par2 (int) : 33, 34, 35, 36, 37
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10
+Par7 (boolean) : true, false
+Par8 (int) : -82, -81, -80, -79, -78, -77, -76, -75, -74, -73, -72, -71
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+Par11 (int) : -6, -5, -4, -3, -2
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8
+Par13 (boolean) : true, false
+Par14 (boolean) : true, false
+Par15 (enum) : PAR15_0, PAR15_1, PAR15_2, PAR15_3, PAR15_4, PAR15_5, PAR15_6, PAR15_7, PAR15_8
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4
+Par17 (boolean) : true, false
+Par18 (boolean) : true, false
+Par19 (enum) : PAR19_0, PAR19_1, PAR19_2, PAR19_3, PAR19_4, PAR19_5, PAR19_6, PAR19_7, PAR19_8, PAR19_9, PAR19_10, PAR19_11, PAR19_12
+Par20 (int) : -49, -48, -47, -46, -45, -44, -43, -42, -41
+Par21 (int) : -82, -81, -80, -79, -78, -77, -76
+Par22 (boolean) : true, false
+Par23 (enum) : PAR23_0, PAR23_1, PAR23_2, PAR23_3, PAR23_4, PAR23_5, PAR23_6, PAR23_7, PAR23_8, PAR23_9, PAR23_10, PAR23_11, PAR23_12, PAR23_13
+Par24 (int) : 96, 97, 98, 99, 100, 101, 102, 103, 104
+
+[Constraint]
+-- this section is also optional
+((((Par22 = true) => (! (Par16 = "PAR16_3"))) => ((Par2 > 33) || (! (Par6 = "PAR6_8")))) => (((Par5 != true) => (! (Par22 != true))) && (((Par15 != "PAR15_3") => (Par3 != "PAR3_0"))&&((Par3 != "PAR3_0") => (Par15 != "PAR15_3")))))&&((((Par5 != true) => (! (Par22 != true))) && (((Par15 != "PAR15_3") => (Par3 != "PAR3_0"))&&((Par3 != "PAR3_0") => (Par15 != "PAR15_3")))) => (((Par22 = true) => (! (Par16 = "PAR16_3"))) => ((Par2 > 33) || (! (Par6 = "PAR6_8")))))
+

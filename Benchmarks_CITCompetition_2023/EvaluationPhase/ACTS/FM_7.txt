@@ -1,0 +1,18 @@
+[System]
+-- specify system name
+Name: FM_7
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Boeing (boolean) : true, false
+SeatsConfiguration (enum) : Rows3Passengers210, Rows3Passengers290, NONE
+FuelCapacity (boolean) : true, false
+Liters138700 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+Boeing = TRUE
+((SeatsConfiguration != "NONE") => (Boeing = TRUE))&&((Boeing = TRUE) => (SeatsConfiguration != "NONE"))
+((FuelCapacity = TRUE) => (Boeing = TRUE))&&((Boeing = TRUE) => (FuelCapacity = TRUE))
+((Liters138700 = TRUE) => (FuelCapacity = TRUE))&&((FuelCapacity = TRUE) => (Liters138700 = TRUE))
+
