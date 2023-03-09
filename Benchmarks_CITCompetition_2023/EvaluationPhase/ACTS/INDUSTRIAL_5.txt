@@ -179,11 +179,11 @@ p172 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-(((p36 || p45) || p46) || p47) || p166
-((p45 || p46) || p167) || p168
-p16 || p169
-p170 || p171
-p79 || p80
-(p92 || p100) || p172
-((p36 || p45) || p46) || p134
+(((p36 = true || p45 = true) || p46 = true) || p47 = true) || p166 = true
+((p45 = true || p46 = true) || p167 = true) || p168 = true
+p16 = true || p169 = true
+p170 = true || p171 = true
+p79 = true || p80 = true
+(p92 = true || p100 = true) || p172 = true
+((p36 = true || p45 = true) || p46 = true) || p134 = true
 

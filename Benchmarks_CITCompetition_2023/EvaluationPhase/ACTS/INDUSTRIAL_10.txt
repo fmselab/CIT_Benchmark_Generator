@@ -17,5 +17,5 @@ p10 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-(! (p4)) || (! (p3))
+(! (p4 = true)) || (! (p3 = true))
 

@@ -16,16 +16,16 @@ p9 (enum) : v1, v2, v3, v4, v5
 
 [Constraint]
 -- this section is also optional
-p2 || (p3 != "v2")
+(p2 = true) || (p3 != "v2")
 (p3 = "v3") || (p4 != "v1")
 (p4 != "v2") || (p3 = "v3")
-(p4 != "v2") || p2
-p5 || (p3 != "v2")
-p5 || (p4 != "v2")
-p6 || (p3 != "v2")
-p6 || (p4 != "v2")
-p7 || (p3 = "v3")
-p7 || (p4 = "v3")
-p8 || (p4 = "v3")
-p8 || (p3 = "v3")
+(p4 != "v2") || (p2 = true)
+(p5 = true) || (p3 != "v2")
+(p5 = true) || (p4 != "v2")
+(p6 = true) || (p3 != "v2")
+(p6 = true) || (p4 != "v2")
+(p7 = true) || (p3 = "v3")
+(p7 = true) || (p4 = "v3")
+(p8 = true) || (p4 = "v3")
+(p8 = true) || (p3 = "v3")
 

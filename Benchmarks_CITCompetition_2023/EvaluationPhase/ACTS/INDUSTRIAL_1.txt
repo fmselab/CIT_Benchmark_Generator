@@ -206,44 +206,44 @@ p199 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-(! (p1)) || p2
-p2 || (! (p3))
-(! (p4)) || p5
-p5 || (! (p6))
-(! (p7)) || p8
-(! (p9)) || p10
-(! (p11)) || p12
-p10 || (! (p13))
-p10 || (! (p15))
-(! (p16)) || p17
-(! (p13)) || p14
-(! (p13)) || p18
-(! (p13)) || p19
-p14 || (! (p15))
-(! (p15)) || p18
-(! (p15)) || p19
-p2 || (! (p20))
-p2 || (! (p21))
+(! (p1 = true)) || p2 = true
+p2 = true || (! (p3 = true))
+(! (p4 = true)) || p5 = true
+p5 = true || (! (p6 = true))
+(! (p7 = true)) || p8 = true
+(! (p9 = true)) || p10 = true
+(! (p11 = true)) || p12 = true
+p10 = true || (! (p13 = true))
+p10 = true || (! (p15 = true))
+(! (p16 = true)) || p17 = true
+(! (p13 = true)) || p14 = true
+(! (p13 = true)) || p18 = true
+(! (p13 = true)) || p19 = true
+p14 = true || (! (p15 = true))
+(! (p15 = true)) || p18 = true
+(! (p15 = true)) || p19 = true
+p2 = true || (! (p20 = true))
+p2 = true || (! (p21 = true))
 (p22 != "v1") || (p36 != "v2")
 (p22 != "v1") || (p36 != "v3")
-((! (p23)) || p24) || p25
-((! (p23)) || p24) || (! (p25))
-((! (p23)) || (! (p24))) || p25
-p25 || (! (p26))
-(! (p13)) || p25
-p25 || (! (p27))
-p8 || (p28 != "v2")
-p8 || (p28 != "v3")
-p8 || (p29 != "v2")
-p8 || (p29 != "v3")
-p8 || (p30 != "v2")
-p8 || (p30 != "v3")
+((! (p23 = true)) || p24 = true) || p25 = true
+((! (p23 = true)) || p24 = true) || (! (p25 = true))
+((! (p23 = true)) || (! (p24 = true))) || p25 = true
+p25 = true || (! (p26 = true))
+(! (p13 = true)) || p25 = true
+p25 = true || (! (p27 = true))
+p8 = true || (p28 != "v2")
+p8 = true || (p28 != "v3")
+p8 = true || (p29 != "v2")
+p8 = true || (p29 != "v3")
+p8 = true || (p30 != "v2")
+p8 = true || (p30 != "v3")
 (p31 != "v2") || (p32 != "v1")
 (p31 != "v3") || (p32 != "v1")
 (p32 != "v1") || (p33 != "v2")
 (p32 != "v1") || (p33 != "v3")
-p24 || (p34 != "v2")
-p24 || (p34 != "v3")
-p24 || (p35 != "v2")
-p24 || (p35 != "v3")
+p24 = true || (p34 != "v2")
+p24 = true || (p34 != "v3")
+p24 = true || (p35 != "v2")
+p24 = true || (p35 != "v3")
 
