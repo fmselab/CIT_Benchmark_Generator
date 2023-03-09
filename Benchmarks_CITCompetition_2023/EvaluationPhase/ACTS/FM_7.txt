@@ -11,8 +11,8 @@ Liters138700 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-Boeing = TRUE
-((SeatsConfiguration != "NONE") => (Boeing = TRUE))&&((Boeing = TRUE) => (SeatsConfiguration != "NONE"))
-((FuelCapacity = TRUE) => (Boeing = TRUE))&&((Boeing = TRUE) => (FuelCapacity = TRUE))
-((Liters138700 = TRUE) => (FuelCapacity = TRUE))&&((FuelCapacity = TRUE) => (Liters138700 = TRUE))
+Boeing = true
+((SeatsConfiguration != "NONE") => (Boeing = true))&&((Boeing = true) => (SeatsConfiguration != "NONE"))
+((FuelCapacity = true) => (Boeing = true))&&((Boeing = true) => (FuelCapacity = true))
+((Liters138700 = true) => (FuelCapacity = true))&&((FuelCapacity = true) => (Liters138700 = true))
 

@@ -20,18 +20,18 @@ Sound (enum) : Sound1, Sound2, NONE
 
 [Constraint]
 -- this section is also optional
-HelpSystem = TRUE
-((Priority = TRUE) => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Priority = TRUE))
-(Priority = TRUE) => (((PH = TRUE) || (PI = TRUE)) || (PL = TRUE))
-(PH = TRUE) => (Priority = TRUE)
-(PI = TRUE) => (Priority = TRUE)
-(PL = TRUE) => (Priority = TRUE)
-((Level != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Level != "NONE"))
-((Method != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Method != "NONE"))
-((Activity != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Activity != "NONE"))
-((SensorInput != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (SensorInput != "NONE"))
-((SensorPosition = TRUE) => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (SensorPosition = TRUE))
-((NotPressed = TRUE) => (SensorPosition = TRUE))&&((SensorPosition = TRUE) => (NotPressed = TRUE))
-((Pressed = TRUE) => (SensorPosition = TRUE))&&((SensorPosition = TRUE) => (Pressed = TRUE))
-((Sound != "NONE") => (HelpSystem = TRUE))&&((HelpSystem = TRUE) => (Sound != "NONE"))
+HelpSystem = true
+((Priority = true) => (HelpSystem = true))&&((HelpSystem = true) => (Priority = true))
+(Priority = true) => (((PH = true) || (PI = true)) || (PL = true))
+(PH = true) => (Priority = true)
+(PI = true) => (Priority = true)
+(PL = true) => (Priority = true)
+((Level != "NONE") => (HelpSystem = true))&&((HelpSystem = true) => (Level != "NONE"))
+((Method != "NONE") => (HelpSystem = true))&&((HelpSystem = true) => (Method != "NONE"))
+((Activity != "NONE") => (HelpSystem = true))&&((HelpSystem = true) => (Activity != "NONE"))
+((SensorInput != "NONE") => (HelpSystem = true))&&((HelpSystem = true) => (SensorInput != "NONE"))
+((SensorPosition = true) => (HelpSystem = true))&&((HelpSystem = true) => (SensorPosition = true))
+((NotPressed = true) => (SensorPosition = true))&&((SensorPosition = true) => (NotPressed = true))
+((Pressed = true) => (SensorPosition = true))&&((SensorPosition = true) => (Pressed = true))
+((Sound != "NONE") => (HelpSystem = true))&&((HelpSystem = true) => (Sound != "NONE"))
 

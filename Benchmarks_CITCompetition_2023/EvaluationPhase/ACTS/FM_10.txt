@@ -15,14 +15,14 @@ v6 (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-Linux = TRUE
-((FileSystem = TRUE) => (Linux = TRUE))&&((Linux = TRUE) => (FileSystem = TRUE))
-(FileSystem = TRUE) => (((ext3 = TRUE) || (ext4 = TRUE)) || (goCrypt != "NONE"))
-(ext3 = TRUE) => (FileSystem = TRUE)
-(ext4 = TRUE) => (FileSystem = TRUE)
-(goCrypt != "NONE") => (FileSystem = TRUE)
-((IP = TRUE) => (Linux = TRUE))&&((Linux = TRUE) => (IP = TRUE))
-(IP = TRUE) => ((v4 = TRUE) || (v6 = TRUE))
-(v4 = TRUE) => (IP = TRUE)
-(v6 = TRUE) => (IP = TRUE)
+Linux = true
+((FileSystem = true) => (Linux = true))&&((Linux = true) => (FileSystem = true))
+(FileSystem = true) => (((ext3 = true) || (ext4 = true)) || (goCrypt != "NONE"))
+(ext3 = true) => (FileSystem = true)
+(ext4 = true) => (FileSystem = true)
+(goCrypt != "NONE") => (FileSystem = true)
+((IP = true) => (Linux = true))&&((Linux = true) => (IP = true))
+(IP = true) => ((v4 = true) || (v6 = true))
+(v4 = true) => (IP = true)
+(v6 = true) => (IP = true)
 

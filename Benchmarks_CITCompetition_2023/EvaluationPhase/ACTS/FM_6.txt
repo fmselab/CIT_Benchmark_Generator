@@ -20,18 +20,18 @@ OnBoardComputer (boolean) : true, false
 
 [Constraint]
 -- this section is also optional
-AutomotiveMultimedia = TRUE
-(AudioPlayer = TRUE) => (AutomotiveMultimedia = TRUE)
-((Radio = TRUE) => (AudioPlayer = TRUE))&&((AudioPlayer = TRUE) => (Radio = TRUE))
-(CDPlayer = TRUE) => (AudioPlayer = TRUE)
-(VoiceRecognition = TRUE) => (AutomotiveMultimedia = TRUE)
-(PersonalNavigation = TRUE) => (AutomotiveMultimedia = TRUE)
-((Maps = TRUE) => (PersonalNavigation = TRUE))&&((PersonalNavigation = TRUE) => (Maps = TRUE))
-(Maps = TRUE) => (((((Europe = TRUE) || (NorthAmerica = TRUE)) || (CentralAmerica = TRUE)) || (SouthAmerica = TRUE)) || (Asia = TRUE))
-(Europe = TRUE) => (Maps = TRUE)
-(NorthAmerica = TRUE) => (Maps = TRUE)
-(CentralAmerica = TRUE) => (Maps = TRUE)
-(SouthAmerica = TRUE) => (Maps = TRUE)
-(Asia = TRUE) => (Maps = TRUE)
-((OnBoardComputer = TRUE) => (AutomotiveMultimedia = TRUE))&&((AutomotiveMultimedia = TRUE) => (OnBoardComputer = TRUE))
+AutomotiveMultimedia = true
+(AudioPlayer = true) => (AutomotiveMultimedia = true)
+((Radio = true) => (AudioPlayer = true))&&((AudioPlayer = true) => (Radio = true))
+(CDPlayer = true) => (AudioPlayer = true)
+(VoiceRecognition = true) => (AutomotiveMultimedia = true)
+(PersonalNavigation = true) => (AutomotiveMultimedia = true)
+((Maps = true) => (PersonalNavigation = true))&&((PersonalNavigation = true) => (Maps = true))
+(Maps = true) => (((((Europe = true) || (NorthAmerica = true)) || (CentralAmerica = true)) || (SouthAmerica = true)) || (Asia = true))
+(Europe = true) => (Maps = true)
+(NorthAmerica = true) => (Maps = true)
+(CentralAmerica = true) => (Maps = true)
+(SouthAmerica = true) => (Maps = true)
+(Asia = true) => (Maps = true)
+((OnBoardComputer = true) => (AutomotiveMultimedia = true))&&((AutomotiveMultimedia = true) => (OnBoardComputer = true))
 
