@@ -14,4 +14,4 @@ p9: Boolean
 p10: Boolean
 
 Constraints:
- # !p4 or !p3 #
+ # !(p4=true) or !(p3=true) #

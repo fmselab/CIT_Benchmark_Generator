@@ -2,13 +2,13 @@
 Model INDUSTRIAL_5
 
 Parameters:
-p1: { v1 v2 v3 }
-p2: { v1 v2 v3 v4 }
+p1: {v1,v2,v3}
+p2: {v1,v2,v3,v4}
 p3: Boolean
-p4: { v1 v2 v3 }
-p5: { v1 v2 v3 }
-p6: { v1 v2 v3 }
-p7: { v1 v2 v3 }
+p4: {v1,v2,v3}
+p5: {v1,v2,v3}
+p6: {v1,v2,v3}
+p7: {v1,v2,v3}
 p8: Boolean
 p9: Boolean
 p10: Boolean
@@ -16,11 +16,11 @@ p11: Boolean
 p12: Boolean
 p13: Boolean
 p14: Boolean
-p15: { v1 v2 v3 }
+p15: {v1,v2,v3}
 p16: Boolean
 p17: Boolean
 p18: Boolean
-p19: { v1 v2 v3 v4 }
+p19: {v1,v2,v3,v4}
 p20: Boolean
 p21: Boolean
 p22: Boolean
@@ -41,11 +41,11 @@ p36: Boolean
 p37: Boolean
 p38: Boolean
 p39: Boolean
-p40: { v1 v2 v3 v4 }
+p40: {v1,v2,v3,v4}
 p41: Boolean
 p42: Boolean
 p43: Boolean
-p44: { v1 v2 v3 v4 }
+p44: {v1,v2,v3,v4}
 p45: Boolean
 p46: Boolean
 p47: Boolean
@@ -68,12 +68,12 @@ p63: Boolean
 p64: Boolean
 p65: Boolean
 p66: Boolean
-p67: { v1 v2 v3 v4 v5 }
+p67: {v1,v2,v3,v4,v5}
 p68: Boolean
 p69: Boolean
 p70: Boolean
 p71: Boolean
-p72: { v1 v2 v3 }
+p72: {v1,v2,v3}
 p73: Boolean
 p74: Boolean
 p75: Boolean
@@ -118,7 +118,7 @@ p113: Boolean
 p114: Boolean
 p115: Boolean
 p116: Boolean
-p117: { v1 v2 v3 v4 v5 v6 }
+p117: {v1,v2,v3,v4,v5,v6}
 p118: Boolean
 p119: Boolean
 p120: Boolean
@@ -145,7 +145,7 @@ p140: Boolean
 p141: Boolean
 p142: Boolean
 p143: Boolean
-p144: { v1 v2 v3 }
+p144: {v1,v2,v3}
 p145: Boolean
 p146: Boolean
 p147: Boolean
@@ -176,10 +176,10 @@ p171: Boolean
 p172: Boolean
 
 Constraints:
- # p36 or p45 or p46 or p47 or p166 #
- # p45 or p46 or p167 or p168 #
- # p16 or p169 #
- # p170 or p171 #
- # p79 or p80 #
- # p92 or p100 or p172 #
- # p36 or p45 or p46 or p134 #
+ # p36=true or p45=true or p46=true or p47=true or p166=true #
+ # p45=true or p46=true or p167=true or p168=true #
+ # p16=true or p169=true #
+ # p170=true or p171=true #
+ # p79=true or p80=true #
+ # p92=true or p100=true or p172=true #
+ # p36=true or p45=true or p46=true or p134=true #

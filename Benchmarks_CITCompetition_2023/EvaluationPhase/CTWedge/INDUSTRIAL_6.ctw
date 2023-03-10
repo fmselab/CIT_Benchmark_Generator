@@ -15,23 +15,23 @@ p10: Boolean
 p11: Boolean
 p12: Boolean
 p13: Boolean
-p14: { v1 v2 v3 v4 }
-p15: { v1 v2 v3 v4 }
-p16: { v1 v2 v3 v4 }
-p17: { v1 v2 v3 v4 }
-p18: { v1 v2 v3 v4 }
+p14: {v1,v2,v3,v4}
+p15: {v1,v2,v3,v4}
+p16: {v1,v2,v3,v4}
+p17: {v1,v2,v3,v4}
+p18: {v1,v2,v3,v4}
 
 Constraints:
- # !p1 or !p2 #
- # !p1 or !p3 #
- # !p1 or p14!=v2 #
- # !p1 or p15!=v2 #
- # !p1 or p15!=v3 #
- # !p1 or p15!=v4 #
- # !p1 or p16!=v2 #
- # !p1 or p16!=v3 #
- # !p1 or p16!=v4 #
- # !p13 or p16!=v2 #
- # !p13 or p16!=v3 #
- # !p13 or p16!=v4 #
- # !p4 or p5 #
+ # !(p1=true) or !(p2=true) #
+ # !(p1=true) or !(p3=true) #
+ # !(p1=true) or p14!=v2 #
+ # !(p1=true) or p15!=v2 #
+ # !(p1=true) or p15!=v3 #
+ # !(p1=true) or p15!=v4 #
+ # !(p1=true) or p16!=v2 #
+ # !(p1=true) or p16!=v3 #
+ # !(p1=true) or p16!=v4 #
+ # !(p13=true) or p16!=v2 #
+ # !(p13=true) or p16!=v3 #
+ # !(p13=true) or p16!=v4 #
+ # !(p4=true) or p5=true #
