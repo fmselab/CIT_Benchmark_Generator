@@ -17,7 +17,7 @@ CompassSensors : Boolean
 PositionSensors : Boolean
 GPSSensor : Boolean
 Controller : Boolean
-ControllerDir : { ControllerWithDir ControllerWithoutDir NONE }
+ControllerDir : {ControllerWithDir,ControllerWithoutDir,NONE}
 LocationBasedServ : Boolean 
 
 Constraints :

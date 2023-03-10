@@ -5,10 +5,11 @@ Linux : Boolean
 FileSystem : Boolean
 ext3 : Boolean
 ext4 : Boolean
-goCrypt : { AES Twofish NONE }
+goCrypt : {AES,Twofish,NONE}
 IP : Boolean
 v4 : Boolean
-v6 : Boolean Constraints :
+v6 : Boolean 
+Constraints :
 # Linux == true #
 # FileSystem == true <=> Linux == true #
 # FileSystem == true => ext3 == true || ext4 == true || goCrypt != NONE #

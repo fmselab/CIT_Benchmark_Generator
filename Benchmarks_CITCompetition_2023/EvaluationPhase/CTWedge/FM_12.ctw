@@ -5,14 +5,16 @@ PPU : Boolean
 Crane : Boolean
 SRouting : Boolean
 ERouting : Boolean
-Slide : { Straight Conveyor NONE }
-Conveyor : { SSortation DSortation NONE }
+Slide : {Straight,Conveyor,NONE}
+Conveyor : {SSortation,DSortation,NONE}
 Workpiece : Boolean
 Plastic : Boolean
 Light : Boolean
 Dark : Boolean
 Metal : Boolean
-Stamp : { SPressure APressure NONE } Constraints :
+Stamp : {SPressure,APressure,NONE} 
+
+Constraints :
 # PPU == true #
 # Crane == true <=> PPU == true #
 # Crane == true => SRouting == true || ERouting == true #

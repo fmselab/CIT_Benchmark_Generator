@@ -15,7 +15,8 @@ NorthAmerica : Boolean
 CentralAmerica : Boolean
 SouthAmerica : Boolean
 Asia : Boolean
-OnBoardComputer : Boolean Constraints :
+OnBoardComputer : Boolean 
+Constraints :
 # AutomotiveMultimedia == true #
 # AudioPlayer == true => AutomotiveMultimedia == true #
 # Radio == true <=> AudioPlayer == true #

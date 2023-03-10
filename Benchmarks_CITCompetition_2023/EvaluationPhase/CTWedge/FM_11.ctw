@@ -26,7 +26,9 @@ Music : Boolean
 Playmusic : Boolean
 Video : Boolean
 Playvideo : Boolean
-Capturevideo : Boolean Constraints :
+Capturevideo : Boolean 
+
+Constraints :
 # MobileMedia == true #
 # Albummanagement == true <=> MobileMedia == true #
 # CreateAlbum == true <=> Albummanagement == true #

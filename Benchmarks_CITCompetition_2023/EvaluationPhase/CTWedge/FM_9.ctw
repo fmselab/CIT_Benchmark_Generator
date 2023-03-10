@@ -7,14 +7,16 @@ Priority : Boolean
 PH : Boolean
 PI : Boolean
 PL : Boolean
-Level : { BG IT AD NONE }
-Method : { PR PB NONE }
-Activity : { PS CT NONE }
-SensorInput : { S1 S2 S3 S4 NONE }
+Level : {BG,IT,AD,NONE}
+Method : {PR,PB,NONE}
+Activity : {PS,CT,NONE}
+SensorInput : {S1,S2,S3,S4,NONE}
 SensorPosition : Boolean
 NotPressed : Boolean
 Pressed : Boolean
-Sound : { Sound1 Sound2 NONE } Constraints :
+Sound : {Sound1,Sound2,NONE} 
+
+Constraints :
 # HelpSystem == true #
 # Priority == true <=> HelpSystem == true #
 # Priority == true => PH == true || PI == true || PL == true #

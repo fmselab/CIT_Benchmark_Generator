@@ -6,14 +6,15 @@ Measurements : Boolean
 WindSpeed : Boolean
 Temperature : Boolean
 Pressure : Boolean
-DataSource : { ExternalSensors Demo Internet NONE }
+DataSource : {ExternalSensors,Demo,Internet,NONE}
 OutFormAndLanguage : Boolean
-OutputFormat : { File WebServer Text NONE }
-Format : { HTML XML Plaintext NONE }
-Language : { English German NONE }
+OutputFormat : {File,WebServer,Text,NONE}
+Format : {HTML,XML,Plaintext,NONE}
+Language : {English,German,NONE}
 Alarm : Boolean
 FreezePoint : Boolean
-StormAlert : Boolean Constraints :
+StormAlert : Boolean 
+Constraints :
 # WeatherStation == true #
 # Measurements == true <=> WeatherStation == true #
 # Measurements == true => WindSpeed == true || Temperature == true || Pressure == true #

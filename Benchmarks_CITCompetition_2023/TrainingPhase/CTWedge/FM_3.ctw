@@ -17,7 +17,7 @@ FallMonit : Boolean
 SenEncryp : Boolean
 Smartphone : Boolean
 Video : Boolean
-SmartphoneType : { Android iPhone NONE }
+SmartphoneType : {Android,iPhone,NONE}
 FailTrans : Boolean
 Diabetes : Boolean
 PhEncryp : Boolean

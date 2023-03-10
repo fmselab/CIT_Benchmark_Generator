@@ -6,14 +6,15 @@ Model FM_8
 Parameters :
 CarBody : Boolean
 MultimediaDevices : Boolean
-Radio : { MonochromeRadioDisplay ColorRadioDisplay NONE }
+Radio : {MonochromeRadioDisplay,ColorRadioDisplay,NONE}
 Navigation : Boolean
-DisplayType : { MonochromeNavDisplay ColorNavDisplay NONE }
+DisplayType : {MonochromeNavDisplay,ColorNavDisplay,NONE}
 DataStorage : Boolean
 HardDiskDrive : Boolean
 DVDDrive : Boolean
 DVDEntertainment : Boolean
-OtherFeatures : Boolean Constraints :
+OtherFeatures : Boolean 
+Constraints :
 # CarBody == true #
 # MultimediaDevices == true => CarBody == true #
 # Radio != NONE => MultimediaDevices == true #

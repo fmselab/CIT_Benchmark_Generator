@@ -10,8 +10,8 @@ HomeKey : Boolean
 ManageHealth : Boolean
 HeartBeat : Boolean
 EnergyBurnt : Boolean
-Language : { English Chinese Korean NONE }
-Speaker : { Poly Plain NONE } 
+Language : {English,Chinese,Korean,NONE}
+Speaker : {Poly,Plain,NONE} 
 
 Constraints :
 # Smartwatch == true #

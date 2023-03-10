@@ -44,7 +44,9 @@ Manutencaodeestoque : Boolean
 Controlefinanceiro : Boolean
 Contasapagar : Boolean
 Contasareceber : Boolean
-Manutencaodelancamentos : Boolean Constraints :
+Manutencaodelancamentos : Boolean 
+
+Constraints :
 # ERP_SPL == true #
 # Cadastros == true <=> ERP_SPL == true #
 # Cadastrodecliente == true <=> Cadastros == true #
