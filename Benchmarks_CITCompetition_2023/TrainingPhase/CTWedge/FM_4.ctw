@@ -21,26 +21,26 @@ ControllerDir : { ControllerWithDir ControllerWithoutDir NONE }
 LocationBasedServ : Boolean 
 
 Constraints :
-# ParkingAssistant == TRUE #
-# Sensors == TRUE <=> ParkingAssistant == TRUE #
-# DistanceSensors == TRUE <=> Sensors == TRUE #
-# SensorFusion == TRUE => DistanceSensors == TRUE #
-# DistanceSensorTypes == TRUE <=> DistanceSensors == TRUE #
-# DistanceSensorTypes == TRUE => InfraredSensor == TRUE || UltrasonicSensor == TRUE #
-# InfraredSensor == TRUE => DistanceSensorTypes == TRUE #
-# UltrasonicSensor == TRUE => DistanceSensorTypes == TRUE #
-# DrivenWaySensors == TRUE <=> Sensors == TRUE #
-# PulseLengthSensorV2 == TRUE <=> DrivenWaySensors == TRUE #
-# DirectionPositionSensors == TRUE <=> Sensors == TRUE #
-# DirectionPositionSensors == TRUE => DirectionSensors == TRUE || PositionSensors == TRUE #
-# DirectionSensors == TRUE => DirectionPositionSensors == TRUE #
-# CompassSensors == TRUE <=> DirectionSensors == TRUE #
-# PositionSensors == TRUE => DirectionPositionSensors == TRUE #
-# GPSSensor == TRUE <=> PositionSensors == TRUE #
-# Controller == TRUE <=> ParkingAssistant == TRUE #
-# ControllerDir != NONE <=> Controller == TRUE #
-# LocationBasedServ == TRUE => Controller == TRUE #
-# SensorFusion == TRUE => InfraredSensor == TRUE #
-# SensorFusion == TRUE => UltrasonicSensor == TRUE #
-# ControllerDir == ControllerWithDir => DirectionSensors == TRUE #
-# LocationBasedServ == TRUE => PositionSensors == TRUE #
+# ParkingAssistant == true #
+# Sensors == true <=> ParkingAssistant == true #
+# DistanceSensors == true <=> Sensors == true #
+# SensorFusion == true => DistanceSensors == true #
+# DistanceSensorTypes == true <=> DistanceSensors == true #
+# DistanceSensorTypes == true => InfraredSensor == true || UltrasonicSensor == true #
+# InfraredSensor == true => DistanceSensorTypes == true #
+# UltrasonicSensor == true => DistanceSensorTypes == true #
+# DrivenWaySensors == true <=> Sensors == true #
+# PulseLengthSensorV2 == true <=> DrivenWaySensors == true #
+# DirectionPositionSensors == true <=> Sensors == true #
+# DirectionPositionSensors == true => DirectionSensors == true || PositionSensors == true #
+# DirectionSensors == true => DirectionPositionSensors == true #
+# CompassSensors == true <=> DirectionSensors == true #
+# PositionSensors == true => DirectionPositionSensors == true #
+# GPSSensor == true <=> PositionSensors == true #
+# Controller == true <=> ParkingAssistant == true #
+# ControllerDir != NONE <=> Controller == true #
+# LocationBasedServ == true => Controller == true #
+# SensorFusion == true => InfraredSensor == true #
+# SensorFusion == true => UltrasonicSensor == true #
+# ControllerDir == ControllerWithDir => DirectionSensors == true #
+# LocationBasedServ == true => PositionSensors == true #
