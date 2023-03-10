@@ -44,47 +44,47 @@ GlassbreakSensors : Boolean
 Cameras : Boolean 
 
 Constraints :
-# SmartHome == TRUE #
-# HeatingManagement == TRUE <=> SmartHome == TRUE #
-# ManualHeating == TRUE <=> HeatingManagement == TRUE #
-# SmartHeating == TRUE => HeatingManagement == TRUE #
-# WindowsManagement == TRUE <=> SmartHome == TRUE #
-# ManualWindows == TRUE <=> WindowsManagement == TRUE #
-# ElectronicWindows == TRUE => WindowsManagement == TRUE #
-# LightManagement == TRUE <=> SmartHome == TRUE #
-# ManualLight == TRUE <=> LightManagement == TRUE #
-# SmartLight == TRUE => LightManagement == TRUE #
-# Pre_definedValues == TRUE => LightManagement == TRUE #
-# GUI == TRUE <=> SmartHome == TRUE #
-# TouchScreen == TRUE <=> GUI == TRUE #
-# Internet == TRUE => GUI == TRUE #
-# PresenceSimulator == TRUE => SmartHome == TRUE #
-# PresenceSimulator == TRUE => LightSimulation == TRUE || BlindSimulation == TRUE || MusicSimulation == TRUE #
-# LightSimulation == TRUE => PresenceSimulator == TRUE #
-# BlindSimulation == TRUE => PresenceSimulator == TRUE #
-# MusicSimulation == TRUE => PresenceSimulator == TRUE #
-# FireControl == TRUE <=> SmartHome == TRUE #
-# FirstAidGroup == TRUE <=> FireControl == TRUE #
-# FirstAidGroup_1 == TRUE <=> FirstAidGroup == TRUE #
-# FirstAidGroup_1 == TRUE => FireDepartment == TRUE || OtherGroup == TRUE #
-# FireDepartment == TRUE => FirstAidGroup_1 == TRUE #
-# OtherGroup == TRUE => FirstAidGroup_1 == TRUE #
-# FireSprinklers == TRUE => FirstAidGroup == TRUE #
-# IrrigationSprinklers == TRUE => SmartHome == TRUE #
-# SimpleControl == TRUE <=> IrrigationSprinklers == TRUE #
-# SmartSprinklers == TRUE => IrrigationSprinklers == TRUE #
-# Alarm == TRUE <=> SmartHome == TRUE #
-# Alarm == TRUE => Siren == TRUE || Bell == TRUE || Lights == TRUE #
-# Siren == TRUE => Alarm == TRUE #
-# Bell == TRUE => Alarm == TRUE #
-# Lights == TRUE => Alarm == TRUE #
-# Security == TRUE <=> SmartHome == TRUE #
-# AuthenticationDevice == TRUE <=> Security == TRUE #
-# AuthenticationDevice == TRUE => Keypad == TRUE || RetinaScanner == TRUE || FingerPrintReader == TRUE #
-# Keypad == TRUE => AuthenticationDevice == TRUE #
-# RetinaScanner == TRUE => AuthenticationDevice == TRUE #
-# FingerPrintReader == TRUE => AuthenticationDevice == TRUE #
-# IntrusionDetectionDevice == TRUE => Security == TRUE #
-# IntrusionDetectionDevice == TRUE => GlassbreakSensors == TRUE || Cameras == TRUE #
-# GlassbreakSensors == TRUE => IntrusionDetectionDevice == TRUE #
-# Cameras == TRUE => IntrusionDetectionDevice == TRUE #
+# SmartHome == true #
+# HeatingManagement == true <=> SmartHome == true #
+# ManualHeating == true <=> HeatingManagement == true #
+# SmartHeating == true => HeatingManagement == true #
+# WindowsManagement == true <=> SmartHome == true #
+# ManualWindows == true <=> WindowsManagement == true #
+# ElectronicWindows == true => WindowsManagement == true #
+# LightManagement == true <=> SmartHome == true #
+# ManualLight == true <=> LightManagement == true #
+# SmartLight == true => LightManagement == true #
+# Pre_definedValues == true => LightManagement == true #
+# GUI == true <=> SmartHome == true #
+# TouchScreen == true <=> GUI == true #
+# Internet == true => GUI == true #
+# PresenceSimulator == true => SmartHome == true #
+# PresenceSimulator == true => LightSimulation == true || BlindSimulation == true || MusicSimulation == true #
+# LightSimulation == true => PresenceSimulator == true #
+# BlindSimulation == true => PresenceSimulator == true #
+# MusicSimulation == true => PresenceSimulator == true #
+# FireControl == true <=> SmartHome == true #
+# FirstAidGroup == true <=> FireControl == true #
+# FirstAidGroup_1 == true <=> FirstAidGroup == true #
+# FirstAidGroup_1 == true => FireDepartment == true || OtherGroup == true #
+# FireDepartment == true => FirstAidGroup_1 == true #
+# OtherGroup == true => FirstAidGroup_1 == true #
+# FireSprinklers == true => FirstAidGroup == true #
+# IrrigationSprinklers == true => SmartHome == true #
+# SimpleControl == true <=> IrrigationSprinklers == true #
+# SmartSprinklers == true => IrrigationSprinklers == true #
+# Alarm == true <=> SmartHome == true #
+# Alarm == true => Siren == true || Bell == true || Lights == true #
+# Siren == true => Alarm == true #
+# Bell == true => Alarm == true #
+# Lights == true => Alarm == true #
+# Security == true <=> SmartHome == true #
+# AuthenticationDevice == true <=> Security == true #
+# AuthenticationDevice == true => Keypad == true || RetinaScanner == true || FingerPrintReader == true #
+# Keypad == true => AuthenticationDevice == true #
+# RetinaScanner == true => AuthenticationDevice == true #
+# FingerPrintReader == true => AuthenticationDevice == true #
+# IntrusionDetectionDevice == true => Security == true #
+# IntrusionDetectionDevice == true => GlassbreakSensors == true || Cameras == true #
+# GlassbreakSensors == true => IntrusionDetectionDevice == true #
+# Cameras == true => IntrusionDetectionDevice == true #

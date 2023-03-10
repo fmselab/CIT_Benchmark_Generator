@@ -13,21 +13,21 @@ Light : Boolean
 Dark : Boolean
 Metal : Boolean
 Stamp : { SPressure APressure NONE } Constraints :
-# PPU == TRUE #
-# Crane == TRUE <=> PPU == TRUE #
-# Crane == TRUE => SRouting == TRUE || ERouting == TRUE #
-# SRouting == TRUE => Crane == TRUE #
-# ERouting == TRUE => Crane == TRUE #
-# Slide != NONE <=> PPU == TRUE #
+# PPU == true #
+# Crane == true <=> PPU == true #
+# Crane == true => SRouting == true || ERouting == true #
+# SRouting == true => Crane == true #
+# ERouting == true => Crane == true #
+# Slide != NONE <=> PPU == true #
 # Conveyor != NONE <=> Slide == Conveyor #
-# Workpiece == TRUE <=> PPU == TRUE #
-# Workpiece == TRUE => Plastic == TRUE || Metal == TRUE #
-# Plastic == TRUE => Workpiece == TRUE #
-# Plastic == TRUE => Light == TRUE || Dark == TRUE #
-# Light == TRUE => Plastic == TRUE #
-# Dark == TRUE => Plastic == TRUE #
-# Metal == TRUE => Workpiece == TRUE #
-# Stamp != NONE => PPU == TRUE #
-# Stamp != NONE => Metal == TRUE #
-# Light == TRUE => Stamp == APressure #
-# ! ( SRouting == TRUE && ERouting == TRUE ) #
+# Workpiece == true <=> PPU == true #
+# Workpiece == true => Plastic == true || Metal == true #
+# Plastic == true => Workpiece == true #
+# Plastic == true => Light == true || Dark == true #
+# Light == true => Plastic == true #
+# Dark == true => Plastic == true #
+# Metal == true => Workpiece == true #
+# Stamp != NONE => PPU == true #
+# Stamp != NONE => Metal == true #
+# Light == true => Stamp == APressure #
+# ! ( SRouting == true && ERouting == true ) #

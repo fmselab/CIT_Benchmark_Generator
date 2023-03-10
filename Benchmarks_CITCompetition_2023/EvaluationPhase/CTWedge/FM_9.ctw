@@ -15,17 +15,17 @@ SensorPosition : Boolean
 NotPressed : Boolean
 Pressed : Boolean
 Sound : { Sound1 Sound2 NONE } Constraints :
-# HelpSystem == TRUE #
-# Priority == TRUE <=> HelpSystem == TRUE #
-# Priority == TRUE => PH == TRUE || PI == TRUE || PL == TRUE #
-# PH == TRUE => Priority == TRUE #
-# PI == TRUE => Priority == TRUE #
-# PL == TRUE => Priority == TRUE #
-# Level != NONE <=> HelpSystem == TRUE #
-# Method != NONE <=> HelpSystem == TRUE #
-# Activity != NONE <=> HelpSystem == TRUE #
-# SensorInput != NONE <=> HelpSystem == TRUE #
-# SensorPosition == TRUE <=> HelpSystem == TRUE #
-# NotPressed == TRUE <=> SensorPosition == TRUE #
-# Pressed == TRUE <=> SensorPosition == TRUE #
-# Sound != NONE <=> HelpSystem == TRUE #
+# HelpSystem == true #
+# Priority == true <=> HelpSystem == true #
+# Priority == true => PH == true || PI == true || PL == true #
+# PH == true => Priority == true #
+# PI == true => Priority == true #
+# PL == true => Priority == true #
+# Level != NONE <=> HelpSystem == true #
+# Method != NONE <=> HelpSystem == true #
+# Activity != NONE <=> HelpSystem == true #
+# SensorInput != NONE <=> HelpSystem == true #
+# SensorPosition == true <=> HelpSystem == true #
+# NotPressed == true <=> SensorPosition == true #
+# Pressed == true <=> SensorPosition == true #
+# Sound != NONE <=> HelpSystem == true #

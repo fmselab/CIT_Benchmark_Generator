@@ -45,49 +45,49 @@ Controlefinanceiro : Boolean
 Contasapagar : Boolean
 Contasareceber : Boolean
 Manutencaodelancamentos : Boolean Constraints :
-# ERP_SPL == TRUE #
-# Cadastros == TRUE <=> ERP_SPL == TRUE #
-# Cadastrodecliente == TRUE <=> Cadastros == TRUE #
-# Editarcadastrodecliente == TRUE <=> Cadastrodecliente == TRUE #
-# Apagarcadastrodecliente == TRUE <=> Cadastrodecliente == TRUE #
-# Cadastrodefornecedor == TRUE <=> Cadastros == TRUE #
-# Editarcadastrodefornecedor == TRUE <=> Cadastrodefornecedor == TRUE #
-# Apagarcadastrodefornecedor == TRUE <=> Cadastrodefornecedor == TRUE #
-# Cadastrodefuncionario == TRUE => Cadastros == TRUE #
-# Editarcadastrodefuncionario == TRUE <=> Cadastrodefuncionario == TRUE #
-# Apagarcadastrodefuncionario == TRUE <=> Cadastrodefuncionario == TRUE #
-# Cadastrodeusuario == TRUE <=> Cadastros == TRUE #
-# Editarcadastrodeusuario == TRUE <=> Cadastrodeusuario == TRUE #
-# Apagarcadastrodeusuario == TRUE <=> Cadastrodeusuario == TRUE #
-# Cadastroderegrasdeacessodeusuario == TRUE => Cadastros == TRUE #
-# Editarregrasdeacessodeusuario == TRUE <=> Cadastroderegrasdeacessodeusuario == TRUE #
-# Cadastros_6 == TRUE <=> Cadastros == TRUE #
-# Cadastros_6 == TRUE => Cadastrodeproduto == TRUE || Cadastrodeservico == TRUE #
-# Cadastrodeproduto == TRUE => Cadastros_6 == TRUE #
-# Editarcadastrodeproduto == TRUE <=> Cadastrodeproduto == TRUE #
-# Apagarcadastrodeproduto == TRUE <=> Cadastrodeproduto == TRUE #
-# Cadastrodeservico == TRUE => Cadastros_6 == TRUE #
-# Editarcadastrodeservico == TRUE <=> Cadastrodeservico == TRUE #
-# Apagarcadastrodeservico == TRUE <=> Cadastrodeservico == TRUE #
-# Login == TRUE <=> ERP_SPL == TRUE #
-# Controledeacesso == TRUE => Login == TRUE #
-# Listagens == TRUE => ERP_SPL == TRUE #
-# Listagemdeitens == TRUE <=> Listagens == TRUE #
-# Listagemdeprodutos == TRUE => Listagens == TRUE #
-# Listagemdeservicos == TRUE => Listagens == TRUE #
-# Listagemdepessoas == TRUE <=> Listagens == TRUE #
-# Listagemdeclientes == TRUE <=> Listagens == TRUE #
-# Listagemdefornecedores == TRUE <=> Listagens == TRUE #
-# Listagemdefuncionarios == TRUE => Listagens == TRUE #
-# Listagemdeusuarios == TRUE <=> Listagens == TRUE #
-# Listagemdeestoque == TRUE => Listagens == TRUE #
-# Controledeestoque == TRUE => ERP_SPL == TRUE #
-# Controledeestoque == TRUE => Entradadeestoque == TRUE || Saidadeestoque == TRUE || Manutencaodeestoque == TRUE #
-# Entradadeestoque == TRUE => Controledeestoque == TRUE #
-# Saidadeestoque == TRUE => Controledeestoque == TRUE #
-# Manutencaodeestoque == TRUE => Controledeestoque == TRUE #
-# Controlefinanceiro == TRUE => ERP_SPL == TRUE #
-# Controlefinanceiro == TRUE => Contasapagar == TRUE || Contasareceber == TRUE || Manutencaodelancamentos == TRUE #
-# Contasapagar == TRUE => Controlefinanceiro == TRUE #
-# Contasareceber == TRUE => Controlefinanceiro == TRUE #
-# Manutencaodelancamentos == TRUE => Controlefinanceiro == TRUE #
+# ERP_SPL == true #
+# Cadastros == true <=> ERP_SPL == true #
+# Cadastrodecliente == true <=> Cadastros == true #
+# Editarcadastrodecliente == true <=> Cadastrodecliente == true #
+# Apagarcadastrodecliente == true <=> Cadastrodecliente == true #
+# Cadastrodefornecedor == true <=> Cadastros == true #
+# Editarcadastrodefornecedor == true <=> Cadastrodefornecedor == true #
+# Apagarcadastrodefornecedor == true <=> Cadastrodefornecedor == true #
+# Cadastrodefuncionario == true => Cadastros == true #
+# Editarcadastrodefuncionario == true <=> Cadastrodefuncionario == true #
+# Apagarcadastrodefuncionario == true <=> Cadastrodefuncionario == true #
+# Cadastrodeusuario == true <=> Cadastros == true #
+# Editarcadastrodeusuario == true <=> Cadastrodeusuario == true #
+# Apagarcadastrodeusuario == true <=> Cadastrodeusuario == true #
+# Cadastroderegrasdeacessodeusuario == true => Cadastros == true #
+# Editarregrasdeacessodeusuario == true <=> Cadastroderegrasdeacessodeusuario == true #
+# Cadastros_6 == true <=> Cadastros == true #
+# Cadastros_6 == true => Cadastrodeproduto == true || Cadastrodeservico == true #
+# Cadastrodeproduto == true => Cadastros_6 == true #
+# Editarcadastrodeproduto == true <=> Cadastrodeproduto == true #
+# Apagarcadastrodeproduto == true <=> Cadastrodeproduto == true #
+# Cadastrodeservico == true => Cadastros_6 == true #
+# Editarcadastrodeservico == true <=> Cadastrodeservico == true #
+# Apagarcadastrodeservico == true <=> Cadastrodeservico == true #
+# Login == true <=> ERP_SPL == true #
+# Controledeacesso == true => Login == true #
+# Listagens == true => ERP_SPL == true #
+# Listagemdeitens == true <=> Listagens == true #
+# Listagemdeprodutos == true => Listagens == true #
+# Listagemdeservicos == true => Listagens == true #
+# Listagemdepessoas == true <=> Listagens == true #
+# Listagemdeclientes == true <=> Listagens == true #
+# Listagemdefornecedores == true <=> Listagens == true #
+# Listagemdefuncionarios == true => Listagens == true #
+# Listagemdeusuarios == true <=> Listagens == true #
+# Listagemdeestoque == true => Listagens == true #
+# Controledeestoque == true => ERP_SPL == true #
+# Controledeestoque == true => Entradadeestoque == true || Saidadeestoque == true || Manutencaodeestoque == true #
+# Entradadeestoque == true => Controledeestoque == true #
+# Saidadeestoque == true => Controledeestoque == true #
+# Manutencaodeestoque == true => Controledeestoque == true #
+# Controlefinanceiro == true => ERP_SPL == true #
+# Controlefinanceiro == true => Contasapagar == true || Contasareceber == true || Manutencaodelancamentos == true #
+# Contasapagar == true => Controlefinanceiro == true #
+# Contasareceber == true => Controlefinanceiro == true #
+# Manutencaodelancamentos == true => Controlefinanceiro == true #

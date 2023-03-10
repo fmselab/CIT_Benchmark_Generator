@@ -27,30 +27,30 @@ Playmusic : Boolean
 Video : Boolean
 Playvideo : Boolean
 Capturevideo : Boolean Constraints :
-# MobileMedia == TRUE #
-# Albummanagement == TRUE <=> MobileMedia == TRUE #
-# CreateAlbum == TRUE <=> Albummanagement == TRUE #
-# DeleteAlbum == TRUE <=> Albummanagement == TRUE #
-# Mediamanagement == TRUE <=> MobileMedia == TRUE #
-# Favorites == TRUE => Mediamanagement == TRUE #
-# Setfavorites == TRUE <=> Favorites == TRUE #
-# Viewfavorites == TRUE <=> Favorites == TRUE #
-# Sorting == TRUE => Mediamanagement == TRUE #
-# Basicmediaoperation == TRUE <=> Mediamanagement == TRUE #
-# Createmedia == TRUE <=> Basicmediaoperation == TRUE #
-# Deletemedia == TRUE <=> Basicmediaoperation == TRUE #
-# Editmedialabel == TRUE <=> Basicmediaoperation == TRUE #
-# Copymedia == TRUE => Mediamanagement == TRUE #
-# SMStransfer == TRUE => Mediamanagement == TRUE #
-# Receivephoto == TRUE <=> SMStransfer == TRUE #
-# Sendphoto == TRUE <=> SMStransfer == TRUE #
-# Mediaselection == TRUE <=> MobileMedia == TRUE #
-# Mediaselection == TRUE => Photo == TRUE || Music == TRUE || Video == TRUE #
-# Photo == TRUE => Mediaselection == TRUE #
-# Viewphoto == TRUE <=> Photo == TRUE #
-# Capturephoto == TRUE => Photo == TRUE #
-# Music == TRUE => Mediaselection == TRUE #
-# Playmusic == TRUE <=> Music == TRUE #
-# Video == TRUE => Mediaselection == TRUE #
-# Playvideo == TRUE <=> Video == TRUE #
-# Capturevideo == TRUE => Video == TRUE #
+# MobileMedia == true #
+# Albummanagement == true <=> MobileMedia == true #
+# CreateAlbum == true <=> Albummanagement == true #
+# DeleteAlbum == true <=> Albummanagement == true #
+# Mediamanagement == true <=> MobileMedia == true #
+# Favorites == true => Mediamanagement == true #
+# Setfavorites == true <=> Favorites == true #
+# Viewfavorites == true <=> Favorites == true #
+# Sorting == true => Mediamanagement == true #
+# Basicmediaoperation == true <=> Mediamanagement == true #
+# Createmedia == true <=> Basicmediaoperation == true #
+# Deletemedia == true <=> Basicmediaoperation == true #
+# Editmedialabel == true <=> Basicmediaoperation == true #
+# Copymedia == true => Mediamanagement == true #
+# SMStransfer == true => Mediamanagement == true #
+# Receivephoto == true <=> SMStransfer == true #
+# Sendphoto == true <=> SMStransfer == true #
+# Mediaselection == true <=> MobileMedia == true #
+# Mediaselection == true => Photo == true || Music == true || Video == true #
+# Photo == true => Mediaselection == true #
+# Viewphoto == true <=> Photo == true #
+# Capturephoto == true => Photo == true #
+# Music == true => Mediaselection == true #
+# Playmusic == true <=> Music == true #
+# Video == true => Mediaselection == true #
+# Playvideo == true <=> Video == true #
+# Capturevideo == true => Video == true #

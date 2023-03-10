@@ -14,20 +14,20 @@ Language : { English German NONE }
 Alarm : Boolean
 FreezePoint : Boolean
 StormAlert : Boolean Constraints :
-# WeatherStation == TRUE #
-# Measurements == TRUE <=> WeatherStation == TRUE #
-# Measurements == TRUE => WindSpeed == TRUE || Temperature == TRUE || Pressure == TRUE #
-# WindSpeed == TRUE => Measurements == TRUE #
-# Temperature == TRUE => Measurements == TRUE #
-# Pressure == TRUE => Measurements == TRUE #
-# DataSource != NONE <=> WeatherStation == TRUE #
-# OutFormAndLanguage == TRUE <=> WeatherStation == TRUE #
-# OutputFormat != NONE <=> OutFormAndLanguage == TRUE #
-# Format != NONE <=> OutFormAndLanguage == TRUE #
-# Language != NONE <=> OutFormAndLanguage == TRUE #
-# Alarm == TRUE => WeatherStation == TRUE #
-# Alarm == TRUE => FreezePoint == TRUE || StormAlert == TRUE #
-# FreezePoint == TRUE => Alarm == TRUE #
-# StormAlert == TRUE => Alarm == TRUE #
-# FreezePoint == TRUE => Temperature == TRUE #
+# WeatherStation == true #
+# Measurements == true <=> WeatherStation == true #
+# Measurements == true => WindSpeed == true || Temperature == true || Pressure == true #
+# WindSpeed == true => Measurements == true #
+# Temperature == true => Measurements == true #
+# Pressure == true => Measurements == true #
+# DataSource != NONE <=> WeatherStation == true #
+# OutFormAndLanguage == true <=> WeatherStation == true #
+# OutputFormat != NONE <=> OutFormAndLanguage == true #
+# Format != NONE <=> OutFormAndLanguage == true #
+# Language != NONE <=> OutFormAndLanguage == true #
+# Alarm == true => WeatherStation == true #
+# Alarm == true => FreezePoint == true || StormAlert == true #
+# FreezePoint == true => Alarm == true #
+# StormAlert == true => Alarm == true #
+# FreezePoint == true => Temperature == true #
 # Format == XML || OutputFormat == Text #

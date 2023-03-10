@@ -14,15 +14,15 @@ Language : { English Chinese Korean NONE }
 Speaker : { Poly Plain NONE } 
 
 Constraints :
-# Smartwatch == TRUE #
-# SmartPay == TRUE => Smartwatch == TRUE #
-# SmartKey == TRUE => Smartwatch == TRUE #
-# SmartKey == TRUE => CarKey == TRUE || HomeKey == TRUE #
-# CarKey == TRUE => SmartKey == TRUE #
-# HomeKey == TRUE => SmartKey == TRUE #
-# ManageHealth == TRUE => Smartwatch == TRUE #
-# ManageHealth == TRUE => HeartBeat == TRUE || EnergyBurnt == TRUE #
-# HeartBeat == TRUE => ManageHealth == TRUE #
-# EnergyBurnt == TRUE => ManageHealth == TRUE #
-# Language != NONE <=> Smartwatch == TRUE #
-# Speaker != NONE <=> Smartwatch == TRUE #
+# Smartwatch == true #
+# SmartPay == true => Smartwatch == true #
+# SmartKey == true => Smartwatch == true #
+# SmartKey == true => CarKey == true || HomeKey == true #
+# CarKey == true => SmartKey == true #
+# HomeKey == true => SmartKey == true #
+# ManageHealth == true => Smartwatch == true #
+# ManageHealth == true => HeartBeat == true || EnergyBurnt == true #
+# HeartBeat == true => ManageHealth == true #
+# EnergyBurnt == true => ManageHealth == true #
+# Language != NONE <=> Smartwatch == true #
+# Speaker != NONE <=> Smartwatch == true #
