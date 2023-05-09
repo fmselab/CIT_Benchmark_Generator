@@ -19,11 +19,27 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.eclipse.emf/org.eclipse.emf.common -->
+		<!--
+		https://mvnrepository.com/artifact/org.eclipse.emf/org.eclipse.emf.common -->
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.common</artifactId>
 			<version>2.23.0</version>
+		</dependency>
+		<dependency>
+			<groupId>ctwedge</groupId>
+			<artifactId>ctwedge</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>ctwedge</groupId>
+			<artifactId>ctwedge.util</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
 		</dependency>
 	</dependencies>
 </project>
