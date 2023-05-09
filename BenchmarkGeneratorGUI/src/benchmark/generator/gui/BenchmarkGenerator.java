@@ -1,30 +1,25 @@
 package benchmark.generator.gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.util.HashMap;
 
-import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.GridLayout;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import benchmark.generator.handlers.BenchmarkTypeChangeHandler;
 import benchmark.generator.handlers.BenchmarksExporterHandler;
 import benchmark.generator.handlers.GenerateHandler;
 import generators.GeneratorConfiguration;
-
-import javax.swing.JCheckBox;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.awt.event.ActionEvent;
 
 public class BenchmarkGenerator {
 
