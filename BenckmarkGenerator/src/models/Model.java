@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.medici.MediciCITGenerator;
-import ctwedge.generator.util.Utility;
+import ctwedge.util.ext.Utility;
 import generators.Randomizer;
 import models.constraints.Constraint;
 
