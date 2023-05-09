@@ -1,0 +1,13 @@
+package benchmark.generator.handlers;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class BenchmarksExporterHandler implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO: Export all benchmarks
+	}
+
+}
