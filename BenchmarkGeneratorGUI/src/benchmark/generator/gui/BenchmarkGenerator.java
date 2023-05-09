@@ -42,11 +42,10 @@ public class BenchmarkGenerator {
 	private JTextField txtNMinConstraints;
 	private JTextField txtNMaxConstraints;
 	private JTextField txtMaxConstraintsComplexity;
-	private JTextField txtMinSize;
-	private JTextField txtMaxSize;
 	private JTextField txtMinCardinality;
 	private JTextField txtMinConstraintComplexity;
 	private JTextField txtNumBenchmarks;
+	private JTextField txtRatio;
 	private JTable tblTestCases;
 	private JComboBox<String> benchmarkType;
 	private JSplitPane splitView;
@@ -56,6 +55,7 @@ public class BenchmarkGenerator {
 	private JLabel lblNMinParams;
 	private JLabel lblNMaxParams;
 	private JLabel lblNMaxEnums;
+	private JLabel lblRatio;
 	private JLabel lblLowerBoundInt;
 	private JLabel lblUpperBoundInt;
 	private JPanel panelTestSuite;
@@ -66,14 +66,14 @@ public class BenchmarkGenerator {
 	private JLabel lblMinCardinality;
 	private JCheckBox chkConstraintsBetweenParams;
 	private JLabel lblMaxCardinality;
-	private JLabel lblMaxSize;
-	private JLabel lblMinSize;
 	private JLabel lblMinConstraintComplexity;
 	private JLabel lblMaxConstraintComplexity;
 	private JLabel lblNMaxConstraints;
 	private JLabel lblNMinConstraints;
 	private JLabel lblPlaceHolder;
 	private HashMap<String, Integer> configurationComponents;
+	private JLabel lblTimeout;
+	private JTextField txtTimeout;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -134,102 +134,95 @@ public class BenchmarkGenerator {
 		fillBenchmarkTypes();
 		addToPanelConfigurations(benchmarkType, "benchmarkType");
 
-		lblNMinParams = new JLabel("N Min Params");
+		lblNMinParams = new JLabel("N Min Params (k)");
 		addToPanelConfigurations(lblNMinParams, "lblNMinParams");
 
 		txtNMinParams = new JTextField();
 		txtNMinParams.setColumns(10);
 		addToPanelConfigurations(txtNMinParams, "txtNMinParams");
 
-		lblNMaxParams = new JLabel("N Max Params");
+		lblNMaxParams = new JLabel("N Max Params (k)");
 		addToPanelConfigurations(lblNMaxParams, "lblNMaxParams");
 
 		txtNMaxParams = new JTextField();
 		addToPanelConfigurations(txtNMaxParams, "txtNMaxParams");
 		txtNMaxParams.setColumns(10);
 
-		lblNMaxEnums = new JLabel("Dim Max Enums");
+		lblNMaxEnums = new JLabel("Dim Max Enums (v)");
 		addToPanelConfigurations(lblNMaxEnums, "lblNMaxEnums");
 
 		txtNMaxEnums = new JTextField();
 		txtNMaxEnums.setColumns(10);
 		addToPanelConfigurations(txtNMaxEnums, "txtNMaxEnums");
 
-		lblLowerBoundInt = new JLabel("Lower Bound Ints");
+		lblLowerBoundInt = new JLabel("Lower Bound Ints (v)");
 		addToPanelConfigurations(lblLowerBoundInt, "lblLowerBoundInt");
 
 		txtLowerBoundInt = new JTextField();
 		txtLowerBoundInt.setColumns(10);
 		addToPanelConfigurations(txtLowerBoundInt, "txtLowerBoundInt");
 
-		lblUpperBoundInt = new JLabel("Upper Bound Ints");
+		lblUpperBoundInt = new JLabel("Upper Bound Ints (v)");
 		addToPanelConfigurations(lblUpperBoundInt, "lblUpperBoundInt");
 
 		txtUpperBoundInt = new JTextField();
 		txtUpperBoundInt.setColumns(10);
 		addToPanelConfigurations(txtUpperBoundInt, "txtUpperBoundInt");
 
-		lblMinCardinality = new JLabel("Min cardinality");
+		lblMinCardinality = new JLabel("Min cardinality (v)");
 		addToPanelConfigurations(lblMinCardinality, "lblMinCardinality");
 
 		txtMinCardinality = new JTextField();
 		txtMinCardinality.setColumns(10);
 		addToPanelConfigurations(txtMinCardinality, "txtMinCardinality");
 
-		lblMaxCardinality = new JLabel("Max cardinality");
+		lblMaxCardinality = new JLabel("Max cardinality (v)");
 		addToPanelConfigurations(lblMaxCardinality, "lblMaxCardinality");
 
 		txtMaxCardinality = new JTextField();
 		txtMaxCardinality.setColumns(10);
 		addToPanelConfigurations(txtMaxCardinality, "txtMaxCardinality");
 
-		lblNMinConstraints = new JLabel("N Min Constraints");
+		lblNMinConstraints = new JLabel("N Min Constraints (c)");
 		addToPanelConfigurations(lblNMinConstraints, "lblNMinConstraints");
 
 		txtNMinConstraints = new JTextField();
 		txtNMinConstraints.setColumns(10);
 		addToPanelConfigurations(txtNMinConstraints, "txtNMinConstraints");
 
-		lblNMaxConstraints = new JLabel("N Max Constraints");
+		lblNMaxConstraints = new JLabel("N Max Constraints (c)");
 		addToPanelConfigurations(lblNMaxConstraints, "lblNMaxConstraints");
 
 		txtNMaxConstraints = new JTextField();
 		txtNMaxConstraints.setColumns(10);
 		addToPanelConfigurations(txtNMaxConstraints, "txtNMaxConstraints");
 
-		lblMinConstraintComplexity = new JLabel("Min Constraints Complexity");
+		lblMinConstraintComplexity = new JLabel("Min Constraints Complexity (d)");
 		addToPanelConfigurations(lblMinConstraintComplexity, "lblMinConstraintComplexity");
 
 		txtMinConstraintComplexity = new JTextField();
 		txtMinConstraintComplexity.setColumns(10);
 		addToPanelConfigurations(txtMinConstraintComplexity, "txtMinConstraintComplexity");
 
-		lblMaxConstraintComplexity = new JLabel("Max Constraints Complexity");
+		lblMaxConstraintComplexity = new JLabel("Max Constraints Complexity (d)");
 		addToPanelConfigurations(lblMaxConstraintComplexity, "lblMaxConstraintComplexity");
 
 		txtMaxConstraintsComplexity = new JTextField();
 		txtMaxConstraintsComplexity.setColumns(10);
 		addToPanelConfigurations(txtMaxConstraintsComplexity, "txtMaxConstraintsComplexity");
-		
-		lblMinSize = new JLabel("Min Size");
-		addToPanelConfigurations(lblMinSize, "lblMinSize");
-
-		txtMinSize = new JTextField();
-		txtMinSize.setColumns(10);
-		addToPanelConfigurations(txtMinSize, "txtMinSize");
-
-		lblMaxSize = new JLabel("Max Size");
-		addToPanelConfigurations(lblMaxSize, "lblMaxSize");
-
-		txtMaxSize = new JTextField();
-		txtMaxSize.setColumns(10);
-		addToPanelConfigurations(txtMaxSize, "txtMaxSize");
 
 		chkConstraintsBetweenParams = new JCheckBox("Use constraints between params");
 		addToPanelConfigurations(chkConstraintsBetweenParams, "chkConstraintsBetweenParams");
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		lblRatio = new JLabel("Max Ratio Accepted");
+		addToPanelConfigurations(lblRatio, "lblRatio");
+		
+		txtRatio = new JTextField();
+		txtRatio.setColumns(10);
+		addToPanelConfigurations(txtRatio, "txtRatio");
 
 		lblNumBenchmarks = new JLabel("Num. Benchmarks");
 		addToPanelConfigurations(lblNumBenchmarks, "lblNumBenchmarks");
@@ -237,6 +230,13 @@ public class BenchmarkGenerator {
 		txtNumBenchmarks = new JTextField("1");
 		txtNumBenchmarks.setColumns(10);
 		addToPanelConfigurations(txtNumBenchmarks, "txtNumBenchmarks");
+		
+		lblTimeout = new JLabel("Timeout - single benchmark (s)");
+		addToPanelConfigurations(lblTimeout, "lblTimeout");
+		
+		txtTimeout = new JTextField();
+		txtTimeout.setColumns(10);
+		addToPanelConfigurations(txtTimeout, "txtTimeout");
 
 		btnGenerate = new JButton("Generate");
 		addToPanelConfigurations(btnGenerate, "btnGenerate");
@@ -302,14 +302,13 @@ public class BenchmarkGenerator {
 		txtMinCardinality.setText(Integer.toString(GeneratorConfiguration.MIN_CARDINALITY));
 		txtMaxConstraintsComplexity.setText(Integer.toString(GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY));
 		txtMinConstraintComplexity.setText(Integer.toString(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY));
-		txtMaxSize.setText(Integer.toString(GeneratorConfiguration.MAX_SIZE));
-		txtMinSize.setText(Integer.toString(GeneratorConfiguration.MIN_SIZE));
 		txtNMinConstraints.setText(Integer.toString(GeneratorConfiguration.N_CONSTRAINTS_MIN));
 		txtNMaxConstraints.setText(Integer.toString(GeneratorConfiguration.N_CONSTRAINTS_MAX));
 		txtNumBenchmarks.setText("1");
 		chkConstraintsBetweenParams.setSelected(GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS);
 		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
 		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
+		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
 	}
 
 	/**

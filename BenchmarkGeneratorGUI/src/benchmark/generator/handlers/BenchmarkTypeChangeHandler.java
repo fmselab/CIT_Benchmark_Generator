@@ -41,40 +41,69 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 		case BenchmarkGenerator.BOOLC:
 			lockConstraints(false);
 			lockNonBoolean(false);
+			lockIntegers(true);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.CNF:
 			lockConstraints(false);
 			lockNonBoolean(true);
+			lockIntegers(true);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.EMPTY_TYPE:
 			lockConstraints(false);
 			lockNonBoolean(false);
+			lockIntegers(false);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.HIGHLY_CONSTRAINED:
 			lockConstraints(false);
 			lockNonBoolean(true);
+			lockIntegers(true);
+			lockRatio(false);
 			break;
 		case BenchmarkGenerator.MCA:
 			lockConstraints(true);
 			lockNonBoolean(true);
+			lockIntegers(true);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.MCAC:
 			lockConstraints(false);
 			lockNonBoolean(true);
+			lockIntegers(true);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.NUMC:
 			lockConstraints(false);
 			lockNonBoolean(true);
+			lockIntegers(false);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.UNIFORM_ALL:
 			lockConstraints(true);
 			lockNonBoolean(true);
+			lockIntegers(true);
+			lockRatio(true);
 			break;
 		case BenchmarkGenerator.UNIFORM_BOOLEAN:
 			lockConstraints(true);
 			lockNonBoolean(false);
+			lockIntegers(true);
+			lockRatio(true);
 			break;
 		}
+	}
+
+	private void lockRatio(boolean lock) {
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")).setEnabled(!lock);
+
+	}
+
+	private void lockIntegers(boolean lock) {
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtLowerBoundInt")).setEnabled(!lock);
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtUpperBoundInt")).setEnabled(!lock);
+
 	}
 
 	/**
