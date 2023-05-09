@@ -309,6 +309,7 @@ public class BenchmarkGenerator {
 		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
 		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
+		txtTimeout.setText(Double.toString(GeneratorConfiguration.TIMEOUT));
 	}
 
 	/**
@@ -316,7 +317,7 @@ public class BenchmarkGenerator {
 	 */
 	private void addListeners() {
 		benchmarkType.addActionListener(new BenchmarkTypeChangeHandler(this));
-		btnGenerate.addActionListener(new GenerateHandler());
+		btnGenerate.addActionListener(new GenerateHandler(this));
 		btnExportAll.addActionListener(new BenchmarksExporterHandler());
 	}
 
