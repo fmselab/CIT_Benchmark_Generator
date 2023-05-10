@@ -15,11 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import benchmark.generator.handlers.BenchmarkTypeChangeHandler;
 import benchmark.generator.handlers.BenchmarksExporterHandler;
 import benchmark.generator.handlers.GenerateHandler;
 import generators.GeneratorConfiguration;
+import javax.swing.JScrollPane;
 
 public class BenchmarkGenerator {
 
@@ -74,6 +76,7 @@ public class BenchmarkGenerator {
 	private HashMap<String, Integer> configurationComponents;
 	private JLabel lblTimeout;
 	private JTextField txtTimeout;
+	private DefaultTableModel model;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -82,6 +85,10 @@ public class BenchmarkGenerator {
 	 */
 	public HashMap<String, Integer> getConfigurationComponents() {
 		return configurationComponents;
+	}
+	
+	public DefaultTableModel getModel() {
+		return model;
 	}
 
 	/**
@@ -247,7 +254,10 @@ public class BenchmarkGenerator {
 		panelTests = new JPanel();
 		splitLeftView.setRightComponent(panelTests);
 
-		tblTestCases = new JTable();
+		model = new DefaultTableModel(); 
+		model.addColumn("Benchmark name");
+		
+		tblTestCases = new JTable(model);
 		panelTests.add(tblTestCases);
 
 		panelTestSuite = new JPanel();
@@ -255,6 +265,14 @@ public class BenchmarkGenerator {
 
 		addListeners();
 		getDefaultParams();
+	}
+
+	public JTable getTblTestCases() {
+		return tblTestCases;
+	}
+
+	public JPanel getPanelTests() {
+		return panelTests;
 	}
 
 	/**
