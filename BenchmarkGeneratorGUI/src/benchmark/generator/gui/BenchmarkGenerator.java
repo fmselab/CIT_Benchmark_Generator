@@ -77,8 +77,6 @@ public class BenchmarkGenerator {
 	private JLabel lblNMinConstraints;
 	private JLabel lblPlaceHolder;
 	private HashMap<String, Integer> configurationComponents;
-	private JLabel lblTimeout;
-	private JTextField txtTimeout;
 	private DefaultTableModel model;
 	private JScrollPane scrollableTable;
 	private ModelList modelList;
@@ -243,13 +241,6 @@ public class BenchmarkGenerator {
 		txtNumBenchmarks.setColumns(10);
 		addToPanelConfigurations(txtNumBenchmarks, "txtNumBenchmarks");
 
-		lblTimeout = new JLabel("Timeout - single benchmark (min.)");
-		addToPanelConfigurations(lblTimeout, "lblTimeout");
-
-		txtTimeout = new JTextField();
-		txtTimeout.setColumns(10);
-		addToPanelConfigurations(txtTimeout, "txtTimeout");
-
 		btnGenerate = new JButton("Generate");
 		addToPanelConfigurations(btnGenerate, "btnGenerate");
 
@@ -358,7 +349,6 @@ public class BenchmarkGenerator {
 		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
 		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
-		txtTimeout.setText(Double.toString(GeneratorConfiguration.TIMEOUT));
 	}
 
 	/**
