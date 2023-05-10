@@ -33,10 +33,13 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent e) {
+		// Extract the selected text in the benchmarkType combo-box
 		JPanel panel = parentFrame.getPanelConfigurations();
 		JComboBox<String> benchmarkType = (JComboBox<String>) Arrays.stream(panel.getComponents())
 				.filter(x -> x.getName() != null && x.getName().equals("benchmarkType")).findFirst().get();
 		String selectedText = (String) benchmarkType.getSelectedItem();
+
+		// Based on the selected text, lock the items
 		switch (selectedText) {
 		case BenchmarkGenerator.BOOLC:
 			lockConstraints(false);
@@ -95,11 +98,21 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 		}
 	}
 
+	/**
+	 * Locks the ratio-related fields
+	 * 
+	 * @param lock the boolean setting the lock status
+	 */
 	private void lockRatio(boolean lock) {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")).setEnabled(!lock);
 
 	}
 
+	/**
+	 * Locks the integer-related fields
+	 * 
+	 * @param lock the boolean setting the lock status
+	 */
 	private void lockIntegers(boolean lock) {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtLowerBoundInt")).setEnabled(!lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtUpperBoundInt")).setEnabled(!lock);

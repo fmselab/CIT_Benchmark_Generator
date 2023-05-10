@@ -83,7 +83,7 @@ public class BenchmarkGenerator {
 	private JScrollPane scrollableTable;
 	private ModelList modelList;
 	private JTextPane textModel;
-	
+
 	/**
 	 * Returns the mapping between component's name and index
 	 * 
@@ -92,7 +92,12 @@ public class BenchmarkGenerator {
 	public HashMap<String, Integer> getConfigurationComponents() {
 		return configurationComponents;
 	}
-	
+
+	/**
+	 * Access the model of the table containing benchmarks' name
+	 * 
+	 * @return the model of the table containing benchmarks' name
+	 */
 	public DefaultTableModel getModel() {
 		return model;
 	}
@@ -118,6 +123,7 @@ public class BenchmarkGenerator {
 	 */
 	public BenchmarkGenerator() {
 		configurationComponents = new HashMap<>();
+		modelList = new ModelList();
 		initialize();
 	}
 
@@ -222,10 +228,10 @@ public class BenchmarkGenerator {
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
-		
+
 		lblRatio = new JLabel("Max Ratio Accepted");
 		addToPanelConfigurations(lblRatio, "lblRatio");
-		
+
 		txtRatio = new JTextField();
 		txtRatio.setColumns(10);
 		addToPanelConfigurations(txtRatio, "txtRatio");
@@ -236,10 +242,10 @@ public class BenchmarkGenerator {
 		txtNumBenchmarks = new JTextField("1");
 		txtNumBenchmarks.setColumns(10);
 		addToPanelConfigurations(txtNumBenchmarks, "txtNumBenchmarks");
-		
+
 		lblTimeout = new JLabel("Timeout - single benchmark (min.)");
 		addToPanelConfigurations(lblTimeout, "lblTimeout");
-		
+
 		txtTimeout = new JTextField();
 		txtTimeout.setColumns(10);
 		addToPanelConfigurations(txtTimeout, "txtTimeout");
@@ -253,63 +259,59 @@ public class BenchmarkGenerator {
 		panelTests = new JPanel();
 		splitLeftView.setRightComponent(panelTests);
 
-		model = new DefaultTableModel(){
-		    private static final long serialVersionUID = 1L;
+		model = new DefaultTableModel() {
+			private static final long serialVersionUID = 1L;
 
 			@Override
-		    public boolean isCellEditable(int row, int column) {
-		       //all cells false
-		       return false;
-		    }
+			public boolean isCellEditable(int row, int column) {
+				// Disable the editing in all cells
+				return false;
+			}
 		};
 		model.addColumn("Benchmark name");
-		
+
 		tblTestCases = new JTable(model);
 		tblTestCases.setAutoResizeMode(JTable.WIDTH);
 		panelTests.add(tblTestCases);
-		
+
 		scrollableTable = new JScrollPane(tblTestCases);
 		panelTests.add(scrollableTable);
-		
+
 		panelTestSuite = new JPanel();
 		splitView.setRightComponent(panelTestSuite);
-		
-		textModel = new JTextPane();
-		final JScrollPane scrollPane = new JScrollPane(textModel){
-            private static final long serialVersionUID = 1L;
 
+		textModel = new JTextPane();
+		final JScrollPane scrollPane = new JScrollPane(textModel) {
+			private static final long serialVersionUID = 1L;
+
+			/**
+			 * Auto resize the textarea based on the window size
+			 */
 			@Override
-            public Dimension getPreferredSize() {
-                return new Dimension(panelTestSuite.getSize().width - 10, panelTestSuite.getSize().height - 10);
-            }
-        };
-        panelTestSuite.add(scrollPane, BorderLayout.CENTER);
-		
-		//panelTestSuite.add(textModel);
+			public Dimension getPreferredSize() {
+				return new Dimension(panelTestSuite.getSize().width - 10, panelTestSuite.getSize().height - 10);
+			}
+		};
+		panelTestSuite.add(scrollPane, BorderLayout.CENTER);
 
 		addListeners();
 		getDefaultParams();
-		
-		modelList = new ModelList();
 	}
 
+	/**
+	 * Access the panel containing the text of the benchmark
+	 * 
+	 * @return the JTextPane textModel
+	 */
 	public JTextPane getTestModel() {
 		return textModel;
-	}
-
-	public JTable getTblTestCases() {
-		return tblTestCases;
-	}
-
-	public JPanel getPanelTests() {
-		return panelTests;
 	}
 
 	/**
 	 * Adds the component given as parameter to the panel configuration
 	 * 
 	 * @param component the component
-	 * @param name the name of the component
+	 * @param name      the name of the component
 	 */
 	private void addToPanelConfigurations(JComponent component, String name) {
 		int index = panelConfigurations.getComponentCount();
@@ -365,10 +367,15 @@ public class BenchmarkGenerator {
 	private void addListeners() {
 		benchmarkType.addActionListener(new BenchmarkTypeChangeHandler(this));
 		btnGenerate.addActionListener(new GenerateHandler(this));
-		btnExportAll.addActionListener(new BenchmarksExporterHandler());
+		btnExportAll.addActionListener(new BenchmarksExporterHandler(this));
 		tblTestCases.addMouseListener(new TableClickListener(this));
 	}
 
+	/**
+	 * Access the model list, populated by the generators
+	 * 
+	 * @return the ModelList
+	 */
 	public ModelList getModelList() {
 		return modelList;
 	}
