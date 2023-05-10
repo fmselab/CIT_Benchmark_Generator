@@ -1,5 +1,11 @@
 package generators;
 
+/**
+ * Configuration parameters for generators
+ * 
+ * @author andrea
+ *
+ */
 public class GeneratorConfiguration {
 
 	public static int N_PARAMS_MAX = 500;
@@ -14,6 +20,6 @@ public class GeneratorConfiguration {
 	public static int MIN_CONSTRAINTS_COMPLEXITY = 1;
 	public static boolean USE_CONSTRAINTS_BETWEEN_PARAMETERS = false;
 	public static double RATIO = 0.01;
-	public static double TIMEOUT=6.0;
-	
+	public static double TIMEOUT = 6.0;
+
 }

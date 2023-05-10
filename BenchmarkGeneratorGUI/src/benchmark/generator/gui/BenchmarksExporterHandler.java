@@ -2,15 +2,9 @@ package benchmark.generator.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
-
-import ctwedge.ctWedge.CitModel;
-import ctwedge.generator.acts.ACTSTranslator;
-import ctwedge.util.ext.Utility;
 import models.Model;
 import models.ModelList;
 
@@ -37,9 +31,9 @@ public class BenchmarksExporterHandler implements ActionListener {
 			try {
 				if (parentFrame.isACTS())
 					// TODO FIXME: Fix
-					exportACTS(m);
+					m.exportACTS();
 				if (parentFrame.isCTWedge())
-					exportCTWedge(m);
+					m.exportCTWedge();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -47,27 +41,4 @@ public class BenchmarksExporterHandler implements ActionListener {
 		JOptionPane.showMessageDialog(null, "Benchmarks exported", "Operation completed",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	/**
-	 * Export the model in CTWedge format
-	 * 
-	 * @param m the model to be exported
-	 */
-	private void exportCTWedge(Model m) throws IOException {
-		FileWriter fo = new FileWriter(new File(m.getName() + ".ctw"));
-		fo.write(m.toString());
-		fo.close();
-	}
-
-	/**
-	 * Export the model in ACTS format
-	 * 
-	 * @param m the model to be exported
-	 */
-	private void exportACTS(Model m) {
-		CitModel ctwedgeModel = Utility.loadModel(m.toString());
-		ACTSTranslator translator = new ACTSTranslator();
-		translator.convertModel(ctwedgeModel, true, 2, ".");
-	}
-
 }

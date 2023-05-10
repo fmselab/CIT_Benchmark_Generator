@@ -1,18 +1,32 @@
 package models;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.sosy_lab.common.ShutdownManager;
+import org.sosy_lab.common.configuration.Configuration;
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.common.log.BasicLogManager;
+import org.sosy_lab.common.log.LogManager;
+import org.sosy_lab.java_smt.SolverContextFactory;
+import org.sosy_lab.java_smt.SolverContextFactory.Solvers;
+import org.sosy_lab.java_smt.api.Formula;
+import org.sosy_lab.java_smt.api.ProverEnvironment;
+import org.sosy_lab.java_smt.api.SolverContext;
+import org.sosy_lab.java_smt.api.SolverException;
+import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
+
 import ctwedge.ctWedge.CitModel;
-import ctwedge.generator.medici.MediciCITGenerator;
+import ctwedge.generator.acts.ACTSTranslator;
 import ctwedge.util.ext.Utility;
+import ctwedge.util.validator.SMTConstraintChecker;
 import generators.Randomizer;
 import models.constraints.Constraint;
 import pMedici.util.Operations;
@@ -103,6 +117,62 @@ public class Model {
 				max = p.getCardinality();
 		}
 		return max;
+	}
+	
+	/**
+	 * Export the model in CTWedge format
+	 */
+	public void exportCTWedge() throws IOException {
+		FileWriter fo = new FileWriter(new File(this.getName() + ".ctw"));
+		fo.write(this.toString());
+		fo.close();
+	}
+
+	/**
+	 * Export the model in ACTS format
+	 */
+	public void exportACTS() {
+		CitModel ctwedgeModel = Utility.loadModel(this.toString());
+		ACTSTranslator translator = new ACTSTranslator();
+		translator.convertModel(ctwedgeModel, true, 2, ".");
+	}
+	
+	/**
+	 * Verifies if a given model is solvable by exploiting the
+	 * CTWedge.util.validator
+	 * 
+	 * @return TRUE if the model is solvable, FALSE otherwise
+	 */
+	public boolean isSolvable() {
+		boolean isSolvable = false;
+		try {
+			// Build the CIT Model
+			CitModel citModel = Utility.loadModel(toString());
+
+			// Set up the SMT Solver context and parameters
+			Configuration config = Configuration.defaultConfiguration();
+			LogManager logger;
+			logger = BasicLogManager.create(config);
+			ShutdownManager shutdown = ShutdownManager.create();
+			SolverContext ctx = SolverContextFactory.createSolverContext(config, logger, shutdown.getNotifier(),
+					Solvers.SMTINTERPOL);
+			ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
+			Map<String, String> declaredElements = new HashMap<>();
+			Map<ctwedge.ctWedge.Parameter, Formula> variables = new HashMap<ctwedge.ctWedge.Parameter, Formula>();
+
+			// Create the context
+			prover = SMTConstraintChecker.createCtxFromModel(citModel, citModel.getConstraints(), ctx, declaredElements,
+					variables, prover);
+
+			// Verify if it is empty
+			if (prover.isUnsat())
+				isSolvable = false;
+			else
+				isSolvable = true;
+		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		return isSolvable;
 	}
 
 }

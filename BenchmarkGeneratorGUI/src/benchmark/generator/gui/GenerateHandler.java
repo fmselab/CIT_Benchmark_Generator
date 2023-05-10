@@ -4,30 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import org.sosy_lab.common.ShutdownManager;
-import org.sosy_lab.common.configuration.Configuration;
-import org.sosy_lab.common.configuration.InvalidConfigurationException;
-import org.sosy_lab.common.log.BasicLogManager;
-import org.sosy_lab.common.log.LogManager;
-import org.sosy_lab.java_smt.SolverContextFactory;
-import org.sosy_lab.java_smt.SolverContextFactory.Solvers;
-import org.sosy_lab.java_smt.api.Formula;
-import org.sosy_lab.java_smt.api.ProverEnvironment;
-import org.sosy_lab.java_smt.api.SolverContext;
-import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
-import org.sosy_lab.java_smt.api.SolverException;
-
-import ctwedge.ctWedge.CitModel;
-import ctwedge.ctWedge.Parameter;
-import ctwedge.util.ext.Utility;
-import ctwedge.util.validator.SMTConstraintChecker;
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
@@ -216,7 +198,7 @@ public class GenerateHandler implements ActionListener {
 		Model m = null;
 		do {
 			m = generator.generate(category);
-			isSolvable = checkSolvability(m);
+			isSolvable = m.isSolvable();
 
 			// Check the ratio
 			if (checkRatio) {
@@ -231,45 +213,6 @@ public class GenerateHandler implements ActionListener {
 
 		} while (!isSolvable);
 		return m;
-	}
-
-	/**
-	 * Verifies if a given model is solvable by exploiting the
-	 * CTWedge.util.validator
-	 * 
-	 * @param m the model to be checked
-	 * @return TRUE if the model is solvable, FALSE otherwise
-	 */
-	private boolean checkSolvability(Model m) {
-		boolean isSolvable = false;
-		try {
-			// Build the CIT Model
-			CitModel citModel = Utility.loadModel(m.toString());
-
-			// Set up the SMT Solver context and parameters
-			Configuration config = Configuration.defaultConfiguration();
-			LogManager logger;
-			logger = BasicLogManager.create(config);
-			ShutdownManager shutdown = ShutdownManager.create();
-			SolverContext ctx = SolverContextFactory.createSolverContext(config, logger, shutdown.getNotifier(),
-					Solvers.SMTINTERPOL);
-			ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
-			Map<String, String> declaredElements = new HashMap<>();
-			Map<Parameter, Formula> variables = new HashMap<Parameter, Formula>();
-
-			// Create the context
-			prover = SMTConstraintChecker.createCtxFromModel(citModel, citModel.getConstraints(), ctx, declaredElements,
-					variables, prover);
-
-			// Verify if it is empty
-			if (prover.isUnsat())
-				isSolvable = false;
-			else
-				isSolvable = true;
-		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
-			e.printStackTrace();
-		}
-		return isSolvable;
 	}
 
 }
