@@ -1,10 +1,8 @@
-package benchmark.generator.handlers;
+package benchmark.generator.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
-
-import benchmark.generator.gui.BenchmarkGenerator;
 
 public class BenchmarksExporterHandler implements ActionListener {
 

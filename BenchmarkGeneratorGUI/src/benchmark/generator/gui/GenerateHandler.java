@@ -1,4 +1,4 @@
-package benchmark.generator.handlers;
+package benchmark.generator.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,7 +24,6 @@ import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 import org.sosy_lab.java_smt.api.SolverException;
 
-import benchmark.generator.gui.BenchmarkGenerator;
 import ctwedge.ctWedge.CitModel;
 import ctwedge.ctWedge.Parameter;
 import ctwedge.util.ext.Utility;

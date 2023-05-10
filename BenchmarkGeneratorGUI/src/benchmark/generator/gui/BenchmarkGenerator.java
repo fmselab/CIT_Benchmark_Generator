@@ -18,16 +18,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import benchmark.generator.handlers.BenchmarkTypeChangeHandler;
-import benchmark.generator.handlers.BenchmarksExporterHandler;
-import benchmark.generator.handlers.GenerateHandler;
-import benchmark.generator.handlers.TableClickListener;
 import generators.GeneratorConfiguration;
 import models.ModelList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
-import javax.swing.JProgressBar;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JCheckBoxMenuItem;
 
 public class BenchmarkGenerator {
 
@@ -82,6 +80,10 @@ public class BenchmarkGenerator {
 	private JScrollPane scrollableTable;
 	private ModelList modelList;
 	private JTextPane textModel;
+	private JMenuBar menuBar;
+	private JMenu itemFormat;
+	private JCheckBoxMenuItem chkBoxACTS;
+	private JCheckBoxMenuItem chkBoxCTWedge;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -285,6 +287,21 @@ public class BenchmarkGenerator {
 			}
 		};
 		panelTestSuite.add(scrollPane, BorderLayout.CENTER);
+		
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		itemFormat = new JMenu("Export format");
+		menuBar.add(itemFormat);
+		
+		chkBoxACTS = new JCheckBoxMenuItem("ACTS");
+		itemFormat.add(chkBoxACTS);
+		
+		chkBoxCTWedge = new JCheckBoxMenuItem("CTWedge");
+		itemFormat.add(chkBoxCTWedge);
+		
+		chkBoxACTS.setSelected(true);
+		chkBoxCTWedge.setSelected(true);
 
 		addListeners();
 		getDefaultParams();

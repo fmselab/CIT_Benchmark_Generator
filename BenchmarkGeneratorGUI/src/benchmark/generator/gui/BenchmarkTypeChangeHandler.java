@@ -1,4 +1,4 @@
-package benchmark.generator.handlers;
+package benchmark.generator.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,8 +7,6 @@ import java.util.HashMap;
 
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-
-import benchmark.generator.gui.BenchmarkGenerator;
 
 public class BenchmarkTypeChangeHandler implements ActionListener {
 
