@@ -9,6 +9,14 @@ package generators;
  *
  */
 public class Randomizer {
+
+	/**
+	 * Generate the random number
+	 * 
+	 * @param min the lower bound
+	 * @param max the upper bound
+	 * @return the random number
+	 */
 	public static int generate(int min, int max) {
 		return min + (int) (Math.random() * ((max - min) + 1));
 	}

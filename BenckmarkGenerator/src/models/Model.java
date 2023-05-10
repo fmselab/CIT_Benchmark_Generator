@@ -31,33 +31,70 @@ import generators.Randomizer;
 import models.constraints.Constraint;
 import pMedici.util.Operations;
 
+/**
+ * A lightweight implementation of a combinatorial model, with methods useful
+ * for extracting random parameters during model generation and other utility
+ * methods (computing the cardinalities, test validity ratio, tuple validity
+ * ratio, export in CTWedge and ACTS, check the solvability of the model, etc.)
+ * 
+ * @author andrea
+ *
+ */
 public class Model {
 	private String name;
 	private List<Parameter> paramsList;
 	private List<Constraint> constraintsList;
 
+	/**
+	 * Build an empty model.
+	 */
 	public Model() {
 		paramsList = new ArrayList<>();
 		constraintsList = new ArrayList<>();
 		name = "";
 	}
 
+	/**
+	 * Get the name of the model
+	 * 
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Set the name of the model
+	 * 
+	 * @param name the name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Adds a parameter to the model
+	 * 
+	 * @param p the parameter
+	 */
 	public void addParameter(Parameter p) {
 		this.paramsList.add(p);
 	}
 
+	/**
+	 * Adds a constraint to the model
+	 * 
+	 * @param p the constraint
+	 */
 	public void addConstraint(Constraint p) {
 		this.constraintsList.add(p);
 	}
 
+	/**
+	 * Returns the model as a string in CTWedge format
+	 * 
+	 * @return the model as a string in CTWedge format
+	 */
 	public String toString() {
 		String model;
 
@@ -77,10 +114,22 @@ public class Model {
 		return model;
 	}
 
+	/**
+	 * Get a random parameter from the model
+	 * 
+	 * @return a random Parameter
+	 */
 	public Parameter getRandomParamenter() {
 		return paramsList.get(Randomizer.generate(0, paramsList.size() - 1));
 	}
 
+	/**
+	 * Get a random parameter from the model
+	 * 
+	 * @param similar a parameter
+	 * @return a random Parameter, chosen between those of the same class of the
+	 *         given argument
+	 */
 	public Parameter getRandomParamenterOfClass(Parameter similar) {
 		List<Parameter> filtered = paramsList.stream().filter(x -> (x.getClass().equals(similar.getClass())))
 				.collect(Collectors.toList());
@@ -88,29 +137,38 @@ public class Model {
 		return selected;
 	}
 
-	public BigInteger getModelSize() {
-		// Product of all the cardinalities of the model
-		BigInteger prod = new BigInteger("1");
-
-		for (Parameter p : paramsList)
-			prod = prod.multiply(BigInteger.valueOf(p.getCardinality()));
-
-		return prod;
-	}
-
+	/**
+	 * Returns the test validity ratio (i.e. how many tests are valid among those
+	 * possible)
+	 * 
+	 * @return the test validity ratio
+	 * @throws InterruptedException
+	 */
 	public double getTestValidityRatio() throws InterruptedException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
 		return Operations.getTestValidityRatioFromModel(loadModel);
 	}
-	
+
+	/**
+	 * Returns the tuple validity ratio (i.e. how many tuples [pairs] are valid
+	 * among those possible)
+	 * 
+	 * @return the tuple validity ratio
+	 * @throws InterruptedException
+	 */
 	public double getTupleValidityRatio() throws InterruptedException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
 		return Operations.getTupleValidityRatioFromModel(loadModel);
 	}
-	
-	public int getMaxValues() {
+
+	/**
+	 * Get the highest cardinality in the model
+	 * 
+	 * @return the highest cardinality in the model
+	 */
+	public int getHighestCardinality() {
 		int max = 0;
 		for (Parameter p : paramsList) {
 			if (p.getCardinality() > max)
@@ -118,7 +176,7 @@ public class Model {
 		}
 		return max;
 	}
-	
+
 	/**
 	 * Export the model in CTWedge format
 	 */
@@ -136,7 +194,7 @@ public class Model {
 		ACTSTranslator translator = new ACTSTranslator();
 		translator.convertModel(ctwedgeModel, true, 2, ".");
 	}
-	
+
 	/**
 	 * Verifies if a given model is solvable by exploiting the
 	 * CTWedge.util.validator

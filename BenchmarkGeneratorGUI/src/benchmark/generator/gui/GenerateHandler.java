@@ -203,9 +203,9 @@ public class GenerateHandler implements ActionListener {
 			// Check the ratio
 			if (checkRatio) {
 				try {
-					if (m.getMaxValues() <= 127 && m.getTupleValidityRatio() > GeneratorConfiguration.RATIO)
+					if (m.getHighestCardinality() <= 127 && m.getTupleValidityRatio() > GeneratorConfiguration.RATIO)
 						isSolvable = false;
-					else if (m.getMaxValues() > 127)
+					else if (m.getHighestCardinality() > 127)
 						isSolvable = false;
 				} catch (InterruptedException e) {
 				}
