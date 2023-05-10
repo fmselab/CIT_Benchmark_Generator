@@ -89,5 +89,20 @@ public class Model {
 		CitModel loadModel = Utility.loadModel(this.toString());
 		return Operations.getTestValidityRatioFromModel(loadModel);
 	}
+	
+	public double getTupleValidityRatio() throws InterruptedException {
+		// Define the model as a CitModel
+		CitModel loadModel = Utility.loadModel(this.toString());
+		return Operations.getTupleValidityRatioFromModel(loadModel);
+	}
+	
+	public int getMaxValues() {
+		int max = 0;
+		for (Parameter p : paramsList) {
+			if (p.getCardinality() > max)
+				max = p.getCardinality();
+		}
+		return max;
+	}
 
 }
