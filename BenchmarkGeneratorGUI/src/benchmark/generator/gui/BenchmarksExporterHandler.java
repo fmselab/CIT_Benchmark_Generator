@@ -45,18 +45,26 @@ public class BenchmarksExporterHandler implements ActionListener {
 				e1.printStackTrace();
 			}
 		}
-		JOptionPane.showMessageDialog(null, 
-                "Benchmarks exported", 
-                "Operation completed", 
-                JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(null, "Benchmarks exported", "Operation completed",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * Export the model in CTWedge format
+	 * 
+	 * @param m the model to be exported
+	 */
 	private void exportCTWedge(Model m) throws IOException {
 		FileWriter fo = new FileWriter(new File(m.getName() + ".ctw"));
 		fo.write(m.toString());
 		fo.close();
 	}
 
+	/**
+	 * Export the model in ACTS format
+	 * 
+	 * @param m the model to be exported
+	 */
 	private void exportACTS(Model m) {
 		CitModel ctwedgeModel = Utility.loadModel(m.toString());
 		ACTSTranslator translator = new ACTSTranslator();
