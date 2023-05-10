@@ -27,6 +27,7 @@ import models.ModelList;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.JProgressBar;
 
 public class BenchmarkGenerator {
 

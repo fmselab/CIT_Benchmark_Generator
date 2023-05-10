@@ -15,6 +15,7 @@ import ctwedge.generator.medici.MediciCITGenerator;
 import ctwedge.util.ext.Utility;
 import generators.Randomizer;
 import models.constraints.Constraint;
+import pMedici.util.Operations;
 
 public class Model {
 	private String name;
@@ -26,7 +27,7 @@ public class Model {
 		constraintsList = new ArrayList<>();
 		name = "";
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -83,116 +84,10 @@ public class Model {
 		return prod;
 	}
 
-	public float getTupleValidityRatio() {
-		float ratio = 0;
-
-		MediciCITGenerator gen = new MediciCITGenerator();
+	public double getTestValidityRatio() throws InterruptedException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
-
-		// Convert the model to medici
-		try {
-			File model = new File("model.txt");
-			FileWriter wf = new FileWriter(model);
-			String translateModel = gen.translateModel(loadModel, false);
-			wf.write(translateModel);
-			wf.close();
-
-			// Call Medici
-			List<String> command = new ArrayList<String>();
-			command.add("./medici.exe");
-			// Model
-			command.add("--m");
-			command.add("model.txt");
-
-			// Do not generate
-			command.add("--donotgenerate");
-
-			// Run
-			ProcessBuilder pc = new ProcessBuilder(command);
-			pc.command(command);
-			pc.redirectError();
-			Process p;
-			p = pc.start();
-			try {
-				BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				String line;
-				while ((line = bri.readLine()) != null) {
-					if (line.contains("Cardinalita di partenza"))
-						ratio = Float.parseFloat(line.substring("Cardinalita di partenza".length() + 1));
-
-					if (line.contains("Cardinalita finale"))
-						ratio = Float.parseFloat(line.substring("Cardinalita finale".length() + 1)) / ratio;
-				}
-
-				bri.close();
-				p.waitFor();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		return ratio;
-	}
-
-	public float getTestValidityRatio() {
-		float ratio = 0;
-
-		MediciCITGenerator gen = new MediciCITGenerator();
-		// Define the model as a CitModel
-		CitModel loadModel = Utility.loadModel(this.toString());
-
-		// Convert the model to medici
-		try {
-			File model = new File("model.txt");
-			FileWriter wf = new FileWriter(model);
-			String translateModel = gen.translateModel(loadModel, false);
-			wf.write(translateModel);
-			wf.close();
-
-			// Call Medici
-			List<String> command = new ArrayList<String>();
-			command.add("./medici.exe");
-			// Model
-			command.add("--m");
-			command.add("model.txt");
-
-			// Do not generate
-			command.add("--donotgenerate");
-
-			// Run
-			ProcessBuilder pc = new ProcessBuilder(command);
-			pc.command(command);
-			pc.redirectError();
-			Process p;
-			p = pc.start();
-			try {
-				BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				String line;
-				while ((line = bri.readLine()) != null) {
-					if (line.contains("Generated tuples for 2-wise"))
-						ratio = Float.parseFloat(
-								line.substring("Generated tuples for 2-wise with cardinality".length() + 1));
-
-					if (line.contains("size dopo controllo copribilita"))
-						ratio = Float.parseFloat(line.substring("size dopo controllo copribilita".length() + 1))
-								/ ratio;
-				}
-
-				bri.close();
-				p.waitFor();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		return ratio;
+		return Operations.getRatioFromModel(loadModel);
 	}
 
 }

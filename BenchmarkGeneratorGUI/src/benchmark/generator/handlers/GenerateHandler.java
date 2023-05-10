@@ -87,24 +87,21 @@ public class GenerateHandler implements ActionListener {
 		switch (selectedText) {
 		case BenchmarkGenerator.BOOLC:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.ONLY_BOOLEAN);
+				Model m1 = generateWithGenerator(gWC, Category.ONLY_BOOLEAN, false);
 				m1.setName(BenchmarkGenerator.BOOLC + "_" + i);
 				parentFrame.getModelList().addModel(m1);
 			}
 			break;
 		case BenchmarkGenerator.CNF:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gCNF, Category.ALSO_ENUMS);
+				Model m1 = generateWithGenerator(gCNF, Category.ALSO_ENUMS, false);
 				m1.setName(BenchmarkGenerator.CNF + "_" + i);
 				parentFrame.getModelList().addModel(m1);
 			}
 			break;
 		case BenchmarkGenerator.HIGHLY_CONSTRAINED:
-			// TODO: Set the timeout and check the feasibility of the benchmark. Verify,
-			// moreover
-			// that the benchmark satisfied the RATIO limit
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = gWC.generate(Category.ALSO_ENUMS);
+				Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, true);
 				m1.setName(BenchmarkGenerator.HIGHLY_CONSTRAINED + "_" + i);
 				parentFrame.getModelList().addModel(m1);
 			}
@@ -118,14 +115,14 @@ public class GenerateHandler implements ActionListener {
 			break;
 		case BenchmarkGenerator.MCAC:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS);
+				Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, false);
 				m1.setName(BenchmarkGenerator.MCAC + "_" + i);
 				parentFrame.getModelList().addModel(m1);
 			}
 			break;
 		case BenchmarkGenerator.NUMC:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL);
+				Model m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, false);
 				m1.setName(BenchmarkGenerator.NUMC + "_" + i);
 				parentFrame.getModelList().addModel(m1);
 			}
@@ -210,16 +207,27 @@ public class GenerateHandler implements ActionListener {
 	 * Generates a model with a given generator and category, and verifies its
 	 * solvability
 	 * 
-	 * @param generator the generator
-	 * @param category  the category
+	 * @param generator  the generator
+	 * @param category   the category
+	 * @param checkRatio check the ratio?
 	 * @return the model
 	 */
-	private Model generateWithGenerator(Generator generator, Category category) {
+	private Model generateWithGenerator(Generator generator, Category category, boolean checkRatio) {
 		boolean isSolvable = false;
 		Model m = null;
 		do {
 			m = generator.generate(category);
 			isSolvable = checkSolvability(m);
+
+			// Check the ratio
+			if (checkRatio) {
+				try {
+					if (m.getTestValidityRatio() > GeneratorConfiguration.RATIO)
+						isSolvable = false;
+				} catch (InterruptedException e) {
+				}
+			}
+
 		} while (!isSolvable);
 		return m;
 	}
@@ -247,11 +255,11 @@ public class GenerateHandler implements ActionListener {
 			ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
 			Map<String, String> declaredElements = new HashMap<>();
 			Map<Parameter, Formula> variables = new HashMap<Parameter, Formula>();
-			
+
 			// Create the context
 			prover = SMTConstraintChecker.createCtxFromModel(citModel, citModel.getConstraints(), ctx, declaredElements,
 					variables, prover);
-			
+
 			// Verify if it is empty
 			if (prover.isUnsat())
 				isSolvable = false;
