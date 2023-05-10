@@ -395,5 +395,23 @@ public class BenchmarkGenerator {
 		model.setRowCount(0);
 		tblTestCases.revalidate();
 	}
+	
+	/**
+	 * Export in ACTS format?
+	 * 
+	 * @return TRUE if ACTS is required, FALSE otherwise
+	 */
+	public boolean isACTS() {
+		return chkBoxACTS.isSelected();
+	}
+	
+	/**
+	 * Export in CTWedge format?
+	 * 
+	 * @return TRUE if CTWedge is required, FALSE otherwise
+	 */
+	public boolean isCTWedge() {
+		return chkBoxCTWedge.isSelected();
+	}
 
 }
