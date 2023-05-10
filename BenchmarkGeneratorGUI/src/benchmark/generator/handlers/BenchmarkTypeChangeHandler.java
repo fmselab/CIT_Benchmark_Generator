@@ -131,7 +131,6 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 	private void lockNonBoolean(boolean lock) {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtMinCardinality")).setEnabled(lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtMaxCardinality")).setEnabled(lock);
-		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtNMaxEnums")).setEnabled(lock);
 	}
 
 }

@@ -173,7 +173,6 @@ public class Main {
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
 		GeneratorConfiguration.MAX_CARDINALITY=15;
-		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with also enum parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -312,7 +311,6 @@ public class Main {
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
 		GeneratorConfiguration.MAX_CARDINALITY=20;
-		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -384,7 +382,6 @@ public class Main {
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
 		GeneratorConfiguration.MAX_CARDINALITY=15;
-		GeneratorConfiguration.DIM_ENUMS_MAX = 15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -458,7 +455,6 @@ public class Main {
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
 		GeneratorConfiguration.MAX_CARDINALITY=15;
-		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {
@@ -578,7 +574,6 @@ public class Main {
 		// Using v in the range [2, 20]
 		GeneratorConfiguration.MIN_CARDINALITY=2;
 		GeneratorConfiguration.MAX_CARDINALITY=15;
-		GeneratorConfiguration.DIM_ENUMS_MAX=15;
 		
 		// Generate models with only boolean parameters
 		for (int i = 0; i<N_MODELS; i++) {

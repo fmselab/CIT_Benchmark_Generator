@@ -1,6 +1,7 @@
 package benchmark.generator.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.util.HashMap;
@@ -20,8 +21,12 @@ import javax.swing.table.DefaultTableModel;
 import benchmark.generator.handlers.BenchmarkTypeChangeHandler;
 import benchmark.generator.handlers.BenchmarksExporterHandler;
 import benchmark.generator.handlers.GenerateHandler;
+import benchmark.generator.handlers.TableClickListener;
 import generators.GeneratorConfiguration;
+import models.ModelList;
+
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 
 public class BenchmarkGenerator {
 
@@ -37,7 +42,6 @@ public class BenchmarkGenerator {
 	private JFrame frame;
 	private JTextField txtNMaxParams;
 	private JTextField txtNMinParams;
-	private JTextField txtNMaxEnums;
 	private JTextField txtLowerBoundInt;
 	private JTextField txtUpperBoundInt;
 	private JTextField txtMaxCardinality;
@@ -56,7 +60,6 @@ public class BenchmarkGenerator {
 	private JLabel lblBenchmarkType;
 	private JLabel lblNMinParams;
 	private JLabel lblNMaxParams;
-	private JLabel lblNMaxEnums;
 	private JLabel lblRatio;
 	private JLabel lblLowerBoundInt;
 	private JLabel lblUpperBoundInt;
@@ -77,7 +80,10 @@ public class BenchmarkGenerator {
 	private JLabel lblTimeout;
 	private JTextField txtTimeout;
 	private DefaultTableModel model;
-
+	private JScrollPane scrollableTable;
+	private ModelList modelList;
+	private JTextPane textModel;
+	
 	/**
 	 * Returns the mapping between component's name and index
 	 * 
@@ -155,13 +161,6 @@ public class BenchmarkGenerator {
 		addToPanelConfigurations(txtNMaxParams, "txtNMaxParams");
 		txtNMaxParams.setColumns(10);
 
-		lblNMaxEnums = new JLabel("Dim Max Enums (v)");
-		addToPanelConfigurations(lblNMaxEnums, "lblNMaxEnums");
-
-		txtNMaxEnums = new JTextField();
-		txtNMaxEnums.setColumns(10);
-		addToPanelConfigurations(txtNMaxEnums, "txtNMaxEnums");
-
 		lblLowerBoundInt = new JLabel("Lower Bound Ints (v)");
 		addToPanelConfigurations(lblLowerBoundInt, "lblLowerBoundInt");
 
@@ -238,7 +237,7 @@ public class BenchmarkGenerator {
 		txtNumBenchmarks.setColumns(10);
 		addToPanelConfigurations(txtNumBenchmarks, "txtNumBenchmarks");
 		
-		lblTimeout = new JLabel("Timeout - single benchmark (s)");
+		lblTimeout = new JLabel("Timeout - single benchmark (min.)");
 		addToPanelConfigurations(lblTimeout, "lblTimeout");
 		
 		txtTimeout = new JTextField();
@@ -254,17 +253,48 @@ public class BenchmarkGenerator {
 		panelTests = new JPanel();
 		splitLeftView.setRightComponent(panelTests);
 
-		model = new DefaultTableModel(); 
+		model = new DefaultTableModel(){
+		    private static final long serialVersionUID = 1L;
+
+			@Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		};
 		model.addColumn("Benchmark name");
 		
 		tblTestCases = new JTable(model);
+		tblTestCases.setAutoResizeMode(JTable.WIDTH);
 		panelTests.add(tblTestCases);
-
+		
+		scrollableTable = new JScrollPane(tblTestCases);
+		panelTests.add(scrollableTable);
+		
 		panelTestSuite = new JPanel();
 		splitView.setRightComponent(panelTestSuite);
+		
+		textModel = new JTextPane();
+		final JScrollPane scrollPane = new JScrollPane(textModel){
+            private static final long serialVersionUID = 1L;
+
+			@Override
+            public Dimension getPreferredSize() {
+                return new Dimension(panelTestSuite.getSize().width - 10, panelTestSuite.getSize().height - 10);
+            }
+        };
+        panelTestSuite.add(scrollPane, BorderLayout.CENTER);
+		
+		//panelTestSuite.add(textModel);
 
 		addListeners();
 		getDefaultParams();
+		
+		modelList = new ModelList();
+	}
+
+	public JTextPane getTestModel() {
+		return textModel;
 	}
 
 	public JTable getTblTestCases() {
@@ -313,7 +343,6 @@ public class BenchmarkGenerator {
 	 * CLI project
 	 */
 	private void getDefaultParams() {
-		txtNMaxEnums.setText(Integer.toString(GeneratorConfiguration.DIM_ENUMS_MAX));
 		txtLowerBoundInt.setText(Integer.toString(GeneratorConfiguration.LOWER_BOUND_INT));
 		txtUpperBoundInt.setText(Integer.toString(GeneratorConfiguration.UPPER_BOUND_INT));
 		txtMaxCardinality.setText(Integer.toString(GeneratorConfiguration.MAX_CARDINALITY));
@@ -337,6 +366,11 @@ public class BenchmarkGenerator {
 		benchmarkType.addActionListener(new BenchmarkTypeChangeHandler(this));
 		btnGenerate.addActionListener(new GenerateHandler(this));
 		btnExportAll.addActionListener(new BenchmarksExporterHandler());
+		tblTestCases.addMouseListener(new TableClickListener(this));
+	}
+
+	public ModelList getModelList() {
+		return modelList;
 	}
 
 }
