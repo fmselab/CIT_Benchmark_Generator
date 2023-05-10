@@ -7,8 +7,23 @@ import models.EnumerativeParameter;
 import models.IntegerParameter;
 import models.Model;
 
+/**
+ * Generates a new model without constraints, and with parameters of the
+ * category given as parameter but with the same cardinality
+ * 
+ * 
+ * @author andrea
+ *
+ */
 public class WithoutConstraintGeneratorSameCardinality implements Generator {
 
+	/**
+	 * Generate an IPM and force all parameters to be of the same cardinality
+	 * 
+	 * @param type the type of models to be generated (with booleans, with
+	 *             enumeratives, with integers, ...)
+	 * @return the generated IPM
+	 */
 	@Override
 	public Model generate(Category type) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
