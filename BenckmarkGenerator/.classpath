@@ -18,15 +18,14 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/ctwedge.util"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ctwedge"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ctwedge.generator.medici"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ctwedge.generator.acts"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/ctwedge.generator.acts"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ctwedge.generator.medici"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/pMEDICI"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

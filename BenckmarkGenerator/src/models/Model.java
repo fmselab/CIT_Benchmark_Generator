@@ -87,7 +87,7 @@ public class Model {
 	public double getTestValidityRatio() throws InterruptedException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
-		return Operations.getRatioFromModel(loadModel);
+		return Operations.getTestValidityRatioFromModel(loadModel);
 	}
 
 }
