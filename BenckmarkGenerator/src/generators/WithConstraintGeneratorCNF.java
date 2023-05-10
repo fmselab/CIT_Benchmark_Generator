@@ -10,8 +10,23 @@ import models.EnumerativeParameter;
 import models.Model;
 import models.Parameter;
 
+/**
+ * Generates a new model with constraints, and with parameters of the category
+ * given as parameter. The constraints are in CNF
+ * 
+ * 
+ * @author andrea
+ *
+ */
 public class WithConstraintGeneratorCNF extends WithoutConstraintGenerator{
 	
+	/**
+	 * Generate an IPM
+	 * 
+	 * @param type the type of models to be generated (with booleans, with
+	 *             enumeratives, with integers, ...)
+	 * @return the generated IPM
+	 */
 	@Override
 	public Model generate(Category type) {
 		// Compile the model with the parameters and not the constraints	
@@ -33,6 +48,14 @@ public class WithConstraintGeneratorCNF extends WithoutConstraintGenerator{
 		return m;
 	}
 	
+	/**
+	 * Generates a constraint with a given complexity in CNF form
+	 * 
+	 * @param m          the model being populated
+	 * @param complexity the constraint complexity
+	 * @param type       the category of the model being generated
+	 * @return the constraint
+	 */
 	public Constraint generateConstraintFromComplexity(Model m, int complexity, Category type) {
 		
 		Constraint c;
