@@ -1,5 +1,3 @@
-import static org.junit.Assert.*;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,7 +9,6 @@ import java.util.List;
 import org.junit.Test;
 
 import ctwedge.ctWedge.CitModel;
-import ctwedge.generator.acts.ACTSTranslator;
 import ctwedge.util.NotConvertableModel;
 import ctwedge.util.ext.Utility;
 
