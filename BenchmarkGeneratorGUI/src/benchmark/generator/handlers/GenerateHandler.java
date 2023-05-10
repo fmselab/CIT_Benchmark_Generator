@@ -198,8 +198,7 @@ public class GenerateHandler implements ActionListener {
 	private void showModels(ModelList models) {
 		DefaultTableModel model = parentFrame.getModel();
 		// Empty the model
-		for (int i = 0; i < model.getRowCount(); i++)
-			model.removeRow(0);
+		parentFrame.emptyModel();
 
 		// Fill the table with the model names
 		for (Model m : models) {

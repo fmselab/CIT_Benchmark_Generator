@@ -370,4 +370,12 @@ public class BenchmarkGenerator {
 		return modelList;
 	}
 
+	/**
+	 * Empties the model list
+	 */
+	public void emptyModel() {
+		model.setRowCount(0);
+		tblTestCases.revalidate();
+	}
+
 }
