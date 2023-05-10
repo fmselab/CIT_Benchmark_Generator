@@ -73,7 +73,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
@@ -136,7 +136,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
@@ -199,7 +199,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
@@ -266,7 +266,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
@@ -337,7 +337,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
@@ -408,7 +408,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
@@ -532,7 +532,7 @@ public class Main {
 				};
 				Future<Object> future = executor.submit(task);
 				try {
-				   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+				   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 				} catch (TimeoutException ex) {
 				   ts = null;
 				} catch (InterruptedException e) {
@@ -600,7 +600,7 @@ public class Main {
 					};
 					Future<Object> future = executor.submit(task);
 					try {
-					   ts = (TestSuite) future.get(6, TimeUnit.MINUTES); 
+					   ts = (TestSuite) future.get((int)GeneratorConfiguration.TIMEOUT, TimeUnit.MINUTES); 
 					} catch (TimeoutException ex) {
 					   ts = null;
 					} catch (InterruptedException e) {
