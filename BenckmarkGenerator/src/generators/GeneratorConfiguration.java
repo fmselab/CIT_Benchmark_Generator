@@ -8,6 +8,7 @@ package generators;
  */
 public class GeneratorConfiguration {
 
+	public static int N_BENCHMARKS = 1;
 	public static int N_PARAMS_MAX = 500;
 	public static int N_PARAMS_MIN = 1;
 	public static int LOWER_BOUND_INT = -100;

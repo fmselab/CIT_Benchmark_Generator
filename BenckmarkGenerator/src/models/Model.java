@@ -177,21 +177,39 @@ public class Model {
 	}
 
 	/**
-	 * Export the model in CTWedge format
+	 * Export the model in CTWedge format in the current folder
 	 */
 	public void exportCTWedge() throws IOException {
-		FileWriter fo = new FileWriter(new File(this.getName() + ".ctw"));
+		exportCTWedge(".");
+	}
+	
+	/**
+	 * Export the model in CTWedge format
+	 * 
+	 * @param destinationFolder the destination folder
+	 */
+	public void exportCTWedge(String destinationFolder) throws IOException {
+		FileWriter fo = new FileWriter(new File(destinationFolder + "/" + this.getName() + ".ctw"));
 		fo.write(this.toString());
 		fo.close();
 	}
 
 	/**
-	 * Export the model in ACTS format
+	 * Export the model in ACTS format in the current folder
 	 */
 	public void exportACTS() {
+		exportACTS(".");
+	}
+	
+	/**
+	 * Export the model in ACTS format
+	 * 
+	 * @param destinationFolder the destination folder
+	 */
+	public void exportACTS(String destinationFolder) {
 		CitModel ctwedgeModel = Utility.loadModel(this.toString());
 		ACTSTranslator translator = new ACTSTranslator();
-		translator.convertModel(ctwedgeModel, true, 2, ".");
+		translator.convertModel(ctwedgeModel, true, 2, destinationFolder);
 	}
 
 	/**
