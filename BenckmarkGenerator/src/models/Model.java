@@ -219,7 +219,7 @@ public class Model {
 	 * @throws IOException 
 	 */
 	public void exportPICT() throws IOException {
-		exportACTS(".");
+		exportPICT(".");
 	}
 
 	/**
