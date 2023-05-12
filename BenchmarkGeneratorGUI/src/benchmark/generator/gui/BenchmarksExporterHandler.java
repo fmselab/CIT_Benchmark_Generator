@@ -30,10 +30,11 @@ public class BenchmarksExporterHandler implements ActionListener {
 		for (Model m : list) {
 			try {
 				if (parentFrame.isACTS())
-					// TODO FIXME: Fix
 					m.exportACTS();
 				if (parentFrame.isCTWedge())
 					m.exportCTWedge();
+				if (parentFrame.isPICT())
+					m.exportPICT();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}

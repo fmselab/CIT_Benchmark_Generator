@@ -84,6 +84,7 @@ public class BenchmarkGenerator {
 	private JMenu itemFormat;
 	private JCheckBoxMenuItem chkBoxACTS;
 	private JCheckBoxMenuItem chkBoxCTWedge;
+	private JCheckBoxMenuItem chkBoxPICT;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -300,8 +301,12 @@ public class BenchmarkGenerator {
 		chkBoxCTWedge = new JCheckBoxMenuItem("CTWedge");
 		itemFormat.add(chkBoxCTWedge);
 		
+		chkBoxPICT = new JCheckBoxMenuItem("PICT");
+		itemFormat.add(chkBoxPICT);
+		
 		chkBoxACTS.setSelected(true);
 		chkBoxCTWedge.setSelected(true);
+		chkBoxPICT.setSelected(true);
 
 		addListeners();
 		getDefaultParams();
@@ -412,6 +417,15 @@ public class BenchmarkGenerator {
 	 */
 	public boolean isCTWedge() {
 		return chkBoxCTWedge.isSelected();
+	}
+	
+	/**
+	 * Export in PICT format?
+	 * 
+	 * @return TRUE if PICT is required, FALSE otherwise
+	 */
+	public boolean isPICT() {
+		return chkBoxPICT.isSelected();
 	}
 
 }

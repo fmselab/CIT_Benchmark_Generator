@@ -35,7 +35,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	private boolean acts = false;
 
 	@Option(names = "-ctw", description = "Export in CTWedge format. By default it is enabled.")
-	private boolean ctwedge = false;
+	private boolean ctwedge = true;
+	
+	@Option(names = "-pict", description = "Export in PICT format. By default it is enabled.")
+	private boolean pict = false;
 
 	@Option(names = "-d", description = "Destination folder. By default it is ./benchmarks/.")
 	private String destinationFolder = "./benchmarks/";
@@ -328,5 +331,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			m1.exportACTS(destinationFolder);
 		if (ctwedge)
 			m1.exportCTWedge(destinationFolder);
+		if (pict)
+			m1.exportPICT(destinationFolder);
 	}
 }

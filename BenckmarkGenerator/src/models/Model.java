@@ -23,6 +23,7 @@ import org.sosy_lab.java_smt.api.SolverException;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 
 import ctwedge.ctWedge.CitModel;
+import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.SMTConstraintChecker;
 import generators.Randomizer;
@@ -211,6 +212,29 @@ public class Model {
 	public void exportACTS(String destinationFolder) throws IOException {
 		ACTSModelTranslator translator = new ACTSModelTranslator();
 		translator.saveActsTXTonlyModel(this, destinationFolder);
+	}
+	
+	/**
+	 * Export the model in PICT format in the current folder
+	 * @throws IOException 
+	 */
+	public void exportPICT() throws IOException {
+		exportACTS(".");
+	}
+
+	/**
+	 * Export the model in PICT format
+	 * 
+	 * @param destinationFolder the destination folder
+	 * @throws IOException 
+	 */
+	public void exportPICT(String destinationFolder) throws IOException {
+		CitModel model = Utility.loadModel(this.toString());
+		PICTGenerator generator = new PICTGenerator();
+		String modelStr = generator.translateModel(model, false);
+		FileWriter fo = new FileWriter(new File(destinationFolder + "/" + this.getName() + "_pict.txt"));
+		fo.write(modelStr);
+		fo.close();
 	}
 
 	/**
