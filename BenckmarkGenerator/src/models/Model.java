@@ -23,12 +23,12 @@ import org.sosy_lab.java_smt.api.SolverException;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 
 import ctwedge.ctWedge.CitModel;
-import ctwedge.generator.acts.ACTSTranslator;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.SMTConstraintChecker;
 import generators.Randomizer;
 import models.constraints.Constraint;
 import pMedici.util.Operations;
+import util.ACTSModelTranslator;
 
 /**
  * A lightweight implementation of a combinatorial model, with methods useful
@@ -182,7 +182,7 @@ public class Model {
 	public void exportCTWedge() throws IOException {
 		exportCTWedge(".");
 	}
-	
+
 	/**
 	 * Export the model in CTWedge format
 	 * 
@@ -196,20 +196,21 @@ public class Model {
 
 	/**
 	 * Export the model in ACTS format in the current folder
+	 * @throws IOException 
 	 */
-	public void exportACTS() {
+	public void exportACTS() throws IOException {
 		exportACTS(".");
 	}
-	
+
 	/**
 	 * Export the model in ACTS format
 	 * 
 	 * @param destinationFolder the destination folder
+	 * @throws IOException 
 	 */
-	public void exportACTS(String destinationFolder) {
-		CitModel ctwedgeModel = Utility.loadModel(this.toString());
-		ACTSTranslator translator = new ACTSTranslator();
-		translator.convertModel(ctwedgeModel, true, 2, destinationFolder);
+	public void exportACTS(String destinationFolder) throws IOException {
+		ACTSModelTranslator translator = new ACTSModelTranslator();
+		translator.saveActsTXTonlyModel(this, destinationFolder);
 	}
 
 	/**
@@ -248,6 +249,24 @@ public class Model {
 			e.printStackTrace();
 		}
 		return isSolvable;
+	}
+
+	/**
+	 * Access the list of constraints
+	 * 
+	 * @return the list of constraints
+	 */
+	public List<Constraint> getConstraints() {
+		return this.constraintsList;
+	}
+	
+	/**
+	 * Access the list of parameters
+	 * 
+	 * @return the list of parameters
+	 */
+	public List<Parameter> getParameters() {
+		return this.paramsList;
 	}
 
 }

@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import generators.Randomizer;
 
 /**
@@ -69,5 +72,19 @@ public class IntegerParameter extends Parameter {
 	@Override
 	public int getCardinality() {
 		return this.endTo - this.startFrom + 1;
+	}
+	
+	/**
+	 * Get the possible values
+	 * 
+	 * @return the list of possible values
+	 */
+	@Override
+	public List<String> getValues() {
+		ArrayList<String> values = new ArrayList<>();
+		for (int i=startFrom; i<=endTo; i++) {
+			values.add(Integer.toString(i));
+		}		
+		return values;
 	}
 }

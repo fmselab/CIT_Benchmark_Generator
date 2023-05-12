@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 /**
  * An abstract class for parameters
  * 
@@ -43,4 +45,11 @@ public abstract class Parameter {
 	 * @return the cardinality
 	 */
 	public abstract int getCardinality();
+	
+	/**
+	 * Get the possible values
+	 * 
+	 * @return the list of possible values
+	 */
+	public abstract List<String> getValues();
 }

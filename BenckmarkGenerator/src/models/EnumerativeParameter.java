@@ -83,4 +83,13 @@ public class EnumerativeParameter extends Parameter {
 		return this.valuesList.size();
 	}
 
+	/**
+	 * Get the possible values
+	 * 
+	 * @return the list of possible values
+	 */
+	@Override
+	public List<String> getValues() {
+		return valuesList;
+	}
 }

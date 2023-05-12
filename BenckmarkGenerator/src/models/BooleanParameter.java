@@ -1,5 +1,8 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import generators.Randomizer;
 
 /**
@@ -50,6 +53,19 @@ public class BooleanParameter extends Parameter {
 	@Override
 	public int getCardinality() {
 		return 2;
+	}
+	
+	/**
+	 * Get the possible values
+	 * 
+	 * @return the list of possible values
+	 */
+	@Override
+	public List<String> getValues() {
+		ArrayList<String> values = new ArrayList<>();
+		values.add("true");
+		values.add("false");
+		return values;
 	}
 
 }
