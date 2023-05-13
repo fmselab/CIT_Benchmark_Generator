@@ -117,9 +117,8 @@ public class ModelConfigurationExtractor {
 	 * 
 	 * @return the the lower bound for integer parameters. If no integer parameters
 	 *         are available, return -1
-	 * @throws InterruptedException
 	 */
-	public int getLowerBoundForInts() throws InterruptedException {
+	public int getLowerBoundForInts() {
 		int bound = Integer.MAX_VALUE;
 		boolean intFound = false;
 		for (Parameter p : model.getParameters()) {
@@ -142,9 +141,8 @@ public class ModelConfigurationExtractor {
 	 * 
 	 * @return the the upper bound for integer parameters. If no integer parameters
 	 *         are available, return -1
-	 * @throws InterruptedException
 	 */
-	public int getUpperBoundForInts() throws InterruptedException {
+	public int getUpperBoundForInts() {
 		int bound = Integer.MIN_VALUE;
 		boolean intFound = false;
 		for (Parameter p : model.getParameters()) {
@@ -162,20 +160,40 @@ public class ModelConfigurationExtractor {
 		return -1;
 	}
 
+	/**
+	 * Returns the maximum cardinality of a constraint in the given model
+	 * 
+	 * @return the maximum cardinality of a constraint in the given model. If no
+	 *         constraints are available in the model, 0 is returned
+	 */
 	public int getMaxConstraintComplexity() {
+		int complexity = 0;
+		ConstraintComplexityExtractor extractor = new ConstraintComplexityExtractor();
 		for (Constraint c : model.getConstraints()) {
-			// TODO
+			int thisComplexity = extractor.doSwitch(c);
+			if (thisComplexity > complexity)
+				complexity = thisComplexity;
 		}
 
-		return -1;
+		return complexity;
 	}
 
+	/**
+	 * Returns the minimum cardinality of a constraint in the given model
+	 * 
+	 * @return the minimum cardinality of a constraint in the given model. If no
+	 *         constraints are available in the model, 0 is returned
+	 */
 	public int getMinConstraintComplexity() {
+		int complexity = Integer.MAX_VALUE;
+		ConstraintComplexityExtractor extractor = new ConstraintComplexityExtractor();
 		for (Constraint c : model.getConstraints()) {
-			// TODO
+			int thisComplexity = extractor.doSwitch(c);
+			if (thisComplexity < complexity)
+				complexity = thisComplexity;
 		}
 
-		return -1;
+		return complexity;
 	}
 
 	public boolean useConstraintsBetweenParameters() {
@@ -209,20 +227,22 @@ public class ModelConfigurationExtractor {
 				return Track.UNIFORM_ALL;
 			else
 				return Track.UNIFORM_BOOLEAN;
-		
-		// If the parameters are only booleans and we have constraints, the track is BOOLC
+
+		// If the parameters are only booleans and we have constraints, the track is
+		// BOOLC
 		analyzer = new BooleanOnlyParameters();
 		if (model.getConstraints().size() > 0 && analyzer.process(model))
 			return Track.BOOLC;
-		
-		// If the parameters are also enumeratives and we have not constraints, the track is MCA, otherwise it is MCAC
+
+		// If the parameters are also enumeratives and we have not constraints, the
+		// track is MCA, otherwise it is MCAC
 		analyzer = new AlsoEnumerativeParameters();
 		if (analyzer.process(model) && !(new AlsoIntegerParameters().process(model)))
 			if (model.getConstraints().size() == 0)
 				return Track.MCA;
 			else
 				return Track.MCAC;
-				
+
 		// It is a NUMC model
 		return Track.NUMC;
 	}
