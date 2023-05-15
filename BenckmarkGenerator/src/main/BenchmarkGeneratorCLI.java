@@ -15,6 +15,7 @@ import models.Model;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import util.ModelConfigurationExtractor;
 
 public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
@@ -36,7 +37,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	@Option(names = "-ctw", description = "Export in CTWedge format. By default it is enabled.")
 	private boolean ctwedge = true;
-	
+
 	@Option(names = "-pict", description = "Export in PICT format. By default it is enabled.")
 	private boolean pict = false;
 
@@ -75,6 +76,9 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	@Option(names = "-r", description = "Maximum accepted tuple validity ratio. By default it is 0.01.")
 	private double r = 0.01;
+
+	@Option(names = "-similar", description = "Given a CTWedge model, it generates a model similar to that.")
+	private String similarModel = null;
 
 	public static void main(String[] args) throws IOException {
 		BenchmarkGeneratorCLI cliGenerator = new BenchmarkGeneratorCLI();
@@ -135,21 +139,39 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	}
 
 	/**
-	 * Sets the generator configuration based on the parameters received as input
+	 * Sets the generator configuration based on the parameters received as input,
+	 * or based on the model specified by the user
+	 * @throws InterruptedException 
 	 */
-	public void setConfigurations() {
+	public void setConfigurations() throws InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = nTests;
-		GeneratorConfiguration.N_PARAMS_MAX = kmax;
-		GeneratorConfiguration.N_PARAMS_MIN = kmin;
-		GeneratorConfiguration.MAX_CARDINALITY = vmax;
-		GeneratorConfiguration.MIN_CARDINALITY = vmin;
-		GeneratorConfiguration.LOWER_BOUND_INT = vIntLow;
-		GeneratorConfiguration.UPPER_BOUND_INT = vIntUp;
-		GeneratorConfiguration.RATIO = r;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = dmax;
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
+		if (similarModel == null) {
+			GeneratorConfiguration.N_PARAMS_MAX = kmax;
+			GeneratorConfiguration.N_PARAMS_MIN = kmin;
+			GeneratorConfiguration.MAX_CARDINALITY = vmax;
+			GeneratorConfiguration.MIN_CARDINALITY = vmin;
+			GeneratorConfiguration.LOWER_BOUND_INT = vIntLow;
+			GeneratorConfiguration.UPPER_BOUND_INT = vIntUp;
+			GeneratorConfiguration.RATIO = r;
+			GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = dmax;
+			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
+			GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;
+			GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
+		} else {
+			// Extract the configuration from that of model given by the user
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(similarModel);
+			GeneratorConfiguration.N_PARAMS_MAX = extractor.getNumParams();
+			GeneratorConfiguration.N_PARAMS_MIN = extractor.getNumParams();
+			GeneratorConfiguration.MAX_CARDINALITY = extractor.getMaximumCardinality();
+			GeneratorConfiguration.MIN_CARDINALITY = extractor.getMinimumCardinality();
+			GeneratorConfiguration.LOWER_BOUND_INT = extractor.getLowerBoundForInts();
+			GeneratorConfiguration.UPPER_BOUND_INT = extractor.getUpperBoundForInts();
+			GeneratorConfiguration.RATIO = extractor.getTupleValidityRatio();
+			GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = extractor.getMaxConstraintComplexity();
+			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = extractor.getMinConstraintComplexity();
+			GeneratorConfiguration.N_CONSTRAINTS_MAX = extractor.getNumConstraints();
+			GeneratorConfiguration.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
+		}
 	}
 
 	/**
