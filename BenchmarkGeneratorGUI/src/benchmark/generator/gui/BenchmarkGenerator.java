@@ -33,6 +33,9 @@ import org.jfree.ui.FilesystemFilter;
 import generators.GeneratorConfiguration;
 import main.BenchmarkGeneratorCLI;
 import models.ModelList;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BenchmarkGenerator {
 
@@ -93,8 +96,8 @@ public class BenchmarkGenerator {
 	private JCheckBoxMenuItem chkBoxCTWedge;
 	private JCheckBoxMenuItem chkBoxPICT;
 	private JMenu itemExtension;
-	private JMenuItem btnBaseline;
 	private String selectedFile;
+	private JMenuItem btnBaseline2;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -316,14 +319,11 @@ public class BenchmarkGenerator {
 
 		itemExtension = new JMenu("Additional funct.");
 		menuBar.add(itemExtension);
-
-		btnBaseline = new JMenuItem("Set baseline IPM");
-		itemExtension.add(btnBaseline);
-		btnBaseline.setAction(new AbstractAction() {
-			private static final long serialVersionUID = 1L;
-
+		
+		btnBaseline2 = new JMenuItem("Set baseline IPM");
+		btnBaseline2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void mouseClicked(MouseEvent e) {
 				final JFileChooser fc = new JFileChooser();
 				fc.addChoosableFileFilter(new FilesystemFilter("ctw", "CTWedge files"));
 				int returnVal = fc.showOpenDialog(null);
@@ -341,6 +341,7 @@ public class BenchmarkGenerator {
 				}
 			}
 		});
+		itemExtension.add(btnBaseline2);
 
 		chkBoxACTS.setSelected(true);
 		chkBoxCTWedge.setSelected(true);
