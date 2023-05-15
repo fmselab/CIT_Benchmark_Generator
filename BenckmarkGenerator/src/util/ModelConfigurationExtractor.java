@@ -185,6 +185,9 @@ public class ModelConfigurationExtractor {
 	 *         constraints are available in the model, 0 is returned
 	 */
 	public int getMinConstraintComplexity() {
+		if (model.getConstraints().size() == 0)
+			return 0;
+		
 		int complexity = Integer.MAX_VALUE;
 		ConstraintComplexityExtractor extractor = new ConstraintComplexityExtractor();
 		for (Constraint c : model.getConstraints()) {

@@ -3,6 +3,7 @@ package main;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
+import ctwedge.util.NotConvertableModel;
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
@@ -141,7 +142,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	/**
 	 * Sets the generator configuration based on the parameters received as input,
 	 * or based on the model specified by the user
-	 * @throws InterruptedException 
+	 * 
+	 * @throws InterruptedException
 	 */
 	public void setConfigurations() throws InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = nTests;
@@ -159,19 +161,34 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
 		} else {
 			// Extract the configuration from that of model given by the user
-			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(similarModel);
-			GeneratorConfiguration.N_PARAMS_MAX = extractor.getNumParams();
-			GeneratorConfiguration.N_PARAMS_MIN = extractor.getNumParams();
-			GeneratorConfiguration.MAX_CARDINALITY = extractor.getMaximumCardinality();
-			GeneratorConfiguration.MIN_CARDINALITY = extractor.getMinimumCardinality();
-			GeneratorConfiguration.LOWER_BOUND_INT = extractor.getLowerBoundForInts();
-			GeneratorConfiguration.UPPER_BOUND_INT = extractor.getUpperBoundForInts();
-			GeneratorConfiguration.RATIO = extractor.getTupleValidityRatio();
-			GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = extractor.getMaxConstraintComplexity();
-			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = extractor.getMinConstraintComplexity();
-			GeneratorConfiguration.N_CONSTRAINTS_MAX = extractor.getNumConstraints();
-			GeneratorConfiguration.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
+			setConfigurationsFromFile(similarModel);
 		}
+	}
+
+	/**
+	 * Sets the configuration based on the model received as input
+	 * 
+	 * @param modelPath the model path
+	 * @throws InterruptedException
+	 */
+	public static void setConfigurationsFromFile(String modelPath) throws InterruptedException {
+		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(modelPath);
+		GeneratorConfiguration.N_PARAMS_MAX = extractor.getNumParams();
+		GeneratorConfiguration.N_PARAMS_MIN = extractor.getNumParams();
+		GeneratorConfiguration.MAX_CARDINALITY = extractor.getMaximumCardinality();
+		GeneratorConfiguration.MIN_CARDINALITY = extractor.getMinimumCardinality();
+		GeneratorConfiguration.LOWER_BOUND_INT = extractor.getLowerBoundForInts();
+		GeneratorConfiguration.UPPER_BOUND_INT = extractor.getUpperBoundForInts();
+		try {
+			GeneratorConfiguration.RATIO = extractor.getTupleValidityRatio();
+		} catch (NotConvertableModel c) {
+			GeneratorConfiguration.RATIO = 1;
+		}
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = extractor.getMaxConstraintComplexity();
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = extractor.getMinConstraintComplexity();
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = extractor.getNumConstraints();
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
+		GeneratorConfiguration.TRACK = extractor.getModelType();
 	}
 
 	/**

@@ -4,28 +4,35 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.HashMap;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
-import generators.GeneratorConfiguration;
-import models.ModelList;
+import org.jfree.ui.FilesystemFilter;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JCheckBoxMenuItem;
+import generators.GeneratorConfiguration;
+import main.BenchmarkGeneratorCLI;
+import models.ModelList;
 
 public class BenchmarkGenerator {
 
@@ -85,6 +92,9 @@ public class BenchmarkGenerator {
 	private JCheckBoxMenuItem chkBoxACTS;
 	private JCheckBoxMenuItem chkBoxCTWedge;
 	private JCheckBoxMenuItem chkBoxPICT;
+	private JMenu itemExtension;
+	private JMenuItem btnBaseline;
+	private String selectedFile;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -288,22 +298,50 @@ public class BenchmarkGenerator {
 			}
 		};
 		panelTestSuite.add(scrollPane, BorderLayout.CENTER);
-		
+
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
-		
+
 		itemFormat = new JMenu("Export format");
 		menuBar.add(itemFormat);
-		
+
 		chkBoxACTS = new JCheckBoxMenuItem("ACTS");
 		itemFormat.add(chkBoxACTS);
-		
+
 		chkBoxCTWedge = new JCheckBoxMenuItem("CTWedge");
 		itemFormat.add(chkBoxCTWedge);
-		
+
 		chkBoxPICT = new JCheckBoxMenuItem("PICT");
 		itemFormat.add(chkBoxPICT);
-		
+
+		itemExtension = new JMenu("Additional funct.");
+		menuBar.add(itemExtension);
+
+		btnBaseline = new JMenuItem("Set baseline IPM");
+		itemExtension.add(btnBaseline);
+		btnBaseline.setAction(new AbstractAction() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				final JFileChooser fc = new JFileChooser();
+				fc.addChoosableFileFilter(new FilesystemFilter("ctw", "CTWedge files"));
+				int returnVal = fc.showOpenDialog(null);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					try {
+						File file = fc.getSelectedFile();
+						selectedFile = file.getAbsolutePath();
+						// Set the configuration params
+						BenchmarkGeneratorCLI.setConfigurationsFromFile(selectedFile);
+						// Refresh the view
+						getDefaultParams();
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+
 		chkBoxACTS.setSelected(true);
 		chkBoxCTWedge.setSelected(true);
 		chkBoxPICT.setSelected(true);
@@ -372,6 +410,7 @@ public class BenchmarkGenerator {
 		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
 		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
+		benchmarkType.setSelectedItem(GeneratorConfiguration.TRACK.toString());
 	}
 
 	/**
@@ -400,7 +439,7 @@ public class BenchmarkGenerator {
 		model.setRowCount(0);
 		tblTestCases.revalidate();
 	}
-	
+
 	/**
 	 * Export in ACTS format?
 	 * 
@@ -409,7 +448,7 @@ public class BenchmarkGenerator {
 	public boolean isACTS() {
 		return chkBoxACTS.isSelected();
 	}
-	
+
 	/**
 	 * Export in CTWedge format?
 	 * 
@@ -418,7 +457,7 @@ public class BenchmarkGenerator {
 	public boolean isCTWedge() {
 		return chkBoxCTWedge.isSelected();
 	}
-	
+
 	/**
 	 * Export in PICT format?
 	 * 
