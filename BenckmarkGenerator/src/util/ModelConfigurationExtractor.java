@@ -187,7 +187,7 @@ public class ModelConfigurationExtractor {
 	public int getMinConstraintComplexity() {
 		if (model.getConstraints().size() == 0)
 			return 0;
-		
+
 		int complexity = Integer.MAX_VALUE;
 		ConstraintComplexityExtractor extractor = new ConstraintComplexityExtractor();
 		for (Constraint c : model.getConstraints()) {
@@ -200,9 +200,7 @@ public class ModelConfigurationExtractor {
 	}
 
 	public boolean useConstraintsBetweenParameters() {
-		for (Constraint c : model.getConstraints()) {
-			// TODO
-		}
+		// TODO
 
 		return false;
 	}

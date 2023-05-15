@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.HashMap;
 
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
@@ -34,9 +33,6 @@ import org.jfree.ui.FilesystemFilter;
 import generators.GeneratorConfiguration;
 import main.BenchmarkGeneratorCLI;
 import models.ModelList;
-import javax.swing.SwingConstants;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class BenchmarkGenerator {
 
