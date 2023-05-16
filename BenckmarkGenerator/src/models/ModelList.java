@@ -43,7 +43,8 @@ public class ModelList implements Iterable<Model> {
 	 *         returned when the model is not found
 	 */
 	public Model getModelByName(String name) {
-		Optional<Model> model = models.stream().filter(x -> x.getName().equals(name)).findFirst();
+		Optional<Model> model = models.stream()
+				.filter(x -> (x.getName().equals(name) || x.getName().equals(name.trim()))).findFirst();
 		if (model.isPresent())
 			return model.get();
 		return null;

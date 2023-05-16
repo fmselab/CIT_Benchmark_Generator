@@ -542,7 +542,7 @@ public class BenchmarkGenerator {
 	 * @return TRUE if Tuple Ratio is required, FALSE otherwise
 	 */
 	public boolean isRatioTuple() {
-		return chkTestRatio.isSelected();
+		return chkTupleRatio.isSelected();
 	}
 
 }

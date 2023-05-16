@@ -3,6 +3,8 @@ package main;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
@@ -23,12 +25,8 @@ import util.ModelConfigurationExtractor;
 
 public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
-	/**
-	 * 
-	 * 
-	 * private JTextField txtMaxConstraintsComplexity; private JTextField
-	 * txtMinConstraintComplexity; private JTextField txtRatio;
-	 */
+	private static final Logger LOGGER = LogManager.getRootLogger();
+	
 	@Parameters(index = "0", description = "The category for the benchmark to be generated (UNIFORM_BOOLEAN, UNIFORM_ALL, MCA, BOOLC, MCAC, NUMC, HIGHLY_CONSTRAINED, CNF).")
 	String trackStr;
 	Track track;
@@ -162,6 +160,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	public void setConfigurations() throws InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = nTests;
 		if (similarModel == null) {
+			LOGGER.debug("Configurations set by the user");
 			GeneratorConfiguration.N_PARAMS_MAX = kmax;
 			GeneratorConfiguration.N_PARAMS_MIN = kmin;
 			GeneratorConfiguration.MAX_CARDINALITY = vmax;
@@ -178,6 +177,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.EPSILON = epsilon;
 		} else {
 			// Extract the configuration from that of model given by the user
+			LOGGER.debug("Configurations read from the baseline model");
 			setConfigurationsFromFile(similarModel);
 		}
 	}

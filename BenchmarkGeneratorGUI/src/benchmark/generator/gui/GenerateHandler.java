@@ -10,9 +10,13 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
+import ctwedge.util.validator.SMTConstraintTranslator;
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
@@ -27,6 +31,8 @@ public class GenerateHandler implements ActionListener {
 
 	private BenchmarkGenerator parentFrame;
 	private HashMap<String, Integer> componentsMap;
+	
+	private static final Logger LOGGER = LogManager.getLogger(BenchmarkGenerator.class);
 
 	/**
 	 * Generators
@@ -44,6 +50,8 @@ public class GenerateHandler implements ActionListener {
 	public GenerateHandler(BenchmarkGenerator frame) {
 		parentFrame = frame;
 		componentsMap = frame.getConfigurationComponents();
+		LOGGER.setLevel(Level.DEBUG);
+		Logger.getLogger(SMTConstraintTranslator.class).setLevel(Level.OFF);
 	}
 
 	/**
@@ -73,10 +81,12 @@ public class GenerateHandler implements ActionListener {
 			for (int i = 0; i < nModels; i++) {
 				Model m1 = null;
 				try {
-					m1 = generateWithGenerator(gWC, Category.ONLY_BOOLEAN, false);
+					m1 = generateWithGenerator(gWC, Category.ONLY_BOOLEAN, parentFrame.isRatioTuple(),
+							parentFrame.isRatioTest());
 					m1.setName(BenchmarkGenerator.BOOLC + "_" + i);
 					parentFrame.getModelList().addModel(m1);
-				} catch (InvalidConfigurationException | SolverException e1) {
+					LOGGER.debug("Added a new model: " + m1.getName());
+				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -85,10 +95,12 @@ public class GenerateHandler implements ActionListener {
 			for (int i = 0; i < nModels; i++) {
 				Model m1 = null;
 				try {
-					m1 = generateWithGenerator(gCNF, Category.ALSO_ENUMS, false);
+					m1 = generateWithGenerator(gCNF, Category.ALSO_ENUMS, parentFrame.isRatioTuple(),
+							parentFrame.isRatioTest());
 					m1.setName(BenchmarkGenerator.CNF + "_" + i);
 					parentFrame.getModelList().addModel(m1);
-				} catch (InvalidConfigurationException | SolverException e1) {
+					LOGGER.debug("Added a new model: " + m1.getName());
+				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -97,10 +109,12 @@ public class GenerateHandler implements ActionListener {
 			for (int i = 0; i < nModels; i++) {
 				Model m1 = null;
 				try {
-					m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, true);
+					m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, parentFrame.isRatioTuple(),
+							parentFrame.isRatioTest());
 					m1.setName(BenchmarkGenerator.HIGHLY_CONSTRAINED + "_" + i);
 					parentFrame.getModelList().addModel(m1);
-				} catch (InvalidConfigurationException | SolverException e1) {
+					LOGGER.debug("Added a new model: " + m1.getName());
+				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -110,15 +124,18 @@ public class GenerateHandler implements ActionListener {
 				Model m1 = gWOC.generate(Category.ALSO_ENUMS);
 				m1.setName(BenchmarkGenerator.MCA + "_" + i);
 				parentFrame.getModelList().addModel(m1);
+				LOGGER.debug("Added a new model: " + m1.getName());
 			}
 			break;
 		case BenchmarkGenerator.MCAC:
 			for (int i = 0; i < nModels; i++) {
 				try {
-					Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, false);
+					Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, parentFrame.isRatioTuple(),
+							parentFrame.isRatioTest());
 					m1.setName(BenchmarkGenerator.MCAC + "_" + i);
 					parentFrame.getModelList().addModel(m1);
-				} catch (InvalidConfigurationException | SolverException e1) {
+					LOGGER.debug("Added a new model: " + m1.getName());
+				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -126,10 +143,12 @@ public class GenerateHandler implements ActionListener {
 		case BenchmarkGenerator.NUMC:
 			for (int i = 0; i < nModels; i++) {
 				try {
-					Model m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, false);
+					Model m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL,
+							parentFrame.isRatioTuple(), parentFrame.isRatioTest());
 					m1.setName(BenchmarkGenerator.NUMC + "_" + i);
 					parentFrame.getModelList().addModel(m1);
-				} catch (InvalidConfigurationException | SolverException e1) {
+					LOGGER.debug("Added a new model: " + m1.getName());
+				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -139,6 +158,7 @@ public class GenerateHandler implements ActionListener {
 				Model m1 = gWSC.generate(Category.ALSO_ENUMS);
 				m1.setName(BenchmarkGenerator.UNIFORM_ALL + "_" + i);
 				parentFrame.getModelList().addModel(m1);
+				LOGGER.debug("Added a new model: " + m1.getName());
 			}
 			break;
 		case BenchmarkGenerator.UNIFORM_BOOLEAN:
@@ -146,6 +166,7 @@ public class GenerateHandler implements ActionListener {
 				Model m1 = gWOC.generate(Category.ONLY_BOOLEAN);
 				m1.setName(BenchmarkGenerator.UNIFORM_BOOLEAN + "_" + i);
 				parentFrame.getModelList().addModel(m1);
+				LOGGER.debug("Added a new model: " + m1.getName());
 			}
 			break;
 		default:
@@ -215,6 +236,10 @@ public class GenerateHandler implements ActionListener {
 
 		// Fill the table with the model names
 		for (Model m : models) {
+			if (!m.isRatioExact() && parentFrame.isRatioTest())
+				model.addRow(new Object[] { m.getName() + " (Prob.: "
+						+ m.getProbability(GeneratorConfiguration.EPSILON, GeneratorConfiguration.RATIO_TEST) + ")" });
+			else
 				model.addRow(new Object[] { m.getName() });
 		}
 	}
@@ -226,24 +251,44 @@ public class GenerateHandler implements ActionListener {
 	 * @param generator       the generator
 	 * @param category        the category
 	 * @param checkTupleRatio check the tuple validity ratio?
+	 * @param checkTestRatio  check the test validity ratio?
 	 * @return the model
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
 	 */
-	private Model generateWithGenerator(Generator generator, Category category, boolean checkTupleRatio)
-			throws InvalidConfigurationException, SolverException {
+	private Model generateWithGenerator(Generator generator, Category category, boolean checkTupleRatio,
+			boolean checkTestRatio) throws InvalidConfigurationException, SolverException, InterruptedException {
 		boolean isSolvable = false;
 		Model m = null;
 		do {
 			m = generator.generate(category);
 			isSolvable = m.isSolvable();
-
-			// Check the ratio
-			if (checkTupleRatio) {
-				try {
-					if (m.getTupleValidityRatio() > GeneratorConfiguration.RATIO)
+			
+			if (isSolvable) {
+				LOGGER.debug("The generated model is solvable");
+				// Check the tuple validity ratio
+				if (checkTupleRatio) {
+					LOGGER.debug("Checking TUPLE VALIDITY RATIO");
+					try {
+						double ratio = m.getTupleValidityRatio();
+						LOGGER.debug("TUPLE VALIDITY RATIO " + Double.toString(ratio));
+						if (ratio > GeneratorConfiguration.RATIO)
+							isSolvable = false;
+					} catch (InterruptedException e) {
+					}
+				}
+	
+				// Check the test validity ratio
+				if (checkTestRatio) {
+					LOGGER.debug("Checking TEST VALIDITY RATIO");
+					double ratio = m.getTestValidityRatio();
+					LOGGER.debug("TEST VALIDITY RATIO " + Double.toString(ratio));
+					// If the ratio is exact, it means that it has been computed with the MDD, thus
+					// we can use it to decide whether the model is correct or not. Otherwise, we
+					// can only work with probabilities
+					if (m.isRatioExact() && ratio > GeneratorConfiguration.RATIO_TEST)
 						isSolvable = false;
-				} catch (InterruptedException e) {
 				}
 			}
 

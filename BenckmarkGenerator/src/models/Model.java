@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.sosy_lab.common.ShutdownManager;
 import org.sosy_lab.common.configuration.Configuration;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -32,6 +34,7 @@ import ctwedge.util.validator.RuleEvaluator;
 import ctwedge.util.validator.SMTConstraintChecker;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
+import main.BenchmarkGeneratorCLI;
 import models.constraints.Constraint;
 import pMedici.util.Operations;
 import util.ACTSModelTranslator;
@@ -51,6 +54,7 @@ public class Model {
 	private List<Constraint> constraintsList;
 	private List<Integer> validityTests;
 	private boolean isRatioExact;
+	Logger LOGGER = Logger.getLogger(BenchmarkGeneratorCLI.class);
 
 	/**
 	 * Get whether the ratio has been computed in an exact way or in an approximate
@@ -71,6 +75,7 @@ public class Model {
 		validityTests = new ArrayList<Integer>();
 		name = "";
 		isRatioExact = false;
+		LOGGER.setLevel(Level.DEBUG);
 	}
 
 	/**
@@ -169,7 +174,11 @@ public class Model {
 		CitModel loadModel = Utility.loadModel(this.toString());
 		try {
 			// If the model can be treated with regular MDDs
+			if (getHighestCardinality() > 127)
+				throw new NotConvertableModel(
+						"The cardinality of at least a parameter is higher than the maximum possible [127]");
 			double ratio = Operations.getTestValidityRatioFromModel(loadModel);
+			LOGGER.debug("Test validity ratio computed using MDDs");
 			isRatioExact = true;
 			return ratio;
 		} catch (NotConvertableModel ex) {
@@ -178,6 +187,8 @@ public class Model {
 			// It is based on extracting T tests and on checking whether they are applicable
 			// or not
 			int nValidTest = 0;
+			validityTests.clear();
+			LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
 			ModelUtils mu = new ModelUtils(loadModel);
 			for (int i = 0; i < GeneratorConfiguration.T; i++) {
 				Test t = mu.getRandomTestFromModel();
@@ -189,6 +200,7 @@ public class Model {
 					validityTests.add(0);
 				}
 			}
+			LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + GeneratorConfiguration.T);
 			return (double) nValidTest / GeneratorConfiguration.T;
 		}
 	}

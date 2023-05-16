@@ -5,9 +5,16 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import models.Model;
+import models.ModelList;
+
 public class TableClickListener implements MouseListener {
 
 	private BenchmarkGenerator parentFrame;
+	private static final Logger LOGGER = LogManager.getLogger(BenchmarkGenerator.class);
 
 	/**
 	 * Builds a new TableClickListener
@@ -31,9 +38,13 @@ public class TableClickListener implements MouseListener {
 			String modelName = (String) jTable.getValueAt(row, column);
 			
 			if(modelName.contains("("))
-				modelName = modelName.split("(")[0];
+				modelName = modelName.split("\\(")[0];
 			
-			parentFrame.getTestModel().setText(parentFrame.getModelList().getModelByName(modelName).toString());
+			LOGGER.debug("Showing the model " + modelName);
+			
+			ModelList modelList = parentFrame.getModelList();
+			Model model = modelList.getModelByName(modelName);
+			parentFrame.getTestModel().setText(model.toString());
 		}
 	}
 
