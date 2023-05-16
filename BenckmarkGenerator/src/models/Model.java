@@ -27,10 +27,10 @@ import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.NotConvertableModel;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.SMTConstraintChecker;
+import generators.Randomizer;
 import models.constraints.Constraint;
 import pMedici.util.Operations;
 import util.ACTSModelTranslator;
-import util.Randomizer;
 
 /**
  * A lightweight implementation of a combinatorial model, with methods useful

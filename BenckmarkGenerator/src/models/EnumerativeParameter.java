@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import util.Randomizer;
+import generators.Randomizer;
 
 /**
  * A simple class describing enumeratives.

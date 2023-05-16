@@ -1,4 +1,4 @@
-package util;
+package generators;
 
 /**
  * Randomly generates integer numbers. It is used for randomly choosing which
