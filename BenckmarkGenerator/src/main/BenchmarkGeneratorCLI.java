@@ -84,6 +84,12 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	@Option(names = "-similar", description = "Given a CTWedge model, it generates a model similar to that.")
 	private String similarModel = null;
 
+	@Option(names = "-T", description = "Number of tests to be generated when computing the test validity ratio, if MDDs cannot be used. By default it is 1000")
+	private int T = 1000;
+
+	@Option(names = "-epsilon", description = "The accepted error when computing the test validity ratio, if MDDs cannot be used. By default it is 0.1")
+	private double epsilon = 0.1;
+
 	public static void main(String[] args) throws IOException {
 		BenchmarkGeneratorCLI cliGenerator = new BenchmarkGeneratorCLI();
 		int exitCode = new CommandLine(cliGenerator).execute(args);
@@ -104,8 +110,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
-	 * @throws SolverException 
-	 * @throws InvalidConfigurationException 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
 	 */
 	private void generate() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// First set the configurations
@@ -164,6 +170,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
 			GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;
 			GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
+			GeneratorConfiguration.T = T;
+			GeneratorConfiguration.EPSILON = epsilon;
 		} else {
 			// Extract the configuration from that of model given by the user
 			setConfigurationsFromFile(similarModel);
@@ -201,10 +209,11 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
-	 * @throws SolverException 
-	 * @throws InvalidConfigurationException 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
 	 */
-	public void generateHIGHLY_CONSTRAINED() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+	public void generateHIGHLY_CONSTRAINED()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// The generator that considers constraints
 		Generator g = new WithConstraintGenerator();
 
