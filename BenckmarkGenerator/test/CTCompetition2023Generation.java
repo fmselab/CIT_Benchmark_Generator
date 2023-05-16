@@ -1,6 +1,8 @@
 import java.io.IOException;
 
 import org.junit.Test;
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
 
 import generators.GeneratorConfiguration;
 import main.BenchmarkGeneratorCLI;
@@ -88,7 +90,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testHIGHLYCONSTRAINED() throws IOException, InterruptedException {
+	public void testHIGHLYCONSTRAINED() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		GeneratorConfiguration.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]

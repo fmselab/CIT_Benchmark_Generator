@@ -10,6 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
+
 import generators.Category;
 import generators.Generator;
 import generators.GeneratorConfiguration;
@@ -68,23 +71,38 @@ public class GenerateHandler implements ActionListener {
 		switch (selectedText) {
 		case BenchmarkGenerator.BOOLC:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.ONLY_BOOLEAN, false);
-				m1.setName(BenchmarkGenerator.BOOLC + "_" + i);
-				parentFrame.getModelList().addModel(m1);
+				Model m1 = null;
+				try {
+					m1 = generateWithGenerator(gWC, Category.ONLY_BOOLEAN, false);
+					m1.setName(BenchmarkGenerator.BOOLC + "_" + i);
+					parentFrame.getModelList().addModel(m1);
+				} catch (InvalidConfigurationException | SolverException e1) {
+					e1.printStackTrace();
+				}
 			}
 			break;
 		case BenchmarkGenerator.CNF:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gCNF, Category.ALSO_ENUMS, false);
-				m1.setName(BenchmarkGenerator.CNF + "_" + i);
-				parentFrame.getModelList().addModel(m1);
+				Model m1 = null;
+				try {
+					m1 = generateWithGenerator(gCNF, Category.ALSO_ENUMS, false);
+					m1.setName(BenchmarkGenerator.CNF + "_" + i);
+					parentFrame.getModelList().addModel(m1);
+				} catch (InvalidConfigurationException | SolverException e1) {
+					e1.printStackTrace();
+				}
 			}
 			break;
 		case BenchmarkGenerator.HIGHLY_CONSTRAINED:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, true);
-				m1.setName(BenchmarkGenerator.HIGHLY_CONSTRAINED + "_" + i);
-				parentFrame.getModelList().addModel(m1);
+				Model m1 = null;
+				try {
+					m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, true);
+					m1.setName(BenchmarkGenerator.HIGHLY_CONSTRAINED + "_" + i);
+					parentFrame.getModelList().addModel(m1);
+				} catch (InvalidConfigurationException | SolverException e1) {
+					e1.printStackTrace();
+				}
 			}
 			break;
 		case BenchmarkGenerator.MCA:
@@ -96,16 +114,24 @@ public class GenerateHandler implements ActionListener {
 			break;
 		case BenchmarkGenerator.MCAC:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, false);
-				m1.setName(BenchmarkGenerator.MCAC + "_" + i);
-				parentFrame.getModelList().addModel(m1);
+				try {
+					Model m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, false);
+					m1.setName(BenchmarkGenerator.MCAC + "_" + i);
+					parentFrame.getModelList().addModel(m1);
+				} catch (InvalidConfigurationException | SolverException e1) {
+					e1.printStackTrace();
+				}
 			}
 			break;
 		case BenchmarkGenerator.NUMC:
 			for (int i = 0; i < nModels; i++) {
-				Model m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, false);
-				m1.setName(BenchmarkGenerator.NUMC + "_" + i);
-				parentFrame.getModelList().addModel(m1);
+				try {
+					Model m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, false);
+					m1.setName(BenchmarkGenerator.NUMC + "_" + i);
+					parentFrame.getModelList().addModel(m1);
+				} catch (InvalidConfigurationException | SolverException e1) {
+					e1.printStackTrace();
+				}
 			}
 			break;
 		case BenchmarkGenerator.UNIFORM_ALL:
@@ -192,8 +218,11 @@ public class GenerateHandler implements ActionListener {
 	 * @param category   the category
 	 * @param checkRatio check the ratio?
 	 * @return the model
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
 	 */
-	private Model generateWithGenerator(Generator generator, Category category, boolean checkRatio) {
+	private Model generateWithGenerator(Generator generator, Category category, boolean checkRatio)
+			throws InvalidConfigurationException, SolverException {
 		boolean isSolvable = false;
 		Model m = null;
 		do {

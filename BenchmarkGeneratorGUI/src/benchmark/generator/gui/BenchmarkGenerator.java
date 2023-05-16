@@ -241,7 +241,7 @@ public class BenchmarkGenerator {
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
-		lblRatio = new JLabel("Max Ratio Accepted");
+		lblRatio = new JLabel("Max Tuple Ratio Accepted");
 		addToPanelConfigurations(lblRatio, "lblRatio");
 
 		txtRatio = new JTextField();

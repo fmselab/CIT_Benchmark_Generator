@@ -3,6 +3,9 @@ package main;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
+
 import ctwedge.util.NotConvertableModel;
 import generators.Category;
 import generators.Generator;
@@ -101,8 +104,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
+	 * @throws SolverException 
+	 * @throws InvalidConfigurationException 
 	 */
-	private void generate() throws IOException, InterruptedException {
+	private void generate() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// First set the configurations
 		setConfigurations();
 
@@ -196,8 +201,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
+	 * @throws SolverException 
+	 * @throws InvalidConfigurationException 
 	 */
-	public void generateHIGHLY_CONSTRAINED() throws IOException, InterruptedException {
+	public void generateHIGHLY_CONSTRAINED() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// The generator that considers constraints
 		Generator g = new WithConstraintGenerator();
 

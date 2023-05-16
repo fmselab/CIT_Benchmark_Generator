@@ -24,6 +24,7 @@ import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.pict.PICTGenerator;
+import ctwedge.util.NotConvertableModel;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.SMTConstraintChecker;
 import generators.Randomizer;
@@ -147,7 +148,17 @@ public class Model {
 	public double getTestValidityRatio() throws InterruptedException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
-		return Operations.getTestValidityRatioFromModel(loadModel);
+		try {
+			// If the model can be treated with regular MDDs
+			return Operations.getTestValidityRatioFromModel(loadModel);
+		} catch (NotConvertableModel ex) {
+			// The model contains relational operators, thus a probabilistic approach has to
+			// be used
+			
+			
+			
+			return 0;
+		}
 	}
 
 	/**
@@ -156,11 +167,13 @@ public class Model {
 	 * 
 	 * @return the tuple validity ratio
 	 * @throws InterruptedException
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
 	 */
-	public double getTupleValidityRatio() throws InterruptedException {
+	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
-		return Operations.getTupleValidityRatioFromModel(loadModel);
+		return kali.util.Operations.getTupleValidityRatioFromModel(loadModel);
 	}
 
 	/**
@@ -197,7 +210,8 @@ public class Model {
 
 	/**
 	 * Export the model in ACTS format in the current folder
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public void exportACTS() throws IOException {
 		exportACTS(".");
@@ -207,16 +221,17 @@ public class Model {
 	 * Export the model in ACTS format
 	 * 
 	 * @param destinationFolder the destination folder
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void exportACTS(String destinationFolder) throws IOException {
 		ACTSModelTranslator translator = new ACTSModelTranslator();
 		translator.saveActsTXTonlyModel(this, destinationFolder);
 	}
-	
+
 	/**
 	 * Export the model in PICT format in the current folder
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	public void exportPICT() throws IOException {
 		exportPICT(".");
@@ -226,7 +241,7 @@ public class Model {
 	 * Export the model in PICT format
 	 * 
 	 * @param destinationFolder the destination folder
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void exportPICT(String destinationFolder) throws IOException {
 		CitModel model = Utility.loadModel(this.toString());
@@ -283,7 +298,7 @@ public class Model {
 	public List<Constraint> getConstraints() {
 		return this.constraintsList;
 	}
-	
+
 	/**
 	 * Access the list of parameters
 	 * 

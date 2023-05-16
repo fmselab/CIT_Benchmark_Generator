@@ -23,5 +23,7 @@ public class GeneratorConfiguration {
 	public static double RATIO = 0.01;
 	public static double TIMEOUT = 6.0;
 	public static Track TRACK = Track.BOOLC;
-
+	public static int T = 1000;
+	public static double EPSILON = 0.1;
+	
 }
