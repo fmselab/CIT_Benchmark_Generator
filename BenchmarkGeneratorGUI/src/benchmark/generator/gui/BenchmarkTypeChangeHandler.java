@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -106,6 +107,9 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatioTest")).setEnabled(!lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtEpsilonTest")).setEnabled(!lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtTTest")).setEnabled(!lock);
+		
+		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTestRatio"))).setSelected(!lock);
+		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTupleRatio"))).setSelected(!lock);
 	}
 
 	/**
@@ -133,6 +137,8 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtNMaxConstraints")).setEnabled(!lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkConstraintsBetweenParams"))
 				.setEnabled(!lock);
+		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTestRatio"))).setEnabled(!lock);
+		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTupleRatio"))).setEnabled(!lock);
 	}
 
 	/**

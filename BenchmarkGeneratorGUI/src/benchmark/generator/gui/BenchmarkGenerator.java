@@ -82,6 +82,8 @@ public class BenchmarkGenerator {
 	private JLabel lblNumBenchmarks;
 	private JLabel lblMinCardinality;
 	private JCheckBox chkConstraintsBetweenParams;
+	private JCheckBox chkTestRatio;
+	private JCheckBox chkTupleRatio;
 	private JLabel lblMaxCardinality;
 	private JLabel lblMinConstraintComplexity;
 	private JLabel lblMaxConstraintComplexity;
@@ -247,33 +249,61 @@ public class BenchmarkGenerator {
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
+		chkTupleRatio = new JCheckBox("Check Tuple Ratio");
+		addToPanelConfigurations(chkTupleRatio, "chkTupleRatio");
+
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+
 		lblRatio = new JLabel("Max Tuple Ratio Accepted (R)");
 		addToPanelConfigurations(lblRatio, "lblRatio");
 
 		txtRatio = new JTextField();
 		txtRatio.setColumns(10);
 		addToPanelConfigurations(txtRatio, "txtRatio");
-		
+
+		chkTestRatio = new JCheckBox("Check Test Ratio");
+		addToPanelConfigurations(chkTestRatio, "chkTestRatio");
+
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+
 		lblRatioTest = new JLabel("Max Test Ratio Accepted (tR)");
 		addToPanelConfigurations(lblRatioTest, "lblRatioTest");
 
 		txtRatioTest = new JTextField();
 		txtRatioTest.setColumns(10);
 		addToPanelConfigurations(txtRatioTest, "txtRatioTest");
-		
+
 		lblTTest = new JLabel("Num. Tests for Ratio");
 		addToPanelConfigurations(lblTTest, "lblTTest");
 
 		txtTTest = new JTextField();
 		txtTTest.setColumns(10);
 		addToPanelConfigurations(txtTTest, "txtTTest");
-		
+
 		lblEpsilonTest = new JLabel("Error for Ratio");
 		addToPanelConfigurations(lblEpsilonTest, "lblEpsilonTest");
 
 		txtEpsilonTest = new JTextField();
 		txtEpsilonTest.setColumns(10);
 		addToPanelConfigurations(txtEpsilonTest, "txtEpsilonTest");
+
+		chkTestRatio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				txtRatioTest.setEnabled(chkTestRatio.isSelected());
+				txtTTest.setEnabled(chkTestRatio.isSelected());
+				txtEpsilonTest.setEnabled(chkTestRatio.isSelected());
+			}
+		});
+
+		chkTupleRatio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				txtRatio.setEnabled(chkTupleRatio.isSelected());
+			}
+		});
 
 		lblNumBenchmarks = new JLabel("Num. Benchmarks");
 		addToPanelConfigurations(lblNumBenchmarks, "lblNumBenchmarks");
@@ -495,6 +525,24 @@ public class BenchmarkGenerator {
 	 */
 	public boolean isPICT() {
 		return chkBoxPICT.isSelected();
+	}
+
+	/**
+	 * Measure the TestRatio?
+	 * 
+	 * @return TRUE if Test Ratio is required, FALSE otherwise
+	 */
+	public boolean isRatioTest() {
+		return chkTestRatio.isSelected();
+	}
+
+	/**
+	 * Measure the TupleRatio?
+	 * 
+	 * @return TRUE if Tuple Ratio is required, FALSE otherwise
+	 */
+	public boolean isRatioTuple() {
+		return chkTestRatio.isSelected();
 	}
 
 }
