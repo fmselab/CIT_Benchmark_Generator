@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
 
 import benchmark.generator.gui.BenchmarkGenerator;
 import generators.Category;
@@ -13,9 +14,10 @@ public class TestRatio {
 	 * Test checking the RATIO computation for HIGHLY CONSTRAINED models
 	 * 
 	 * @throws InterruptedException
+	 * @throws InvalidConfigurationException 
 	 */
 	@Test
-	public void test() throws InterruptedException {
+	public void test() throws InterruptedException, InvalidConfigurationException {
 		GeneratorConfiguration.MAX_CARDINALITY = 300;
 		Generator gWC = new WithConstraintGenerator();
 		Model m1 = gWC.generate(Category.ALSO_ENUMS);

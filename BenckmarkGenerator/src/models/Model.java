@@ -25,8 +25,11 @@ import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.NotConvertableModel;
+import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
+import ctwedge.util.validator.RuleEvaluator;
 import ctwedge.util.validator.SMTConstraintChecker;
+import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import models.constraints.Constraint;
 import pMedici.util.Operations;
@@ -144,8 +147,9 @@ public class Model {
 	 * 
 	 * @return the test validity ratio
 	 * @throws InterruptedException
+	 * @throws InvalidConfigurationException 
 	 */
-	public double getTestValidityRatio() throws InterruptedException {
+	public double getTestValidityRatio() throws InterruptedException, InvalidConfigurationException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
 		try {
@@ -154,10 +158,20 @@ public class Model {
 		} catch (NotConvertableModel ex) {
 			// The model contains relational operators, thus a probabilistic approach has to
 			// be used
-			
-			
-			
-			return 0;
+			// It is based on extracting T tests and on checking whether they are applicable
+			// or not
+			int nValidTest = 0;
+			for (int i=0; i<GeneratorConfiguration.T; i++) {
+				Map<String, String> assignments = new HashMap<String, String>();
+				for (Parameter p : paramsList) {
+					assignments.put(p.getName(), p.getRandomValue());
+				}
+				Test t = new Test(assignments);
+				RuleEvaluator evaluator = new RuleEvaluator(t);
+				if (evaluator.caseCitModel(loadModel)) 
+					nValidTest++;
+			}
+			return (double)nValidTest / GeneratorConfiguration.T;
 		}
 	}
 
@@ -261,23 +275,7 @@ public class Model {
 	public boolean isSolvable() {
 		boolean isSolvable = false;
 		try {
-			// Build the CIT Model
-			CitModel citModel = Utility.loadModel(toString());
-
-			// Set up the SMT Solver context and parameters
-			Configuration config = Configuration.defaultConfiguration();
-			LogManager logger;
-			logger = BasicLogManager.create(config);
-			ShutdownManager shutdown = ShutdownManager.create();
-			SolverContext ctx = SolverContextFactory.createSolverContext(config, logger, shutdown.getNotifier(),
-					Solvers.SMTINTERPOL);
-			ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
-			Map<String, String> declaredElements = new HashMap<>();
-			Map<ctwedge.ctWedge.Parameter, Formula> variables = new HashMap<ctwedge.ctWedge.Parameter, Formula>();
-
-			// Create the context
-			prover = SMTConstraintChecker.createCtxFromModel(citModel, citModel.getConstraints(), ctx, declaredElements,
-					variables, prover);
+			ProverEnvironment prover = buildProverEnvironmentFromModel();
 
 			// Verify if it is empty
 			if (prover.isUnsat())
@@ -288,6 +286,33 @@ public class Model {
 			e.printStackTrace();
 		}
 		return isSolvable;
+	}
+
+	/**
+	 * Builds the prover environment from the model
+	 * 
+	 * @return the prover environment
+	 * @throws InvalidConfigurationException
+	 */
+	public ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
+		// Build the CIT Model
+		CitModel citModel = Utility.loadModel(toString());
+
+		// Set up the SMT Solver context and parameters
+		Configuration config = Configuration.defaultConfiguration();
+		LogManager logger;
+		logger = BasicLogManager.create(config);
+		ShutdownManager shutdown = ShutdownManager.create();
+		SolverContext ctx = SolverContextFactory.createSolverContext(config, logger, shutdown.getNotifier(),
+				Solvers.SMTINTERPOL);
+		ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
+		Map<String, String> declaredElements = new HashMap<>();
+		Map<ctwedge.ctWedge.Parameter, Formula> variables = new HashMap<ctwedge.ctWedge.Parameter, Formula>();
+
+		// Create the context
+		prover = SMTConstraintChecker.createCtxFromModel(citModel, citModel.getConstraints(), ctx, declaredElements,
+				variables, prover);
+		return prover;
 	}
 
 	/**
