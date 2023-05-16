@@ -28,7 +28,11 @@ public class TableClickListener implements MouseListener {
 			final JTable jTable = (JTable) e.getSource();
 			final int row = jTable.getSelectedRow();
 			final int column = jTable.getSelectedColumn();
-			final String modelName = (String) jTable.getValueAt(row, column);
+			String modelName = (String) jTable.getValueAt(row, column);
+			
+			if(modelName.contains("("))
+				modelName = modelName.split("(")[0];
+			
 			parentFrame.getTestModel().setText(parentFrame.getModelList().getModelByName(modelName).toString());
 		}
 	}

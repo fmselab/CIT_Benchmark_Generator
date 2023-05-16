@@ -209,20 +209,12 @@ public class GenerateHandler implements ActionListener {
 	 * @param models the list of models being generated
 	 */
 	private void showModels(ModelList models) {
-		/*// Extract the selected benchmark type from the combo box benchmarkType
-		JComboBox<String> benchmarkType = (JComboBox<String>) Arrays
-				.stream(parentFrame.getPanelConfigurations().getComponents())
-				.filter(x -> x.getName() != null && x.getName().equals("benchmarkType")).findFirst().get();
-		String selectedText = (String) benchmarkType.getSelectedItem();
-*/
-		
 		DefaultTableModel model = parentFrame.getModel();
 		// Empty the model
 		parentFrame.emptyModel();
 
 		// Fill the table with the model names
 		for (Model m : models) {
-			//if (selectedText == BenchmarkGenerator.HIGHLY_CONSTRAINED)
 				model.addRow(new Object[] { m.getName() });
 		}
 	}
