@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import generators.Randomizer;
+import util.Randomizer;
 
 /**
  * A class representing boolean parameters that can be only TRUE or FALSE

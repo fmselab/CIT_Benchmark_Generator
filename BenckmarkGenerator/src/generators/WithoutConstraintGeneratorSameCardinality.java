@@ -6,6 +6,7 @@ import models.BooleanParameter;
 import models.EnumerativeParameter;
 import models.IntegerParameter;
 import models.Model;
+import util.Randomizer;
 
 /**
  * Generates a new model without constraints, and with parameters of the

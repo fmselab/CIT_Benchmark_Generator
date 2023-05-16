@@ -7,6 +7,7 @@ import models.constraints.DoubleImpliesConstraint;
 import models.constraints.ImpliesConstraint;
 import models.constraints.NotConstraint;
 import models.constraints.OrConstraint;
+import util.Randomizer;
 import models.BooleanParameter;
 import models.EnumerativeParameter;
 import models.Model;

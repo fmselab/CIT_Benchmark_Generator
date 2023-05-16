@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-import generators.Randomizer;
+import util.Randomizer;
 
 /**
  * A class representing integer parameters, with a lower and upper bound

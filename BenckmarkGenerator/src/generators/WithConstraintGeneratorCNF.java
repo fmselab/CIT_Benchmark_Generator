@@ -5,6 +5,7 @@ import models.constraints.AtomicConstraint;
 import models.constraints.Constraint;
 import models.constraints.NotConstraint;
 import models.constraints.OrConstraint;
+import util.Randomizer;
 import models.BooleanParameter;
 import models.EnumerativeParameter;
 import models.Model;
