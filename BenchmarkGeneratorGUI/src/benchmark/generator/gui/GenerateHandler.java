@@ -97,7 +97,7 @@ public class GenerateHandler implements ActionListener {
 			for (int i = 0; i < nModels; i++) {
 				Model m1 = null;
 				try {
-					m1 = generateWithGenerator(gWC, Category.ALSO_ENUMS, true);
+					m1 = generateWithGenerator(gWC, Category.CONSTRAINTS_WITH_RELATIONAL, true);
 					m1.setName(BenchmarkGenerator.HIGHLY_CONSTRAINED + "_" + i);
 					parentFrame.getModelList().addModel(m1);
 				} catch (InvalidConfigurationException | SolverException e1) {
@@ -214,14 +214,14 @@ public class GenerateHandler implements ActionListener {
 	 * Generates a model with a given generator and category, and verifies its
 	 * solvability
 	 * 
-	 * @param generator  the generator
-	 * @param category   the category
-	 * @param checkRatio check the ratio?
+	 * @param generator       the generator
+	 * @param category        the category
+	 * @param checkTupleRatio check the tuple validity ratio?
 	 * @return the model
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	private Model generateWithGenerator(Generator generator, Category category, boolean checkRatio)
+	private Model generateWithGenerator(Generator generator, Category category, boolean checkTupleRatio)
 			throws InvalidConfigurationException, SolverException {
 		boolean isSolvable = false;
 		Model m = null;
@@ -230,11 +230,9 @@ public class GenerateHandler implements ActionListener {
 			isSolvable = m.isSolvable();
 
 			// Check the ratio
-			if (checkRatio) {
+			if (checkTupleRatio) {
 				try {
-					if (m.getHighestCardinality() <= 127 && m.getTupleValidityRatio() > GeneratorConfiguration.RATIO)
-						isSolvable = false;
-					else if (m.getHighestCardinality() > 127)
+					if (m.getTupleValidityRatio() > GeneratorConfiguration.RATIO)
 						isSolvable = false;
 				} catch (InterruptedException e) {
 				}

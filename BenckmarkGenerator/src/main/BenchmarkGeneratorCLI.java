@@ -221,7 +221,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
 			do {
-				m1 = g.generate(Category.ALSO_ENUMS);
+				m1 = g.generate(Category.CONSTRAINTS_WITH_RELATIONAL);
 				m1.setName(Track.HIGHLY_CONSTRAINED + "_" + i);
 			} while (!m1.isSolvable() || m1.getTupleValidityRatio() > GeneratorConfiguration.RATIO);
 

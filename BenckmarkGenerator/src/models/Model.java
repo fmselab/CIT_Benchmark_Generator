@@ -48,6 +48,7 @@ public class Model {
 	private String name;
 	private List<Parameter> paramsList;
 	private List<Constraint> constraintsList;
+	private List<Integer> validityTests;
 
 	/**
 	 * Build an empty model.
@@ -55,6 +56,7 @@ public class Model {
 	public Model() {
 		paramsList = new ArrayList<>();
 		constraintsList = new ArrayList<>();
+		validityTests = new ArrayList<Integer>();
 		name = "";
 	}
 
@@ -147,7 +149,7 @@ public class Model {
 	 * 
 	 * @return the test validity ratio
 	 * @throws InterruptedException
-	 * @throws InvalidConfigurationException 
+	 * @throws InvalidConfigurationException
 	 */
 	public double getTestValidityRatio() throws InterruptedException, InvalidConfigurationException {
 		// Define the model as a CitModel
@@ -161,18 +163,40 @@ public class Model {
 			// It is based on extracting T tests and on checking whether they are applicable
 			// or not
 			int nValidTest = 0;
-			for (int i=0; i<GeneratorConfiguration.T; i++) {
+			for (int i = 0; i < GeneratorConfiguration.T; i++) {
 				Map<String, String> assignments = new HashMap<String, String>();
 				for (Parameter p : paramsList) {
 					assignments.put(p.getName(), p.getRandomValue());
 				}
 				Test t = new Test(assignments);
 				RuleEvaluator evaluator = new RuleEvaluator(t);
-				if (evaluator.caseCitModel(loadModel)) 
+				if (evaluator.caseCitModel(loadModel)) {
 					nValidTest++;
+					validityTests.add(1);
+				} else {
+					validityTests.add(0);
+				}
 			}
-			return (double)nValidTest / GeneratorConfiguration.T;
+			return (double) nValidTest / GeneratorConfiguration.T;
 		}
+	}
+
+	/**
+	 * Computes the probability that the given model has a ratio equals to the one
+	 * required with error epsilon
+	 * 
+	 * @param epsilon      the maximum accepted error
+	 * @param desiredRatio the desired ratio
+	 * @return the probability that the given model has a ratio equals to the one
+	 *         required with error epsilon
+	 */
+	public double getProbability(double epsilon, double desiredRatio) {
+		// Compute the variance
+		double variance = 0;
+		for (int i = 0; i < validityTests.size(); i++) {
+			variance += Math.pow(validityTests.get(i) - desiredRatio, 2) / (GeneratorConfiguration.T - 1);
+		}
+		return variance / Math.pow(epsilon * desiredRatio, 2);
 	}
 
 	/**
