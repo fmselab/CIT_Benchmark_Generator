@@ -220,7 +220,13 @@ public class Model {
 		for (int i = 0; i < validityTests.size(); i++) {
 			variance += Math.pow(validityTests.get(i) - desiredRatio, 2) / (GeneratorConfiguration.T - 1);
 		}
-		return variance / Math.pow(epsilon * desiredRatio, 2);
+		double probability = 1 - (variance / (Math.pow(epsilon * desiredRatio, 2) * GeneratorConfiguration.T));
+		// Limit the probability between 1 and 0
+		if (probability < 0)
+			return 0.0;
+		else if (probability > 1)
+			return 1.0;		
+		return probability;
 	}
 
 	/**
