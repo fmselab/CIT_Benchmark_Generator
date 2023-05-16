@@ -81,6 +81,9 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	@Option(names = "-r", description = "Maximum accepted tuple validity ratio. By default it is 0.01.")
 	private double r = 0.01;
 
+	@Option(names = "-rTest", description = "Maximum accepted test validity ratio. By default it is 0.01.")
+	private double rTest = 0.01;
+
 	@Option(names = "-similar", description = "Given a CTWedge model, it generates a model similar to that.")
 	private String similarModel = null;
 
@@ -166,6 +169,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.LOWER_BOUND_INT = vIntLow;
 			GeneratorConfiguration.UPPER_BOUND_INT = vIntUp;
 			GeneratorConfiguration.RATIO = r;
+			GeneratorConfiguration.RATIO_TEST = rTest;
 			GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = dmax;
 			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
 			GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;

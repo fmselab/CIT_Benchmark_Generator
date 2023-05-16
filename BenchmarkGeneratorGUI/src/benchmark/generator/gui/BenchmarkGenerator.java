@@ -437,6 +437,9 @@ public class BenchmarkGenerator {
 		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
 		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
+		txtRatioTest.setText(Double.toString(GeneratorConfiguration.RATIO_TEST));
+		txtEpsilonTest.setText(Double.toString(GeneratorConfiguration.EPSILON));
+		txtTTest.setText(Integer.toString(GeneratorConfiguration.T));
 		benchmarkType.setSelectedItem(GeneratorConfiguration.TRACK.toString());
 	}
 

@@ -103,7 +103,9 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 	 */
 	private void lockRatio(boolean lock) {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")).setEnabled(!lock);
-
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatioTest")).setEnabled(!lock);
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtEpsilonTest")).setEnabled(!lock);
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtTTest")).setEnabled(!lock);
 	}
 
 	/**

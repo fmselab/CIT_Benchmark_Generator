@@ -190,6 +190,15 @@ public class GenerateHandler implements ActionListener {
 		GeneratorConfiguration.RATIO = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")))
 						.getText());
+		GeneratorConfiguration.T = Integer.parseInt(
+				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtTTest")))
+						.getText());
+		GeneratorConfiguration.EPSILON = Double.parseDouble(
+				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtEpsilonTest")))
+						.getText());
+		GeneratorConfiguration.RATIO_TEST = Double.parseDouble(
+				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatioTest")))
+						.getText());
 		GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS = ((JCheckBox) (parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("chkConstraintsBetweenParams")))).isSelected();
 	}
@@ -200,13 +209,21 @@ public class GenerateHandler implements ActionListener {
 	 * @param models the list of models being generated
 	 */
 	private void showModels(ModelList models) {
+		/*// Extract the selected benchmark type from the combo box benchmarkType
+		JComboBox<String> benchmarkType = (JComboBox<String>) Arrays
+				.stream(parentFrame.getPanelConfigurations().getComponents())
+				.filter(x -> x.getName() != null && x.getName().equals("benchmarkType")).findFirst().get();
+		String selectedText = (String) benchmarkType.getSelectedItem();
+*/
+		
 		DefaultTableModel model = parentFrame.getModel();
 		// Empty the model
 		parentFrame.emptyModel();
 
 		// Fill the table with the model names
 		for (Model m : models) {
-			model.addRow(new Object[] { m.getName() });
+			//if (selectedText == BenchmarkGenerator.HIGHLY_CONSTRAINED)
+				model.addRow(new Object[] { m.getName() });
 		}
 	}
 

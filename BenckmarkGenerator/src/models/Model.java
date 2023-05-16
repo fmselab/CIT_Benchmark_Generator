@@ -24,6 +24,7 @@ import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.pict.PICTGenerator;
+import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
@@ -49,6 +50,17 @@ public class Model {
 	private List<Parameter> paramsList;
 	private List<Constraint> constraintsList;
 	private List<Integer> validityTests;
+	private boolean isRatioExact;
+
+	/**
+	 * Get whether the ratio has been computed in an exact way or in an approximate
+	 * way
+	 * 
+	 * @return TRUE if the ratio has been computed with MDDs, FALSE otherwise
+	 */
+	public boolean isRatioExact() {
+		return isRatioExact;
+	}
 
 	/**
 	 * Build an empty model.
@@ -58,6 +70,7 @@ public class Model {
 		constraintsList = new ArrayList<>();
 		validityTests = new ArrayList<Integer>();
 		name = "";
+		isRatioExact = false;
 	}
 
 	/**
@@ -156,19 +169,18 @@ public class Model {
 		CitModel loadModel = Utility.loadModel(this.toString());
 		try {
 			// If the model can be treated with regular MDDs
-			return Operations.getTestValidityRatioFromModel(loadModel);
+			double ratio = Operations.getTestValidityRatioFromModel(loadModel);
+			isRatioExact = true;
+			return ratio;
 		} catch (NotConvertableModel ex) {
 			// The model contains relational operators, thus a probabilistic approach has to
 			// be used
 			// It is based on extracting T tests and on checking whether they are applicable
 			// or not
 			int nValidTest = 0;
+			ModelUtils mu = new ModelUtils(loadModel);
 			for (int i = 0; i < GeneratorConfiguration.T; i++) {
-				Map<String, String> assignments = new HashMap<String, String>();
-				for (Parameter p : paramsList) {
-					assignments.put(p.getName(), p.getRandomValue());
-				}
-				Test t = new Test(assignments);
+				Test t = mu.getRandomTestFromModel();
 				RuleEvaluator evaluator = new RuleEvaluator(t);
 				if (evaluator.evaluateModel(loadModel)) {
 					nValidTest++;
