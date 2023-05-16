@@ -170,7 +170,7 @@ public class Model {
 				}
 				Test t = new Test(assignments);
 				RuleEvaluator evaluator = new RuleEvaluator(t);
-				if (evaluator.caseCitModel(loadModel)) {
+				if (evaluator.evaluateModel(loadModel)) {
 					nValidTest++;
 					validityTests.add(1);
 				} else {

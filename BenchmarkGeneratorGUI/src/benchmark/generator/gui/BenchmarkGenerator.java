@@ -58,6 +58,9 @@ public class BenchmarkGenerator {
 	private JTextField txtMinConstraintComplexity;
 	private JTextField txtNumBenchmarks;
 	private JTextField txtRatio;
+	private JTextField txtRatioTest;
+	private JTextField txtEpsilonTest;
+	private JTextField txtTTest;
 	private JTable tblTestCases;
 	private JComboBox<String> benchmarkType;
 	private JSplitPane splitView;
@@ -67,6 +70,9 @@ public class BenchmarkGenerator {
 	private JLabel lblNMinParams;
 	private JLabel lblNMaxParams;
 	private JLabel lblRatio;
+	private JLabel lblRatioTest;
+	private JLabel lblEpsilonTest;
+	private JLabel lblTTest;
 	private JLabel lblLowerBoundInt;
 	private JLabel lblUpperBoundInt;
 	private JPanel panelTestSuite;
@@ -241,12 +247,33 @@ public class BenchmarkGenerator {
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
-		lblRatio = new JLabel("Max Tuple Ratio Accepted");
+		lblRatio = new JLabel("Max Tuple Ratio Accepted (R)");
 		addToPanelConfigurations(lblRatio, "lblRatio");
 
 		txtRatio = new JTextField();
 		txtRatio.setColumns(10);
 		addToPanelConfigurations(txtRatio, "txtRatio");
+		
+		lblRatioTest = new JLabel("Max Test Ratio Accepted (tR)");
+		addToPanelConfigurations(lblRatioTest, "lblRatioTest");
+
+		txtRatioTest = new JTextField();
+		txtRatioTest.setColumns(10);
+		addToPanelConfigurations(txtRatioTest, "txtRatioTest");
+		
+		lblTTest = new JLabel("Num. Tests for Ratio");
+		addToPanelConfigurations(lblTTest, "lblTTest");
+
+		txtTTest = new JTextField();
+		txtTTest.setColumns(10);
+		addToPanelConfigurations(txtTTest, "txtTTest");
+		
+		lblEpsilonTest = new JLabel("Error for Ratio");
+		addToPanelConfigurations(lblEpsilonTest, "lblEpsilonTest");
+
+		txtEpsilonTest = new JTextField();
+		txtEpsilonTest.setColumns(10);
+		addToPanelConfigurations(txtEpsilonTest, "txtEpsilonTest");
 
 		lblNumBenchmarks = new JLabel("Num. Benchmarks");
 		addToPanelConfigurations(lblNumBenchmarks, "lblNumBenchmarks");
