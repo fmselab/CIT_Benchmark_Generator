@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 
@@ -15,9 +17,10 @@ public class TestRatio {
 	 * 
 	 * @throws InterruptedException
 	 * @throws InvalidConfigurationException 
+	 * @throws IOException 
 	 */
 	@Test
-	public void test() throws InterruptedException, InvalidConfigurationException {
+	public void test() throws InterruptedException, InvalidConfigurationException, IOException {
 		GeneratorConfiguration.MAX_CARDINALITY = 300;
 		Generator gWC = new WithConstraintGenerator();
 		Model m1 = gWC.generate(Category.ALSO_ENUMS);
