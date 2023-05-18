@@ -1,8 +1,12 @@
 package models;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +25,8 @@ import org.sosy_lab.java_smt.SolverContextFactory.Solvers;
 import org.sosy_lab.java_smt.api.Formula;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.api.SolverContext;
-import org.sosy_lab.java_smt.api.SolverException;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
+import org.sosy_lab.java_smt.api.SolverException;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.generator.pict.PICTGenerator;
@@ -36,7 +40,6 @@ import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import main.BenchmarkGeneratorCLI;
 import models.constraints.Constraint;
-import pMedici.util.Operations;
 import util.ACTSModelTranslator;
 
 /**
@@ -168,17 +171,78 @@ public class Model {
 	 * @return the test validity ratio
 	 * @throws InterruptedException
 	 * @throws InvalidConfigurationException
+	 * @throws IOException
 	 */
-	public double getTestValidityRatio() throws InterruptedException, InvalidConfigurationException {
+	public double getTestValidityRatio() throws InterruptedException, InvalidConfigurationException, IOException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
 		try {
-			// If the model can be treated with regular MDDs
-			if (getHighestCardinality() > 127)
-				throw new NotConvertableModel(
-						"The cardinality of at least a parameter is higher than the maximum possible [127]");
-			double ratio = Operations.getTestValidityRatioFromModel(loadModel);
-			LOGGER.debug("Test validity ratio computed using MDDs");
+			/*
+			 * The following solution works under all operating systems, but due to COLOMOTO
+			 * MDDLIB simplifications it may give wrong values. Instead, we use MEDICI for
+			 * this purpose to avoid problems
+			 */
+			/*
+			 * // If the model can be treated with regular MDDs if (getHighestCardinality()
+			 * > 127) throw new NotConvertableModel(
+			 * "The cardinality of at least a parameter is higher than the maximum possible [127]"
+			 * ); double ratio = Operations.getTestValidityRatioFromModel(loadModel);
+			 * LOGGER.debug("Test validity ratio computed using MDDs"); isRatioExact = true;
+			 * return ratio;
+			 */
+
+			// First save the CTWedge file
+			File f = new File(getName() + ".ctw");
+			FileWriter fo = new FileWriter(f);
+			fo.write(toString());
+			fo.close();
+			LOGGER.debug("Test validity ratio computed using MEDICI. The model has been written in the " + getName()
+					+ ".ctw file");
+			
+			// Now call MEDICI
+			List<String> command = new ArrayList<String>();
+			command.add(System.getProperty("user.dir") + "/medici");
+			// --- Model
+			command.add("--m");
+			command.add(getName() + ".ctw");
+			// --- Use CTWedge input format
+			command.add("--ctw");
+			// --- Do not generate
+			command.add("--donotgenerate");
+			LOGGER.debug("Executing command " + command);
+						
+			// Run
+			ProcessBuilder pc = new ProcessBuilder(command);
+			pc.command(command);
+			pc.redirectError();
+			Process p = pc.start();
+			BigDecimal sizeWoConstraints = new BigDecimal(-1);
+			BigDecimal sizeWConstraints = new BigDecimal(-1);
+			try {
+				BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				String line;
+				while ((line = bri.readLine()) != null) {
+					LOGGER.debug(line);
+					// save to file
+					if (line.contains("Cardinalita di partenza")) {
+						sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
+					}
+					if (line.contains("Cardinalita finale")) {
+						sizeWConstraints = new BigDecimal((line.split(" ")[2]));
+					}
+				}
+				bri.close();
+				p.waitFor();
+				System.out.println("command finished ");
+			} catch (InterruptedException e) {
+				f.delete();
+				throw new NotConvertableModel("Computation of the ratio interrupted");
+			}
+			f.delete();
+			// Compute ratio
+			double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
+			if (ratio < 0)
+				throw new NotConvertableModel("Computation of the ratio failed");
 			isRatioExact = true;
 			return ratio;
 		} catch (NotConvertableModel ex) {
@@ -225,7 +289,7 @@ public class Model {
 		if (probability < 0)
 			return 0.0;
 		else if (probability > 1)
-			return 1.0;		
+			return 1.0;
 		return probability;
 	}
 

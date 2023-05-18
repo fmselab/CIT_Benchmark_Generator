@@ -2,6 +2,7 @@ package benchmark.generator.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -31,7 +32,7 @@ public class GenerateHandler implements ActionListener {
 
 	private BenchmarkGenerator parentFrame;
 	private HashMap<String, Integer> componentsMap;
-	
+
 	private static final Logger LOGGER = LogManager.getLogger(BenchmarkGenerator.class);
 
 	/**
@@ -86,7 +87,7 @@ public class GenerateHandler implements ActionListener {
 					m1.setName(BenchmarkGenerator.BOOLC + "_" + i);
 					parentFrame.getModelList().addModel(m1);
 					LOGGER.debug("Added a new model: " + m1.getName());
-				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
+				} catch (InvalidConfigurationException | SolverException | InterruptedException | IOException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -100,7 +101,7 @@ public class GenerateHandler implements ActionListener {
 					m1.setName(BenchmarkGenerator.CNF + "_" + i);
 					parentFrame.getModelList().addModel(m1);
 					LOGGER.debug("Added a new model: " + m1.getName());
-				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
+				} catch (InvalidConfigurationException | SolverException | InterruptedException | IOException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -114,7 +115,7 @@ public class GenerateHandler implements ActionListener {
 					m1.setName(BenchmarkGenerator.HIGHLY_CONSTRAINED + "_" + i);
 					parentFrame.getModelList().addModel(m1);
 					LOGGER.debug("Added a new model: " + m1.getName());
-				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
+				} catch (InvalidConfigurationException | SolverException | InterruptedException | IOException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -135,7 +136,7 @@ public class GenerateHandler implements ActionListener {
 					m1.setName(BenchmarkGenerator.MCAC + "_" + i);
 					parentFrame.getModelList().addModel(m1);
 					LOGGER.debug("Added a new model: " + m1.getName());
-				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
+				} catch (InvalidConfigurationException | SolverException | InterruptedException | IOException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -148,7 +149,7 @@ public class GenerateHandler implements ActionListener {
 					m1.setName(BenchmarkGenerator.NUMC + "_" + i);
 					parentFrame.getModelList().addModel(m1);
 					LOGGER.debug("Added a new model: " + m1.getName());
-				} catch (InvalidConfigurationException | SolverException | InterruptedException e1) {
+				} catch (InvalidConfigurationException | SolverException | InterruptedException | IOException e1) {
 					e1.printStackTrace();
 				}
 			}
@@ -256,15 +257,17 @@ public class GenerateHandler implements ActionListener {
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 * @throws InterruptedException
+	 * @throws IOException
 	 */
 	private Model generateWithGenerator(Generator generator, Category category, boolean checkTupleRatio,
-			boolean checkTestRatio) throws InvalidConfigurationException, SolverException, InterruptedException {
+			boolean checkTestRatio)
+			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
 		boolean isSolvable = false;
 		Model m = null;
 		do {
 			m = generator.generate(category);
 			isSolvable = m.isSolvable();
-			
+
 			if (isSolvable) {
 				LOGGER.debug("The generated model is solvable");
 				// Check the tuple validity ratio
@@ -278,7 +281,7 @@ public class GenerateHandler implements ActionListener {
 					} catch (InterruptedException e) {
 					}
 				}
-	
+
 				// Check the test validity ratio
 				if (checkTestRatio) {
 					LOGGER.debug("Checking TEST VALIDITY RATIO");

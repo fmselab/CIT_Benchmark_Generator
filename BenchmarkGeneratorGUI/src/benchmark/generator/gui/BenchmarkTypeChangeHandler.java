@@ -61,7 +61,7 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 		case BenchmarkGenerator.HIGHLY_CONSTRAINED:
 			lockConstraints(false);
 			lockNonBoolean(true);
-			lockIntegers(true);
+			lockIntegers(false);
 			lockRatio(false);
 			break;
 		case BenchmarkGenerator.MCA:
