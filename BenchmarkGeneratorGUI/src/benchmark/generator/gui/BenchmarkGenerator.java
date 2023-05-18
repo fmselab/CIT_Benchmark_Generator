@@ -469,7 +469,7 @@ public class BenchmarkGenerator {
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
 		txtRatioTest.setText(Double.toString(GeneratorConfiguration.RATIO_TEST));
 		txtEpsilonTest.setText(Double.toString(GeneratorConfiguration.EPSILON));
-		txtTTest.setText(Integer.toString(GeneratorConfiguration.T));
+		txtTTest.setText(Integer.toString(GeneratorConfiguration.N));
 		benchmarkType.setSelectedItem(GeneratorConfiguration.TRACK.toString());
 	}
 

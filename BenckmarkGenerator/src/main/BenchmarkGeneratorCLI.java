@@ -173,7 +173,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
 			GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;
 			GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
-			GeneratorConfiguration.T = T;
+			GeneratorConfiguration.N = T;
 			GeneratorConfiguration.EPSILON = epsilon;
 		} else {
 			// Extract the configuration from that of model given by the user

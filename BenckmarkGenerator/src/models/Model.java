@@ -190,7 +190,7 @@ public class Model {
 			validityTests.clear();
 			LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
 			ModelUtils mu = new ModelUtils(loadModel);
-			for (int i = 0; i < GeneratorConfiguration.T; i++) {
+			for (int i = 0; i < GeneratorConfiguration.N; i++) {
 				Test t = mu.getRandomTestFromModel();
 				RuleEvaluator evaluator = new RuleEvaluator(t);
 				if (evaluator.evaluateModel(loadModel)) {
@@ -200,8 +200,8 @@ public class Model {
 					validityTests.add(0);
 				}
 			}
-			LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + GeneratorConfiguration.T);
-			return (double) nValidTest / GeneratorConfiguration.T;
+			LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + GeneratorConfiguration.N);
+			return (double) nValidTest / GeneratorConfiguration.N;
 		}
 	}
 
@@ -218,9 +218,9 @@ public class Model {
 		// Compute the variance
 		double variance = 0;
 		for (int i = 0; i < validityTests.size(); i++) {
-			variance += Math.pow(validityTests.get(i) - desiredRatio, 2) / (GeneratorConfiguration.T - 1);
+			variance += Math.pow(validityTests.get(i) - desiredRatio, 2) / (GeneratorConfiguration.N - 1);
 		}
-		double probability = 1 - (variance / (Math.pow(epsilon * desiredRatio, 2) * GeneratorConfiguration.T));
+		double probability = 1 - (variance / (Math.pow(epsilon * desiredRatio, 2) * GeneratorConfiguration.N));
 		// Limit the probability between 1 and 0
 		if (probability < 0)
 			return 0.0;

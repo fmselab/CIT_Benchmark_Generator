@@ -211,7 +211,7 @@ public class GenerateHandler implements ActionListener {
 		GeneratorConfiguration.RATIO = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")))
 						.getText());
-		GeneratorConfiguration.T = Integer.parseInt(
+		GeneratorConfiguration.N = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtTTest")))
 						.getText());
 		GeneratorConfiguration.EPSILON = Double.parseDouble(
