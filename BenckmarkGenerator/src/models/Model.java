@@ -321,6 +321,20 @@ public class Model {
 		}
 		return max;
 	}
+	
+	/**
+	 * Get the lowest cardinality in the model
+	 * 
+	 * @return the lowest cardinality in the model
+	 */
+	public int getLowestCardinality() {
+		int min = Integer.MAX_VALUE;
+		for (Parameter p : paramsList) {
+			if (p.getCardinality() < min)
+				min = p.getCardinality();
+		}
+		return min;
+	}
 
 	/**
 	 * Export the model in CTWedge format in the current folder

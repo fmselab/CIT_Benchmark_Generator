@@ -26,5 +26,10 @@ public class GeneratorConfiguration {
 	public static Track TRACK = Track.BOOLC;
 	public static int N = 1000;
 	public static double EPSILON = 0.1;
+	public static boolean ACTS = false;
+	public static boolean CTWEDGE = false;
+	public static boolean PICT = false;
+	public static boolean CHECK_TUPLE_RATIO = false;
+	public static boolean CHECK_TEST_RATIO = false;
 	
 }

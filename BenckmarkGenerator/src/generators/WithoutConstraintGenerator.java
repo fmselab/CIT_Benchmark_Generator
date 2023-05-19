@@ -55,7 +55,8 @@ public class WithoutConstraintGenerator implements Generator {
 					m.addParameter(new BooleanParameter("Par" + i));
 				else {
 					// Define a new enumerative parameter
-					nValues = Randomizer.generate(1, GeneratorConfiguration.MAX_CARDINALITY);
+					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
+							GeneratorConfiguration.MAX_CARDINALITY);
 					EnumerativeParameter p = new EnumerativeParameter("Par" + i);
 
 					for (int j = 0; j < nValues; j++)
@@ -78,7 +79,8 @@ public class WithoutConstraintGenerator implements Generator {
 					break;
 				case 1:
 					// Define a new enumerative parameter
-					nValues = Randomizer.generate(1, GeneratorConfiguration.MAX_CARDINALITY);
+					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
+							GeneratorConfiguration.MAX_CARDINALITY);
 					EnumerativeParameter p = new EnumerativeParameter("Par" + i);
 
 					for (int j = 0; j < nValues; j++)
@@ -87,16 +89,15 @@ public class WithoutConstraintGenerator implements Generator {
 					m.addParameter(p);
 					break;
 				case 2:
-					// Define a new enumerative parameter
+					// Define a new integer parameter
 					while (computeParams) {
+						nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
+								GeneratorConfiguration.MAX_CARDINALITY - 1);
 						from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
 								GeneratorConfiguration.UPPER_BOUND_INT);
-						nValues = Randomizer.generate(1, GeneratorConfiguration.MAX_CARDINALITY);
-						// to = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
-						// GeneratorConfiguration.UPPER_BOUND_INT);
 						to = from + nValues;
 
-						if (from <= to)
+						if (from <= to && to <= GeneratorConfiguration.UPPER_BOUND_INT)
 							computeParams = false;
 					}
 

@@ -1,5 +1,8 @@
 package util;
 
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
+
 import ctwedge.ctWedge.Bool;
 import ctwedge.ctWedge.CitModel;
 import ctwedge.ctWedge.Constraint;
@@ -39,6 +42,15 @@ public class ModelConfigurationExtractor {
 	public ModelConfigurationExtractor(String path) {
 		model = Utility.loadModelFromPath(path);
 	}
+	
+	/**
+	 * Builds a new ModelConfigurationExtractor
+	 * 
+	 * @param model the CitModel 
+	 */
+	public ModelConfigurationExtractor(CitModel model) {
+		this.model = model;
+	}
 
 	/**
 	 * Returns the number of parameters
@@ -75,9 +87,11 @@ public class ModelConfigurationExtractor {
 	 * 
 	 * @return the tuple validity ratio
 	 * @throws InterruptedException
+	 * @throws SolverException 
+	 * @throws InvalidConfigurationException 
 	 */
-	public double getTupleValidityRatio() throws InterruptedException {
-		return Operations.getTupleValidityRatioFromModel(model);
+	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {		
+		return kali.util.Operations.getTupleValidityRatioFromModel(model);
 	}
 
 	/**
@@ -196,7 +210,7 @@ public class ModelConfigurationExtractor {
 				complexity = thisComplexity;
 		}
 
-		return complexity;
+		return (complexity == 0 ? 1 : complexity);
 	}
 
 	public boolean useConstraintsBetweenParameters() {

@@ -1,6 +1,8 @@
 import java.io.IOException;
 
 import org.junit.Test;
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
 
 import generators.GeneratorConfiguration;
 import main.BenchmarkGeneratorCLI;
@@ -16,7 +18,7 @@ public class CTCompetition2022Generation {
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
 
 	@Test
-	public void testBOOLC() throws IOException {
+	public void testBOOLC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 50;
 
 		// Using k in the range [2, 20]
@@ -40,7 +42,7 @@ public class CTCompetition2022Generation {
 	}
 
 	@Test
-	public void testMCAC() throws IOException {
+	public void testMCAC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 50;
 
 		// Using k in the range [2, 20]
@@ -64,7 +66,7 @@ public class CTCompetition2022Generation {
 	}
 
 	@Test
-	public void testNUMC() throws IOException {
+	public void testNUMC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 50;
 
 		// Using k in the range [2, 20]
@@ -88,7 +90,7 @@ public class CTCompetition2022Generation {
 	}
 
 	@Test
-	public void testUNIFORMALL() throws IOException {
+	public void testUNIFORMALL() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 50;
 
 		// Using k in the range [2, 20]
@@ -104,7 +106,7 @@ public class CTCompetition2022Generation {
 	}
 
 	@Test
-	public void testUNIFORMBOOLEAN() throws IOException {
+	public void testUNIFORMBOOLEAN() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 50;
 
 		// Using k in the range [2, 20]
@@ -116,7 +118,7 @@ public class CTCompetition2022Generation {
 	}
 
 	@Test
-	public void testMCA() throws IOException {
+	public void testMCA() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 50;
 
 		// Using k in the range [2, 20]

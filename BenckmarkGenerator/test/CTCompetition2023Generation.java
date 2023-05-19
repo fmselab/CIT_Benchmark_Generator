@@ -18,7 +18,7 @@ public class CTCompetition2023Generation {
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
 
 	@Test
-	public void testBOOLC() throws IOException {
+	public void testBOOLC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
@@ -42,7 +42,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testMCAC() throws IOException {
+	public void testMCAC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
@@ -66,7 +66,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testNUMC() throws IOException {
+	public void testNUMC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
@@ -117,7 +117,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testCNF() throws IOException {
+	public void testCNF() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
@@ -141,7 +141,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testUNIFORMALL() throws IOException {
+	public void testUNIFORMALL() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 15;
 
 		// Using k in the range [6, 30]
@@ -157,7 +157,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testUNIFORMBOOLEAN() throws IOException {
+	public void testUNIFORMBOOLEAN() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 15;
 
 		// Using k in the range [6, 30]
@@ -169,7 +169,7 @@ public class CTCompetition2023Generation {
 	}
 
 	@Test
-	public void testMCA() throws IOException {
+	public void testMCA() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		GeneratorConfiguration.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]

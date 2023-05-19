@@ -29,6 +29,8 @@ import javax.swing.JTextPane;
 import javax.swing.table.DefaultTableModel;
 
 import org.jfree.ui.FilesystemFilter;
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
 
 import generators.GeneratorConfiguration;
 import main.BenchmarkGeneratorCLI;
@@ -390,7 +392,7 @@ public class BenchmarkGenerator {
 						BenchmarkGeneratorCLI.setConfigurationsFromFile(selectedFile);
 						// Refresh the view
 						getDefaultParams();
-					} catch (InterruptedException e1) {
+					} catch (InterruptedException | InvalidConfigurationException | SolverException e1) {
 						e1.printStackTrace();
 					}
 				}
