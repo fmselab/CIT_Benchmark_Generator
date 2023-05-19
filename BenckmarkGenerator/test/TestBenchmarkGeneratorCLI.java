@@ -57,14 +57,6 @@ public class TestBenchmarkGeneratorCLI {
 	/**
 	 * TS1
 	 * 
-	 * NumBenchmarks BenchmarkType Ratio TupleValidityRatio TestValidityRatio
-	 * IntegerBounds Cardinality NumParameters ConstraintsConfiguration
-	 * BetweenParameters Complexity NumConstraints ConstraintForm Parameters Ranges
-	 * Enumeratives Booleans Constraints Arithmetic ExportFormat ACTS CTWedge PICT
-	 * 
-	 * 
-	 * X HC X - X X X X X - X X G X X X X X X - - - -
-	 * 
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 * @throws InterruptedException
@@ -119,14 +111,6 @@ public class TestBenchmarkGeneratorCLI {
 
 	/**
 	 * TS2
-	 * 
-	 * NumBenchmarks BenchmarkType Ratio TupleValidityRatio TestValidityRatio
-	 * IntegerBounds Cardinality NumParameters ConstraintsConfiguration
-	 * BetweenParameters Complexity NumConstraints ConstraintForm Parameters Ranges
-	 * Enumeratives Booleans Constraints Arithmetic ExportFormat ACTS CTWedge PICT
-	 * 
-	 * 
-	 * X CF - - - - X X X X X X C X - X X X - X X X X
 	 * 
 	 * 
 	 * @throws SolverException
@@ -219,14 +203,6 @@ public class TestBenchmarkGeneratorCLI {
 
 	/**
 	 * TS3
-	 * 
-	 * NumBenchmarks BenchmarkType Ratio TupleValidityRatio TestValidityRatio
-	 * IntegerBounds Cardinality NumParameters ConstraintsConfiguration
-	 * BetweenParameters Complexity NumConstraints ConstraintForm Parameters Ranges
-	 * Enumeratives Booleans Constraints Arithmetic ExportFormat ACTS CTWedge PICT
-	 * 
-	 * 
-	 * X NC - - - X X X X - X X G X X X X X X X X X -
 	 * 
 	 * 
 	 * @throws SolverException
@@ -332,14 +308,6 @@ public class TestBenchmarkGeneratorCLI {
 	/**
 	 * TS4
 	 * 
-	 * NumBenchmarks BenchmarkType Ratio TupleValidityRatio TestValidityRatio
-	 * IntegerBounds Cardinality NumParameters ConstraintsConfiguration
-	 * BetweenParameters Complexity NumConstraints ConstraintForm Parameters Ranges
-	 * Enumeratives Booleans Constraints Arithmetic ExportFormat ACTS CTWedge PICT
-	 * 
-	 * 
-	 * X MC X X - - X X X X X X G X - X X X - - - - -
-	 * 
 	 * 
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
@@ -437,14 +405,6 @@ public class TestBenchmarkGeneratorCLI {
 	/**
 	 * TS5
 	 * 
-	 * NumBenchmarks BenchmarkType Ratio TupleValidityRatio TestValidityRatio
-	 * IntegerBounds Cardinality NumParameters ConstraintsConfiguration
-	 * BetweenParameters Complexity NumConstraints ConstraintForm Parameters Ranges
-	 * Enumeratives Booleans Constraints Arithmetic ExportFormat ACTS CTWedge PICT
-	 * 
-	 * 
-	 * X BC - - - - - X X - X X G X - - X X - - - - -
-	 * 
 	 * 
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
@@ -492,7 +452,7 @@ public class TestBenchmarkGeneratorCLI {
 
 		for (Model m : modelsList) {
 			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
-			
+
 			// Check the number of params
 			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
 			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
@@ -517,6 +477,157 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check the track
 			assertTrue(extractor.getModelType() == Track.BOOLC);
+		}
+	}
+
+	/**
+	 * TS6
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts6() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = MCA
+		GeneratorConfiguration.TRACK = Track.MCA;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Export in the desired formats
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() == 0);
+
+			// Check that the parameters are all Booleans or enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported accordingly to the request
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Remove the files
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.MCA || extractor.getModelType() == Track.UNIFORM_ALL
+					|| extractor.getModelType() == Track.UNIFORM_BOOLEAN);
+		}
+	}
+
+	/**
+	 * TS7
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts7() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = UNIFORM_ALL
+		GeneratorConfiguration.TRACK = Track.UNIFORM_ALL;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Export in the desired formats
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = false;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() == 0);
+
+			// Check that the parameters are all Booleans or enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported accordingly to the request
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Check the track
+			assertTrue(
+					extractor.getModelType() == Track.UNIFORM_ALL || extractor.getModelType() == Track.UNIFORM_BOOLEAN);
 		}
 	}
 }
