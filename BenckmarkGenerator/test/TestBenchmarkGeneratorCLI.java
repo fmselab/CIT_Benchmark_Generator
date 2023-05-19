@@ -968,7 +968,103 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.getTupleValidityRatio() <= RATIO_TUPLE);
 		}
 	}
-	
+
+	/**
+	 * TS11
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Ignore
+	@Test
+	public void ts11() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = BOOLC
+		GeneratorConfiguration.TRACK = Track.BOOLC;
+
+		// Check both ratios
+		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.EPSILON = EPSILON;
+		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
+		GeneratorConfiguration.RATIO = RATIO_TUPLE;
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
+		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Export all models
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Booleans
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter);
+			}
+
+			// Check that the model have not been exported
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+			
+			// Delete the models
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.BOOLC);
+
+			// The test ratio has been computed. Evaluate it
+			if (m.isRatioExact()) {
+				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			}
+
+			// Evaluate tuple ratio
+			assertTrue(extractor.getTupleValidityRatio() <= RATIO_TUPLE);
+		}
+	}
+
 	/**
 	 * TS12
 	 * 
@@ -1045,7 +1141,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
-			
+
 			// Delete the files
 			new File("./benchmarks/" + m.getName() + ".ctw").delete();
 			new File("./benchmarks/" + m.getName() + ".txt").delete();
@@ -1064,7 +1160,7 @@ public class TestBenchmarkGeneratorCLI {
 					|| extractor.getModelType() == Track.CNF);
 		}
 	}
-	
+
 	/**
 	 * TS13
 	 * 
@@ -1151,7 +1247,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
-			
+
 			new File("./benchmarks/" + m.getName() + ".ctw").delete();
 			new File("./benchmarks/" + m.getName() + ".txt").delete();
 			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
@@ -1173,7 +1269,7 @@ public class TestBenchmarkGeneratorCLI {
 			}
 		}
 	}
-	
+
 	/**
 	 * TS14
 	 * 
@@ -1250,7 +1346,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
-			
+
 			// Delete the files
 			new File("./benchmarks/" + m.getName() + ".ctw").delete();
 			new File("./benchmarks/" + m.getName() + ".txt").delete();
@@ -1355,7 +1451,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.getModelType() == Track.CNF);
 		}
 	}
-	
+
 	/**
 	 * TS16
 	 * 
@@ -1434,7 +1530,7 @@ public class TestBenchmarkGeneratorCLI {
 					extractor.getModelType() == Track.UNIFORM_ALL || extractor.getModelType() == Track.UNIFORM_BOOLEAN);
 		}
 	}
-	
+
 	/**
 	 * TS17
 	 * 
@@ -1507,7 +1603,7 @@ public class TestBenchmarkGeneratorCLI {
 					|| extractor.getModelType() == Track.UNIFORM_BOOLEAN);
 		}
 	}
-	
+
 	/**
 	 * TS18
 	 * 
@@ -1654,7 +1750,7 @@ public class TestBenchmarkGeneratorCLI {
 					|| extractor.getModelType() == Track.UNIFORM_BOOLEAN);
 		}
 	}
-	
+
 	/**
 	 * TS20
 	 * 
@@ -1743,7 +1839,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
 			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
-			
+
 			// Delete files
 			new File("./benchmarks/" + m.getName() + ".ctw").delete();
 			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
