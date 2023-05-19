@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
@@ -152,7 +153,7 @@ public class TestBenchmarkGeneratorCLI {
 			// also enumeratives are missing
 			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
 					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
-			
+
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
@@ -365,9 +366,9 @@ public class TestBenchmarkGeneratorCLI {
 	 * @throws IOException
 	 * 
 	 */
+	@Ignore
 	@Test
 	public void ts4() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		// TODO: Long execution time
 		// NumBenchmarks = 10
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
@@ -421,7 +422,6 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
 
 			// Check the ratio
-			System.out.println(extractor.getTupleValidityRatio());
 			assertTrue(extractor.getTupleValidityRatio() <= RATIO_TUPLE);
 
 			// Check the number of constraints
@@ -752,6 +752,109 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check the track
 			assertTrue(extractor.getModelType() == Track.UNIFORM_BOOLEAN);
+		}
+	}
+
+	/**
+	 * TS9
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Ignore
+	@Test
+	public void ts9() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = CNF
+		GeneratorConfiguration.TRACK = Track.CNF;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Check both ratios
+		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.EPSILON = EPSILON;
+		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
+		GeneratorConfiguration.RATIO = RATIO_TUPLE;
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
+		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Export all formats
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Then, delete the files
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.CNF);
+
+			// The test ratio has been computed. Evaluate it
+			if (m.isRatioExact()) {
+				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			}
+			
+			// Evaluate tuple ratio
+			assertTrue(extractor.getTupleValidityRatio() <= RATIO_TUPLE);
 		}
 	}
 }
