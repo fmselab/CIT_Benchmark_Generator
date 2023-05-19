@@ -852,9 +852,918 @@ public class TestBenchmarkGeneratorCLI {
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
 			}
-			
+
 			// Evaluate tuple ratio
 			assertTrue(extractor.getTupleValidityRatio() <= RATIO_TUPLE);
+		}
+	}
+
+	/**
+	 * TS10
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Ignore
+	@Test
+	public void ts10() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = NUMC
+		GeneratorConfiguration.TRACK = Track.NUMC;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Integer bounds
+		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
+		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
+
+		// Check both ratios
+		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.EPSILON = EPSILON;
+		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
+		GeneratorConfiguration.RATIO = RATIO_TUPLE;
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
+		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Do not export
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = false;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the lower and upper bound for integers
+			assertTrue(extractor.getLowerBoundForInts() >= LOWER_INT);
+			assertTrue(extractor.getUpperBoundForInts() <= UPPER_INT);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives or Integers
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter
+						|| p instanceof IntegerParameter);
+			}
+
+			// Check that the model have been exported
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track. Considering that the models are randomly generated, it may
+			// happen that a particular type of parameter (i.e., Integers) are not present.
+			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
+			// also enumeratives are missing
+			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
+					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+
+			// The test ratio has been computed. Evaluate it
+			if (m.isRatioExact()) {
+				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			}
+
+			// Evaluate tuple ratio
+			assertTrue(extractor.getTupleValidityRatio() <= RATIO_TUPLE);
+		}
+	}
+	
+	/**
+	 * TS12
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts12() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = MCAC
+		GeneratorConfiguration.TRACK = Track.MCAC;
+
+		// Do not consider ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Export the desired formats
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have not been exported
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+			
+			// Delete the files
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track. Considering that the models are randomly generated, it may
+			// happen that a particular type of parameter (i.e., Enumeratives) are not
+			// present.
+			// In that case, the track is considered BOOLC even if it is NUMC, or CNF if
+			// randomly all the constraints are in CNF
+			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC
+					|| extractor.getModelType() == Track.CNF);
+		}
+	}
+	
+	/**
+	 * TS13
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Ignore
+	@Test
+	public void ts13() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = HIGHLY_CONSTRAINED
+		GeneratorConfiguration.TRACK = Track.HIGHLY_CONSTRAINED;
+
+		// TupleValidityRatio
+		GeneratorConfiguration.RATIO = RATIO_TUPLE;
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// IntegerBounds
+		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
+		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Do not export any format
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the lower and upper bound for integers
+			assertTrue(extractor.getLowerBoundForInts() >= LOWER_INT);
+			assertTrue(extractor.getUpperBoundForInts() <= UPPER_INT);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives or Integers
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter
+						|| p instanceof IntegerParameter);
+			}
+
+			// Check that the model have been exported
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+			
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track. Considering that the models are randomly generated, it may
+			// happen that a particular type of parameter (i.e., Integers) are not present.
+			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
+			// also enumeratives are missing
+			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
+					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+
+			// The ratio has been computed. Evaluate it
+			if (m.isRatioExact()) {
+				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			}
+		}
+	}
+	
+	/**
+	 * TS14
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts14() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = MCAC
+		GeneratorConfiguration.TRACK = Track.MCAC;
+
+		// Do not consider ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Export the desired formats
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have not been exported
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+			
+			// Delete the files
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track. Considering that the models are randomly generated, it may
+			// happen that a particular type of parameter (i.e., Enumeratives) are not
+			// present.
+			// In that case, the track is considered BOOLC even if it is NUMC, or CNF if
+			// randomly all the constraints are in CNF
+			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC
+					|| extractor.getModelType() == Track.CNF);
+		}
+	}
+
+	/**
+	 * TS15
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts15() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = CNF
+		GeneratorConfiguration.TRACK = Track.CNF;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Select the formats to be exported
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = false;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.CNF);
+		}
+	}
+	
+	/**
+	 * TS16
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts16() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = UNIFORM_ALL
+		GeneratorConfiguration.TRACK = Track.UNIFORM_ALL;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Export in the desired formats
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() == 0);
+
+			// Check that the parameters are all Booleans or enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported accordingly to the request
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Delete the created files
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the track
+			assertTrue(
+					extractor.getModelType() == Track.UNIFORM_ALL || extractor.getModelType() == Track.UNIFORM_BOOLEAN);
+		}
+	}
+	
+	/**
+	 * TS17
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts17() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = MCA
+		GeneratorConfiguration.TRACK = Track.MCA;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Export in the desired formats
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = false;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() == 0);
+
+			// Check that the parameters are all Booleans or enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported accordingly to the request
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.MCA || extractor.getModelType() == Track.UNIFORM_ALL
+					|| extractor.getModelType() == Track.UNIFORM_BOOLEAN);
+		}
+	}
+	
+	/**
+	 * TS18
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts18() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = UNIFORM_BOOLEAN
+		GeneratorConfiguration.TRACK = Track.UNIFORM_BOOLEAN;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Export in the desired formats
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = false;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() == 0);
+
+			// Check that the parameters are all Booleans
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter);
+			}
+
+			// Check that the model have been exported accordingly to the request
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.UNIFORM_BOOLEAN);
+		}
+	}
+
+	/**
+	 * TS19
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts19() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = MCA
+		GeneratorConfiguration.TRACK = Track.MCA;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Export in the desired formats
+		GeneratorConfiguration.ACTS = true;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() == 0);
+
+			// Check that the parameters are all Booleans or enumeratives
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+			}
+
+			// Check that the model have been exported accordingly to the request
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Remove the files
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + ".txt").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.MCA || extractor.getModelType() == Track.UNIFORM_ALL
+					|| extractor.getModelType() == Track.UNIFORM_BOOLEAN);
+		}
+	}
+	
+	/**
+	 * TS20
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts20() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = NUMC
+		GeneratorConfiguration.TRACK = Track.NUMC;
+
+		// Cardinality
+		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
+		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+
+		// Integer bounds
+		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
+		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
+
+		// Check only test validity ratio
+		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.EPSILON = EPSILON;
+		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// Do not export
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = true;
+		GeneratorConfiguration.PICT = true;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+
+			// Check the cardinality
+			assertTrue(extractor.getMaximumCardinality() <= MAX_CARDINALITY);
+			assertTrue(extractor.getMinimumCardinality() >= MIN_CARDINALITY);
+
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the lower and upper bound for integers
+			assertTrue(extractor.getLowerBoundForInts() >= LOWER_INT);
+			assertTrue(extractor.getUpperBoundForInts() <= UPPER_INT);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Boolean or Enumeratives or Integers
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter
+						|| p instanceof IntegerParameter);
+			}
+
+			// Check that the model have been exported
+			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+			
+			// Delete files
+			new File("./benchmarks/" + m.getName() + ".ctw").delete();
+			new File("./benchmarks/" + m.getName() + "_pict.txt").delete();
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track. Considering that the models are randomly generated, it may
+			// happen that a particular type of parameter (i.e., Integers) are not present.
+			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
+			// also enumeratives are missing
+			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
+					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+
+			// The test ratio has been computed. Evaluate it
+			if (m.isRatioExact()) {
+				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			}
 		}
 	}
 }
