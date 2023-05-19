@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
-import ctwedge.modelanalyzer.AllInCNF;
 import ctwedge.util.ext.Utility;
 import generators.GeneratorConfiguration;
 import generators.Track;
