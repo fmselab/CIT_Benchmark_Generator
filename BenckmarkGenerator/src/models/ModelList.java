@@ -34,6 +34,15 @@ public class ModelList implements Iterable<Model> {
 	public void addModel(Model m) {
 		models.add(m);
 	}
+	
+	/**
+	 * Add all the models to the list
+	 * 
+	 * @param list the list of models
+	 */
+	public void addModel(ArrayList<Model> list) {
+		models.addAll(list);
+	}			
 
 	/**
 	 * Returns a model from the list, given its name

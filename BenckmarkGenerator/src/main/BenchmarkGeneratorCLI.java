@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -103,6 +104,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	ArrayList<Model> modelsList = new ArrayList<>();
 
 	public static void main(String[] args) throws IOException {
+		LOGGER.setLevel(Level.DEBUG);
 		BenchmarkGeneratorCLI cliGenerator = new BenchmarkGeneratorCLI();
 		int exitCode = new CommandLine(cliGenerator).execute(args);
 		System.exit(exitCode);
@@ -264,6 +266,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL);
 			m1.setName(Track.HIGHLY_CONSTRAINED + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
@@ -290,6 +293,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN);
 			m1.setName(Track.BOOLC + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
@@ -369,6 +373,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
 			m1.setName(Track.MCAC + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
@@ -394,6 +399,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
 			m1.setName(Track.CNF + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
@@ -420,6 +426,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL);
 			m1.setName(Track.NUMC + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
@@ -445,7 +452,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN);
 			m1.setName(Track.UNIFORM_BOOLEAN + "_" + i);
-
+			LOGGER.debug("Added a new model: " + m1.getName());
+			
 			modelsList.add(m1);
 
 			// Export the model
@@ -470,6 +478,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
 			m1.setName(Track.UNIFORM_ALL + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
@@ -494,6 +503,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
 			m1.setName(Track.MCA + "_" + i);
+			LOGGER.debug("Added a new model: " + m1.getName());
 
 			modelsList.add(m1);
 
