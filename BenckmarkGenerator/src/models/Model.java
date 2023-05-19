@@ -177,20 +177,12 @@ public class Model {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
 		try {
-			/*
-			 * The following solution works under all operating systems, but due to COLOMOTO
-			 * MDDLIB simplifications it may give wrong values. Instead, we use MEDICI for
-			 * this purpose to avoid problems
-			 */
-			/*
-			 * // If the model can be treated with regular MDDs if (getHighestCardinality()
-			 * > 127) throw new NotConvertableModel(
-			 * "The cardinality of at least a parameter is higher than the maximum possible [127]"
-			 * ); double ratio = Operations.getTestValidityRatioFromModel(loadModel);
-			 * LOGGER.debug("Test validity ratio computed using MDDs"); isRatioExact = true;
-			 * return ratio;
-			 */
-
+			// If the model contains at least one integer, we cannot deal with it. Throw an
+			// exception and manage it differently
+			for (Parameter p : paramsList)
+				if (p instanceof IntegerParameter)
+					throw new NotConvertableModel("Computation of the ratio interrupted");
+			
 			// First save the CTWedge file
 			File f = new File(getName() + ".ctw");
 			FileWriter fo = new FileWriter(f);
@@ -198,7 +190,7 @@ public class Model {
 			fo.close();
 			LOGGER.debug("Test validity ratio computed using MEDICI. The model has been written in the " + getName()
 					+ ".ctw file");
-			
+
 			// Now call MEDICI
 			List<String> command = new ArrayList<String>();
 			command.add(System.getProperty("user.dir") + "/medici");
@@ -210,7 +202,7 @@ public class Model {
 			// --- Do not generate
 			command.add("--donotgenerate");
 			LOGGER.debug("Executing command " + command);
-						
+
 			// Run
 			ProcessBuilder pc = new ProcessBuilder(command);
 			pc.command(command);
@@ -226,9 +218,13 @@ public class Model {
 					// save to file
 					if (line.contains("Cardinalita di partenza")) {
 						sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
+						if (sizeWoConstraints.doubleValue() == 0.0)
+							throw new NotConvertableModel("Computation of the ratio interrupted");
 					}
 					if (line.contains("Cardinalita finale")) {
 						sizeWConstraints = new BigDecimal((line.split(" ")[2]));
+						if (sizeWConstraints.doubleValue() == 0.0)
+							throw new NotConvertableModel("Computation of the ratio interrupted");
 					}
 				}
 				bri.close();
@@ -321,7 +317,7 @@ public class Model {
 		}
 		return max;
 	}
-	
+
 	/**
 	 * Get the lowest cardinality in the model
 	 * 
