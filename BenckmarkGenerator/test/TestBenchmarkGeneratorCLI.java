@@ -5,6 +5,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -12,6 +15,7 @@ import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
 import ctwedge.util.ext.Utility;
+import ctwedge.util.validator.SMTConstraintTranslator;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
@@ -37,7 +41,7 @@ public class TestBenchmarkGeneratorCLI {
 	static int N_BENCHMARKS = 10;
 	static int N = 1000;
 	static double EPSILON = 0.1;
-	static double RATIO_TUPLE = 0.1;
+	static double RATIO_TUPLE = 0.3;
 	static double RATIO_TEST = 0.1;
 	static int LOWER_INT = -50;
 	static int UPPER_INT = 50;
@@ -54,11 +58,16 @@ public class TestBenchmarkGeneratorCLI {
 	 * The generator to be tested
 	 */
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
-	
+
 	@Before
 	public void setup() {
 		// Limit the number of attempts for testing
-		GeneratorConfiguration.N_ATTEMPTS=5;
+		GeneratorConfiguration.N_ATTEMPTS = 2;
+		// Activate the LOGGER and deactivate the ones that are not needed
+		Logger LOGGER = LogManager.getRootLogger();
+		LOGGER.setLevel(Level.DEBUG);
+		LogManager.getLogger(kali.util.ConstraintTranslator.class).setLevel(Level.OFF);
+		LogManager.getLogger(SMTConstraintTranslator.class).setLevel(Level.OFF);
 	}
 
 	/**
@@ -1045,7 +1054,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(new File("./benchmarks/" + m.getName() + ".ctw").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + ".txt").exists());
 			assertTrue(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
-			
+
 			// Delete the models
 			new File("./benchmarks/" + m.getName() + ".ctw").delete();
 			new File("./benchmarks/" + m.getName() + ".txt").delete();

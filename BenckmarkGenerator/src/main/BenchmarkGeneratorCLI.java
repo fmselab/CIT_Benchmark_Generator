@@ -356,8 +356,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 				}
 			}
 			i++;
-			if (!isSolvable)
+			if (!isSolvable) {
+				LOGGER.debug("Generated a non solvable / compliant model. Trying another one");
 				m = null;
+			}
 		} while (!isSolvable && i < GeneratorConfiguration.N_ATTEMPTS);
 		return m;
 	}
