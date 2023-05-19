@@ -146,7 +146,7 @@ public class TestBenchmarkGeneratorCLI {
 		// Cardinality
 		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
 		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
-		
+
 		// Do not check ratio
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
 		GeneratorConfiguration.CHECK_TEST_RATIO = false;
@@ -246,7 +246,7 @@ public class TestBenchmarkGeneratorCLI {
 		// IntegerBounds
 		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
 		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
-		
+
 		// Do not check ratio
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
 		GeneratorConfiguration.CHECK_TEST_RATIO = false;
@@ -349,6 +349,7 @@ public class TestBenchmarkGeneratorCLI {
 	 */
 	@Test
 	public void ts4() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// TODO: Long execution time
 		// NumBenchmarks = 10
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
@@ -430,6 +431,92 @@ public class TestBenchmarkGeneratorCLI {
 			// randomly all the constraints are in CNF
 			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC
 					|| extractor.getModelType() == Track.CNF);
+		}
+	}
+
+	/**
+	 * TS5
+	 * 
+	 * NumBenchmarks BenchmarkType Ratio TupleValidityRatio TestValidityRatio
+	 * IntegerBounds Cardinality NumParameters ConstraintsConfiguration
+	 * BetweenParameters Complexity NumConstraints ConstraintForm Parameters Ranges
+	 * Enumeratives Booleans Constraints Arithmetic ExportFormat ACTS CTWedge PICT
+	 * 
+	 * 
+	 * X BC - - - - - X X - X X G X - - X X - - - - -
+	 * 
+	 * 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 * 
+	 */
+	@Test
+	public void ts5() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		// NumBenchmarks = 10
+		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+
+		// BenchmarkType = BOOLC
+		GeneratorConfiguration.TRACK = Track.BOOLC;
+
+		// Do not check ratio
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
+		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+
+		// Number of parameters
+		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
+		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+
+		// Complexity
+		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+
+		// Number of constraints
+		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+
+		// No export
+		GeneratorConfiguration.ACTS = false;
+		GeneratorConfiguration.CTWEDGE = false;
+		GeneratorConfiguration.PICT = false;
+
+		// ----------- GENERATION -----------
+		generator.generateIPMs();
+		ArrayList<Model> modelsList = generator.getModelsList();
+
+		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
+
+		// First, check the number of models
+		assertTrue(modelsList.size() == N_BENCHMARKS);
+
+		for (Model m : modelsList) {
+			ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(Utility.loadModel(m.toString()));
+			
+			// Check the number of params
+			assertTrue(extractor.getNumParams() <= MAX_PARAMS);
+			assertTrue(extractor.getNumParams() >= MIN_PARAMS);
+
+			// Check the number of constraints
+			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
+			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
+
+			// Check that the parameters are all Booleans
+			for (Parameter p : m.getParameters()) {
+				assertTrue(p instanceof BooleanParameter);
+			}
+
+			// Check that the model have not been exported
+			assertFalse(new File("./benchmarks/" + m.getName() + ".ctw").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + ".txt").exists());
+			assertFalse(new File("./benchmarks/" + m.getName() + "_pict.txt").exists());
+
+			// Check the complexity
+			assertTrue(extractor.getMaxConstraintComplexity() <= MAX_COMPLEXITY);
+			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
+
+			// Check the track
+			assertTrue(extractor.getModelType() == Track.BOOLC);
 		}
 	}
 }
