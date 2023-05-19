@@ -265,13 +265,15 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL);
-			m1.setName(Track.HIGHLY_CONSTRAINED + "_" + i);
-			LOGGER.debug("Added a new model: " + m1.getName());
+			if (m1 != null) {
+				m1.setName(Track.HIGHLY_CONSTRAINED + "_" + i);
+				LOGGER.debug("Added a new model: " + m1.getName());
 
-			modelsList.add(m1);
+				modelsList.add(m1);
 
-			// Export the model
-			exportModel(m1);
+				// Export the model
+				exportModel(m1);
+			}
 		}
 	}
 
@@ -292,13 +294,15 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN);
-			m1.setName(Track.BOOLC + "_" + i);
-			LOGGER.debug("Added a new model: " + m1.getName());
+			if (m1 != null) {
+				m1.setName(Track.BOOLC + "_" + i);
+				LOGGER.debug("Added a new model: " + m1.getName());
 
-			modelsList.add(m1);
+				modelsList.add(m1);
 
-			// Export the model
-			exportModel(m1);
+				// Export the model
+				exportModel(m1);
+			}
 		}
 	}
 
@@ -320,6 +324,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
 		boolean isSolvable = false;
 		Model m = null;
+		int i = 0;
 		do {
 			m = generator.generate(category);
 			isSolvable = m.isSolvable();
@@ -350,8 +355,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 						isSolvable = false;
 				}
 			}
-
-		} while (!isSolvable);
+			i++;
+			if (!isSolvable)
+				m = null;
+		} while (!isSolvable && i < GeneratorConfiguration.N_ATTEMPTS);
 		return m;
 	}
 
@@ -372,13 +379,15 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
-			m1.setName(Track.MCAC + "_" + i);
-			LOGGER.debug("Added a new model: " + m1.getName());
+			if (m1 != null) {
+				m1.setName(Track.MCAC + "_" + i);
+				LOGGER.debug("Added a new model: " + m1.getName());
 
-			modelsList.add(m1);
+				modelsList.add(m1);
 
-			// Export the model
-			exportModel(m1);
+				// Export the model
+				exportModel(m1);
+			}
 		}
 	}
 
@@ -398,13 +407,15 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
-			m1.setName(Track.CNF + "_" + i);
-			LOGGER.debug("Added a new model: " + m1.getName());
+			if (m1 != null) {
+				m1.setName(Track.CNF + "_" + i);
+				LOGGER.debug("Added a new model: " + m1.getName());
 
-			modelsList.add(m1);
+				modelsList.add(m1);
 
-			// Export the model
-			exportModel(m1);
+				// Export the model
+				exportModel(m1);
+			}
 		}
 	}
 
@@ -425,13 +436,15 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
 			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL);
-			m1.setName(Track.NUMC + "_" + i);
-			LOGGER.debug("Added a new model: " + m1.getName());
+			if (m1 != null) {
+				m1.setName(Track.NUMC + "_" + i);
+				LOGGER.debug("Added a new model: " + m1.getName());
 
-			modelsList.add(m1);
+				modelsList.add(m1);
 
-			// Export the model
-			exportModel(m1);
+				// Export the model
+				exportModel(m1);
+			}
 		}
 	}
 
