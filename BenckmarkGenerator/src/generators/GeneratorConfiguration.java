@@ -31,5 +31,6 @@ public class GeneratorConfiguration {
 	public static boolean PICT = false;
 	public static boolean CHECK_TUPLE_RATIO = false;
 	public static boolean CHECK_TEST_RATIO = false;
+	public static boolean ALWAYS_EXPORT = true;
 	
 }

@@ -147,6 +147,8 @@ public class BenchmarkGenerator {
 		configurationComponents = new HashMap<>();
 		modelList = new ModelList();
 		initialize();
+		// The GUI does not always export models, but only on request
+		GeneratorConfiguration.ALWAYS_EXPORT = false;
 	}
 
 	/**

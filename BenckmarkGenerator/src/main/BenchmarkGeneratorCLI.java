@@ -453,7 +453,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN);
 			m1.setName(Track.UNIFORM_BOOLEAN + "_" + i);
 			LOGGER.debug("Added a new model: " + m1.getName());
-			
+
 			modelsList.add(m1);
 
 			// Export the model
@@ -519,12 +519,14 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws IOException
 	 */
 	public void exportModel(Model m1) throws IOException {
-		if (GeneratorConfiguration.ACTS)
-			m1.exportACTS(destinationFolder);
-		if (GeneratorConfiguration.CTWEDGE)
-			m1.exportCTWedge(destinationFolder);
-		if (GeneratorConfiguration.PICT)
-			m1.exportPICT(destinationFolder);
+		if (GeneratorConfiguration.ALWAYS_EXPORT) {
+			if (GeneratorConfiguration.ACTS)
+				m1.exportACTS(destinationFolder);
+			if (GeneratorConfiguration.CTWEDGE)
+				m1.exportCTWedge(destinationFolder);
+			if (GeneratorConfiguration.PICT)
+				m1.exportPICT(destinationFolder);
+		}
 	}
 
 	/**
