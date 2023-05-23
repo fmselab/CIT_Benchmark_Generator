@@ -38,9 +38,12 @@ import ctwedge.util.validator.RuleEvaluator;
 import ctwedge.util.validator.SMTConstraintChecker;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
+import generators.Track;
+import kali.util.Operations;
 import main.BenchmarkGeneratorCLI;
 import models.constraints.Constraint;
 import util.ACTSModelTranslator;
+import util.ModelConfigurationExtractor;
 
 /**
  * A lightweight implementation of a combinatorial model, with methods useful
@@ -182,7 +185,7 @@ public class Model {
 			for (Parameter p : paramsList)
 				if (p instanceof IntegerParameter)
 					throw new NotConvertableModel("Computation of the ratio interrupted");
-			
+
 			// First save the CTWedge file
 			File f = new File(getName() + ".ctw");
 			FileWriter fo = new FileWriter(f);
@@ -301,7 +304,11 @@ public class Model {
 	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
 		// Define the model as a CitModel
 		CitModel loadModel = Utility.loadModel(this.toString());
-		return kali.util.Operations.getTupleValidityRatioFromModel(loadModel);
+		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(loadModel);
+		if (extractor.getModelType() != Track.NUMC)
+			return Operations.getTupleValidityRatioFromModel(loadModel);
+		else
+			return kali.util.Operations.getTupleValidityRatioFromModel(loadModel);
 	}
 
 	/**

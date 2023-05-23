@@ -42,11 +42,11 @@ public class ModelConfigurationExtractor {
 	public ModelConfigurationExtractor(String path) {
 		model = Utility.loadModelFromPath(path);
 	}
-	
+
 	/**
 	 * Builds a new ModelConfigurationExtractor
 	 * 
-	 * @param model the CitModel 
+	 * @param model the CitModel
 	 */
 	public ModelConfigurationExtractor(CitModel model) {
 		this.model = model;
@@ -72,13 +72,18 @@ public class ModelConfigurationExtractor {
 
 	/**
 	 * Returns the test validity ratio (i.e. how many tests are valid among those
-	 * possible)
+	 * possible).
+	 * 
+	 * The method works for all the models except for those in the NUMC category,
+	 * for which the exact solution cannot be applied
 	 * 
 	 * @return the test validity ratio
 	 * @throws InterruptedException
 	 */
 	public double getTestValidityRatio() throws InterruptedException {
-		return Operations.getTestValidityRatioFromModel(model);
+		if (getModelType() != Track.NUMC)
+			return Operations.getTestValidityRatioFromModel(model);
+		return -1;
 	}
 
 	/**
@@ -87,11 +92,14 @@ public class ModelConfigurationExtractor {
 	 * 
 	 * @return the tuple validity ratio
 	 * @throws InterruptedException
-	 * @throws SolverException 
-	 * @throws InvalidConfigurationException 
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
 	 */
-	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {		
-		return kali.util.Operations.getTupleValidityRatioFromModel(model);
+	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
+		if (getModelType() != Track.NUMC)
+			return Operations.getTupleValidityRatioFromModel(model);
+		else
+			return kali.util.Operations.getTupleValidityRatioFromModel(model);
 	}
 
 	/**
@@ -108,6 +116,15 @@ public class ModelConfigurationExtractor {
 		}
 
 		return cardinality;
+	}
+
+	/**
+	 * Returns the name of the analyzed model
+	 * 
+	 * @return the name of the analyzed model
+	 */
+	public String getModelName() {
+		return model.getName();
 	}
 
 	/**
