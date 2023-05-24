@@ -185,8 +185,9 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
+	 * @throws IOException 
 	 */
-	public void setConfigurations() throws InterruptedException, InvalidConfigurationException, SolverException {
+	public void setConfigurations() throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		GeneratorConfiguration.N_BENCHMARKS = nTests;
 		if (similarModel == null) {
 			LOGGER.debug("Configurations set by the user");
@@ -226,9 +227,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
+	 * @throws IOException 
 	 */
 	public static void setConfigurationsFromFile(String modelPath)
-			throws InterruptedException, InvalidConfigurationException, SolverException {
+			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(modelPath);
 		GeneratorConfiguration.N_PARAMS_MAX = extractor.getNumParams();
 		GeneratorConfiguration.N_PARAMS_MIN = extractor.getNumParams();

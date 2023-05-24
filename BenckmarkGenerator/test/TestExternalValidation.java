@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.junit.Test;
@@ -16,9 +17,10 @@ import util.ModelConfigurationExtractor;
 
 public class TestExternalValidation {
 
-	static String BENCHMARKS_PATH = "C:\\Users\\Andrea_PC\\Desktop\\Benchmarks\\CTCompetition2022Repo";
-	static String OUTPUTFILE = "C:\\Users\\Andrea_PC\\Desktop\\Benchmarks\\"
+	static String BENCHMARKS_PATH = "/home/bombarda/Documents/Benchmarks/Jin2020";
+	static String OUTPUTFILE = "/home/bombarda/Documents/Benchmarks/"
 			+ new SimpleDateFormat("yyyyMMddhhmmss'.csv'").format(new Date());
+	static String[] IGNORE_FILE_FOR_RATIO = { "MLinux", "MFreeBSD", "MEShop", "MEcos", "MFiasco", "MuClinux", "MToyBox", "MBusyBox"};
 
 	@Test
 	public void test() throws IOException {
@@ -36,15 +38,22 @@ public class TestExternalValidation {
 		bw.close();
 	}
 
-	private void analyzeFile(File x, BufferedWriter bw) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+	private void analyzeFile(File x, BufferedWriter bw)
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(x.getAbsolutePath());
 		System.out.println("Analyzing " + extractor.getModelName());
+		double tupleValidityRatio = -1;
+		double testValidityRatio = -1;
+		if (Arrays.stream(IGNORE_FILE_FOR_RATIO).filter(f -> f.equals(extractor.getModelName())).count() == 0) {
+			tupleValidityRatio = extractor.getTupleValidityRatio();
+			testValidityRatio = extractor.getTestValidityRatio();
+		}
 		bw.append(BENCHMARKS_PATH + "," + extractor.getModelName() + "," + extractor.getModelType().toString() + ","
 				+ extractor.getNumParams() + "," + extractor.getLowerBoundForInts() + ","
 				+ extractor.getUpperBoundForInts() + "," + extractor.getMinimumCardinality() + ","
 				+ extractor.getMaximumCardinality() + "," + extractor.getNumConstraints() + ","
-				+ extractor.getMinConstraintComplexity() + "," + extractor.getMaxConstraintComplexity()
-				+ "," + extractor.getTupleValidityRatio() + "," + extractor.getTestValidityRatio() + ",\n");
+				+ extractor.getMinConstraintComplexity() + "," + extractor.getMaxConstraintComplexity() + ","
+				+ tupleValidityRatio + "," + testValidityRatio + ",\n");
 		bw.flush();
 	}
 

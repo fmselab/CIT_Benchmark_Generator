@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -394,7 +395,7 @@ public class BenchmarkGenerator {
 						BenchmarkGeneratorCLI.setConfigurationsFromFile(selectedFile);
 						// Refresh the view
 						getDefaultParams();
-					} catch (InterruptedException | InvalidConfigurationException | SolverException e1) {
+					} catch (InterruptedException | InvalidConfigurationException | SolverException | IOException e1) {
 						e1.printStackTrace();
 					}
 				}

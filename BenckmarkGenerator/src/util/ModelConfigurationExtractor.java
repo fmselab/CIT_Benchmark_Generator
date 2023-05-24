@@ -1,5 +1,15 @@
 package util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
@@ -8,16 +18,20 @@ import ctwedge.ctWedge.CitModel;
 import ctwedge.ctWedge.Constraint;
 import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
+import ctwedge.generator.medici.MediciCITGenerator;
 import ctwedge.modelanalyzer.AllInCNF;
 import ctwedge.modelanalyzer.AllTheSameCardinality;
 import ctwedge.modelanalyzer.AlsoEnumerativeParameters;
 import ctwedge.modelanalyzer.AlsoIntegerParameters;
 import ctwedge.modelanalyzer.BooleanOnlyParameters;
 import ctwedge.modelanalyzer.CTWedgeModelAnalyzer;
+import ctwedge.util.ModelUtils;
+import ctwedge.util.NotConvertableModel;
 import ctwedge.util.ParameterElementsGetterAsStrings;
+import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
+import ctwedge.util.validator.RuleEvaluator;
 import generators.Track;
-import pMedici.util.Operations;
 
 /**
  * This class offers a method for analyzing a CTWedge model and to compute the
@@ -79,11 +93,89 @@ public class ModelConfigurationExtractor {
 	 * 
 	 * @return the test validity ratio
 	 * @throws InterruptedException
+	 * @throws IOException
 	 */
-	public double getTestValidityRatio() throws InterruptedException {
-		if (getModelType() != Track.NUMC)
-			return Operations.getTestValidityRatioFromModel(model);
-		return -1;
+	public double getTestValidityRatio() throws InterruptedException, IOException {
+		try {
+			// If the model contains at least one integer, we cannot deal with it. Throw an
+			// exception and manage it differently
+			for (Parameter p : model.getParameters())
+				if (p instanceof Range)
+					throw new NotConvertableModel("Computation of the ratio interrupted");
+
+			// First save the CTWedge file
+			File m = new File(getModelName() + ".txt");
+			FileWriter wf = new FileWriter(m);
+			MediciCITGenerator gen = new MediciCITGenerator();
+			MediciCITGenerator.OUTPUT_ON_STD_OUT_DURING_TRANSLATION = false;
+			String translateModel = gen.translateModel(model, false);
+			wf.write(translateModel);
+			wf.close();
+
+			// Now call MEDICI
+			List<String> command = new ArrayList<String>();
+			command.add(System.getProperty("user.dir") + "/medici");
+			// --- Model
+			command.add("--m");
+			command.add(getModelName() + ".txt");
+			// --- Do not generate
+			command.add("--donotgenerate");
+
+			// Run
+			ProcessBuilder pc = new ProcessBuilder(command);
+			pc.command(command);
+			pc.redirectError();
+			Process p = pc.start();
+			BigDecimal sizeWoConstraints = new BigDecimal(-1);
+			BigDecimal sizeWConstraints = new BigDecimal(-1);
+			try {
+				BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				String line;
+				while ((line = bri.readLine()) != null) {
+					System.out.println(line);
+					// save to file
+					if (line.contains("Cardinalita di partenza")) {
+						sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
+						if (sizeWoConstraints.doubleValue() == 0.0)
+							throw new NotConvertableModel("Computation of the ratio interrupted");
+					}
+					if (line.contains("Cardinalita finale")) {
+						sizeWConstraints = new BigDecimal((line.split(" ")[2]));
+						if (sizeWConstraints.doubleValue() == 0.0)
+							throw new NotConvertableModel("Computation of the ratio interrupted");
+					}
+				}
+				bri.close();
+				p.waitFor();
+				System.out.println("command finished ");
+			} catch (InterruptedException e) {
+				m.delete();
+				throw new NotConvertableModel("Computation of the ratio interrupted");
+			}
+			m.delete();
+			// Compute ratio
+			double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
+			if (ratio < 0)
+				throw new NotConvertableModel("Computation of the ratio failed");
+			return ratio;
+		} catch (NotConvertableModel ex) {
+			// The model contains relational operators, thus a probabilistic approach has to
+			// be used
+			// It is based on extracting T tests and on checking whether they are applicable
+			// or not
+			int nValidTest = 0;
+			int totalTests = 1000;
+			ModelUtils mu = new ModelUtils(model);
+			for (int i = 0; i < totalTests; i++) {
+				Test t = mu.getRandomTestFromModel();
+				RuleEvaluator evaluator = new RuleEvaluator(t);
+				if (evaluator.evaluateModel(model)) {
+					nValidTest++;
+				} else {
+				}
+			}
+			return (double) nValidTest / totalTests;
+		}
 	}
 
 	/**
@@ -94,10 +186,80 @@ public class ModelConfigurationExtractor {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
+	 * @throws IOException
 	 */
-	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
+	public double getTupleValidityRatio()
+			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		if (getModelType() != Track.NUMC)
-			return Operations.getTupleValidityRatioFromModel(model);
+			try {
+				// If the model contains at least one integer, we cannot deal with it. Throw an
+				// exception and manage it differently
+				for (Parameter p : model.getParameters())
+					if (p instanceof Range)
+						throw new NotConvertableModel("Computation of the ratio interrupted");
+
+				// First save the CTWedge file
+				File m = new File(getModelName() + ".txt");
+				FileWriter wf = new FileWriter(m);
+				MediciCITGenerator gen = new MediciCITGenerator();
+				MediciCITGenerator.OUTPUT_ON_STD_OUT_DURING_TRANSLATION = false;
+				String translateModel = gen.translateModel(model, false);
+				wf.write(translateModel);
+				wf.close();
+
+				// Now call MEDICI
+				List<String> command = new ArrayList<String>();
+				command.add(System.getProperty("user.dir") + "/medici");
+				// --- Model
+				command.add("--m");
+				command.add(getModelName() + ".txt");
+				// --- Do not generate
+				command.add("--donotgenerate");
+
+				// Run
+				ProcessBuilder pc = new ProcessBuilder(command);
+				pc.command(command);
+				pc.redirectError();
+				Process p = pc.start();
+				BigDecimal sizeWoConstraints = new BigDecimal(-1);
+				BigDecimal sizeWConstraints = new BigDecimal(-1);
+				try {
+					BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+					String line;
+					while ((line = bri.readLine()) != null) {
+						System.out.println(line);
+						// save to file
+						if (line.contains("Generated tuples for 2-wise with cardinality")) {
+							sizeWoConstraints = new BigDecimal((line.split(" ")[6]));
+							if (sizeWoConstraints.doubleValue() == 0.0)
+								throw new NotConvertableModel("Computation of the ratio interrupted");
+						}
+						if (line.contains("size dopo controllo copribilita ")) {
+							sizeWConstraints = new BigDecimal((line.split(" ")[4]));
+							if (sizeWConstraints.doubleValue() == 0.0)
+								throw new NotConvertableModel("Computation of the ratio interrupted");
+						}
+					}
+					bri.close();
+					p.waitFor();
+					System.out.println("command finished ");
+				} catch (InterruptedException e) {
+					m.delete();
+					throw new NotConvertableModel("Computation of the ratio interrupted");
+				}
+				m.delete();
+				// Compute ratio
+				double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
+				if (ratio < 0)
+					throw new NotConvertableModel("Computation of the ratio failed");
+				return ratio;
+			} catch (NotConvertableModel ex) {
+				// The model contains relational operators, thus a probabilistic approach has to
+				// be used
+				// It is based on extracting T tests and on checking whether they are applicable
+				// or not
+				return kali.util.Operations.getTupleValidityRatioFromModel(model);
+			}
 		else
 			return kali.util.Operations.getTupleValidityRatioFromModel(model);
 	}
