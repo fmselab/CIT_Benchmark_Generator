@@ -25,6 +25,7 @@ import ctwedge.modelanalyzer.AlsoEnumerativeParameters;
 import ctwedge.modelanalyzer.AlsoIntegerParameters;
 import ctwedge.modelanalyzer.BooleanOnlyParameters;
 import ctwedge.modelanalyzer.CTWedgeModelAnalyzer;
+import ctwedge.modelanalyzer.FobiddenTuples;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
 import ctwedge.util.ParameterElementsGetterAsStrings;
@@ -439,5 +440,19 @@ public class ModelConfigurationExtractor {
 
 		// It is a NUMC model
 		return Track.NUMC;
+	}
+
+	/**
+	 * Returns whether the model expresses the constraints only as forbidden tuples
+	 * 
+	 * @return TRUE if the model expresses the constraints only as forbidden tuples,
+	 *         FALSE otherwise
+	 */
+	public boolean hasForbiddenTuples() {
+		CTWedgeModelAnalyzer analyzer = new FobiddenTuples();
+		// If the constraints are all in CNF form, then the track is CNF for sure
+		if (model.getConstraints().size() > 0 && analyzer.process(model))
+			return true;
+		return false;
 	}
 }
