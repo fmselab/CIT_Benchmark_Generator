@@ -26,7 +26,7 @@ public class TestExternalValidation {
 	public void test() throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(OUTPUTFILE)));
 		bw.append(
-				"Path,ModelName,Type,NumParams,LowerInt,UpperInt,MinCardinality,MaxCardinality,NConstraints,MinComplexity,MaxComplexity,RatioTuple,RatioTest,\n");
+				"Path,ModelName,Type,NumParams,LowerInt,UpperInt,MinCardinality,MaxCardinality,NConstraints,MinComplexity,MaxComplexity,IsFT,RatioTuple,RatioTest,\n");
 		Files.walk(Paths.get((BENCHMARKS_PATH))).map(Path::toFile).filter(x -> x.getName().endsWith(".ctw"))
 				.forEach(x -> {
 					try {
@@ -53,6 +53,7 @@ public class TestExternalValidation {
 				+ extractor.getUpperBoundForInts() + "," + extractor.getMinimumCardinality() + ","
 				+ extractor.getMaximumCardinality() + "," + extractor.getNumConstraints() + ","
 				+ extractor.getMinConstraintComplexity() + "," + extractor.getMaxConstraintComplexity() + ","
+				+ extractor.hasForbiddenTuples() + ","
 				+ tupleValidityRatio + "," + testValidityRatio + ",\n");
 		bw.flush();
 	}
