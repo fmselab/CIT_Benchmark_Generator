@@ -1,0 +1,12 @@
+Model NUMC_8
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4 : Boolean
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6,PAR5_7,PAR5_8,PAR5_9,PAR5_10,PAR5_11,PAR5_12,PAR5_13,PAR5_14,PAR5_15}
+
+Constraints:
+# (not (Par4 != false)) #
+# (((Par2 != false => (not (Par1 = false))) => (Par0 = false OR Par5 != PAR5_14)) OR (((not (Par0 = true)) <=> Par1 = false) AND (Par3 != false <=> Par2 != true))) #

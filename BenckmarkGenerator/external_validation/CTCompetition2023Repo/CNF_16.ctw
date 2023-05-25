@@ -1,0 +1,13 @@
+Model CNF_16
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3}
+Par4 : Boolean
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6}
+Par6 : Boolean
+
+Constraints:
+# (Par4 != false OR Par6 != false) #
+# (not (Par1 != false)) #

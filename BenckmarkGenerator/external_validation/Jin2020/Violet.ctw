@@ -1,0 +1,245 @@
+Model MViolet 
+
+Parameters :
+Violet : Boolean
+VioletDef : Boolean
+Additional : Boolean
+CommandLine : Boolean
+VersionChecker : Boolean
+VioletFilter : Boolean
+ImageFilter : Boolean
+SetTitle : Boolean
+Preferences : Boolean
+Help : Boolean
+About : Boolean
+License : Boolean
+HelpMenu : Boolean
+Window : Boolean
+CloseWindow : Boolean
+RestoreWindow : Boolean
+MaximizeWindow : Boolean
+PreviousWindow : Boolean
+NextWindow : Boolean
+WindowMenu : Boolean
+View : Boolean
+LookAndFeel : Boolean
+ZoomOut : Boolean
+ZoomIn : Boolean
+GrowDrawingArea : Boolean
+ClipDrawingArea : Boolean
+SmallerGrid : Boolean
+LargerGrid : Boolean
+HideGrid : Boolean
+ViewMenu : Boolean
+Edit : Boolean
+EditProperties : Boolean
+DeleteItem : Boolean
+SelectNext : Boolean
+SelectPrevious : Boolean
+EditMenu : Boolean
+ClassDiagram : Boolean
+ClassNode : Boolean
+InterfaceNode : Boolean
+PackageNode : Boolean
+ClassNoteNode : Boolean
+ClassDependencyEdge : Boolean
+ClassInheritanceEdge : Boolean
+ClassAggregationEdge : Boolean
+ClassAssociationEdge : Boolean
+ClassCompositionEdge : Boolean
+ClassInterfaceEdge : Boolean
+ClassNoteEdge : Boolean
+ClassD : Boolean
+SequenceDiagram : Boolean
+SequenceParameterNode : Boolean
+SequenceCallNode : Boolean
+SequenceNoteNode : Boolean
+SequenceCallEdge : Boolean
+SequenceReturnEdge : Boolean
+SequenceNoteEdge : Boolean
+SequenceD : Boolean
+StateDiagram : Boolean
+StateNode : Boolean
+InitialStateNode : Boolean
+FinalStateNode : Boolean
+StateNoteNode : Boolean
+StateTransitionEdge : Boolean
+StateNoteEdge : Boolean
+StateD : Boolean
+ObjectDiagram : Boolean
+ObjectNode : Boolean
+ObjectFieldNode : Boolean
+ObjectNoteNode : Boolean
+ObjectReferenceEdge : Boolean
+ObjectAssociationEdge : Boolean
+ObjectNoteEdge : Boolean
+ObjectD : Boolean
+UseCaseDiagram : Boolean
+Actor : Boolean
+UseCaseNode : Boolean
+UseCaseNoteNode : Boolean
+UseCaseAssociationEdge : Boolean
+ExtendRelationshipEdge : Boolean
+IncludeRelationshipEdge : Boolean
+UseCaseGeneralizationEdge : Boolean
+UseCaseNoteEdge : Boolean
+UseCaseD : Boolean
+DiagramSupport : Boolean
+File : Boolean
+Exit : Boolean
+Print : Boolean
+ExportImage : Boolean
+SaveFile : Boolean
+SaveAs : Boolean
+RecentFile : Boolean
+OpenFile : Boolean
+NewFile : Boolean
+FileMenu : Boolean
+Read : Boolean
+InternalFrame : Boolean
+FileUtility : Boolean
+ExtensionFilter : Boolean
+GraphUtility : Boolean
+MenuResources : Boolean
+base : Boolean 
+
+Constraints :
+# Violet == TRUE #
+# VioletDef == TRUE <=> Violet == TRUE #
+# Additional == TRUE => VioletDef == TRUE #
+# Additional == TRUE => CommandLine == TRUE || VersionChecker == TRUE || VioletFilter == TRUE || ImageFilter == TRUE || SetTitle == TRUE || Preferences == TRUE #
+# CommandLine == TRUE => Additional == TRUE #
+# VersionChecker == TRUE => Additional == TRUE #
+# VioletFilter == TRUE => Additional == TRUE #
+# ImageFilter == TRUE => Additional == TRUE #
+# SetTitle == TRUE => Additional == TRUE #
+# Preferences == TRUE => Additional == TRUE #
+# Help == TRUE => VioletDef == TRUE #
+# Help == TRUE => About == TRUE || License == TRUE #
+# About == TRUE => Help == TRUE #
+# License == TRUE => Help == TRUE #
+# HelpMenu == TRUE => VioletDef == TRUE #
+# Window == TRUE => VioletDef == TRUE #
+# Window == TRUE => CloseWindow == TRUE || RestoreWindow == TRUE || MaximizeWindow == TRUE || PreviousWindow == TRUE || NextWindow == TRUE #
+# CloseWindow == TRUE => Window == TRUE #
+# RestoreWindow == TRUE => Window == TRUE #
+# MaximizeWindow == TRUE => Window == TRUE #
+# PreviousWindow == TRUE => Window == TRUE #
+# NextWindow == TRUE => Window == TRUE #
+# WindowMenu == TRUE => VioletDef == TRUE #
+# View == TRUE => VioletDef == TRUE #
+# View == TRUE => LookAndFeel == TRUE || ZoomOut == TRUE || ZoomIn == TRUE || GrowDrawingArea == TRUE || ClipDrawingArea == TRUE || SmallerGrid == TRUE || LargerGrid == TRUE || HideGrid == TRUE #
+# LookAndFeel == TRUE => View == TRUE #
+# ZoomOut == TRUE => View == TRUE #
+# ZoomIn == TRUE => View == TRUE #
+# GrowDrawingArea == TRUE => View == TRUE #
+# ClipDrawingArea == TRUE => View == TRUE #
+# SmallerGrid == TRUE => View == TRUE #
+# LargerGrid == TRUE => View == TRUE #
+# HideGrid == TRUE => View == TRUE #
+# ViewMenu == TRUE => VioletDef == TRUE #
+# Edit == TRUE => VioletDef == TRUE #
+# Edit == TRUE => EditProperties == TRUE || DeleteItem == TRUE || SelectNext == TRUE || SelectPrevious == TRUE #
+# EditProperties == TRUE => Edit == TRUE #
+# DeleteItem == TRUE => Edit == TRUE #
+# SelectNext == TRUE => Edit == TRUE #
+# SelectPrevious == TRUE => Edit == TRUE #
+# EditMenu == TRUE => VioletDef == TRUE #
+# ClassDiagram == TRUE => VioletDef == TRUE #
+# ClassDiagram == TRUE => ClassNode == TRUE || InterfaceNode == TRUE || PackageNode == TRUE || ClassNoteNode == TRUE || ClassDependencyEdge == TRUE || ClassInheritanceEdge == TRUE || ClassAggregationEdge == TRUE || ClassAssociationEdge == TRUE || ClassCompositionEdge == TRUE || ClassInterfaceEdge == TRUE || ClassNoteEdge == TRUE #
+# ClassNode == TRUE => ClassDiagram == TRUE #
+# InterfaceNode == TRUE => ClassDiagram == TRUE #
+# PackageNode == TRUE => ClassDiagram == TRUE #
+# ClassNoteNode == TRUE => ClassDiagram == TRUE #
+# ClassDependencyEdge == TRUE => ClassDiagram == TRUE #
+# ClassInheritanceEdge == TRUE => ClassDiagram == TRUE #
+# ClassAggregationEdge == TRUE => ClassDiagram == TRUE #
+# ClassAssociationEdge == TRUE => ClassDiagram == TRUE #
+# ClassCompositionEdge == TRUE => ClassDiagram == TRUE #
+# ClassInterfaceEdge == TRUE => ClassDiagram == TRUE #
+# ClassNoteEdge == TRUE => ClassDiagram == TRUE #
+# ClassD == TRUE => VioletDef == TRUE #
+# SequenceDiagram == TRUE => VioletDef == TRUE #
+# SequenceDiagram == TRUE => SequenceParameterNode == TRUE || SequenceCallNode == TRUE || SequenceNoteNode == TRUE || SequenceCallEdge == TRUE || SequenceReturnEdge == TRUE || SequenceNoteEdge == TRUE #
+# SequenceParameterNode == TRUE => SequenceDiagram == TRUE #
+# SequenceCallNode == TRUE => SequenceDiagram == TRUE #
+# SequenceNoteNode == TRUE => SequenceDiagram == TRUE #
+# SequenceCallEdge == TRUE => SequenceDiagram == TRUE #
+# SequenceReturnEdge == TRUE => SequenceDiagram == TRUE #
+# SequenceNoteEdge == TRUE => SequenceDiagram == TRUE #
+# SequenceD == TRUE => VioletDef == TRUE #
+# StateDiagram == TRUE => VioletDef == TRUE #
+# StateDiagram == TRUE => StateNode == TRUE || InitialStateNode == TRUE || FinalStateNode == TRUE || StateNoteNode == TRUE || StateTransitionEdge == TRUE || StateNoteEdge == TRUE #
+# StateNode == TRUE => StateDiagram == TRUE #
+# InitialStateNode == TRUE => StateDiagram == TRUE #
+# FinalStateNode == TRUE => StateDiagram == TRUE #
+# StateNoteNode == TRUE => StateDiagram == TRUE #
+# StateTransitionEdge == TRUE => StateDiagram == TRUE #
+# StateNoteEdge == TRUE => StateDiagram == TRUE #
+# StateD == TRUE => VioletDef == TRUE #
+# ObjectDiagram == TRUE => VioletDef == TRUE #
+# ObjectDiagram == TRUE => ObjectNode == TRUE || ObjectFieldNode == TRUE || ObjectNoteNode == TRUE || ObjectReferenceEdge == TRUE || ObjectAssociationEdge == TRUE || ObjectNoteEdge == TRUE #
+# ObjectNode == TRUE => ObjectDiagram == TRUE #
+# ObjectFieldNode == TRUE => ObjectDiagram == TRUE #
+# ObjectNoteNode == TRUE => ObjectDiagram == TRUE #
+# ObjectReferenceEdge == TRUE => ObjectDiagram == TRUE #
+# ObjectAssociationEdge == TRUE => ObjectDiagram == TRUE #
+# ObjectNoteEdge == TRUE => ObjectDiagram == TRUE #
+# ObjectD == TRUE => VioletDef == TRUE #
+# UseCaseDiagram == TRUE => VioletDef == TRUE #
+# UseCaseDiagram == TRUE => Actor == TRUE || UseCaseNode == TRUE || UseCaseNoteNode == TRUE || UseCaseAssociationEdge == TRUE || ExtendRelationshipEdge == TRUE || IncludeRelationshipEdge == TRUE || UseCaseGeneralizationEdge == TRUE || UseCaseNoteEdge == TRUE #
+# Actor == TRUE => UseCaseDiagram == TRUE #
+# UseCaseNode == TRUE => UseCaseDiagram == TRUE #
+# UseCaseNoteNode == TRUE => UseCaseDiagram == TRUE #
+# UseCaseAssociationEdge == TRUE => UseCaseDiagram == TRUE #
+# ExtendRelationshipEdge == TRUE => UseCaseDiagram == TRUE #
+# IncludeRelationshipEdge == TRUE => UseCaseDiagram == TRUE #
+# UseCaseGeneralizationEdge == TRUE => UseCaseDiagram == TRUE #
+# UseCaseNoteEdge == TRUE => UseCaseDiagram == TRUE #
+# UseCaseD == TRUE => VioletDef == TRUE #
+# DiagramSupport == TRUE => VioletDef == TRUE #
+# File == TRUE => VioletDef == TRUE #
+# File == TRUE => Exit == TRUE || Print == TRUE || ExportImage == TRUE || SaveFile == TRUE || SaveAs == TRUE || RecentFile == TRUE || OpenFile == TRUE #
+# Exit == TRUE => File == TRUE #
+# Print == TRUE => File == TRUE #
+# ExportImage == TRUE => File == TRUE #
+# SaveFile == TRUE => File == TRUE #
+# SaveAs == TRUE => File == TRUE #
+# RecentFile == TRUE => File == TRUE #
+# OpenFile == TRUE => File == TRUE #
+# NewFile == TRUE => VioletDef == TRUE #
+# FileMenu == TRUE => VioletDef == TRUE #
+# Read == TRUE => VioletDef == TRUE #
+# InternalFrame == TRUE => VioletDef == TRUE #
+# FileUtility == TRUE => VioletDef == TRUE #
+# ExtensionFilter == TRUE => VioletDef == TRUE #
+# GraphUtility == TRUE => VioletDef == TRUE #
+# MenuResources == TRUE => VioletDef == TRUE #
+# base == TRUE <=> VioletDef == TRUE #
+# File == TRUE || ( NewFile == TRUE || ( Edit == TRUE || ( View == TRUE || ( Window == TRUE || ( Help == TRUE || Additional == TRUE ) ) ) ) ) => MenuResources == TRUE && ( GraphUtility == TRUE && ( ExtensionFilter == TRUE && ( FileUtility == TRUE && ( InternalFrame == TRUE && Read == TRUE ) ) ) ) #
+# File == TRUE || NewFile == TRUE => FileMenu == TRUE #
+# Edit == TRUE => EditMenu == TRUE #
+# View == TRUE => ViewMenu == TRUE #
+# Window == TRUE => WindowMenu == TRUE #
+# Help == TRUE => HelpMenu == TRUE #
+# ClassDiagram == TRUE || ( SequenceDiagram == TRUE || ( StateDiagram == TRUE || ( ObjectDiagram == TRUE || UseCaseDiagram == TRUE ) ) ) => DiagramSupport == TRUE && NewFile == TRUE #
+# ClassDiagram == TRUE => ClassD == TRUE #
+# SequenceDiagram == TRUE => SequenceD == TRUE #
+# StateDiagram == TRUE => StateD == TRUE #
+# ObjectDiagram == TRUE => ObjectD == TRUE #
+# UseCaseDiagram == TRUE => UseCaseD == TRUE #
+# RecentFile == TRUE => OpenFile == TRUE #
+# SaveFile == TRUE => SaveAs == TRUE #
+# ImageFilter == TRUE => ExtensionFilter == TRUE && ExportImage == TRUE #
+# VioletFilter == TRUE => ExtensionFilter == TRUE #
+# CommandLine == TRUE => OpenFile == TRUE #
+# ClassDependencyEdge == TRUE || ( ClassInheritanceEdge == TRUE || ( ClassAggregationEdge == TRUE || ( ClassAssociationEdge == TRUE || ( ClassCompositionEdge == TRUE || ClassInterfaceEdge == TRUE ) ) ) ) => ClassNode == TRUE #
+# ClassNoteEdge == TRUE => ClassNoteNode == TRUE #
+# SequenceCallEdge == TRUE || SequenceReturnEdge == TRUE => SequenceCallNode == TRUE #
+# SequenceNoteEdge == TRUE => SequenceNoteNode == TRUE #
+# StateTransitionEdge == TRUE => StateNode == TRUE #
+# StateNoteEdge == TRUE => StateNoteNode == TRUE #
+# ObjectReferenceEdge == TRUE || ObjectAssociationEdge == TRUE => ObjectNode == TRUE #
+# ObjectNoteEdge == TRUE => ObjectNoteNode == TRUE #
+# UseCaseAssociationEdge == TRUE || ( ExtendRelationshipEdge == TRUE || ( IncludeRelationshipEdge == TRUE || UseCaseGeneralizationEdge == TRUE ) ) => Actor == TRUE #
+# UseCaseNoteEdge == TRUE => UseCaseNoteNode == TRUE #

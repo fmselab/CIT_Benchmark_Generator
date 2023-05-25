@@ -1,0 +1,42 @@
+Model NUMC_16
+Parameters:
+Par0 : Boolean
+Par1: [9 .. 12]
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4}
+Par3: {PAR3_0,PAR3_1}
+Par4 : Boolean
+Par5: [-79 .. -69]
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8,PAR6_9,PAR6_10,PAR6_11,PAR6_12}
+Par7 : Boolean
+Par8: [-36 .. -28]
+Par9: [-19 .. -8]
+Par10: [-52 .. -50]
+Par11: {PAR11_0,PAR11_1,PAR11_2,PAR11_3,PAR11_4,PAR11_5,PAR11_6,PAR11_7,PAR11_8,PAR11_9,PAR11_10,PAR11_11,PAR11_12,PAR11_13,PAR11_14}
+Par12: [-90 .. -88]
+Par13: [-42 .. -28]
+Par14: {PAR14_0,PAR14_1,PAR14_2,PAR14_3,PAR14_4,PAR14_5,PAR14_6,PAR14_7,PAR14_8,PAR14_9,PAR14_10,PAR14_11,PAR14_12}
+Par15: [7 .. 20]
+Par16: {PAR16_0,PAR16_1,PAR16_2,PAR16_3,PAR16_4,PAR16_5,PAR16_6}
+Par17 : Boolean
+Par18: [14 .. 16]
+Par19: [-5 .. 3]
+Par20: {PAR20_0,PAR20_1,PAR20_2,PAR20_3,PAR20_4,PAR20_5,PAR20_6,PAR20_7,PAR20_8,PAR20_9,PAR20_10,PAR20_11,PAR20_12,PAR20_13}
+Par21 : Boolean
+Par22: [56 .. 68]
+Par23: {PAR23_0,PAR23_1,PAR23_2,PAR23_3,PAR23_4,PAR23_5}
+Par24 : Boolean
+Par25: [52 .. 53]
+Par26: [-66 .. -61]
+Par27: [20 .. 33]
+Par28: {PAR28_0}
+Par29 : Boolean
+
+Constraints:
+# (((not (Par13 > -39)) OR (not (Par9 >= -13))) AND (Par5 >= -69 <=> (not (Par28 = PAR28_0)))) #
+# ((((not (Par27 = 30)) OR (not (Par22 > 59))) => (Par29 != false => Par15 = 9)) OR ((Par2 != PAR2_0 => (not (Par2 != PAR2_1))) AND (Par6 = PAR6_8 AND Par2 != PAR2_2))) #
+# (((not (Par9 >= -12)) AND Par2 = PAR2_3) => ((not (Par23 != PAR23_0)) OR Par8 <= -33)) #
+# ((Par19 = 1 OR (not (Par19 >= 2))) OR ((not (Par20 = PAR20_4)) OR (not (Par13 < -34)))) #
+# (((Par22 > 62 => (not (Par11 != PAR11_7))) OR (Par7 != true => (not (Par18 <= 16)))) OR ((Par21 != false AND Par17 != true) OR (Par6 = PAR6_2 <=> Par4 = false))) #
+# (((Par4 != false AND Par2 = PAR2_0) AND ((not (Par27 = 24)) AND (not (Par25 > 53)))) AND (((not (Par4 = false)) OR Par26 >= -61) <=> (Par10 < -51 <=> Par21 != false))) #
+# (Par10 < -50 AND Par17 != true) #
+# ((((not (Par29 = true)) => Par15 = 11) OR ((not (Par21 = true)) OR (not (Par26 = -65)))) OR ((Par3 != PAR3_0 OR (not (Par22 > 63))) <=> ((not (Par3 = PAR3_1)) => (not (Par22 <= 65))))) #

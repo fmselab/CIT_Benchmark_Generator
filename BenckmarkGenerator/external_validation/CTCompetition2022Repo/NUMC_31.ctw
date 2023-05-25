@@ -1,0 +1,11 @@
+Model NUMC_31
+Parameters:
+Par0 : Boolean
+Par1: {PAR1_0,PAR1_1,PAR1_2,PAR1_3,PAR1_4,PAR1_5}
+Par2: [3 .. 85]
+Par3 : Boolean
+Par4 : Boolean
+
+Constraints:
+# ((Par1 != PAR1_0 => Par2 <= 65) => (Par4 = false => Par0 != true)) #
+# (((not (Par2 > 36)) <=> (not (Par1 != PAR1_1))) AND ((not (Par3 != false)) OR Par2 = 45)) #

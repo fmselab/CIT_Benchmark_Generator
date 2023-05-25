@@ -1,0 +1,10 @@
+Model NUMC_15
+Parameters:
+Par0 : Boolean
+Par1: [9 .. 15]
+
+Constraints:
+# ((((not (Par1 > 9)) <=> Par0 != false) <=> ((not (Par0 != false)) <=> (not (Par0 != true)))) => (((not (Par0 != false)) OR Par0 != false) => ((not (Par0 != true)) => Par0 != true))) #
+# ((not (Par1 <= 13)) <=> (not (Par1 = 11))) #
+# ((Par1 != 14 <=> Par1 = 11) => ((not (Par1 < 12)) => Par1 < 15)) #
+# ((not (Par1 <= 10)) <=> Par1 >= 15) #

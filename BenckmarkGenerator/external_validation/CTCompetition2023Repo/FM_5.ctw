@@ -1,0 +1,95 @@
+//Model MERP_SPL_s1 
+Model FM_5 
+
+Parameters :
+ERP_SPL : Boolean
+Cadastros : Boolean
+Cadastrodecliente : Boolean
+Editarcadastrodecliente : Boolean
+Apagarcadastrodecliente : Boolean
+Cadastrodefornecedor : Boolean
+Editarcadastrodefornecedor : Boolean
+Apagarcadastrodefornecedor : Boolean
+Cadastrodefuncionario : Boolean
+Editarcadastrodefuncionario : Boolean
+Apagarcadastrodefuncionario : Boolean
+Cadastrodeusuario : Boolean
+Editarcadastrodeusuario : Boolean
+Apagarcadastrodeusuario : Boolean
+Cadastroderegrasdeacessodeusuario : Boolean
+Editarregrasdeacessodeusuario : Boolean
+Cadastros_6 : Boolean
+Cadastrodeproduto : Boolean
+Editarcadastrodeproduto : Boolean
+Apagarcadastrodeproduto : Boolean
+Cadastrodeservico : Boolean
+Editarcadastrodeservico : Boolean
+Apagarcadastrodeservico : Boolean
+Login : Boolean
+Controledeacesso : Boolean
+Listagens : Boolean
+Listagemdeitens : Boolean
+Listagemdeprodutos : Boolean
+Listagemdeservicos : Boolean
+Listagemdepessoas : Boolean
+Listagemdeclientes : Boolean
+Listagemdefornecedores : Boolean
+Listagemdefuncionarios : Boolean
+Listagemdeusuarios : Boolean
+Listagemdeestoque : Boolean
+Controledeestoque : Boolean
+Entradadeestoque : Boolean
+Saidadeestoque : Boolean
+Manutencaodeestoque : Boolean
+Controlefinanceiro : Boolean
+Contasapagar : Boolean
+Contasareceber : Boolean
+Manutencaodelancamentos : Boolean 
+
+Constraints :
+# ERP_SPL == true #
+# Cadastros == true <=> ERP_SPL == true #
+# Cadastrodecliente == true <=> Cadastros == true #
+# Editarcadastrodecliente == true <=> Cadastrodecliente == true #
+# Apagarcadastrodecliente == true <=> Cadastrodecliente == true #
+# Cadastrodefornecedor == true <=> Cadastros == true #
+# Editarcadastrodefornecedor == true <=> Cadastrodefornecedor == true #
+# Apagarcadastrodefornecedor == true <=> Cadastrodefornecedor == true #
+# Cadastrodefuncionario == true => Cadastros == true #
+# Editarcadastrodefuncionario == true <=> Cadastrodefuncionario == true #
+# Apagarcadastrodefuncionario == true <=> Cadastrodefuncionario == true #
+# Cadastrodeusuario == true <=> Cadastros == true #
+# Editarcadastrodeusuario == true <=> Cadastrodeusuario == true #
+# Apagarcadastrodeusuario == true <=> Cadastrodeusuario == true #
+# Cadastroderegrasdeacessodeusuario == true => Cadastros == true #
+# Editarregrasdeacessodeusuario == true <=> Cadastroderegrasdeacessodeusuario == true #
+# Cadastros_6 == true <=> Cadastros == true #
+# Cadastros_6 == true => Cadastrodeproduto == true || Cadastrodeservico == true #
+# Cadastrodeproduto == true => Cadastros_6 == true #
+# Editarcadastrodeproduto == true <=> Cadastrodeproduto == true #
+# Apagarcadastrodeproduto == true <=> Cadastrodeproduto == true #
+# Cadastrodeservico == true => Cadastros_6 == true #
+# Editarcadastrodeservico == true <=> Cadastrodeservico == true #
+# Apagarcadastrodeservico == true <=> Cadastrodeservico == true #
+# Login == true <=> ERP_SPL == true #
+# Controledeacesso == true => Login == true #
+# Listagens == true => ERP_SPL == true #
+# Listagemdeitens == true <=> Listagens == true #
+# Listagemdeprodutos == true => Listagens == true #
+# Listagemdeservicos == true => Listagens == true #
+# Listagemdepessoas == true <=> Listagens == true #
+# Listagemdeclientes == true <=> Listagens == true #
+# Listagemdefornecedores == true <=> Listagens == true #
+# Listagemdefuncionarios == true => Listagens == true #
+# Listagemdeusuarios == true <=> Listagens == true #
+# Listagemdeestoque == true => Listagens == true #
+# Controledeestoque == true => ERP_SPL == true #
+# Controledeestoque == true => Entradadeestoque == true || Saidadeestoque == true || Manutencaodeestoque == true #
+# Entradadeestoque == true => Controledeestoque == true #
+# Saidadeestoque == true => Controledeestoque == true #
+# Manutencaodeestoque == true => Controledeestoque == true #
+# Controlefinanceiro == true => ERP_SPL == true #
+# Controlefinanceiro == true => Contasapagar == true || Contasareceber == true || Manutencaodelancamentos == true #
+# Contasapagar == true => Controlefinanceiro == true #
+# Contasareceber == true => Controlefinanceiro == true #
+# Manutencaodelancamentos == true => Controlefinanceiro == true #

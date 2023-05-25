@@ -1,0 +1,25 @@
+Model NUMC_8
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4}
+Par1: {PAR1_0,PAR1_1,PAR1_2,PAR1_3,PAR1_4,PAR1_5,PAR1_6,PAR1_7,PAR1_8,PAR1_9,PAR1_10}
+Par2 : Boolean
+Par3: [1 .. 8]
+Par4 : Boolean
+Par5 : Boolean
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8}
+Par7: {PAR7_0,PAR7_1}
+Par8 : Boolean
+Par9: [44 .. 51]
+
+Constraints:
+# ((((not (Par9 <= 46)) => (not (Par1 != PAR1_0))) OR (Par0 != PAR0_4 <=> (not (Par3 > 1)))) => (((not (Par7 = PAR7_1)) OR (not (Par1 = PAR1_6))) OR ((not (Par1 = PAR1_10)) OR Par2 != true))) #
+# ((Par9 >= 51 OR Par7 = PAR7_0) <=> ((not (Par9 != 45)) AND Par6 != PAR6_0)) #
+# ((((not (Par8 != true)) OR Par0 != PAR0_4) AND (Par1 = PAR1_2 OR (not (Par3 < 3)))) <=> ((Par9 < 48 OR (not (Par1 != PAR1_1))) <=> ((not (Par9 < 44)) OR (not (Par9 <= 46))))) #
+# ((not (Par3 != 3)) => Par9 >= 47) #
+# ((((not (Par2 != true)) OR (not (Par3 < 8))) => ((not (Par0 != PAR0_4)) OR (not (Par7 != PAR7_0)))) OR (((not (Par1 != PAR1_4)) AND Par4 != false) AND ((not (Par1 = PAR1_4)) => Par0 != PAR0_0))) #
+# ((((not (Par4 = false)) OR (not (Par5 != false))) <=> (Par8 = true OR Par4 = false)) AND ((Par0 != PAR0_0 <=> Par0 != PAR0_2) => (Par6 != PAR6_4 <=> (not (Par9 <= 45))))) #
+# (((Par0 != PAR0_3 AND Par2 != false) AND ((not (Par1 = PAR1_6)) AND Par7 != PAR7_1)) <=> ((Par1 = PAR1_1 => (not (Par4 = false))) AND (Par5 = false AND (not (Par2 != false))))) #
+# ((((not (Par0 = PAR0_1)) OR (not (Par6 != PAR6_4))) AND (Par1 = PAR1_2 AND Par2 = true)) => (((not (Par0 = PAR0_2)) OR (not (Par3 >= 5))) => ((not (Par3 >= 8)) AND Par1 = PAR1_9))) #
+# ((((not (Par2 != true)) => Par5 != false) => ((not (Par8 != true)) => Par3 = 4)) <=> (((not (Par8 = false)) <=> (not (Par7 = PAR7_0))) <=> ((not (Par4 != false)) AND (not (Par0 != PAR0_2))))) #
+# (((Par5 != true => Par4 != false) => ((not (Par6 = PAR6_3)) OR Par3 = 2)) <=> ((Par5 != false AND (not (Par6 = PAR6_3))) AND ((not (Par3 >= 8)) AND Par6 = PAR6_0))) #
+# (((not (Par4 != false)) <=> Par1 = PAR1_8) => (Par6 = PAR6_3 AND Par0 != PAR0_3)) #

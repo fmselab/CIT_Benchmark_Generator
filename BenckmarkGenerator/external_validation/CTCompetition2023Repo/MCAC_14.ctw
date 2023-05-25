@@ -1,0 +1,36 @@
+Model MCAC_14
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8,PAR3_9,PAR3_10,PAR3_11,PAR3_12,PAR3_13}
+Par4: {PAR4_0,PAR4_1}
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6,PAR5_7,PAR5_8,PAR5_9}
+Par6 : Boolean
+Par7 : Boolean
+Par8 : Boolean
+Par9: {PAR9_0,PAR9_1}
+Par10: {PAR10_0,PAR10_1,PAR10_2,PAR10_3,PAR10_4,PAR10_5}
+Par11 : Boolean
+Par12: {PAR12_0,PAR12_1,PAR12_2,PAR12_3,PAR12_4,PAR12_5,PAR12_6,PAR12_7,PAR12_8,PAR12_9,PAR12_10,PAR12_11,PAR12_12}
+Par13: {PAR13_0,PAR13_1,PAR13_2,PAR13_3,PAR13_4,PAR13_5,PAR13_6,PAR13_7,PAR13_8,PAR13_9,PAR13_10,PAR13_11,PAR13_12,PAR13_13}
+Par14: {PAR14_0,PAR14_1,PAR14_2,PAR14_3,PAR14_4,PAR14_5,PAR14_6,PAR14_7,PAR14_8,PAR14_9,PAR14_10,PAR14_11}
+Par15: {PAR15_0,PAR15_1,PAR15_2,PAR15_3,PAR15_4,PAR15_5,PAR15_6}
+Par16 : Boolean
+Par17: {PAR17_0,PAR17_1}
+Par18: {PAR18_0,PAR18_1,PAR18_2,PAR18_3,PAR18_4,PAR18_5,PAR18_6,PAR18_7}
+Par19: {PAR19_0,PAR19_1}
+Par20 : Boolean
+Par21 : Boolean
+Par22: {PAR22_0,PAR22_1,PAR22_2,PAR22_3,PAR22_4,PAR22_5,PAR22_6,PAR22_7,PAR22_8}
+Par23: {PAR23_0,PAR23_1,PAR23_2,PAR23_3}
+Par24 : Boolean
+Par25 : Boolean
+Par26 : Boolean
+Par27: {PAR27_0,PAR27_1,PAR27_2,PAR27_3,PAR27_4,PAR27_5}
+
+Constraints:
+# ((((not (Par5 = PAR5_0)) OR (not (Par23 = PAR23_1))) => (Par21 = false => Par18 = PAR18_5)) OR (((not (Par4 != PAR4_0)) <=> (not (Par6 = false))) => ((not (Par21 != true)) OR Par25 != true))) #
+# (not (Par11 != true)) #
+# (((Par13 = PAR13_2 AND Par3 = PAR3_2) OR (Par27 = PAR27_1 OR (not (Par0 = false)))) <=> ((Par5 != PAR5_8 OR (not (Par17 = PAR17_1))) OR (Par17 != PAR17_0 => Par18 = PAR18_2))) #
+# (((Par22 != PAR22_2 <=> Par9 = PAR9_0) => (Par22 = PAR22_7 <=> Par15 = PAR15_2)) AND ((Par19 != PAR19_1 OR (not (Par20 != true))) OR (Par11 = true => Par21 = true))) #

@@ -1,0 +1,23 @@
+Model MCAC_16
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4,PAR0_5,PAR0_6,PAR0_7}
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8,PAR3_9,PAR3_10,PAR3_11,PAR3_12,PAR3_13}
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3,PAR4_4}
+Par5: {PAR5_0,PAR5_1,PAR5_2}
+Par6 : Boolean
+Par7 : Boolean
+Par8 : Boolean
+Par9 : Boolean
+Par10 : Boolean
+Par11: {PAR11_0,PAR11_1,PAR11_2,PAR11_3,PAR11_4,PAR11_5,PAR11_6,PAR11_7,PAR11_8,PAR11_9,PAR11_10,PAR11_11,PAR11_12}
+Par12 : Boolean
+Par13 : Boolean
+Par14 : Boolean
+Par15 : Boolean
+
+Constraints:
+# ((((not (Par11 != PAR11_2)) AND (not (Par9 = true))) OR (Par8 = false AND (not (Par9 = false)))) AND ((Par6 != true OR Par4 = PAR4_2) AND (Par9 = true AND Par13 = true))) #
+# (((Par7 != true <=> (not (Par4 = PAR4_2))) => ((not (Par0 != PAR0_4)) => (not (Par12 = false)))) => (((not (Par4 = PAR4_2)) => (not (Par14 = true))) OR ((not (Par1 = false)) <=> (not (Par10 = false))))) #
+# (((not (Par14 != false)) OR Par0 = PAR0_6) OR ((not (Par1 = false)) AND (not (Par1 = false)))) #
