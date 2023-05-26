@@ -33,5 +33,6 @@ public class GeneratorConfiguration {
 	public static boolean CHECK_TEST_RATIO = false;
 	public static boolean ALWAYS_EXPORT = true;
 	public static int N_ATTEMPTS = 10;
+	public static boolean FORBIDDEN_TUPLES = false;
 	
 }
