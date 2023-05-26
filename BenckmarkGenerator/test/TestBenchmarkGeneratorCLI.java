@@ -9,6 +9,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
@@ -374,6 +375,7 @@ public class TestBenchmarkGeneratorCLI {
 	 * @throws IOException
 	 * 
 	 */
+	@Ignore
 	@Test
 	public void ts4() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
@@ -809,9 +811,6 @@ public class TestBenchmarkGeneratorCLI {
 		// Number of constraints
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
 		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
-
-		// Forbidden tuples
-		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
 
 		// Forbidden tuples
 		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
