@@ -85,6 +85,7 @@ public class BenchmarkGenerator {
 	private JLabel lblNumBenchmarks;
 	private JLabel lblMinCardinality;
 	private JCheckBox chkConstraintsBetweenParams;
+	private JCheckBox chkForbiddenTuples;
 	private JCheckBox chkTestRatio;
 	private JCheckBox chkTupleRatio;
 	private JLabel lblMaxCardinality;
@@ -250,6 +251,12 @@ public class BenchmarkGenerator {
 
 		chkConstraintsBetweenParams = new JCheckBox("Use constraints between params");
 		addToPanelConfigurations(chkConstraintsBetweenParams, "chkConstraintsBetweenParams");
+
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		chkForbiddenTuples = new JCheckBox("Only forbidden tuples");
+		addToPanelConfigurations(chkForbiddenTuples, "chkForbiddenTuples");
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
@@ -469,6 +476,7 @@ public class BenchmarkGenerator {
 		txtNMaxConstraints.setText(Integer.toString(GeneratorConfiguration.N_CONSTRAINTS_MAX));
 		txtNumBenchmarks.setText("1");
 		chkConstraintsBetweenParams.setSelected(GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS);
+		chkForbiddenTuples.setSelected(GeneratorConfiguration.FORBIDDEN_TUPLES);
 		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
 		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));

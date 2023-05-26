@@ -126,6 +126,8 @@ public class GenerateHandler implements ActionListener {
 						.getText());
 		GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS = ((JCheckBox) (parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("chkConstraintsBetweenParams")))).isSelected();
+		GeneratorConfiguration.FORBIDDEN_TUPLES = ((JCheckBox) (parentFrame.getPanelConfigurations()
+				.getComponent(componentsMap.get("chkForbiddenTuples")))).isSelected();
 		GeneratorConfiguration.TRACK = t;
 		GeneratorConfiguration.CHECK_TEST_RATIO = parentFrame.isRatioTest();
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = parentFrame.isRatioTuple();

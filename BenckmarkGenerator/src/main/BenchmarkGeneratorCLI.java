@@ -97,6 +97,9 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	@Option(names = "-epsilon", description = "The accepted error when computing the test validity ratio, if MDDs cannot be used. By default it is 0.1")
 	private double epsilon = 0.1;
+	
+	@Option(names = "-ft", description = "Only constraints expressed as forbidden tuples? By default it is disabled")
+	private boolean ft = false;
 
 	/**
 	 * The list in which all the generated models are stored
@@ -208,6 +211,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.TRACK = Track.valueOf(trackStr);
 			GeneratorConfiguration.CHECK_TEST_RATIO = chkTestRatio;
 			GeneratorConfiguration.CHECK_TUPLE_RATIO = chkTupleRatio;
+			GeneratorConfiguration.FORBIDDEN_TUPLES = ft;
 		} else {
 			// Extract the configuration from that of model given by the user
 			LOGGER.debug("Configurations read from the baseline model");
@@ -248,6 +252,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		GeneratorConfiguration.N_CONSTRAINTS_MAX = extractor.getNumConstraints();
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
 		GeneratorConfiguration.TRACK = extractor.getModelType();
+		GeneratorConfiguration.FORBIDDEN_TUPLES = extractor.hasForbiddenTuples();
 	}
 
 	/**
