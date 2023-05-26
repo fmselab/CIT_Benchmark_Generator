@@ -44,7 +44,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			// included)
 			int complexity = Randomizer.generate(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY,
 					GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
-			c = generateConstraintFromComplexity(m, complexity, type);
+			c = generateConstraintFromComplexity(m, complexity);
 
 			// Add the constraint
 			m.addConstraint(c);
@@ -58,10 +58,9 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 	 * 
 	 * @param m          the model being populated
 	 * @param complexity the constraint complexity
-	 * @param type       the category of the model being generated
 	 * @return the constraint
 	 */
-	public Constraint generateConstraintFromComplexity(Model m, int complexity, Category type) {
+	public Constraint generateConstraintFromComplexity(Model m, int complexity) {
 
 		Constraint c;
 		int operation;
@@ -169,8 +168,8 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 				break;
 			}
 
-			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
-			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
+			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2));
+			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2));
 		}
 
 		return c;

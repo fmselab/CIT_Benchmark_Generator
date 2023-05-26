@@ -17,6 +17,7 @@ import generators.GeneratorConfiguration;
 import generators.Track;
 import generators.WithConstraintGenerator;
 import generators.WithConstraintGeneratorCNF;
+import generators.WithConstraintGeneratorFT;
 import generators.WithoutConstraintGenerator;
 import generators.WithoutConstraintGeneratorSameCardinality;
 import models.Model;
@@ -295,7 +296,11 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	public void generateBOOLC()
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
-		Generator g = new WithConstraintGenerator();
+		Generator g;
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+			g = new WithConstraintGenerator();
+		else
+			g = new WithConstraintGeneratorFT();
 
 		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
 			Model m1;
@@ -382,7 +387,11 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	public void generateMCAC()
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
-		Generator g = new WithConstraintGenerator();
+		Generator g;
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+			g = new WithConstraintGenerator();
+		else
+			g = new WithConstraintGeneratorFT();
 
 		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
 			Model m1;
@@ -439,7 +448,11 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	public void generateNUMC()
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
-		Generator g = new WithConstraintGenerator();
+		Generator g;
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+			g = new WithConstraintGenerator();
+		else
+			g = new WithConstraintGeneratorFT();
 
 		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
 			Model m1;
