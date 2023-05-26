@@ -61,7 +61,7 @@ public class WithConstraintGeneratorFT extends WithoutConstraintGenerator {
 								.setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getName());
 					}
 					// Convert the constraint as a string
-					cnstrAsString += c.toString() + " AND ";
+					cnstrAsString += c1.toString() + " AND ";
 				}
 				// Set the constraint
 				((NotConstraint) c).setExpression(cnstrAsString.substring(0, cnstrAsString.length() - 4));
@@ -81,7 +81,7 @@ public class WithConstraintGeneratorFT extends WithoutConstraintGenerator {
 								.setExpression(p.getName() + " != " + m.getRandomParamenterOfClass(p).getName());
 					}
 					// Convert the constraint as a string
-					cnstrAsString += c.toString() + " OR ";
+					cnstrAsString += c1.toString() + " OR ";
 				}
 				// Set the constraint
 				((AtomicConstraint) c).setExpression(cnstrAsString.substring(0, cnstrAsString.length() - 3));
