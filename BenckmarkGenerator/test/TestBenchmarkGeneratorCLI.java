@@ -1376,7 +1376,6 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.hasForbiddenTuples());
 
 			// Check the number of constraints
-			System.out.println(extractor.getNumConstraints());
 			assertTrue(extractor.getNumConstraints() <= MAX_CONSTRAINTS);
 			assertTrue(extractor.getNumConstraints() >= MIN_CONSTRAINTS);
 

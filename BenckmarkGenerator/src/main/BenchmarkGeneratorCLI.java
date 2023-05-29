@@ -267,7 +267,11 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	public void generateHIGHLY_CONSTRAINED()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// The generator that considers constraints
-		Generator g = new WithConstraintGenerator();
+		Generator g;
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+			g = new WithConstraintGenerator();
+		else
+			g = new WithConstraintGeneratorFT();
 
 		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
 			Model m1;
