@@ -46,23 +46,11 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 			lockIntegers(true);
 			lockRatio(true);
 			break;
-		case BenchmarkGenerator.CNF:
-			lockConstraints(false);
-			lockNonBoolean(true);
-			lockIntegers(true);
-			lockRatio(true);
-			break;
 		case BenchmarkGenerator.EMPTY_TYPE:
 			lockConstraints(false);
 			lockNonBoolean(false);
 			lockIntegers(false);
 			lockRatio(true);
-			break;
-		case BenchmarkGenerator.HIGHLY_CONSTRAINED:
-			lockConstraints(false);
-			lockNonBoolean(true);
-			lockIntegers(false);
-			lockRatio(false);
 			break;
 		case BenchmarkGenerator.MCA:
 			lockConstraints(true);
@@ -139,6 +127,8 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 				.setEnabled(!lock);
 		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTestRatio"))).setEnabled(!lock);
 		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTupleRatio"))).setEnabled(!lock);
+		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkCNF"))).setEnabled(!lock);
+		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkForbiddenTuples"))).setEnabled(!lock);
 	}
 
 	/**

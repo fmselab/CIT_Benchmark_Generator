@@ -39,8 +39,6 @@ import models.ModelList;
 
 public class BenchmarkGenerator {
 
-	public static final String HIGHLY_CONSTRAINED = "HIGHLY_CONSTRAINED";
-	public static final String CNF = "CNF";
 	public static final String NUMC = "NUMC";
 	public static final String MCAC = "MCAC";
 	public static final String BOOLC = "BOOLC";
@@ -86,6 +84,7 @@ public class BenchmarkGenerator {
 	private JLabel lblMinCardinality;
 	private JCheckBox chkConstraintsBetweenParams;
 	private JCheckBox chkForbiddenTuples;
+	private JCheckBox chkCNF;
 	private JCheckBox chkTestRatio;
 	private JCheckBox chkTupleRatio;
 	private JLabel lblMaxCardinality;
@@ -257,6 +256,24 @@ public class BenchmarkGenerator {
 		
 		chkForbiddenTuples = new JCheckBox("Only forbidden tuples");
 		addToPanelConfigurations(chkForbiddenTuples, "chkForbiddenTuples");
+		chkForbiddenTuples.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chkCNF.setSelected(chkForbiddenTuples.isSelected());
+			}
+		});
+
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		chkCNF = new JCheckBox("Only CNF");
+		addToPanelConfigurations(chkCNF, "chkCNF");
+		chkCNF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chkForbiddenTuples.setSelected(chkCNF.isSelected());
+			}
+		});
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
@@ -454,8 +471,7 @@ public class BenchmarkGenerator {
 	 * Fill the benchmark types
 	 */
 	private void fillBenchmarkTypes() {
-		String[] bnckTypes = { EMPTY_TYPE, UNIFORM_BOOLEAN, UNIFORM_ALL, MCA, BOOLC, MCAC, NUMC, CNF,
-				HIGHLY_CONSTRAINED };
+		String[] bnckTypes = { EMPTY_TYPE, UNIFORM_BOOLEAN, UNIFORM_ALL, MCA, BOOLC, MCAC, NUMC };
 		for (String s : bnckTypes) {
 			benchmarkType.addItem(s);
 		}
