@@ -98,9 +98,12 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	@Option(names = "-epsilon", description = "The accepted error when computing the test validity ratio, if MDDs cannot be used. By default it is 0.1")
 	private double epsilon = 0.1;
-	
+
 	@Option(names = "-ft", description = "Only constraints expressed as forbidden tuples? By default it is disabled")
 	private boolean ft = false;
+
+	@Option(names = "-cnf", description = "Only constraints expressed as CNF? By default it is disabled")
+	private boolean cnf = false;
 
 	/**
 	 * The list in which all the generated models are stored
@@ -156,12 +159,6 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		case BOOLC:
 			generateBOOLC();
 			break;
-		case CNF:
-			generateCNF();
-			break;
-		case HIGHLY_CONSTRAINED:
-			generateHIGHLY_CONSTRAINED();
-			break;
 		case MCA:
 			generateMCA();
 			break;
@@ -189,9 +186,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public void setConfigurations() throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
+	public void setConfigurations()
+			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		GeneratorConfiguration.N_BENCHMARKS = nTests;
 		if (similarModel == null) {
 			LOGGER.debug("Configurations set by the user");
@@ -213,6 +211,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.CHECK_TEST_RATIO = chkTestRatio;
 			GeneratorConfiguration.CHECK_TUPLE_RATIO = chkTupleRatio;
 			GeneratorConfiguration.FORBIDDEN_TUPLES = ft;
+			GeneratorConfiguration.CNF = cnf;
 		} else {
 			// Extract the configuration from that of model given by the user
 			LOGGER.debug("Configurations read from the baseline model");
@@ -232,7 +231,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static void setConfigurationsFromFile(String modelPath)
 			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
@@ -254,39 +253,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		GeneratorConfiguration.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
 		GeneratorConfiguration.TRACK = extractor.getModelType();
 		GeneratorConfiguration.FORBIDDEN_TUPLES = extractor.hasForbiddenTuples();
-	}
-
-	/**
-	 * Generates HIGHLY_CONSTRAINED instances
-	 * 
-	 * @throws IOException
-	 * @throws InterruptedException
-	 * @throws SolverException
-	 * @throws InvalidConfigurationException
-	 */
-	public void generateHIGHLY_CONSTRAINED()
-			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		// The generator that considers constraints
-		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
-			g = new WithConstraintGenerator();
-		else
-			g = new WithConstraintGeneratorFT();
-
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
-			Model m1;
-			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL);
-			if (m1 != null) {
-				m1.setName(Track.HIGHLY_CONSTRAINED + "_" + i);
-				LOGGER.debug("Added a new model: " + m1.getName());
-
-				modelsList.add(m1);
-
-				// Export the model
-				exportModel(m1);
-			}
-		}
+		GeneratorConfiguration.CNF = extractor.isCNF();
 	}
 
 	/**
@@ -301,8 +268,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
 		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES && !GeneratorConfiguration.CNF)
 			g = new WithConstraintGenerator();
+		else if (GeneratorConfiguration.CNF)
+			g = new WithConstraintGeneratorCNF();
 		else
 			g = new WithConstraintGeneratorFT();
 
@@ -392,8 +361,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
 		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES && !GeneratorConfiguration.CNF)
 			g = new WithConstraintGenerator();
+		else if (GeneratorConfiguration.CNF)
+			g = new WithConstraintGeneratorCNF();
 		else
 			g = new WithConstraintGeneratorFT();
 
@@ -403,34 +374,6 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
 			if (m1 != null) {
 				m1.setName(Track.MCAC + "_" + i);
-				LOGGER.debug("Added a new model: " + m1.getName());
-
-				modelsList.add(m1);
-
-				// Export the model
-				exportModel(m1);
-			}
-		}
-	}
-
-	/**
-	 * Generates CNF instances
-	 * 
-	 * @throws IOException
-	 * @throws InterruptedException
-	 * @throws SolverException
-	 * @throws InvalidConfigurationException
-	 */
-	public void generateCNF() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		// The generator that considers constraints
-		Generator g = new WithConstraintGeneratorCNF();
-
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
-			Model m1;
-			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
-			if (m1 != null) {
-				m1.setName(Track.CNF + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
 
 				modelsList.add(m1);
@@ -453,8 +396,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
 		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES)
+		if (!GeneratorConfiguration.FORBIDDEN_TUPLES && !GeneratorConfiguration.CNF)
 			g = new WithConstraintGenerator();
+		else if (GeneratorConfiguration.CNF)
+			g = new WithConstraintGeneratorCNF();
 		else
 			g = new WithConstraintGeneratorFT();
 

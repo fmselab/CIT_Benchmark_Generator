@@ -85,7 +85,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = HIGHLY_CONSTRAINED
-		GeneratorConfiguration.TRACK = Track.HIGHLY_CONSTRAINED;
+		//GeneratorConfiguration.TRACK = Track.HIGHLY_CONSTRAINED;
 
 		// TestValidityRatio
 		GeneratorConfiguration.N = N;
@@ -167,7 +167,7 @@ public class TestBenchmarkGeneratorCLI {
 			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
 			// also enumeratives are missing
 			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
-					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+					|| extractor.getModelType() == Track.BOOLC);
 
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
@@ -192,7 +192,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = CNF
-		GeneratorConfiguration.TRACK = Track.CNF;
+		//GeneratorConfiguration.TRACK = Track.CNF;
 
 		// Cardinality
 		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
@@ -261,7 +261,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
 
 			// Check the track
-			assertTrue(extractor.getModelType() == Track.CNF);
+			assertTrue(extractor.isCNF());
 		}
 	}
 
@@ -360,7 +360,7 @@ public class TestBenchmarkGeneratorCLI {
 			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
 			// also enumeratives are missing
 			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
-					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+					|| extractor.getModelType() == Track.BOOLC);
 
 		}
 	}
@@ -483,7 +483,7 @@ public class TestBenchmarkGeneratorCLI {
 			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
 			// also enumeratives are missing
 			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
-					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+					|| extractor.getModelType() == Track.BOOLC);
 		}
 	}
 
@@ -573,8 +573,7 @@ public class TestBenchmarkGeneratorCLI {
 			// present.
 			// In that case, the track is considered BOOLC even if it is NUMC, or CNF if
 			// randomly all the constraints are in CNF
-			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC
-					|| extractor.getModelType() == Track.CNF);
+			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC);
 		}
 	}
 
@@ -682,8 +681,7 @@ public class TestBenchmarkGeneratorCLI {
 			// present.
 			// In that case, the track is considered BOOLC even if it is NUMC, or CNF if
 			// randomly all the constraints are in CNF
-			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC
-					|| extractor.getModelType() == Track.CNF);
+			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC);
 		}
 	}
 
@@ -785,7 +783,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = HIGHLY_CONSTRAINED
-		GeneratorConfiguration.TRACK = Track.HIGHLY_CONSTRAINED;
+		//GeneratorConfiguration.TRACK = Track.HIGHLY_CONSTRAINED;
 
 		// TupleValidityRatio
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -878,7 +876,7 @@ public class TestBenchmarkGeneratorCLI {
 			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
 			// also enumeratives are missing
 			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
-					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+					|| extractor.getModelType() == Track.BOOLC);
 
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
@@ -1224,7 +1222,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = CNF
-		GeneratorConfiguration.TRACK = Track.CNF;
+		//GeneratorConfiguration.TRACK = Track.CNF;
 
 		// Cardinality
 		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
@@ -1302,7 +1300,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
 
 			// Check the track
-			assertTrue(extractor.getModelType() == Track.CNF);
+			assertTrue(extractor.isCNF());
 		}
 	}
 	
@@ -1403,8 +1401,7 @@ public class TestBenchmarkGeneratorCLI {
 			// present.
 			// In that case, the track is considered BOOLC even if it is NUMC, or CNF if
 			// randomly all the constraints are in CNF
-			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC
-					|| extractor.getModelType() == Track.CNF);
+			assertTrue(extractor.getModelType() == Track.MCAC || extractor.getModelType() == Track.BOOLC);
 		}
 	}
 	
@@ -1511,7 +1508,7 @@ public class TestBenchmarkGeneratorCLI {
 			// In that case, the track is considered MCAC even if it is NUMC, or BOOLC if
 			// also enumeratives are missing
 			assertTrue(extractor.getModelType() == Track.NUMC || extractor.getModelType() == Track.MCAC
-					|| extractor.getModelType() == Track.BOOLC || extractor.getModelType() == Track.CNF);
+					|| extractor.getModelType() == Track.BOOLC);
 
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
@@ -1760,7 +1757,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = CNF
-		GeneratorConfiguration.TRACK = Track.CNF;
+		//GeneratorConfiguration.TRACK = Track.CNF;
 
 		// Cardinality
 		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
@@ -1830,7 +1827,7 @@ public class TestBenchmarkGeneratorCLI {
 			assertTrue(extractor.getMinConstraintComplexity() >= MIN_COMPLEXITY);
 
 			// Check the track
-			assertTrue(extractor.getModelType() == Track.CNF);
+			assertTrue(extractor.isCNF());
 		}
 	}
 
