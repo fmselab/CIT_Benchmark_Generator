@@ -259,7 +259,8 @@ public class BenchmarkGenerator {
 		chkForbiddenTuples.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chkCNF.setSelected(chkForbiddenTuples.isSelected());
+				if (chkCNF.isSelected())
+					chkCNF.setSelected(!chkForbiddenTuples.isSelected());
 			}
 		});
 
@@ -271,7 +272,8 @@ public class BenchmarkGenerator {
 		chkCNF.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chkForbiddenTuples.setSelected(chkCNF.isSelected());
+				if (chkForbiddenTuples.isSelected())
+					chkForbiddenTuples.setSelected(!chkCNF.isSelected());
 			}
 		});
 
