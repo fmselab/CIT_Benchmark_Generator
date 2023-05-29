@@ -110,10 +110,11 @@ public class CTCompetition2023Generation {
 		GeneratorConfiguration.MAX_CARDINALITY = 15;
 
 		// Using ratio 0.01
+		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
 		GeneratorConfiguration.RATIO = 0.01;
 
 		// Generate
-		generator.generateHIGHLY_CONSTRAINED();
+		generator.generateNUMC();
 	}
 
 	@Test
@@ -135,9 +136,12 @@ public class CTCompetition2023Generation {
 		// Using v in the range [2, 15]
 		GeneratorConfiguration.MIN_CARDINALITY = 2;
 		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		
+		// Use CNF
+		GeneratorConfiguration.CNF = true;
 
 		// Generate
-		generator.generateCNF();
+		generator.generateMCAC();
 	}
 
 	@Test

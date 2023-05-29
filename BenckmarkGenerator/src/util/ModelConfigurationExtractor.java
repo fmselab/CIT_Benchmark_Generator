@@ -408,10 +408,7 @@ public class ModelConfigurationExtractor {
 	 * @return the corresponding track of the model
 	 */
 	public Track getModelType() {
-		CTWedgeModelAnalyzer analyzer = new AllInCNF();
-		// If the constraints are all in CNF form, then the track is CNF for sure
-		if (model.getConstraints().size() > 0 && analyzer.process(model))
-			return Track.CNF;
+		CTWedgeModelAnalyzer analyzer;
 
 		// If no constraint is available, and the cardinality is the same...
 		// If at least one is not a boolean, the track is UNIFORMALL, otherwise it is
@@ -450,7 +447,21 @@ public class ModelConfigurationExtractor {
 	 */
 	public boolean hasForbiddenTuples() {
 		CTWedgeModelAnalyzer analyzer = new FobiddenTuples();
-		// If the constraints are all in CNF form, then the track is CNF for sure
+		// If the constraints are all in FT form
+		if (model.getConstraints().size() > 0 && analyzer.process(model))
+			return true;
+		return false;
+	}
+	
+	/**
+	 * Returns whether the model expresses the constraints only in CNF
+	 * 
+	 * @return TRUE if the model expresses the constraints only in CNF,
+	 *         FALSE otherwise
+	 */
+	public boolean isCNF() {
+		CTWedgeModelAnalyzer analyzer = new AllInCNF();
+		// If the constraints are all in CNF form
 		if (model.getConstraints().size() > 0 && analyzer.process(model))
 			return true;
 		return false;
