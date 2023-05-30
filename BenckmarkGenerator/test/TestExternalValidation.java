@@ -17,7 +17,7 @@ import util.ModelConfigurationExtractor;
 
 public class TestExternalValidation {
 
-	static String BENCHMARKS_PATH = "/home/bombarda/Documents/Benchmarks/Jin2020";
+	static String BENCHMARKS_PATH = "/home/bombarda/Documents/Benchmarks/CTCompetition2022Repo";
 	static String OUTPUTFILE = "/home/bombarda/Documents/Benchmarks/"
 			+ new SimpleDateFormat("yyyyMMddhhmmss'.csv'").format(new Date());
 	static String[] IGNORE_FILE_FOR_RATIO = { "MLinux", "MFreeBSD", "MEShop", "MEcos", "MFiasco", "MuClinux", "MToyBox", "MBusyBox"};
@@ -26,7 +26,7 @@ public class TestExternalValidation {
 	public void test() throws IOException {
 		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(OUTPUTFILE)));
 		bw.append(
-				"Path,ModelName,Type,NumParams,LowerInt,UpperInt,MinCardinality,MaxCardinality,NConstraints,MinComplexity,MaxComplexity,IsFT,RatioTuple,RatioTest,\n");
+				"Path,ModelName,Type,NumParams,LowerInt,UpperInt,MinCardinality,MaxCardinality,NConstraints,MinComplexity,MaxComplexity,IsFT,IsCNF,RatioTuple,RatioTest,\n");
 		Files.walk(Paths.get((BENCHMARKS_PATH))).map(Path::toFile).filter(x -> x.getName().endsWith(".ctw"))
 				.forEach(x -> {
 					try {
@@ -53,7 +53,7 @@ public class TestExternalValidation {
 				+ extractor.getUpperBoundForInts() + "," + extractor.getMinimumCardinality() + ","
 				+ extractor.getMaximumCardinality() + "," + extractor.getNumConstraints() + ","
 				+ extractor.getMinConstraintComplexity() + "," + extractor.getMaxConstraintComplexity() + ","
-				+ extractor.hasForbiddenTuples() + ","
+				+ extractor.hasForbiddenTuples() + "," + extractor.isCNF() + "," +
 				+ tupleValidityRatio + "," + testValidityRatio + ",\n");
 		bw.flush();
 	}
