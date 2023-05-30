@@ -180,7 +180,6 @@ public class TestBenchmarkGeneratorCLI {
 	 * @throws IOException
 	 * 
 	 */
-	@Ignore
 	@Test
 	public void ts2() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
@@ -303,7 +302,6 @@ public class TestBenchmarkGeneratorCLI {
 	 * @throws IOException
 	 * 
 	 */
-	@Ignore
 	@Test
 	public void ts3() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
@@ -921,6 +919,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.PICT = false;
 
 		// Use forbidden tuples
+		GeneratorConfiguration.CNF = false;
 		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
 
 		// ----------- GENERATION -----------
@@ -1552,6 +1551,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Use forbidden tuples
+		GeneratorConfiguration.CNF = false;
 		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
 
 		// Export the desired formats
