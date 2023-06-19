@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
-import ctwedge.util.validator.SMTConstraintTranslator;
+import ctwedge.util.smt.SMTConstraintTranslator;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;

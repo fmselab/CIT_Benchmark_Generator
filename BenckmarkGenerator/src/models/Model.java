@@ -35,7 +35,7 @@ import ctwedge.util.NotConvertableModel;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.RuleEvaluator;
-import ctwedge.util.validator.SMTConstraintChecker;
+import ctwedge.util.smt.SMTConstraintChecker;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import generators.Track;
