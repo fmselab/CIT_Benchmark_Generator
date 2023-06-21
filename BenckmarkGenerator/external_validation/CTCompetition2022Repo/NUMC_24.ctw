@@ -1,9 +1,0 @@
-Model NUMC_24
-Parameters:
-Par0: [-66 .. 43]
-Par1: {PAR1_0,PAR1_1,PAR1_2,PAR1_3,PAR1_4,PAR1_5,PAR1_6}
-Par2: [-60 .. 17]
-Par3: [-28 .. 68]
-
-Constraints:
-# ((Par3 != 29 => (not (Par2 <= 10))) => (Par1 != PAR1_2 OR Par3 != -20)) #

@@ -1,0 +1,75 @@
+Model MSmartHome 
+
+Parameters :
+SmartHome : Boolean
+EnvironmentControl : Boolean
+MeasurementUnits : Boolean
+Celsius : Boolean
+Fahrenheit : Boolean
+TemperatureManagement : Boolean
+HeatingManagement : Boolean
+SmartHeatingManagement : Boolean
+WindowsManagement : Boolean
+ManualWindows : Boolean
+AutomaticWindows : Boolean
+LightManagement : Boolean
+SmartLightManagement : Boolean
+Pre_definedValues : Boolean
+SimpleControl : Boolean
+GUI : Boolean
+TouchScreen : Boolean
+Mobile : Boolean
+Internet : Boolean
+PresenceSimulator : Boolean
+LightSimulation : Boolean
+BlindSimulation : Boolean
+MusicSimulation : Boolean
+FireControl : Boolean
+FirstAidGroup : Boolean
+FireDepartment : Boolean
+OtherGroup : Boolean
+FireAlarm : Boolean
+Siren : Boolean
+Bell : Boolean
+Light : Boolean
+DoorLock : Boolean
+KeypadReader : Boolean
+CardReader : Boolean
+FingerprintReader : Boolean 
+
+Constraints :
+# SmartHome == TRUE #
+# EnvironmentControl == TRUE <=> SmartHome == TRUE #
+# MeasurementUnits == TRUE <=> EnvironmentControl == TRUE #
+# Celsius == TRUE => MeasurementUnits == TRUE #
+# Fahrenheit == TRUE => MeasurementUnits == TRUE #
+# TemperatureManagement == TRUE <=> EnvironmentControl == TRUE #
+# HeatingManagement == TRUE <=> TemperatureManagement == TRUE #
+# SmartHeatingManagement == TRUE => TemperatureManagement == TRUE #
+# WindowsManagement == TRUE <=> EnvironmentControl == TRUE #
+# ManualWindows == TRUE <=> WindowsManagement == TRUE #
+# AutomaticWindows == TRUE => WindowsManagement == TRUE #
+# LightManagement == TRUE <=> SmartHome == TRUE #
+# SmartLightManagement == TRUE => LightManagement == TRUE #
+# Pre_definedValues == TRUE => LightManagement == TRUE #
+# SimpleControl == TRUE <=> LightManagement == TRUE #
+# GUI == TRUE <=> SmartHome == TRUE #
+# TouchScreen == TRUE => GUI == TRUE #
+# Mobile == TRUE => GUI == TRUE #
+# Internet == TRUE => GUI == TRUE #
+# PresenceSimulator == TRUE <=> SmartHome == TRUE #
+# LightSimulation == TRUE => PresenceSimulator == TRUE #
+# BlindSimulation == TRUE => PresenceSimulator == TRUE #
+# MusicSimulation == TRUE => PresenceSimulator == TRUE #
+# FireControl == TRUE <=> SmartHome == TRUE #
+# FirstAidGroup == TRUE <=> FireControl == TRUE #
+# FireDepartment == TRUE => FirstAidGroup == TRUE #
+# OtherGroup == TRUE => FirstAidGroup == TRUE #
+# FireAlarm == TRUE <=> FireControl == TRUE #
+# Siren == TRUE => FireAlarm == TRUE #
+# Bell == TRUE => FireAlarm == TRUE #
+# Light == TRUE => FireAlarm == TRUE #
+# DoorLock == TRUE <=> SmartHome == TRUE #
+# KeypadReader == TRUE => DoorLock == TRUE #
+# CardReader == TRUE => DoorLock == TRUE #
+# FingerprintReader == TRUE => DoorLock == TRUE #

@@ -1,0 +1,26 @@
+Model MStackFM 
+
+Parameters :
+Stack : Boolean
+Size : { Fixed Dynamic NONE }
+Value : Boolean
+ElementType : { Integer Float String NONE }
+Optimization : { Speed MemoryUsage NONE }
+Counter : Boolean
+AdditionalFeatures : Boolean
+ThreadSafety : Boolean
+BoundsCheck : Boolean
+TypeCheck : Boolean 
+
+Constraints :
+# Stack == TRUE #
+# Size != NONE => Stack == TRUE #
+# Value == TRUE <=> Size == Fixed #
+# ElementType != NONE <=> Stack == TRUE #
+# Optimization != NONE => Stack == TRUE #
+# Counter == TRUE => Stack == TRUE #
+# AdditionalFeatures == TRUE => Stack == TRUE #
+# AdditionalFeatures == TRUE => ThreadSafety == TRUE || BoundsCheck == TRUE || TypeCheck == TRUE #
+# ThreadSafety == TRUE => AdditionalFeatures == TRUE #
+# BoundsCheck == TRUE => AdditionalFeatures == TRUE #
+# TypeCheck == TRUE => AdditionalFeatures == TRUE #

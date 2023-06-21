@@ -1,0 +1,28 @@
+Model MConnector 
+
+Parameters :
+Connector : Boolean
+Paradigm : { Client_Server Message_Based NONE }
+Client_Server : { Synchronous Asynchronous NONE }
+Timeout : Boolean
+Asynchronous : { Polling Callback NONE }
+Polling : { Blocking Non_blocking NONE }
+Sender : Boolean
+Receiver : { Pull Push NONE }
+Queued : Boolean
+Non_Queued : Boolean
+Technology : { CAN Local NONE } 
+
+Constraints :
+# Connector == TRUE #
+# Paradigm != NONE <=> Connector == TRUE #
+# Client_Server != NONE <=> Paradigm == Client_Server #
+# Timeout == TRUE => Client_Server == Synchronous #
+# Asynchronous != NONE <=> Client_Server == Asynchronous #
+# Polling != NONE <=> Asynchronous == Polling #
+# Sender == TRUE <=> Paradigm == Message_Based #
+# Receiver != NONE <=> Paradigm == Message_Based #
+# Receiver == Pull => Queued == TRUE || Non_Queued == TRUE #
+# Queued == TRUE => Receiver == Pull #
+# Non_Queued == TRUE => Receiver == Pull #
+# Technology != NONE <=> Connector == TRUE #
