@@ -56,8 +56,8 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>BenckmarkGenerator</groupId>
-			<artifactId>BenckmarkGenerator</artifactId>
+			<groupId>BenchmarkGenerator</groupId>
+			<artifactId>BenchmarkGenerator</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
