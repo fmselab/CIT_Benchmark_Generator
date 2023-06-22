@@ -1,0 +1,41 @@
+Model HIGHLY_CONSTRAINED_17
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3}
+Par1: {PAR1_0,PAR1_1}
+Par2 : Boolean
+Par3 : Boolean
+Par4 : Boolean
+Par5 : Boolean
+Par6 : Boolean
+Par7 : Boolean
+Par8 : Boolean
+Par9: {PAR9_0,PAR9_1,PAR9_2,PAR9_3,PAR9_4,PAR9_5,PAR9_6,PAR9_7}
+Par10 : Boolean
+Par11 : Boolean
+Par12 : Boolean
+Par13: {PAR13_0,PAR13_1,PAR13_2,PAR13_3,PAR13_4,PAR13_5,PAR13_6,PAR13_7,PAR13_8,PAR13_9,PAR13_10,PAR13_11,PAR13_12,PAR13_13}
+Par14: {PAR14_0,PAR14_1,PAR14_2,PAR14_3,PAR14_4,PAR14_5,PAR14_6}
+Par15 : Boolean
+Par16: {PAR16_0,PAR16_1,PAR16_2,PAR16_3,PAR16_4,PAR16_5,PAR16_6,PAR16_7,PAR16_8}
+Par17 : Boolean
+Par18 : Boolean
+Par19 : Boolean
+Par20: {PAR20_0,PAR20_1,PAR20_2,PAR20_3,PAR20_4,PAR20_5,PAR20_6,PAR20_7,PAR20_8,PAR20_9,PAR20_10,PAR20_11,PAR20_12,PAR20_13}
+Par21 : Boolean
+Par22: {PAR22_0,PAR22_1,PAR22_2,PAR22_3,PAR22_4,PAR22_5,PAR22_6}
+Par23: {PAR23_0,PAR23_1,PAR23_2,PAR23_3,PAR23_4,PAR23_5,PAR23_6,PAR23_7,PAR23_8}
+Par24 : Boolean
+Par25: {PAR25_0,PAR25_1,PAR25_2,PAR25_3,PAR25_4,PAR25_5,PAR25_6,PAR25_7,PAR25_8,PAR25_9,PAR25_10,PAR25_11}
+Par26 : Boolean
+Par27 : Boolean
+Par28 : Boolean
+Par29 : Boolean
+
+Constraints:
+# (((not (Par13 != PAR13_3)) <=> Par29 != false) AND (Par26 = false <=> Par6 != true)) #
+# ((((not (Par5 = true)) AND (not (Par6 != true))) AND ((not (Par27 = true)) <=> Par6 != true)) AND (((not (Par8 != true)) <=> Par22 = PAR22_4) => ((not (Par0 = PAR0_2)) OR (not (Par14 != PAR14_3))))) #
+# (((Par7 != false OR Par5 = true) <=> (Par26 = false AND (not (Par1 != PAR1_1)))) OR (((not (Par28 = true)) <=> (not (Par3 = false))) AND ((not (Par27 != false)) <=> Par9 = PAR9_0))) #
+# ((Par21 = true AND (not (Par11 = false))) OR (Par7 != true AND Par28 != true)) #
+# ((Par15 != false <=> Par21 = false) <=> (Par4 = false OR Par3 != false)) #
+# (((not (Par22 != PAR22_4)) => Par3 != false) <=> (Par10 != false AND (not (Par25 != PAR25_2)))) #
+# ((((not (Par6 != false)) <=> (not (Par20 != PAR20_11))) AND (Par27 != true AND Par9 = PAR9_2)) OR (((not (Par20 != PAR20_8)) => (not (Par29 != false))) => ((not (Par7 = true)) OR Par12 != false))) #

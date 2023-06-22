@@ -3,8 +3,6 @@ package generators;
 import models.constraints.AndConstraint;
 import models.constraints.AtomicConstraint;
 import models.constraints.Constraint;
-import models.constraints.DoubleImpliesConstraint;
-import models.constraints.ImpliesConstraint;
 import models.constraints.NotConstraint;
 import models.constraints.OrConstraint;
 import models.BooleanParameter;
@@ -12,8 +10,23 @@ import models.EnumerativeParameter;
 import models.Model;
 import models.Parameter;
 
+/**
+ * Generates a new model with constraints, and with parameters of the category
+ * given as parameter. The constraints are in CNF
+ * 
+ * 
+ * @author andrea
+ *
+ */
 public class WithConstraintGeneratorCNF extends WithoutConstraintGenerator{
 	
+	/**
+	 * Generate an IPM
+	 * 
+	 * @param type the type of models to be generated (with booleans, with
+	 *             enumeratives, with integers, ...)
+	 * @return the generated IPM
+	 */
 	@Override
 	public Model generate(Category type) {
 		// Compile the model with the parameters and not the constraints	
@@ -26,7 +39,7 @@ public class WithConstraintGeneratorCNF extends WithoutConstraintGenerator{
 			
 			// Extract the complexity of the constraint (i.e., the number of parameters included)
 			int complexity = Randomizer.generate(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY, GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
-			c = generateConstraintFromComplexity(m, complexity, type);
+			c = generateConstraintFromComplexity(m, complexity);
 			
 			// Add the constraint
 			m.addConstraint(c);
@@ -35,7 +48,14 @@ public class WithConstraintGeneratorCNF extends WithoutConstraintGenerator{
 		return m;
 	}
 	
-	public Constraint generateConstraintFromComplexity(Model m, int complexity, Category type) {
+	/**
+	 * Generates a constraint with a given complexity in CNF form
+	 * 
+	 * @param m          the model being populated
+	 * @param complexity the constraint complexity
+	 * @return the constraint
+	 */
+	public Constraint generateConstraintFromComplexity(Model m, int complexity) {
 		
 		Constraint c;
 		int operation;
@@ -119,12 +139,12 @@ public class WithConstraintGeneratorCNF extends WithoutConstraintGenerator{
 			}
 		} else if (complexity <= 3) {
 			c = new OrConstraint();
-			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
-			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));			
+			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2));
+			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2));			
 		} else {
 			c = new AndConstraint();
-			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
-			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2, type));
+			c.setLeft(generateConstraintFromComplexity(m, (complexity - 1) / 2));
+			c.setRight(generateConstraintFromComplexity(m, (complexity - 1) / 2));
 		}
 		
 		return c;

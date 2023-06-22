@@ -1,0 +1,2020 @@
+Model MToyBox 
+
+Parameters :
+__Root__ : Boolean
+DMESG : Boolean
+DMESG_m : Boolean
+SED : Boolean
+SED_m : Boolean
+PATCH : Boolean
+PATCH_m : Boolean
+BASENAME : Boolean
+BASENAME_m : Boolean
+CATV : Boolean
+CATV_m : Boolean
+TOYSH_ENVVARS : Boolean
+TOYSH_ENVVARS_m : Boolean
+TOYSH : Boolean
+TOYSH_m : Boolean
+MKE2FS_LABEL : Boolean
+MKE2FS_LABEL_m : Boolean
+SORT : Boolean
+SORT_m : Boolean
+^TRUE : Boolean
+TRUE_m : Boolean
+TOYSH_PROCARGS : Boolean
+TOYSH_PROCARGS_m : Boolean
+MDEV : Boolean
+MDEV_m : Boolean
+DF : Boolean
+DF_m : Boolean
+READLINK : Boolean
+READLINK_m : Boolean
+TOYBOX_DEBUG : Boolean
+TOYBOX_DEBUG_m : Boolean
+TOYSH_TTY : Boolean
+TOYSH_TTY_m : Boolean
+EXIT : Boolean
+EXIT_m : Boolean
+BZCAT : Boolean
+BZCAT_m : Boolean
+ONEIT : Boolean
+ONEIT_m : Boolean
+TOYSH_JOBCTL : Boolean
+TOYSH_JOBCTL_m : Boolean
+DIRNAME : Boolean
+DIRNAME_m : Boolean
+MKE2FS_EXTENDED : Boolean
+MKE2FS_EXTENDED_m : Boolean
+TOYBOX_FREE : Boolean
+TOYBOX_FREE_m : Boolean
+CP : Boolean
+CP_m : Boolean
+TOYBOX : Boolean
+TOYBOX_m : Boolean
+NETCAT_LISTEN : Boolean
+NETCAT_LISTEN_m : Boolean
+UNAME : Boolean
+UNAME_m : Boolean
+MDEV_CONF : Boolean
+MDEV_CONF_m : Boolean
+MKE2FS : Boolean
+MKE2FS_m : Boolean
+^FALSE : Boolean
+FALSE_m : Boolean
+TOYSH_PROFILE : Boolean
+TOYSH_PROFILE_m : Boolean
+TOYSH_ARRAYS : Boolean
+TOYSH_ARRAYS_m : Boolean
+MKE2FS_JOURNAL : Boolean
+MKE2FS_JOURNAL_m : Boolean
+COUNT : Boolean
+COUNT_m : Boolean
+DF_PEDANTIC : Boolean
+DF_PEDANTIC_m : Boolean
+SEQ : Boolean
+SEQ_m : Boolean
+MKSWAP : Boolean
+MKSWAP_m : Boolean
+TOYSH_PIPES : Boolean
+TOYSH_PIPES_m : Boolean
+TOYSH_BUILTINS : Boolean
+TOYSH_BUILTINS_m : Boolean
+HELP : Boolean
+HELP_m : Boolean
+TOYSH_LOCALS : Boolean
+TOYSH_LOCALS_m : Boolean
+TEE : Boolean
+TEE_m : Boolean
+MKE2FS_GEN : Boolean
+MKE2FS_GEN_m : Boolean
+SLEEP : Boolean
+SLEEP_m : Boolean
+PWD : Boolean
+PWD_m : Boolean
+WHICH : Boolean
+WHICH_m : Boolean
+SHA1SUM : Boolean
+SHA1SUM_m : Boolean
+CD : Boolean
+CD_m : Boolean
+CD_P : Boolean
+CD_P_m : Boolean
+NETCAT : Boolean
+NETCAT_m : Boolean
+TOYSH_FLOWCTL : Boolean
+TOYSH_FLOWCTL_m : Boolean
+CAT : Boolean
+CAT_m : Boolean
+ECHO : Boolean
+ECHO_m : Boolean
+TOYSH_WILDCARDS : Boolean
+TOYSH_WILDCARDS_m : Boolean
+SYNC : Boolean
+SYNC_m : Boolean
+READLINK_F : Boolean
+READLINK_F_m : Boolean
+YES : Boolean
+YES_m : Boolean
+CHROOT : Boolean
+CHROOT_m : Boolean
+CHVT : Boolean
+CHVT_m : Boolean
+TOYSH_QUOTES : Boolean
+TOYSH_QUOTES_m : Boolean
+RMDIR : Boolean
+RMDIR_m : Boolean
+HELLO : Boolean
+HELLO_m : Boolean
+CKSUM : Boolean
+CKSUM_m : Boolean
+SORT_BIG : Boolean
+SORT_BIG_m : Boolean
+MKFIFO : Boolean
+MKFIFO_m : Boolean
+HELP_LONG : Boolean
+HELP_LONG_m : Boolean
+TTY : Boolean
+TTY_m : Boolean
+TOUCH : Boolean
+TOUCH_m : Boolean
+_X1 : Boolean
+_X2 : Boolean
+_X3 : Boolean
+_X4 : Boolean
+_X5 : Boolean
+_X6 : Boolean
+_X7 : Boolean
+_X8 : Boolean
+_X9 : Boolean
+_X10 : Boolean
+_X11 : Boolean
+_X12 : Boolean
+_X13 : Boolean
+_X14 : Boolean
+_X15 : Boolean
+_X16 : Boolean
+_X17 : Boolean
+_X18 : Boolean
+_X19 : Boolean
+_X20 : Boolean
+_X21 : Boolean
+_X22 : Boolean
+_X23 : Boolean
+_X24 : Boolean
+_X25 : Boolean
+_X26 : Boolean
+_X27 : Boolean
+_X28 : Boolean
+_X29 : Boolean
+_X30 : Boolean
+_X31 : Boolean
+_X32 : Boolean
+_X33 : Boolean
+_X34 : Boolean
+_X35 : Boolean
+_X36 : Boolean
+_X37 : Boolean
+_X38 : Boolean
+_X39 : Boolean
+_X40 : Boolean
+_X41 : Boolean
+_X42 : Boolean
+_X43 : Boolean
+_X44 : Boolean
+_X45 : Boolean
+_X46 : Boolean
+_X47 : Boolean
+_X48 : Boolean
+_X49 : Boolean
+_X50 : Boolean
+_X51 : Boolean
+_X52 : Boolean
+_X53 : Boolean
+_X54 : Boolean
+_X55 : Boolean
+_X56 : Boolean
+_X57 : Boolean
+_X58 : Boolean
+_X59 : Boolean
+_X60 : Boolean
+_X61 : Boolean
+_X62 : Boolean
+_X63 : Boolean
+_X64 : Boolean
+_X65 : Boolean
+_X66 : Boolean
+_X67 : Boolean
+_X68 : Boolean
+_X69 : Boolean
+_X70 : Boolean
+_X71 : Boolean
+_X72 : Boolean
+_X73 : Boolean
+_X74 : Boolean
+_X75 : Boolean
+_X76 : Boolean
+_X77 : Boolean
+_X78 : Boolean
+_X79 : Boolean
+_X80 : Boolean
+_X81 : Boolean
+_X82 : Boolean
+_X83 : Boolean
+_X84 : Boolean
+_X85 : Boolean
+_X86 : Boolean
+_X87 : Boolean
+_X88 : Boolean
+_X89 : Boolean
+_X90 : Boolean
+_X91 : Boolean
+_X92 : Boolean
+_X93 : Boolean
+_X94 : Boolean
+_X95 : Boolean
+_X96 : Boolean
+_X97 : Boolean
+_X98 : Boolean
+_X99 : Boolean
+_X100 : Boolean
+_X101 : Boolean
+_X102 : Boolean
+_X103 : Boolean
+_X104 : Boolean
+_X105 : Boolean
+_X106 : Boolean
+_X107 : Boolean
+_X108 : Boolean
+_X109 : Boolean
+_X110 : Boolean
+_X111 : Boolean
+_X112 : Boolean
+_X113 : Boolean
+_X114 : Boolean
+_X115 : Boolean
+_X116 : Boolean
+_X117 : Boolean
+_X118 : Boolean
+_X119 : Boolean
+_X120 : Boolean
+_X121 : Boolean
+_X122 : Boolean
+_X123 : Boolean
+_X124 : Boolean
+_X125 : Boolean
+_X126 : Boolean
+_X127 : Boolean
+_X128 : Boolean
+_X129 : Boolean
+_X130 : Boolean
+_X131 : Boolean
+_X132 : Boolean
+_X133 : Boolean
+_X134 : Boolean
+_X135 : Boolean
+_X136 : Boolean
+_X137 : Boolean
+_X138 : Boolean
+_X139 : Boolean
+_X140 : Boolean
+_X141 : Boolean
+_X142 : Boolean
+_X143 : Boolean
+_X144 : Boolean
+_X145 : Boolean
+_X146 : Boolean
+_X147 : Boolean
+_X148 : Boolean
+_X149 : Boolean
+_X150 : Boolean
+_X151 : Boolean
+_X152 : Boolean
+_X153 : Boolean
+_X154 : Boolean
+_X155 : Boolean
+_X156 : Boolean
+_X157 : Boolean
+_X158 : Boolean
+_X159 : Boolean
+_X160 : Boolean
+_X161 : Boolean
+_X162 : Boolean
+_X163 : Boolean
+_X164 : Boolean
+_X165 : Boolean
+_X166 : Boolean
+_X167 : Boolean
+_X168 : Boolean
+_X169 : Boolean
+_X170 : Boolean
+_X171 : Boolean
+_X172 : Boolean
+_X173 : Boolean
+_X174 : Boolean
+_X175 : Boolean
+_X176 : Boolean
+_X177 : Boolean
+_X178 : Boolean
+_X179 : Boolean
+_X180 : Boolean
+_X181 : Boolean
+_X182 : Boolean
+_X183 : Boolean
+_X184 : Boolean
+_X185 : Boolean
+_X186 : Boolean
+_X187 : Boolean
+_X188 : Boolean
+_X189 : Boolean
+_X190 : Boolean
+_X191 : Boolean
+_X192 : Boolean
+_X193 : Boolean
+_X194 : Boolean
+_X195 : Boolean
+_X196 : Boolean
+_X197 : Boolean
+_X198 : Boolean
+_X199 : Boolean
+_X200 : Boolean
+_X201 : Boolean
+_X202 : Boolean
+_X203 : Boolean
+_X204 : Boolean
+_X1_m : Boolean
+_X2_m : Boolean
+_X3_m : Boolean
+_X4_m : Boolean
+_X5_m : Boolean
+_X6_m : Boolean
+_X7_m : Boolean
+_X8_m : Boolean
+_X9_m : Boolean
+_X10_m : Boolean
+_X11_m : Boolean
+_X12_m : Boolean
+_X13_m : Boolean
+_X14_m : Boolean
+_X15_m : Boolean
+_X16_m : Boolean
+_X17_m : Boolean
+_X18_m : Boolean
+_X19_m : Boolean
+_X20_m : Boolean
+_X21_m : Boolean
+_X22_m : Boolean
+_X23_m : Boolean
+_X24_m : Boolean
+_X25_m : Boolean
+_X26_m : Boolean
+_X27_m : Boolean
+_X28_m : Boolean
+_X29_m : Boolean
+_X30_m : Boolean
+_X31_m : Boolean
+_X32_m : Boolean
+_X33_m : Boolean
+_X34_m : Boolean
+_X35_m : Boolean
+_X36_m : Boolean
+_X37_m : Boolean
+_X38_m : Boolean
+_X39_m : Boolean
+_X40_m : Boolean
+_X41_m : Boolean
+_X42_m : Boolean
+_X43_m : Boolean
+_X44_m : Boolean
+_X45_m : Boolean
+_X46_m : Boolean
+_X47_m : Boolean
+_X48_m : Boolean
+_X49_m : Boolean
+_X50_m : Boolean
+_X51_m : Boolean
+_X52_m : Boolean
+_X53_m : Boolean
+_X54_m : Boolean
+_X55_m : Boolean
+_X56_m : Boolean
+_X57_m : Boolean
+_X58_m : Boolean
+_X59_m : Boolean
+_X60_m : Boolean
+_X61_m : Boolean
+_X62_m : Boolean
+_X63_m : Boolean
+_X64_m : Boolean
+_X65_m : Boolean
+_X66_m : Boolean
+_X67_m : Boolean
+_X68_m : Boolean
+_X69_m : Boolean
+_X70_m : Boolean
+_X71_m : Boolean
+_X72_m : Boolean
+_X73_m : Boolean
+_X74_m : Boolean
+_X75_m : Boolean
+_X76_m : Boolean
+_X77_m : Boolean
+_X78_m : Boolean
+_X79_m : Boolean
+_X80_m : Boolean
+_X81_m : Boolean
+_X82_m : Boolean
+_X83_m : Boolean
+_X84_m : Boolean
+_X85_m : Boolean
+_X86_m : Boolean
+_X87_m : Boolean
+_X88_m : Boolean
+_X89_m : Boolean
+_X90_m : Boolean
+_X91_m : Boolean
+_X92_m : Boolean
+_X93_m : Boolean
+_X94_m : Boolean
+_X95_m : Boolean
+_X96_m : Boolean
+_X97_m : Boolean
+_X98_m : Boolean
+_X99_m : Boolean
+_X100_m : Boolean
+_X101_m : Boolean
+_X102_m : Boolean
+_X103_m : Boolean
+_X104_m : Boolean
+_X105_m : Boolean
+_X106_m : Boolean
+_X107_m : Boolean
+_X108_m : Boolean
+_X109_m : Boolean
+_X110_m : Boolean
+_X111_m : Boolean
+_X112_m : Boolean
+_X113_m : Boolean
+_X114_m : Boolean
+_X115_m : Boolean
+_X116_m : Boolean
+_X117_m : Boolean
+_X118_m : Boolean
+_X119_m : Boolean
+_X120_m : Boolean
+_X121_m : Boolean
+_X122_m : Boolean
+_X123_m : Boolean
+_X124_m : Boolean
+_X125_m : Boolean
+_X126_m : Boolean
+_X127_m : Boolean
+_X128_m : Boolean
+_X129_m : Boolean
+_X130_m : Boolean
+_X131_m : Boolean
+_X132_m : Boolean
+_X133_m : Boolean
+_X134_m : Boolean
+_X135_m : Boolean
+_X136_m : Boolean
+_X137_m : Boolean
+_X138_m : Boolean
+_X139_m : Boolean
+_X140_m : Boolean
+_X141_m : Boolean
+_X142_m : Boolean
+_X143_m : Boolean
+_X144_m : Boolean
+_X145_m : Boolean
+_X146_m : Boolean
+_X147_m : Boolean
+_X148_m : Boolean
+_X149_m : Boolean
+_X150_m : Boolean
+_X151_m : Boolean
+_X152_m : Boolean
+_X153_m : Boolean
+_X154_m : Boolean
+_X155_m : Boolean
+_X156_m : Boolean
+_X157_m : Boolean
+_X158_m : Boolean
+_X159_m : Boolean
+_X160_m : Boolean
+_X161_m : Boolean
+_X162_m : Boolean
+_X163_m : Boolean
+_X164_m : Boolean
+_X165_m : Boolean
+_X166_m : Boolean
+_X167_m : Boolean
+_X168_m : Boolean
+_X169_m : Boolean
+_X170_m : Boolean
+_X171_m : Boolean
+_X172_m : Boolean
+_X173_m : Boolean
+_X174_m : Boolean
+_X175_m : Boolean
+_X176_m : Boolean
+_X177_m : Boolean
+_X178_m : Boolean
+_X179_m : Boolean
+_X180_m : Boolean
+_X181_m : Boolean
+_X182_m : Boolean
+_X183_m : Boolean
+_X184_m : Boolean
+_X185_m : Boolean
+_X186_m : Boolean
+_X187_m : Boolean
+_X188_m : Boolean
+_X189_m : Boolean
+_X190_m : Boolean
+_X191_m : Boolean
+_X192_m : Boolean
+_X193_m : Boolean
+_X194_m : Boolean
+_X195_m : Boolean
+_X196_m : Boolean
+_X197_m : Boolean
+_X198_m : Boolean
+_X199_m : Boolean
+_X200_m : Boolean
+_X201_m : Boolean
+_X202_m : Boolean
+_X203_m : Boolean
+_X204_m : Boolean 
+
+Constraints :
+# __Root__ == TRUE #
+# DMESG == TRUE => __Root__ == TRUE #
+# DMESG_m == TRUE => __Root__ == TRUE #
+# SED == TRUE => __Root__ == TRUE #
+# SED_m == TRUE => __Root__ == TRUE #
+# PATCH == TRUE => __Root__ == TRUE #
+# PATCH_m == TRUE => __Root__ == TRUE #
+# BASENAME == TRUE => __Root__ == TRUE #
+# BASENAME_m == TRUE => __Root__ == TRUE #
+# CATV == TRUE => __Root__ == TRUE #
+# CATV_m == TRUE => __Root__ == TRUE #
+# TOYSH_ENVVARS == TRUE => __Root__ == TRUE #
+# TOYSH_ENVVARS_m == TRUE => __Root__ == TRUE #
+# TOYSH == TRUE => __Root__ == TRUE #
+# TOYSH_m == TRUE => __Root__ == TRUE #
+# MKE2FS_LABEL == TRUE => __Root__ == TRUE #
+# MKE2FS_LABEL_m == TRUE => __Root__ == TRUE #
+# SORT == TRUE => __Root__ == TRUE #
+# SORT_m == TRUE => __Root__ == TRUE #
+# TRUE == TRUE => __Root__ == TRUE #
+# TRUE_m == TRUE => __Root__ == TRUE #
+# TOYSH_PROCARGS == TRUE => __Root__ == TRUE #
+# TOYSH_PROCARGS_m == TRUE => __Root__ == TRUE #
+# MDEV == TRUE => __Root__ == TRUE #
+# MDEV_m == TRUE => __Root__ == TRUE #
+# DF == TRUE => __Root__ == TRUE #
+# DF_m == TRUE => __Root__ == TRUE #
+# READLINK == TRUE => __Root__ == TRUE #
+# READLINK_m == TRUE => __Root__ == TRUE #
+# TOYBOX_DEBUG == TRUE => __Root__ == TRUE #
+# TOYBOX_DEBUG_m == TRUE => __Root__ == TRUE #
+# TOYSH_TTY == TRUE => __Root__ == TRUE #
+# TOYSH_TTY_m == TRUE => __Root__ == TRUE #
+# EXIT == TRUE => __Root__ == TRUE #
+# EXIT_m == TRUE => __Root__ == TRUE #
+# BZCAT == TRUE => __Root__ == TRUE #
+# BZCAT_m == TRUE => __Root__ == TRUE #
+# ONEIT == TRUE => __Root__ == TRUE #
+# ONEIT_m == TRUE => __Root__ == TRUE #
+# TOYSH_JOBCTL == TRUE => __Root__ == TRUE #
+# TOYSH_JOBCTL_m == TRUE => __Root__ == TRUE #
+# DIRNAME == TRUE => __Root__ == TRUE #
+# DIRNAME_m == TRUE => __Root__ == TRUE #
+# MKE2FS_EXTENDED == TRUE => __Root__ == TRUE #
+# MKE2FS_EXTENDED_m == TRUE => __Root__ == TRUE #
+# TOYBOX_FREE == TRUE => __Root__ == TRUE #
+# TOYBOX_FREE_m == TRUE => __Root__ == TRUE #
+# CP == TRUE => __Root__ == TRUE #
+# CP_m == TRUE => __Root__ == TRUE #
+# TOYBOX == TRUE => __Root__ == TRUE #
+# TOYBOX_m == TRUE => __Root__ == TRUE #
+# NETCAT_LISTEN == TRUE => __Root__ == TRUE #
+# NETCAT_LISTEN_m == TRUE => __Root__ == TRUE #
+# UNAME == TRUE => __Root__ == TRUE #
+# UNAME_m == TRUE => __Root__ == TRUE #
+# MDEV_CONF == TRUE => __Root__ == TRUE #
+# MDEV_CONF_m == TRUE => __Root__ == TRUE #
+# MKE2FS == TRUE => __Root__ == TRUE #
+# MKE2FS_m == TRUE => __Root__ == TRUE #
+# FALSE == TRUE => __Root__ == TRUE #
+# FALSE_m == TRUE => __Root__ == TRUE #
+# TOYSH_PROFILE == TRUE => __Root__ == TRUE #
+# TOYSH_PROFILE_m == TRUE => __Root__ == TRUE #
+# TOYSH_ARRAYS == TRUE => __Root__ == TRUE #
+# TOYSH_ARRAYS_m == TRUE => __Root__ == TRUE #
+# MKE2FS_JOURNAL == TRUE => __Root__ == TRUE #
+# MKE2FS_JOURNAL_m == TRUE => __Root__ == TRUE #
+# COUNT == TRUE => __Root__ == TRUE #
+# COUNT_m == TRUE => __Root__ == TRUE #
+# DF_PEDANTIC == TRUE => __Root__ == TRUE #
+# DF_PEDANTIC_m == TRUE => __Root__ == TRUE #
+# SEQ == TRUE => __Root__ == TRUE #
+# SEQ_m == TRUE => __Root__ == TRUE #
+# MKSWAP == TRUE => __Root__ == TRUE #
+# MKSWAP_m == TRUE => __Root__ == TRUE #
+# TOYSH_PIPES == TRUE => __Root__ == TRUE #
+# TOYSH_PIPES_m == TRUE => __Root__ == TRUE #
+# TOYSH_BUILTINS == TRUE => __Root__ == TRUE #
+# TOYSH_BUILTINS_m == TRUE => __Root__ == TRUE #
+# HELP == TRUE => __Root__ == TRUE #
+# HELP_m == TRUE => __Root__ == TRUE #
+# TOYSH_LOCALS == TRUE => __Root__ == TRUE #
+# TOYSH_LOCALS_m == TRUE => __Root__ == TRUE #
+# TEE == TRUE => __Root__ == TRUE #
+# TEE_m == TRUE => __Root__ == TRUE #
+# MKE2FS_GEN == TRUE => __Root__ == TRUE #
+# MKE2FS_GEN_m == TRUE => __Root__ == TRUE #
+# SLEEP == TRUE => __Root__ == TRUE #
+# SLEEP_m == TRUE => __Root__ == TRUE #
+# PWD == TRUE => __Root__ == TRUE #
+# PWD_m == TRUE => __Root__ == TRUE #
+# WHICH == TRUE => __Root__ == TRUE #
+# WHICH_m == TRUE => __Root__ == TRUE #
+# SHA1SUM == TRUE => __Root__ == TRUE #
+# SHA1SUM_m == TRUE => __Root__ == TRUE #
+# CD == TRUE => __Root__ == TRUE #
+# CD_m == TRUE => __Root__ == TRUE #
+# CD_P == TRUE => __Root__ == TRUE #
+# CD_P_m == TRUE => __Root__ == TRUE #
+# NETCAT == TRUE => __Root__ == TRUE #
+# NETCAT_m == TRUE => __Root__ == TRUE #
+# TOYSH_FLOWCTL == TRUE => __Root__ == TRUE #
+# TOYSH_FLOWCTL_m == TRUE => __Root__ == TRUE #
+# CAT == TRUE => __Root__ == TRUE #
+# CAT_m == TRUE => __Root__ == TRUE #
+# ECHO == TRUE => __Root__ == TRUE #
+# ECHO_m == TRUE => __Root__ == TRUE #
+# TOYSH_WILDCARDS == TRUE => __Root__ == TRUE #
+# TOYSH_WILDCARDS_m == TRUE => __Root__ == TRUE #
+# SYNC == TRUE => __Root__ == TRUE #
+# SYNC_m == TRUE => __Root__ == TRUE #
+# READLINK_F == TRUE => __Root__ == TRUE #
+# READLINK_F_m == TRUE => __Root__ == TRUE #
+# YES == TRUE => __Root__ == TRUE #
+# YES_m == TRUE => __Root__ == TRUE #
+# CHROOT == TRUE => __Root__ == TRUE #
+# CHROOT_m == TRUE => __Root__ == TRUE #
+# CHVT == TRUE => __Root__ == TRUE #
+# CHVT_m == TRUE => __Root__ == TRUE #
+# TOYSH_QUOTES == TRUE => __Root__ == TRUE #
+# TOYSH_QUOTES_m == TRUE => __Root__ == TRUE #
+# RMDIR == TRUE => __Root__ == TRUE #
+# RMDIR_m == TRUE => __Root__ == TRUE #
+# HELLO == TRUE => __Root__ == TRUE #
+# HELLO_m == TRUE => __Root__ == TRUE #
+# CKSUM == TRUE => __Root__ == TRUE #
+# CKSUM_m == TRUE => __Root__ == TRUE #
+# SORT_BIG == TRUE => __Root__ == TRUE #
+# SORT_BIG_m == TRUE => __Root__ == TRUE #
+# MKFIFO == TRUE => __Root__ == TRUE #
+# MKFIFO_m == TRUE => __Root__ == TRUE #
+# HELP_LONG == TRUE => __Root__ == TRUE #
+# HELP_LONG_m == TRUE => __Root__ == TRUE #
+# TTY == TRUE => __Root__ == TRUE #
+# TTY_m == TRUE => __Root__ == TRUE #
+# TOUCH == TRUE => __Root__ == TRUE #
+# TOUCH_m == TRUE => __Root__ == TRUE #
+# _X1 == TRUE => __Root__ == TRUE #
+# _X2 == TRUE => __Root__ == TRUE #
+# _X3 == TRUE => __Root__ == TRUE #
+# _X4 == TRUE => __Root__ == TRUE #
+# _X5 == TRUE => __Root__ == TRUE #
+# _X6 == TRUE => __Root__ == TRUE #
+# _X7 == TRUE => __Root__ == TRUE #
+# _X8 == TRUE => __Root__ == TRUE #
+# _X9 == TRUE => __Root__ == TRUE #
+# _X10 == TRUE => __Root__ == TRUE #
+# _X11 == TRUE => __Root__ == TRUE #
+# _X12 == TRUE => __Root__ == TRUE #
+# _X13 == TRUE => __Root__ == TRUE #
+# _X14 == TRUE => __Root__ == TRUE #
+# _X15 == TRUE => __Root__ == TRUE #
+# _X16 == TRUE => __Root__ == TRUE #
+# _X17 == TRUE => __Root__ == TRUE #
+# _X18 == TRUE => __Root__ == TRUE #
+# _X19 == TRUE => __Root__ == TRUE #
+# _X20 == TRUE => __Root__ == TRUE #
+# _X21 == TRUE => __Root__ == TRUE #
+# _X22 == TRUE => __Root__ == TRUE #
+# _X23 == TRUE => __Root__ == TRUE #
+# _X24 == TRUE => __Root__ == TRUE #
+# _X25 == TRUE => __Root__ == TRUE #
+# _X26 == TRUE => __Root__ == TRUE #
+# _X27 == TRUE => __Root__ == TRUE #
+# _X28 == TRUE => __Root__ == TRUE #
+# _X29 == TRUE => __Root__ == TRUE #
+# _X30 == TRUE => __Root__ == TRUE #
+# _X31 == TRUE => __Root__ == TRUE #
+# _X32 == TRUE => __Root__ == TRUE #
+# _X33 == TRUE => __Root__ == TRUE #
+# _X34 == TRUE => __Root__ == TRUE #
+# _X35 == TRUE => __Root__ == TRUE #
+# _X36 == TRUE => __Root__ == TRUE #
+# _X37 == TRUE => __Root__ == TRUE #
+# _X38 == TRUE => __Root__ == TRUE #
+# _X39 == TRUE => __Root__ == TRUE #
+# _X40 == TRUE => __Root__ == TRUE #
+# _X41 == TRUE => __Root__ == TRUE #
+# _X42 == TRUE => __Root__ == TRUE #
+# _X43 == TRUE => __Root__ == TRUE #
+# _X44 == TRUE => __Root__ == TRUE #
+# _X45 == TRUE => __Root__ == TRUE #
+# _X46 == TRUE => __Root__ == TRUE #
+# _X47 == TRUE => __Root__ == TRUE #
+# _X48 == TRUE => __Root__ == TRUE #
+# _X49 == TRUE => __Root__ == TRUE #
+# _X50 == TRUE => __Root__ == TRUE #
+# _X51 == TRUE => __Root__ == TRUE #
+# _X52 == TRUE => __Root__ == TRUE #
+# _X53 == TRUE => __Root__ == TRUE #
+# _X54 == TRUE => __Root__ == TRUE #
+# _X55 == TRUE => __Root__ == TRUE #
+# _X56 == TRUE => __Root__ == TRUE #
+# _X57 == TRUE => __Root__ == TRUE #
+# _X58 == TRUE => __Root__ == TRUE #
+# _X59 == TRUE => __Root__ == TRUE #
+# _X60 == TRUE => __Root__ == TRUE #
+# _X61 == TRUE => __Root__ == TRUE #
+# _X62 == TRUE => __Root__ == TRUE #
+# _X63 == TRUE => __Root__ == TRUE #
+# _X64 == TRUE => __Root__ == TRUE #
+# _X65 == TRUE => __Root__ == TRUE #
+# _X66 == TRUE => __Root__ == TRUE #
+# _X67 == TRUE => __Root__ == TRUE #
+# _X68 == TRUE => __Root__ == TRUE #
+# _X69 == TRUE => __Root__ == TRUE #
+# _X70 == TRUE => __Root__ == TRUE #
+# _X71 == TRUE => __Root__ == TRUE #
+# _X72 == TRUE => __Root__ == TRUE #
+# _X73 == TRUE => __Root__ == TRUE #
+# _X74 == TRUE => __Root__ == TRUE #
+# _X75 == TRUE => __Root__ == TRUE #
+# _X76 == TRUE => __Root__ == TRUE #
+# _X77 == TRUE => __Root__ == TRUE #
+# _X78 == TRUE => __Root__ == TRUE #
+# _X79 == TRUE => __Root__ == TRUE #
+# _X80 == TRUE => __Root__ == TRUE #
+# _X81 == TRUE => __Root__ == TRUE #
+# _X82 == TRUE => __Root__ == TRUE #
+# _X83 == TRUE => __Root__ == TRUE #
+# _X84 == TRUE => __Root__ == TRUE #
+# _X85 == TRUE => __Root__ == TRUE #
+# _X86 == TRUE => __Root__ == TRUE #
+# _X87 == TRUE => __Root__ == TRUE #
+# _X88 == TRUE => __Root__ == TRUE #
+# _X89 == TRUE => __Root__ == TRUE #
+# _X90 == TRUE => __Root__ == TRUE #
+# _X91 == TRUE => __Root__ == TRUE #
+# _X92 == TRUE => __Root__ == TRUE #
+# _X93 == TRUE => __Root__ == TRUE #
+# _X94 == TRUE => __Root__ == TRUE #
+# _X95 == TRUE => __Root__ == TRUE #
+# _X96 == TRUE => __Root__ == TRUE #
+# _X97 == TRUE => __Root__ == TRUE #
+# _X98 == TRUE => __Root__ == TRUE #
+# _X99 == TRUE => __Root__ == TRUE #
+# _X100 == TRUE => __Root__ == TRUE #
+# _X101 == TRUE => __Root__ == TRUE #
+# _X102 == TRUE => __Root__ == TRUE #
+# _X103 == TRUE => __Root__ == TRUE #
+# _X104 == TRUE => __Root__ == TRUE #
+# _X105 == TRUE => __Root__ == TRUE #
+# _X106 == TRUE => __Root__ == TRUE #
+# _X107 == TRUE => __Root__ == TRUE #
+# _X108 == TRUE => __Root__ == TRUE #
+# _X109 == TRUE => __Root__ == TRUE #
+# _X110 == TRUE => __Root__ == TRUE #
+# _X111 == TRUE => __Root__ == TRUE #
+# _X112 == TRUE => __Root__ == TRUE #
+# _X113 == TRUE => __Root__ == TRUE #
+# _X114 == TRUE => __Root__ == TRUE #
+# _X115 == TRUE => __Root__ == TRUE #
+# _X116 == TRUE => __Root__ == TRUE #
+# _X117 == TRUE => __Root__ == TRUE #
+# _X118 == TRUE => __Root__ == TRUE #
+# _X119 == TRUE => __Root__ == TRUE #
+# _X120 == TRUE => __Root__ == TRUE #
+# _X121 == TRUE => __Root__ == TRUE #
+# _X122 == TRUE => __Root__ == TRUE #
+# _X123 == TRUE => __Root__ == TRUE #
+# _X124 == TRUE => __Root__ == TRUE #
+# _X125 == TRUE => __Root__ == TRUE #
+# _X126 == TRUE => __Root__ == TRUE #
+# _X127 == TRUE => __Root__ == TRUE #
+# _X128 == TRUE => __Root__ == TRUE #
+# _X129 == TRUE => __Root__ == TRUE #
+# _X130 == TRUE => __Root__ == TRUE #
+# _X131 == TRUE => __Root__ == TRUE #
+# _X132 == TRUE => __Root__ == TRUE #
+# _X133 == TRUE => __Root__ == TRUE #
+# _X134 == TRUE => __Root__ == TRUE #
+# _X135 == TRUE => __Root__ == TRUE #
+# _X136 == TRUE => __Root__ == TRUE #
+# _X137 == TRUE => __Root__ == TRUE #
+# _X138 == TRUE => __Root__ == TRUE #
+# _X139 == TRUE => __Root__ == TRUE #
+# _X140 == TRUE => __Root__ == TRUE #
+# _X141 == TRUE => __Root__ == TRUE #
+# _X142 == TRUE => __Root__ == TRUE #
+# _X143 == TRUE => __Root__ == TRUE #
+# _X144 == TRUE => __Root__ == TRUE #
+# _X145 == TRUE => __Root__ == TRUE #
+# _X146 == TRUE => __Root__ == TRUE #
+# _X147 == TRUE => __Root__ == TRUE #
+# _X148 == TRUE => __Root__ == TRUE #
+# _X149 == TRUE => __Root__ == TRUE #
+# _X150 == TRUE => __Root__ == TRUE #
+# _X151 == TRUE => __Root__ == TRUE #
+# _X152 == TRUE => __Root__ == TRUE #
+# _X153 == TRUE => __Root__ == TRUE #
+# _X154 == TRUE => __Root__ == TRUE #
+# _X155 == TRUE => __Root__ == TRUE #
+# _X156 == TRUE => __Root__ == TRUE #
+# _X157 == TRUE => __Root__ == TRUE #
+# _X158 == TRUE => __Root__ == TRUE #
+# _X159 == TRUE => __Root__ == TRUE #
+# _X160 == TRUE => __Root__ == TRUE #
+# _X161 == TRUE => __Root__ == TRUE #
+# _X162 == TRUE => __Root__ == TRUE #
+# _X163 == TRUE => __Root__ == TRUE #
+# _X164 == TRUE => __Root__ == TRUE #
+# _X165 == TRUE => __Root__ == TRUE #
+# _X166 == TRUE => __Root__ == TRUE #
+# _X167 == TRUE => __Root__ == TRUE #
+# _X168 == TRUE => __Root__ == TRUE #
+# _X169 == TRUE => __Root__ == TRUE #
+# _X170 == TRUE => __Root__ == TRUE #
+# _X171 == TRUE => __Root__ == TRUE #
+# _X172 == TRUE => __Root__ == TRUE #
+# _X173 == TRUE => __Root__ == TRUE #
+# _X174 == TRUE => __Root__ == TRUE #
+# _X175 == TRUE => __Root__ == TRUE #
+# _X176 == TRUE => __Root__ == TRUE #
+# _X177 == TRUE => __Root__ == TRUE #
+# _X178 == TRUE => __Root__ == TRUE #
+# _X179 == TRUE => __Root__ == TRUE #
+# _X180 == TRUE => __Root__ == TRUE #
+# _X181 == TRUE => __Root__ == TRUE #
+# _X182 == TRUE => __Root__ == TRUE #
+# _X183 == TRUE => __Root__ == TRUE #
+# _X184 == TRUE => __Root__ == TRUE #
+# _X185 == TRUE => __Root__ == TRUE #
+# _X186 == TRUE => __Root__ == TRUE #
+# _X187 == TRUE => __Root__ == TRUE #
+# _X188 == TRUE => __Root__ == TRUE #
+# _X189 == TRUE => __Root__ == TRUE #
+# _X190 == TRUE => __Root__ == TRUE #
+# _X191 == TRUE => __Root__ == TRUE #
+# _X192 == TRUE => __Root__ == TRUE #
+# _X193 == TRUE => __Root__ == TRUE #
+# _X194 == TRUE => __Root__ == TRUE #
+# _X195 == TRUE => __Root__ == TRUE #
+# _X196 == TRUE => __Root__ == TRUE #
+# _X197 == TRUE => __Root__ == TRUE #
+# _X198 == TRUE => __Root__ == TRUE #
+# _X199 == TRUE => __Root__ == TRUE #
+# _X200 == TRUE => __Root__ == TRUE #
+# _X201 == TRUE => __Root__ == TRUE #
+# _X202 == TRUE => __Root__ == TRUE #
+# _X203 == TRUE => __Root__ == TRUE #
+# _X204 == TRUE => __Root__ == TRUE #
+# _X1_m == TRUE => __Root__ == TRUE #
+# _X2_m == TRUE => __Root__ == TRUE #
+# _X3_m == TRUE => __Root__ == TRUE #
+# _X4_m == TRUE => __Root__ == TRUE #
+# _X5_m == TRUE => __Root__ == TRUE #
+# _X6_m == TRUE => __Root__ == TRUE #
+# _X7_m == TRUE => __Root__ == TRUE #
+# _X8_m == TRUE => __Root__ == TRUE #
+# _X9_m == TRUE => __Root__ == TRUE #
+# _X10_m == TRUE => __Root__ == TRUE #
+# _X11_m == TRUE => __Root__ == TRUE #
+# _X12_m == TRUE => __Root__ == TRUE #
+# _X13_m == TRUE => __Root__ == TRUE #
+# _X14_m == TRUE => __Root__ == TRUE #
+# _X15_m == TRUE => __Root__ == TRUE #
+# _X16_m == TRUE => __Root__ == TRUE #
+# _X17_m == TRUE => __Root__ == TRUE #
+# _X18_m == TRUE => __Root__ == TRUE #
+# _X19_m == TRUE => __Root__ == TRUE #
+# _X20_m == TRUE => __Root__ == TRUE #
+# _X21_m == TRUE => __Root__ == TRUE #
+# _X22_m == TRUE => __Root__ == TRUE #
+# _X23_m == TRUE => __Root__ == TRUE #
+# _X24_m == TRUE => __Root__ == TRUE #
+# _X25_m == TRUE => __Root__ == TRUE #
+# _X26_m == TRUE => __Root__ == TRUE #
+# _X27_m == TRUE => __Root__ == TRUE #
+# _X28_m == TRUE => __Root__ == TRUE #
+# _X29_m == TRUE => __Root__ == TRUE #
+# _X30_m == TRUE => __Root__ == TRUE #
+# _X31_m == TRUE => __Root__ == TRUE #
+# _X32_m == TRUE => __Root__ == TRUE #
+# _X33_m == TRUE => __Root__ == TRUE #
+# _X34_m == TRUE => __Root__ == TRUE #
+# _X35_m == TRUE => __Root__ == TRUE #
+# _X36_m == TRUE => __Root__ == TRUE #
+# _X37_m == TRUE => __Root__ == TRUE #
+# _X38_m == TRUE => __Root__ == TRUE #
+# _X39_m == TRUE => __Root__ == TRUE #
+# _X40_m == TRUE => __Root__ == TRUE #
+# _X41_m == TRUE => __Root__ == TRUE #
+# _X42_m == TRUE => __Root__ == TRUE #
+# _X43_m == TRUE => __Root__ == TRUE #
+# _X44_m == TRUE => __Root__ == TRUE #
+# _X45_m == TRUE => __Root__ == TRUE #
+# _X46_m == TRUE => __Root__ == TRUE #
+# _X47_m == TRUE => __Root__ == TRUE #
+# _X48_m == TRUE => __Root__ == TRUE #
+# _X49_m == TRUE => __Root__ == TRUE #
+# _X50_m == TRUE => __Root__ == TRUE #
+# _X51_m == TRUE => __Root__ == TRUE #
+# _X52_m == TRUE => __Root__ == TRUE #
+# _X53_m == TRUE => __Root__ == TRUE #
+# _X54_m == TRUE => __Root__ == TRUE #
+# _X55_m == TRUE => __Root__ == TRUE #
+# _X56_m == TRUE => __Root__ == TRUE #
+# _X57_m == TRUE => __Root__ == TRUE #
+# _X58_m == TRUE => __Root__ == TRUE #
+# _X59_m == TRUE => __Root__ == TRUE #
+# _X60_m == TRUE => __Root__ == TRUE #
+# _X61_m == TRUE => __Root__ == TRUE #
+# _X62_m == TRUE => __Root__ == TRUE #
+# _X63_m == TRUE => __Root__ == TRUE #
+# _X64_m == TRUE => __Root__ == TRUE #
+# _X65_m == TRUE => __Root__ == TRUE #
+# _X66_m == TRUE => __Root__ == TRUE #
+# _X67_m == TRUE => __Root__ == TRUE #
+# _X68_m == TRUE => __Root__ == TRUE #
+# _X69_m == TRUE => __Root__ == TRUE #
+# _X70_m == TRUE => __Root__ == TRUE #
+# _X71_m == TRUE => __Root__ == TRUE #
+# _X72_m == TRUE => __Root__ == TRUE #
+# _X73_m == TRUE => __Root__ == TRUE #
+# _X74_m == TRUE => __Root__ == TRUE #
+# _X75_m == TRUE => __Root__ == TRUE #
+# _X76_m == TRUE => __Root__ == TRUE #
+# _X77_m == TRUE => __Root__ == TRUE #
+# _X78_m == TRUE => __Root__ == TRUE #
+# _X79_m == TRUE => __Root__ == TRUE #
+# _X80_m == TRUE => __Root__ == TRUE #
+# _X81_m == TRUE => __Root__ == TRUE #
+# _X82_m == TRUE => __Root__ == TRUE #
+# _X83_m == TRUE => __Root__ == TRUE #
+# _X84_m == TRUE => __Root__ == TRUE #
+# _X85_m == TRUE => __Root__ == TRUE #
+# _X86_m == TRUE => __Root__ == TRUE #
+# _X87_m == TRUE => __Root__ == TRUE #
+# _X88_m == TRUE => __Root__ == TRUE #
+# _X89_m == TRUE => __Root__ == TRUE #
+# _X90_m == TRUE => __Root__ == TRUE #
+# _X91_m == TRUE => __Root__ == TRUE #
+# _X92_m == TRUE => __Root__ == TRUE #
+# _X93_m == TRUE => __Root__ == TRUE #
+# _X94_m == TRUE => __Root__ == TRUE #
+# _X95_m == TRUE => __Root__ == TRUE #
+# _X96_m == TRUE => __Root__ == TRUE #
+# _X97_m == TRUE => __Root__ == TRUE #
+# _X98_m == TRUE => __Root__ == TRUE #
+# _X99_m == TRUE => __Root__ == TRUE #
+# _X100_m == TRUE => __Root__ == TRUE #
+# _X101_m == TRUE => __Root__ == TRUE #
+# _X102_m == TRUE => __Root__ == TRUE #
+# _X103_m == TRUE => __Root__ == TRUE #
+# _X104_m == TRUE => __Root__ == TRUE #
+# _X105_m == TRUE => __Root__ == TRUE #
+# _X106_m == TRUE => __Root__ == TRUE #
+# _X107_m == TRUE => __Root__ == TRUE #
+# _X108_m == TRUE => __Root__ == TRUE #
+# _X109_m == TRUE => __Root__ == TRUE #
+# _X110_m == TRUE => __Root__ == TRUE #
+# _X111_m == TRUE => __Root__ == TRUE #
+# _X112_m == TRUE => __Root__ == TRUE #
+# _X113_m == TRUE => __Root__ == TRUE #
+# _X114_m == TRUE => __Root__ == TRUE #
+# _X115_m == TRUE => __Root__ == TRUE #
+# _X116_m == TRUE => __Root__ == TRUE #
+# _X117_m == TRUE => __Root__ == TRUE #
+# _X118_m == TRUE => __Root__ == TRUE #
+# _X119_m == TRUE => __Root__ == TRUE #
+# _X120_m == TRUE => __Root__ == TRUE #
+# _X121_m == TRUE => __Root__ == TRUE #
+# _X122_m == TRUE => __Root__ == TRUE #
+# _X123_m == TRUE => __Root__ == TRUE #
+# _X124_m == TRUE => __Root__ == TRUE #
+# _X125_m == TRUE => __Root__ == TRUE #
+# _X126_m == TRUE => __Root__ == TRUE #
+# _X127_m == TRUE => __Root__ == TRUE #
+# _X128_m == TRUE => __Root__ == TRUE #
+# _X129_m == TRUE => __Root__ == TRUE #
+# _X130_m == TRUE => __Root__ == TRUE #
+# _X131_m == TRUE => __Root__ == TRUE #
+# _X132_m == TRUE => __Root__ == TRUE #
+# _X133_m == TRUE => __Root__ == TRUE #
+# _X134_m == TRUE => __Root__ == TRUE #
+# _X135_m == TRUE => __Root__ == TRUE #
+# _X136_m == TRUE => __Root__ == TRUE #
+# _X137_m == TRUE => __Root__ == TRUE #
+# _X138_m == TRUE => __Root__ == TRUE #
+# _X139_m == TRUE => __Root__ == TRUE #
+# _X140_m == TRUE => __Root__ == TRUE #
+# _X141_m == TRUE => __Root__ == TRUE #
+# _X142_m == TRUE => __Root__ == TRUE #
+# _X143_m == TRUE => __Root__ == TRUE #
+# _X144_m == TRUE => __Root__ == TRUE #
+# _X145_m == TRUE => __Root__ == TRUE #
+# _X146_m == TRUE => __Root__ == TRUE #
+# _X147_m == TRUE => __Root__ == TRUE #
+# _X148_m == TRUE => __Root__ == TRUE #
+# _X149_m == TRUE => __Root__ == TRUE #
+# _X150_m == TRUE => __Root__ == TRUE #
+# _X151_m == TRUE => __Root__ == TRUE #
+# _X152_m == TRUE => __Root__ == TRUE #
+# _X153_m == TRUE => __Root__ == TRUE #
+# _X154_m == TRUE => __Root__ == TRUE #
+# _X155_m == TRUE => __Root__ == TRUE #
+# _X156_m == TRUE => __Root__ == TRUE #
+# _X157_m == TRUE => __Root__ == TRUE #
+# _X158_m == TRUE => __Root__ == TRUE #
+# _X159_m == TRUE => __Root__ == TRUE #
+# _X160_m == TRUE => __Root__ == TRUE #
+# _X161_m == TRUE => __Root__ == TRUE #
+# _X162_m == TRUE => __Root__ == TRUE #
+# _X163_m == TRUE => __Root__ == TRUE #
+# _X164_m == TRUE => __Root__ == TRUE #
+# _X165_m == TRUE => __Root__ == TRUE #
+# _X166_m == TRUE => __Root__ == TRUE #
+# _X167_m == TRUE => __Root__ == TRUE #
+# _X168_m == TRUE => __Root__ == TRUE #
+# _X169_m == TRUE => __Root__ == TRUE #
+# _X170_m == TRUE => __Root__ == TRUE #
+# _X171_m == TRUE => __Root__ == TRUE #
+# _X172_m == TRUE => __Root__ == TRUE #
+# _X173_m == TRUE => __Root__ == TRUE #
+# _X174_m == TRUE => __Root__ == TRUE #
+# _X175_m == TRUE => __Root__ == TRUE #
+# _X176_m == TRUE => __Root__ == TRUE #
+# _X177_m == TRUE => __Root__ == TRUE #
+# _X178_m == TRUE => __Root__ == TRUE #
+# _X179_m == TRUE => __Root__ == TRUE #
+# _X180_m == TRUE => __Root__ == TRUE #
+# _X181_m == TRUE => __Root__ == TRUE #
+# _X182_m == TRUE => __Root__ == TRUE #
+# _X183_m == TRUE => __Root__ == TRUE #
+# _X184_m == TRUE => __Root__ == TRUE #
+# _X185_m == TRUE => __Root__ == TRUE #
+# _X186_m == TRUE => __Root__ == TRUE #
+# _X187_m == TRUE => __Root__ == TRUE #
+# _X188_m == TRUE => __Root__ == TRUE #
+# _X189_m == TRUE => __Root__ == TRUE #
+# _X190_m == TRUE => __Root__ == TRUE #
+# _X191_m == TRUE => __Root__ == TRUE #
+# _X192_m == TRUE => __Root__ == TRUE #
+# _X193_m == TRUE => __Root__ == TRUE #
+# _X194_m == TRUE => __Root__ == TRUE #
+# _X195_m == TRUE => __Root__ == TRUE #
+# _X196_m == TRUE => __Root__ == TRUE #
+# _X197_m == TRUE => __Root__ == TRUE #
+# _X198_m == TRUE => __Root__ == TRUE #
+# _X199_m == TRUE => __Root__ == TRUE #
+# _X200_m == TRUE => __Root__ == TRUE #
+# _X201_m == TRUE => __Root__ == TRUE #
+# _X202_m == TRUE => __Root__ == TRUE #
+# _X203_m == TRUE => __Root__ == TRUE #
+# _X204_m == TRUE => __Root__ == TRUE #
+# _X1 == TRUE #
+# ! ( _X1_m == TRUE ) #
+# ! ( _X1 == TRUE ) || ! ( TOYBOX == TRUE ) #
+# ! ( _X1 == TRUE ) || ! ( TOYBOX_m == TRUE ) #
+# ! ( _X2 == TRUE ) #
+# ! ( _X2_m == TRUE ) #
+# ! ( _X2 == TRUE ) || ! ( TOYBOX == TRUE ) #
+# ! ( _X2 == TRUE ) || ! ( TOYBOX_m == TRUE ) #
+# ! ( _X3 == TRUE ) #
+# ! ( _X3_m == TRUE ) #
+# ! ( _X4 == TRUE ) #
+# ! ( _X4_m == TRUE ) #
+# ! ( _X4 == TRUE ) || ! ( TOYBOX_FREE == TRUE ) #
+# ! ( _X4 == TRUE ) || ! ( TOYBOX_FREE_m == TRUE ) #
+# ! ( _X5 == TRUE ) #
+# ! ( _X5_m == TRUE ) #
+# ! ( _X5 == TRUE ) || ! ( TOYBOX_FREE == TRUE ) #
+# ! ( _X5 == TRUE ) || ! ( TOYBOX_FREE_m == TRUE ) #
+# ! ( _X6 == TRUE ) #
+# ! ( _X6_m == TRUE ) #
+# ! ( _X7 == TRUE ) #
+# ! ( _X7_m == TRUE ) #
+# ! ( _X7 == TRUE ) || ! ( TOYBOX_DEBUG == TRUE ) #
+# ! ( _X7 == TRUE ) || ! ( TOYBOX_DEBUG_m == TRUE ) #
+# ! ( _X8 == TRUE ) #
+# ! ( _X8_m == TRUE ) #
+# ! ( _X8 == TRUE ) || ! ( TOYBOX_DEBUG == TRUE ) #
+# ! ( _X8 == TRUE ) || ! ( TOYBOX_DEBUG_m == TRUE ) #
+# ! ( _X9 == TRUE ) #
+# ! ( _X9_m == TRUE ) #
+# ! ( _X10 == TRUE ) #
+# ! ( _X10_m == TRUE ) #
+# ! ( _X10 == TRUE ) || BASENAME == TRUE #
+# ! ( _X10 == TRUE ) || BASENAME_m == TRUE #
+# ! ( _X11 == TRUE ) #
+# ! ( _X11_m == TRUE ) #
+# ! ( _X11 == TRUE ) || ! ( BASENAME == TRUE ) #
+# ! ( _X11 == TRUE ) || ! ( BASENAME_m == TRUE ) #
+# ! ( _X12 == TRUE ) #
+# ! ( _X12_m == TRUE ) #
+# ! ( _X13 == TRUE ) #
+# ! ( _X13_m == TRUE ) #
+# ! ( _X13 == TRUE ) || BZCAT == TRUE #
+# ! ( _X13 == TRUE ) || BZCAT_m == TRUE #
+# ! ( _X14 == TRUE ) #
+# ! ( _X14_m == TRUE ) #
+# ! ( _X14 == TRUE ) || ! ( BZCAT == TRUE ) #
+# ! ( _X14 == TRUE ) || ! ( BZCAT_m == TRUE ) #
+# ! ( _X15 == TRUE ) #
+# ! ( _X15_m == TRUE ) #
+# ! ( _X16 == TRUE ) #
+# ! ( _X16_m == TRUE ) #
+# ! ( _X16 == TRUE ) || CAT == TRUE #
+# ! ( _X16 == TRUE ) || CAT_m == TRUE #
+# ! ( _X17 == TRUE ) #
+# ! ( _X17_m == TRUE ) #
+# ! ( _X17 == TRUE ) || ! ( CAT == TRUE ) #
+# ! ( _X17 == TRUE ) || ! ( CAT_m == TRUE ) #
+# ! ( _X18 == TRUE ) #
+# ! ( _X18_m == TRUE ) #
+# ! ( _X19 == TRUE ) #
+# ! ( _X19_m == TRUE ) #
+# ! ( _X19 == TRUE ) || CATV == TRUE #
+# ! ( _X19 == TRUE ) || CATV_m == TRUE #
+# ! ( _X20 == TRUE ) #
+# ! ( _X20_m == TRUE ) #
+# ! ( _X20 == TRUE ) || ! ( CATV == TRUE ) #
+# ! ( _X20 == TRUE ) || ! ( CATV_m == TRUE ) #
+# ! ( _X21 == TRUE ) #
+# ! ( _X21_m == TRUE ) #
+# ! ( _X22 == TRUE ) #
+# ! ( _X22_m == TRUE ) #
+# ! ( _X22 == TRUE ) || CHROOT == TRUE #
+# ! ( _X22 == TRUE ) || CHROOT_m == TRUE #
+# ! ( _X23 == TRUE ) #
+# ! ( _X23_m == TRUE ) #
+# ! ( _X23 == TRUE ) || ! ( CHROOT == TRUE ) #
+# ! ( _X23 == TRUE ) || ! ( CHROOT_m == TRUE ) #
+# ! ( _X24 == TRUE ) #
+# ! ( _X24_m == TRUE ) #
+# ! ( _X25 == TRUE ) #
+# ! ( _X25_m == TRUE ) #
+# ! ( _X25 == TRUE ) || CHVT == TRUE #
+# ! ( _X25 == TRUE ) || CHVT_m == TRUE #
+# ! ( _X26 == TRUE ) #
+# ! ( _X26_m == TRUE ) #
+# ! ( _X26 == TRUE ) || ! ( CHVT == TRUE ) #
+# ! ( _X26 == TRUE ) || ! ( CHVT_m == TRUE ) #
+# ! ( _X27 == TRUE ) #
+# ! ( _X27_m == TRUE ) #
+# ! ( _X28 == TRUE ) #
+# ! ( _X28_m == TRUE ) #
+# ! ( _X28 == TRUE ) || CKSUM == TRUE #
+# ! ( _X28 == TRUE ) || CKSUM_m == TRUE #
+# ! ( _X29 == TRUE ) #
+# ! ( _X29_m == TRUE ) #
+# ! ( _X29 == TRUE ) || ! ( CKSUM == TRUE ) #
+# ! ( _X29 == TRUE ) || ! ( CKSUM_m == TRUE ) #
+# ! ( _X30 == TRUE ) #
+# ! ( _X30_m == TRUE ) #
+# ! ( _X31 == TRUE ) #
+# ! ( _X31_m == TRUE ) #
+# ! ( _X31 == TRUE ) || COUNT == TRUE #
+# ! ( _X31 == TRUE ) || COUNT_m == TRUE #
+# ! ( _X32 == TRUE ) #
+# ! ( _X32_m == TRUE ) #
+# ! ( _X32 == TRUE ) || ! ( COUNT == TRUE ) #
+# ! ( _X32 == TRUE ) || ! ( COUNT_m == TRUE ) #
+# ! ( _X33 == TRUE ) #
+# ! ( _X33_m == TRUE ) #
+# ! ( _X34 == TRUE ) #
+# ! ( _X34_m == TRUE ) #
+# ! ( _X34 == TRUE ) || CP == TRUE #
+# ! ( _X34 == TRUE ) || CP_m == TRUE #
+# ! ( _X35 == TRUE ) #
+# ! ( _X35_m == TRUE ) #
+# ! ( _X35 == TRUE ) || ! ( CP == TRUE ) #
+# ! ( _X35 == TRUE ) || ! ( CP_m == TRUE ) #
+# ! ( _X36 == TRUE ) #
+# ! ( _X36_m == TRUE ) #
+# ! ( _X37 == TRUE ) #
+# ! ( _X37_m == TRUE ) #
+# ! ( _X37 == TRUE ) || DF == TRUE #
+# ! ( _X37 == TRUE ) || DF_m == TRUE #
+# ! ( _X38 == TRUE ) #
+# ! ( _X38_m == TRUE ) #
+# ! ( _X38 == TRUE ) || ! ( DF == TRUE ) #
+# ! ( _X38 == TRUE ) || ! ( DF_m == TRUE ) #
+# ! ( _X39 == TRUE ) #
+# ! ( _X39_m == TRUE ) #
+# ! ( DF_PEDANTIC_m == TRUE ) #
+# ! ( DF_PEDANTIC == TRUE ) #
+# ! ( _X40 == TRUE ) || ! ( DF == TRUE ) #
+# ! ( _X40 == TRUE ) || ! ( DF_m == TRUE ) #
+# DF == TRUE #
+# ! ( _X40_m == TRUE ) #
+# ! ( _X41 == TRUE ) || _X40 == TRUE #
+# ! ( _X41 == TRUE ) || ! ( DF == TRUE ) #
+# ! ( _X41 == TRUE ) || ! ( DF_m == TRUE ) #
+# ! ( _X40 == TRUE ) #
+# ! ( _X41_m == TRUE ) #
+# ! ( _X41 == TRUE ) || ! ( DF_PEDANTIC == TRUE ) #
+# ! ( _X41 == TRUE ) || ! ( DF_PEDANTIC_m == TRUE ) #
+# ! ( _X42 == TRUE ) #
+# ! ( _X42_m == TRUE ) #
+# ! ( _X43 == TRUE ) #
+# ! ( _X43_m == TRUE ) #
+# ! ( _X43 == TRUE ) || DIRNAME == TRUE #
+# ! ( _X43 == TRUE ) || DIRNAME_m == TRUE #
+# ! ( _X44 == TRUE ) #
+# ! ( _X44_m == TRUE ) #
+# ! ( _X44 == TRUE ) || ! ( DIRNAME == TRUE ) #
+# ! ( _X44 == TRUE ) || ! ( DIRNAME_m == TRUE ) #
+# ! ( _X45 == TRUE ) #
+# ! ( _X45_m == TRUE ) #
+# ! ( _X46 == TRUE ) #
+# ! ( _X46_m == TRUE ) #
+# ! ( _X46 == TRUE ) || DMESG == TRUE #
+# ! ( _X46 == TRUE ) || DMESG_m == TRUE #
+# ! ( _X47 == TRUE ) #
+# ! ( _X47_m == TRUE ) #
+# ! ( _X47 == TRUE ) || ! ( DMESG == TRUE ) #
+# ! ( _X47 == TRUE ) || ! ( DMESG_m == TRUE ) #
+# ! ( _X48 == TRUE ) #
+# ! ( _X48_m == TRUE ) #
+# ! ( _X49 == TRUE ) #
+# ! ( _X49_m == TRUE ) #
+# ! ( _X49 == TRUE ) || ECHO == TRUE #
+# ! ( _X49 == TRUE ) || ECHO_m == TRUE #
+# ! ( _X50 == TRUE ) #
+# ! ( _X50_m == TRUE ) #
+# ! ( _X50 == TRUE ) || ! ( ECHO == TRUE ) #
+# ! ( _X50 == TRUE ) || ! ( ECHO_m == TRUE ) #
+# ! ( _X51 == TRUE ) #
+# ! ( _X51_m == TRUE ) #
+# ! ( _X52 == TRUE ) #
+# ! ( _X52_m == TRUE ) #
+# ! ( _X52 == TRUE ) || FALSE == TRUE #
+# ! ( _X52 == TRUE ) || FALSE_m == TRUE #
+# ! ( _X53 == TRUE ) #
+# ! ( _X53_m == TRUE ) #
+# ! ( _X53 == TRUE ) || ! ( FALSE == TRUE ) #
+# ! ( _X53 == TRUE ) || ! ( FALSE_m == TRUE ) #
+# ! ( _X54 == TRUE ) #
+# ! ( _X54_m == TRUE ) #
+# ! ( _X55 == TRUE ) #
+# ! ( _X55_m == TRUE ) #
+# ! ( _X55 == TRUE ) || ! ( HELLO == TRUE ) #
+# ! ( _X55 == TRUE ) || ! ( HELLO_m == TRUE ) #
+# ! ( _X56 == TRUE ) #
+# ! ( _X56_m == TRUE ) #
+# ! ( _X56 == TRUE ) || ! ( HELLO == TRUE ) #
+# ! ( _X56 == TRUE ) || ! ( HELLO_m == TRUE ) #
+# ! ( _X57 == TRUE ) #
+# ! ( _X57_m == TRUE ) #
+# ! ( _X58 == TRUE ) #
+# ! ( _X58_m == TRUE ) #
+# ! ( _X58 == TRUE ) || HELP == TRUE #
+# ! ( _X58 == TRUE ) || HELP_m == TRUE #
+# ! ( _X59 == TRUE ) #
+# ! ( _X59_m == TRUE ) #
+# ! ( _X59 == TRUE ) || ! ( HELP == TRUE ) #
+# ! ( _X59 == TRUE ) || ! ( HELP_m == TRUE ) #
+# ! ( _X60 == TRUE ) #
+# ! ( _X60_m == TRUE ) #
+# ! ( HELP_LONG_m == TRUE ) #
+# ! ( HELP_LONG == TRUE ) #
+# ! ( _X61 == TRUE ) || ! ( HELP == TRUE ) #
+# ! ( _X61 == TRUE ) || ! ( HELP_m == TRUE ) #
+# HELP == TRUE #
+# ! ( _X61_m == TRUE ) #
+# ! ( _X62 == TRUE ) || _X61 == TRUE #
+# ! ( _X62 == TRUE ) || ! ( HELP == TRUE ) #
+# ! ( _X62 == TRUE ) || ! ( HELP_m == TRUE ) #
+# ! ( _X61 == TRUE ) #
+# ! ( _X62_m == TRUE ) #
+# ! ( _X62 == TRUE ) || ! ( HELP_LONG == TRUE ) #
+# ! ( _X62 == TRUE ) || ! ( HELP_LONG_m == TRUE ) #
+# ! ( _X63 == TRUE ) #
+# ! ( _X63_m == TRUE ) #
+# ! ( _X64 == TRUE ) #
+# ! ( _X64_m == TRUE ) #
+# ! ( _X64 == TRUE ) || MDEV == TRUE #
+# ! ( _X64 == TRUE ) || MDEV_m == TRUE #
+# ! ( _X65 == TRUE ) #
+# ! ( _X65_m == TRUE ) #
+# ! ( _X65 == TRUE ) || ! ( MDEV == TRUE ) #
+# ! ( _X65 == TRUE ) || ! ( MDEV_m == TRUE ) #
+# ! ( _X66 == TRUE ) #
+# ! ( _X66_m == TRUE ) #
+# ! ( MDEV_CONF_m == TRUE ) #
+# ! ( MDEV_CONF == TRUE ) #
+# ! ( _X67 == TRUE ) || ! ( MDEV == TRUE ) #
+# ! ( _X67 == TRUE ) || ! ( MDEV_m == TRUE ) #
+# MDEV == TRUE #
+# ! ( _X67_m == TRUE ) #
+# ! ( _X68 == TRUE ) || _X67 == TRUE #
+# ! ( _X68 == TRUE ) || ! ( MDEV == TRUE ) #
+# ! ( _X68 == TRUE ) || ! ( MDEV_m == TRUE ) #
+# ! ( _X67 == TRUE ) #
+# ! ( _X68_m == TRUE ) #
+# ! ( _X68 == TRUE ) || ! ( MDEV_CONF == TRUE ) #
+# ! ( _X68 == TRUE ) || ! ( MDEV_CONF_m == TRUE ) #
+# ! ( _X69 == TRUE ) #
+# ! ( _X69_m == TRUE ) #
+# ! ( _X70 == TRUE ) #
+# ! ( _X70_m == TRUE ) #
+# ! ( _X70 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X70 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X71 == TRUE ) #
+# ! ( _X71_m == TRUE ) #
+# ! ( _X71 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X71 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X72 == TRUE ) #
+# ! ( _X72_m == TRUE ) #
+# ! ( MKE2FS_JOURNAL_m == TRUE ) #
+# ! ( MKE2FS_JOURNAL == TRUE ) #
+# ! ( _X73 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X73 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X73_m == TRUE ) #
+# ! ( _X74 == TRUE ) || _X73 == TRUE #
+# ! ( _X74 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X74 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X73 == TRUE ) #
+# ! ( _X74_m == TRUE ) #
+# ! ( _X74 == TRUE ) || ! ( MKE2FS_JOURNAL == TRUE ) #
+# ! ( _X74 == TRUE ) || ! ( MKE2FS_JOURNAL_m == TRUE ) #
+# ! ( _X75 == TRUE ) #
+# ! ( _X75_m == TRUE ) #
+# ! ( MKE2FS_GEN_m == TRUE ) #
+# ! ( MKE2FS_GEN == TRUE ) #
+# ! ( _X76 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X76 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X76_m == TRUE ) #
+# ! ( _X77 == TRUE ) || _X76 == TRUE #
+# ! ( _X77 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X77 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X76 == TRUE ) #
+# ! ( _X77_m == TRUE ) #
+# ! ( _X77 == TRUE ) || ! ( MKE2FS_GEN == TRUE ) #
+# ! ( _X77 == TRUE ) || ! ( MKE2FS_GEN_m == TRUE ) #
+# ! ( _X78 == TRUE ) #
+# ! ( _X78_m == TRUE ) #
+# ! ( MKE2FS_LABEL_m == TRUE ) #
+# ! ( MKE2FS_LABEL == TRUE ) #
+# ! ( _X79 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X79 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X79_m == TRUE ) #
+# ! ( _X80 == TRUE ) || _X79 == TRUE #
+# ! ( _X80 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X80 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X79 == TRUE ) #
+# ! ( _X80_m == TRUE ) #
+# ! ( _X80 == TRUE ) || ! ( MKE2FS_LABEL == TRUE ) #
+# ! ( _X80 == TRUE ) || ! ( MKE2FS_LABEL_m == TRUE ) #
+# ! ( _X81 == TRUE ) #
+# ! ( _X81_m == TRUE ) #
+# ! ( MKE2FS_EXTENDED_m == TRUE ) #
+# ! ( MKE2FS_EXTENDED == TRUE ) #
+# ! ( _X82 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X82 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# MKE2FS == TRUE #
+# ! ( _X82_m == TRUE ) #
+# ! ( _X83 == TRUE ) || _X82 == TRUE #
+# ! ( _X83 == TRUE ) || ! ( MKE2FS == TRUE ) #
+# ! ( _X83 == TRUE ) || ! ( MKE2FS_m == TRUE ) #
+# ! ( _X82 == TRUE ) #
+# ! ( _X83_m == TRUE ) #
+# ! ( _X83 == TRUE ) || ! ( MKE2FS_EXTENDED == TRUE ) #
+# ! ( _X83 == TRUE ) || ! ( MKE2FS_EXTENDED_m == TRUE ) #
+# ! ( _X84 == TRUE ) #
+# ! ( _X84_m == TRUE ) #
+# ! ( _X85 == TRUE ) #
+# ! ( _X85_m == TRUE ) #
+# ! ( _X85 == TRUE ) || MKFIFO == TRUE #
+# ! ( _X85 == TRUE ) || MKFIFO_m == TRUE #
+# ! ( _X86 == TRUE ) #
+# ! ( _X86_m == TRUE ) #
+# ! ( _X86 == TRUE ) || ! ( MKFIFO == TRUE ) #
+# ! ( _X86 == TRUE ) || ! ( MKFIFO_m == TRUE ) #
+# ! ( _X87 == TRUE ) #
+# ! ( _X87_m == TRUE ) #
+# ! ( _X88 == TRUE ) #
+# ! ( _X88_m == TRUE ) #
+# ! ( _X88 == TRUE ) || MKSWAP == TRUE #
+# ! ( _X88 == TRUE ) || MKSWAP_m == TRUE #
+# ! ( _X89 == TRUE ) #
+# ! ( _X89_m == TRUE ) #
+# ! ( _X89 == TRUE ) || ! ( MKSWAP == TRUE ) #
+# ! ( _X89 == TRUE ) || ! ( MKSWAP_m == TRUE ) #
+# ! ( _X90 == TRUE ) #
+# ! ( _X90_m == TRUE ) #
+# ! ( _X91 == TRUE ) #
+# ! ( _X91_m == TRUE ) #
+# ! ( _X91 == TRUE ) || NETCAT == TRUE #
+# ! ( _X91 == TRUE ) || NETCAT_m == TRUE #
+# ! ( _X92 == TRUE ) #
+# ! ( _X92_m == TRUE ) #
+# ! ( _X92 == TRUE ) || ! ( NETCAT == TRUE ) #
+# ! ( _X92 == TRUE ) || ! ( NETCAT_m == TRUE ) #
+# ! ( _X93 == TRUE ) #
+# ! ( _X93_m == TRUE ) #
+# ! ( NETCAT_LISTEN_m == TRUE ) #
+# ! ( NETCAT_LISTEN == TRUE ) #
+# ! ( _X94 == TRUE ) || ! ( NETCAT == TRUE ) #
+# ! ( _X94 == TRUE ) || ! ( NETCAT_m == TRUE ) #
+# NETCAT == TRUE #
+# ! ( _X94_m == TRUE ) #
+# ! ( _X95 == TRUE ) || _X94 == TRUE #
+# ! ( _X95 == TRUE ) || ! ( NETCAT == TRUE ) #
+# ! ( _X95 == TRUE ) || ! ( NETCAT_m == TRUE ) #
+# ! ( _X94 == TRUE ) #
+# ! ( _X95_m == TRUE ) #
+# ! ( _X95 == TRUE ) || ! ( NETCAT_LISTEN == TRUE ) #
+# ! ( _X95 == TRUE ) || ! ( NETCAT_LISTEN_m == TRUE ) #
+# ! ( _X96 == TRUE ) #
+# ! ( _X96_m == TRUE ) #
+# ! ( _X97 == TRUE ) #
+# ! ( _X97_m == TRUE ) #
+# ! ( _X97 == TRUE ) || ONEIT == TRUE #
+# ! ( _X97 == TRUE ) || ONEIT_m == TRUE #
+# ! ( _X98 == TRUE ) #
+# ! ( _X98_m == TRUE ) #
+# ! ( _X98 == TRUE ) || ! ( ONEIT == TRUE ) #
+# ! ( _X98 == TRUE ) || ! ( ONEIT_m == TRUE ) #
+# ! ( _X99 == TRUE ) #
+# ! ( _X99_m == TRUE ) #
+# ! ( _X100 == TRUE ) #
+# ! ( _X100_m == TRUE ) #
+# ! ( _X100 == TRUE ) || PATCH == TRUE #
+# ! ( _X100 == TRUE ) || PATCH_m == TRUE #
+# ! ( _X101 == TRUE ) #
+# ! ( _X101_m == TRUE ) #
+# ! ( _X101 == TRUE ) || ! ( PATCH == TRUE ) #
+# ! ( _X101 == TRUE ) || ! ( PATCH_m == TRUE ) #
+# ! ( _X102 == TRUE ) #
+# ! ( _X102_m == TRUE ) #
+# ! ( _X103 == TRUE ) #
+# ! ( _X103_m == TRUE ) #
+# ! ( _X103 == TRUE ) || PWD == TRUE #
+# ! ( _X103 == TRUE ) || PWD_m == TRUE #
+# ! ( _X104 == TRUE ) #
+# ! ( _X104_m == TRUE ) #
+# ! ( _X104 == TRUE ) || ! ( PWD == TRUE ) #
+# ! ( _X104 == TRUE ) || ! ( PWD_m == TRUE ) #
+# ! ( _X105 == TRUE ) #
+# ! ( _X105_m == TRUE ) #
+# ! ( _X106 == TRUE ) #
+# ! ( _X106_m == TRUE ) #
+# ! ( _X106 == TRUE ) || ! ( READLINK == TRUE ) #
+# ! ( _X106 == TRUE ) || ! ( READLINK_m == TRUE ) #
+# ! ( _X107 == TRUE ) #
+# ! ( _X107_m == TRUE ) #
+# ! ( _X107 == TRUE ) || ! ( READLINK == TRUE ) #
+# ! ( _X107 == TRUE ) || ! ( READLINK_m == TRUE ) #
+# ! ( _X108 == TRUE ) #
+# ! ( _X108_m == TRUE ) #
+# ! ( READLINK_F_m == TRUE ) #
+# ! ( READLINK_F == TRUE ) #
+# ! ( _X109 == TRUE ) || ! ( READLINK == TRUE ) #
+# ! ( _X109 == TRUE ) || ! ( READLINK_m == TRUE ) #
+# READLINK == TRUE #
+# ! ( _X109_m == TRUE ) #
+# ! ( _X110 == TRUE ) || _X109 == TRUE #
+# ! ( _X110 == TRUE ) || ! ( READLINK == TRUE ) #
+# ! ( _X110 == TRUE ) || ! ( READLINK_m == TRUE ) #
+# ! ( _X109 == TRUE ) #
+# ! ( _X110_m == TRUE ) #
+# ! ( _X110 == TRUE ) || ! ( READLINK_F == TRUE ) #
+# ! ( _X110 == TRUE ) || ! ( READLINK_F_m == TRUE ) #
+# ! ( _X111 == TRUE ) #
+# ! ( _X111_m == TRUE ) #
+# ! ( _X112 == TRUE ) #
+# ! ( _X112_m == TRUE ) #
+# ! ( _X112 == TRUE ) || RMDIR == TRUE #
+# ! ( _X112 == TRUE ) || RMDIR_m == TRUE #
+# ! ( _X113 == TRUE ) #
+# ! ( _X113_m == TRUE ) #
+# ! ( _X113 == TRUE ) || ! ( RMDIR == TRUE ) #
+# ! ( _X113 == TRUE ) || ! ( RMDIR_m == TRUE ) #
+# ! ( _X114 == TRUE ) #
+# ! ( _X114_m == TRUE ) #
+# ! ( _X115 == TRUE ) #
+# ! ( _X115_m == TRUE ) #
+# ! ( _X115 == TRUE ) || ! ( SED == TRUE ) #
+# ! ( _X115 == TRUE ) || ! ( SED_m == TRUE ) #
+# ! ( _X116 == TRUE ) #
+# ! ( _X116_m == TRUE ) #
+# ! ( _X116 == TRUE ) || ! ( SED == TRUE ) #
+# ! ( _X116 == TRUE ) || ! ( SED_m == TRUE ) #
+# ! ( _X117 == TRUE ) #
+# ! ( _X117_m == TRUE ) #
+# ! ( _X118 == TRUE ) #
+# ! ( _X118_m == TRUE ) #
+# ! ( _X118 == TRUE ) || SEQ == TRUE #
+# ! ( _X118 == TRUE ) || SEQ_m == TRUE #
+# ! ( _X119 == TRUE ) #
+# ! ( _X119_m == TRUE ) #
+# ! ( _X119 == TRUE ) || ! ( SEQ == TRUE ) #
+# ! ( _X119 == TRUE ) || ! ( SEQ_m == TRUE ) #
+# ! ( _X120 == TRUE ) #
+# ! ( _X120_m == TRUE ) #
+# ! ( _X121 == TRUE ) #
+# ! ( _X121_m == TRUE ) #
+# ! ( _X121 == TRUE ) || SHA1SUM == TRUE #
+# ! ( _X121 == TRUE ) || SHA1SUM_m == TRUE #
+# ! ( _X122 == TRUE ) #
+# ! ( _X122_m == TRUE ) #
+# ! ( _X122 == TRUE ) || ! ( SHA1SUM == TRUE ) #
+# ! ( _X122 == TRUE ) || ! ( SHA1SUM_m == TRUE ) #
+# ! ( _X123 == TRUE ) #
+# ! ( _X123_m == TRUE ) #
+# ! ( _X124 == TRUE ) #
+# ! ( _X124_m == TRUE ) #
+# ! ( _X124 == TRUE ) || SLEEP == TRUE #
+# ! ( _X124 == TRUE ) || SLEEP_m == TRUE #
+# ! ( _X125 == TRUE ) #
+# ! ( _X125_m == TRUE ) #
+# ! ( _X125 == TRUE ) || ! ( SLEEP == TRUE ) #
+# ! ( _X125 == TRUE ) || ! ( SLEEP_m == TRUE ) #
+# ! ( _X126 == TRUE ) #
+# ! ( _X126_m == TRUE ) #
+# ! ( _X127 == TRUE ) #
+# ! ( _X127_m == TRUE ) #
+# ! ( _X127 == TRUE ) || SORT == TRUE #
+# ! ( _X127 == TRUE ) || SORT_m == TRUE #
+# ! ( _X128 == TRUE ) #
+# ! ( _X128_m == TRUE ) #
+# ! ( _X128 == TRUE ) || ! ( SORT == TRUE ) #
+# ! ( _X128 == TRUE ) || ! ( SORT_m == TRUE ) #
+# ! ( _X129 == TRUE ) #
+# ! ( _X129_m == TRUE ) #
+# ! ( SORT_BIG_m == TRUE ) #
+# ! ( SORT_BIG == TRUE ) #
+# ! ( _X130 == TRUE ) || ! ( SORT == TRUE ) #
+# ! ( _X130 == TRUE ) || ! ( SORT_m == TRUE ) #
+# SORT == TRUE #
+# ! ( _X130_m == TRUE ) #
+# ! ( _X131 == TRUE ) || _X130 == TRUE #
+# ! ( _X131 == TRUE ) || ! ( SORT == TRUE ) #
+# ! ( _X131 == TRUE ) || ! ( SORT_m == TRUE ) #
+# ! ( _X130 == TRUE ) #
+# ! ( _X131_m == TRUE ) #
+# ! ( _X131 == TRUE ) || ! ( SORT_BIG == TRUE ) #
+# ! ( _X131 == TRUE ) || ! ( SORT_BIG_m == TRUE ) #
+# ! ( _X132 == TRUE ) #
+# ! ( _X132_m == TRUE ) #
+# ! ( _X133 == TRUE ) #
+# ! ( _X133_m == TRUE ) #
+# ! ( _X133 == TRUE ) || SYNC == TRUE #
+# ! ( _X133 == TRUE ) || SYNC_m == TRUE #
+# ! ( _X134 == TRUE ) #
+# ! ( _X134_m == TRUE ) #
+# ! ( _X134 == TRUE ) || ! ( SYNC == TRUE ) #
+# ! ( _X134 == TRUE ) || ! ( SYNC_m == TRUE ) #
+# ! ( _X135 == TRUE ) #
+# ! ( _X135_m == TRUE ) #
+# ! ( _X136 == TRUE ) #
+# ! ( _X136_m == TRUE ) #
+# ! ( _X136 == TRUE ) || TEE == TRUE #
+# ! ( _X136 == TRUE ) || TEE_m == TRUE #
+# ! ( _X137 == TRUE ) #
+# ! ( _X137_m == TRUE ) #
+# ! ( _X137 == TRUE ) || ! ( TEE == TRUE ) #
+# ! ( _X137 == TRUE ) || ! ( TEE_m == TRUE ) #
+# ! ( _X138 == TRUE ) #
+# ! ( _X138_m == TRUE ) #
+# ! ( _X139 == TRUE ) #
+# ! ( _X139_m == TRUE ) #
+# ! ( _X139 == TRUE ) || TOUCH == TRUE #
+# ! ( _X139 == TRUE ) || TOUCH_m == TRUE #
+# ! ( _X140 == TRUE ) #
+# ! ( _X140_m == TRUE ) #
+# ! ( _X140 == TRUE ) || ! ( TOUCH == TRUE ) #
+# ! ( _X140 == TRUE ) || ! ( TOUCH_m == TRUE ) #
+# ! ( _X141 == TRUE ) #
+# ! ( _X141_m == TRUE ) #
+# ! ( _X142 == TRUE ) #
+# ! ( _X142_m == TRUE ) #
+# ! ( _X142 == TRUE ) || TOYSH == TRUE #
+# ! ( _X142 == TRUE ) || TOYSH_m == TRUE #
+# ! ( _X143 == TRUE ) #
+# ! ( _X143_m == TRUE ) #
+# ! ( _X143 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X143 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X144 == TRUE ) #
+# ! ( _X144_m == TRUE ) #
+# ! ( TOYSH_TTY_m == TRUE ) #
+# ! ( TOYSH_TTY == TRUE ) #
+# ! ( _X145 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X145 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X145_m == TRUE ) #
+# ! ( _X146 == TRUE ) || _X145 == TRUE #
+# ! ( _X146 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X146 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X145 == TRUE ) #
+# ! ( _X146_m == TRUE ) #
+# ! ( _X146 == TRUE ) || ! ( TOYSH_TTY == TRUE ) #
+# ! ( _X146 == TRUE ) || ! ( TOYSH_TTY_m == TRUE ) #
+# ! ( _X147 == TRUE ) #
+# ! ( _X147_m == TRUE ) #
+# ! ( TOYSH_PROFILE_m == TRUE ) #
+# ! ( TOYSH_PROFILE == TRUE ) #
+# ! ( _X148 == TRUE ) || ! ( TOYSH_TTY == TRUE ) #
+# ! ( _X148 == TRUE ) || ! ( TOYSH_TTY_m == TRUE ) #
+# ! ( _X148_m == TRUE ) #
+# ! ( _X149 == TRUE ) || _X148 == TRUE #
+# ! ( _X149 == TRUE ) || ! ( TOYSH_TTY == TRUE ) #
+# ! ( _X149 == TRUE ) || ! ( TOYSH_TTY_m == TRUE ) #
+# ! ( _X148 == TRUE ) #
+# ! ( _X149_m == TRUE ) #
+# ! ( _X149 == TRUE ) || ! ( TOYSH_PROFILE == TRUE ) #
+# ! ( _X149 == TRUE ) || ! ( TOYSH_PROFILE_m == TRUE ) #
+# ! ( _X150 == TRUE ) #
+# ! ( _X150_m == TRUE ) #
+# ! ( TOYSH_JOBCTL_m == TRUE ) #
+# ! ( TOYSH_JOBCTL == TRUE ) #
+# ! ( _X151 == TRUE ) || ! ( TOYSH_TTY == TRUE ) #
+# ! ( _X151 == TRUE ) || ! ( TOYSH_TTY_m == TRUE ) #
+# TOYSH_TTY == TRUE #
+# ! ( _X151_m == TRUE ) #
+# ! ( _X152 == TRUE ) || _X151 == TRUE #
+# ! ( _X152 == TRUE ) || ! ( TOYSH_TTY == TRUE ) #
+# ! ( _X152 == TRUE ) || ! ( TOYSH_TTY_m == TRUE ) #
+# ! ( _X151 == TRUE ) #
+# ! ( _X152_m == TRUE ) #
+# ! ( _X152 == TRUE ) || ! ( TOYSH_JOBCTL == TRUE ) #
+# ! ( _X152 == TRUE ) || ! ( TOYSH_JOBCTL_m == TRUE ) #
+# ! ( _X153 == TRUE ) #
+# ! ( _X153_m == TRUE ) #
+# ! ( TOYSH_FLOWCTL_m == TRUE ) #
+# ! ( TOYSH_FLOWCTL == TRUE ) #
+# ! ( _X154 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X154 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X154_m == TRUE ) #
+# ! ( _X155 == TRUE ) || _X154 == TRUE #
+# ! ( _X155 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X155 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X154 == TRUE ) #
+# ! ( _X155_m == TRUE ) #
+# ! ( _X155 == TRUE ) || ! ( TOYSH_FLOWCTL == TRUE ) #
+# ! ( _X155 == TRUE ) || ! ( TOYSH_FLOWCTL_m == TRUE ) #
+# ! ( _X156 == TRUE ) #
+# ! ( _X156_m == TRUE ) #
+# ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X157 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X157 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X157_m == TRUE ) #
+# ! ( _X158 == TRUE ) || _X157 == TRUE #
+# ! ( _X158 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X158 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X157 == TRUE ) #
+# ! ( _X158_m == TRUE ) #
+# ! ( _X158 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X158 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( _X159 == TRUE ) #
+# ! ( _X159_m == TRUE ) #
+# ! ( TOYSH_WILDCARDS_m == TRUE ) #
+# ! ( TOYSH_WILDCARDS == TRUE ) #
+# ! ( _X160 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X160 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( _X160_m == TRUE ) #
+# ! ( _X161 == TRUE ) || _X160 == TRUE #
+# ! ( _X161 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X161 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( _X160 == TRUE ) #
+# ! ( _X161_m == TRUE ) #
+# ! ( _X161 == TRUE ) || ! ( TOYSH_WILDCARDS == TRUE ) #
+# ! ( _X161 == TRUE ) || ! ( TOYSH_WILDCARDS_m == TRUE ) #
+# ! ( _X162 == TRUE ) #
+# ! ( _X162_m == TRUE ) #
+# ! ( TOYSH_PROCARGS_m == TRUE ) #
+# ! ( TOYSH_PROCARGS == TRUE ) #
+# ! ( _X163 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X163 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( _X163_m == TRUE ) #
+# ! ( _X164 == TRUE ) || _X163 == TRUE #
+# ! ( _X164 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X164 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( _X163 == TRUE ) #
+# ! ( _X164_m == TRUE ) #
+# ! ( _X164 == TRUE ) || ! ( TOYSH_PROCARGS == TRUE ) #
+# ! ( _X164 == TRUE ) || ! ( TOYSH_PROCARGS_m == TRUE ) #
+# ! ( _X165 == TRUE ) #
+# ! ( _X165_m == TRUE ) #
+# ! ( TOYSH_ENVVARS_m == TRUE ) #
+# ! ( TOYSH_ENVVARS == TRUE ) #
+# ! ( _X166 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X166 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# TOYSH_QUOTES == TRUE #
+# ! ( _X166_m == TRUE ) #
+# ! ( _X167 == TRUE ) || _X166 == TRUE #
+# ! ( _X167 == TRUE ) || ! ( TOYSH_QUOTES == TRUE ) #
+# ! ( _X167 == TRUE ) || ! ( TOYSH_QUOTES_m == TRUE ) #
+# ! ( _X166 == TRUE ) #
+# ! ( _X167_m == TRUE ) #
+# ! ( _X167 == TRUE ) || ! ( TOYSH_ENVVARS == TRUE ) #
+# ! ( _X167 == TRUE ) || ! ( TOYSH_ENVVARS_m == TRUE ) #
+# ! ( _X168 == TRUE ) #
+# ! ( _X168_m == TRUE ) #
+# ! ( TOYSH_LOCALS_m == TRUE ) #
+# ! ( TOYSH_LOCALS == TRUE ) #
+# ! ( _X169 == TRUE ) || ! ( TOYSH_ENVVARS == TRUE ) #
+# ! ( _X169 == TRUE ) || ! ( TOYSH_ENVVARS_m == TRUE ) #
+# TOYSH_ENVVARS == TRUE #
+# ! ( _X169_m == TRUE ) #
+# ! ( _X170 == TRUE ) || _X169 == TRUE #
+# ! ( _X170 == TRUE ) || ! ( TOYSH_ENVVARS == TRUE ) #
+# ! ( _X170 == TRUE ) || ! ( TOYSH_ENVVARS_m == TRUE ) #
+# ! ( _X169 == TRUE ) #
+# ! ( _X170_m == TRUE ) #
+# ! ( _X170 == TRUE ) || ! ( TOYSH_LOCALS == TRUE ) #
+# ! ( _X170 == TRUE ) || ! ( TOYSH_LOCALS_m == TRUE ) #
+# ! ( _X171 == TRUE ) #
+# ! ( _X171_m == TRUE ) #
+# ! ( TOYSH_ARRAYS_m == TRUE ) #
+# ! ( TOYSH_ARRAYS == TRUE ) #
+# ! ( _X172 == TRUE ) || ! ( TOYSH_LOCALS == TRUE ) #
+# ! ( _X172 == TRUE ) || ! ( TOYSH_LOCALS_m == TRUE ) #
+# TOYSH_LOCALS == TRUE #
+# ! ( _X172_m == TRUE ) #
+# ! ( _X173 == TRUE ) || _X172 == TRUE #
+# ! ( _X173 == TRUE ) || ! ( TOYSH_LOCALS == TRUE ) #
+# ! ( _X173 == TRUE ) || ! ( TOYSH_LOCALS_m == TRUE ) #
+# ! ( _X172 == TRUE ) #
+# ! ( _X173_m == TRUE ) #
+# ! ( _X173 == TRUE ) || ! ( TOYSH_ARRAYS == TRUE ) #
+# ! ( _X173 == TRUE ) || ! ( TOYSH_ARRAYS_m == TRUE ) #
+# ! ( _X174 == TRUE ) #
+# ! ( _X174_m == TRUE ) #
+# ! ( TOYSH_PIPES_m == TRUE ) #
+# ! ( TOYSH_PIPES == TRUE ) #
+# ! ( _X175 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X175 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X175_m == TRUE ) #
+# ! ( _X176 == TRUE ) || _X175 == TRUE #
+# ! ( _X176 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X176 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X175 == TRUE ) #
+# ! ( _X176_m == TRUE ) #
+# ! ( _X176 == TRUE ) || ! ( TOYSH_PIPES == TRUE ) #
+# ! ( _X176 == TRUE ) || ! ( TOYSH_PIPES_m == TRUE ) #
+# ! ( _X177 == TRUE ) #
+# ! ( _X177_m == TRUE ) #
+# ! ( TOYSH_BUILTINS_m == TRUE ) #
+# ! ( TOYSH_BUILTINS == TRUE ) #
+# ! ( _X178 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X178 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# TOYSH == TRUE #
+# ! ( _X178_m == TRUE ) #
+# ! ( _X179 == TRUE ) || _X178 == TRUE #
+# ! ( _X179 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X179 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X178 == TRUE ) #
+# ! ( _X179_m == TRUE ) #
+# ! ( _X179 == TRUE ) || ! ( TOYSH_BUILTINS == TRUE ) #
+# ! ( _X179 == TRUE ) || ! ( TOYSH_BUILTINS_m == TRUE ) #
+# ! ( _X180 == TRUE ) #
+# ! ( _X180_m == TRUE ) #
+# ! ( EXIT_m == TRUE ) #
+# ! ( EXIT == TRUE ) #
+# _X181 == TRUE #
+# ! ( _X181_m == TRUE ) #
+# ! ( _X182 == TRUE ) || _X181 == TRUE #
+# ! ( _X182 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X182 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X181 == TRUE ) #
+# ! ( _X182_m == TRUE ) #
+# ! ( _X182 == TRUE ) || ! ( EXIT == TRUE ) #
+# ! ( _X182 == TRUE ) || ! ( EXIT_m == TRUE ) #
+# ! ( _X183 == TRUE ) #
+# ! ( _X183_m == TRUE ) #
+# ! ( CD_m == TRUE ) #
+# ! ( CD == TRUE ) #
+# _X184 == TRUE #
+# ! ( _X184_m == TRUE ) #
+# ! ( _X185 == TRUE ) || _X184 == TRUE #
+# ! ( _X185 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X185 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X184 == TRUE ) #
+# ! ( _X185_m == TRUE ) #
+# ! ( _X185 == TRUE ) || ! ( CD == TRUE ) #
+# ! ( _X185 == TRUE ) || ! ( CD_m == TRUE ) #
+# ! ( _X186 == TRUE ) #
+# ! ( _X186_m == TRUE ) #
+# ! ( CD_P_m == TRUE ) #
+# ! ( CD_P == TRUE ) #
+# _X187 == TRUE #
+# ! ( _X187_m == TRUE ) #
+# ! ( _X188 == TRUE ) || _X187 == TRUE #
+# ! ( _X188 == TRUE ) || ! ( TOYSH == TRUE ) #
+# ! ( _X188 == TRUE ) || ! ( TOYSH_m == TRUE ) #
+# ! ( _X187 == TRUE ) #
+# ! ( _X188_m == TRUE ) #
+# ! ( _X188 == TRUE ) || ! ( CD_P == TRUE ) #
+# ! ( _X188 == TRUE ) || ! ( CD_P_m == TRUE ) #
+# ! ( _X189 == TRUE ) #
+# ! ( _X189_m == TRUE ) #
+# ! ( _X190 == TRUE ) #
+# ! ( _X190_m == TRUE ) #
+# ! ( _X190 == TRUE ) || TRUE == TRUE #
+# ! ( _X190 == TRUE ) || TRUE_m == TRUE #
+# ! ( _X191 == TRUE ) #
+# ! ( _X191_m == TRUE ) #
+# ! ( _X191 == TRUE ) || ! ( TRUE == TRUE ) #
+# ! ( _X191 == TRUE ) || ! ( TRUE_m == TRUE ) #
+# ! ( _X192 == TRUE ) #
+# ! ( _X192_m == TRUE ) #
+# ! ( _X193 == TRUE ) #
+# ! ( _X193_m == TRUE ) #
+# ! ( _X193 == TRUE ) || TTY == TRUE #
+# ! ( _X193 == TRUE ) || TTY_m == TRUE #
+# ! ( _X194 == TRUE ) #
+# ! ( _X194_m == TRUE ) #
+# ! ( _X194 == TRUE ) || ! ( TTY == TRUE ) #
+# ! ( _X194 == TRUE ) || ! ( TTY_m == TRUE ) #
+# ! ( _X195 == TRUE ) #
+# ! ( _X195_m == TRUE ) #
+# ! ( _X196 == TRUE ) #
+# ! ( _X196_m == TRUE ) #
+# ! ( _X196 == TRUE ) || UNAME == TRUE #
+# ! ( _X196 == TRUE ) || UNAME_m == TRUE #
+# ! ( _X197 == TRUE ) #
+# ! ( _X197_m == TRUE ) #
+# ! ( _X197 == TRUE ) || ! ( UNAME == TRUE ) #
+# ! ( _X197 == TRUE ) || ! ( UNAME_m == TRUE ) #
+# ! ( _X198 == TRUE ) #
+# ! ( _X198_m == TRUE ) #
+# ! ( _X199 == TRUE ) #
+# ! ( _X199_m == TRUE ) #
+# ! ( _X199 == TRUE ) || WHICH == TRUE #
+# ! ( _X199 == TRUE ) || WHICH_m == TRUE #
+# ! ( _X200 == TRUE ) #
+# ! ( _X200_m == TRUE ) #
+# ! ( _X200 == TRUE ) || ! ( WHICH == TRUE ) #
+# ! ( _X200 == TRUE ) || ! ( WHICH_m == TRUE ) #
+# ! ( _X201 == TRUE ) #
+# ! ( _X201_m == TRUE ) #
+# ! ( _X202 == TRUE ) #
+# ! ( _X202_m == TRUE ) #
+# ! ( _X202 == TRUE ) || YES == TRUE #
+# ! ( _X202 == TRUE ) || YES_m == TRUE #
+# ! ( _X203 == TRUE ) #
+# ! ( _X203_m == TRUE ) #
+# ! ( _X203 == TRUE ) || ! ( YES == TRUE ) #
+# ! ( _X203 == TRUE ) || ! ( YES_m == TRUE ) #
+# ! ( _X204 == TRUE ) #
+# ! ( _X204_m == TRUE ) #
+# ! ( TOYBOX == TRUE ) || TOYBOX_m == TRUE #
+# ! ( TOYBOX_FREE == TRUE ) || TOYBOX_FREE_m == TRUE #
+# ! ( TOYBOX_DEBUG == TRUE ) || TOYBOX_DEBUG_m == TRUE #
+# ! ( BASENAME == TRUE ) || BASENAME_m == TRUE #
+# ! ( BZCAT == TRUE ) || BZCAT_m == TRUE #
+# ! ( CAT == TRUE ) || CAT_m == TRUE #
+# ! ( CATV == TRUE ) || CATV_m == TRUE #
+# ! ( CHROOT == TRUE ) || CHROOT_m == TRUE #
+# ! ( CHVT == TRUE ) || CHVT_m == TRUE #
+# ! ( CKSUM == TRUE ) || CKSUM_m == TRUE #
+# ! ( COUNT == TRUE ) || COUNT_m == TRUE #
+# ! ( CP == TRUE ) || CP_m == TRUE #
+# ! ( DF == TRUE ) || DF_m == TRUE #
+# ! ( DF_PEDANTIC == TRUE ) || DF_PEDANTIC_m == TRUE #
+# ! ( DIRNAME == TRUE ) || DIRNAME_m == TRUE #
+# ! ( DMESG == TRUE ) || DMESG_m == TRUE #
+# ! ( ECHO == TRUE ) || ECHO_m == TRUE #
+# ! ( FALSE == TRUE ) || FALSE_m == TRUE #
+# ! ( HELLO == TRUE ) || HELLO_m == TRUE #
+# ! ( HELP == TRUE ) || HELP_m == TRUE #
+# ! ( HELP_LONG == TRUE ) || HELP_LONG_m == TRUE #
+# ! ( MDEV == TRUE ) || MDEV_m == TRUE #
+# ! ( MDEV_CONF == TRUE ) || MDEV_CONF_m == TRUE #
+# ! ( MKE2FS == TRUE ) || MKE2FS_m == TRUE #
+# ! ( MKE2FS_JOURNAL == TRUE ) || MKE2FS_JOURNAL_m == TRUE #
+# ! ( MKE2FS_GEN == TRUE ) || MKE2FS_GEN_m == TRUE #
+# ! ( MKE2FS_LABEL == TRUE ) || MKE2FS_LABEL_m == TRUE #
+# ! ( MKE2FS_EXTENDED == TRUE ) || MKE2FS_EXTENDED_m == TRUE #
+# ! ( MKFIFO == TRUE ) || MKFIFO_m == TRUE #
+# ! ( MKSWAP == TRUE ) || MKSWAP_m == TRUE #
+# ! ( NETCAT == TRUE ) || NETCAT_m == TRUE #
+# ! ( NETCAT_LISTEN == TRUE ) || NETCAT_LISTEN_m == TRUE #
+# ! ( ONEIT == TRUE ) || ONEIT_m == TRUE #
+# ! ( PATCH == TRUE ) || PATCH_m == TRUE #
+# ! ( PWD == TRUE ) || PWD_m == TRUE #
+# ! ( READLINK == TRUE ) || READLINK_m == TRUE #
+# ! ( READLINK_F == TRUE ) || READLINK_F_m == TRUE #
+# ! ( RMDIR == TRUE ) || RMDIR_m == TRUE #
+# ! ( SED == TRUE ) || SED_m == TRUE #
+# ! ( SEQ == TRUE ) || SEQ_m == TRUE #
+# ! ( SHA1SUM == TRUE ) || SHA1SUM_m == TRUE #
+# ! ( SLEEP == TRUE ) || SLEEP_m == TRUE #
+# ! ( SORT == TRUE ) || SORT_m == TRUE #
+# ! ( SORT_BIG == TRUE ) || SORT_BIG_m == TRUE #
+# ! ( SYNC == TRUE ) || SYNC_m == TRUE #
+# ! ( TEE == TRUE ) || TEE_m == TRUE #
+# ! ( TOUCH == TRUE ) || TOUCH_m == TRUE #
+# ! ( TOYSH == TRUE ) || TOYSH_m == TRUE #
+# ! ( TOYSH_TTY == TRUE ) || TOYSH_TTY_m == TRUE #
+# ! ( TOYSH_PROFILE == TRUE ) || TOYSH_PROFILE_m == TRUE #
+# ! ( TOYSH_JOBCTL == TRUE ) || TOYSH_JOBCTL_m == TRUE #
+# ! ( TOYSH_FLOWCTL == TRUE ) || TOYSH_FLOWCTL_m == TRUE #
+# ! ( TOYSH_QUOTES == TRUE ) || TOYSH_QUOTES_m == TRUE #
+# ! ( TOYSH_WILDCARDS == TRUE ) || TOYSH_WILDCARDS_m == TRUE #
+# ! ( TOYSH_PROCARGS == TRUE ) || TOYSH_PROCARGS_m == TRUE #
+# ! ( TOYSH_ENVVARS == TRUE ) || TOYSH_ENVVARS_m == TRUE #
+# ! ( TOYSH_LOCALS == TRUE ) || TOYSH_LOCALS_m == TRUE #
+# ! ( TOYSH_ARRAYS == TRUE ) || TOYSH_ARRAYS_m == TRUE #
+# ! ( TOYSH_PIPES == TRUE ) || TOYSH_PIPES_m == TRUE #
+# ! ( TOYSH_BUILTINS == TRUE ) || TOYSH_BUILTINS_m == TRUE #
+# ! ( EXIT == TRUE ) || EXIT_m == TRUE #
+# ! ( CD == TRUE ) || CD_m == TRUE #
+# ! ( CD_P == TRUE ) || CD_P_m == TRUE #
+# ! ( TRUE == TRUE ) || TRUE_m == TRUE #
+# ! ( TTY == TRUE ) || TTY_m == TRUE #
+# ! ( UNAME == TRUE ) || UNAME_m == TRUE #
+# ! ( WHICH == TRUE ) || WHICH_m == TRUE #
+# ! ( YES == TRUE ) || YES_m == TRUE #
+# DMESG == TRUE || ! ( DMESG_m == TRUE ) #
+# SED == TRUE || ! ( SED_m == TRUE ) #
+# PATCH == TRUE || ! ( PATCH_m == TRUE ) #
+# BASENAME == TRUE || ! ( BASENAME_m == TRUE ) #
+# CATV == TRUE || ! ( CATV_m == TRUE ) #
+# TOYSH_ENVVARS == TRUE || ! ( TOYSH_ENVVARS_m == TRUE ) #
+# TOYSH == TRUE || ! ( TOYSH_m == TRUE ) #
+# MKE2FS_LABEL == TRUE || ! ( MKE2FS_LABEL_m == TRUE ) #
+# SORT == TRUE || ! ( SORT_m == TRUE ) #
+# TRUE == TRUE || ! ( TRUE_m == TRUE ) #
+# TOYSH_PROCARGS == TRUE || ! ( TOYSH_PROCARGS_m == TRUE ) #
+# MDEV == TRUE || ! ( MDEV_m == TRUE ) #
+# DF == TRUE || ! ( DF_m == TRUE ) #
+# READLINK == TRUE || ! ( READLINK_m == TRUE ) #
+# TOYBOX_DEBUG == TRUE || ! ( TOYBOX_DEBUG_m == TRUE ) #
+# TOYSH_TTY == TRUE || ! ( TOYSH_TTY_m == TRUE ) #
+# EXIT == TRUE || ! ( EXIT_m == TRUE ) #
+# BZCAT == TRUE || ! ( BZCAT_m == TRUE ) #
+# ONEIT == TRUE || ! ( ONEIT_m == TRUE ) #
+# TOYSH_JOBCTL == TRUE || ! ( TOYSH_JOBCTL_m == TRUE ) #
+# DIRNAME == TRUE || ! ( DIRNAME_m == TRUE ) #
+# MKE2FS_EXTENDED == TRUE || ! ( MKE2FS_EXTENDED_m == TRUE ) #
+# TOYBOX_FREE == TRUE || ! ( TOYBOX_FREE_m == TRUE ) #
+# CP == TRUE || ! ( CP_m == TRUE ) #
+# TOYBOX == TRUE || ! ( TOYBOX_m == TRUE ) #
+# NETCAT_LISTEN == TRUE || ! ( NETCAT_LISTEN_m == TRUE ) #
+# UNAME == TRUE || ! ( UNAME_m == TRUE ) #
+# MDEV_CONF == TRUE || ! ( MDEV_CONF_m == TRUE ) #
+# MKE2FS == TRUE || ! ( MKE2FS_m == TRUE ) #
+# FALSE == TRUE || ! ( FALSE_m == TRUE ) #
+# TOYSH_PROFILE == TRUE || ! ( TOYSH_PROFILE_m == TRUE ) #
+# TOYSH_ARRAYS == TRUE || ! ( TOYSH_ARRAYS_m == TRUE ) #
+# MKE2FS_JOURNAL == TRUE || ! ( MKE2FS_JOURNAL_m == TRUE ) #
+# COUNT == TRUE || ! ( COUNT_m == TRUE ) #
+# DF_PEDANTIC == TRUE || ! ( DF_PEDANTIC_m == TRUE ) #
+# SEQ == TRUE || ! ( SEQ_m == TRUE ) #
+# MKSWAP == TRUE || ! ( MKSWAP_m == TRUE ) #
+# TOYSH_PIPES == TRUE || ! ( TOYSH_PIPES_m == TRUE ) #
+# TOYSH_BUILTINS == TRUE || ! ( TOYSH_BUILTINS_m == TRUE ) #
+# HELP == TRUE || ! ( HELP_m == TRUE ) #
+# TOYSH_LOCALS == TRUE || ! ( TOYSH_LOCALS_m == TRUE ) #
+# TEE == TRUE || ! ( TEE_m == TRUE ) #
+# MKE2FS_GEN == TRUE || ! ( MKE2FS_GEN_m == TRUE ) #
+# SLEEP == TRUE || ! ( SLEEP_m == TRUE ) #
+# PWD == TRUE || ! ( PWD_m == TRUE ) #
+# WHICH == TRUE || ! ( WHICH_m == TRUE ) #
+# SHA1SUM == TRUE || ! ( SHA1SUM_m == TRUE ) #
+# CD == TRUE || ! ( CD_m == TRUE ) #
+# CD_P == TRUE || ! ( CD_P_m == TRUE ) #
+# NETCAT == TRUE || ! ( NETCAT_m == TRUE ) #
+# TOYSH_FLOWCTL == TRUE || ! ( TOYSH_FLOWCTL_m == TRUE ) #
+# CAT == TRUE || ! ( CAT_m == TRUE ) #
+# ECHO == TRUE || ! ( ECHO_m == TRUE ) #
+# TOYSH_WILDCARDS == TRUE || ! ( TOYSH_WILDCARDS_m == TRUE ) #
+# SYNC == TRUE || ! ( SYNC_m == TRUE ) #
+# READLINK_F == TRUE || ! ( READLINK_F_m == TRUE ) #
+# YES == TRUE || ! ( YES_m == TRUE ) #
+# CHROOT == TRUE || ! ( CHROOT_m == TRUE ) #
+# CHVT == TRUE || ! ( CHVT_m == TRUE ) #
+# TOYSH_QUOTES == TRUE || ! ( TOYSH_QUOTES_m == TRUE ) #
+# RMDIR == TRUE || ! ( RMDIR_m == TRUE ) #
+# HELLO == TRUE || ! ( HELLO_m == TRUE ) #
+# CKSUM == TRUE || ! ( CKSUM_m == TRUE ) #
+# SORT_BIG == TRUE || ! ( SORT_BIG_m == TRUE ) #
+# MKFIFO == TRUE || ! ( MKFIFO_m == TRUE ) #
+# HELP_LONG == TRUE || ! ( HELP_LONG_m == TRUE ) #
+# TTY == TRUE || ! ( TTY_m == TRUE ) #
+# TOUCH == TRUE || ! ( TOUCH_m == TRUE ) #

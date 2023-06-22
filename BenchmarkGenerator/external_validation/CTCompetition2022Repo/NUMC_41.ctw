@@ -1,0 +1,15 @@
+Model NUMC_41
+Parameters:
+Par0: [54 .. 91]
+Par1: [-34 .. 12]
+Par2: [-8 .. 83]
+
+Constraints:
+# (((not (Par2 >= 73)) => (not (Par2 >= 83))) OR ((not (Par1 != -13)) => Par2 >= 0)) #
+# (((Par1 <= -16 OR (not (Par2 < 70))) <=> ((not (Par1 <= -17)) <=> (not (Par2 > 17)))) OR (((not (Par0 < 83)) OR (not (Par1 > -27))) <=> ((not (Par1 != -31)) => Par1 = 9))) #
+# ((Par1 <= -7 <=> (not (Par1 < -22))) AND ((not (Par0 = 83)) => (not (Par0 = 83)))) #
+# (((not (Par2 = 53)) OR Par2 != 79) AND (Par0 < 59 OR (not (Par2 > 68)))) #
+# (((Par1 != 12 <=> (not (Par1 >= -29))) <=> (Par1 > 4 OR (not (Par2 > 13)))) => ((Par2 <= 67 AND (not (Par2 <= 51))) AND (Par2 = 28 OR Par1 = -12))) #
+# ((Par0 != 79 AND (not (Par0 < 73))) OR ((not (Par1 = -32)) OR (not (Par1 >= -5)))) #
+# ((((not (Par1 <= -6)) OR Par2 > 80) => (Par0 = 90 OR Par1 = -20)) => ((Par1 = -30 AND Par2 < 66) <=> ((not (Par2 = 16)) => (not (Par2 = 1))))) #
+# (((Par0 <= 70 <=> (not (Par2 > 41))) AND ((not (Par2 <= 25)) <=> (not (Par0 <= 72)))) => (((not (Par1 <= -19)) AND (not (Par0 < 55))) OR (Par0 <= 63 OR (not (Par1 > -19))))) #

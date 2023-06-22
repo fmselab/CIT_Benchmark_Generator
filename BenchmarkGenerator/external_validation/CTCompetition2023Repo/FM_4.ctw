@@ -1,0 +1,46 @@
+//Model MParkingAssistantv5 
+Model FM_4
+
+Parameters :
+ParkingAssistant : Boolean
+Sensors : Boolean
+DistanceSensors : Boolean
+SensorFusion : Boolean
+DistanceSensorTypes : Boolean
+InfraredSensor : Boolean
+UltrasonicSensor : Boolean
+DrivenWaySensors : Boolean
+PulseLengthSensorV2 : Boolean
+DirectionPositionSensors : Boolean
+DirectionSensors : Boolean
+CompassSensors : Boolean
+PositionSensors : Boolean
+GPSSensor : Boolean
+Controller : Boolean
+ControllerDir : {ControllerWithDir,ControllerWithoutDir,NONE}
+LocationBasedServ : Boolean 
+
+Constraints :
+# ParkingAssistant == true #
+# Sensors == true <=> ParkingAssistant == true #
+# DistanceSensors == true <=> Sensors == true #
+# SensorFusion == true => DistanceSensors == true #
+# DistanceSensorTypes == true <=> DistanceSensors == true #
+# DistanceSensorTypes == true => InfraredSensor == true || UltrasonicSensor == true #
+# InfraredSensor == true => DistanceSensorTypes == true #
+# UltrasonicSensor == true => DistanceSensorTypes == true #
+# DrivenWaySensors == true <=> Sensors == true #
+# PulseLengthSensorV2 == true <=> DrivenWaySensors == true #
+# DirectionPositionSensors == true <=> Sensors == true #
+# DirectionPositionSensors == true => DirectionSensors == true || PositionSensors == true #
+# DirectionSensors == true => DirectionPositionSensors == true #
+# CompassSensors == true <=> DirectionSensors == true #
+# PositionSensors == true => DirectionPositionSensors == true #
+# GPSSensor == true <=> PositionSensors == true #
+# Controller == true <=> ParkingAssistant == true #
+# ControllerDir != NONE <=> Controller == true #
+# LocationBasedServ == true => Controller == true #
+# SensorFusion == true => InfraredSensor == true #
+# SensorFusion == true => UltrasonicSensor == true #
+# ControllerDir == ControllerWithDir => DirectionSensors == true #
+# LocationBasedServ == true => PositionSensors == true #

@@ -1,0 +1,40 @@
+Model CNF_19
+Parameters:
+Par0: {PAR0_0}
+Par1: {PAR1_0,PAR1_1,PAR1_2,PAR1_3}
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8,PAR2_9,PAR2_10,PAR2_11,PAR2_12,PAR2_13,PAR2_14}
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8,PAR3_9,PAR3_10,PAR3_11,PAR3_12,PAR3_13}
+Par4 : Boolean
+Par5 : Boolean
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4}
+Par7 : Boolean
+Par8 : Boolean
+Par9 : Boolean
+Par10 : Boolean
+Par11: {PAR11_0,PAR11_1,PAR11_2,PAR11_3}
+Par12: {PAR12_0,PAR12_1,PAR12_2,PAR12_3,PAR12_4,PAR12_5,PAR12_6,PAR12_7,PAR12_8,PAR12_9,PAR12_10,PAR12_11,PAR12_12,PAR12_13}
+Par13 : Boolean
+Par14 : Boolean
+Par15: {PAR15_0,PAR15_1,PAR15_2,PAR15_3,PAR15_4,PAR15_5,PAR15_6,PAR15_7,PAR15_8,PAR15_9,PAR15_10,PAR15_11,PAR15_12,PAR15_13,PAR15_14}
+Par16: {PAR16_0,PAR16_1,PAR16_2,PAR16_3}
+Par17 : Boolean
+Par18 : Boolean
+Par19: {PAR19_0}
+Par20: {PAR20_0,PAR20_1,PAR20_2,PAR20_3,PAR20_4,PAR20_5,PAR20_6,PAR20_7,PAR20_8,PAR20_9,PAR20_10,PAR20_11,PAR20_12}
+Par21 : Boolean
+Par22 : Boolean
+Par23 : Boolean
+Par24: {PAR24_0,PAR24_1,PAR24_2,PAR24_3,PAR24_4}
+Par25 : Boolean
+Par26: {PAR26_0,PAR26_1,PAR26_2,PAR26_3,PAR26_4,PAR26_5,PAR26_6,PAR26_7,PAR26_8,PAR26_9,PAR26_10,PAR26_11}
+Par27: {PAR27_0,PAR27_1,PAR27_2,PAR27_3,PAR27_4,PAR27_5,PAR27_6,PAR27_7,PAR27_8,PAR27_9,PAR27_10,PAR27_11}
+
+Constraints:
+# ((((not (Par4 = false)) OR Par12 != PAR12_5) AND (Par0 = PAR0_0 OR (not (Par26 = PAR26_9)))) AND ((Par2 = PAR2_2 OR Par24 != PAR24_4) AND (Par5 != false OR (not (Par14 != true))))) #
+# ((Par4 != false OR (not (Par8 != false))) AND (Par7 != false OR (not (Par26 = PAR26_2)))) #
+# (Par2 != PAR2_0 OR (not (Par0 != PAR0_0))) #
+# ((Par21 = true OR (not (Par27 != PAR27_3))) AND ((not (Par9 = false)) OR Par2 != PAR2_7)) #
+# (((Par4 != true OR Par6 = PAR6_0) AND ((not (Par15 = PAR15_0)) OR Par14 = true)) AND (((not (Par20 = PAR20_9)) OR (not (Par27 = PAR27_3))) AND (Par15 = PAR15_13 OR (not (Par7 != true))))) #
+# (((Par9 = true OR Par22 != false) AND (Par18 != true OR Par15 = PAR15_6)) AND (((not (Par8 = true)) OR (not (Par4 = true))) AND (Par8 = true OR (not (Par15 != PAR15_13))))) #
+# (Par1 != PAR1_2 AND Par19 = PAR19_0) #
+# (not (Par27 != PAR27_3)) #

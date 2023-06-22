@@ -1,0 +1,36 @@
+Model MCar 
+
+Parameters :
+Car : Boolean
+Carbody : Boolean
+Radio : Boolean
+Ports : Boolean
+USB : Boolean
+CD : Boolean
+Navigation : Boolean
+DigitalCards : { Europe USA NONE }
+GPSAntenna : Boolean
+Bluetooth : Boolean
+Gearbox : { Manual Automatic NONE }
+GearboxTest : Boolean 
+
+Constraints :
+# Car == TRUE #
+# Carbody == TRUE <=> Car == TRUE #
+# Radio == TRUE => Car == TRUE #
+# Ports == TRUE => Radio == TRUE #
+# Ports == TRUE => USB == TRUE || CD == TRUE #
+# USB == TRUE => Ports == TRUE #
+# CD == TRUE => Ports == TRUE #
+# Navigation == TRUE => Radio == TRUE #
+# DigitalCards != NONE => Navigation == TRUE #
+# GPSAntenna == TRUE <=> Navigation == TRUE #
+# Bluetooth == TRUE => Radio == TRUE #
+# Gearbox != NONE <=> Car == TRUE #
+# GearboxTest == TRUE <=> Car == TRUE #
+# Navigation == TRUE => USB == TRUE #
+# DigitalCards == Europe => Gearbox != NONE #
+# GPSAntenna == TRUE => USB == TRUE #
+# Carbody == TRUE && Gearbox != NONE #
+# Gearbox != NONE && Radio == TRUE => Navigation == TRUE #
+# Carbody == TRUE => Gearbox == Automatic && ! ( Bluetooth == TRUE ) #

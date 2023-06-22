@@ -1,0 +1,19 @@
+Model MMoviesApp 
+
+Parameters :
+MoviesApp : Boolean
+GUI : { Thin Rich NONE }
+DB : { Local Remote NONE }
+CachePolicy : Boolean
+Network : { Wifi Bluetooth NONE }
+GPS : Boolean
+Built_In : Boolean 
+
+Constraints :
+# MoviesApp == TRUE #
+# GUI != NONE <=> MoviesApp == TRUE #
+# DB != NONE <=> MoviesApp == TRUE #
+# CachePolicy == TRUE <=> DB == Remote #
+# Network != NONE <=> MoviesApp == TRUE #
+# GPS == TRUE => MoviesApp == TRUE #
+# Built_In == TRUE => GPS == TRUE #

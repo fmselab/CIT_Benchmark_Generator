@@ -1,0 +1,37 @@
+Model CNF_4
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3}
+Par1 : Boolean
+Par2 : Boolean
+Par3 : Boolean
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3,PAR4_4,PAR4_5,PAR4_6,PAR4_7,PAR4_8,PAR4_9,PAR4_10,PAR4_11}
+Par5 : Boolean
+Par6 : Boolean
+Par7 : Boolean
+Par8 : Boolean
+Par9 : Boolean
+Par10: {PAR10_0,PAR10_1,PAR10_2}
+Par11 : Boolean
+Par12 : Boolean
+Par13 : Boolean
+Par14: {PAR14_0,PAR14_1,PAR14_2,PAR14_3,PAR14_4,PAR14_5}
+Par15: {PAR15_0,PAR15_1,PAR15_2,PAR15_3,PAR15_4,PAR15_5,PAR15_6,PAR15_7,PAR15_8,PAR15_9,PAR15_10,PAR15_11,PAR15_12,PAR15_13}
+Par16 : Boolean
+Par17 : Boolean
+Par18 : Boolean
+Par19 : Boolean
+Par20: {PAR20_0,PAR20_1,PAR20_2,PAR20_3,PAR20_4,PAR20_5,PAR20_6,PAR20_7,PAR20_8,PAR20_9,PAR20_10}
+Par21 : Boolean
+Par22 : Boolean
+Par23 : Boolean
+Par24: {PAR24_0,PAR24_1,PAR24_2,PAR24_3,PAR24_4,PAR24_5,PAR24_6}
+Par25: {PAR25_0,PAR25_1,PAR25_2,PAR25_3,PAR25_4,PAR25_5,PAR25_6,PAR25_7,PAR25_8,PAR25_9,PAR25_10,PAR25_11}
+Par26: {PAR26_0,PAR26_1,PAR26_2,PAR26_3,PAR26_4,PAR26_5,PAR26_6,PAR26_7,PAR26_8,PAR26_9,PAR26_10}
+Par27 : Boolean
+
+Constraints:
+# (((not (Par14 = PAR14_3)) OR Par17 != true) AND (Par11 = true OR (not (Par27 != false)))) #
+# (((Par8 != true OR Par5 != true) AND ((not (Par5 != true)) OR Par9 = false)) AND ((Par24 != PAR24_3 OR (not (Par14 = PAR14_4))) AND ((not (Par0 = PAR0_1)) OR (not (Par13 != true))))) #
+# (((not (Par9 != true)) OR Par9 != false) AND (Par4 != PAR4_8 OR Par14 != PAR14_3)) #
+# ((((not (Par26 != PAR26_7)) AND Par11 = true) AND (Par2 != true AND Par3 = false)) AND (((not (Par6 != false)) AND (not (Par24 = PAR24_0))) AND (Par7 != true AND Par15 != PAR15_4))) #
+# (((Par1 != true OR Par19 = true) AND ((not (Par27 = false)) OR Par15 = PAR15_2)) AND ((Par13 = true OR Par1 != true) AND ((not (Par2 != true)) OR Par27 != true))) #

@@ -1,0 +1,29 @@
+//Model MCarBodyv4 
+
+Model FM_8
+
+
+Parameters :
+CarBody : Boolean
+MultimediaDevices : Boolean
+Radio : {MonochromeRadioDisplay,ColorRadioDisplay,NONE}
+Navigation : Boolean
+DisplayType : {MonochromeNavDisplay,ColorNavDisplay,NONE}
+DataStorage : Boolean
+HardDiskDrive : Boolean
+DVDDrive : Boolean
+DVDEntertainment : Boolean
+OtherFeatures : Boolean 
+Constraints :
+# CarBody == true #
+# MultimediaDevices == true => CarBody == true #
+# Radio != NONE => MultimediaDevices == true #
+# Navigation == true => MultimediaDevices == true #
+# DisplayType != NONE <=> Navigation == true #
+# DataStorage == true => Navigation == true #
+# DataStorage == true => HardDiskDrive == true || DVDDrive == true #
+# HardDiskDrive == true => DataStorage == true #
+# DVDDrive == true => DataStorage == true #
+# DVDEntertainment == true => MultimediaDevices == true #
+# OtherFeatures == true <=> CarBody == true #
+# DVDEntertainment == true => DVDDrive == true #

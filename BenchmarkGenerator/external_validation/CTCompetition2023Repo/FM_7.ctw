@@ -1,0 +1,15 @@
+//Model MBoeingv3 
+
+Model FM_7
+
+Parameters :
+Boeing : Boolean
+SeatsConfiguration : {Rows3Passengers210,Rows3Passengers290,NONE}
+FuelCapacity : Boolean
+Liters138700 : Boolean 
+
+Constraints :
+# Boeing == true #
+# SeatsConfiguration != NONE <=> Boeing == true #
+# FuelCapacity == true <=> Boeing == true #
+# Liters138700 == true <=> FuelCapacity == true #

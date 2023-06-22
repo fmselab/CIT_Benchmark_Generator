@@ -1,0 +1,8 @@
+Model NUMC_6
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4,PAR0_5,PAR0_6,PAR0_7,PAR0_8,PAR0_9,PAR0_10,PAR0_11}
+Par1: [34 .. 91]
+Par2: [-47 .. -26]
+
+Constraints:
+# ((((not (Par0 = PAR0_10)) AND (not (Par2 != -43))) OR (Par0 = PAR0_9 <=> (not (Par2 > -43)))) => (((not (Par2 > -30)) <=> (not (Par2 != -41))) => (Par2 >= -35 AND (not (Par0 = PAR0_2))))) #
