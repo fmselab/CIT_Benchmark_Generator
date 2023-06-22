@@ -8,7 +8,9 @@ Alarm : Boolean
 Siren : Boolean
 VisualAlarm : Boolean
 TemperatureControl : Boolean
-Heating : Boolean Constraints :
+Heating : Boolean 
+
+Constraints :
 # SmartHotel == true #
 # Automatedillumination == true => SmartHotel == true #
 # Security == true => SmartHotel == true #
