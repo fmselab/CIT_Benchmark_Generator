@@ -7,4 +7,5 @@
 
 
 BenchmarkGeneratorGUI/target/*
+BenchmarkGenerator/target/*
 /BenchmarkGenerator/.DS_Store
