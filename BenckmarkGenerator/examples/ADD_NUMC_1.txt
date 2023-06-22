@@ -1,0 +1,22 @@
+[System]
+-- specify system name
+Name: ADD_NUMC_1
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4
+Par3 (boolean) : true, false
+Par4 (int) : -65, -64, -63, -62, -61, -60, -59, -58, -57, -56, -55, -54, -53, -52, -51, -50, -49, -48, -47, -46, -45, -44, -43, -42, -41, -40, -39, -38, -37, -36, -35, -34, -33, -32, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5
+Par6 (int) : -44, -43, -42, -41, -40, -39, -38, -37, -36, -35, -34, -33, -32, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11, PAR7_12, PAR7_13, PAR7_14, PAR7_15, PAR7_16, PAR7_17, PAR7_18, PAR7_19, PAR7_20, PAR7_21, PAR7_22, PAR7_23, PAR7_24, PAR7_25, PAR7_26, PAR7_27, PAR7_28, PAR7_29, PAR7_30, PAR7_31, PAR7_32, PAR7_33, PAR7_34, PAR7_35, PAR7_36, PAR7_37, PAR7_38
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((! (Par3 != true)) => (Par5 != "PAR5_1"))&&((Par5 != "PAR5_1") => (! (Par3 != true)))) && ((! (Par8 = false)) || (! (Par0 != true)))
+(((! (Par6 <= -23)) || (! (Par5 != "PAR5_1"))) => ((! (Par8 = false)) || (Par5 != "PAR5_2")))&&(((! (Par8 = false)) || (Par5 != "PAR5_2")) => ((! (Par6 <= -23)) || (! (Par5 != "PAR5_1"))))
+

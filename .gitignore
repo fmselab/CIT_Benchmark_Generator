@@ -4,7 +4,3 @@
 
 
 .DS_Store 
-
-
-BenchmarkGeneratorGUI/target/*
-/BenchmarkGenerator/.DS_Store

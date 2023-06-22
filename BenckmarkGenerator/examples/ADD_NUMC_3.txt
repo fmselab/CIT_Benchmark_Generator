@@ -1,0 +1,20 @@
+[System]
+-- specify system name
+Name: ADD_NUMC_3
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6, PAR0_7, PAR0_8, PAR0_9, PAR0_10, PAR0_11, PAR0_12, PAR0_13, PAR0_14, PAR0_15
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8, PAR1_9, PAR1_10, PAR1_11, PAR1_12, PAR1_13, PAR1_14, PAR1_15, PAR1_16, PAR1_17, PAR1_18, PAR1_19, PAR1_20, PAR1_21, PAR1_22
+Par2 (int) : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89
+Par3 (int) : -53, -52, -51, -50, -49, -48, -47, -46, -45, -44, -43, -42, -41, -40, -39, -38, -37, -36, -35, -34, -33, -32, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14, -13, -12, -11, -10, -9, -8, -7, -6, -5, -4, -3, -2, -1
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12, PAR4_13, PAR4_14, PAR4_15, PAR4_16, PAR4_17, PAR4_18, PAR4_19, PAR4_20, PAR4_21, PAR4_22, PAR4_23, PAR4_24, PAR4_25, PAR4_26, PAR4_27, PAR4_28, PAR4_29, PAR4_30, PAR4_31, PAR4_32, PAR4_33, PAR4_34, PAR4_35, PAR4_36, PAR4_37, PAR4_38, PAR4_39, PAR4_40, PAR4_41, PAR4_42, PAR4_43, PAR4_44, PAR4_45, PAR4_46, PAR4_47, PAR4_48
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11
+
+[Constraint]
+-- this section is also optional
+(! (Par4 != "PAR4_33")) || (Par1 != "PAR1_7")
+((Par2 = 16) => (! (Par2 < 33)))&&((! (Par2 < 33)) => (Par2 = 16))
+((Par2 <= 72) && (Par4 = "PAR4_36")) => ((Par4 = "PAR4_10") => (Par2 = 20))
+
