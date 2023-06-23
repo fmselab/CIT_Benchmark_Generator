@@ -36,6 +36,7 @@ import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.RuleEvaluator;
 import ctwedge.util.smt.SMTConstraintChecker;
+import ctwedge.util.smt.SMTModelTranslator;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import generators.Track;
@@ -441,12 +442,11 @@ public class Model {
 		SolverContext ctx = SolverContextFactory.createSolverContext(config, logger, shutdown.getNotifier(),
 				Solvers.SMTINTERPOL);
 		ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
-		Map<String, String> declaredElements = new HashMap<>();
-		Map<ctwedge.ctWedge.Parameter, Formula> variables = new HashMap<ctwedge.ctWedge.Parameter, Formula>();
 
 		// Create the context
-		prover = SMTConstraintChecker.createCtxFromModel(citModel, citModel.getConstraints(), ctx, declaredElements,
-				variables, prover);
+		SMTModelTranslator trans = new SMTModelTranslator();
+		
+		prover = trans.createCtxFromModel(citModel, citModel.getConstraints(), ctx, prover);
 		return prover;
 	}
 
