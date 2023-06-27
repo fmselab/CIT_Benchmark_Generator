@@ -37,6 +37,7 @@ import ctwedge.util.ext.Utility;
 import ctwedge.util.validator.RuleEvaluator;
 import ctwedge.util.smt.SMTConstraintChecker;
 import ctwedge.util.smt.SMTModelTranslator;
+import ctwedge.util.smt.SMTParameterAdder.EnumTreatment;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import generators.Track;
@@ -444,7 +445,7 @@ public class Model {
 		ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
 
 		// Create the context
-		SMTModelTranslator trans = new SMTModelTranslator();
+		SMTModelTranslator trans = new SMTModelTranslator(EnumTreatment.INTEGER);
 		
 		prover = trans.createCtxFromModel(citModel, citModel.getConstraints(), ctx, prover);
 		return prover;

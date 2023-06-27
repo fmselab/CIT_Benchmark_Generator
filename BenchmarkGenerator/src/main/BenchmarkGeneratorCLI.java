@@ -30,7 +30,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	private static final Logger LOGGER = LogManager.getRootLogger();
 
-	@Parameters(index = "0", description = "The category for the benchmark to be generated (UNIFORM_BOOLEAN, UNIFORM_ALL, MCA, BOOLC, MCAC, NUMC, HIGHLY_CONSTRAINED, CNF).")
+	@Parameters(index = "0", description = "The category for the benchmark to be generated (UNIFORM_BOOLEAN, UNIFORM_ALL, MCA, BOOLC, MCAC, NUMC).")
 	String trackStr;
 
 	@Parameters(index = "1", description = "The number of benchmarks to generate.")
