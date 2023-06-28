@@ -38,7 +38,7 @@ public class TestBenchmarkGeneratorCLI {
 	 * Constants for test execution, as presented in the paper
 	 */
 	static int N_BENCHMARKS = 10;
-	static int N = 1000;
+	static double P = 0.75;
 	static double EPSILON = 0.1;
 	static double RATIO_TUPLE = 0.3;
 	static double RATIO_TEST = 0.1;
@@ -188,7 +188,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.NUMC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
+		GeneratorConfiguration.P = P;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -616,7 +616,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.MCAC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
+		GeneratorConfiguration.P = P;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -809,7 +809,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
+		GeneratorConfiguration.P = P;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -909,7 +909,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.BOOLC;
 
 		// TestValidityRatio
-		GeneratorConfiguration.P = N;
+		GeneratorConfiguration.P = P;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
@@ -1232,7 +1232,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
+		GeneratorConfiguration.P = P;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -1552,7 +1552,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.MCAC;
 
 		// TestValidityRatio
-		GeneratorConfiguration.P = N;
+		GeneratorConfiguration.P = P;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
