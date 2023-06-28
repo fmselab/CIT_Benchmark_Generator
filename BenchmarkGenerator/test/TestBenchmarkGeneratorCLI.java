@@ -9,7 +9,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
@@ -189,7 +188,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.NUMC;
 
 		// Check both ratios
-		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.P = N;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -254,6 +253,11 @@ public class TestBenchmarkGeneratorCLI {
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			} else {
+				double ratio = m.getTestValidityRatio();
+				// The ratio is not exact. But we can check the interval based on EPSILON
+				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
 			}
 
 			// Check the number of constraints
@@ -612,7 +616,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.MCAC;
 
 		// Check both ratios
-		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.P = N;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -681,6 +685,11 @@ public class TestBenchmarkGeneratorCLI {
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			} else {
+				double ratio = m.getTestValidityRatio();
+				// The ratio is not exact. But we can check the interval based on EPSILON
+				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
 			}
 
 			// Check that the model have not been exported
@@ -800,7 +809,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.P = N;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -873,6 +882,11 @@ public class TestBenchmarkGeneratorCLI {
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			} else {
+				double ratio = m.getTestValidityRatio();
+				// The ratio is not exact. But we can check the interval based on EPSILON
+				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
 			}
 		}
 	}
@@ -895,7 +909,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.BOOLC;
 
 		// TestValidityRatio
-		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.P = N;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
@@ -964,6 +978,11 @@ public class TestBenchmarkGeneratorCLI {
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			} else {
+				double ratio = m.getTestValidityRatio();
+				// The ratio is not exact. But we can check the interval based on EPSILON
+				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
 			}
 		}
 	}
@@ -1213,7 +1232,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.P = N;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.RATIO = RATIO_TUPLE;
@@ -1268,6 +1287,11 @@ public class TestBenchmarkGeneratorCLI {
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			} else {
+				double ratio = m.getTestValidityRatio();
+				// The ratio is not exact. But we can check the interval based on EPSILON
+				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
 			}
 
 			// Check that the model have not been exported
@@ -1528,7 +1552,7 @@ public class TestBenchmarkGeneratorCLI {
 		GeneratorConfiguration.TRACK = Track.MCAC;
 
 		// TestValidityRatio
-		GeneratorConfiguration.N = N;
+		GeneratorConfiguration.P = N;
 		GeneratorConfiguration.EPSILON = EPSILON;
 		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
 		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
@@ -1585,6 +1609,11 @@ public class TestBenchmarkGeneratorCLI {
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
 				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+			} else {
+				double ratio = m.getTestValidityRatio();
+				// The ratio is not exact. But we can check the interval based on EPSILON
+				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
 			}
 
 			// Check the number of constraints

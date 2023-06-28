@@ -94,7 +94,7 @@ public class BenchmarkTypeChangeHandler implements ActionListener {
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")).setEnabled(!lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatioTest")).setEnabled(!lock);
 		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtEpsilonTest")).setEnabled(!lock);
-		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtTTest")).setEnabled(!lock);
+		parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtPTest")).setEnabled(!lock);
 		
 		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTestRatio"))).setSelected(!lock);
 		((JCheckBox)parentFrame.getPanelConfigurations().getComponent(componentsMap.get("chkTupleRatio"))).setSelected(!lock);

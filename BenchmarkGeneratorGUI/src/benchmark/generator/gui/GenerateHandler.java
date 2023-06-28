@@ -115,8 +115,8 @@ public class GenerateHandler implements ActionListener {
 		GeneratorConfiguration.RATIO = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")))
 						.getText());
-		GeneratorConfiguration.N = Integer.parseInt(
-				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtTTest")))
+		GeneratorConfiguration.P = Integer.parseInt(
+				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtPTest")))
 						.getText());
 		GeneratorConfiguration.EPSILON = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtEpsilonTest")))
@@ -150,11 +150,7 @@ public class GenerateHandler implements ActionListener {
 
 		// Fill the table with the model names
 		for (Model m : models) {
-			if (!m.isRatioExact() && parentFrame.isRatioTest())
-				model.addRow(new Object[] { m.getName() + " (Prob.: "
-						+ m.getProbability(GeneratorConfiguration.EPSILON, GeneratorConfiguration.RATIO_TEST) + ")" });
-			else
-				model.addRow(new Object[] { m.getName() });
+			model.addRow(new Object[] { m.getName() });
 		}
 	}
 

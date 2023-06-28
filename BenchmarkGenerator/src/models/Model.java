@@ -8,9 +8,7 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Level;
@@ -22,7 +20,6 @@ import org.sosy_lab.common.log.BasicLogManager;
 import org.sosy_lab.common.log.LogManager;
 import org.sosy_lab.java_smt.SolverContextFactory;
 import org.sosy_lab.java_smt.SolverContextFactory.Solvers;
-import org.sosy_lab.java_smt.api.Formula;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
@@ -34,10 +31,9 @@ import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
-import ctwedge.util.validator.RuleEvaluator;
-import ctwedge.util.smt.SMTConstraintChecker;
 import ctwedge.util.smt.SMTModelTranslator;
 import ctwedge.util.smt.SMTParameterAdder.EnumTreatment;
+import ctwedge.util.validator.RuleEvaluator;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import generators.Track;
@@ -255,7 +251,10 @@ public class Model {
 			validityTests.clear();
 			LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
 			ModelUtils mu = new ModelUtils(loadModel);
-			for (int i = 0; i < GeneratorConfiguration.N; i++) {
+			int T = (int) Math
+					.ceil((1 / GeneratorConfiguration.RATIO_TEST) * ((4 * Math.log(2 / (1 - GeneratorConfiguration.P)))
+							/ (Math.pow(GeneratorConfiguration.EPSILON, 2))));
+			for (int i = 0; i < T; i++) {
 				Test t = mu.getRandomTestFromModel();
 				RuleEvaluator evaluator = new RuleEvaluator(t);
 				if (evaluator.evaluateModel(loadModel)) {
@@ -265,33 +264,10 @@ public class Model {
 					validityTests.add(0);
 				}
 			}
-			LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + GeneratorConfiguration.N);
-			return (double) nValidTest / GeneratorConfiguration.N;
+			isRatioExact = false;
+			LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + T);
+			return (double) nValidTest / T;
 		}
-	}
-
-	/**
-	 * Computes the probability that the given model has a ratio equals to the one
-	 * required with error epsilon
-	 * 
-	 * @param epsilon      the maximum accepted error
-	 * @param desiredRatio the desired ratio
-	 * @return the probability that the given model has a ratio equals to the one
-	 *         required with error epsilon
-	 */
-	public double getProbability(double epsilon, double desiredRatio) {
-		// Compute the variance
-		double variance = 0;
-		for (int i = 0; i < validityTests.size(); i++) {
-			variance += Math.pow(validityTests.get(i) - desiredRatio, 2) / (GeneratorConfiguration.N - 1);
-		}
-		double probability = 1 - (variance / (Math.pow(epsilon * desiredRatio, 2) * GeneratorConfiguration.N));
-		// Limit the probability between 1 and 0
-		if (probability < 0)
-			return 0.0;
-		else if (probability > 1)
-			return 1.0;
-		return probability;
 	}
 
 	/**
@@ -446,7 +422,7 @@ public class Model {
 
 		// Create the context
 		SMTModelTranslator trans = new SMTModelTranslator(EnumTreatment.INTEGER);
-		
+
 		prover = trans.createCtxFromModel(citModel, citModel.getConstraints(), ctx, prover);
 		return prover;
 	}

@@ -61,7 +61,7 @@ public class BenchmarkGenerator {
 	private JTextField txtRatio;
 	private JTextField txtRatioTest;
 	private JTextField txtEpsilonTest;
-	private JTextField txtTTest;
+	private JTextField txtPTest;
 	private JTable tblTestCases;
 	private JComboBox<String> benchmarkType;
 	private JSplitPane splitView;
@@ -73,7 +73,7 @@ public class BenchmarkGenerator {
 	private JLabel lblRatio;
 	private JLabel lblRatioTest;
 	private JLabel lblEpsilonTest;
-	private JLabel lblTTest;
+	private JLabel lblPTest;
 	private JLabel lblLowerBoundInt;
 	private JLabel lblUpperBoundInt;
 	private JPanel panelTestSuite;
@@ -306,12 +306,12 @@ public class BenchmarkGenerator {
 		txtRatioTest.setColumns(10);
 		addToPanelConfigurations(txtRatioTest, "txtRatioTest");
 
-		lblTTest = new JLabel("Num. Tests for Ratio");
-		addToPanelConfigurations(lblTTest, "lblTTest");
+		lblPTest = new JLabel("Probability for Ratio");
+		addToPanelConfigurations(lblPTest, "lblPTest");
 
-		txtTTest = new JTextField();
-		txtTTest.setColumns(10);
-		addToPanelConfigurations(txtTTest, "txtTTest");
+		txtPTest = new JTextField();
+		txtPTest.setColumns(10);
+		addToPanelConfigurations(txtPTest, "txtPTest");
 
 		lblEpsilonTest = new JLabel("Error for Ratio");
 		addToPanelConfigurations(lblEpsilonTest, "lblEpsilonTest");
@@ -324,7 +324,7 @@ public class BenchmarkGenerator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				txtRatioTest.setEnabled(chkTestRatio.isSelected());
-				txtTTest.setEnabled(chkTestRatio.isSelected());
+				txtPTest.setEnabled(chkTestRatio.isSelected());
 				txtEpsilonTest.setEnabled(chkTestRatio.isSelected());
 			}
 		});
@@ -500,7 +500,7 @@ public class BenchmarkGenerator {
 		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
 		txtRatioTest.setText(Double.toString(GeneratorConfiguration.RATIO_TEST));
 		txtEpsilonTest.setText(Double.toString(GeneratorConfiguration.EPSILON));
-		txtTTest.setText(Integer.toString(GeneratorConfiguration.N));
+		txtPTest.setText(Double.toString(GeneratorConfiguration.P));
 		benchmarkType.setSelectedItem(GeneratorConfiguration.TRACK.toString());
 	}
 

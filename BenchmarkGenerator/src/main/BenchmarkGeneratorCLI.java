@@ -93,8 +93,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	@Option(names = "-similar", description = "Given a CTWedge model, it generates a model similar to that.")
 	private String similarModel = null;
 
-	@Option(names = "-T", description = "Number of tests to be generated when computing the test validity ratio, if MDDs cannot be used. By default it is 1000")
-	private int T = 1000;
+	@Option(names = "-p", description = "Probability for ratio computation. By default it is 0.75")
+	private double P = 0.75;
 
 	@Option(names = "-epsilon", description = "The accepted error when computing the test validity ratio, if MDDs cannot be used. By default it is 0.1")
 	private double epsilon = 0.1;
@@ -205,7 +205,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
 			GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;
 			GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
-			GeneratorConfiguration.N = T;
+			GeneratorConfiguration.P = P;
 			GeneratorConfiguration.EPSILON = epsilon;
 			GeneratorConfiguration.TRACK = Track.valueOf(trackStr);
 			GeneratorConfiguration.CHECK_TEST_RATIO = chkTestRatio;
@@ -338,6 +338,12 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 					// can only work with probabilities
 					if (m.isRatioExact() && ratio > GeneratorConfiguration.RATIO_TEST)
 						isSolvable = false;
+					else {
+						// The ratio is not exact. But we can check the interval based on EPSILON
+						if (!(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
+								&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST))
+							isSolvable = false;
+					}
 				}
 			}
 			i++;
