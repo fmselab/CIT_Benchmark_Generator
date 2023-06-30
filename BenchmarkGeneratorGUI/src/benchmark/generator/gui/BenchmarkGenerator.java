@@ -15,6 +15,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -97,7 +98,7 @@ public class BenchmarkGenerator {
 	private DefaultTableModel model;
 	private JScrollPane scrollableTable;
 	private ModelList modelList;
-	private JTextPane textModel;
+	private JEditorPane textModel;
 	private JMenuBar menuBar;
 	private JMenu itemFormat;
 	private JCheckBoxMenuItem chkBoxACTS;
@@ -443,7 +444,7 @@ public class BenchmarkGenerator {
 	 * 
 	 * @return the JTextPane textModel
 	 */
-	public JTextPane getTestModel() {
+	public JEditorPane getTestModel() {
 		return textModel;
 	}
 

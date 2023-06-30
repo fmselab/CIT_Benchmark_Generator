@@ -24,7 +24,7 @@ public class GeneratorConfiguration {
 	public static double RATIO_TEST = 0.01;
 	public static double TIMEOUT = 6.0;
 	public static Track TRACK = Track.BOOLC;
-	public static double P = 1000;
+	public static double P = 0.75;
 	public static double EPSILON = 0.1;
 	public static boolean ACTS = false;
 	public static boolean CTWEDGE = false;
