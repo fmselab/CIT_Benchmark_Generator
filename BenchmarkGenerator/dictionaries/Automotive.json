@@ -1,0 +1,73 @@
+[
+  {
+    "name": "TransmissionType",
+    "type": "Enum",
+    "values" : [
+      "manual",
+      "automatic",
+      "Semi-automatic",
+      "cvt",
+      "dct"
+    ]
+  },
+  {
+    "name": "FuelType",
+    "type": "Enum",
+    "values" : [
+      "gasoline",
+      "diesel",
+      "hybrid",
+      "electric"
+    ]
+  },
+  {
+    "name": "DriveTrain",
+    "type": "Enum",
+    "values" : [
+      "FrontWheelDrive",
+      "RearWheelDrive",
+      "AllWheelDrive"
+    ]
+  },
+  {
+    "name": "BodyStyle",
+    "type": "Enum",
+    "values" : [
+      "Sedan",
+      "SUV",
+      "Coupe"
+    ]
+  },
+  {
+    "name": "FuelInjectionType",
+    "type": "Enum",
+    "values" : [
+      "DFI",
+      "PFI"
+    ]
+  },
+  {
+    "name": "CruiseControl",
+    "type": "Boolean"
+  },
+  {
+    "name": "ESP",
+    "type": "Boolean"
+  },
+  {
+    "name": "ABS",
+    "type": "Boolean"
+  },
+  {
+    "name": "Gears",
+    "type": "Integer",
+    "lowerBound": 3,
+    "upperBound": 10
+  },
+  {
+    "name": "EngineLiters",
+    "type": "Integer",
+    "lowerBound": 1,
+    "upperBound": 6
+  }
+]
