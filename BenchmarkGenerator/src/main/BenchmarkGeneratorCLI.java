@@ -1,5 +1,8 @@
 package main;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -9,6 +12,8 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
+
+import com.google.gson.Gson;
 
 import ctwedge.util.NotConvertableModel;
 import generators.Category;
@@ -24,6 +29,7 @@ import models.Model;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
+import util.Dictionary;
 import util.ModelConfigurationExtractor;
 
 public class BenchmarkGeneratorCLI implements Callable<Integer> {
@@ -104,6 +110,9 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	@Option(names = "-cnf", description = "Only constraints expressed as CNF? By default it is disabled")
 	private boolean cnf = false;
+	
+	@Option(names = "-dict", description = "The JSON file containing the dictionary")
+	private String dict = null;
 
 	/**
 	 * The list in which all the generated models are stored
@@ -222,6 +231,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		GeneratorConfiguration.ACTS = acts;
 		GeneratorConfiguration.PICT = pict;
 		GeneratorConfiguration.CTWEDGE = ctwedge;
+		// Now set the dictionary, if needed
+		if (dict != null) {
+			setDictionary(dict);
+		}
 	}
 
 	/**
@@ -526,5 +539,18 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 */
 	public ArrayList<Model> getModelsList() {
 		return modelsList;
+	}
+
+	/** 
+	 * This method sets the dictionary for test generation 
+	 * 
+	 * @param selectedFile the file containing the dictionary
+	 * @throws FileNotFoundException 
+	 */
+	public static void setDictionary(String selectedFile) throws FileNotFoundException {
+		// TODO: Fix it
+		BufferedReader br = new BufferedReader(new FileReader(selectedFile));
+		ArrayList<Dictionary> dict = new Gson().fromJson(br, ArrayList.class); 
+		dict.forEach(x -> System.out.println(x));
 	}
 }

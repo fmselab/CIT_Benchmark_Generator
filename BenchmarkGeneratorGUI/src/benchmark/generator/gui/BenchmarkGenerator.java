@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -106,6 +107,7 @@ public class BenchmarkGenerator {
 	private JMenu itemExtension;
 	private String selectedFile;
 	private JMenuItem btnBaseline2;
+	private JMenuItem btnDictionary;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -253,7 +255,7 @@ public class BenchmarkGenerator {
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
-		
+
 		chkForbiddenTuples = new JCheckBox("Only forbidden tuples");
 		addToPanelConfigurations(chkForbiddenTuples, "chkForbiddenTuples");
 		chkForbiddenTuples.addActionListener(new ActionListener() {
@@ -266,7 +268,7 @@ public class BenchmarkGenerator {
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
-		
+
 		chkCNF = new JCheckBox("Only CNF");
 		addToPanelConfigurations(chkCNF, "chkCNF");
 		chkCNF.addActionListener(new ActionListener() {
@@ -429,6 +431,29 @@ public class BenchmarkGenerator {
 			}
 		});
 		itemExtension.add(btnBaseline2);
+
+		btnDictionary = new JMenuItem("Set dictionary");
+		btnDictionary.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				final JFileChooser fc = new JFileChooser();
+				fc.addChoosableFileFilter(new FilesystemFilter("json", "JSON files"));
+				int returnVal = fc.showOpenDialog(null);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					selectedFile = file.getAbsolutePath();
+					// Set the dictionary
+					try {
+						BenchmarkGeneratorCLI.setDictionary(selectedFile);
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+				}
+
+			}
+		});
+		itemExtension.add(btnDictionary);
 
 		chkBoxACTS.setSelected(true);
 		chkBoxCTWedge.setSelected(true);

@@ -1,5 +1,9 @@
 package generators;
 
+import java.util.ArrayList;
+
+import util.Dictionary;
+
 /**
  * Configuration parameters for generators
  * 
@@ -35,5 +39,6 @@ public class GeneratorConfiguration {
 	public static int N_ATTEMPTS = 10;
 	public static boolean FORBIDDEN_TUPLES = false;
 	public static boolean CNF = false;
+	public static ArrayList<Dictionary> dictionary;
 	
 }
