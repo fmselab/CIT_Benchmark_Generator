@@ -1,6 +1,11 @@
 package generators;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import util.Dictionary;
+import util.ParameterToModelAdder;
+
+import java.util.stream.Stream;
 
 import models.BooleanParameter;
 import models.EnumerativeParameter;
@@ -31,6 +36,9 @@ public class WithoutConstraintGenerator implements Generator {
 		Model m = new Model();
 		m.setName("model" + timestamp.getTime());
 
+		// The names of the used parameters
+		ArrayList<String> names = new ArrayList<>();
+
 		// Number of parameters
 		int n = Randomizer.generate(GeneratorConfiguration.N_PARAMS_MIN, GeneratorConfiguration.N_PARAMS_MAX);
 		int nValues = 0;
@@ -43,7 +51,7 @@ public class WithoutConstraintGenerator implements Generator {
 		case ONLY_BOOLEAN:
 			// With only booleans
 			for (int i = 0; i < n; i++)
-				m.addParameter(new BooleanParameter("Par" + i));
+				ParameterToModelAdder.addBooleanParameter(m, names, i);
 
 			break;
 
@@ -52,7 +60,7 @@ public class WithoutConstraintGenerator implements Generator {
 			for (int i = 0; i < n; i++) {
 				// Probability 50% of extracting a boolean and 50% for enumerative
 				if (Randomizer.generate(0, 1) == 0)
-					m.addParameter(new BooleanParameter("Par" + i));
+					ParameterToModelAdder.addBooleanParameter(m, names, i);
 				else {
 					// Define a new enumerative parameter
 					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
@@ -75,7 +83,7 @@ public class WithoutConstraintGenerator implements Generator {
 				int parType = Randomizer.generate(0, 2);
 				switch (parType) {
 				case 0:
-					m.addParameter(new BooleanParameter("Par" + i));
+					ParameterToModelAdder.addBooleanParameter(m, names, i);
 					break;
 				case 1:
 					// Define a new enumerative parameter

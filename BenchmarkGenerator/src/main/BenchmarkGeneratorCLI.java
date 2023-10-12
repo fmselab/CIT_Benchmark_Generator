@@ -4,16 +4,21 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.eclipse.xtend.lib.macro.declaration.TypeReference;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import ctwedge.util.NotConvertableModel;
 import generators.Category;
@@ -548,9 +553,9 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws FileNotFoundException 
 	 */
 	public static void setDictionary(String selectedFile) throws FileNotFoundException {
-		// TODO: Fix it
 		BufferedReader br = new BufferedReader(new FileReader(selectedFile));
-		ArrayList<Dictionary> dict = new Gson().fromJson(br, ArrayList.class); 
-		dict.forEach(x -> System.out.println(x));
+		Type listOfMyClassObject = new TypeToken<ArrayList<Dictionary>>() {}.getType();
+		ArrayList<Dictionary> dict = new Gson().fromJson(br, listOfMyClassObject);
+		GeneratorConfiguration.DICTIONARY = dict;
 	}
 }

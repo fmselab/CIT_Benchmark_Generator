@@ -1,11 +1,13 @@
 package generators;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import models.BooleanParameter;
 import models.EnumerativeParameter;
 import models.IntegerParameter;
 import models.Model;
+import util.ParameterToModelAdder;
 
 /**
  * Generates a new model without constraints, and with parameters of the
@@ -30,6 +32,9 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 		// The model with a unique name
 		Model m = new Model();
 		m.setName("model" + timestamp.getTime());
+		
+		// The list of already used names
+		ArrayList<String> names = new ArrayList<>();
 
 		// Number of parameters
 		int n = Randomizer.generate(GeneratorConfiguration.N_PARAMS_MIN, GeneratorConfiguration.N_PARAMS_MAX);
@@ -44,7 +49,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 		case ONLY_BOOLEAN:
 			// With only booleans
 			for (int i = 0; i < n; i++)
-				m.addParameter(new BooleanParameter("Par" + i));
+				ParameterToModelAdder.addBooleanParameter(m, names, i);
 
 			break;
 
@@ -53,7 +58,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 			for (int i = 0; i < n; i++) {
 				// If the cardinality is 2, we can use also booleans
 				if (cardinality == 2 && Randomizer.generate(0, 1) == 0) {
-					m.addParameter(new BooleanParameter("Par" + i));
+					ParameterToModelAdder.addBooleanParameter(m, names, i);
 				} else {
 					// Define a new enumerative parameter
 					EnumerativeParameter p = new EnumerativeParameter("Par" + i);
@@ -74,7 +79,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 				int parType = Randomizer.generate(0, 2);
 
 				if (cardinality == 2 && Randomizer.generate(0, 2) == 0) {
-					m.addParameter(new BooleanParameter("Par" + i));
+					ParameterToModelAdder.addBooleanParameter(m, names, i);
 				} else {
 					parType = Randomizer.generate(0, 1);
 
