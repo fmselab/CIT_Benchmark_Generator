@@ -184,4 +184,16 @@ public class Dictionary {
 				+ upperBound + ", values=" + values + "]";
 	}
 
+	/** 
+	 * Adds a new value to the possible ones
+	 * @param value the value
+	 */
+	public void addValue(String value) {
+		if (this.values == null)
+			this.values = new ArrayList<>();
+		
+		this.values.add(value);
+		
+	}
+
 }
