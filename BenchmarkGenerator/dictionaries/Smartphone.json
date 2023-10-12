@@ -1,0 +1,78 @@
+[
+  {
+    "name": "ScreenSizeInch",
+    "type": "Integer",
+    "lowerBound": 4,
+    "upperBound": 7
+  },
+  {
+    "name": "OS",
+    "type": "Enum",
+    "values" : [
+      "android",
+      "ios"
+    ]
+  },
+  {
+    "name": "Processor",
+    "type": "Enum",
+    "values" : [
+      "Snapdragon",
+      "AppleSilicon",
+      "Exynos",
+      "Mediatek"
+    ]
+  },
+  {
+    "name": "StorageGB",
+    "type": "Integer",
+    "lowerBound": 16,
+    "upperBound": 512
+  },
+  {
+    "name": "RAMGB",
+    "type": "Integer",
+    "lowerBound": 2,
+    "upperBound": 16
+  },
+  {
+    "name": "DualSIM",
+    "type": "Boolean"
+  },
+  {
+    "name": "CameraMP",
+    "type": "Integer",
+    "lowerBound": 5,
+    "upperBound": 108
+  },
+  {
+    "name": "WaterResistance",
+    "type": "Boolean"
+  },
+  {
+    "name": "WirelessCharge",
+    "type": "Boolean"
+  },
+  {
+    "name": "FingerprintUnlock",
+    "type": "Boolean"
+  },
+  {
+    "name": "FaceRecognition",
+    "type": "Boolean"
+  },
+  {
+    "name": "BatterymAh",
+    "type": "Integer",
+    "lowerBound": 2000,
+    "upperBound": 6000
+  },
+  {
+    "name": "4G",
+    "type": "Boolean"
+  },
+  {
+    "name": "5G",
+    "type": "Boolean"
+  }
+]
