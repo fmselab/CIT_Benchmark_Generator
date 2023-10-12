@@ -38,7 +38,6 @@ public class WithoutConstraintGenerator implements Generator {
 		int n = Randomizer.generate(GeneratorConfiguration.N_PARAMS_MIN, GeneratorConfiguration.N_PARAMS_MAX);
 		int nValues = 0;
 		int from = 100;
-		int to = 0;
 		boolean computeParams = true;
 
 		// Generate the benchmark
@@ -88,14 +87,13 @@ public class WithoutConstraintGenerator implements Generator {
 								GeneratorConfiguration.MAX_CARDINALITY - 1);
 						from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
 								GeneratorConfiguration.UPPER_BOUND_INT);
-						to = from + nValues;
 
-						if (from <= to && to <= GeneratorConfiguration.UPPER_BOUND_INT)
+						if (from <= from + nValues && from + nValues <= GeneratorConfiguration.UPPER_BOUND_INT)
 							computeParams = false;
 					}
 
 					// Define a new integer parameter
-					m.addParameter(new IntegerParameter("Par" + i, from, to));
+					m.addParameter(new IntegerParameter("Par" + i, from, from + nValues));
 					computeParams = true;
 				}
 			}

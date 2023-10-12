@@ -51,7 +51,7 @@ public class ParameterToModelAdder {
 			Stream<Dictionary> dictStream = GeneratorConfiguration.DICTIONARY.stream()
 					.filter(x -> x.getType().equalsIgnoreCase("Enum") && !names.contains(x.getName()) && x.getValues().size() == card);
 			
-			// If no available parameter is found
+			// If no available parameter is found, this is the alternative
 			Dictionary alternative = new Dictionary("Par" + i);
 			for (int j = 0; j < card; j++)
 				alternative.addValue("PAR" + i + "_" + j);
