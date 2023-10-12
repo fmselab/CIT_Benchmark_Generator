@@ -70,13 +70,13 @@ public class BenchmarkGenerator {
 	private JPanel panelConfigurations;
 	private JLabel lblBenchmarkType;
 	private JLabel lblNMinParams;
-	private JLabel lblNMaxParams;
 	private JLabel lblRatio;
 	private JLabel lblRatioTest;
 	private JLabel lblEpsilonTest;
 	private JLabel lblPTest;
+	private JLabel lblMin;
+	private JLabel lblMax;
 	private JLabel lblLowerBoundInt;
-	private JLabel lblUpperBoundInt;
 	private JPanel panelTestSuite;
 	private JPanel panelTests;
 	private JButton btnExportAll;
@@ -88,10 +88,7 @@ public class BenchmarkGenerator {
 	private JCheckBox chkCNF;
 	private JCheckBox chkTestRatio;
 	private JCheckBox chkTupleRatio;
-	private JLabel lblMaxCardinality;
 	private JLabel lblMinConstraintComplexity;
-	private JLabel lblMaxConstraintComplexity;
-	private JLabel lblNMaxConstraints;
 	private JLabel lblNMinConstraints;
 	private JLabel lblPlaceHolder;
 	private HashMap<String, Integer> configurationComponents;
@@ -171,92 +168,102 @@ public class BenchmarkGenerator {
 
 		panelConfigurations = new JPanel();
 		splitLeftView.setLeftComponent(panelConfigurations);
-		panelConfigurations.setLayout(new GridLayout(0, 2, 0, 0));
+		panelConfigurations.setLayout(new GridLayout(0, 3, 0, 0));
 
 		lblBenchmarkType = new JLabel("Benchmark type");
+		lblBenchmarkType.setFont(lblBenchmarkType.getFont().deriveFont(1));
 		addToPanelConfigurations(lblBenchmarkType, "lblBenchmarkType");
 
 		benchmarkType = new JComboBox<String>();
 		fillBenchmarkTypes();
 		addToPanelConfigurations(benchmarkType, "benchmarkType");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		lblMin = new JLabel("MIN");
+		lblMin.setFont(lblMin.getFont().deriveFont(1));
+		addToPanelConfigurations(lblMin, "lblMin");
+		
+		lblMax = new JLabel("MAX");
+		lblMax.setFont(lblMax.getFont().deriveFont(1));
+		addToPanelConfigurations(lblMax, "lblMax");
 
-		lblNMinParams = new JLabel("N Min Params (k)");
+		lblNMinParams = new JLabel("N Params (k)");
+		lblNMinParams.setFont(lblNMinParams.getFont().deriveFont(1));
 		addToPanelConfigurations(lblNMinParams, "lblNMinParams");
 
 		txtNMinParams = new JTextField();
-		txtNMinParams.setColumns(10);
+		txtNMinParams.setColumns(5);
 		addToPanelConfigurations(txtNMinParams, "txtNMinParams");
-
-		lblNMaxParams = new JLabel("N Max Params (k)");
-		addToPanelConfigurations(lblNMaxParams, "lblNMaxParams");
 
 		txtNMaxParams = new JTextField();
 		addToPanelConfigurations(txtNMaxParams, "txtNMaxParams");
-		txtNMaxParams.setColumns(10);
+		txtNMaxParams.setColumns(5);
 
-		lblLowerBoundInt = new JLabel("Lower Bound Ints (v)");
+		lblLowerBoundInt = new JLabel("Bounds for Ints (v)");
+		lblLowerBoundInt.setFont(lblLowerBoundInt.getFont().deriveFont(1));
 		addToPanelConfigurations(lblLowerBoundInt, "lblLowerBoundInt");
 
 		txtLowerBoundInt = new JTextField();
-		txtLowerBoundInt.setColumns(10);
+		txtLowerBoundInt.setColumns(5);
 		addToPanelConfigurations(txtLowerBoundInt, "txtLowerBoundInt");
 
-		lblUpperBoundInt = new JLabel("Upper Bound Ints (v)");
-		addToPanelConfigurations(lblUpperBoundInt, "lblUpperBoundInt");
-
 		txtUpperBoundInt = new JTextField();
-		txtUpperBoundInt.setColumns(10);
+		txtUpperBoundInt.setColumns(5);
 		addToPanelConfigurations(txtUpperBoundInt, "txtUpperBoundInt");
 
-		lblMinCardinality = new JLabel("Min cardinality (v)");
+		lblMinCardinality = new JLabel("Param. Cardinality (v)");
+		lblMinCardinality.setFont(lblMinCardinality.getFont().deriveFont(1));
 		addToPanelConfigurations(lblMinCardinality, "lblMinCardinality");
 
 		txtMinCardinality = new JTextField();
-		txtMinCardinality.setColumns(10);
+		txtMinCardinality.setColumns(5);
 		addToPanelConfigurations(txtMinCardinality, "txtMinCardinality");
 
-		lblMaxCardinality = new JLabel("Max cardinality (v)");
-		addToPanelConfigurations(lblMaxCardinality, "lblMaxCardinality");
-
 		txtMaxCardinality = new JTextField();
-		txtMaxCardinality.setColumns(10);
+		txtMaxCardinality.setColumns(5);
 		addToPanelConfigurations(txtMaxCardinality, "txtMaxCardinality");
 
-		lblNMinConstraints = new JLabel("N Min Constraints (c)");
+		lblNMinConstraints = new JLabel("N Constraints (c)");
+		lblNMinConstraints.setFont(lblNMinConstraints.getFont().deriveFont(1));
 		addToPanelConfigurations(lblNMinConstraints, "lblNMinConstraints");
 
 		txtNMinConstraints = new JTextField();
-		txtNMinConstraints.setColumns(10);
+		txtNMinConstraints.setColumns(5);
 		addToPanelConfigurations(txtNMinConstraints, "txtNMinConstraints");
 
-		lblNMaxConstraints = new JLabel("N Max Constraints (c)");
-		addToPanelConfigurations(lblNMaxConstraints, "lblNMaxConstraints");
-
 		txtNMaxConstraints = new JTextField();
-		txtNMaxConstraints.setColumns(10);
+		txtNMaxConstraints.setColumns(5);
 		addToPanelConfigurations(txtNMaxConstraints, "txtNMaxConstraints");
 
-		lblMinConstraintComplexity = new JLabel("Min Constraints Complexity (d)");
+		lblMinConstraintComplexity = new JLabel("Constraints Complexity (d)");
+		lblMinConstraintComplexity.setFont(lblMinConstraintComplexity.getFont().deriveFont(1));
 		addToPanelConfigurations(lblMinConstraintComplexity, "lblMinConstraintComplexity");
 
 		txtMinConstraintComplexity = new JTextField();
-		txtMinConstraintComplexity.setColumns(10);
+		txtMinConstraintComplexity.setColumns(5);
 		addToPanelConfigurations(txtMinConstraintComplexity, "txtMinConstraintComplexity");
 
-		lblMaxConstraintComplexity = new JLabel("Max Constraints Complexity (d)");
-		addToPanelConfigurations(lblMaxConstraintComplexity, "lblMaxConstraintComplexity");
-
 		txtMaxConstraintsComplexity = new JTextField();
-		txtMaxConstraintsComplexity.setColumns(10);
+		txtMaxConstraintsComplexity.setColumns(5);
 		addToPanelConfigurations(txtMaxConstraintsComplexity, "txtMaxConstraintsComplexity");
 
-		chkConstraintsBetweenParams = new JCheckBox("Use constraints between params");
+		chkConstraintsBetweenParams = new JCheckBox("Constraints between params");
+		chkConstraintsBetweenParams.setFont(chkConstraintsBetweenParams.getFont().deriveFont(1));
 		addToPanelConfigurations(chkConstraintsBetweenParams, "chkConstraintsBetweenParams");
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
 		chkForbiddenTuples = new JCheckBox("Only forbidden tuples");
+		chkForbiddenTuples.setFont(chkForbiddenTuples.getFont().deriveFont(1));
 		addToPanelConfigurations(chkForbiddenTuples, "chkForbiddenTuples");
 		chkForbiddenTuples.addActionListener(new ActionListener() {
 			@Override
@@ -268,8 +275,12 @@ public class BenchmarkGenerator {
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
 		chkCNF = new JCheckBox("Only CNF");
+		chkCNF.setFont(chkCNF.getFont().deriveFont(1));
 		addToPanelConfigurations(chkCNF, "chkCNF");
 		chkCNF.addActionListener(new ActionListener() {
 			@Override
@@ -281,45 +292,54 @@ public class BenchmarkGenerator {
 
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
-
-		chkTupleRatio = new JCheckBox("Check Tuple Ratio");
-		addToPanelConfigurations(chkTupleRatio, "chkTupleRatio");
-
+		
 		lblPlaceHolder = new JLabel(EMPTY_TYPE);
 		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
+		chkTupleRatio = new JCheckBox("Check Tuple Ratio");
+		chkTupleRatio.setFont(chkTupleRatio.getFont().deriveFont(1));
+		addToPanelConfigurations(chkTupleRatio, "chkTupleRatio");
+
 		lblRatio = new JLabel("Max Tuple Ratio Accepted (R)");
+		lblRatio.setFont(lblRatio.getFont().deriveFont(1));
 		addToPanelConfigurations(lblRatio, "lblRatio");
 
 		txtRatio = new JTextField();
-		txtRatio.setColumns(10);
+		txtRatio.setColumns(5);
 		addToPanelConfigurations(txtRatio, "txtRatio");
 
 		chkTestRatio = new JCheckBox("Check Test Ratio");
+		chkTestRatio.setFont(chkTestRatio.getFont().deriveFont(1));
 		addToPanelConfigurations(chkTestRatio, "chkTestRatio");
 
-		lblPlaceHolder = new JLabel(EMPTY_TYPE);
-		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
-
 		lblRatioTest = new JLabel("Max Test Ratio Accepted (tR)");
+		lblRatioTest.setFont(lblRatioTest.getFont().deriveFont(1));
 		addToPanelConfigurations(lblRatioTest, "lblRatioTest");
 
 		txtRatioTest = new JTextField();
-		txtRatioTest.setColumns(10);
+		txtRatioTest.setColumns(5);
 		addToPanelConfigurations(txtRatioTest, "txtRatioTest");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
 		lblPTest = new JLabel("Probability for Ratio");
+		lblPTest.setFont(lblPTest.getFont().deriveFont(1));
 		addToPanelConfigurations(lblPTest, "lblPTest");
 
 		txtPTest = new JTextField();
-		txtPTest.setColumns(10);
+		txtPTest.setColumns(5);
 		addToPanelConfigurations(txtPTest, "txtPTest");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
 		lblEpsilonTest = new JLabel("Error for Ratio");
+		lblEpsilonTest.setFont(lblEpsilonTest.getFont().deriveFont(1));
 		addToPanelConfigurations(lblEpsilonTest, "lblEpsilonTest");
 
 		txtEpsilonTest = new JTextField();
-		txtEpsilonTest.setColumns(10);
+		txtEpsilonTest.setColumns(5);
 		addToPanelConfigurations(txtEpsilonTest, "txtEpsilonTest");
 
 		chkTestRatio.addActionListener(new ActionListener() {
@@ -339,14 +359,21 @@ public class BenchmarkGenerator {
 		});
 
 		lblNumBenchmarks = new JLabel("Num. Benchmarks");
+		lblNumBenchmarks.setFont(lblNumBenchmarks.getFont().deriveFont(1));
 		addToPanelConfigurations(lblNumBenchmarks, "lblNumBenchmarks");
 
 		txtNumBenchmarks = new JTextField("1");
-		txtNumBenchmarks.setColumns(10);
+		txtNumBenchmarks.setColumns(5);
 		addToPanelConfigurations(txtNumBenchmarks, "txtNumBenchmarks");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
 		btnGenerate = new JButton("Generate");
 		addToPanelConfigurations(btnGenerate, "btnGenerate");
+		
+		lblPlaceHolder = new JLabel(EMPTY_TYPE);
+		addToPanelConfigurations(lblPlaceHolder, "lblPlaceHolder");
 
 		btnExportAll = new JButton("ExportAll");
 		addToPanelConfigurations(btnExportAll, "btnExportAll");
