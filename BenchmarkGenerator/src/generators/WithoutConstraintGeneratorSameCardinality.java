@@ -3,8 +3,6 @@ package generators;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import models.BooleanParameter;
-import models.EnumerativeParameter;
 import models.IntegerParameter;
 import models.Model;
 import util.ParameterToModelAdder;
@@ -61,13 +59,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 					ParameterToModelAdder.addBooleanParameter(m, names, i);
 				} else {
 					// Define a new enumerative parameter
-					EnumerativeParameter p = new EnumerativeParameter("Par" + i);
-
-					for (int j = 0; j < cardinality; j++)
-						p.addValue("PAR" + i + "_" + j);
-
-					m.addParameter(p);
-				}
+					ParameterToModelAdder.addEnumerativeParameter(m, cardinality, names, i);				}
 			}
 			break;
 
@@ -86,12 +78,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 					switch (parType) {
 					case 0:
 						// Define a new enumerative parameter
-						EnumerativeParameter p = new EnumerativeParameter("Par" + i);
-
-						for (int j = 0; j < cardinality; j++)
-							p.addValue("PAR" + i + "_" + j);
-
-						m.addParameter(p);
+						ParameterToModelAdder.addEnumerativeParameter(m, cardinality, names, i);
 						break;
 					case 1:
 						// Define a new integer parameter

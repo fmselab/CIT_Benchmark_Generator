@@ -2,13 +2,8 @@ package generators;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import util.Dictionary;
 import util.ParameterToModelAdder;
 
-import java.util.stream.Stream;
-
-import models.BooleanParameter;
-import models.EnumerativeParameter;
 import models.IntegerParameter;
 import models.Model;
 
@@ -65,12 +60,7 @@ public class WithoutConstraintGenerator implements Generator {
 					// Define a new enumerative parameter
 					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
 							GeneratorConfiguration.MAX_CARDINALITY);
-					EnumerativeParameter p = new EnumerativeParameter("Par" + i);
-
-					for (int j = 0; j < nValues; j++)
-						p.addValue("PAR" + i + "_" + j);
-
-					m.addParameter(p);
+					ParameterToModelAdder.addEnumerativeParameter(m, nValues, names, i);
 				}
 			}
 			break;
@@ -89,12 +79,7 @@ public class WithoutConstraintGenerator implements Generator {
 					// Define a new enumerative parameter
 					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
 							GeneratorConfiguration.MAX_CARDINALITY);
-					EnumerativeParameter p = new EnumerativeParameter("Par" + i);
-
-					for (int j = 0; j < nValues; j++)
-						p.addValue("PAR" + i + "_" + j);
-
-					m.addParameter(p);
+					ParameterToModelAdder.addEnumerativeParameter(m, nValues, names, i);
 					break;
 				case 2:
 					// Define a new integer parameter
