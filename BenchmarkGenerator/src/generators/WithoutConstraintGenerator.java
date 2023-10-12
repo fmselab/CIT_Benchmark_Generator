@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import util.ParameterToModelAdder;
 
-import models.IntegerParameter;
 import models.Model;
 
 /**
@@ -93,7 +92,7 @@ public class WithoutConstraintGenerator implements Generator {
 					}
 
 					// Define a new integer parameter
-					m.addParameter(new IntegerParameter("Par" + i, from, from + nValues));
+					ParameterToModelAdder.addIntegerParameter(m, nValues, from, names, i);
 					computeParams = true;
 				}
 			}

@@ -3,7 +3,6 @@ package generators;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import models.IntegerParameter;
 import models.Model;
 import util.ParameterToModelAdder;
 
@@ -85,8 +84,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 						from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
 								GeneratorConfiguration.UPPER_BOUND_INT);
 
-						// Define a new integer parameter
-						m.addParameter(new IntegerParameter("Par" + i, from, from + cardinality - 1));
+						ParameterToModelAdder.addIntegerParameter(m, cardinality, from, names, i);
 						break;
 					}
 				}

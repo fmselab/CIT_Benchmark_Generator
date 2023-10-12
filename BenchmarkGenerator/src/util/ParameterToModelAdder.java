@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import generators.GeneratorConfiguration;
 import models.BooleanParameter;
 import models.EnumerativeParameter;
+import models.IntegerParameter;
 import models.Model;
 
 public class ParameterToModelAdder {
@@ -65,4 +66,30 @@ public class ParameterToModelAdder {
 		m.addParameter(p);
 	}
 	
+	/**
+	 * Adds to the model m a new integer parameter, either by giving a random name
+	 * or one chosen from the dictionary
+	 * 
+	 * @param m     the model
+	 * @param card	the cardinality
+	 * @param from	the lower bound
+	 * @param names the list of already used names
+	 * @param i     the index
+	 */
+	public static void addIntegerParameter(Model m, int card, int from, ArrayList<String> names, int i) {
+		if (GeneratorConfiguration.DICTIONARY == null) {
+			m.addParameter(new IntegerParameter("Par" + i, from, from + card - 1));
+		}
+		else {
+			Stream<Dictionary> dictStream = GeneratorConfiguration.DICTIONARY.stream()
+					.filter(x -> x.getType().equalsIgnoreCase("Integer") && !names.contains(x.getName()) && x.getLowerBound() == from && x.getUpperBound() == from + card - 1);
+			
+			// If no available parameter is found, this is the alternative
+			Dictionary alternative = new Dictionary("Par" + i, from, from + card - 1);
+			
+			Dictionary dict = dictStream.findAny().orElse(alternative);
+			names.add(dict.getName());
+			m.addParameter(new IntegerParameter(dict.getName(), dict.getLowerBound(), dict.getUpperBound()));
+		}
+	}
 }
