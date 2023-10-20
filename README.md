@@ -5,6 +5,7 @@
 * `BenchmarkGenerator`: Java code of the `BenCIGen' CLI tool for the generation of benchmarks, with different categories and characteristics
    - `test/TestBenchmarkGeneratorCLI.java`: contains the code executing unit test cases as presented in the paper "Design, implementation, and validation of a benchmark generator for combinatorial interaction testing tools" submitted to The Journal of Systems and Software
    - `test/TestExternalValidation.java`: contains the external validation process as presented in the paper "Design, implementation, and validation of a benchmark generator for combinatorial interaction testing tools" submitted to The Journal of Systems and Software
+   - [README](https://github.com/fmselab/CIT_Benchmark_Generator/blob/main/BenchmarkGenerator/readme.md) contains all the options and parameters for the CLI version
 * `BenchmarkGeneratorGUI`: Java code of the `BenCIGen' GUI tool for the generation of benchmarks, with different categories and characteristics
 
 ## CT-Competition
