@@ -1,0 +1,40 @@
+[System]
+-- specify system name
+Name: FM_12
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+PPU (boolean) : true, false
+Crane (boolean) : true, false
+SRouting (boolean) : true, false
+ERouting (boolean) : true, false
+Slide (enum) : Straight, Conveyor, NONE
+Conveyor (enum) : SSortation, DSortation, NONE
+Workpiece (boolean) : true, false
+Plastic (boolean) : true, false
+Light (boolean) : true, false
+Dark (boolean) : true, false
+Metal (boolean) : true, false
+Stamp (enum) : SPressure, APressure, NONE
+
+[Constraint]
+-- this section is also optional
+PPU = true
+((Crane = true) => (PPU = true))&&((PPU = true) => (Crane = true))
+(Crane = true) => ((SRouting = true) || (ERouting = true))
+(SRouting = true) => (Crane = true)
+(ERouting = true) => (Crane = true)
+((Slide != "NONE") => (PPU = true))&&((PPU = true) => (Slide != "NONE"))
+((Conveyor != "NONE") => (Slide = "Conveyor"))&&((Slide = "Conveyor") => (Conveyor != "NONE"))
+((Workpiece = true) => (PPU = true))&&((PPU = true) => (Workpiece = true))
+(Workpiece = true) => ((Plastic = true) || (Metal = true))
+(Plastic = true) => (Workpiece = true)
+(Plastic = true) => ((Light = true) || (Dark = true))
+(Light = true) => (Plastic = true)
+(Dark = true) => (Plastic = true)
+(Metal = true) => (Workpiece = true)
+(Stamp != "NONE") => (PPU = true)
+(Stamp != "NONE") => (Metal = true)
+(Light = true) => (Stamp = "APressure")
+! ((SRouting = true) && (ERouting = true))
+

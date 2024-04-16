@@ -1,0 +1,20 @@
+Linux : false, true
+FileSystem : false, true
+ext3 : false, true
+ext4 : false, true
+goCrypt : AES, Twofish, NONE
+IP : false, true
+v4 : false, true
+v6 : false, true
+
+
+[Linux]="true";
+(((NOT ([FileSystem]="true"))) OR ([Linux]="true")) AND (((NOT ([Linux]="true"))) OR ([FileSystem]="true"));
+((NOT ([FileSystem]="true"))) OR ((([ext3]="true") OR ([ext4]="true")) OR ([goCrypt]<>"NONE"));
+((NOT ([ext3]="true"))) OR ([FileSystem]="true");
+((NOT ([ext4]="true"))) OR ([FileSystem]="true");
+((NOT ([goCrypt]<>"NONE"))) OR ([FileSystem]="true");
+(((NOT ([IP]="true"))) OR ([Linux]="true")) AND (((NOT ([Linux]="true"))) OR ([IP]="true"));
+((NOT ([IP]="true"))) OR (([v4]="true") OR ([v6]="true"));
+((NOT ([v4]="true"))) OR ([IP]="true");
+((NOT ([v6]="true"))) OR ([IP]="true");

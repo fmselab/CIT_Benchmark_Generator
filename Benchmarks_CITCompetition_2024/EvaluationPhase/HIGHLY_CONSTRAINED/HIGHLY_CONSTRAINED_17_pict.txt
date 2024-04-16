@@ -1,0 +1,36 @@
+Par0 : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6
+Par1 : false, true
+Par2 : false, true
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : false, true
+Par8 : PAR8_0, PAR8_1, PAR8_2
+Par9 : false, true
+Par10 : false, true
+Par11 : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7
+Par12 : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9, PAR12_10
+Par13 : false, true
+Par14 : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6, PAR14_7, PAR14_8, PAR14_9, PAR14_10, PAR14_11, PAR14_12
+Par15 : PAR15_0, PAR15_1, PAR15_2, PAR15_3, PAR15_4, PAR15_5, PAR15_6, PAR15_7, PAR15_8, PAR15_9, PAR15_10, PAR15_11, PAR15_12, PAR15_13
+Par16 : false, true
+Par17 : false, true
+Par18 : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7, PAR18_8, PAR18_9
+Par19 : PAR19_0, PAR19_1, PAR19_2, PAR19_3, PAR19_4, PAR19_5, PAR19_6, PAR19_7, PAR19_8, PAR19_9, PAR19_10, PAR19_11
+Par20 : false, true
+Par21 : false, true
+Par22 : false, true
+Par23 : false, true
+Par24 : false, true
+Par25 : PAR25_0, PAR25_1, PAR25_2, PAR25_3
+Par26 : PAR26_0, PAR26_1, PAR26_2, PAR26_3, PAR26_4
+
+
+((NOT ((([Par4]<>"false") OR ([Par20]<>"true")) AND (((NOT ([Par0]<>"PAR0_3"))) OR ([Par14]="PAR14_1"))))) OR ((((NOT ([Par19]<>"PAR19_9"))) OR ((NOT ([Par18]<>"PAR18_0")))) OR (((NOT ([Par3]<>"PAR3_3"))) OR ((NOT ([Par11]="PAR11_7")))));
+((((NOT (((NOT ([Par16]="false"))) AND ((NOT ([Par20]="false")))))) OR (((NOT ([Par20]<>"true"))) AND ([Par19]<>"PAR19_9"))) AND (((NOT (((NOT ([Par20]<>"true"))) AND ([Par19]<>"PAR19_9")))) OR (((NOT ([Par16]="false"))) AND ((NOT ([Par20]="false")))))) OR (((NOT (((NOT ([Par19]="PAR19_2"))) AND ([Par5]<>"true")))) OR (((NOT ([Par19]="PAR19_5"))) OR ([Par9]<>"false")));
+(((NOT (([Par25]="PAR25_2") AND ((NOT ([Par20]="false")))))) OR (((NOT ([Par25]="PAR25_3"))) OR ([Par8]="PAR8_0"))) AND (((NOT (((NOT ([Par25]="PAR25_3"))) OR ([Par8]="PAR8_0")))) OR (([Par25]="PAR25_2") AND ((NOT ([Par20]="false")))));
+((NOT (((NOT ([Par23]="false"))) OR ([Par1]<>"true")))) OR (((NOT ((NOT ([Par1]="true"))))) OR ([Par26]="PAR26_4"));
+((NOT ([Par8]<>"PAR8_2"))) OR ([Par22]<>"false");
+((NOT (((NOT (((NOT ((NOT ([Par14]="PAR14_2"))))) OR ((NOT ([Par26]="PAR26_1")))))) OR (((NOT ([Par8]="PAR8_1"))) AND ([Par12]="PAR12_0"))))) OR (((NOT (([Par4]<>"true") AND ([Par22]<>"true")))) OR ((((NOT ((NOT ([Par1]<>"false"))))) OR ((NOT ([Par3]<>"PAR3_6")))) AND (((NOT ((NOT ([Par3]<>"PAR3_6"))))) OR ((NOT ([Par1]<>"false"))))));
+((NOT ([Par5]="false"))) OR ((NOT ([Par9]="false")));

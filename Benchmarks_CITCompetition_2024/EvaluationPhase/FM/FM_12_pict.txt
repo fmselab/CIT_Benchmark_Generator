@@ -1,0 +1,32 @@
+PPU : false, true
+Crane : false, true
+SRouting : false, true
+ERouting : false, true
+Slide : Straight, Conveyor, NONE
+Conveyor : SSortation, DSortation, NONE
+Workpiece : false, true
+Plastic : false, true
+Light : false, true
+Dark : false, true
+Metal : false, true
+Stamp : SPressure, APressure, NONE
+
+
+[PPU]="true";
+(((NOT ([Crane]="true"))) OR ([PPU]="true")) AND (((NOT ([PPU]="true"))) OR ([Crane]="true"));
+((NOT ([Crane]="true"))) OR (([SRouting]="true") OR ([ERouting]="true"));
+((NOT ([SRouting]="true"))) OR ([Crane]="true");
+((NOT ([ERouting]="true"))) OR ([Crane]="true");
+(((NOT ([Slide]<>"NONE"))) OR ([PPU]="true")) AND (((NOT ([PPU]="true"))) OR ([Slide]<>"NONE"));
+(((NOT ([Conveyor]<>"NONE"))) OR ([Slide]=[Conveyor])) AND (((NOT ([Slide]=[Conveyor]))) OR ([Conveyor]<>"NONE"));
+(((NOT ([Workpiece]="true"))) OR ([PPU]="true")) AND (((NOT ([PPU]="true"))) OR ([Workpiece]="true"));
+((NOT ([Workpiece]="true"))) OR (([Plastic]="true") OR ([Metal]="true"));
+((NOT ([Plastic]="true"))) OR ([Workpiece]="true");
+((NOT ([Plastic]="true"))) OR (([Light]="true") OR ([Dark]="true"));
+((NOT ([Light]="true"))) OR ([Plastic]="true");
+((NOT ([Dark]="true"))) OR ([Plastic]="true");
+((NOT ([Metal]="true"))) OR ([Workpiece]="true");
+((NOT ([Stamp]<>"NONE"))) OR ([PPU]="true");
+((NOT ([Stamp]<>"NONE"))) OR ([Metal]="true");
+((NOT ([Light]="true"))) OR ([Stamp]="APressure");
+(NOT (([SRouting]="true") AND ([ERouting]="true")));

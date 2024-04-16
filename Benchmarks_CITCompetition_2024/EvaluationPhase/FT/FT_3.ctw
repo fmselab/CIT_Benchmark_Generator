@@ -1,0 +1,81 @@
+Model FT_3
+Parameters:
+Par0 : Boolean
+Par1: {PAR1_0,PAR1_1,PAR1_2}
+Par2 : Boolean
+Par3 : Boolean
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3}
+Par5 : Boolean
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8,PAR6_9,PAR6_10,PAR6_11}
+Par7 : Boolean
+Par8 : Boolean
+Par9: {PAR9_0,PAR9_1,PAR9_2,PAR9_3,PAR9_4}
+Par10: {PAR10_0,PAR10_1,PAR10_2,PAR10_3,PAR10_4,PAR10_5,PAR10_6,PAR10_7,PAR10_8,PAR10_9,PAR10_10,PAR10_11,PAR10_12,PAR10_13}
+Par11: {PAR11_0,PAR11_1,PAR11_2,PAR11_3,PAR11_4,PAR11_5,PAR11_6,PAR11_7,PAR11_8,PAR11_9}
+Par12: {PAR12_0,PAR12_1,PAR12_2,PAR12_3}
+Par13 : Boolean
+Par14 : Boolean
+Par15: {PAR15_0,PAR15_1,PAR15_2,PAR15_3,PAR15_4,PAR15_5,PAR15_6,PAR15_7}
+Par16 : Boolean
+Par17: {PAR17_0,PAR17_1,PAR17_2,PAR17_3,PAR17_4,PAR17_5,PAR17_6,PAR17_7,PAR17_8,PAR17_9}
+Par18 : Boolean
+Par19: {PAR19_0,PAR19_1,PAR19_2,PAR19_3}
+Par20 : Boolean
+Par21 : Boolean
+Par22 : Boolean
+Par23 : Boolean
+Par24 : Boolean
+Par25 : Boolean
+Par26 : Boolean
+Par27 : Boolean
+
+Constraints:
+# (not (Par15 = PAR15_7 AND Par20 = false AND Par13 = false AND Par13 = false AND Par10 = PAR10_0 AND Par10 = PAR10_12 )) #
+# (not (Par24 = true AND Par0 = true AND Par17 = PAR17_7 AND Par19 = PAR19_0 AND Par1 = PAR1_1 AND Par5 = true AND Par16 = false AND Par20 = false AND Par19 = PAR19_2 AND Par15 = PAR15_0 AND Par10 = PAR10_6 AND Par2 = false AND Par1 = PAR1_1 AND Par13 = false AND Par15 = PAR15_1 )) #
+# (not (Par16 = true AND Par16 = true AND Par9 = PAR9_0 AND Par25 = true AND Par5 = false AND Par4 = PAR4_0 AND Par19 = PAR19_3 AND Par8 = true AND Par0 = true AND Par3 = false AND Par16 = false AND Par1 = PAR1_2 AND Par13 = false AND Par3 = true AND Par11 = PAR11_2 AND Par20 = true AND Par15 = PAR15_7 )) #
+# (not (Par4 = PAR4_0 AND Par19 = PAR19_2 AND Par19 = PAR19_0 AND Par8 = false AND Par14 = false AND Par11 = PAR11_2 AND Par16 = false )) #
+# (not (Par3 = true AND Par6 = PAR6_2 AND Par16 = false AND Par12 = PAR12_3 AND Par23 = true AND Par19 = PAR19_0 AND Par13 = false AND Par19 = PAR19_1 AND Par14 = false AND Par21 = true AND Par17 = PAR17_5 AND Par12 = PAR12_0 AND Par12 = PAR12_2 AND Par13 = false AND Par15 = PAR15_1 AND Par1 = PAR1_1 AND Par7 = true )) #
+# Par17 != PAR17_5 OR Par5 != true OR Par14 != false OR Par27 != false OR Par9 != PAR9_4 OR Par26 != false OR Par25 != true OR Par17 != PAR17_9 OR Par3 != false OR Par22 != true OR Par19 != PAR19_0 OR Par11 != PAR11_6 OR Par26 != false OR Par2 != true OR Par12 != PAR12_2 OR Par17 != PAR17_2 OR Par13 != false OR Par22 != true OR Par14 != true  #
+# Par27 != true OR Par15 != PAR15_7 OR Par1 != PAR1_1 OR Par1 != PAR1_2 OR Par7 != true OR Par17 != PAR17_3 OR Par4 != PAR4_0 OR Par22 != false  #
+# Par26 != false OR Par12 != PAR12_2 OR Par5 != false OR Par9 != PAR9_0 OR Par13 != true  #
+# (not (Par24 = false AND Par1 = PAR1_1 AND Par10 = PAR10_11 AND Par6 = PAR6_5 AND Par27 = false AND Par14 = true AND Par24 = false AND Par21 = false AND Par1 = PAR1_1 AND Par10 = PAR10_0 AND Par11 = PAR11_9 AND Par0 = true AND Par13 = false AND Par24 = true AND Par11 = PAR11_6 AND Par14 = false AND Par0 = true )) #
+# Par15 != PAR15_7 OR Par11 != PAR11_0 OR Par10 != PAR10_9 OR Par4 != PAR4_3  #
+# (not (Par26 = true AND Par17 = PAR17_1 AND Par5 = true )) #
+# (not (Par5 = true AND Par11 = PAR11_7 AND Par0 = false AND Par9 = PAR9_1 AND Par1 = PAR1_1 AND Par24 = true AND Par19 = PAR19_2 AND Par2 = true AND Par15 = PAR15_4 AND Par16 = false AND Par26 = true AND Par7 = false AND Par4 = PAR4_3 AND Par18 = false )) #
+# Par23 != false OR Par27 != false OR Par23 != false OR Par8 != true OR Par19 != PAR19_3 OR Par13 != false  #
+# Par8 != true OR Par25 != true OR Par7 != false OR Par26 != false OR Par5 != false  #
+# Par17 != PAR17_3 OR Par27 != false OR Par18 != true OR Par0 != true OR Par9 != PAR9_3 OR Par8 != false OR Par25 != false OR Par13 != true OR Par1 != PAR1_1 OR Par25 != false OR Par26 != true OR Par8 != false OR Par26 != true OR Par10 != PAR10_6 OR Par15 != PAR15_6  #
+# Par7 != false OR Par21 != false OR Par2 != true OR Par12 != PAR12_2 OR Par3 != false OR Par1 != PAR1_1 OR Par19 != PAR19_3  #
+# Par8 != true OR Par7 != false OR Par20 != true OR Par23 != true OR Par4 != PAR4_1 OR Par0 != false OR Par7 != true OR Par18 != false OR Par12 != PAR12_0 OR Par18 != false OR Par14 != true OR Par13 != true OR Par27 != false  #
+# Par13 != true OR Par20 != true OR Par4 != PAR4_2 OR Par18 != true OR Par19 != PAR19_2 OR Par12 != PAR12_1 OR Par18 != true OR Par19 != PAR19_3 OR Par2 != true OR Par13 != true OR Par12 != PAR12_2  #
+# Par23 != true OR Par5 != false OR Par14 != true  #
+# (not (Par9 = PAR9_4 AND Par18 = false AND Par0 = false AND Par23 = true AND Par25 = false AND Par21 = true AND Par19 = PAR19_0 AND Par4 = PAR4_3 AND Par24 = false AND Par20 = false AND Par21 = true AND Par25 = true AND Par20 = false AND Par18 = true AND Par26 = false )) #
+# (not (Par5 = false AND Par7 = true AND Par16 = false AND Par9 = PAR9_3 AND Par11 = PAR11_4 AND Par17 = PAR17_8 )) #
+# (not (Par23 = false AND Par23 = true AND Par2 = true AND Par3 = false AND Par20 = false AND Par11 = PAR11_1 AND Par14 = false AND Par16 = false AND Par18 = true AND Par20 = true AND Par2 = false AND Par8 = true AND Par23 = false AND Par9 = PAR9_2 )) #
+# Par27 != true OR Par23 != false OR Par4 != PAR4_2 OR Par17 != PAR17_6 OR Par10 != PAR10_13 OR Par1 != PAR1_1 OR Par2 != false OR Par14 != true OR Par4 != PAR4_2 OR Par11 != PAR11_5 OR Par16 != false OR Par19 != PAR19_1 OR Par21 != false OR Par22 != false OR Par12 != PAR12_1 OR Par20 != false  #
+# (not (Par18 = false AND Par19 = PAR19_1 AND Par0 = false AND Par27 = false AND Par3 = false AND Par10 = PAR10_10 AND Par27 = true AND Par6 = PAR6_0 AND Par21 = true AND Par3 = true AND Par8 = true AND Par7 = true AND Par6 = PAR6_9 AND Par27 = false AND Par20 = true AND Par18 = false )) #
+# Par0 != false OR Par9 != PAR9_0 OR Par7 != false OR Par9 != PAR9_0 OR Par14 != true OR Par21 != false  #
+# (not (Par8 = false AND Par0 = false AND Par4 = PAR4_1 AND Par17 = PAR17_6 AND Par21 = false AND Par10 = PAR10_8 )) #
+# (not (Par26 = false AND Par13 = false AND Par24 = false )) #
+# (not (Par25 = true AND Par5 = false )) #
+# (not (Par17 = PAR17_2 AND Par10 = PAR10_11 AND Par13 = true )) #
+# Par11 != PAR11_2 OR Par16 != true OR Par14 != false OR Par2 != false OR Par14 != true OR Par22 != true OR Par0 != false OR Par15 != PAR15_1 OR Par15 != PAR15_4 OR Par22 != true OR Par11 != PAR11_2 OR Par8 != false OR Par0 != true OR Par4 != PAR4_1 OR Par3 != true  #
+# Par11 != PAR11_2 OR Par11 != PAR11_7 OR Par23 != true OR Par18 != true OR Par15 != PAR15_7 OR Par25 != true OR Par7 != false OR Par24 != true OR Par15 != PAR15_2 OR Par18 != false OR Par26 != false OR Par6 != PAR6_4 OR Par1 != PAR1_2 OR Par3 != false OR Par15 != PAR15_4 OR Par9 != PAR9_3 OR Par5 != true  #
+# (not (Par27 = true AND Par3 = true AND Par13 = false AND Par10 = PAR10_8 AND Par27 = false AND Par3 = true AND Par10 = PAR10_4 AND Par7 = false AND Par19 = PAR19_2 AND Par22 = false AND Par20 = false AND Par4 = PAR4_2 AND Par13 = true AND Par25 = true AND Par5 = true AND Par13 = true AND Par8 = false AND Par20 = false )) #
+# Par24 != true OR Par19 != PAR19_3 OR Par5 != true OR Par15 != PAR15_6 OR Par16 != true OR Par1 != PAR1_1 OR Par14 != false OR Par23 != true OR Par7 != true OR Par1 != PAR1_0 OR Par25 != true OR Par27 != true OR Par17 != PAR17_6  #
+# (not (Par23 = true AND Par7 = true AND Par1 = PAR1_2 AND Par21 = true AND Par22 = true AND Par18 = true AND Par12 = PAR12_1 AND Par15 = PAR15_7 AND Par3 = false AND Par14 = false AND Par13 = true AND Par4 = PAR4_3 AND Par3 = true )) #
+# Par5 != true OR Par6 != PAR6_9 OR Par14 != false  #
+# Par11 != PAR11_5 OR Par26 != false OR Par12 != PAR12_1 OR Par26 != false OR Par20 != false OR Par9 != PAR9_3 OR Par18 != true  #
+# (not (Par10 = PAR10_1 AND Par24 = false )) #
+# Par25 != false OR Par15 != PAR15_7 OR Par2 != false OR Par27 != true OR Par16 != true OR Par11 != PAR11_0 OR Par15 != PAR15_4 OR Par1 != PAR1_2 OR Par9 != PAR9_3 OR Par10 != PAR10_12  #
+# (not (Par11 = PAR11_8 AND Par23 = false AND Par8 = false AND Par19 = PAR19_3 AND Par12 = PAR12_2 AND Par3 = false AND Par24 = true AND Par11 = PAR11_5 AND Par10 = PAR10_1 AND Par8 = false )) #
+# Par23 != false OR Par25 != false OR Par10 != PAR10_13 OR Par27 != false OR Par19 != PAR19_2 OR Par22 != false  #
+# (not (Par10 = PAR10_12 AND Par20 = true AND Par16 = false AND Par9 = PAR9_1 AND Par18 = true AND Par14 = false AND Par24 = false )) #
+# Par21 != true OR Par13 != true OR Par9 != PAR9_2 OR Par20 != false OR Par4 != PAR4_1 OR Par18 != false OR Par10 != PAR10_3 OR Par1 != PAR1_2 OR Par10 != PAR10_8 OR Par7 != true OR Par8 != false OR Par17 != PAR17_3 OR Par25 != false OR Par3 != false OR Par21 != false OR Par6 != PAR6_9 OR Par4 != PAR4_3 OR Par23 != false OR Par1 != PAR1_0  #
+# (not (Par25 = true AND Par4 = PAR4_3 AND Par27 = false AND Par4 = PAR4_1 AND Par11 = PAR11_5 AND Par9 = PAR9_2 AND Par10 = PAR10_4 AND Par13 = false AND Par15 = PAR15_0 AND Par5 = false AND Par7 = false AND Par3 = false AND Par24 = true AND Par21 = true )) #
+# Par8 != true OR Par21 != false OR Par7 != false OR Par16 != false OR Par21 != false OR Par13 != false OR Par24 != false OR Par1 != PAR1_0 OR Par7 != true OR Par25 != false OR Par6 != PAR6_0 OR Par23 != false OR Par2 != true  #
+# Par25 != false OR Par4 != PAR4_0 OR Par17 != PAR17_7 OR Par14 != false OR Par27 != false OR Par19 != PAR19_0 OR Par4 != PAR4_0  #
+# Par23 != false OR Par12 != PAR12_1 OR Par18 != false OR Par3 != true OR Par19 != PAR19_1 OR Par27 != false OR Par7 != true OR Par15 != PAR15_5  #
+# (not (Par21 = false AND Par11 = PAR11_6 AND Par18 = false AND Par26 = true AND Par5 = true AND Par22 = false AND Par20 = false AND Par13 = false AND Par24 = true AND Par7 = false AND Par6 = PAR6_7 AND Par12 = PAR12_2 AND Par20 = false AND Par27 = true AND Par23 = true AND Par17 = PAR17_9 AND Par26 = true AND Par18 = true AND Par18 = false )) #
+# (not (Par18 = false AND Par21 = true AND Par11 = PAR11_9 )) #
+# (not (Par15 = PAR15_6 AND Par8 = false AND Par27 = true AND Par8 = false AND Par4 = PAR4_1 AND Par26 = false AND Par5 = true AND Par18 = false AND Par19 = PAR19_1 AND Par27 = true AND Par14 = true AND Par11 = PAR11_7 AND Par27 = true AND Par5 = false AND Par19 = PAR19_0 )) #

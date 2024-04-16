@@ -1,0 +1,31 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : false, true
+Par8 : false, true
+Par9 : false, true
+Par10 : false, true
+Par11 : false, true
+Par12 : false, true
+Par13 : false, true
+Par14 : false, true
+Par15 : false, true
+Par16 : false, true
+Par17 : false, true
+Par18 : false, true
+Par19 : false, true
+Par20 : false, true
+Par21 : false, true
+Par22 : false, true
+Par23 : false, true
+
+
+[Par18]<>"true";
+((((NOT ([Par21]="true"))) OR ((NOT ([Par23]="true")))) OR ((((NOT ((NOT ([Par20]<>"true"))))) OR ([Par20]="false")) AND (((NOT ([Par20]="false"))) OR ((NOT ([Par20]<>"true")))))) AND ((((NOT ((NOT ([Par0]<>"false"))))) OR ((NOT ([Par3]<>"true")))) OR (((NOT ((NOT ([Par11]<>"false"))))) OR ((NOT ([Par9]="true")))));
+((NOT (((NOT ([Par22]="true"))) OR ([Par14]="true")))) OR (([Par3]="false") AND ([Par1]<>"false"));
+(((NOT ((([Par12]="false") OR ([Par3]<>"true")) AND (((NOT ([Par23]="true"))) OR ((NOT ([Par13]="false"))))))) OR (((NOT (([Par23]<>"true") AND ((NOT ([Par5]="false")))))) OR (((NOT ([Par7]="false"))) OR ((NOT ([Par17]<>"true")))))) AND (((NOT (((NOT (([Par23]<>"true") AND ((NOT ([Par5]="false")))))) OR (((NOT ([Par7]="false"))) OR ((NOT ([Par17]<>"true"))))))) OR ((([Par12]="false") OR ([Par3]<>"true")) AND (((NOT ([Par23]="true"))) OR ((NOT ([Par13]="false"))))));
+(((NOT ((((NOT ((((NOT ([Par20]="true"))) OR ((NOT ([Par12]<>"true")))) AND (((NOT ((NOT ([Par12]<>"true"))))) OR ([Par20]="true"))))) OR (((NOT ((NOT ([Par14]="true"))))) OR ([Par14]<>"false"))) AND (((NOT (((NOT ((NOT ([Par14]="true"))))) OR ([Par14]<>"false")))) OR ((((NOT ([Par20]="true"))) OR ((NOT ([Par12]<>"true")))) AND (((NOT ((NOT ([Par12]<>"true"))))) OR ([Par20]="true"))))))) OR (((NOT (([Par22]="true") AND ([Par7]<>"false")))) OR (([Par5]<>"false") OR ([Par14]="false")))) AND (((NOT (((NOT (([Par22]="true") AND ([Par7]<>"false")))) OR (([Par5]<>"false") OR ([Par14]="false"))))) OR ((((NOT ((((NOT ([Par20]="true"))) OR ((NOT ([Par12]<>"true")))) AND (((NOT ((NOT ([Par12]<>"true"))))) OR ([Par20]="true"))))) OR (((NOT ((NOT ([Par14]="true"))))) OR ([Par14]<>"false"))) AND (((NOT (((NOT ((NOT ([Par14]="true"))))) OR ([Par14]<>"false")))) OR ((((NOT ([Par20]="true"))) OR ((NOT ([Par12]<>"true")))) AND (((NOT ((NOT ([Par12]<>"true"))))) OR ([Par20]="true"))))));

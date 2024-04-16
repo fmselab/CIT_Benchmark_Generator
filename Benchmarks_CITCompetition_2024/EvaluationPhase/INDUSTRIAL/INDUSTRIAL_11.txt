@@ -1,0 +1,31 @@
+[System]
+-- specify system name
+Name: INDUSTRIAL_11
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+p1 (boolean) : true, false
+p2 (boolean) : true, false
+p3 (enum) : v1, v2, v3
+p4 (enum) : v1, v2, v3
+p5 (boolean) : true, false
+p6 (boolean) : true, false
+p7 (boolean) : true, false
+p8 (boolean) : true, false
+p9 (enum) : v1, v2, v3, v4, v5
+
+[Constraint]
+-- this section is also optional
+(p2 = true) || (p3 != "v2")
+(p3 = "v3") || (p4 != "v1")
+(p4 != "v2") || (p3 = "v3")
+(p4 != "v2") || (p2 = true)
+(p5 = true) || (p3 != "v2")
+(p5 = true) || (p4 != "v2")
+(p6 = true) || (p3 != "v2")
+(p6 = true) || (p4 != "v2")
+(p7 = true) || (p3 = "v3")
+(p7 = true) || (p4 = "v3")
+(p8 = true) || (p4 = "v3")
+(p8 = true) || (p3 = "v3")
+

@@ -1,0 +1,13 @@
+Par0 : 63, 64, 65, 66, 67, 68, 69, 70, 71
+Par1 : false, true
+Par2 : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5
+Par3 : false, true
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : 7, 8, 9, 10
+Par8 : PAR8_0, PAR8_1
+Par9 : -27, -26, -25, -24, -23, -22, -21
+
+
+((([Par5]<>"false") OR ((NOT ([Par8]<>"PAR8_0")))) AND ((((NOT ([Par0]<=69))) OR ((NOT ([Par4]<>"true")))) AND (((NOT ((NOT ([Par4]<>"true"))))) OR ([Par0]<=69)))) AND ((((NOT ([Par1]<>"false"))) AND ((NOT ([Par2]="PAR2_5")))) AND ((((NOT ((NOT ([Par9]=-24))))) OR ([Par2]="PAR2_1")) AND (((NOT ([Par2]="PAR2_1"))) OR ((NOT ([Par9]=-24))))));

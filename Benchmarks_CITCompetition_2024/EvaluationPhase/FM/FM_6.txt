@@ -1,0 +1,37 @@
+[System]
+-- specify system name
+Name: FM_6
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+AutomotiveMultimedia (boolean) : true, false
+AudioPlayer (boolean) : true, false
+Radio (boolean) : true, false
+CDPlayer (boolean) : true, false
+VoiceRecognition (boolean) : true, false
+PersonalNavigation (boolean) : true, false
+Maps (boolean) : true, false
+Europe (boolean) : true, false
+NorthAmerica (boolean) : true, false
+CentralAmerica (boolean) : true, false
+SouthAmerica (boolean) : true, false
+Asia (boolean) : true, false
+OnBoardComputer (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+AutomotiveMultimedia = true
+(AudioPlayer = true) => (AutomotiveMultimedia = true)
+((Radio = true) => (AudioPlayer = true))&&((AudioPlayer = true) => (Radio = true))
+(CDPlayer = true) => (AudioPlayer = true)
+(VoiceRecognition = true) => (AutomotiveMultimedia = true)
+(PersonalNavigation = true) => (AutomotiveMultimedia = true)
+((Maps = true) => (PersonalNavigation = true))&&((PersonalNavigation = true) => (Maps = true))
+(Maps = true) => (((((Europe = true) || (NorthAmerica = true)) || (CentralAmerica = true)) || (SouthAmerica = true)) || (Asia = true))
+(Europe = true) => (Maps = true)
+(NorthAmerica = true) => (Maps = true)
+(CentralAmerica = true) => (Maps = true)
+(SouthAmerica = true) => (Maps = true)
+(Asia = true) => (Maps = true)
+((OnBoardComputer = true) => (AutomotiveMultimedia = true))&&((AutomotiveMultimedia = true) => (OnBoardComputer = true))
+

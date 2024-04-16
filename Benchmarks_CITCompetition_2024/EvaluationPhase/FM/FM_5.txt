@@ -1,0 +1,99 @@
+[System]
+-- specify system name
+Name: FM_5
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+ERP_SPL (boolean) : true, false
+Cadastros (boolean) : true, false
+Cadastrodecliente (boolean) : true, false
+Editarcadastrodecliente (boolean) : true, false
+Apagarcadastrodecliente (boolean) : true, false
+Cadastrodefornecedor (boolean) : true, false
+Editarcadastrodefornecedor (boolean) : true, false
+Apagarcadastrodefornecedor (boolean) : true, false
+Cadastrodefuncionario (boolean) : true, false
+Editarcadastrodefuncionario (boolean) : true, false
+Apagarcadastrodefuncionario (boolean) : true, false
+Cadastrodeusuario (boolean) : true, false
+Editarcadastrodeusuario (boolean) : true, false
+Apagarcadastrodeusuario (boolean) : true, false
+Cadastroderegrasdeacessodeusuario (boolean) : true, false
+Editarregrasdeacessodeusuario (boolean) : true, false
+Cadastros_6 (boolean) : true, false
+Cadastrodeproduto (boolean) : true, false
+Editarcadastrodeproduto (boolean) : true, false
+Apagarcadastrodeproduto (boolean) : true, false
+Cadastrodeservico (boolean) : true, false
+Editarcadastrodeservico (boolean) : true, false
+Apagarcadastrodeservico (boolean) : true, false
+Login (boolean) : true, false
+Controledeacesso (boolean) : true, false
+Listagens (boolean) : true, false
+Listagemdeitens (boolean) : true, false
+Listagemdeprodutos (boolean) : true, false
+Listagemdeservicos (boolean) : true, false
+Listagemdepessoas (boolean) : true, false
+Listagemdeclientes (boolean) : true, false
+Listagemdefornecedores (boolean) : true, false
+Listagemdefuncionarios (boolean) : true, false
+Listagemdeusuarios (boolean) : true, false
+Listagemdeestoque (boolean) : true, false
+Controledeestoque (boolean) : true, false
+Entradadeestoque (boolean) : true, false
+Saidadeestoque (boolean) : true, false
+Manutencaodeestoque (boolean) : true, false
+Controlefinanceiro (boolean) : true, false
+Contasapagar (boolean) : true, false
+Contasareceber (boolean) : true, false
+Manutencaodelancamentos (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+ERP_SPL = true
+((Cadastros = true) => (ERP_SPL = true))&&((ERP_SPL = true) => (Cadastros = true))
+((Cadastrodecliente = true) => (Cadastros = true))&&((Cadastros = true) => (Cadastrodecliente = true))
+((Editarcadastrodecliente = true) => (Cadastrodecliente = true))&&((Cadastrodecliente = true) => (Editarcadastrodecliente = true))
+((Apagarcadastrodecliente = true) => (Cadastrodecliente = true))&&((Cadastrodecliente = true) => (Apagarcadastrodecliente = true))
+((Cadastrodefornecedor = true) => (Cadastros = true))&&((Cadastros = true) => (Cadastrodefornecedor = true))
+((Editarcadastrodefornecedor = true) => (Cadastrodefornecedor = true))&&((Cadastrodefornecedor = true) => (Editarcadastrodefornecedor = true))
+((Apagarcadastrodefornecedor = true) => (Cadastrodefornecedor = true))&&((Cadastrodefornecedor = true) => (Apagarcadastrodefornecedor = true))
+(Cadastrodefuncionario = true) => (Cadastros = true)
+((Editarcadastrodefuncionario = true) => (Cadastrodefuncionario = true))&&((Cadastrodefuncionario = true) => (Editarcadastrodefuncionario = true))
+((Apagarcadastrodefuncionario = true) => (Cadastrodefuncionario = true))&&((Cadastrodefuncionario = true) => (Apagarcadastrodefuncionario = true))
+((Cadastrodeusuario = true) => (Cadastros = true))&&((Cadastros = true) => (Cadastrodeusuario = true))
+((Editarcadastrodeusuario = true) => (Cadastrodeusuario = true))&&((Cadastrodeusuario = true) => (Editarcadastrodeusuario = true))
+((Apagarcadastrodeusuario = true) => (Cadastrodeusuario = true))&&((Cadastrodeusuario = true) => (Apagarcadastrodeusuario = true))
+(Cadastroderegrasdeacessodeusuario = true) => (Cadastros = true)
+((Editarregrasdeacessodeusuario = true) => (Cadastroderegrasdeacessodeusuario = true))&&((Cadastroderegrasdeacessodeusuario = true) => (Editarregrasdeacessodeusuario = true))
+((Cadastros_6 = true) => (Cadastros = true))&&((Cadastros = true) => (Cadastros_6 = true))
+(Cadastros_6 = true) => ((Cadastrodeproduto = true) || (Cadastrodeservico = true))
+(Cadastrodeproduto = true) => (Cadastros_6 = true)
+((Editarcadastrodeproduto = true) => (Cadastrodeproduto = true))&&((Cadastrodeproduto = true) => (Editarcadastrodeproduto = true))
+((Apagarcadastrodeproduto = true) => (Cadastrodeproduto = true))&&((Cadastrodeproduto = true) => (Apagarcadastrodeproduto = true))
+(Cadastrodeservico = true) => (Cadastros_6 = true)
+((Editarcadastrodeservico = true) => (Cadastrodeservico = true))&&((Cadastrodeservico = true) => (Editarcadastrodeservico = true))
+((Apagarcadastrodeservico = true) => (Cadastrodeservico = true))&&((Cadastrodeservico = true) => (Apagarcadastrodeservico = true))
+((Login = true) => (ERP_SPL = true))&&((ERP_SPL = true) => (Login = true))
+(Controledeacesso = true) => (Login = true)
+(Listagens = true) => (ERP_SPL = true)
+((Listagemdeitens = true) => (Listagens = true))&&((Listagens = true) => (Listagemdeitens = true))
+(Listagemdeprodutos = true) => (Listagens = true)
+(Listagemdeservicos = true) => (Listagens = true)
+((Listagemdepessoas = true) => (Listagens = true))&&((Listagens = true) => (Listagemdepessoas = true))
+((Listagemdeclientes = true) => (Listagens = true))&&((Listagens = true) => (Listagemdeclientes = true))
+((Listagemdefornecedores = true) => (Listagens = true))&&((Listagens = true) => (Listagemdefornecedores = true))
+(Listagemdefuncionarios = true) => (Listagens = true)
+((Listagemdeusuarios = true) => (Listagens = true))&&((Listagens = true) => (Listagemdeusuarios = true))
+(Listagemdeestoque = true) => (Listagens = true)
+(Controledeestoque = true) => (ERP_SPL = true)
+(Controledeestoque = true) => (((Entradadeestoque = true) || (Saidadeestoque = true)) || (Manutencaodeestoque = true))
+(Entradadeestoque = true) => (Controledeestoque = true)
+(Saidadeestoque = true) => (Controledeestoque = true)
+(Manutencaodeestoque = true) => (Controledeestoque = true)
+(Controlefinanceiro = true) => (ERP_SPL = true)
+(Controlefinanceiro = true) => (((Contasapagar = true) || (Contasareceber = true)) || (Manutencaodelancamentos = true))
+(Contasapagar = true) => (Controlefinanceiro = true)
+(Contasareceber = true) => (Controlefinanceiro = true)
+(Manutencaodelancamentos = true) => (Controlefinanceiro = true)
+

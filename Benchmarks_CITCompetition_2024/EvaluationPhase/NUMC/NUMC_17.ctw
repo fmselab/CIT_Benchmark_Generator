@@ -1,0 +1,51 @@
+Model NUMC_17
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4}
+Par1: {PAR1_0,PAR1_1,PAR1_2,PAR1_3,PAR1_4,PAR1_5,PAR1_6}
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8}
+Par3: [-41 .. -32]
+Par4: [13 .. 16]
+Par5 : Boolean
+Par6: {PAR6_0,PAR6_1}
+Par7 : Boolean
+Par8 : Boolean
+Par9: [19 .. 30]
+Par10: [-9 .. 4]
+Par11: [-62 .. -59]
+Par12 : Boolean
+Par13: [-45 .. -43]
+
+Constraints:
+# ((Par10 = -6 => (not (Par12 = true))) => (Par6 = PAR6_1 <=> Par8 = true)) #
+# (((not (Par9 > 30)) <=> Par9 != 24) => (Par2 = PAR2_4 => (not (Par5 = true)))) #
+# ((Par11 = -60 OR (not (Par2 != PAR2_4))) AND (Par4 = 13 OR Par10 >= -2)) #
+# ((Par4 <= 15 => Par5 != true) <=> ((not (Par7 != true)) <=> Par9 < 19)) #
+# ((((not (Par12 = false)) OR (not (Par4 < 16))) => ((not (Par11 = -61)) => Par7 != false)) OR ((Par0 = PAR0_2 OR Par13 = -45) <=> ((not (Par9 != 19)) AND Par11 > -61))) #
+# (((not (Par11 <= -61)) <=> Par0 != PAR0_1) OR (Par5 != true <=> Par1 != PAR1_0)) #
+# ((Par13 = -45 => (not (Par12 != false))) AND (Par0 != PAR0_1 => (not (Par8 = true)))) #
+# ((not (Par12 != true)) OR Par8 = false) #
+# (Par5 != true OR Par8 = true) #
+# ((((not (Par3 = -36)) AND Par11 < -61) <=> (Par8 != true AND (not (Par3 <= -40)))) OR ((Par1 = PAR1_4 <=> Par11 < -61) => (Par10 <= -4 AND (not (Par1 = PAR1_4))))) #
+# (((Par3 = -40 => (not (Par7 = true))) => ((not (Par6 != PAR6_1)) => (not (Par13 > -45)))) OR ((Par4 < 14 <=> Par6 = PAR6_1) OR (Par1 = PAR1_4 => (not (Par1 = PAR1_5))))) #
+# (((not (Par9 >= 26)) => Par4 < 14) <=> ((not (Par6 != PAR6_1)) OR Par13 < -43)) #
+# Par5 = false #
+# ((Par12 != true <=> (not (Par8 != false))) AND (Par4 = 16 <=> Par11 = -59)) #
+# (((not (Par5 != true)) => (not (Par2 != PAR2_3))) AND (Par2 = PAR2_2 OR (not (Par4 >= 15)))) #
+# (((not (Par1 != PAR1_3)) OR Par13 != -43) AND (Par1 != PAR1_5 AND (not (Par0 = PAR0_2)))) #
+# ((((not (Par8 = true)) <=> (not (Par12 != true))) <=> ((not (Par7 = false)) <=> (not (Par4 = 15)))) <=> (((not (Par2 != PAR2_4)) OR Par6 = PAR6_0) => ((not (Par0 != PAR0_2)) AND Par13 <= -43))) #
+# ((Par9 = 19 => Par5 = true) OR (Par7 = true => Par3 <= -36)) #
+# ((((not (Par3 > -35)) <=> Par7 != false) => ((not (Par11 != -61)) AND Par6 = PAR6_1)) => (((not (Par12 = false)) OR (not (Par8 != false))) <=> ((not (Par2 != PAR2_1)) OR Par6 != PAR6_1))) #
+# (((Par7 = false <=> Par8 = true) AND ((not (Par9 > 26)) => (not (Par3 < -38)))) => ((Par5 != true <=> (not (Par13 != -44))) => (Par3 >= -39 AND (not (Par12 != false))))) #
+# ((((not (Par6 != PAR6_1)) AND (not (Par13 != -45))) OR ((not (Par3 = -37)) => Par0 = PAR0_3)) OR ((Par1 != PAR1_4 AND Par7 != true) AND ((not (Par13 = -45)) <=> (not (Par0 = PAR0_0))))) #
+# ((((not (Par13 < -43)) OR (not (Par8 != false))) <=> (Par7 = true AND (not (Par4 >= 13)))) <=> ((Par3 > -32 AND Par1 = PAR1_2) AND ((not (Par2 = PAR2_7)) <=> (not (Par0 = PAR0_1))))) #
+# (((not (Par8 = true)) AND (not (Par8 != true))) <=> (Par5 != false <=> (not (Par3 > -33)))) #
+# ((Par8 = false AND Par12 != true) => (Par12 = true OR (not (Par11 < -59)))) #
+# ((Par5 = false AND (not (Par1 = PAR1_2))) <=> (Par1 != PAR1_0 => Par2 != PAR2_0)) #
+# ((((not (Par12 = true)) OR (not (Par3 < -34))) OR ((not (Par12 != false)) <=> (not (Par9 > 23)))) <=> ((Par10 != 2 <=> Par7 = true) <=> ((not (Par6 = PAR6_1)) <=> Par8 != false))) #
+# ((Par13 != -43 AND Par0 != PAR0_3) OR ((not (Par5 = true)) AND (not (Par13 > -43)))) #
+# (((not (Par13 <= -45)) OR (not (Par6 = PAR6_1))) OR ((not (Par10 > -9)) <=> (not (Par2 = PAR2_8)))) #
+# (((Par2 != PAR2_3 AND Par12 = false) OR ((not (Par4 <= 13)) => Par12 != true)) <=> (((not (Par1 = PAR1_1)) <=> Par3 > -35) <=> ((not (Par8 = true)) OR (not (Par3 >= -36))))) #
+# ((Par0 != PAR0_4 OR (not (Par11 > -62))) AND (Par8 != true => Par11 < -60)) #
+# ((Par5 = true OR (not (Par1 = PAR1_5))) AND ((not (Par4 <= 16)) => (not (Par12 != false)))) #
+# ((((not (Par2 = PAR2_2)) <=> Par10 < -9) <=> (Par9 > 23 <=> Par5 != true)) OR (((not (Par13 > -44)) => (not (Par13 != -45))) OR (Par4 > 15 <=> (not (Par9 < 21))))) #
+# (((not (Par7 = true)) <=> Par0 != PAR0_0) OR ((not (Par4 = 15)) <=> Par6 != PAR6_0)) #

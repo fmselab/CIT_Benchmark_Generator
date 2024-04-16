@@ -1,0 +1,32 @@
+[System]
+-- specify system name
+Name: FM_8
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+CarBody (boolean) : true, false
+MultimediaDevices (boolean) : true, false
+Radio (enum) : MonochromeRadioDisplay, ColorRadioDisplay, NONE
+Navigation (boolean) : true, false
+DisplayType (enum) : MonochromeNavDisplay, ColorNavDisplay, NONE
+DataStorage (boolean) : true, false
+HardDiskDrive (boolean) : true, false
+DVDDrive (boolean) : true, false
+DVDEntertainment (boolean) : true, false
+OtherFeatures (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+CarBody = true
+(MultimediaDevices = true) => (CarBody = true)
+(Radio != "NONE") => (MultimediaDevices = true)
+(Navigation = true) => (MultimediaDevices = true)
+((DisplayType != "NONE") => (Navigation = true))&&((Navigation = true) => (DisplayType != "NONE"))
+(DataStorage = true) => (Navigation = true)
+(DataStorage = true) => ((HardDiskDrive = true) || (DVDDrive = true))
+(HardDiskDrive = true) => (DataStorage = true)
+(DVDDrive = true) => (DataStorage = true)
+(DVDEntertainment = true) => (MultimediaDevices = true)
+((OtherFeatures = true) => (CarBody = true))&&((CarBody = true) => (OtherFeatures = true))
+(DVDEntertainment = true) => (DVDDrive = true)
+

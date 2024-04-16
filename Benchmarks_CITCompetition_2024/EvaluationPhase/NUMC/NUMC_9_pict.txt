@@ -1,0 +1,13 @@
+Par0 : -40, -39, -38, -37, -36, -35, -34, -33, -32, -31, -30, -29
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : false, true
+Par5 : 37, 38
+
+
+((NOT ([Par3]<>"true"))) OR ([Par5]>38);
+(([Par0]<=-39) AND ([Par1]<>"false")) AND ((((NOT ((NOT ([Par5] >= 37))))) OR ([Par3]="false")) AND (((NOT ([Par3]="false"))) OR ((NOT ([Par5] >= 37)))));
+((((NOT ([Par2]<>"false"))) AND ([Par0]=-37)) AND ((((NOT ([Par5]=37))) OR ([Par0]>-32)) AND (((NOT ([Par0]>-32))) OR ([Par5]=37)))) OR ((((NOT ((NOT ([Par0]<-34))))) OR ((NOT ([Par2]="true")))) OR ((((NOT ([Par3]="true"))) OR ([Par1]="true")) AND (((NOT ([Par1]="true"))) OR ([Par3]="true"))));
+(((NOT (((NOT ([Par5]=38))) OR ((NOT ([Par1]<>"true")))))) OR (([Par5]>37) AND ([Par0]<=-40))) OR ((([Par0]<>-34) AND ((NOT ([Par5]<=37)))) OR (([Par5]<37) AND ((NOT ([Par4]="true")))));
+((NOT ([Par2]<>"false"))) AND ([Par3]="true");

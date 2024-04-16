@@ -1,0 +1,29 @@
+AutomotiveMultimedia : false, true
+AudioPlayer : false, true
+Radio : false, true
+CDPlayer : false, true
+VoiceRecognition : false, true
+PersonalNavigation : false, true
+Maps : false, true
+Europe : false, true
+NorthAmerica : false, true
+CentralAmerica : false, true
+SouthAmerica : false, true
+Asia : false, true
+OnBoardComputer : false, true
+
+
+[AutomotiveMultimedia]="true";
+((NOT ([AudioPlayer]="true"))) OR ([AutomotiveMultimedia]="true");
+(((NOT ([Radio]="true"))) OR ([AudioPlayer]="true")) AND (((NOT ([AudioPlayer]="true"))) OR ([Radio]="true"));
+((NOT ([CDPlayer]="true"))) OR ([AudioPlayer]="true");
+((NOT ([VoiceRecognition]="true"))) OR ([AutomotiveMultimedia]="true");
+((NOT ([PersonalNavigation]="true"))) OR ([AutomotiveMultimedia]="true");
+(((NOT ([Maps]="true"))) OR ([PersonalNavigation]="true")) AND (((NOT ([PersonalNavigation]="true"))) OR ([Maps]="true"));
+((NOT ([Maps]="true"))) OR ((((([Europe]="true") OR ([NorthAmerica]="true")) OR ([CentralAmerica]="true")) OR ([SouthAmerica]="true")) OR ([Asia]="true"));
+((NOT ([Europe]="true"))) OR ([Maps]="true");
+((NOT ([NorthAmerica]="true"))) OR ([Maps]="true");
+((NOT ([CentralAmerica]="true"))) OR ([Maps]="true");
+((NOT ([SouthAmerica]="true"))) OR ([Maps]="true");
+((NOT ([Asia]="true"))) OR ([Maps]="true");
+(((NOT ([OnBoardComputer]="true"))) OR ([AutomotiveMultimedia]="true")) AND (((NOT ([AutomotiveMultimedia]="true"))) OR ([OnBoardComputer]="true"));

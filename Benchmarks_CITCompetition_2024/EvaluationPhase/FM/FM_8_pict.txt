@@ -1,0 +1,24 @@
+CarBody : false, true
+MultimediaDevices : false, true
+Radio : MonochromeRadioDisplay, ColorRadioDisplay, NONE
+Navigation : false, true
+DisplayType : MonochromeNavDisplay, ColorNavDisplay, NONE
+DataStorage : false, true
+HardDiskDrive : false, true
+DVDDrive : false, true
+DVDEntertainment : false, true
+OtherFeatures : false, true
+
+
+[CarBody]="true";
+((NOT ([MultimediaDevices]="true"))) OR ([CarBody]="true");
+((NOT ([Radio]<>"NONE"))) OR ([MultimediaDevices]="true");
+((NOT ([Navigation]="true"))) OR ([MultimediaDevices]="true");
+(((NOT ([DisplayType]<>"NONE"))) OR ([Navigation]="true")) AND (((NOT ([Navigation]="true"))) OR ([DisplayType]<>"NONE"));
+((NOT ([DataStorage]="true"))) OR ([Navigation]="true");
+((NOT ([DataStorage]="true"))) OR (([HardDiskDrive]="true") OR ([DVDDrive]="true"));
+((NOT ([HardDiskDrive]="true"))) OR ([DataStorage]="true");
+((NOT ([DVDDrive]="true"))) OR ([DataStorage]="true");
+((NOT ([DVDEntertainment]="true"))) OR ([MultimediaDevices]="true");
+(((NOT ([OtherFeatures]="true"))) OR ([CarBody]="true")) AND (((NOT ([CarBody]="true"))) OR ([OtherFeatures]="true"));
+((NOT ([DVDEntertainment]="true"))) OR ([DVDDrive]="true");

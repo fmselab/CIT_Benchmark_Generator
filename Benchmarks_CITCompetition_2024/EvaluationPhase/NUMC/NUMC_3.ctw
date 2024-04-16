@@ -1,0 +1,71 @@
+Model NUMC_3
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4,PAR0_5,PAR0_6,PAR0_7,PAR0_8,PAR0_9,PAR0_10}
+Par1: [-3 .. -2]
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8,PAR2_9,PAR2_10,PAR2_11}
+Par3 : Boolean
+Par4 : Boolean
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6,PAR5_7,PAR5_8,PAR5_9,PAR5_10,PAR5_11,PAR5_12,PAR5_13,PAR5_14}
+Par6: [-56 .. -46]
+Par7: {PAR7_0,PAR7_1}
+Par8: [-100 .. -99]
+Par9 : Boolean
+Par10 : Boolean
+Par11: [-54 .. -45]
+Par12: [-29 .. -24]
+Par13: [-82 .. -74]
+Par14 : Boolean
+Par15: [62 .. 69]
+Par16: {PAR16_0,PAR16_1,PAR16_2,PAR16_3,PAR16_4,PAR16_5}
+Par17: {PAR17_0,PAR17_1}
+Par18 : Boolean
+Par19: [7 .. 12]
+Par20 : Boolean
+Par21: {PAR21_0,PAR21_1,PAR21_2,PAR21_3,PAR21_4,PAR21_5,PAR21_6,PAR21_7}
+Par22: [-82 .. -76]
+Par23: [-17 .. -12]
+
+Constraints:
+# (((not (Par6 <= -53)) OR (not (Par2 != PAR2_11))) OR (Par11 >= -48 AND (not (Par10 != false)))) #
+# ((((not (Par20 = false)) => Par19 < 8) OR (Par5 = PAR5_14 AND (not (Par19 > 7)))) <=> ((Par5 = PAR5_8 OR (not (Par6 < -55))) => (Par11 >= -49 OR (not (Par23 >= -13))))) #
+# (((Par7 != PAR7_0 AND (not (Par3 = false))) <=> ((not (Par18 != false)) <=> Par1 < -2)) AND (((not (Par14 != false)) AND (not (Par22 <= -78))) OR ((not (Par19 <= 10)) <=> Par13 = -75))) #
+# ((((not (Par9 = false)) => (not (Par13 = -80))) AND (Par2 = PAR2_5 => Par0 != PAR0_8)) OR ((Par1 > -2 => (not (Par7 = PAR7_1))) => ((not (Par2 != PAR2_10)) AND (not (Par10 = false))))) #
+# ((Par21 != PAR21_5 OR (not (Par4 != true))) AND (Par17 = PAR17_1 => Par7 != PAR7_1)) #
+# (((not (Par6 != -56)) OR Par18 = true) => ((not (Par4 != true)) AND Par15 = 69)) #
+# ((((not (Par17 != PAR17_0)) => (not (Par15 != 63))) AND ((not (Par13 = -80)) OR (not (Par22 != -78)))) => ((Par22 > -81 OR Par4 = false) => (Par3 = true <=> (not (Par15 <= 65))))) #
+# ((not (Par13 <= -74)) => (not (Par0 != PAR0_0))) #
+# (((not (Par2 = PAR2_4)) AND Par10 != true) AND (Par19 > 9 AND Par14 = false)) #
+# (((Par6 < -50 <=> Par0 = PAR0_7) OR ((not (Par9 != true)) OR Par7 != PAR7_1)) AND (((not (Par19 < 12)) => Par6 = -52) OR ((not (Par14 = true)) => Par3 != true))) #
+# ((Par16 = PAR16_5 <=> (not (Par4 != false))) AND ((not (Par18 = false)) OR Par5 != PAR5_9)) #
+# ((((not (Par15 <= 68)) => Par4 = true) OR ((not (Par23 != -17)) => (not (Par0 != PAR0_5)))) OR ((Par6 >= -48 AND (not (Par13 >= -79))) OR ((not (Par11 > -50)) <=> Par5 = PAR5_0))) #
+# ((((not (Par21 = PAR21_3)) OR Par4 != true) => ((not (Par21 != PAR21_3)) <=> (not (Par14 = true)))) <=> ((Par15 > 63 AND (not (Par16 != PAR16_4))) <=> (Par2 = PAR2_0 => (not (Par3 = true))))) #
+# ((((not (Par14 = true)) AND Par1 != -2) OR (Par19 >= 12 AND (not (Par1 = -3)))) <=> (((not (Par16 != PAR16_0)) AND Par1 = -3) OR ((not (Par8 <= -99)) <=> (not (Par22 <= -79))))) #
+# ((not (Par17 = PAR17_1)) OR Par22 >= -76) #
+# (((Par23 != -13 <=> (not (Par3 = false))) <=> (Par21 = PAR21_7 OR Par1 <= -2)) OR ((Par12 >= -28 OR Par17 = PAR17_0) AND (Par12 < -25 <=> Par10 = false))) #
+# ((not (Par7 = PAR7_1)) OR Par21 = PAR21_3) #
+# ((Par15 >= 64 <=> (not (Par20 = true))) <=> (Par0 != PAR0_10 AND (not (Par20 != false)))) #
+# (Par6 >= -49 => (not (Par16 = PAR16_1))) #
+# (((Par5 != PAR5_12 AND (not (Par6 > -50))) => (Par17 = PAR17_0 AND (not (Par23 != -13)))) => ((Par11 = -45 OR Par17 != PAR17_0) OR (Par1 > -3 <=> Par3 != true))) #
+# (((Par7 != PAR7_0 <=> (not (Par19 > 7))) => ((not (Par18 = true)) => (not (Par0 != PAR0_5)))) <=> ((Par1 > -2 <=> (not (Par12 < -25))) => (Par12 != -29 <=> Par23 <= -17))) #
+# ((((not (Par22 >= -81)) <=> (not (Par10 != false))) => ((not (Par19 > 8)) AND Par22 < -79)) => (((not (Par2 = PAR2_10)) AND (not (Par12 > -26))) <=> (Par16 != PAR16_3 OR Par2 = PAR2_9))) #
+# (((not (Par13 < -74)) => Par13 >= -79) => (Par16 = PAR16_4 OR Par21 = PAR21_2)) #
+# ((((not (Par10 != false)) AND (not (Par4 = false))) OR (Par23 < -15 <=> (not (Par5 != PAR5_3)))) AND ((Par5 = PAR5_11 AND Par6 >= -46) OR (Par10 != false <=> (not (Par0 != PAR0_10))))) #
+# ((Par21 = PAR21_6 <=> Par11 >= -49) OR ((not (Par4 != false)) AND Par11 <= -52)) #
+# (((not (Par3 != false)) <=> (not (Par10 != false))) AND ((not (Par8 = -100)) OR (not (Par15 != 69)))) #
+# (((not (Par11 <= -49)) <=> (not (Par4 != true))) OR (Par18 = false <=> (not (Par0 != PAR0_5)))) #
+# ((not (Par19 >= 8)) => (not (Par13 < -78))) #
+# (((Par17 = PAR17_1 OR (not (Par11 = -50))) <=> (Par19 != 10 OR (not (Par21 != PAR21_5)))) OR ((Par19 >= 11 <=> Par1 = -3) AND (Par22 <= -82 => (not (Par14 != false))))) #
+# ((Par12 >= -24 AND (not (Par23 != -13))) => ((not (Par18 != false)) OR Par12 >= -25)) #
+# (((not (Par12 < -26)) <=> (not (Par18 != true))) => (Par2 != PAR2_11 <=> (not (Par5 = PAR5_3)))) #
+# ((((not (Par3 != true)) <=> Par12 != -28) AND (Par21 = PAR21_6 AND (not (Par19 != 8)))) <=> (((not (Par1 <= -2)) OR (not (Par11 <= -53))) => ((not (Par9 != false)) <=> (not (Par7 != PAR7_0))))) #
+# (((Par13 <= -78 => (not (Par19 >= 10))) AND ((not (Par19 != 12)) => Par21 = PAR21_1)) => ((Par1 = -2 AND (not (Par16 != PAR16_0))) => ((not (Par11 != -49)) <=> (not (Par1 = -2))))) #
+# (((not (Par11 < -51)) OR Par18 = false) OR ((not (Par22 != -80)) OR (not (Par17 != PAR17_0)))) #
+# (((Par5 = PAR5_8 AND Par4 != true) AND ((not (Par11 != -54)) <=> (not (Par14 = false)))) OR (((not (Par11 <= -50)) AND Par7 = PAR7_0) => (Par18 != true OR Par5 = PAR5_5))) #
+# (Par15 >= 64 <=> Par19 <= 11) #
+# (((not (Par11 > -48)) <=> Par20 = false) => (Par20 = false AND Par21 != PAR21_1)) #
+# ((((not (Par15 = 64)) => Par13 = -75) <=> (Par13 <= -77 <=> Par13 = -74)) OR (((not (Par1 > -2)) OR (not (Par3 != true))) OR ((not (Par17 != PAR17_1)) <=> (not (Par2 != PAR2_0))))) #
+# (((Par9 = true OR (not (Par8 > -99))) AND ((not (Par14 != false)) => Par18 != false)) => (((not (Par21 = PAR21_7)) AND (not (Par5 != PAR5_13))) <=> ((not (Par22 < -78)) <=> Par5 != PAR5_14))) #
+# (((not (Par12 >= -27)) AND (not (Par8 = -99))) <=> (Par18 = true OR Par5 = PAR5_7)) #
+# ((((not (Par21 != PAR21_5)) <=> Par17 != PAR17_1) <=> (Par0 = PAR0_4 <=> (not (Par12 >= -27)))) <=> ((Par3 != true => Par19 < 10) OR ((not (Par18 != true)) <=> Par7 != PAR7_0))) #
+# ((((not (Par5 = PAR5_1)) <=> Par6 = -50) OR ((not (Par14 = false)) <=> Par13 = -79)) => (((not (Par5 != PAR5_4)) <=> (not (Par16 != PAR16_3))) AND ((not (Par10 != true)) <=> (not (Par10 != true))))) #
+# (((Par2 != PAR2_10 OR (not (Par12 != -29))) AND ((not (Par8 <= -100)) <=> (not (Par18 != true)))) => (((not (Par1 >= -2)) OR Par4 != false) => ((not (Par10 = false)) OR (not (Par5 = PAR5_8))))) #

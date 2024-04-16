@@ -1,0 +1,40 @@
+[System]
+-- specify system name
+Name: FM_14
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+WeatherStation (boolean) : true, false
+Measurements (boolean) : true, false
+WindSpeed (boolean) : true, false
+Temperature (boolean) : true, false
+Pressure (boolean) : true, false
+DataSource (enum) : ExternalSensors, Demo, Internet, NONE
+OutFormAndLanguage (boolean) : true, false
+OutputFormat (enum) : File, WebServer, Text, NONE
+Format (enum) : HTML, XML, Plaintext, NONE
+Language (enum) : English, German, NONE
+Alarm (boolean) : true, false
+FreezePoint (boolean) : true, false
+StormAlert (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+WeatherStation = true
+((Measurements = true) => (WeatherStation = true))&&((WeatherStation = true) => (Measurements = true))
+(Measurements = true) => (((WindSpeed = true) || (Temperature = true)) || (Pressure = true))
+(WindSpeed = true) => (Measurements = true)
+(Temperature = true) => (Measurements = true)
+(Pressure = true) => (Measurements = true)
+((DataSource != "NONE") => (WeatherStation = true))&&((WeatherStation = true) => (DataSource != "NONE"))
+((OutFormAndLanguage = true) => (WeatherStation = true))&&((WeatherStation = true) => (OutFormAndLanguage = true))
+((OutputFormat != "NONE") => (OutFormAndLanguage = true))&&((OutFormAndLanguage = true) => (OutputFormat != "NONE"))
+((Format != "NONE") => (OutFormAndLanguage = true))&&((OutFormAndLanguage = true) => (Format != "NONE"))
+((Language != "NONE") => (OutFormAndLanguage = true))&&((OutFormAndLanguage = true) => (Language != "NONE"))
+(Alarm = true) => (WeatherStation = true)
+(Alarm = true) => ((FreezePoint = true) || (StormAlert = true))
+(FreezePoint = true) => (Alarm = true)
+(StormAlert = true) => (Alarm = true)
+(FreezePoint = true) => (Temperature = true)
+(Format = "XML") || (OutputFormat = "Text")
+

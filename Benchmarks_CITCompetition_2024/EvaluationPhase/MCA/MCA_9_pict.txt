@@ -1,0 +1,30 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : false, true
+Par4 : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5
+Par5 : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8
+Par6 : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6
+Par7 : false, true
+Par8 : false, true
+Par9 : PAR9_0, PAR9_1, PAR9_2, PAR9_3
+Par10 : PAR10_0, PAR10_1, PAR10_2, PAR10_3
+Par11 : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4, PAR11_5, PAR11_6, PAR11_7, PAR11_8, PAR11_9, PAR11_10, PAR11_11
+Par12 : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9, PAR12_10, PAR12_11, PAR12_12, PAR12_13, PAR12_14
+Par13 : false, true
+Par14 : false, true
+Par15 : false, true
+Par16 : false, true
+Par17 : false, true
+Par18 : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7, PAR18_8, PAR18_9
+Par19 : false, true
+Par20 : PAR20_0, PAR20_1, PAR20_2, PAR20_3
+Par21 : PAR21_0, PAR21_1, PAR21_2, PAR21_3
+Par22 : false, true
+Par23 : false, true
+Par24 : false, true
+Par25 : false, true
+Par26 : PAR26_0, PAR26_1, PAR26_2, PAR26_3, PAR26_4, PAR26_5, PAR26_6
+Par27 : false, true
+
+

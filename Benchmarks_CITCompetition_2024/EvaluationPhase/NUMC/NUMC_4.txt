@@ -1,0 +1,22 @@
+[System]
+-- specify system name
+Name: NUMC_4
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5
+Par5 (enum) : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4
+Par6 (int) : -61, -60, -59, -58, -57, -56, -55, -54, -53, -52, -51, -50, -49
+Par7 (boolean) : true, false
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3
+
+[Constraint]
+-- this section is also optional
+(Par7 != false) && (Par1 = "PAR1_4")
+(((Par8 != "PAR8_2") => (Par0 != false))&&((Par0 != false) => (Par8 != "PAR8_2"))) => (((! (Par7 = true)) => (! (Par3 = false)))&&((! (Par3 = false)) => (! (Par7 = true))))
+(((((! (Par5 != "PAR5_1")) => (! (Par1 != "PAR1_3")))&&((! (Par1 != "PAR1_3")) => (! (Par5 != "PAR5_1")))) => ((Par1 != "PAR1_3") || (! (Par1 = "PAR1_2"))))&&(((Par1 != "PAR1_3") || (! (Par1 = "PAR1_2"))) => (((! (Par5 != "PAR5_1")) => (! (Par1 != "PAR1_3")))&&((! (Par1 != "PAR1_3")) => (! (Par5 != "PAR5_1")))))) || ((((! (Par1 != "PAR1_5")) && (Par1 != "PAR1_4")) => ((Par0 = true) || (! (Par6 != -49))))&&(((Par0 = true) || (! (Par6 != -49))) => ((! (Par1 != "PAR1_5")) && (Par1 != "PAR1_4"))))
+

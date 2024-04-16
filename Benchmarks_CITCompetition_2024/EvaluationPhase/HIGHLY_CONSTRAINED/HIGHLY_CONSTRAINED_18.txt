@@ -1,0 +1,28 @@
+[System]
+-- specify system name
+Name: HIGHLY_CONSTRAINED_18
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8, PAR2_9, PAR2_10, PAR2_11, PAR2_12
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10, PAR10_11, PAR10_12
+Par11 (enum) : PAR11_0, PAR11_1, PAR11_2, PAR11_3, PAR11_4
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9, PAR12_10
+Par13 (enum) : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4
+Par14 (enum) : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6, PAR14_7, PAR14_8, PAR14_9, PAR14_10, PAR14_11
+
+[Constraint]
+-- this section is also optional
+((((Par2 = "PAR2_5") || (Par7 = "PAR7_2")) => ((! (Par10 != "PAR10_0")) || (! (Par9 = true))))&&(((! (Par10 != "PAR10_0")) || (! (Par9 = true))) => ((Par2 = "PAR2_5") || (Par7 = "PAR7_2")))) => (((Par3 = false) || (! (Par5 != true))) && (((Par6 = true) => (! (Par1 = true)))&&((! (Par1 = true)) => (Par6 = true))))
+(((! (Par2 = "PAR2_12")) => (Par9 = false))&&((Par9 = false) => (! (Par2 = "PAR2_12")))) && ((! (Par14 = "PAR14_10")) => (! (Par3 != false)))
+(((! (Par0 != false)) => (Par11 != "PAR11_4")) => (((! (Par12 != "PAR12_8")) => (! (Par0 != true)))&&((! (Par0 != true)) => (! (Par12 != "PAR12_8")))))&&((((! (Par12 != "PAR12_8")) => (! (Par0 != true)))&&((! (Par0 != true)) => (! (Par12 != "PAR12_8")))) => ((! (Par0 != false)) => (Par11 != "PAR11_4")))
+

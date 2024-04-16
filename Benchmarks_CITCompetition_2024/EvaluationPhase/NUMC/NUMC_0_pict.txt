@@ -1,0 +1,31 @@
+Par0 : -71, -70, -69, -68, -67, -66, -65, -64, -63, -62
+Par1 : false, true
+Par2 : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4
+Par3 : false, true
+Par4 : 26, 27, 28
+Par5 : 11, 12, 13, 14, 15, 16
+Par6 : 94, 95, 96
+Par7 : false, true
+Par8 : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9
+Par9 : false, true
+Par10 : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5
+Par11 : -80, -79, -78, -77, -76, -75, -74, -73, -72, -71, -70, -69, -68
+Par12 : false, true
+Par13 : -52, -51, -50, -49, -48, -47, -46, -45, -44, -43, -42, -41, -40
+Par14 : false, true
+Par15 : PAR15_0, PAR15_1
+Par16 : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4, PAR16_5, PAR16_6, PAR16_7, PAR16_8, PAR16_9
+Par17 : false, true
+Par18 : false, true
+Par19 : false, true
+Par20 : -28, -27, -26, -25, -24, -23, -22, -21, -20
+Par21 : false, true
+Par22 : 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44
+Par23 : PAR23_0, PAR23_1
+Par24 : 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38
+Par25 : 70, 71, 72, 73, 74, 75
+
+
+((([Par3]="false") OR ([Par2]="PAR2_1")) AND (((NOT ([Par5]<=11))) AND ((NOT ([Par14]<>"false"))))) AND ((((NOT ([Par10]="PAR10_4"))) AND ([Par11]<-69)) AND (([Par19]<>"true") OR ((NOT ([Par8]="PAR8_2")))));
+(((NOT ((((NOT (((NOT ([Par4]=27))) AND ((NOT ([Par19]="false")))))) OR (((NOT ([Par4]<>27))) OR ((NOT ([Par7]<>"true"))))) AND (((NOT (((NOT ([Par4]<>27))) OR ((NOT ([Par7]<>"true")))))) OR (((NOT ([Par4]=27))) AND ((NOT ([Par19]="false")))))))) OR (((NOT (((NOT ([Par5] >= 15))) OR ((NOT ([Par19]="true")))))) OR (([Par3]="true") AND ([Par25]<74)))) AND (((NOT (((NOT (((NOT ([Par5] >= 15))) OR ((NOT ([Par19]="true")))))) OR (([Par3]="true") AND ([Par25]<74))))) OR ((((NOT (((NOT ([Par4]=27))) AND ((NOT ([Par19]="false")))))) OR (((NOT ([Par4]<>27))) OR ((NOT ([Par7]<>"true"))))) AND (((NOT (((NOT ([Par4]<>27))) OR ((NOT ([Par7]<>"true")))))) OR (((NOT ([Par4]=27))) AND ((NOT ([Par19]="false")))))));
+(([Par17]="false") OR ([Par10]<>"PAR10_5")) OR (((NOT ([Par9]<>"true"))) OR ([Par21]="true"));

@@ -1,0 +1,17 @@
+Par0 : -33, -32, -31, -30, -29, -28, -27, -26, -25, -24, -23
+Par1 : false, true
+Par2 : PAR2_0, PAR2_1
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7
+Par4 : 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
+Par5 : PAR5_0, PAR5_1, PAR5_2, PAR5_3, PAR5_4, PAR5_5, PAR5_6, PAR5_7, PAR5_8, PAR5_9
+Par6 : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5
+Par7 : 77, 78, 79, 80, 81, 82, 83, 84
+Par8 : false, true
+Par9 : -90, -89, -88, -87, -86, -85, -84, -83, -82
+Par10 : false, true
+Par11 : false, true
+Par12 : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6, PAR12_7, PAR12_8, PAR12_9, PAR12_10, PAR12_11
+
+
+(((NOT ([Par0]=-29))) OR ((NOT ([Par7]<77)))) AND ((((NOT ((NOT ([Par10]="false"))))) OR ((NOT ([Par8]<>"false")))) AND (((NOT ((NOT ([Par8]<>"false"))))) OR ((NOT ([Par10]="false")))));
+((NOT ((((NOT ([Par12]="PAR12_1"))) OR ([Par1]<>"false")) AND (((NOT ([Par1]<>"false"))) OR ([Par12]="PAR12_1"))))) OR (((NOT ([Par1]="false"))) OR ((NOT ([Par3]="PAR3_7"))));

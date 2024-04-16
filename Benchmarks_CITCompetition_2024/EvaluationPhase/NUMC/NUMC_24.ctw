@@ -1,0 +1,22 @@
+Model NUMC_24
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8}
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3,PAR4_4,PAR4_5}
+Par5 : Boolean
+Par6: [30 .. 39]
+Par7 : Boolean
+Par8: [19 .. 30]
+Par9 : Boolean
+Par10 : Boolean
+Par11 : Boolean
+Par12: [-58 .. -48]
+Par13: {PAR13_0,PAR13_1,PAR13_2,PAR13_3,PAR13_4}
+Par14: [72 .. 85]
+Par15 : Boolean
+Par16 : Boolean
+
+Constraints:
+# (((not (Par3 != PAR3_0)) => Par0 = false) OR ((not (Par16 != false)) AND Par1 = true)) #

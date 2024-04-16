@@ -1,0 +1,24 @@
+Smartwatch : false, true
+SmartPay : false, true
+SmartKey : false, true
+CarKey : false, true
+HomeKey : false, true
+ManageHealth : false, true
+HeartBeat : false, true
+EnergyBurnt : false, true
+Language : English, Chinese, Korean, NONE
+Speaker : Poly, Plain, NONE
+
+
+[Smartwatch] = "true"="TRUE";
+((NOT ([SmartPay] = "true"="TRUE"))) OR ([Smartwatch] = "true"="TRUE");
+((NOT ([SmartKey] = "true"="TRUE"))) OR ([Smartwatch] = "true"="TRUE");
+((NOT ([SmartKey] = "true"="TRUE"))) OR (([CarKey] = "true"="TRUE") OR ([HomeKey] = "true"="TRUE"));
+((NOT ([CarKey] = "true"="TRUE"))) OR ([SmartKey] = "true"="TRUE");
+((NOT ([HomeKey] = "true"="TRUE"))) OR ([SmartKey] = "true"="TRUE");
+((NOT ([ManageHealth] = "true"="TRUE"))) OR ([Smartwatch] = "true"="TRUE");
+((NOT ([ManageHealth] = "true"="TRUE"))) OR (([HeartBeat] = "true"="TRUE") OR ([EnergyBurnt] = "true"="TRUE"));
+((NOT ([HeartBeat] = "true"="TRUE"))) OR ([ManageHealth] = "true"="TRUE");
+((NOT ([EnergyBurnt] = "true"="TRUE"))) OR ([ManageHealth] = "true"="TRUE");
+(((NOT ([Language]<>"NONE"))) OR ([Smartwatch] = "true"="TRUE")) AND (((NOT ([Smartwatch] = "true"="TRUE"))) OR ([Language]<>"NONE"));
+(((NOT ([Speaker]<>"NONE"))) OR ([Smartwatch] = "true"="TRUE")) AND (((NOT ([Smartwatch] = "true"="TRUE"))) OR ([Speaker]<>"NONE"));

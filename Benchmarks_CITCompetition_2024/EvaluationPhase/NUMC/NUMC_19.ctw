@@ -1,0 +1,19 @@
+Model NUMC_19
+Parameters:
+Par0: [-33 .. -23]
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1}
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7}
+Par4: [13 .. 24]
+Par5: {PAR5_0,PAR5_1,PAR5_2,PAR5_3,PAR5_4,PAR5_5,PAR5_6,PAR5_7,PAR5_8,PAR5_9}
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5}
+Par7: [77 .. 84]
+Par8 : Boolean
+Par9: [-90 .. -82]
+Par10 : Boolean
+Par11 : Boolean
+Par12: {PAR12_0,PAR12_1,PAR12_2,PAR12_3,PAR12_4,PAR12_5,PAR12_6,PAR12_7,PAR12_8,PAR12_9,PAR12_10,PAR12_11}
+
+Constraints:
+# (((not (Par0 = -29)) OR (not (Par7 < 77))) AND ((not (Par10 = false)) <=> (not (Par8 != false)))) #
+# ((Par12 = PAR12_1 <=> Par1 != false) => (Par1 = false => (not (Par3 = PAR3_7)))) #

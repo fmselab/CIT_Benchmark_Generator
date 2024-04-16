@@ -1,0 +1,10 @@
+Boeing : false, true
+SeatsConfiguration : Rows3Passengers210, Rows3Passengers290, NONE
+FuelCapacity : false, true
+Liters138700 : false, true
+
+
+[Boeing]="true";
+(((NOT ([SeatsConfiguration]<>"NONE"))) OR ([Boeing]="true")) AND (((NOT ([Boeing]="true"))) OR ([SeatsConfiguration]<>"NONE"));
+(((NOT ([FuelCapacity]="true"))) OR ([Boeing]="true")) AND (((NOT ([Boeing]="true"))) OR ([FuelCapacity]="true"));
+(((NOT ([Liters138700]="true"))) OR ([FuelCapacity]="true")) AND (((NOT ([FuelCapacity]="true"))) OR ([Liters138700]="true"));

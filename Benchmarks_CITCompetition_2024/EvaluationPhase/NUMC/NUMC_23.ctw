@@ -1,0 +1,15 @@
+Model NUMC_23
+Parameters:
+Par0: [63 .. 71]
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5}
+Par3 : Boolean
+Par4 : Boolean
+Par5 : Boolean
+Par6 : Boolean
+Par7: [7 .. 10]
+Par8: {PAR8_0,PAR8_1}
+Par9: [-27 .. -21]
+
+Constraints:
+# (((Par5 != false OR (not (Par8 != PAR8_0))) AND (Par0 <= 69 <=> (not (Par4 != true)))) AND (((not (Par1 != false)) AND (not (Par2 = PAR2_5))) AND ((not (Par9 = -24)) <=> Par2 = PAR2_1))) #

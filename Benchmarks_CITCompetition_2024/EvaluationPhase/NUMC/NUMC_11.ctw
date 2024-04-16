@@ -1,0 +1,23 @@
+Model NUMC_11
+Parameters:
+Par0: [13 .. 14]
+Par1: {PAR1_0,PAR1_1,PAR1_2,PAR1_3,PAR1_4,PAR1_5,PAR1_6,PAR1_7,PAR1_8}
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5,PAR2_6,PAR2_7,PAR2_8}
+Par3: [16 .. 20]
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3,PAR4_4,PAR4_5,PAR4_6,PAR4_7,PAR4_8,PAR4_9,PAR4_10,PAR4_11,PAR4_12}
+Par5: [-66 .. -60]
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8,PAR6_9,PAR6_10,PAR6_11}
+
+Constraints:
+# (((Par6 = PAR6_10 => Par3 = 19) OR ((not (Par1 != PAR1_3)) OR Par1 != PAR1_1)) => (((not (Par1 != PAR1_2)) <=> Par3 <= 19) AND (Par5 >= -66 AND Par4 != PAR4_10))) #
+# (((not (Par6 != PAR6_1)) => Par2 != PAR2_1) AND (Par0 < 14 => Par4 = PAR4_2)) #
+# ((((not (Par4 != PAR4_3)) => (not (Par6 != PAR6_4))) <=> (Par5 > -61 AND (not (Par2 = PAR2_0)))) AND (((not (Par4 = PAR4_3)) AND (not (Par1 != PAR1_2))) => ((not (Par1 = PAR1_0)) => Par1 != PAR1_4))) #
+# ((((not (Par5 > -65)) AND (not (Par4 = PAR4_1))) <=> ((not (Par1 != PAR1_0)) => (not (Par6 = PAR6_0)))) => ((Par5 != -60 OR (not (Par0 < 13))) AND (Par3 != 19 => Par2 != PAR2_1))) #
+# (((Par5 = -66 => Par6 != PAR6_2) => (Par3 < 16 AND Par5 > -61)) => ((Par5 != -62 <=> Par4 != PAR4_9) AND (Par2 != PAR2_5 <=> (not (Par6 = PAR6_2))))) #
+# Par2 != PAR2_3 #
+# ((((not (Par0 < 14)) OR (not (Par6 = PAR6_4))) OR ((not (Par0 > 13)) => (not (Par6 = PAR6_2)))) => ((Par0 < 13 OR (not (Par6 = PAR6_4))) OR ((not (Par1 != PAR1_0)) OR Par2 = PAR2_2))) #
+# Par2 != PAR2_5 #
+# ((Par3 > 19 <=> (not (Par0 > 13))) AND (Par4 != PAR4_1 => Par1 != PAR1_4)) #
+# ((Par0 < 14 <=> Par4 = PAR4_0) OR (Par0 > 13 OR Par1 = PAR1_8)) #
+# ((((not (Par6 != PAR6_9)) AND (not (Par4 = PAR4_8))) <=> ((not (Par1 != PAR1_4)) AND Par0 != 13)) OR (((not (Par5 < -64)) AND Par1 != PAR1_5) <=> ((not (Par5 >= -63)) => (not (Par5 >= -66))))) #
+# (((Par4 != PAR4_7 AND (not (Par1 = PAR1_7))) => ((not (Par2 = PAR2_7)) <=> Par6 != PAR6_10)) <=> ((Par6 != PAR6_2 OR (not (Par1 = PAR1_1))) => ((not (Par2 != PAR2_5)) AND Par2 != PAR2_0))) #

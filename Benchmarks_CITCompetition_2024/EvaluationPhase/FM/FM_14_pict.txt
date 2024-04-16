@@ -1,0 +1,32 @@
+WeatherStation : false, true
+Measurements : false, true
+WindSpeed : false, true
+Temperature : false, true
+Pressure : false, true
+DataSource : ExternalSensors, Demo, Internet, NONE
+OutFormAndLanguage : false, true
+OutputFormat : File, WebServer, Text, NONE
+Format : HTML, XML, Plaintext, NONE
+Language : English, German, NONE
+Alarm : false, true
+FreezePoint : false, true
+StormAlert : false, true
+
+
+[WeatherStation]="true";
+(((NOT ([Measurements]="true"))) OR ([WeatherStation]="true")) AND (((NOT ([WeatherStation]="true"))) OR ([Measurements]="true"));
+((NOT ([Measurements]="true"))) OR ((([WindSpeed]="true") OR ([Temperature]="true")) OR ([Pressure]="true"));
+((NOT ([WindSpeed]="true"))) OR ([Measurements]="true");
+((NOT ([Temperature]="true"))) OR ([Measurements]="true");
+((NOT ([Pressure]="true"))) OR ([Measurements]="true");
+(((NOT ([DataSource]<>"NONE"))) OR ([WeatherStation]="true")) AND (((NOT ([WeatherStation]="true"))) OR ([DataSource]<>"NONE"));
+(((NOT ([OutFormAndLanguage]="true"))) OR ([WeatherStation]="true")) AND (((NOT ([WeatherStation]="true"))) OR ([OutFormAndLanguage]="true"));
+(((NOT ([OutputFormat]<>"NONE"))) OR ([OutFormAndLanguage]="true")) AND (((NOT ([OutFormAndLanguage]="true"))) OR ([OutputFormat]<>"NONE"));
+(((NOT ([Format]<>"NONE"))) OR ([OutFormAndLanguage]="true")) AND (((NOT ([OutFormAndLanguage]="true"))) OR ([Format]<>"NONE"));
+(((NOT ([Language]<>"NONE"))) OR ([OutFormAndLanguage]="true")) AND (((NOT ([OutFormAndLanguage]="true"))) OR ([Language]<>"NONE"));
+((NOT ([Alarm]="true"))) OR ([WeatherStation]="true");
+((NOT ([Alarm]="true"))) OR (([FreezePoint]="true") OR ([StormAlert]="true"));
+((NOT ([FreezePoint]="true"))) OR ([Alarm]="true");
+((NOT ([StormAlert]="true"))) OR ([Alarm]="true");
+((NOT ([FreezePoint]="true"))) OR ([Temperature]="true");
+([Format]="XML") OR ([OutputFormat]="Text");

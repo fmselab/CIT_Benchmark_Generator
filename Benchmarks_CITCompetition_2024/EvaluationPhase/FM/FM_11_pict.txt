@@ -1,0 +1,55 @@
+MobileMedia : false, true
+Albummanagement : false, true
+CreateAlbum : false, true
+DeleteAlbum : false, true
+Mediamanagement : false, true
+Favorites : false, true
+Setfavorites : false, true
+Viewfavorites : false, true
+Sorting : false, true
+Basicmediaoperation : false, true
+Createmedia : false, true
+Deletemedia : false, true
+Editmedialabel : false, true
+Copymedia : false, true
+SMStransfer : false, true
+Receivephoto : false, true
+Sendphoto : false, true
+Mediaselection : false, true
+Photo : false, true
+Viewphoto : false, true
+Capturephoto : false, true
+Music : false, true
+Playmusic : false, true
+Video : false, true
+Playvideo : false, true
+Capturevideo : false, true
+
+
+[MobileMedia]="true";
+(((NOT ([Albummanagement]="true"))) OR ([MobileMedia]="true")) AND (((NOT ([MobileMedia]="true"))) OR ([Albummanagement]="true"));
+(((NOT ([CreateAlbum]="true"))) OR ([Albummanagement]="true")) AND (((NOT ([Albummanagement]="true"))) OR ([CreateAlbum]="true"));
+(((NOT ([DeleteAlbum]="true"))) OR ([Albummanagement]="true")) AND (((NOT ([Albummanagement]="true"))) OR ([DeleteAlbum]="true"));
+(((NOT ([Mediamanagement]="true"))) OR ([MobileMedia]="true")) AND (((NOT ([MobileMedia]="true"))) OR ([Mediamanagement]="true"));
+((NOT ([Favorites]="true"))) OR ([Mediamanagement]="true");
+(((NOT ([Setfavorites]="true"))) OR ([Favorites]="true")) AND (((NOT ([Favorites]="true"))) OR ([Setfavorites]="true"));
+(((NOT ([Viewfavorites]="true"))) OR ([Favorites]="true")) AND (((NOT ([Favorites]="true"))) OR ([Viewfavorites]="true"));
+((NOT ([Sorting]="true"))) OR ([Mediamanagement]="true");
+(((NOT ([Basicmediaoperation]="true"))) OR ([Mediamanagement]="true")) AND (((NOT ([Mediamanagement]="true"))) OR ([Basicmediaoperation]="true"));
+(((NOT ([Createmedia]="true"))) OR ([Basicmediaoperation]="true")) AND (((NOT ([Basicmediaoperation]="true"))) OR ([Createmedia]="true"));
+(((NOT ([Deletemedia]="true"))) OR ([Basicmediaoperation]="true")) AND (((NOT ([Basicmediaoperation]="true"))) OR ([Deletemedia]="true"));
+(((NOT ([Editmedialabel]="true"))) OR ([Basicmediaoperation]="true")) AND (((NOT ([Basicmediaoperation]="true"))) OR ([Editmedialabel]="true"));
+((NOT ([Copymedia]="true"))) OR ([Mediamanagement]="true");
+((NOT ([SMStransfer]="true"))) OR ([Mediamanagement]="true");
+(((NOT ([Receivephoto]="true"))) OR ([SMStransfer]="true")) AND (((NOT ([SMStransfer]="true"))) OR ([Receivephoto]="true"));
+(((NOT ([Sendphoto]="true"))) OR ([SMStransfer]="true")) AND (((NOT ([SMStransfer]="true"))) OR ([Sendphoto]="true"));
+(((NOT ([Mediaselection]="true"))) OR ([MobileMedia]="true")) AND (((NOT ([MobileMedia]="true"))) OR ([Mediaselection]="true"));
+((NOT ([Mediaselection]="true"))) OR ((([Photo]="true") OR ([Music]="true")) OR ([Video]="true"));
+((NOT ([Photo]="true"))) OR ([Mediaselection]="true");
+(((NOT ([Viewphoto]="true"))) OR ([Photo]="true")) AND (((NOT ([Photo]="true"))) OR ([Viewphoto]="true"));
+((NOT ([Capturephoto]="true"))) OR ([Photo]="true");
+((NOT ([Music]="true"))) OR ([Mediaselection]="true");
+(((NOT ([Playmusic]="true"))) OR ([Music]="true")) AND (((NOT ([Music]="true"))) OR ([Playmusic]="true"));
+((NOT ([Video]="true"))) OR ([Mediaselection]="true");
+(((NOT ([Playvideo]="true"))) OR ([Video]="true")) AND (((NOT ([Video]="true"))) OR ([Playvideo]="true"));
+((NOT ([Capturevideo]="true"))) OR ([Video]="true");

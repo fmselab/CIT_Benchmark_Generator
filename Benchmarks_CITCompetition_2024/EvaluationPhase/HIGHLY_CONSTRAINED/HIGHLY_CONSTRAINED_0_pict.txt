@@ -1,0 +1,33 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12
+Par4 : PAR4_0, PAR4_1, PAR4_2, PAR4_3
+Par5 : false, true
+Par6 : false, true
+Par7 : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5
+Par8 : false, true
+Par9 : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6, PAR9_7, PAR9_8, PAR9_9, PAR9_10, PAR9_11, PAR9_12
+Par10 : false, true
+Par11 : false, true
+Par12 : PAR12_0, PAR12_1
+Par13 : false, true
+Par14 : false, true
+Par15 : false, true
+Par16 : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4, PAR16_5, PAR16_6, PAR16_7, PAR16_8, PAR16_9, PAR16_10, PAR16_11, PAR16_12
+Par17 : PAR17_0, PAR17_1, PAR17_2, PAR17_3
+Par18 : false, true
+Par19 : false, true
+Par20 : PAR20_0, PAR20_1, PAR20_2, PAR20_3, PAR20_4, PAR20_5, PAR20_6, PAR20_7, PAR20_8, PAR20_9, PAR20_10, PAR20_11, PAR20_12, PAR20_13
+Par21 : false, true
+Par22 : false, true
+Par23 : false, true
+Par24 : false, true
+Par25 : PAR25_0, PAR25_1, PAR25_2, PAR25_3, PAR25_4
+Par26 : PAR26_0, PAR26_1, PAR26_2, PAR26_3, PAR26_4, PAR26_5, PAR26_6
+
+
+(NOT ([Par0]<>"false"));
+((NOT (((NOT (((NOT ([Par21]="false"))) OR ([Par22]<>"false")))) OR (((NOT ((NOT ([Par6]<>"true"))))) OR ([Par17]="PAR17_2"))))) OR (((((NOT ((NOT ([Par25]="PAR25_4"))))) OR ((NOT ([Par24]<>"true")))) AND (((NOT ((NOT ([Par24]<>"true"))))) OR ((NOT ([Par25]="PAR25_4"))))) AND (([Par7]<>"PAR7_0") OR ([Par12]<>"PAR12_0")));
+(((NOT ((((NOT ([Par11]="false"))) OR ([Par24]="true")) AND (((NOT ([Par24]="true"))) OR ([Par11]="false"))))) OR (((NOT ([Par14]="true"))) AND ((NOT ([Par3]<>"PAR3_9"))))) AND (((NOT (((NOT ([Par14]="true"))) AND ((NOT ([Par3]<>"PAR3_9")))))) OR ((((NOT ([Par11]="false"))) OR ([Par24]="true")) AND (((NOT ([Par24]="true"))) OR ([Par11]="false"))));
+((NOT ((((NOT ([Par13]<>"false"))) OR ((NOT ([Par22]="false")))) AND (((NOT ((NOT ([Par22]="false"))))) OR ([Par13]<>"false"))))) OR (((NOT ([Par22]<>"false"))) AND ([Par1]<>"true"));

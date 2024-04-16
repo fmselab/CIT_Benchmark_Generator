@@ -1,0 +1,91 @@
+ERP_SPL : false, true
+Cadastros : false, true
+Cadastrodecliente : false, true
+Editarcadastrodecliente : false, true
+Apagarcadastrodecliente : false, true
+Cadastrodefornecedor : false, true
+Editarcadastrodefornecedor : false, true
+Apagarcadastrodefornecedor : false, true
+Cadastrodefuncionario : false, true
+Editarcadastrodefuncionario : false, true
+Apagarcadastrodefuncionario : false, true
+Cadastrodeusuario : false, true
+Editarcadastrodeusuario : false, true
+Apagarcadastrodeusuario : false, true
+Cadastroderegrasdeacessodeusuario : false, true
+Editarregrasdeacessodeusuario : false, true
+Cadastros_6 : false, true
+Cadastrodeproduto : false, true
+Editarcadastrodeproduto : false, true
+Apagarcadastrodeproduto : false, true
+Cadastrodeservico : false, true
+Editarcadastrodeservico : false, true
+Apagarcadastrodeservico : false, true
+Login : false, true
+Controledeacesso : false, true
+Listagens : false, true
+Listagemdeitens : false, true
+Listagemdeprodutos : false, true
+Listagemdeservicos : false, true
+Listagemdepessoas : false, true
+Listagemdeclientes : false, true
+Listagemdefornecedores : false, true
+Listagemdefuncionarios : false, true
+Listagemdeusuarios : false, true
+Listagemdeestoque : false, true
+Controledeestoque : false, true
+Entradadeestoque : false, true
+Saidadeestoque : false, true
+Manutencaodeestoque : false, true
+Controlefinanceiro : false, true
+Contasapagar : false, true
+Contasareceber : false, true
+Manutencaodelancamentos : false, true
+
+
+[ERP_SPL]="true";
+(((NOT ([Cadastros]="true"))) OR ([ERP_SPL]="true")) AND (((NOT ([ERP_SPL]="true"))) OR ([Cadastros]="true"));
+(((NOT ([Cadastrodecliente]="true"))) OR ([Cadastros]="true")) AND (((NOT ([Cadastros]="true"))) OR ([Cadastrodecliente]="true"));
+(((NOT ([Editarcadastrodecliente]="true"))) OR ([Cadastrodecliente]="true")) AND (((NOT ([Cadastrodecliente]="true"))) OR ([Editarcadastrodecliente]="true"));
+(((NOT ([Apagarcadastrodecliente]="true"))) OR ([Cadastrodecliente]="true")) AND (((NOT ([Cadastrodecliente]="true"))) OR ([Apagarcadastrodecliente]="true"));
+(((NOT ([Cadastrodefornecedor]="true"))) OR ([Cadastros]="true")) AND (((NOT ([Cadastros]="true"))) OR ([Cadastrodefornecedor]="true"));
+(((NOT ([Editarcadastrodefornecedor]="true"))) OR ([Cadastrodefornecedor]="true")) AND (((NOT ([Cadastrodefornecedor]="true"))) OR ([Editarcadastrodefornecedor]="true"));
+(((NOT ([Apagarcadastrodefornecedor]="true"))) OR ([Cadastrodefornecedor]="true")) AND (((NOT ([Cadastrodefornecedor]="true"))) OR ([Apagarcadastrodefornecedor]="true"));
+((NOT ([Cadastrodefuncionario]="true"))) OR ([Cadastros]="true");
+(((NOT ([Editarcadastrodefuncionario]="true"))) OR ([Cadastrodefuncionario]="true")) AND (((NOT ([Cadastrodefuncionario]="true"))) OR ([Editarcadastrodefuncionario]="true"));
+(((NOT ([Apagarcadastrodefuncionario]="true"))) OR ([Cadastrodefuncionario]="true")) AND (((NOT ([Cadastrodefuncionario]="true"))) OR ([Apagarcadastrodefuncionario]="true"));
+(((NOT ([Cadastrodeusuario]="true"))) OR ([Cadastros]="true")) AND (((NOT ([Cadastros]="true"))) OR ([Cadastrodeusuario]="true"));
+(((NOT ([Editarcadastrodeusuario]="true"))) OR ([Cadastrodeusuario]="true")) AND (((NOT ([Cadastrodeusuario]="true"))) OR ([Editarcadastrodeusuario]="true"));
+(((NOT ([Apagarcadastrodeusuario]="true"))) OR ([Cadastrodeusuario]="true")) AND (((NOT ([Cadastrodeusuario]="true"))) OR ([Apagarcadastrodeusuario]="true"));
+((NOT ([Cadastroderegrasdeacessodeusuario]="true"))) OR ([Cadastros]="true");
+(((NOT ([Editarregrasdeacessodeusuario]="true"))) OR ([Cadastroderegrasdeacessodeusuario]="true")) AND (((NOT ([Cadastroderegrasdeacessodeusuario]="true"))) OR ([Editarregrasdeacessodeusuario]="true"));
+(((NOT ([Cadastros_6]="true"))) OR ([Cadastros]="true")) AND (((NOT ([Cadastros]="true"))) OR ([Cadastros_6]="true"));
+((NOT ([Cadastros_6]="true"))) OR (([Cadastrodeproduto]="true") OR ([Cadastrodeservico]="true"));
+((NOT ([Cadastrodeproduto]="true"))) OR ([Cadastros_6]="true");
+(((NOT ([Editarcadastrodeproduto]="true"))) OR ([Cadastrodeproduto]="true")) AND (((NOT ([Cadastrodeproduto]="true"))) OR ([Editarcadastrodeproduto]="true"));
+(((NOT ([Apagarcadastrodeproduto]="true"))) OR ([Cadastrodeproduto]="true")) AND (((NOT ([Cadastrodeproduto]="true"))) OR ([Apagarcadastrodeproduto]="true"));
+((NOT ([Cadastrodeservico]="true"))) OR ([Cadastros_6]="true");
+(((NOT ([Editarcadastrodeservico]="true"))) OR ([Cadastrodeservico]="true")) AND (((NOT ([Cadastrodeservico]="true"))) OR ([Editarcadastrodeservico]="true"));
+(((NOT ([Apagarcadastrodeservico]="true"))) OR ([Cadastrodeservico]="true")) AND (((NOT ([Cadastrodeservico]="true"))) OR ([Apagarcadastrodeservico]="true"));
+(((NOT ([Login]="true"))) OR ([ERP_SPL]="true")) AND (((NOT ([ERP_SPL]="true"))) OR ([Login]="true"));
+((NOT ([Controledeacesso]="true"))) OR ([Login]="true");
+((NOT ([Listagens]="true"))) OR ([ERP_SPL]="true");
+(((NOT ([Listagemdeitens]="true"))) OR ([Listagens]="true")) AND (((NOT ([Listagens]="true"))) OR ([Listagemdeitens]="true"));
+((NOT ([Listagemdeprodutos]="true"))) OR ([Listagens]="true");
+((NOT ([Listagemdeservicos]="true"))) OR ([Listagens]="true");
+(((NOT ([Listagemdepessoas]="true"))) OR ([Listagens]="true")) AND (((NOT ([Listagens]="true"))) OR ([Listagemdepessoas]="true"));
+(((NOT ([Listagemdeclientes]="true"))) OR ([Listagens]="true")) AND (((NOT ([Listagens]="true"))) OR ([Listagemdeclientes]="true"));
+(((NOT ([Listagemdefornecedores]="true"))) OR ([Listagens]="true")) AND (((NOT ([Listagens]="true"))) OR ([Listagemdefornecedores]="true"));
+((NOT ([Listagemdefuncionarios]="true"))) OR ([Listagens]="true");
+(((NOT ([Listagemdeusuarios]="true"))) OR ([Listagens]="true")) AND (((NOT ([Listagens]="true"))) OR ([Listagemdeusuarios]="true"));
+((NOT ([Listagemdeestoque]="true"))) OR ([Listagens]="true");
+((NOT ([Controledeestoque]="true"))) OR ([ERP_SPL]="true");
+((NOT ([Controledeestoque]="true"))) OR ((([Entradadeestoque]="true") OR ([Saidadeestoque]="true")) OR ([Manutencaodeestoque]="true"));
+((NOT ([Entradadeestoque]="true"))) OR ([Controledeestoque]="true");
+((NOT ([Saidadeestoque]="true"))) OR ([Controledeestoque]="true");
+((NOT ([Manutencaodeestoque]="true"))) OR ([Controledeestoque]="true");
+((NOT ([Controlefinanceiro]="true"))) OR ([ERP_SPL]="true");
+((NOT ([Controlefinanceiro]="true"))) OR ((([Contasapagar]="true") OR ([Contasareceber]="true")) OR ([Manutencaodelancamentos]="true"));
+((NOT ([Contasapagar]="true"))) OR ([Controlefinanceiro]="true");
+((NOT ([Contasareceber]="true"))) OR ([Controlefinanceiro]="true");
+((NOT ([Manutencaodelancamentos]="true"))) OR ([Controlefinanceiro]="true");

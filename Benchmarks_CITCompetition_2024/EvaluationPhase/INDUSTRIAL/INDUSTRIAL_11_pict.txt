@@ -1,0 +1,23 @@
+p1 : false, true
+p2 : false, true
+p3 : v1, v2, v3
+p4 : v1, v2, v3
+p5 : false, true
+p6 : false, true
+p7 : false, true
+p8 : false, true
+p9 : v1, v2, v3, v4, v5
+
+
+([p2]="true") OR ([p3]<>"v2");
+([p3]="v3") OR ([p4]<>"v1");
+([p4]<>"v2") OR ([p3]="v3");
+([p4]<>"v2") OR ([p2]="true");
+([p5]="true") OR ([p3]<>"v2");
+([p5]="true") OR ([p4]<>"v2");
+([p6]="true") OR ([p3]<>"v2");
+([p6]="true") OR ([p4]<>"v2");
+([p7]="true") OR ([p3]="v3");
+([p7]="true") OR ([p4]="v3");
+([p8]="true") OR ([p4]="v3");
+([p8]="true") OR ([p3]="v3");

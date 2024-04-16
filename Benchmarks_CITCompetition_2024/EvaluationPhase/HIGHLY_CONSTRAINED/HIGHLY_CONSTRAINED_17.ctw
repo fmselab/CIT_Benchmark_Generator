@@ -1,0 +1,38 @@
+Model HIGHLY_CONSTRAINED_17
+Parameters:
+Par0: {PAR0_0,PAR0_1,PAR0_2,PAR0_3,PAR0_4,PAR0_5,PAR0_6}
+Par1 : Boolean
+Par2 : Boolean
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7}
+Par4 : Boolean
+Par5 : Boolean
+Par6 : Boolean
+Par7 : Boolean
+Par8: {PAR8_0,PAR8_1,PAR8_2}
+Par9 : Boolean
+Par10 : Boolean
+Par11: {PAR11_0,PAR11_1,PAR11_2,PAR11_3,PAR11_4,PAR11_5,PAR11_6,PAR11_7}
+Par12: {PAR12_0,PAR12_1,PAR12_2,PAR12_3,PAR12_4,PAR12_5,PAR12_6,PAR12_7,PAR12_8,PAR12_9,PAR12_10}
+Par13 : Boolean
+Par14: {PAR14_0,PAR14_1,PAR14_2,PAR14_3,PAR14_4,PAR14_5,PAR14_6,PAR14_7,PAR14_8,PAR14_9,PAR14_10,PAR14_11,PAR14_12}
+Par15: {PAR15_0,PAR15_1,PAR15_2,PAR15_3,PAR15_4,PAR15_5,PAR15_6,PAR15_7,PAR15_8,PAR15_9,PAR15_10,PAR15_11,PAR15_12,PAR15_13}
+Par16 : Boolean
+Par17 : Boolean
+Par18: {PAR18_0,PAR18_1,PAR18_2,PAR18_3,PAR18_4,PAR18_5,PAR18_6,PAR18_7,PAR18_8,PAR18_9}
+Par19: {PAR19_0,PAR19_1,PAR19_2,PAR19_3,PAR19_4,PAR19_5,PAR19_6,PAR19_7,PAR19_8,PAR19_9,PAR19_10,PAR19_11}
+Par20 : Boolean
+Par21 : Boolean
+Par22 : Boolean
+Par23 : Boolean
+Par24 : Boolean
+Par25: {PAR25_0,PAR25_1,PAR25_2,PAR25_3}
+Par26: {PAR26_0,PAR26_1,PAR26_2,PAR26_3,PAR26_4}
+
+Constraints:
+# (((Par4 != false OR Par20 != true) AND ((not (Par0 != PAR0_3)) OR Par14 = PAR14_1)) => ((Par19 != PAR19_9 => (not (Par18 != PAR18_0))) OR ((not (Par3 != PAR3_3)) OR (not (Par11 = PAR11_7))))) #
+# ((((not (Par16 = false)) AND (not (Par20 = false))) <=> ((not (Par20 != true)) AND Par19 != PAR19_9)) OR (((not (Par19 = PAR19_2)) AND Par5 != true) => ((not (Par19 = PAR19_5)) OR Par9 != false))) #
+# ((Par25 = PAR25_2 AND (not (Par20 = false))) <=> ((not (Par25 = PAR25_3)) OR Par8 = PAR8_0)) #
+# ((Par23 = false => Par1 != true) => ((not (Par1 = true)) => Par26 = PAR26_4)) #
+# ((not (Par8 != PAR8_2)) OR Par22 != false) #
+# ((((not (Par14 = PAR14_2)) => (not (Par26 = PAR26_1))) => ((not (Par8 = PAR8_1)) AND Par12 = PAR12_0)) => ((Par4 != true AND Par22 != true) => ((not (Par1 != false)) <=> (not (Par3 != PAR3_6))))) #
+# (Par5 = false => (not (Par9 = false))) #

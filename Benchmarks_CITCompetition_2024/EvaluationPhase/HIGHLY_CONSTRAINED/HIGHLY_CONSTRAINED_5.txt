@@ -1,0 +1,39 @@
+[System]
+-- specify system name
+Name: HIGHLY_CONSTRAINED_5
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (boolean) : true, false
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9, PAR8_10, PAR8_11, PAR8_12, PAR8_13, PAR8_14
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10, PAR10_11, PAR10_12, PAR10_13
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (enum) : PAR14_0, PAR14_1, PAR14_2, PAR14_3, PAR14_4, PAR14_5, PAR14_6, PAR14_7, PAR14_8, PAR14_9, PAR14_10, PAR14_11, PAR14_12, PAR14_13
+Par15 (boolean) : true, false
+Par16 (boolean) : true, false
+Par17 (enum) : PAR17_0, PAR17_1, PAR17_2, PAR17_3, PAR17_4, PAR17_5, PAR17_6, PAR17_7, PAR17_8, PAR17_9, PAR17_10, PAR17_11, PAR17_12, PAR17_13, PAR17_14
+Par18 (enum) : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7, PAR18_8, PAR18_9, PAR18_10, PAR18_11
+Par19 (enum) : PAR19_0, PAR19_1, PAR19_2, PAR19_3, PAR19_4, PAR19_5, PAR19_6, PAR19_7, PAR19_8, PAR19_9, PAR19_10, PAR19_11, PAR19_12
+Par20 (enum) : PAR20_0, PAR20_1
+Par21 (enum) : PAR21_0, PAR21_1, PAR21_2, PAR21_3, PAR21_4
+Par22 (enum) : PAR22_0, PAR22_1, PAR22_2, PAR22_3
+Par23 (boolean) : true, false
+Par24 (enum) : PAR24_0, PAR24_1, PAR24_2, PAR24_3, PAR24_4, PAR24_5, PAR24_6, PAR24_7
+Par25 (boolean) : true, false
+Par26 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+((! (Par5 = false)) => (! (Par13 != true)))&&((! (Par13 != true)) => (! (Par5 = false)))
+((((! (Par14 = "PAR14_1")) && (Par23 != true)) && ((Par1 = false) && (! (Par12 = false)))) => ((((Par17 != "PAR17_5") => (! (Par13 = true)))&&((! (Par13 = true)) => (Par17 != "PAR17_5"))) => ((! (Par12 = false)) => (Par2 = false))))&&(((((Par17 != "PAR17_5") => (! (Par13 = true)))&&((! (Par13 = true)) => (Par17 != "PAR17_5"))) => ((! (Par12 = false)) => (Par2 = false))) => (((! (Par14 = "PAR14_1")) && (Par23 != true)) && ((Par1 = false) && (! (Par12 = false)))))
+

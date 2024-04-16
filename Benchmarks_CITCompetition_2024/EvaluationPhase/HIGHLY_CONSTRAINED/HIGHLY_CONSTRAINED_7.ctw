@@ -1,0 +1,28 @@
+Model HIGHLY_CONSTRAINED_7
+Parameters:
+Par0 : Boolean
+Par1 : Boolean
+Par2: {PAR2_0,PAR2_1}
+Par3 : Boolean
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3}
+Par5 : Boolean
+Par6: {PAR6_0,PAR6_1,PAR6_2,PAR6_3,PAR6_4,PAR6_5,PAR6_6,PAR6_7,PAR6_8,PAR6_9,PAR6_10,PAR6_11,PAR6_12,PAR6_13}
+Par7: {PAR7_0,PAR7_1,PAR7_2,PAR7_3,PAR7_4,PAR7_5,PAR7_6,PAR7_7,PAR7_8,PAR7_9,PAR7_10,PAR7_11}
+Par8 : Boolean
+Par9: {PAR9_0,PAR9_1,PAR9_2,PAR9_3,PAR9_4,PAR9_5,PAR9_6,PAR9_7}
+Par10: {PAR10_0,PAR10_1,PAR10_2}
+Par11 : Boolean
+Par12 : Boolean
+Par13 : Boolean
+Par14 : Boolean
+Par15: {PAR15_0,PAR15_1,PAR15_2,PAR15_3,PAR15_4,PAR15_5,PAR15_6,PAR15_7,PAR15_8,PAR15_9,PAR15_10,PAR15_11,PAR15_12}
+Par16: {PAR16_0,PAR16_1,PAR16_2}
+Par17: {PAR17_0,PAR17_1,PAR17_2,PAR17_3,PAR17_4,PAR17_5,PAR17_6,PAR17_7,PAR17_8}
+Par18: {PAR18_0,PAR18_1,PAR18_2,PAR18_3,PAR18_4,PAR18_5,PAR18_6,PAR18_7,PAR18_8,PAR18_9}
+
+Constraints:
+# (((Par10 != PAR10_1 OR Par18 = PAR18_6) <=> (Par16 = PAR16_0 AND (not (Par1 = true)))) => ((Par7 = PAR7_6 OR Par3 = true) OR (Par17 != PAR17_6 => Par5 = false))) #
+# ((((not (Par3 != false)) <=> (not (Par2 = PAR2_1))) OR (Par4 = PAR4_2 => (not (Par2 = PAR2_1)))) OR (((not (Par15 != PAR15_4)) OR (not (Par0 = false))) OR ((not (Par2 = PAR2_1)) <=> Par2 = PAR2_0))) #
+# (((not (Par13 = false)) AND (not (Par10 != PAR10_0))) OR ((not (Par16 = PAR16_2)) OR Par11 != true)) #
+# ((((not (Par6 = PAR6_1)) AND Par4 = PAR4_1) => (Par11 != false => Par8 = true)) => (((not (Par12 != true)) AND (not (Par8 != true))) AND (Par8 = false OR Par13 = true))) #
+# (((not (Par0 != true)) OR Par7 = PAR7_0) OR (Par5 != true AND (not (Par11 = false)))) #

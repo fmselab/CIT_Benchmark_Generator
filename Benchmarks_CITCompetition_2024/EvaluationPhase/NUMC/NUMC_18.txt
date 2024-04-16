@@ -1,0 +1,20 @@
+[System]
+-- specify system name
+Name: NUMC_18
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : -88, -87, -86, -85, -84, -83, -82, -81, -80, -79, -78, -77
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13, PAR3_14
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9
+Par5 (int) : 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55
+
+[Constraint]
+-- this section is also optional
+((((Par5 <= 49) => (! (Par5 != 43)))&&((! (Par5 != 43)) => (Par5 <= 49))) || ((Par2 != "PAR2_4") || (Par2 != "PAR2_4"))) => ((((! (Par1 != "PAR1_2")) => (Par5 != 49))&&((Par5 != 49) => (! (Par1 != "PAR1_2")))) => ((! (Par3 = "PAR3_6")) => (Par0 <= -80)))
+(((! (Par4 = "PAR4_7")) => (! (Par0 != -82)))&&((! (Par0 != -82)) => (! (Par4 = "PAR4_7")))) => ((! (Par0 <= -82)) && (! (Par2 != "PAR2_0")))
+((((! (Par1 = "PAR1_2")) || (! (Par4 = "PAR4_9"))) => ((Par4 = "PAR4_4") && (Par0 < -86)))&&(((Par4 = "PAR4_4") && (Par0 < -86)) => ((! (Par1 = "PAR1_2")) || (! (Par4 = "PAR4_9"))))) && (((Par0 = -77) && (! (Par0 < -80))) => ((Par5 < 47) && (Par4 = "PAR4_6")))
+(((Par5 != 43) => (Par5 >= 43)) || ((Par3 = "PAR3_11") => (! (Par5 < 54)))) => (((Par5 = 47) && (Par0 > -85)) => ((Par2 = "PAR2_2") => (! (Par2 != "PAR2_3"))))
+

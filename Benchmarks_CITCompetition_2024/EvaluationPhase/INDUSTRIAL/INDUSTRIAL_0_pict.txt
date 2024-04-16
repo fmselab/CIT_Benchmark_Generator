@@ -1,0 +1,59 @@
+p1 : false, true
+p2 : false, true
+p3 : false, true
+p4 : false, true
+p5 : v1, v2, v3
+p6 : false, true
+p7 : false, true
+p8 : false, true
+p9 : false, true
+p10 : false, true
+p11 : false, true
+p12 : false, true
+p13 : false, true
+p14 : false, true
+p15 : false, true
+p16 : false, true
+p17 : false, true
+p18 : false, true
+p19 : false, true
+p20 : false, true
+p21 : v1, v2, v3, v4
+p22 : false, true
+p23 : false, true
+p24 : false, true
+p25 : false, true
+p26 : false, true
+p27 : false, true
+p28 : false, true
+p29 : v1, v2, v3, v4
+p30 : false, true
+p31 : false, true
+p32 : false, true
+p33 : false, true
+p34 : false, true
+p35 : false, true
+p36 : false, true
+p37 : false, true
+p38 : false, true
+p39 : false, true
+p40 : false, true
+p41 : false, true
+p42 : false, true
+p43 : false, true
+p44 : false, true
+p45 : false, true
+p46 : false, true
+p47 : false, true
+p48 : false, true
+p49 : false, true
+p50 : false, true
+p51 : false, true
+p52 : false, true
+
+
+([p44] = "true") OR ((NOT ([p45] = "true")));
+([p46] = "true") OR ([p52] = "true");
+((NOT ([p16] = "true"))) OR ([p47] = "true");
+((NOT ([p48] = "true"))) OR ((NOT ([p49] = "true")));
+(([p6] = "true") OR ((NOT ([p50] = "true")))) OR ((NOT ([p51] = "true")));

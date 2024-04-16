@@ -1,0 +1,14 @@
+Model NUMC_18
+Parameters:
+Par0: [-88 .. -77]
+Par1: {PAR1_0,PAR1_1,PAR1_2}
+Par2: {PAR2_0,PAR2_1,PAR2_2,PAR2_3,PAR2_4,PAR2_5}
+Par3: {PAR3_0,PAR3_1,PAR3_2,PAR3_3,PAR3_4,PAR3_5,PAR3_6,PAR3_7,PAR3_8,PAR3_9,PAR3_10,PAR3_11,PAR3_12,PAR3_13,PAR3_14}
+Par4: {PAR4_0,PAR4_1,PAR4_2,PAR4_3,PAR4_4,PAR4_5,PAR4_6,PAR4_7,PAR4_8,PAR4_9}
+Par5: [42 .. 55]
+
+Constraints:
+# (((Par5 <= 49 <=> (not (Par5 != 43))) OR (Par2 != PAR2_4 OR Par2 != PAR2_4)) => (((not (Par1 != PAR1_2)) <=> Par5 != 49) => ((not (Par3 = PAR3_6)) => Par0 <= -80))) #
+# (((not (Par4 = PAR4_7)) <=> (not (Par0 != -82))) => ((not (Par0 <= -82)) AND (not (Par2 != PAR2_0)))) #
+# ((((not (Par1 = PAR1_2)) OR (not (Par4 = PAR4_9))) <=> (Par4 = PAR4_4 AND Par0 < -86)) AND ((Par0 = -77 AND (not (Par0 < -80))) => (Par5 < 47 AND Par4 = PAR4_6))) #
+# (((Par5 != 43 => Par5 >= 43) OR (Par3 = PAR3_11 => (not (Par5 < 54)))) => ((Par5 = 47 AND Par0 > -85) => (Par2 = PAR2_2 => (not (Par2 != PAR2_3))))) #

@@ -1,0 +1,33 @@
+p1 : false, true
+p2 : false, true
+p3 : false, true
+p4 : false, true
+p5 : false, true
+p6 : false, true
+p7 : false, true
+p8 : false, true
+p9 : false, true
+p10 : false, true
+p11 : false, true
+p12 : false, true
+p13 : false, true
+p14 : v1, v2, v3, v4
+p15 : v1, v2, v3, v4
+p16 : v1, v2, v3, v4
+p17 : v1, v2, v3, v4
+p18 : v1, v2, v3, v4
+
+
+((NOT ([p1]="true"))) OR ((NOT ([p2]="true")));
+((NOT ([p1]="true"))) OR ((NOT ([p3]="true")));
+((NOT ([p1]="true"))) OR ([p14]<>"v2");
+((NOT ([p1]="true"))) OR ([p15]<>"v2");
+((NOT ([p1]="true"))) OR ([p15]<>"v3");
+((NOT ([p1]="true"))) OR ([p15]<>"v4");
+((NOT ([p1]="true"))) OR ([p16]<>"v2");
+((NOT ([p1]="true"))) OR ([p16]<>"v3");
+((NOT ([p1]="true"))) OR ([p16]<>"v4");
+((NOT ([p13]="true"))) OR ([p16]<>"v2");
+((NOT ([p13]="true"))) OR ([p16]<>"v3");
+((NOT ([p13]="true"))) OR ([p16]<>"v4");
+((NOT ([p4]="true"))) OR ([p5]="true");

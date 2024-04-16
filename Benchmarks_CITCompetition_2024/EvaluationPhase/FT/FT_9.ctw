@@ -1,0 +1,29 @@
+Model FT_9
+Parameters:
+Par0 : Boolean
+Par1: {PAR1_0,PAR1_1}
+Par2 : Boolean
+Par3 : Boolean
+Par4: {PAR4_0,PAR4_1}
+Par5 : Boolean
+
+Constraints:
+# (not (Par5 = false AND Par3 = false AND Par1 = PAR1_0 AND Par5 = true AND Par2 = true AND Par5 = false AND Par5 = true AND Par3 = true )) #
+# Par2 != true OR Par0 != false OR Par0 != true OR Par0 != true OR Par0 != false OR Par2 != false OR Par1 != PAR1_0 OR Par0 != false OR Par4 != PAR4_1 OR Par1 != PAR1_0 OR Par5 != false OR Par3 != true OR Par4 != PAR4_0 OR Par4 != PAR4_0 OR Par4 != PAR4_0  #
+# Par2 != true OR Par2 != true OR Par0 != true OR Par2 != true OR Par2 != false OR Par1 != PAR1_0 OR Par5 != true OR Par3 != false OR Par2 != false OR Par2 != false  #
+# Par2 != false OR Par4 != PAR4_1 OR Par5 != false OR Par5 != true OR Par1 != PAR1_1 OR Par0 != false OR Par4 != PAR4_1 OR Par0 != true OR Par1 != PAR1_0 OR Par1 != PAR1_0 OR Par2 != true OR Par5 != true OR Par0 != true OR Par4 != PAR4_1 OR Par1 != PAR1_1 OR Par1 != PAR1_0 OR Par5 != true  #
+# Par3 != false OR Par3 != true OR Par0 != false OR Par2 != false OR Par2 != true OR Par4 != PAR4_1 OR Par1 != PAR1_0 OR Par5 != true OR Par1 != PAR1_0 OR Par2 != true OR Par1 != PAR1_0 OR Par4 != PAR4_1 OR Par0 != false OR Par0 != false OR Par2 != false OR Par5 != true OR Par3 != false OR Par3 != true OR Par2 != true OR Par0 != false  #
+# (not (Par3 = true AND Par5 = true AND Par3 = false AND Par5 = true AND Par1 = PAR1_1 AND Par3 = false AND Par1 = PAR1_1 AND Par2 = true AND Par4 = PAR4_1 AND Par0 = false AND Par3 = true AND Par5 = true AND Par0 = false AND Par3 = true AND Par0 = true AND Par4 = PAR4_0 AND Par0 = false AND Par0 = true )) #
+# Par4 != PAR4_0 OR Par4 != PAR4_1 OR Par4 != PAR4_1 OR Par4 != PAR4_0 OR Par5 != true OR Par1 != PAR1_1 OR Par0 != true OR Par4 != PAR4_0 OR Par3 != false OR Par2 != true OR Par1 != PAR1_0  #
+# (not (Par5 = false AND Par2 = true AND Par5 = true AND Par2 = false AND Par0 = false AND Par5 = false AND Par1 = PAR1_0 AND Par1 = PAR1_0 AND Par5 = true AND Par3 = false AND Par0 = true AND Par5 = true AND Par4 = PAR4_0 AND Par0 = true AND Par2 = true AND Par5 = true AND Par4 = PAR4_0 AND Par4 = PAR4_1 )) #
+# Par3 != false OR Par5 != true OR Par5 != false OR Par3 != true OR Par3 != false OR Par3 != false OR Par2 != true OR Par0 != true OR Par3 != false OR Par0 != true OR Par1 != PAR1_0 OR Par5 != true OR Par0 != true OR Par3 != true OR Par0 != true OR Par5 != false OR Par5 != false OR Par2 != true  #
+# Par1 != PAR1_1 OR Par2 != false OR Par3 != true OR Par2 != true OR Par0 != true OR Par2 != true OR Par1 != PAR1_1 OR Par5 != false OR Par4 != PAR4_1 OR Par4 != PAR4_1 OR Par5 != false OR Par1 != PAR1_0 OR Par0 != false OR Par4 != PAR4_0 OR Par5 != false OR Par0 != true  #
+# (not (Par3 = false AND Par3 = false AND Par3 = true AND Par4 = PAR4_1 AND Par4 = PAR4_1 AND Par5 = true )) #
+# Par2 != true OR Par5 != true OR Par0 != true OR Par0 != false  #
+# Par4 != PAR4_0 OR Par3 != false OR Par1 != PAR1_1 OR Par0 != true  #
+# Par0 != false OR Par2 != false OR Par4 != PAR4_1 OR Par4 != PAR4_0 OR Par2 != true OR Par4 != PAR4_0 OR Par5 != true OR Par4 != PAR4_1 OR Par5 != false OR Par0 != false OR Par3 != true OR Par2 != false OR Par2 != false OR Par4 != PAR4_0 OR Par3 != true OR Par5 != false OR Par2 != true  #
+# (not (Par1 = PAR1_1 AND Par2 = false AND Par5 = false AND Par1 = PAR1_0 AND Par5 = true AND Par3 = false AND Par4 = PAR4_1 AND Par2 = false )) #
+# (not (Par0 = true AND Par3 = false )) #
+# Par1 != PAR1_1 OR Par0 != false OR Par4 != PAR4_0 OR Par4 != PAR4_1 OR Par4 != PAR4_0 OR Par3 != true OR Par1 != PAR1_1 OR Par4 != PAR4_1 OR Par0 != false OR Par4 != PAR4_0  #
+# (not (Par0 = true AND Par0 = true AND Par3 = false AND Par4 = PAR4_1 AND Par5 = false AND Par0 = true AND Par2 = true AND Par5 = true AND Par0 = true AND Par3 = false AND Par4 = PAR4_0 AND Par0 = true AND Par2 = false )) #
+# (not (Par2 = true AND Par1 = PAR1_1 AND Par5 = false AND Par4 = PAR4_0 AND Par2 = false AND Par0 = false AND Par1 = PAR1_1 AND Par0 = true AND Par5 = false AND Par4 = PAR4_0 AND Par5 = false AND Par2 = true AND Par1 = PAR1_1 )) #

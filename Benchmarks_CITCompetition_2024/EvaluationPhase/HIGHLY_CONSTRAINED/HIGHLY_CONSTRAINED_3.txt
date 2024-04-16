@@ -1,0 +1,29 @@
+[System]
+-- specify system name
+Name: HIGHLY_CONSTRAINED_3
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11
+Par8 (boolean) : true, false
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4
+Par10 (boolean) : true, false
+Par11 (boolean) : true, false
+Par12 (enum) : PAR12_0, PAR12_1, PAR12_2, PAR12_3, PAR12_4, PAR12_5, PAR12_6
+Par13 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(! (Par5 != false)) || (Par0 != true)
+(((Par4 != "PAR4_4") => (Par0 = true)) && ((Par5 != true) && (! (Par11 = false)))) && (((Par13 = false) => (! (Par5 != false))) || ((Par11 != true) => (Par2 != "PAR2_0")))
+((((! (Par6 != "PAR6_3")) => (Par3 = "PAR3_3"))&&((Par3 = "PAR3_3") => (! (Par6 != "PAR6_3")))) && ((Par0 = false) && (Par1 = true))) => ((((Par9 = "PAR9_1") && (Par3 != "PAR3_1")) => (((! (Par1 != false)) => (Par0 != false))&&((Par0 != false) => (! (Par1 != false)))))&&((((! (Par1 != false)) => (Par0 != false))&&((Par0 != false) => (! (Par1 != false)))) => ((Par9 = "PAR9_1") && (Par3 != "PAR3_1"))))
+((((Par5 != false) && (! (Par8 = true))) => (((Par4 = "PAR4_4") => (Par13 = false))&&((Par13 = false) => (Par4 = "PAR4_4"))))&&((((Par4 = "PAR4_4") => (Par13 = false))&&((Par13 = false) => (Par4 = "PAR4_4"))) => ((Par5 != false) && (! (Par8 = true))))) => (((((Par3 != "PAR3_6") => (! (Par10 = false)))&&((! (Par10 = false)) => (Par3 != "PAR3_6"))) => ((Par2 = "PAR2_1") => (Par13 = true)))&&(((Par2 = "PAR2_1") => (Par13 = true)) => (((Par3 != "PAR3_6") => (! (Par10 = false)))&&((! (Par10 = false)) => (Par3 != "PAR3_6")))))
+(((! (Par11 != false)) => (Par10 = true)) => ((! (Par11 = true)) => (! (Par3 = "PAR3_5")))) => (((Par5 = false) => (! (Par2 != "PAR2_0"))) || ((! (Par10 != true)) => (Par1 = true)))
+

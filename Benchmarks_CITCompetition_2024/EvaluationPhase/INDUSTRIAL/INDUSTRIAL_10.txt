@@ -1,0 +1,21 @@
+[System]
+-- specify system name
+Name: INDUSTRIAL_10
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+p1 (boolean) : true, false
+p2 (boolean) : true, false
+p3 (boolean) : true, false
+p4 (boolean) : true, false
+p5 (boolean) : true, false
+p6 (boolean) : true, false
+p7 (boolean) : true, false
+p8 (boolean) : true, false
+p9 (boolean) : true, false
+p10 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(! (p4 = true)) || (! (p3 = true))
+

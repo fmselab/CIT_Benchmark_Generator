@@ -1,0 +1,30 @@
+Par0 : false, true
+Par1 : false, true
+Par2 : false, true
+Par3 : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10
+Par4 : false, true
+Par5 : false, true
+Par6 : false, true
+Par7 : false, true
+Par8 : false, true
+Par9 : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4
+Par10 : false, true
+Par11 : false, true
+Par12 : false, true
+Par13 : PAR13_0, PAR13_1, PAR13_2, PAR13_3, PAR13_4, PAR13_5, PAR13_6, PAR13_7, PAR13_8
+Par14 : false, true
+Par15 : false, true
+Par16 : PAR16_0, PAR16_1, PAR16_2, PAR16_3, PAR16_4, PAR16_5, PAR16_6, PAR16_7, PAR16_8, PAR16_9
+Par17 : PAR17_0, PAR17_1, PAR17_2, PAR17_3, PAR17_4
+Par18 : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7
+Par19 : PAR19_0, PAR19_1, PAR19_2, PAR19_3, PAR19_4, PAR19_5, PAR19_6, PAR19_7, PAR19_8, PAR19_9, PAR19_10, PAR19_11
+Par20 : PAR20_0, PAR20_1, PAR20_2
+Par21 : PAR21_0, PAR21_1, PAR21_2
+Par22 : PAR22_0, PAR22_1, PAR22_2, PAR22_3, PAR22_4, PAR22_5, PAR22_6, PAR22_7, PAR22_8, PAR22_9, PAR22_10, PAR22_11
+Par23 : false, true
+Par24 : false, true
+
+
+((NOT (([Par24]<>"true") OR ([Par22]="PAR22_3")))) OR (((NOT ([Par10]="true"))) OR ([Par0]="true"));
+(((NOT (([Par12]<>"true") OR ([Par16]="PAR16_2")))) OR (([Par20]="PAR20_0") OR ([Par18]="PAR18_4"))) AND (((NOT (((NOT ((NOT ([Par5]<>"true"))))) OR ((NOT ([Par3]="PAR3_5")))))) OR (([Par0]="true") AND ((NOT ([Par14]="true")))));
+(((NOT ((((NOT (([Par3]="PAR3_4") AND ((NOT ([Par3]<>"PAR3_7")))))) OR (([Par24]<>"false") AND ([Par1]="true"))) AND (((NOT (([Par24]<>"false") AND ([Par1]="true")))) OR (([Par3]="PAR3_4") AND ((NOT ([Par3]<>"PAR3_7")))))))) OR ((((NOT ((NOT ([Par19]="PAR19_2"))))) OR ([Par4]="false")) AND (((NOT ((NOT ([Par8]<>"false"))))) OR ([Par9]<>"PAR9_4")))) AND (((NOT ((((NOT ((NOT ([Par19]="PAR19_2"))))) OR ([Par4]="false")) AND (((NOT ((NOT ([Par8]<>"false"))))) OR ([Par9]<>"PAR9_4"))))) OR ((((NOT (([Par3]="PAR3_4") AND ((NOT ([Par3]<>"PAR3_7")))))) OR (([Par24]<>"false") AND ([Par1]="true"))) AND (((NOT (([Par24]<>"false") AND ([Par1]="true")))) OR (([Par3]="PAR3_4") AND ((NOT ([Par3]<>"PAR3_7")))))));

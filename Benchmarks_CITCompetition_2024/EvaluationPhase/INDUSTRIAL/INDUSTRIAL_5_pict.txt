@@ -1,0 +1,181 @@
+p1 : v1, v2, v3
+p2 : v1, v2, v3, v4
+p3 : false, true
+p4 : v1, v2, v3
+p5 : v1, v2, v3
+p6 : v1, v2, v3
+p7 : v1, v2, v3
+p8 : false, true
+p9 : false, true
+p10 : false, true
+p11 : false, true
+p12 : false, true
+p13 : false, true
+p14 : false, true
+p15 : v1, v2, v3
+p16 : false, true
+p17 : false, true
+p18 : false, true
+p19 : v1, v2, v3, v4
+p20 : false, true
+p21 : false, true
+p22 : false, true
+p23 : false, true
+p24 : false, true
+p25 : false, true
+p26 : false, true
+p27 : false, true
+p28 : false, true
+p29 : false, true
+p30 : false, true
+p31 : false, true
+p32 : false, true
+p33 : false, true
+p34 : false, true
+p35 : false, true
+p36 : false, true
+p37 : false, true
+p38 : false, true
+p39 : false, true
+p40 : v1, v2, v3, v4
+p41 : false, true
+p42 : false, true
+p43 : false, true
+p44 : v1, v2, v3, v4
+p45 : false, true
+p46 : false, true
+p47 : false, true
+p48 : false, true
+p49 : false, true
+p50 : false, true
+p51 : false, true
+p52 : false, true
+p53 : false, true
+p54 : false, true
+p55 : false, true
+p56 : false, true
+p57 : false, true
+p58 : false, true
+p59 : false, true
+p60 : false, true
+p61 : false, true
+p62 : false, true
+p63 : false, true
+p64 : false, true
+p65 : false, true
+p66 : false, true
+p67 : v1, v2, v3, v4, v5
+p68 : false, true
+p69 : false, true
+p70 : false, true
+p71 : false, true
+p72 : v1, v2, v3
+p73 : false, true
+p74 : false, true
+p75 : false, true
+p76 : false, true
+p77 : false, true
+p78 : false, true
+p79 : false, true
+p80 : false, true
+p81 : false, true
+p82 : false, true
+p83 : false, true
+p84 : false, true
+p85 : false, true
+p86 : false, true
+p87 : false, true
+p88 : false, true
+p89 : false, true
+p90 : false, true
+p91 : false, true
+p92 : false, true
+p93 : false, true
+p94 : false, true
+p95 : false, true
+p96 : false, true
+p97 : false, true
+p98 : false, true
+p99 : false, true
+p100 : false, true
+p101 : false, true
+p102 : false, true
+p103 : false, true
+p104 : false, true
+p105 : false, true
+p106 : false, true
+p107 : false, true
+p108 : false, true
+p109 : false, true
+p110 : false, true
+p111 : false, true
+p112 : false, true
+p113 : false, true
+p114 : false, true
+p115 : false, true
+p116 : false, true
+p117 : v1, v2, v3, v4, v5, v6
+p118 : false, true
+p119 : false, true
+p120 : false, true
+p121 : false, true
+p122 : false, true
+p123 : false, true
+p124 : false, true
+p125 : false, true
+p126 : false, true
+p127 : false, true
+p128 : false, true
+p129 : false, true
+p130 : false, true
+p131 : false, true
+p132 : false, true
+p133 : false, true
+p134 : false, true
+p135 : false, true
+p136 : false, true
+p137 : false, true
+p138 : false, true
+p139 : false, true
+p140 : false, true
+p141 : false, true
+p142 : false, true
+p143 : false, true
+p144 : v1, v2, v3
+p145 : false, true
+p146 : false, true
+p147 : false, true
+p148 : false, true
+p149 : false, true
+p150 : false, true
+p151 : false, true
+p152 : false, true
+p153 : false, true
+p154 : false, true
+p155 : false, true
+p156 : false, true
+p157 : false, true
+p158 : false, true
+p159 : false, true
+p160 : false, true
+p161 : false, true
+p162 : false, true
+p163 : false, true
+p164 : false, true
+p165 : false, true
+p166 : false, true
+p167 : false, true
+p168 : false, true
+p169 : false, true
+p170 : false, true
+p171 : false, true
+p172 : false, true
+
+
+(((([p36]="true") OR ([p45]="true")) OR ([p46]="true")) OR ([p47]="true")) OR ([p166]="true");
+((([p45]="true") OR ([p46]="true")) OR ([p167]="true")) OR ([p168]="true");
+([p16]="true") OR ([p169]="true");
+([p170]="true") OR ([p171]="true");
+([p79]="true") OR ([p80]="true");
+(([p92]="true") OR ([p100]="true")) OR ([p172]="true");
+((([p36]="true") OR ([p45]="true")) OR ([p46]="true")) OR ([p134]="true");

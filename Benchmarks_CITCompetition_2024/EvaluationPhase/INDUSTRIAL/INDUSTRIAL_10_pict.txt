@@ -1,0 +1,13 @@
+p1 : false, true
+p2 : false, true
+p3 : false, true
+p4 : false, true
+p5 : false, true
+p6 : false, true
+p7 : false, true
+p8 : false, true
+p9 : false, true
+p10 : false, true
+
+
+((NOT ([p4]="true"))) OR ((NOT ([p3]="true")));

@@ -1,0 +1,29 @@
+HelpSystem : false, true
+Priority : false, true
+PH : false, true
+PI : false, true
+PL : false, true
+Level : BG, IT, AD, NONE
+Method : PR, PB, NONE
+Activity : PS, CT, NONE
+SensorInput : S1, S2, S3, S4, NONE
+SensorPosition : false, true
+NotPressed : false, true
+Pressed : false, true
+Sound : Sound1, Sound2, NONE
+
+
+[HelpSystem]="true";
+(((NOT ([Priority]="true"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([Priority]="true"));
+((NOT ([Priority]="true"))) OR ((([PH]="true") OR ([PI]="true")) OR ([PL]="true"));
+((NOT ([PH]="true"))) OR ([Priority]="true");
+((NOT ([PI]="true"))) OR ([Priority]="true");
+((NOT ([PL]="true"))) OR ([Priority]="true");
+(((NOT ([Level]<>"NONE"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([Level]<>"NONE"));
+(((NOT ([Method]<>"NONE"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([Method]<>"NONE"));
+(((NOT ([Activity]<>"NONE"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([Activity]<>"NONE"));
+(((NOT ([SensorInput]<>"NONE"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([SensorInput]<>"NONE"));
+(((NOT ([SensorPosition]="true"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([SensorPosition]="true"));
+(((NOT ([NotPressed]="true"))) OR ([SensorPosition]="true")) AND (((NOT ([SensorPosition]="true"))) OR ([NotPressed]="true"));
+(((NOT ([Pressed]="true"))) OR ([SensorPosition]="true")) AND (((NOT ([SensorPosition]="true"))) OR ([Pressed]="true"));
+(((NOT ([Sound]<>"NONE"))) OR ([HelpSystem]="true")) AND (((NOT ([HelpSystem]="true"))) OR ([Sound]<>"NONE"));

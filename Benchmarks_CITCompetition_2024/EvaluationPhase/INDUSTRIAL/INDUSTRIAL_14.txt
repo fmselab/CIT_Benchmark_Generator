@@ -1,0 +1,67 @@
+[System]
+-- specify system name
+Name: INDUSTRIAL_14
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+p1 (enum) : v1, v2
+p2 (enum) : v1, v2, v3, v4, v5
+p3 (enum) : v1, v2, v3
+p4 (enum) : v1, v2, v3
+p5 (enum) : v1, v2, v3, v4
+p6 (enum) : v1, v2, v3, v4
+p7 (enum) : v1, v2
+p8 (enum) : v1, v2, v3
+p9 (enum) : v1, v2, v3, v4, v5, v6
+p10 (enum) : v1, v2, v3, v4
+p11 (enum) : v1, v2, v3, v4, v5
+p12 (boolean) : true, false
+p13 (enum) : v1, v2, v3
+p14 (enum) : v1, v2, v3
+p15 (enum) : v1, v2, v3, v4
+p16 (enum) : v1, v2
+p17 (enum) : v1, v2
+p18 (enum) : v1, v2, v3, v4
+p19 (boolean) : true, false
+p20 (enum) : v1, v2, v3
+p21 (boolean) : true, false
+p22 (boolean) : true, false
+p23 (enum) : v1, v2, v3
+p24 (boolean) : true, false
+p25 (enum) : v1, v2, v3
+p26 (enum) : v1, v2
+p27 (enum) : v1, v2
+p28 (enum) : v1, v2, v3
+p29 (boolean) : true, false
+p30 (enum) : v1, v2, v3
+p31 (boolean) : true, false
+p32 (enum) : v1, v2, v3, v4
+p33 (enum) : v1, v2, v3
+p34 (enum) : v1, v2, v3, v4, v5, v6, v7
+p35 (int) : 0, 1, 2
+
+[Constraint]
+-- this section is also optional
+(p8 != "v3") || (p10 != "v4")
+(p10 != "v3") || (p11 != "v5")
+(p8 != "v2") || (p10 != "v4")
+(p8 != "v1") || (p10 != "v3")
+(p8 != "v1") || (p10 != "v2")
+(p8 != "v1") || (p10 != "v1")
+(p11 != "v5") || (p10 != "v1")
+(p32 != "v2") || (p1 != "v1")
+(p8 != "v3") || (p1 != "v1")
+(p10 != "v2") || (p11 != "v5")
+(p8 != "v1") || (p9 != "v6")
+(p8 != "v1") || (p9 != "v5")
+(p8 != "v1") || (p9 != "v1")
+(p1 != "v1") || (p32 != "v3")
+(p32 != "v1") || (p33 != "v3")
+(p11 != "v1") || (p10 != "v4")
+(p8 != "v1") || (p9 != "v4")
+(p32 != "v1") || (p33 != "v2")
+(p8 != "v1") || (p9 != "v3")
+(p11 != "v2") || (p10 != "v4")
+(p11 != "v4") || (p10 != "v4")
+(p11 != "v3") || (p10 != "v4")
+

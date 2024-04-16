@@ -1,0 +1,44 @@
+[System]
+-- specify system name
+Name: MCAC_26
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8
+Par7 (boolean) : true, false
+Par8 (enum) : PAR8_0, PAR8_1, PAR8_2, PAR8_3, PAR8_4, PAR8_5, PAR8_6, PAR8_7, PAR8_8, PAR8_9
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6, PAR9_7, PAR9_8, PAR9_9, PAR9_10, PAR9_11, PAR9_12, PAR9_13
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2, PAR10_3, PAR10_4, PAR10_5, PAR10_6, PAR10_7, PAR10_8, PAR10_9, PAR10_10, PAR10_11, PAR10_12, PAR10_13, PAR10_14
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (boolean) : true, false
+Par15 (boolean) : true, false
+Par16 (boolean) : true, false
+Par17 (enum) : PAR17_0, PAR17_1, PAR17_2
+Par18 (boolean) : true, false
+Par19 (boolean) : true, false
+Par20 (enum) : PAR20_0, PAR20_1, PAR20_2, PAR20_3, PAR20_4, PAR20_5, PAR20_6, PAR20_7, PAR20_8
+Par21 (boolean) : true, false
+Par22 (boolean) : true, false
+Par23 (boolean) : true, false
+Par24 (boolean) : true, false
+Par25 (boolean) : true, false
+Par26 (boolean) : true, false
+Par27 (boolean) : true, false
+Par28 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((! (Par21 = false)) || (Par6 != "PAR6_4")) => (((! (Par8 = "PAR8_2")) => (! (Par27 = false)))&&((! (Par27 = false)) => (! (Par8 = "PAR8_2"))))) && (((Par4 != "PAR4_6") => (! (Par25 != true))) || (((Par8 = "PAR8_7") => (Par13 != true))&&((Par13 != true) => (Par8 = "PAR8_7"))))
+((((! (Par2 != "PAR2_0")) => (Par27 = false))&&((Par27 = false) => (! (Par2 != "PAR2_0")))) => ((Par11 = false) => (Par8 != "PAR8_9")))&&(((Par11 = false) => (Par8 != "PAR8_9")) => (((! (Par2 != "PAR2_0")) => (Par27 = false))&&((Par27 = false) => (! (Par2 != "PAR2_0")))))
+(((Par24 != false) && (! (Par15 != false))) && ((Par11 != true) && (! (Par20 = "PAR20_0")))) => ((((Par1 != false) => (! (Par28 != true))) => ((! (Par1 != true)) => (Par8 != "PAR8_2")))&&(((! (Par1 != true)) => (Par8 != "PAR8_2")) => ((Par1 != false) => (! (Par28 != true)))))
+(((! (Par15 != true)) || (! (Par23 = true))) && ((Par9 != "PAR9_10") && (Par17 = "PAR17_1"))) || ((((Par4 = "PAR4_6") => (Par22 = true))&&((Par22 = true) => (Par4 = "PAR4_6"))) && ((Par10 != "PAR10_11") => (Par15 = true)))
+(((Par25 = false) && (Par23 = false)) => (((Par20 != "PAR20_5") => (! (Par1 != false)))&&((! (Par1 != false)) => (Par20 != "PAR20_5"))))&&((((Par20 != "PAR20_5") => (! (Par1 != false)))&&((! (Par1 != false)) => (Par20 != "PAR20_5"))) => ((Par25 = false) && (Par23 = false)))
+

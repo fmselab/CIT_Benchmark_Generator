@@ -1,0 +1,19 @@
+[System]
+-- specify system name
+Name: CNF_3
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (enum) : PAR0_0, PAR0_1, PAR0_2, PAR0_3, PAR0_4, PAR0_5, PAR0_6, PAR0_7, PAR0_8, PAR0_9, PAR0_10, PAR0_11
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8
+Par2 (boolean) : true, false
+Par3 (enum) : PAR3_0, PAR3_1, PAR3_2, PAR3_3, PAR3_4, PAR3_5, PAR3_6, PAR3_7, PAR3_8, PAR3_9, PAR3_10, PAR3_11, PAR3_12, PAR3_13
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3
+
+[Constraint]
+-- this section is also optional
+((Par1 != "PAR1_6") || (Par2 = true)) && ((! (Par6 != "PAR6_1")) || (! (Par2 = true)))
+((Par0 = "PAR0_11") || (! (Par0 != "PAR0_2"))) && ((! (Par5 = true)) || (Par2 != false))
+

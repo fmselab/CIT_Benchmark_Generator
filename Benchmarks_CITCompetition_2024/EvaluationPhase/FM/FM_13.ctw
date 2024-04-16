@@ -1,0 +1,22 @@
+//Model MSmartHotelv2 
+Model FM_13
+Parameters :
+SmartHotel : Boolean
+Automatedillumination : Boolean
+Security : Boolean
+Alarm : Boolean
+Siren : Boolean
+VisualAlarm : Boolean
+TemperatureControl : Boolean
+Heating : Boolean 
+
+Constraints :
+# SmartHotel == true #
+# Automatedillumination == true => SmartHotel == true #
+# Security == true => SmartHotel == true #
+# Alarm == true => Security == true #
+# Alarm == true => Siren == true || VisualAlarm == true #
+# Siren == true => Alarm == true #
+# VisualAlarm == true => Alarm == true #
+# TemperatureControl == true => SmartHotel == true #
+# Heating == true => TemperatureControl == true #

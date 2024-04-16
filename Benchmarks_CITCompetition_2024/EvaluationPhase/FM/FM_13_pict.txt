@@ -1,0 +1,19 @@
+SmartHotel : false, true
+Automatedillumination : false, true
+Security : false, true
+Alarm : false, true
+Siren : false, true
+VisualAlarm : false, true
+TemperatureControl : false, true
+Heating : false, true
+
+
+[SmartHotel]="true";
+((NOT ([Automatedillumination]="true"))) OR ([SmartHotel]="true");
+((NOT ([Security]="true"))) OR ([SmartHotel]="true");
+((NOT ([Alarm]="true"))) OR ([Security]="true");
+((NOT ([Alarm]="true"))) OR (([Siren]="true") OR ([VisualAlarm]="true"));
+((NOT ([Siren]="true"))) OR ([Alarm]="true");
+((NOT ([VisualAlarm]="true"))) OR ([Alarm]="true");
+((NOT ([TemperatureControl]="true"))) OR ([SmartHotel]="true");
+((NOT ([Heating]="true"))) OR ([TemperatureControl]="true");

@@ -1,0 +1,45 @@
+[System]
+-- specify system name
+Name: BOOLC_21
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (boolean) : true, false
+Par3 (boolean) : true, false
+Par4 (boolean) : true, false
+Par5 (boolean) : true, false
+Par6 (boolean) : true, false
+Par7 (boolean) : true, false
+Par8 (boolean) : true, false
+Par9 (boolean) : true, false
+Par10 (boolean) : true, false
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (boolean) : true, false
+Par15 (boolean) : true, false
+Par16 (boolean) : true, false
+Par17 (boolean) : true, false
+Par18 (boolean) : true, false
+Par19 (boolean) : true, false
+Par20 (boolean) : true, false
+Par21 (boolean) : true, false
+Par22 (boolean) : true, false
+Par23 (boolean) : true, false
+Par24 (boolean) : true, false
+Par25 (boolean) : true, false
+Par26 (boolean) : true, false
+Par27 (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+(((((Par22 = false) || (! (Par5 = true))) => (((Par17 = false) => (Par19 != false))&&((Par19 != false) => (Par17 = false))))&&((((Par17 = false) => (Par19 != false))&&((Par19 != false) => (Par17 = false))) => ((Par22 = false) || (! (Par5 = true))))) => (((((! (Par17 = true)) => (Par15 = true))&&((Par15 = true) => (! (Par17 = true)))) => ((Par1 = false) || (Par17 = true)))&&(((Par1 = false) || (Par17 = true)) => (((! (Par17 = true)) => (Par15 = true))&&((Par15 = true) => (! (Par17 = true)))))))&&((((((! (Par17 = true)) => (Par15 = true))&&((Par15 = true) => (! (Par17 = true)))) => ((Par1 = false) || (Par17 = true)))&&(((Par1 = false) || (Par17 = true)) => (((! (Par17 = true)) => (Par15 = true))&&((Par15 = true) => (! (Par17 = true)))))) => ((((Par22 = false) || (! (Par5 = true))) => (((Par17 = false) => (Par19 != false))&&((Par19 != false) => (Par17 = false))))&&((((Par17 = false) => (Par19 != false))&&((Par19 != false) => (Par17 = false))) => ((Par22 = false) || (! (Par5 = true))))))
+((Par22 != true) => (! (Par0 != false))) && ((! (Par10 = false)) || (! (Par25 != true)))
+(((((! (Par9 = true)) => (Par4 = true))&&((Par4 = true) => (! (Par9 = true)))) => ((Par24 = true) || (! (Par7 != false))))&&(((Par24 = true) || (! (Par7 != false))) => (((! (Par9 = true)) => (Par4 = true))&&((Par4 = true) => (! (Par9 = true)))))) || (((Par24 = false) && (Par0 = true)) && ((! (Par25 = true)) => (! (Par21 != true))))
+(Par11 = true) && (! (Par19 != true))
+(((! (Par27 = true)) && (Par2 = true)) && (((! (Par8 != true)) => (Par1 = false))&&((Par1 = false) => (! (Par8 != true))))) || (((! (Par11 = false)) && (Par22 = true)) || ((! (Par5 = false)) || (! (Par8 != true))))
+(((! (Par25 != false)) => (Par17 != true)) => ((! (Par16 = false)) => (Par6 != true)))&&(((! (Par16 = false)) => (Par6 != true)) => ((! (Par25 != false)) => (Par17 != true)))
+(((((! (Par7 != false)) => (! (Par16 != false)))&&((! (Par16 != false)) => (! (Par7 != false)))) || (((Par23 = true) => (! (Par9 != true)))&&((! (Par9 != true)) => (Par23 = true)))) => (((Par12 != true) || (Par5 = true)) || (((! (Par7 = true)) => (! (Par23 != false)))&&((! (Par23 != false)) => (! (Par7 = true))))))&&((((Par12 != true) || (Par5 = true)) || (((! (Par7 = true)) => (! (Par23 != false)))&&((! (Par23 != false)) => (! (Par7 = true))))) => ((((! (Par7 != false)) => (! (Par16 != false)))&&((! (Par16 != false)) => (! (Par7 != false)))) || (((Par23 = true) => (! (Par9 != true)))&&((! (Par9 != true)) => (Par23 = true)))))
+

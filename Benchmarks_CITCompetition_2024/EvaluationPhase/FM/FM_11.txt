@@ -1,0 +1,63 @@
+[System]
+-- specify system name
+Name: FM_11
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+MobileMedia (boolean) : true, false
+Albummanagement (boolean) : true, false
+CreateAlbum (boolean) : true, false
+DeleteAlbum (boolean) : true, false
+Mediamanagement (boolean) : true, false
+Favorites (boolean) : true, false
+Setfavorites (boolean) : true, false
+Viewfavorites (boolean) : true, false
+Sorting (boolean) : true, false
+Basicmediaoperation (boolean) : true, false
+Createmedia (boolean) : true, false
+Deletemedia (boolean) : true, false
+Editmedialabel (boolean) : true, false
+Copymedia (boolean) : true, false
+SMStransfer (boolean) : true, false
+Receivephoto (boolean) : true, false
+Sendphoto (boolean) : true, false
+Mediaselection (boolean) : true, false
+Photo (boolean) : true, false
+Viewphoto (boolean) : true, false
+Capturephoto (boolean) : true, false
+Music (boolean) : true, false
+Playmusic (boolean) : true, false
+Video (boolean) : true, false
+Playvideo (boolean) : true, false
+Capturevideo (boolean) : true, false
+
+[Constraint]
+-- this section is also optional
+MobileMedia = true
+((Albummanagement = true) => (MobileMedia = true))&&((MobileMedia = true) => (Albummanagement = true))
+((CreateAlbum = true) => (Albummanagement = true))&&((Albummanagement = true) => (CreateAlbum = true))
+((DeleteAlbum = true) => (Albummanagement = true))&&((Albummanagement = true) => (DeleteAlbum = true))
+((Mediamanagement = true) => (MobileMedia = true))&&((MobileMedia = true) => (Mediamanagement = true))
+(Favorites = true) => (Mediamanagement = true)
+((Setfavorites = true) => (Favorites = true))&&((Favorites = true) => (Setfavorites = true))
+((Viewfavorites = true) => (Favorites = true))&&((Favorites = true) => (Viewfavorites = true))
+(Sorting = true) => (Mediamanagement = true)
+((Basicmediaoperation = true) => (Mediamanagement = true))&&((Mediamanagement = true) => (Basicmediaoperation = true))
+((Createmedia = true) => (Basicmediaoperation = true))&&((Basicmediaoperation = true) => (Createmedia = true))
+((Deletemedia = true) => (Basicmediaoperation = true))&&((Basicmediaoperation = true) => (Deletemedia = true))
+((Editmedialabel = true) => (Basicmediaoperation = true))&&((Basicmediaoperation = true) => (Editmedialabel = true))
+(Copymedia = true) => (Mediamanagement = true)
+(SMStransfer = true) => (Mediamanagement = true)
+((Receivephoto = true) => (SMStransfer = true))&&((SMStransfer = true) => (Receivephoto = true))
+((Sendphoto = true) => (SMStransfer = true))&&((SMStransfer = true) => (Sendphoto = true))
+((Mediaselection = true) => (MobileMedia = true))&&((MobileMedia = true) => (Mediaselection = true))
+(Mediaselection = true) => (((Photo = true) || (Music = true)) || (Video = true))
+(Photo = true) => (Mediaselection = true)
+((Viewphoto = true) => (Photo = true))&&((Photo = true) => (Viewphoto = true))
+(Capturephoto = true) => (Photo = true)
+(Music = true) => (Mediaselection = true)
+((Playmusic = true) => (Music = true))&&((Music = true) => (Playmusic = true))
+(Video = true) => (Mediaselection = true)
+((Playvideo = true) => (Video = true))&&((Video = true) => (Playvideo = true))
+(Capturevideo = true) => (Video = true)
+

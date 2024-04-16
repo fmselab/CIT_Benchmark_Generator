@@ -1,0 +1,114 @@
+[System]
+-- specify system name
+Name: INDUSTRIAL_7
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+p1 (boolean) : true, false
+p2 (boolean) : true, false
+p3 (boolean) : true, false
+p4 (boolean) : true, false
+p5 (boolean) : true, false
+p6 (boolean) : true, false
+p7 (boolean) : true, false
+p8 (boolean) : true, false
+p9 (boolean) : true, false
+p10 (boolean) : true, false
+p11 (boolean) : true, false
+p12 (boolean) : true, false
+p13 (boolean) : true, false
+p14 (boolean) : true, false
+p15 (boolean) : true, false
+p16 (boolean) : true, false
+p17 (boolean) : true, false
+p18 (boolean) : true, false
+p19 (boolean) : true, false
+p20 (boolean) : true, false
+p21 (boolean) : true, false
+p22 (boolean) : true, false
+p23 (boolean) : true, false
+p24 (boolean) : true, false
+p25 (boolean) : true, false
+p26 (boolean) : true, false
+p27 (boolean) : true, false
+p28 (boolean) : true, false
+p29 (boolean) : true, false
+p30 (boolean) : true, false
+p31 (boolean) : true, false
+p32 (boolean) : true, false
+p33 (boolean) : true, false
+p34 (boolean) : true, false
+p35 (boolean) : true, false
+p36 (boolean) : true, false
+p37 (boolean) : true, false
+p38 (boolean) : true, false
+p39 (boolean) : true, false
+p40 (boolean) : true, false
+p41 (boolean) : true, false
+p42 (boolean) : true, false
+p43 (enum) : v1, v2, v3
+p44 (enum) : v1, v2, v3
+p45 (enum) : v1, v2, v3, v4
+p46 (enum) : v1, v2, v3, v4
+p47 (enum) : v1, v2, v3, v4
+p48 (enum) : v1, v2, v3, v4
+p49 (enum) : v1, v2, v3, v4
+p50 (enum) : v1, v2, v3, v4
+p51 (enum) : v1, v2, v3, v4
+p52 (enum) : v1, v2, v3, v4
+p53 (enum) : v1, v2, v3, v4
+p54 (enum) : v1, v2, v3, v4
+p55 (enum) : v1, v2, v3, v4
+
+[Constraint]
+-- this section is also optional
+(! (p2 = true)) || (p43 != "v2")
+(! (p2 = true)) || (p43 != "v3")
+(p43 != "v2") || (p44 != "v2")
+(p43 != "v2") || (p44 != "v3")
+(p43 != "v3") || (p44 != "v2")
+(p43 != "v3") || (p44 != "v3")
+(! (p2 = true)) || (p44 != "v2")
+(! (p2 = true)) || (p44 != "v3")
+(! (p3 = true)) || (! (p4 = true))
+(! (p3 = true)) || (! (p5 = true))
+(! (p3 = true)) || (! (p6 = true))
+(! (p4 = true)) || (! (p5 = true))
+(! (p4 = true)) || (! (p6 = true))
+(! (p5 = true)) || (! (p6 = true))
+(p45 != "v2") || (p46 != "v2")
+(p45 != "v2") || (p46 != "v3")
+(p45 != "v2") || (p46 != "v4")
+(p45 != "v3") || (p46 != "v2")
+(p45 != "v3") || (p46 != "v3")
+(p45 != "v3") || (p46 != "v4")
+(p45 != "v4") || (p46 != "v2")
+(p45 != "v4") || (p46 != "v3")
+(p45 != "v4") || (p46 != "v4")
+(! (p7 = true)) || (! (p8 = true))
+(! (p9 = true)) || (! (p10 = true))
+(! (p9 = true)) || (! (p11 = true))
+(! (p12 = true)) || (! (p13 = true))
+(! (p7 = true)) || (p47 != "v2")
+(! (p7 = true)) || (p47 != "v3")
+(! (p7 = true)) || (p47 != "v4")
+(! (p14 = true)) || (! (p15 = true))
+(! (p11 = true)) || (! (p16 = true))
+(! (p10 = true)) || p16 = true
+(! (p17 = true)) || p18 = true
+p15 = true || (! (p19 = true))
+(! (p11 = true)) || p15 = true
+p10 = true || (! (p16 = true))
+p13 = true || (! (p21 = true))
+p13 = true || (! (p22 = true))
+p13 = true || (! (p23 = true))
+(! (p24 = true)) || (p48 != "v1")
+(p49 != "v2") || (p50 != "v1")
+(p49 != "v3") || (p50 != "v1")
+(p49 != "v4") || (p50 != "v1")
+(! (p25 = true)) || (p50 != "v1")
+p17 = true || (! (p18 = true))
+p13 = true || (! (p26 = true))
+((! (p13 = true)) || p22 = true) || (! (p27 = true))
+((! (p8 = true)) || p10 = true) || p11 = true
+

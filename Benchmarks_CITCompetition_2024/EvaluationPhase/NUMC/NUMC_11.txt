@@ -1,0 +1,29 @@
+[System]
+-- specify system name
+Name: NUMC_11
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (int) : 13, 14
+Par1 (enum) : PAR1_0, PAR1_1, PAR1_2, PAR1_3, PAR1_4, PAR1_5, PAR1_6, PAR1_7, PAR1_8
+Par2 (enum) : PAR2_0, PAR2_1, PAR2_2, PAR2_3, PAR2_4, PAR2_5, PAR2_6, PAR2_7, PAR2_8
+Par3 (int) : 16, 17, 18, 19, 20
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3, PAR4_4, PAR4_5, PAR4_6, PAR4_7, PAR4_8, PAR4_9, PAR4_10, PAR4_11, PAR4_12
+Par5 (int) : -66, -65, -64, -63, -62, -61, -60
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11
+
+[Constraint]
+-- this section is also optional
+(((Par6 = "PAR6_10") => (Par3 = 19)) || ((! (Par1 != "PAR1_3")) || (Par1 != "PAR1_1"))) => ((((! (Par1 != "PAR1_2")) => (Par3 <= 19))&&((Par3 <= 19) => (! (Par1 != "PAR1_2")))) && ((Par5 >= -66) && (Par4 != "PAR4_10")))
+((! (Par6 != "PAR6_1")) => (Par2 != "PAR2_1")) && ((Par0 < 14) => (Par4 = "PAR4_2"))
+((((! (Par4 != "PAR4_3")) => (! (Par6 != "PAR6_4"))) => ((Par5 > -61) && (! (Par2 = "PAR2_0"))))&&(((Par5 > -61) && (! (Par2 = "PAR2_0"))) => ((! (Par4 != "PAR4_3")) => (! (Par6 != "PAR6_4"))))) && (((! (Par4 = "PAR4_3")) && (! (Par1 != "PAR1_2"))) => ((! (Par1 = "PAR1_0")) => (Par1 != "PAR1_4")))
+((((! (Par5 > -65)) && (! (Par4 = "PAR4_1"))) => ((! (Par1 != "PAR1_0")) => (! (Par6 = "PAR6_0"))))&&(((! (Par1 != "PAR1_0")) => (! (Par6 = "PAR6_0"))) => ((! (Par5 > -65)) && (! (Par4 = "PAR4_1"))))) => (((Par5 != -60) || (! (Par0 < 13))) && ((Par3 != 19) => (Par2 != "PAR2_1")))
+(((Par5 = -66) => (Par6 != "PAR6_2")) => ((Par3 < 16) && (Par5 > -61))) => ((((Par5 != -62) => (Par4 != "PAR4_9"))&&((Par4 != "PAR4_9") => (Par5 != -62))) && (((Par2 != "PAR2_5") => (! (Par6 = "PAR6_2")))&&((! (Par6 = "PAR6_2")) => (Par2 != "PAR2_5"))))
+Par2 != "PAR2_3"
+(((! (Par0 < 14)) || (! (Par6 = "PAR6_4"))) || ((! (Par0 > 13)) => (! (Par6 = "PAR6_2")))) => (((Par0 < 13) || (! (Par6 = "PAR6_4"))) || ((! (Par1 != "PAR1_0")) || (Par2 = "PAR2_2")))
+Par2 != "PAR2_5"
+(((Par3 > 19) => (! (Par0 > 13)))&&((! (Par0 > 13)) => (Par3 > 19))) && ((Par4 != "PAR4_1") => (Par1 != "PAR1_4"))
+(((Par0 < 14) => (Par4 = "PAR4_0"))&&((Par4 = "PAR4_0") => (Par0 < 14))) || ((Par0 > 13) || (Par1 = "PAR1_8"))
+((((! (Par6 != "PAR6_9")) && (! (Par4 = "PAR4_8"))) => ((! (Par1 != "PAR1_4")) && (Par0 != 13)))&&(((! (Par1 != "PAR1_4")) && (Par0 != 13)) => ((! (Par6 != "PAR6_9")) && (! (Par4 = "PAR4_8"))))) || ((((! (Par5 < -64)) && (Par1 != "PAR1_5")) => ((! (Par5 >= -63)) => (! (Par5 >= -66))))&&(((! (Par5 >= -63)) => (! (Par5 >= -66))) => ((! (Par5 < -64)) && (Par1 != "PAR1_5"))))
+((((Par4 != "PAR4_7") && (! (Par1 = "PAR1_7"))) => (((! (Par2 = "PAR2_7")) => (Par6 != "PAR6_10"))&&((Par6 != "PAR6_10") => (! (Par2 = "PAR2_7"))))) => (((Par6 != "PAR6_2") || (! (Par1 = "PAR1_1"))) => ((! (Par2 != "PAR2_5")) && (Par2 != "PAR2_0"))))&&((((Par6 != "PAR6_2") || (! (Par1 = "PAR1_1"))) => ((! (Par2 != "PAR2_5")) && (Par2 != "PAR2_0"))) => (((Par4 != "PAR4_7") && (! (Par1 = "PAR1_7"))) => (((! (Par2 = "PAR2_7")) => (Par6 != "PAR6_10"))&&((Par6 != "PAR6_10") => (! (Par2 = "PAR2_7"))))))
+

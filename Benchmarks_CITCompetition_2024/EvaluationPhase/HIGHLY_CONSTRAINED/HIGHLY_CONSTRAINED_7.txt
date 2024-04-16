@@ -1,0 +1,34 @@
+[System]
+-- specify system name
+Name: HIGHLY_CONSTRAINED_7
+
+[Parameter]
+-- general syntax is parameter_name : value1, value2, ...
+Par0 (boolean) : true, false
+Par1 (boolean) : true, false
+Par2 (enum) : PAR2_0, PAR2_1
+Par3 (boolean) : true, false
+Par4 (enum) : PAR4_0, PAR4_1, PAR4_2, PAR4_3
+Par5 (boolean) : true, false
+Par6 (enum) : PAR6_0, PAR6_1, PAR6_2, PAR6_3, PAR6_4, PAR6_5, PAR6_6, PAR6_7, PAR6_8, PAR6_9, PAR6_10, PAR6_11, PAR6_12, PAR6_13
+Par7 (enum) : PAR7_0, PAR7_1, PAR7_2, PAR7_3, PAR7_4, PAR7_5, PAR7_6, PAR7_7, PAR7_8, PAR7_9, PAR7_10, PAR7_11
+Par8 (boolean) : true, false
+Par9 (enum) : PAR9_0, PAR9_1, PAR9_2, PAR9_3, PAR9_4, PAR9_5, PAR9_6, PAR9_7
+Par10 (enum) : PAR10_0, PAR10_1, PAR10_2
+Par11 (boolean) : true, false
+Par12 (boolean) : true, false
+Par13 (boolean) : true, false
+Par14 (boolean) : true, false
+Par15 (enum) : PAR15_0, PAR15_1, PAR15_2, PAR15_3, PAR15_4, PAR15_5, PAR15_6, PAR15_7, PAR15_8, PAR15_9, PAR15_10, PAR15_11, PAR15_12
+Par16 (enum) : PAR16_0, PAR16_1, PAR16_2
+Par17 (enum) : PAR17_0, PAR17_1, PAR17_2, PAR17_3, PAR17_4, PAR17_5, PAR17_6, PAR17_7, PAR17_8
+Par18 (enum) : PAR18_0, PAR18_1, PAR18_2, PAR18_3, PAR18_4, PAR18_5, PAR18_6, PAR18_7, PAR18_8, PAR18_9
+
+[Constraint]
+-- this section is also optional
+((((Par10 != "PAR10_1") || (Par18 = "PAR18_6")) => ((Par16 = "PAR16_0") && (! (Par1 = true))))&&(((Par16 = "PAR16_0") && (! (Par1 = true))) => ((Par10 != "PAR10_1") || (Par18 = "PAR18_6")))) => (((Par7 = "PAR7_6") || (Par3 = true)) || ((Par17 != "PAR17_6") => (Par5 = false)))
+((((! (Par3 != false)) => (! (Par2 = "PAR2_1")))&&((! (Par2 = "PAR2_1")) => (! (Par3 != false)))) || ((Par4 = "PAR4_2") => (! (Par2 = "PAR2_1")))) || (((! (Par15 != "PAR15_4")) || (! (Par0 = false))) || (((! (Par2 = "PAR2_1")) => (Par2 = "PAR2_0"))&&((Par2 = "PAR2_0") => (! (Par2 = "PAR2_1")))))
+((! (Par13 = false)) && (! (Par10 != "PAR10_0"))) || ((! (Par16 = "PAR16_2")) || (Par11 != true))
+(((! (Par6 = "PAR6_1")) && (Par4 = "PAR4_1")) => ((Par11 != false) => (Par8 = true))) => (((! (Par12 != true)) && (! (Par8 != true))) && ((Par8 = false) || (Par13 = true)))
+((! (Par0 != true)) || (Par7 = "PAR7_0")) || ((Par5 != true) && (! (Par11 = false)))
+
