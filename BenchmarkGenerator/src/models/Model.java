@@ -34,6 +34,7 @@ import ctwedge.util.ext.Utility;
 import ctwedge.util.smt.SMTModelTranslator;
 import ctwedge.util.smt.SMTParameterAdder.EnumTreatment;
 import ctwedge.util.validator.RuleEvaluator;
+import generators.Category;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
 import generators.Track;
@@ -42,6 +43,7 @@ import main.BenchmarkGeneratorCLI;
 import models.constraints.Constraint;
 import util.ACTSModelTranslator;
 import util.ModelConfigurationExtractor;
+import util.ParameterToModelAdder;
 
 /**
  * A lightweight implementation of a combinatorial model, with methods useful
@@ -58,6 +60,7 @@ public class Model {
 	private List<Constraint> constraintsList;
 	private List<Integer> validityTests;
 	private boolean isRatioExact;
+	private Category category;
 	Logger LOGGER = Logger.getLogger(BenchmarkGeneratorCLI.class);
 
 	/**
@@ -73,13 +76,14 @@ public class Model {
 	/**
 	 * Build an empty model.
 	 */
-	public Model() {
+	public Model(Category category) {
 		paramsList = new ArrayList<>();
 		constraintsList = new ArrayList<>();
 		validityTests = new ArrayList<Integer>();
 		name = "";
 		isRatioExact = false;
 		LOGGER.setLevel(Level.DEBUG);
+		this.category = category;
 	}
 
 	/**
@@ -110,12 +114,119 @@ public class Model {
 	}
 
 	/**
+	 * Adds a new random parameter to the model, depending on the
+	 * GeneratorConfiguration and on the chosen category
+	 * 
+	 * @param names the list of used names
+	 */
+	public void addNewRandomParameter(ArrayList<String> names) {
+		int parameterNumber = getParameters() == null ? 0 : getParameters().size();
+		int nValues = 0;
+		int from = 100;
+
+		switch (category) {
+		case ONLY_BOOLEAN:
+			// With only booleans
+			ParameterToModelAdder.addBooleanParameter(this, names, parameterNumber);
+			break;
+
+		case ALSO_ENUMS:
+			// With also enumerative
+			// Probability 50% of extracting a boolean and 50% for enumerative
+			if (Randomizer.generate(0, 1) == 0)
+				ParameterToModelAdder.addBooleanParameter(this, names, parameterNumber);
+			else {
+				// Define a new enumerative parameter
+				nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
+						GeneratorConfiguration.MAX_CARDINALITY);
+				ParameterToModelAdder.addEnumerativeParameter(this, nValues, names, parameterNumber);
+			}
+			break;
+
+		case CONSTRAINTS_WITH_RELATIONAL:
+			// With also enumerative and integers
+			// Probability 33% of extracting a boolean and 33% for enumerative and 33% for
+			// integers
+			int parType = Randomizer.generate(0, 2);
+			switch (parType) {
+			case 0:
+				ParameterToModelAdder.addBooleanParameter(this, names, parameterNumber);
+				break;
+			case 1:
+				// Define a new enumerative parameter
+				nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
+						GeneratorConfiguration.MAX_CARDINALITY);
+				ParameterToModelAdder.addEnumerativeParameter(this, nValues, names, parameterNumber);
+				break;
+			case 2:
+				// Define a new integer parameter
+				boolean computeParams = true;
+				while (computeParams) {
+					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
+							GeneratorConfiguration.MAX_CARDINALITY - 1);
+					from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
+							GeneratorConfiguration.UPPER_BOUND_INT);
+
+					if (from <= from + nValues && from + nValues <= GeneratorConfiguration.UPPER_BOUND_INT)
+						computeParams = false;
+				}
+
+				// Define a new integer parameter
+				ParameterToModelAdder.addIntegerParameter(this, nValues, from, names, parameterNumber);
+				computeParams = true;
+			}
+			break;
+		}
+
+	}
+
+	/**
+	 * Remove a parameter from the model
+	 * 
+	 * @param p the parameter
+	 */
+	public void removeParameter(Parameter p) {
+		this.paramsList.remove(p);
+	}
+
+	/**
 	 * Adds a constraint to the model
 	 * 
 	 * @param p the constraint
 	 */
 	public void addConstraint(Constraint p) {
 		this.constraintsList.add(p);
+	}
+
+	/**
+	 * Removes a constraint and substitutes it with a new one
+	 * 
+	 * @param s the source constraint
+	 * @param d the new constraint
+	 */
+	public void changeConstraint(Constraint s, Constraint d) {
+		this.constraintsList.remove(s);
+		this.constraintsList.add(d);
+	}
+
+	/**
+	 * Removes a parameter and substitutes it with a new one
+	 * 
+	 * @param s the source parameter
+	 * @param d the new parameter
+	 */
+	public void changeParameter(Parameter s, Parameter d) {
+		this.paramsList.remove(s);
+		this.paramsList.add(d);
+	}
+
+	/**
+	 * Remove a constraint from the model
+	 * 
+	 * @param p the constraint
+	 */
+	public void removeConstraint(Constraint p) {
+		this.constraintsList.remove(p);
 	}
 
 	/**
@@ -175,8 +286,6 @@ public class Model {
 	 * @throws IOException
 	 */
 	public double getTestValidityRatio() throws InterruptedException, InvalidConfigurationException, IOException {
-		// Define the model as a CitModel
-		CitModel loadModel = Utility.loadModel(this.toString());
 		try {
 			// If the model contains at least one integer, we cannot deal with it. Throw an
 			// exception and manage it differently
@@ -241,33 +350,45 @@ public class Model {
 			if (ratio < 0)
 				throw new NotConvertableModel("Computation of the ratio failed");
 			isRatioExact = true;
+			LOGGER.debug("Ratio: " + ratio);
 			return ratio;
 		} catch (NotConvertableModel ex) {
-			// The model contains relational operators, thus a probabilistic approach has to
-			// be used
-			// It is based on extracting T tests and on checking whether they are applicable
-			// or not
-			int nValidTest = 0;
-			validityTests.clear();
-			LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
-			ModelUtils mu = new ModelUtils(loadModel);
-			int T = (int) Math
-					.ceil((1 / GeneratorConfiguration.RATIO_TEST) * ((4 * Math.log(2 / (1 - GeneratorConfiguration.P)))
-							/ (Math.pow(GeneratorConfiguration.EPSILON, 2))));
-			for (int i = 0; i < T; i++) {
-				Test t = mu.getRandomTestFromModel();
-				RuleEvaluator evaluator = new RuleEvaluator(t);
-				if (evaluator.evaluateModel(loadModel)) {
-					nValidTest++;
-					validityTests.add(1);
-				} else {
-					validityTests.add(0);
-				}
-			}
-			isRatioExact = false;
-			LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + T);
-			return (double) nValidTest / T;
+			return getApproximateTestValidityRatio();
 		}
+	}
+
+	/**
+	 * Returns the test validity ratio (i.e. how many tests are valid among those
+	 * possible)
+	 * 
+	 * @return the test validity ratio
+	 */
+	public double getApproximateTestValidityRatio() {
+		// Define the model as a CitModel
+		CitModel loadModel = Utility.loadModel(this.toString());
+		// The model contains relational operators, thus a probabilistic approach has to
+		// be used
+		// It is based on extracting T tests and on checking whether they are applicable
+		// or not
+		int nValidTest = 0;
+		validityTests.clear();
+		LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
+		ModelUtils mu = new ModelUtils(loadModel);
+		int T = (int) Math.ceil((1 / GeneratorConfiguration.RATIO_TEST)
+				* ((4 * Math.log(2 / (1 - GeneratorConfiguration.P))) / (Math.pow(GeneratorConfiguration.EPSILON, 2))));
+		for (int i = 0; i < T; i++) {
+			Test t = mu.getRandomTestFromModel();
+			RuleEvaluator evaluator = new RuleEvaluator(t);
+			if (evaluator.evaluateModel(loadModel)) {
+				nValidTest++;
+				validityTests.add(1);
+			} else {
+				validityTests.add(0);
+			}
+		}
+		isRatioExact = false;
+		LOGGER.debug("--- Generated " + nValidTest + " valid tests out of " + T);
+		return (double) nValidTest / T;
 	}
 
 	/**
@@ -407,7 +528,7 @@ public class Model {
 	 * @return the prover environment
 	 * @throws InvalidConfigurationException
 	 */
-	public ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
+	private ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
 		// Build the CIT Model
 		CitModel citModel = Utility.loadModel(toString());
 

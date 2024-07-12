@@ -59,7 +59,7 @@ public class IntegerParameter extends Parameter {
 	 * 
 	 * @return a random value for the Integer parameter, expressed as string
 	 */
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "removal" })
 	public String getRandomValue() {
 		return new Integer(Randomizer.generate(startFrom, endTo)).toString();
 	}

@@ -27,7 +27,7 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 	public Model generate(Category type) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		// The model with a unique name
-		Model m = new Model();
+		Model m = new Model(type);
 		m.setName("model" + timestamp.getTime());
 		
 		// The list of already used names

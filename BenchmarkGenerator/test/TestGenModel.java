@@ -45,6 +45,7 @@ public class TestGenModel {
 		//
 		int size = citmodel.getParameters().size();
 		assertTrue(2 <= size && size <=3);
+		System.out.println(citmodel);
 		// constraint
 
 	}
