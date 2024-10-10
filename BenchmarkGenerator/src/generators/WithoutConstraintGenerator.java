@@ -20,20 +20,22 @@ public class WithoutConstraintGenerator implements Generator {
 	 * 
 	 * @param type the type of models to be generated (with booleans, with
 	 *             enumeratives, with integers, ...)
+	 * @param config the generator configuration used for generating the model
 	 * @return the generated IPM
 	 */
 	@Override
-	public Model generate(Category type) {
+	public Model generate(Category type, GeneratorConfiguration config) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		// The model with a unique name
 		Model m = new Model(type);
+		m.setGeneratorConfiguration(config);
 		m.setName("model" + timestamp.getTime());
 
 		// The names of the used parameters
 		ArrayList<String> names = new ArrayList<>();
 
 		// Number of parameters
-		int n = Randomizer.generate(GeneratorConfiguration.N_PARAMS_MIN, GeneratorConfiguration.N_PARAMS_MAX);
+		int n = Randomizer.generate(m.getGeneratorConfiguration().N_PARAMS_MIN, m.getGeneratorConfiguration().N_PARAMS_MAX);
 		for (int i = 0;i<n; i++) {
 			m.addNewRandomParameter(names);
 		}

@@ -19,173 +19,189 @@ public class CTCompetition2023Generation {
 
 	@Test
 	public void testBOOLC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 30;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using c in the range [1, 100]
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = 100;
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
 
 		// Using d in the range [1, 20]
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = 1;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 
 		// Generate
-		generator.generateBOOLC();
+		generator.generateBOOLC(config);
 	}
 
 	@Test
 	public void testMCAC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 30;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using c in the range [1, 100]
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = 100;
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
 
 		// Using d in the range [1, 20]
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = 1;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 
 		// Generate
-		generator.generateMCAC();
+		generator.generateMCAC(config);
 	}
 
 	@Test
 	public void testNUMC() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 30;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using c in the range [1, 100]
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = 100;
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
 
 		// Using d in the range [1, 20]
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = 1;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 
 		// Generate
-		generator.generateNUMC();
+		generator.generateNUMC(config);
 	}
 
 	@Test
 	public void testHIGHLYCONSTRAINED() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		GeneratorConfiguration.N_BENCHMARKS = 30;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using c in the range [1, 100]
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = 100;
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
 
 		// Using d in the range [1, 20]
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = 1;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 
 		// Using ratio 0.01
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
-		GeneratorConfiguration.RATIO = 0.01;
+		config.CHECK_TUPLE_RATIO = true;
+		config.RATIO = 0.01;
 
 		// Generate
-		generator.generateNUMC();
+		generator.generateNUMC(config);
 	}
 
 	@Test
 	public void testCNF() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 30;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using c in the range [1, 100]
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = 1;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = 100;
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
 
 		// Using d in the range [1, 20]
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = 1;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 		
 		// Use CNF
-		GeneratorConfiguration.CNF = true;
+		config.CNF = true;
 
 		// Generate
-		generator.generateMCAC();
+		generator.generateMCAC(config);
 	}
 
 	@Test
 	public void testUNIFORMALL() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 15;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 15;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 
 		// Generate
-		generator.generateUNIFORM_ALL();
+		generator.generateUNIFORM_ALL(config);
 	}
 
 	@Test
 	public void testUNIFORMBOOLEAN() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 15;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 15;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Generate
-		generator.generateUNIFORM_BOOLEAN();
+		generator.generateUNIFORM_BOOLEAN(config);
 	}
 
 	@Test
 	public void testMCA() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
-		GeneratorConfiguration.N_BENCHMARKS = 30;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_BENCHMARKS = 30;
 
 		// Using k in the range [6, 30]
-		GeneratorConfiguration.N_PARAMS_MAX = 30;
-		GeneratorConfiguration.N_PARAMS_MIN = 6;
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
 
 		// Using v in the range [2, 15]
-		GeneratorConfiguration.MIN_CARDINALITY = 2;
-		GeneratorConfiguration.MAX_CARDINALITY = 15;
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
 
 		// Generate
-		generator.generateMCA();
+		generator.generateMCA(config);
 	}
 
 }

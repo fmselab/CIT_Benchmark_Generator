@@ -20,30 +20,32 @@ import models.Parameter;
  * @author andrea
  *
  */
-public class WithConstraintGenerator extends WithoutConstraintGenerator {
+public class WithConstraintGenerator extends WithoutConstraintGenerator implements GeneratorWithConstraintsInterface {
 
 	/**
 	 * Generate an IPM
 	 * 
 	 * @param type the type of models to be generated (with booleans, with
 	 *             enumeratives, with integers, ...)
+	 * @param config the configuration
 	 * @return the generated IPM
 	 */
 	@Override
-	public Model generate(Category type) {
+	public Model generate(Category type, GeneratorConfiguration config) {
 		// Compile the model with the parameters and not the constraints
-		Model m = super.generate(type);
+		Model m = super.generate(type, config);
+		m.setGeneratorConfiguration(config);
 
 		// Add the constraints
-		int nConstraint = Randomizer.generate(GeneratorConfiguration.N_CONSTRAINTS_MIN,
-				GeneratorConfiguration.N_CONSTRAINTS_MAX);
+		int nConstraint = Randomizer.generate(config.N_CONSTRAINTS_MIN,
+				config.N_CONSTRAINTS_MAX);
 		for (int i = 0; i < nConstraint; i++) {
 			Constraint c;
 
 			// Extract the complexity of the constraint (i.e., the number of parameters
 			// included)
-			int complexity = Randomizer.generate(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY,
-					GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
+			int complexity = Randomizer.generate(config.MIN_CONSTRAINTS_COMPLEXITY,
+					config.MAX_CONSTRAINTS_COMPLEXITY);
 			c = generateConstraintFromComplexity(m, complexity);
 
 			// Add the constraint
@@ -86,7 +88,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			case 0:
 				// =
 				// 50% comparison between parameters, 50% between parameter and its value
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					((AtomicConstraint) c).setExpression(p.getName() + " = " + p.getRandomValue());
 				} else {
 					((AtomicConstraint) c)
@@ -97,7 +99,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			case 1:
 				// !=
 				// 50% comparison between parameters, 50% between parameter and its value
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					((AtomicConstraint) c).setExpression(p.getName() + " != " + p.getRandomValue());
 				} else {
 					((AtomicConstraint) c)
@@ -108,7 +110,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			case 2:
 				// >
 				// 50% comparison between parameters, 50% between parameter and its value
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					((AtomicConstraint) c).setExpression(p.getName() + " > " + p.getRandomValue());
 				} else {
 					((AtomicConstraint) c)
@@ -119,7 +121,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			case 3:
 				// >=
 				// 50% comparison between parameters, 50% between parameter and its value
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					((AtomicConstraint) c).setExpression(p.getName() + " >= " + p.getRandomValue());
 				} else {
 					((AtomicConstraint) c)
@@ -130,7 +132,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			case 4:
 				// <
 				// 50% comparison between parameters, 50% between parameter and its value
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					((AtomicConstraint) c).setExpression(p.getName() + " < " + p.getRandomValue());
 				} else {
 					((AtomicConstraint) c)
@@ -141,7 +143,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator {
 			case 5:
 				// <=
 				// 50% comparison between parameters, 50% between parameter and its value
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					((AtomicConstraint) c).setExpression(p.getName() + " <= " + p.getRandomValue());
 				} else {
 					((AtomicConstraint) c)

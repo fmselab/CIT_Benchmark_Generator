@@ -14,23 +14,25 @@ import models.constraints.NotConstraint;
  * @author andrea
  *
  */
-public class WithConstraintGeneratorFT extends WithoutConstraintGenerator {
+public class WithConstraintGeneratorFT extends WithoutConstraintGenerator  implements GeneratorWithConstraintsInterface {
 
 	/**
 	 * Generate an IPM
 	 * 
 	 * @param type the type of models to be generated (with booleans, with
 	 *             enumeratives, with integers, ...)
+	 * @param config the generator configuration used for generating the model
 	 * @return the generated IPM
 	 */
 	@Override
-	public Model generate(Category type) {
+	public Model generate(Category type, GeneratorConfiguration config) {
 		// Compile the model with the parameters and not the constraints
-		Model m = super.generate(type);
+		Model m = super.generate(type, config);
+		m.setGeneratorConfiguration(config);
 
 		// Add the constraints
-		int nConstraint = Randomizer.generate(GeneratorConfiguration.N_CONSTRAINTS_MIN,
-				GeneratorConfiguration.N_CONSTRAINTS_MAX);
+		int nConstraint = Randomizer.generate(m.getGeneratorConfiguration().N_CONSTRAINTS_MIN,
+				m.getGeneratorConfiguration().N_CONSTRAINTS_MAX);
 		for (int i = 0; i < nConstraint; i++) {
 			Constraint c;
 
@@ -43,33 +45,46 @@ public class WithConstraintGeneratorFT extends WithoutConstraintGenerator {
 
 			// Extract the complexity of the constraint (i.e., the number of parameters
 			// included)
-			int complexity = Randomizer.generate(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY,
-					GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY);
+			int complexity = Randomizer.generate(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
+					m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY);
 
-			// First solution
-			c = new NotConstraint();
-			String cnstrAsString = "";
-			for (int j = 0; j < complexity; j++) {
-				// Parameter of the atomic expression
-				Parameter p = m.getRandomParamenter();
-				// Build the new atomic constraint
-				Constraint c1 = new AtomicConstraint();
-				if (Randomizer.generate(0, 1) == 0 || !GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c1).setExpression(p.getName() + " = " + p.getRandomValue());
-				} else {
-					((AtomicConstraint) c1)
-							.setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getName());
-				}
-				// Convert the constraint as a string
-				cnstrAsString += c1.toString() + " AND ";
-			}
-			// Set the constraint
-			((NotConstraint) c).setExpression(cnstrAsString.substring(0, cnstrAsString.length() - 4));
+			c = generateConstraintFromComplexity(m, complexity);
 
 			// Add the constraint
 			m.addConstraint(c);
 		}
 
 		return m;
+	}
+
+	/**
+	 * Generates a constraint with a given complexity in CNF form
+	 * 
+	 * @param m          the model being populated
+	 * @param complexity the constraint complexity
+	 * @return the constraint
+	 */	
+	public Constraint generateConstraintFromComplexity(Model m, int complexity) {
+		Constraint c;
+		// First solution
+		c = new NotConstraint();
+		String cnstrAsString = "";
+		for (int j = 0; j < complexity; j++) {
+			// Parameter of the atomic expression
+			Parameter p = m.getRandomParamenter();
+			// Build the new atomic constraint
+			Constraint c1 = new AtomicConstraint();
+			if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
+				((AtomicConstraint) c1).setExpression(p.getName() + " = " + p.getRandomValue());
+			} else {
+				((AtomicConstraint) c1)
+						.setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getName());
+			}
+			// Convert the constraint as a string
+			cnstrAsString += c1.toString() + " AND ";
+		}
+		// Set the constraint
+		((NotConstraint) c).setExpression(cnstrAsString.substring(0, cnstrAsString.length() - 4));
+		return c;
 	}
 }

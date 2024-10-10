@@ -105,6 +105,7 @@ public class BenchmarkGenerator {
 	private String selectedFile;
 	private JMenuItem btnBaseline2;
 	private JMenuItem btnDictionary;
+	GeneratorConfiguration config;
 
 	/**
 	 * Returns the mapping between component's name and index
@@ -144,11 +145,12 @@ public class BenchmarkGenerator {
 	 * Create the application.
 	 */
 	public BenchmarkGenerator() {
+		config = new GeneratorConfiguration();
 		configurationComponents = new HashMap<>();
 		modelList = new ModelList();
 		initialize();
 		// The GUI does not always export models, but only on request
-		GeneratorConfiguration.ALWAYS_EXPORT = false;
+		config.ALWAYS_EXPORT = false;
 	}
 
 	/**
@@ -472,7 +474,7 @@ public class BenchmarkGenerator {
 					selectedFile = file.getAbsolutePath();
 					// Set the dictionary
 					try {
-						BenchmarkGeneratorCLI.setDictionary(selectedFile);
+						BenchmarkGeneratorCLI.setDictionary(selectedFile, config);
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
@@ -536,24 +538,25 @@ public class BenchmarkGenerator {
 	 * CLI project
 	 */
 	private void getDefaultParams() {
-		txtLowerBoundInt.setText(Integer.toString(GeneratorConfiguration.LOWER_BOUND_INT));
-		txtUpperBoundInt.setText(Integer.toString(GeneratorConfiguration.UPPER_BOUND_INT));
-		txtMaxCardinality.setText(Integer.toString(GeneratorConfiguration.MAX_CARDINALITY));
-		txtMinCardinality.setText(Integer.toString(GeneratorConfiguration.MIN_CARDINALITY));
-		txtMaxConstraintsComplexity.setText(Integer.toString(GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY));
-		txtMinConstraintComplexity.setText(Integer.toString(GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY));
-		txtNMinConstraints.setText(Integer.toString(GeneratorConfiguration.N_CONSTRAINTS_MIN));
-		txtNMaxConstraints.setText(Integer.toString(GeneratorConfiguration.N_CONSTRAINTS_MAX));
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		txtLowerBoundInt.setText(Integer.toString(config.LOWER_BOUND_INT));
+		txtUpperBoundInt.setText(Integer.toString(config.UPPER_BOUND_INT));
+		txtMaxCardinality.setText(Integer.toString(config.MAX_CARDINALITY));
+		txtMinCardinality.setText(Integer.toString(config.MIN_CARDINALITY));
+		txtMaxConstraintsComplexity.setText(Integer.toString(config.MAX_CONSTRAINTS_COMPLEXITY));
+		txtMinConstraintComplexity.setText(Integer.toString(config.MIN_CONSTRAINTS_COMPLEXITY));
+		txtNMinConstraints.setText(Integer.toString(config.N_CONSTRAINTS_MIN));
+		txtNMaxConstraints.setText(Integer.toString(config.N_CONSTRAINTS_MAX));
 		txtNumBenchmarks.setText("1");
-		chkConstraintsBetweenParams.setSelected(GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS);
-		chkForbiddenTuples.setSelected(GeneratorConfiguration.FORBIDDEN_TUPLES);
-		txtNMinParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MIN));
-		txtNMaxParams.setText(Integer.toString(GeneratorConfiguration.N_PARAMS_MAX));
-		txtRatio.setText(Double.toString(GeneratorConfiguration.RATIO));
-		txtRatioTest.setText(Double.toString(GeneratorConfiguration.RATIO_TEST));
-		txtEpsilonTest.setText(Double.toString(GeneratorConfiguration.EPSILON));
-		txtPTest.setText(Double.toString(GeneratorConfiguration.P));
-		benchmarkType.setSelectedItem(GeneratorConfiguration.TRACK.toString());
+		chkConstraintsBetweenParams.setSelected(config.USE_CONSTRAINTS_BETWEEN_PARAMETERS);
+		chkForbiddenTuples.setSelected(config.FORBIDDEN_TUPLES);
+		txtNMinParams.setText(Integer.toString(config.N_PARAMS_MIN));
+		txtNMaxParams.setText(Integer.toString(config.N_PARAMS_MAX));
+		txtRatio.setText(Double.toString(config.RATIO));
+		txtRatioTest.setText(Double.toString(config.RATIO_TEST));
+		txtEpsilonTest.setText(Double.toString(config.EPSILON));
+		txtPTest.setText(Double.toString(config.P));
+		benchmarkType.setSelectedItem(config.TRACK.toString());
 	}
 
 	/**

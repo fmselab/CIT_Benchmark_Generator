@@ -57,11 +57,13 @@ public class TestBenchmarkGeneratorCLI {
 	 * The generator to be tested
 	 */
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
-
+	GeneratorConfiguration config = new GeneratorConfiguration();
+	
+	
 	@Before
 	public void setup() {
 		// Limit the number of attempts for testing
-		GeneratorConfiguration.N_ATTEMPTS = 2;
+		config.N_ATTEMPTS = 2;
 		// Activate the LOGGER and deactivate the ones that are not needed
 		Logger LOGGER = LogManager.getRootLogger();
 		LOGGER.setLevel(Level.DEBUG);
@@ -82,42 +84,42 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts1() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = NUMC
-		GeneratorConfiguration.TRACK = Track.NUMC;
+		config.TRACK = Track.NUMC;
 
 		// IntegerBounds
-		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
-		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
+		config.LOWER_BOUND_INT = LOWER_INT;
+		config.UPPER_BOUND_INT = UPPER_INT;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Export all formats required
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -182,49 +184,49 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts2() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCAC
-		GeneratorConfiguration.TRACK = Track.NUMC;
+		config.TRACK = Track.NUMC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
-		GeneratorConfiguration.EPSILON = EPSILON;
-		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
-		GeneratorConfiguration.RATIO = RATIO_TUPLE;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
-		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+		config.P = N;
+		config.EPSILON = EPSILON;
+		config.RATIO_TEST = RATIO_TEST;
+		config.RATIO = RATIO_TUPLE;
+		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = true;
 
 		// IntegerBounds
-		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
-		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
+		config.LOWER_BOUND_INT = LOWER_INT;
+		config.UPPER_BOUND_INT = UPPER_INT;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Use CNF
-		GeneratorConfiguration.CNF = true;
+		config.CNF = true;
 
 		// Export the required formats
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = true;
+		config.CTWEDGE = true;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -252,12 +254,12 @@ public class TestBenchmarkGeneratorCLI {
 
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
-				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+				assertTrue(m.getTestValidityRatio() < config.RATIO_TEST);
 			} else {
 				double ratio = m.getTestValidityRatio();
 				// The ratio is not exact. But we can check the interval based on EPSILON
-				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
+				assertTrue(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+						&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST);
 			}
 
 			// Check the number of constraints
@@ -309,45 +311,45 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts3() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCAC
-		GeneratorConfiguration.TRACK = Track.NUMC;
+		config.TRACK = Track.NUMC;
 
 		// Do not check ratios
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// IntegerBounds
-		GeneratorConfiguration.LOWER_BOUND_INT = LOWER_INT;
-		GeneratorConfiguration.UPPER_BOUND_INT = UPPER_INT;
+		config.LOWER_BOUND_INT = LOWER_INT;
+		config.UPPER_BOUND_INT = UPPER_INT;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Use forbidden tuples
-		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
+		config.FORBIDDEN_TUPLES = true;
 
 		// Export the required formats
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = true;
+		config.CTWEDGE = false;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -418,39 +420,39 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts4() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCAC
-		GeneratorConfiguration.TRACK = Track.MCAC;
+		config.TRACK = Track.MCAC;
 
 		// Consider only tuple ratio
-		GeneratorConfiguration.RATIO = RATIO_TUPLE;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.RATIO = RATIO_TUPLE;
+		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Export the desired formats
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -511,41 +513,41 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts5() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCAC
-		GeneratorConfiguration.TRACK = Track.MCAC;
+		config.TRACK = Track.MCAC;
 
 		// Do not consider ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Use CNF
-		GeneratorConfiguration.CNF = true;
+		config.CNF = true;
 
 		// Export the desired formats
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = true;
+		config.CTWEDGE = true;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -610,45 +612,45 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts6() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCAC
-		GeneratorConfiguration.TRACK = Track.MCAC;
+		config.TRACK = Track.MCAC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
-		GeneratorConfiguration.EPSILON = EPSILON;
-		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
-		GeneratorConfiguration.RATIO = RATIO_TUPLE;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
-		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+		config.P = N;
+		config.EPSILON = EPSILON;
+		config.RATIO_TEST = RATIO_TEST;
+		config.RATIO = RATIO_TUPLE;
+		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = true;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Use constraints as forbidden tuples
-		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
+		config.FORBIDDEN_TUPLES = true;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Export the desired formats
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -684,12 +686,12 @@ public class TestBenchmarkGeneratorCLI {
 
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
-				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+				assertTrue(m.getTestValidityRatio() < config.RATIO_TEST);
 			} else {
 				double ratio = m.getTestValidityRatio();
 				// The ratio is not exact. But we can check the interval based on EPSILON
-				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
+				assertTrue(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+						&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST);
 			}
 
 			// Check that the model have not been exported
@@ -721,34 +723,34 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts7() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = BOOLC
-		GeneratorConfiguration.TRACK = Track.BOOLC;
+		config.TRACK = Track.BOOLC;
 
 		// Do not check ratios
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Export all models
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = false;
+		config.CTWEDGE = true;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -803,41 +805,41 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts8() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = BOOLC
-		GeneratorConfiguration.TRACK = Track.BOOLC;
+		config.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
-		GeneratorConfiguration.EPSILON = EPSILON;
-		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
-		GeneratorConfiguration.RATIO = RATIO_TUPLE;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
-		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+		config.P = N;
+		config.EPSILON = EPSILON;
+		config.RATIO_TEST = RATIO_TEST;
+		config.RATIO = RATIO_TUPLE;
+		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = true;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// No export
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// Set CNF
-		GeneratorConfiguration.CNF = true;
+		config.CNF = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -881,12 +883,12 @@ public class TestBenchmarkGeneratorCLI {
 
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
-				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+				assertTrue(m.getTestValidityRatio() < config.RATIO_TEST);
 			} else {
 				double ratio = m.getTestValidityRatio();
 				// The ratio is not exact. But we can check the interval based on EPSILON
-				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
+				assertTrue(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+						&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST);
 			}
 		}
 	}
@@ -903,41 +905,41 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts9() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = BOOLC
-		GeneratorConfiguration.TRACK = Track.BOOLC;
+		config.TRACK = Track.BOOLC;
 
 		// TestValidityRatio
-		GeneratorConfiguration.P = N;
-		GeneratorConfiguration.EPSILON = EPSILON;
-		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+		config.P = N;
+		config.EPSILON = EPSILON;
+		config.RATIO_TEST = RATIO_TEST;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = true;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Do not export any format
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// Use forbidden tuples
-		GeneratorConfiguration.CNF = false;
-		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
+		config.CNF = false;
+		config.FORBIDDEN_TUPLES = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -977,12 +979,12 @@ public class TestBenchmarkGeneratorCLI {
 
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
-				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+				assertTrue(m.getTestValidityRatio() < config.RATIO_TEST);
 			} else {
 				double ratio = m.getTestValidityRatio();
 				// The ratio is not exact. But we can check the interval based on EPSILON
-				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
+				assertTrue(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+						&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST);
 			}
 		}
 	}
@@ -999,30 +1001,30 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts10() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCA
-		GeneratorConfiguration.TRACK = Track.MCA;
+		config.TRACK = Track.MCA;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Export in the desired formats
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = true;
+		config.CTWEDGE = true;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1078,30 +1080,30 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts11() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = UNIFORM_ALL
-		GeneratorConfiguration.TRACK = Track.UNIFORM_ALL;
+		config.TRACK = Track.UNIFORM_ALL;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Export in the desired formats
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1152,26 +1154,26 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts12() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = UNIFORM_BOOLEAN
-		GeneratorConfiguration.TRACK = Track.UNIFORM_BOOLEAN;
+		config.TRACK = Track.UNIFORM_BOOLEAN;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Export in the desired formats
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = true;
+		config.CTWEDGE = true;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1226,38 +1228,38 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts13() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = BOOLC
-		GeneratorConfiguration.TRACK = Track.BOOLC;
+		config.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		GeneratorConfiguration.P = N;
-		GeneratorConfiguration.EPSILON = EPSILON;
-		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
-		GeneratorConfiguration.RATIO = RATIO_TUPLE;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = true;
-		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+		config.P = N;
+		config.EPSILON = EPSILON;
+		config.RATIO_TEST = RATIO_TEST;
+		config.RATIO = RATIO_TUPLE;
+		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = true;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Export all models
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = true;
+		config.CTWEDGE = false;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1286,12 +1288,12 @@ public class TestBenchmarkGeneratorCLI {
 
 			// The test ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
-				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+				assertTrue(m.getTestValidityRatio() < config.RATIO_TEST);
 			} else {
 				double ratio = m.getTestValidityRatio();
 				// The ratio is not exact. But we can check the interval based on EPSILON
-				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
+				assertTrue(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+						&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST);
 			}
 
 			// Check that the model have not been exported
@@ -1325,30 +1327,30 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts14() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = UNIFORM_ALL
-		GeneratorConfiguration.TRACK = Track.UNIFORM_ALL;
+		config.TRACK = Track.UNIFORM_ALL;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Export in the desired formats
-		GeneratorConfiguration.ACTS = true;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = true;
+		config.CTWEDGE = true;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1403,30 +1405,30 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts15() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCA
-		GeneratorConfiguration.TRACK = Track.MCA;
+		config.TRACK = Track.MCA;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Export in the desired formats
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1477,26 +1479,26 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts16() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = UNIFORM_BOOLEAN
-		GeneratorConfiguration.TRACK = Track.UNIFORM_BOOLEAN;
+		config.TRACK = Track.UNIFORM_BOOLEAN;
 
 		// Do not check ratio
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = false;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = false;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Export in the desired formats
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = false;
-		GeneratorConfiguration.PICT = false;
+		config.ACTS = false;
+		config.CTWEDGE = false;
+		config.PICT = false;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1546,45 +1548,45 @@ public class TestBenchmarkGeneratorCLI {
 	@Test
 	public void ts17() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// NumBenchmarks = 10
-		GeneratorConfiguration.N_BENCHMARKS = N_BENCHMARKS;
+		config.N_BENCHMARKS = N_BENCHMARKS;
 
 		// BenchmarkType = MCAC
-		GeneratorConfiguration.TRACK = Track.MCAC;
+		config.TRACK = Track.MCAC;
 
 		// TestValidityRatio
-		GeneratorConfiguration.P = N;
-		GeneratorConfiguration.EPSILON = EPSILON;
-		GeneratorConfiguration.RATIO_TEST = RATIO_TEST;
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = false;
-		GeneratorConfiguration.CHECK_TEST_RATIO = true;
+		config.P = N;
+		config.EPSILON = EPSILON;
+		config.RATIO_TEST = RATIO_TEST;
+		config.CHECK_TUPLE_RATIO = false;
+		config.CHECK_TEST_RATIO = true;
 
 		// Cardinality
-		GeneratorConfiguration.MIN_CARDINALITY = MIN_CARDINALITY;
-		GeneratorConfiguration.MAX_CARDINALITY = MAX_CARDINALITY;
+		config.MIN_CARDINALITY = MIN_CARDINALITY;
+		config.MAX_CARDINALITY = MAX_CARDINALITY;
 
 		// Number of parameters
-		GeneratorConfiguration.N_PARAMS_MIN = MIN_PARAMS;
-		GeneratorConfiguration.N_PARAMS_MAX = MAX_PARAMS;
+		config.N_PARAMS_MIN = MIN_PARAMS;
+		config.N_PARAMS_MAX = MAX_PARAMS;
 
 		// Complexity
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
+		config.MIN_CONSTRAINTS_COMPLEXITY = MIN_COMPLEXITY;
+		config.MAX_CONSTRAINTS_COMPLEXITY = MAX_COMPLEXITY;
 
 		// Number of constraints
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
+		config.N_CONSTRAINTS_MIN = MIN_CONSTRAINTS;
+		config.N_CONSTRAINTS_MAX = MAX_CONSTRAINTS;
 
 		// Use forbidden tuples
-		GeneratorConfiguration.CNF = false;
-		GeneratorConfiguration.FORBIDDEN_TUPLES = true;
+		config.CNF = false;
+		config.FORBIDDEN_TUPLES = true;
 
 		// Export the desired formats
-		GeneratorConfiguration.ACTS = false;
-		GeneratorConfiguration.CTWEDGE = true;
-		GeneratorConfiguration.PICT = true;
+		config.ACTS = false;
+		config.CTWEDGE = true;
+		config.PICT = true;
 
 		// ----------- GENERATION -----------
-		generator.generateIPMs();
+		generator.generateIPMs(config);
 		ArrayList<Model> modelsList = generator.getModelsList();
 
 		// ----------- CHECK THE OUTCOME BASED ON THE SET CONFIGURATION -----------
@@ -1608,12 +1610,12 @@ public class TestBenchmarkGeneratorCLI {
 
 			// The ratio has been computed. Evaluate it
 			if (m.isRatioExact()) {
-				assertTrue(m.getTestValidityRatio() < GeneratorConfiguration.RATIO_TEST);
+				assertTrue(m.getTestValidityRatio() < config.RATIO_TEST);
 			} else {
 				double ratio = m.getTestValidityRatio();
 				// The ratio is not exact. But we can check the interval based on EPSILON
-				assertTrue(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-						&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST);
+				assertTrue(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+						&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST);
 			}
 
 			// Check the number of constraints

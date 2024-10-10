@@ -13,6 +13,6 @@ import models.Model;
  */
 public interface Generator {
 
-	public Model generate(Category type);
+	public Model generate(Category type, GeneratorConfiguration config);
 
 }

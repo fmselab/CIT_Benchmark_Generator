@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Level;
@@ -62,6 +63,7 @@ public class Model {
 	private boolean isRatioExact;
 	private Category category;
 	Logger LOGGER = Logger.getLogger(BenchmarkGeneratorCLI.class);
+	private GeneratorConfiguration config;
 
 	/**
 	 * Get whether the ratio has been computed in an exact way or in an approximate
@@ -84,6 +86,26 @@ public class Model {
 		isRatioExact = false;
 		LOGGER.setLevel(Level.DEBUG);
 		this.category = category;
+		this.config = new GeneratorConfiguration();
+	}
+	
+	/**
+	 * Set the generator configuration 
+	 * 
+	 * @param config the configuration
+	 */
+	public void setGeneratorConfiguration(GeneratorConfiguration config) {
+		this.config = config;
+	}
+	
+	
+	/**
+	 * Set the generator configuration
+	 * 
+	 * @return the configuration
+	 */
+	public GeneratorConfiguration getGeneratorConfiguration() {
+		return this.config;
 	}
 
 	/**
@@ -137,8 +159,8 @@ public class Model {
 				ParameterToModelAdder.addBooleanParameter(this, names, parameterNumber);
 			else {
 				// Define a new enumerative parameter
-				nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
-						GeneratorConfiguration.MAX_CARDINALITY);
+				nValues = Randomizer.generate(config.MIN_CARDINALITY,
+						config.MAX_CARDINALITY);
 				ParameterToModelAdder.addEnumerativeParameter(this, nValues, names, parameterNumber);
 			}
 			break;
@@ -154,20 +176,20 @@ public class Model {
 				break;
 			case 1:
 				// Define a new enumerative parameter
-				nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
-						GeneratorConfiguration.MAX_CARDINALITY);
+				nValues = Randomizer.generate(config.MIN_CARDINALITY,
+						config.MAX_CARDINALITY);
 				ParameterToModelAdder.addEnumerativeParameter(this, nValues, names, parameterNumber);
 				break;
 			case 2:
 				// Define a new integer parameter
 				boolean computeParams = true;
 				while (computeParams) {
-					nValues = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
-							GeneratorConfiguration.MAX_CARDINALITY - 1);
-					from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
-							GeneratorConfiguration.UPPER_BOUND_INT);
+					nValues = Randomizer.generate(config.MIN_CARDINALITY,
+							config.MAX_CARDINALITY - 1);
+					from = Randomizer.generate(config.LOWER_BOUND_INT,
+							config.UPPER_BOUND_INT);
 
-					if (from <= from + nValues && from + nValues <= GeneratorConfiguration.UPPER_BOUND_INT)
+					if (from <= from + nValues && from + nValues <= config.UPPER_BOUND_INT)
 						computeParams = false;
 				}
 
@@ -314,37 +336,42 @@ public class Model {
 			LOGGER.debug("Executing command " + command);
 
 			// Run
-			ProcessBuilder pc = new ProcessBuilder(command);
-			pc.command(command);
-			pc.redirectError();
-			Process p = pc.start();
 			BigDecimal sizeWoConstraints = new BigDecimal(-1);
 			BigDecimal sizeWConstraints = new BigDecimal(-1);
 			try {
-				BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-				String line;
-				while ((line = bri.readLine()) != null) {
-					LOGGER.debug(line);
-					// save to file
-					if (line.contains("Cardinalita di partenza")) {
-						sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
-						if (sizeWoConstraints.doubleValue() == 0.0)
-							throw new NotConvertableModel("Computation of the ratio interrupted");
+				ProcessBuilder pc = new ProcessBuilder(command);
+				pc.command(command);
+				pc.redirectError();
+				Process p = pc.start();
+				try {
+					BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+					String line;
+					while ((line = bri.readLine()) != null) {
+						LOGGER.debug(line);
+						// save to file
+						if (line.contains("Cardinalita di partenza")) {
+							sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
+							if (sizeWoConstraints.doubleValue() == 0.0)
+								throw new NotConvertableModel("Computation of the ratio interrupted");
+						}
+						if (line.contains("Cardinalita finale")) {
+							sizeWConstraints = new BigDecimal((line.split(" ")[2]));
+							if (sizeWConstraints.doubleValue() == 0.0)
+								throw new NotConvertableModel("Computation of the ratio interrupted");
+						}
 					}
-					if (line.contains("Cardinalita finale")) {
-						sizeWConstraints = new BigDecimal((line.split(" ")[2]));
-						if (sizeWConstraints.doubleValue() == 0.0)
-							throw new NotConvertableModel("Computation of the ratio interrupted");
-					}
-				}
-				bri.close();
-				p.waitFor();
-				System.out.println("command finished ");
-			} catch (InterruptedException e) {
+					bri.close();
+					p.waitFor();
+					System.out.println("command finished ");
+				} catch (InterruptedException e) {
+					f.delete();
+					throw new NotConvertableModel("Computation of the ratio interrupted");
+				} 
+				f.delete();
+			} catch (IOException e) {
 				f.delete();
 				throw new NotConvertableModel("Computation of the ratio interrupted");
 			}
-			f.delete();
 			// Compute ratio
 			double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
 			if (ratio < 0)
@@ -374,8 +401,8 @@ public class Model {
 		validityTests.clear();
 		LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
 		ModelUtils mu = new ModelUtils(loadModel);
-		int T = (int) Math.ceil((1 / GeneratorConfiguration.RATIO_TEST)
-				* ((4 * Math.log(2 / (1 - GeneratorConfiguration.P))) / (Math.pow(GeneratorConfiguration.EPSILON, 2))));
+		int T = (int) Math.ceil((1 / config.RATIO_TEST)
+				* ((4 * Math.log(2 / (1 - config.P))) / (Math.pow(config.EPSILON, 2))));
 		for (int i = 0; i < T; i++) {
 			Test t = mu.getRandomTestFromModel();
 			RuleEvaluator evaluator = new RuleEvaluator(t);
@@ -564,6 +591,22 @@ public class Model {
 	 */
 	public List<Parameter> getParameters() {
 		return this.paramsList;
+	}
+	
+	/**
+	 * Removes a randomly chosen parameter from the model
+	 */
+	public void removeRandomParameter() {
+		this.paramsList.remove(new Random().nextInt(0, this.paramsList.size() - 1));
+	}
+
+	/**
+	 * Removes a constraint
+	 * 
+	 * @param nConstraint the index of the constraint
+	 */
+	public void removeConstraint(int nConstraint) {
+		this.constraintsList.remove(nConstraint);		
 	}
 
 }

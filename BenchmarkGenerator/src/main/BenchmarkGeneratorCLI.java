@@ -112,7 +112,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 	@Option(names = "-cnf", description = "Only constraints expressed as CNF? By default it is disabled")
 	private boolean cnf = false;
-	
+
 	@Option(names = "-dict", description = "The JSON file containing the dictionary")
 	private String dict = null;
 
@@ -147,43 +147,45 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 */
 	private void generate() throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// First set the configurations
-		setConfigurations();
+		GeneratorConfiguration config = setConfigurations();
 
 		// Then, based on the chosen track, generate benchmarks
-		generateIPMs();
+		generateIPMs(config);
 	}
 
 	/**
 	 * Based on the chosen track, the benchmarks are generated
+	 * 
+	 * @param config the generator configuration
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws InvalidConfigurationException
 	 * @throws SolverException
 	 */
-	public void generateIPMs()
+	public void generateIPMs(GeneratorConfiguration config)
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		// Clear the previously generated models
 		modelsList.clear();
 
-		switch (GeneratorConfiguration.TRACK) {
+		switch (config.TRACK) {
 		case BOOLC:
-			generateBOOLC();
+			generateBOOLC(config);
 			break;
 		case MCA:
-			generateMCA();
+			generateMCA(config);
 			break;
 		case MCAC:
-			generateMCAC();
+			generateMCAC(config);
 			break;
 		case NUMC:
-			generateNUMC();
+			generateNUMC(config);
 			break;
 		case UNIFORM_ALL:
-			generateUNIFORM_ALL();
+			generateUNIFORM_ALL(config);
 			break;
 		case UNIFORM_BOOLEAN:
-			generateUNIFORM_BOOLEAN();
+			generateUNIFORM_BOOLEAN(config);
 			break;
 		default:
 			break;
@@ -198,45 +200,50 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 * @throws IOException
+	 * 
+	 * @return the generator configuration
 	 */
-	public void setConfigurations()
+	public GeneratorConfiguration setConfigurations()
 			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
-		GeneratorConfiguration.N_BENCHMARKS = nTests;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		config.N_BENCHMARKS = nTests;
 		if (similarModel == null) {
 			LOGGER.debug("Configurations set by the user");
-			GeneratorConfiguration.N_PARAMS_MAX = kmax;
-			GeneratorConfiguration.N_PARAMS_MIN = kmin;
-			GeneratorConfiguration.MAX_CARDINALITY = vmax;
-			GeneratorConfiguration.MIN_CARDINALITY = vmin;
-			GeneratorConfiguration.LOWER_BOUND_INT = vIntLow;
-			GeneratorConfiguration.UPPER_BOUND_INT = vIntUp;
-			GeneratorConfiguration.RATIO = r;
-			GeneratorConfiguration.RATIO_TEST = rTest;
-			GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = dmax;
-			GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = dmin;
-			GeneratorConfiguration.N_CONSTRAINTS_MAX = cmax;
-			GeneratorConfiguration.N_CONSTRAINTS_MIN = cmin;
-			GeneratorConfiguration.P = P;
-			GeneratorConfiguration.EPSILON = epsilon;
-			GeneratorConfiguration.TRACK = Track.valueOf(trackStr);
-			GeneratorConfiguration.CHECK_TEST_RATIO = chkTestRatio;
-			GeneratorConfiguration.CHECK_TUPLE_RATIO = chkTupleRatio;
-			GeneratorConfiguration.FORBIDDEN_TUPLES = ft;
-			GeneratorConfiguration.CNF = cnf;
+			config.N_PARAMS_MAX = kmax;
+			config.N_PARAMS_MIN = kmin;
+			config.MAX_CARDINALITY = vmax;
+			config.MIN_CARDINALITY = vmin;
+			config.LOWER_BOUND_INT = vIntLow;
+			config.UPPER_BOUND_INT = vIntUp;
+			config.RATIO = r;
+			config.RATIO_TEST = rTest;
+			config.MAX_CONSTRAINTS_COMPLEXITY = dmax;
+			config.MIN_CONSTRAINTS_COMPLEXITY = dmin;
+			config.N_CONSTRAINTS_MAX = cmax;
+			config.N_CONSTRAINTS_MIN = cmin;
+			config.P = P;
+			config.EPSILON = epsilon;
+			config.TRACK = Track.valueOf(trackStr);
+			config.CHECK_TEST_RATIO = chkTestRatio;
+			config.CHECK_TUPLE_RATIO = chkTupleRatio;
+			config.FORBIDDEN_TUPLES = ft;
+			config.CNF = cnf;
 		} else {
 			// Extract the configuration from that of model given by the user
 			LOGGER.debug("Configurations read from the baseline model");
-			setConfigurationsFromFile(similarModel);
+			config = setConfigurationsFromFile(similarModel);
 		}
 
 		// Then, set the export format
-		GeneratorConfiguration.ACTS = acts;
-		GeneratorConfiguration.PICT = pict;
-		GeneratorConfiguration.CTWEDGE = ctwedge;
+		config.ACTS = acts;
+		config.PICT = pict;
+		config.CTWEDGE = ctwedge;
 		// Now set the dictionary, if needed
 		if (dict != null) {
-			setDictionary(dict);
+			config = setDictionary(dict, config);
 		}
+
+		return config;
 	}
 
 	/**
@@ -247,53 +254,61 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 * @throws IOException
+	 * 
+	 * @return the generator configuration
 	 */
-	public static void setConfigurationsFromFile(String modelPath)
+	public static GeneratorConfiguration setConfigurationsFromFile(String modelPath)
 			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(modelPath);
-		GeneratorConfiguration.N_PARAMS_MAX = extractor.getNumParams();
-		GeneratorConfiguration.N_PARAMS_MIN = extractor.getNumParams();
-		GeneratorConfiguration.MAX_CARDINALITY = extractor.getMaximumCardinality();
-		GeneratorConfiguration.MIN_CARDINALITY = extractor.getMinimumCardinality();
-		GeneratorConfiguration.LOWER_BOUND_INT = extractor.getLowerBoundForInts();
-		GeneratorConfiguration.UPPER_BOUND_INT = extractor.getUpperBoundForInts();
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		
+		config.N_PARAMS_MAX = extractor.getNumParams();
+		config.N_PARAMS_MIN = extractor.getNumParams();
+		config.MAX_CARDINALITY = extractor.getMaximumCardinality();
+		config.MIN_CARDINALITY = extractor.getMinimumCardinality();
+		config.LOWER_BOUND_INT = extractor.getLowerBoundForInts();
+		config.UPPER_BOUND_INT = extractor.getUpperBoundForInts();
 		try {
-			GeneratorConfiguration.RATIO = extractor.getTupleValidityRatio();
+			config.RATIO = extractor.getTupleValidityRatio();
 		} catch (NotConvertableModel c) {
-			GeneratorConfiguration.RATIO = 1;
+			config.RATIO = 1;
 		}
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = extractor.getMaxConstraintComplexity();
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = extractor.getMinConstraintComplexity();
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = extractor.getNumConstraints();
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
-		GeneratorConfiguration.TRACK = extractor.getModelType();
-		GeneratorConfiguration.FORBIDDEN_TUPLES = extractor.hasForbiddenTuples();
-		GeneratorConfiguration.CNF = extractor.isCNF();
+		config.MAX_CONSTRAINTS_COMPLEXITY = extractor.getMaxConstraintComplexity();
+		config.MIN_CONSTRAINTS_COMPLEXITY = extractor.getMinConstraintComplexity();
+		config.N_CONSTRAINTS_MAX = extractor.getNumConstraints();
+		config.N_CONSTRAINTS_MIN = extractor.getNumConstraints();
+		config.TRACK = extractor.getModelType();
+		config.FORBIDDEN_TUPLES = extractor.hasForbiddenTuples();
+		config.CNF = extractor.isCNF();
+		
+		return config;
 	}
 
 	/**
 	 * Generates BOOLC instances
+	 * 
+	 * @param config the generator configuration
 	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	public void generateBOOLC()
+	public void generateBOOLC(GeneratorConfiguration config)
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
 		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES && !GeneratorConfiguration.CNF)
+		if (!config.FORBIDDEN_TUPLES && !config.CNF)
 			g = new WithConstraintGenerator();
-		else if (GeneratorConfiguration.CNF)
+		else if (config.CNF)
 			g = new WithConstraintGeneratorCNF();
 		else
 			g = new WithConstraintGeneratorFT();
 
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
+		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN);
+			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN, config);
 			if (m1 != null) {
 				m1.setName(Track.BOOLC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
@@ -314,49 +329,51 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @param category        the category
 	 * @param checkTupleRatio check the tuple validity ratio?
 	 * @param checkTestRatio  check the test validity ratio?
+	 * @param config          the generator configuration
 	 * @return the model
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 * @throws InterruptedException
 	 * @throws IOException
 	 */
-	private Model generateWithGenerator(Generator generator, Category category)
+	private Model generateWithGenerator(Generator generator, Category category, GeneratorConfiguration config)
 			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
 		boolean isSolvable = false;
 		Model m = null;
 		int i = 0;
 		do {
-			m = generator.generate(category);
+
+			m = generator.generate(category, config);
 			isSolvable = m.isSolvable();
 
 			if (isSolvable) {
 				LOGGER.debug("The generated model is solvable");
 				// Check the tuple validity ratio
-				if (GeneratorConfiguration.CHECK_TUPLE_RATIO) {
+				if (config.CHECK_TUPLE_RATIO) {
 					LOGGER.debug("Checking TUPLE VALIDITY RATIO");
 					try {
 						double ratio = m.getTupleValidityRatio();
 						LOGGER.debug("TUPLE VALIDITY RATIO " + Double.toString(ratio));
-						if (ratio > GeneratorConfiguration.RATIO)
+						if (ratio > config.RATIO)
 							isSolvable = false;
 					} catch (InterruptedException e) {
 					}
 				}
 
 				// Check the test validity ratio
-				if (GeneratorConfiguration.CHECK_TEST_RATIO) {
+				if (config.CHECK_TEST_RATIO) {
 					LOGGER.debug("Checking TEST VALIDITY RATIO");
 					double ratio = m.getTestValidityRatio();
 					LOGGER.debug("TEST VALIDITY RATIO " + Double.toString(ratio));
 					// If the ratio is exact, it means that it has been computed with the MDD, thus
 					// we can use it to decide whether the model is correct or not. Otherwise, we
 					// can only work with probabilities
-					if (m.isRatioExact() && ratio > GeneratorConfiguration.RATIO_TEST)
+					if (m.isRatioExact() && ratio > config.RATIO_TEST)
 						isSolvable = false;
 					else {
 						// The ratio is not exact. But we can check the interval based on EPSILON
-						if (!(ratio >= (1 - GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST
-								&& ratio <= (1 + GeneratorConfiguration.EPSILON) * GeneratorConfiguration.RATIO_TEST))
+						if (!(ratio >= (1 - config.EPSILON) * config.RATIO_TEST
+								&& ratio <= (1 + config.EPSILON) * config.RATIO_TEST))
 							isSolvable = false;
 					}
 				}
@@ -366,33 +383,35 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 				LOGGER.debug("Generated a non solvable / compliant model. Trying another one");
 				m = null;
 			}
-		} while (!isSolvable && i < GeneratorConfiguration.N_ATTEMPTS);
+		} while (!isSolvable && i < config.N_ATTEMPTS);
 		return m;
 	}
 
 	/**
 	 * Generates MCAC instances
 	 * 
+	 * @param config the generator configuration
+	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	public void generateMCAC()
+	public void generateMCAC(GeneratorConfiguration config)
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
 		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES && !GeneratorConfiguration.CNF)
+		if (!config.FORBIDDEN_TUPLES && !config.CNF)
 			g = new WithConstraintGenerator();
-		else if (GeneratorConfiguration.CNF)
+		else if (config.CNF)
 			g = new WithConstraintGeneratorCNF();
 		else
 			g = new WithConstraintGeneratorFT();
 
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
+		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
+			m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config);
 			if (m1 != null) {
 				m1.setName(Track.MCAC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
@@ -408,26 +427,28 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	/**
 	 * Generates NUMC instances
 	 * 
+	 * @param config the generator configuration
+	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	public void generateNUMC()
+	public void generateNUMC(GeneratorConfiguration config)
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator that considers constraints
 		Generator g;
-		if (!GeneratorConfiguration.FORBIDDEN_TUPLES && !GeneratorConfiguration.CNF)
+		if (!config.FORBIDDEN_TUPLES && !config.CNF)
 			g = new WithConstraintGenerator();
-		else if (GeneratorConfiguration.CNF)
+		else if (config.CNF)
 			g = new WithConstraintGeneratorCNF();
 		else
 			g = new WithConstraintGeneratorFT();
 
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
+		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL);
+			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL, config);
 			if (m1 != null) {
 				m1.setName(Track.NUMC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
@@ -443,19 +464,21 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	/**
 	 * Generates UNIFORM_BOOLEAN instances
 	 * 
+	 * @param config the generator configuration
+	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	public void generateUNIFORM_BOOLEAN()
+	public void generateUNIFORM_BOOLEAN(GeneratorConfiguration config)
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator without constraints
 		Generator g = new WithoutConstraintGenerator();
 
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
+		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
-			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN);
+			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN, config);
 			m1.setName(Track.UNIFORM_BOOLEAN + "_" + i);
 			LOGGER.debug("Added a new model: " + m1.getName());
 
@@ -469,19 +492,21 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	/**
 	 * Generates UNIFORM_ALL instances
 	 * 
+	 * @param config the generator configuration
+	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	public void generateUNIFORM_ALL()
+	public void generateUNIFORM_ALL(GeneratorConfiguration config)
 			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator without constraints
 		Generator g = new WithoutConstraintGeneratorSameCardinality();
 
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
+		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
-			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
+			m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config);
 			m1.setName(Track.UNIFORM_ALL + "_" + i);
 			LOGGER.debug("Added a new model: " + m1.getName());
 
@@ -495,18 +520,21 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	/**
 	 * Generates MCA instances
 	 * 
+	 * @param config the generator configuration
+	 * 
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
 	 */
-	public void generateMCA() throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
+	public void generateMCA(GeneratorConfiguration config)
+			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
 		// The generator without constraints
 		Generator g = new WithoutConstraintGenerator();
 
-		for (int i = 0; i < GeneratorConfiguration.N_BENCHMARKS; i++) {
+		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
-			m1 = generateWithGenerator(g, Category.ALSO_ENUMS);
+			m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config);
 			m1.setName(Track.MCA + "_" + i);
 			LOGGER.debug("Added a new model: " + m1.getName());
 
@@ -524,12 +552,12 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws IOException
 	 */
 	public void exportModel(Model m1) throws IOException {
-		if (GeneratorConfiguration.ALWAYS_EXPORT) {
-			if (GeneratorConfiguration.ACTS)
+		if (m1.getGeneratorConfiguration().ALWAYS_EXPORT) {
+			if (m1.getGeneratorConfiguration().ACTS)
 				m1.exportACTS(destinationFolder);
-			if (GeneratorConfiguration.CTWEDGE)
+			if (m1.getGeneratorConfiguration().CTWEDGE)
 				m1.exportCTWedge(destinationFolder);
-			if (GeneratorConfiguration.PICT)
+			if (m1.getGeneratorConfiguration().PICT)
 				m1.exportPICT(destinationFolder);
 		}
 	}
@@ -543,16 +571,20 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		return modelsList;
 	}
 
-	/** 
-	 * This method sets the dictionary for test generation 
+	/**
+	 * This method sets the dictionary for test generation
 	 * 
 	 * @param selectedFile the file containing the dictionary
-	 * @throws FileNotFoundException 
+	 * @param config the generator configuration
+	 * @return the generator configuration
+	 * @throws FileNotFoundException
 	 */
-	public static void setDictionary(String selectedFile) throws FileNotFoundException {
+	public static GeneratorConfiguration setDictionary(String selectedFile, GeneratorConfiguration config) throws FileNotFoundException {
 		BufferedReader br = new BufferedReader(new FileReader(selectedFile));
-		Type listOfMyClassObject = new TypeToken<ArrayList<Dictionary>>() {}.getType();
+		Type listOfMyClassObject = new TypeToken<ArrayList<Dictionary>>() {
+		}.getType();
 		ArrayList<Dictionary> dict = new Gson().fromJson(br, listOfMyClassObject);
-		GeneratorConfiguration.DICTIONARY = dict;
+		config.DICTIONARY = dict;
+		return config;
 	}
 }

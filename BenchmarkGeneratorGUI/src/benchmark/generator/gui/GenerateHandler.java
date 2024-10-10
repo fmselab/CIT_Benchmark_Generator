@@ -60,11 +60,11 @@ public class GenerateHandler implements ActionListener {
 
 		// Clear the previously generated models and set the configuration
 		parentFrame.getModelList().clearModels();
-		setConfiguration(t);
+		GeneratorConfiguration config = setConfiguration(t);
 
 		// First generate all IPMs
 		try {
-			cli.generateIPMs();
+			cli.generateIPMs(config);
 
 			// Then add the IPMs to the list
 			parentFrame.getModelList().addModel(cli.getModelsList());
@@ -81,61 +81,65 @@ public class GenerateHandler implements ActionListener {
 	 * inserted by the user in the GUI
 	 * 
 	 * @param t the track
+	 * @return the generator configuration
 	 */
-	private void setConfiguration(Track t) {
-		GeneratorConfiguration.N_BENCHMARKS = Integer.parseInt(
+	private GeneratorConfiguration setConfiguration(Track t) {
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		config.N_BENCHMARKS = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtNumBenchmarks")))
 						.getText());
-		GeneratorConfiguration.N_PARAMS_MAX = Integer.parseInt(
+		config.N_PARAMS_MAX = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtNMaxParams")))
 						.getText());
-		GeneratorConfiguration.N_PARAMS_MIN = Integer.parseInt(
+		config.N_PARAMS_MIN = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtNMinParams")))
 						.getText());
-		GeneratorConfiguration.MIN_CARDINALITY = Integer.parseInt(
+		config.MIN_CARDINALITY = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtMinCardinality")))
 						.getText());
-		GeneratorConfiguration.MAX_CARDINALITY = Integer.parseInt(
+		config.MAX_CARDINALITY = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtMaxCardinality")))
 						.getText());
-		GeneratorConfiguration.LOWER_BOUND_INT = Integer.parseInt(
+		config.LOWER_BOUND_INT = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtLowerBoundInt")))
 						.getText());
-		GeneratorConfiguration.UPPER_BOUND_INT = Integer.parseInt(
+		config.UPPER_BOUND_INT = Integer.parseInt(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtUpperBoundInt")))
 						.getText());
-		GeneratorConfiguration.N_CONSTRAINTS_MAX = Integer.parseInt(((JTextField) parentFrame.getPanelConfigurations()
+		config.N_CONSTRAINTS_MAX = Integer.parseInt(((JTextField) parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("txtNMaxConstraints"))).getText());
-		GeneratorConfiguration.N_CONSTRAINTS_MIN = Integer.parseInt(((JTextField) parentFrame.getPanelConfigurations()
+		config.N_CONSTRAINTS_MIN = Integer.parseInt(((JTextField) parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("txtNMinConstraints"))).getText());
-		GeneratorConfiguration.MAX_CONSTRAINTS_COMPLEXITY = Integer.parseInt(((JTextField) parentFrame
+		config.MAX_CONSTRAINTS_COMPLEXITY = Integer.parseInt(((JTextField) parentFrame
 				.getPanelConfigurations().getComponent(componentsMap.get("txtMaxConstraintsComplexity"))).getText());
-		GeneratorConfiguration.MIN_CONSTRAINTS_COMPLEXITY = Integer.parseInt(((JTextField) parentFrame
+		config.MIN_CONSTRAINTS_COMPLEXITY = Integer.parseInt(((JTextField) parentFrame
 				.getPanelConfigurations().getComponent(componentsMap.get("txtMinConstraintComplexity"))).getText());
-		GeneratorConfiguration.RATIO = Double.parseDouble(
+		config.RATIO = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatio")))
 						.getText());
-		GeneratorConfiguration.P = Double.parseDouble(
+		config.P = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtPTest")))
 						.getText());
-		GeneratorConfiguration.EPSILON = Double.parseDouble(
+		config.EPSILON = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtEpsilonTest")))
 						.getText());
-		GeneratorConfiguration.RATIO_TEST = Double.parseDouble(
+		config.RATIO_TEST = Double.parseDouble(
 				((JTextField) parentFrame.getPanelConfigurations().getComponent(componentsMap.get("txtRatioTest")))
 						.getText());
-		GeneratorConfiguration.USE_CONSTRAINTS_BETWEEN_PARAMETERS = ((JCheckBox) (parentFrame.getPanelConfigurations()
+		config.USE_CONSTRAINTS_BETWEEN_PARAMETERS = ((JCheckBox) (parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("chkConstraintsBetweenParams")))).isSelected();
-		GeneratorConfiguration.FORBIDDEN_TUPLES = ((JCheckBox) (parentFrame.getPanelConfigurations()
+		config.FORBIDDEN_TUPLES = ((JCheckBox) (parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("chkForbiddenTuples")))).isSelected();
-		GeneratorConfiguration.CNF = ((JCheckBox) (parentFrame.getPanelConfigurations()
+		config.CNF = ((JCheckBox) (parentFrame.getPanelConfigurations()
 				.getComponent(componentsMap.get("chkCNF")))).isSelected();
-		GeneratorConfiguration.TRACK = t;
-		GeneratorConfiguration.CHECK_TEST_RATIO = parentFrame.isRatioTest();
-		GeneratorConfiguration.CHECK_TUPLE_RATIO = parentFrame.isRatioTuple();
-		GeneratorConfiguration.ACTS = parentFrame.isACTS();
-		GeneratorConfiguration.CTWEDGE = parentFrame.isCTWedge();
-		GeneratorConfiguration.PICT = parentFrame.isPICT();
+		config.TRACK = t;
+		config.CHECK_TEST_RATIO = parentFrame.isRatioTest();
+		config.CHECK_TUPLE_RATIO = parentFrame.isRatioTuple();
+		config.ACTS = parentFrame.isACTS();
+		config.CTWEDGE = parentFrame.isCTWedge();
+		config.PICT = parentFrame.isPICT();
+		
+		return config;
 	}
 
 	/**

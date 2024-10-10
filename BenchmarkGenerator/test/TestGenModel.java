@@ -32,13 +32,14 @@ public class TestGenModel {
 	@Test
 	public void testName() throws Exception {
 		Generator g = new WithConstraintGenerator();
+		GeneratorConfiguration config = new GeneratorConfiguration();
 		
 		// Using k in the range [2, 20]
-		GeneratorConfiguration.N_PARAMS_MAX = 3;
-		GeneratorConfiguration.N_PARAMS_MIN = 2;
+		config.N_PARAMS_MAX = 3;
+		config.N_PARAMS_MIN = 2;
 				
 		
-		Model model = g.generate(Category.ONLY_BOOLEAN);
+		Model model = g.generate(Category.ONLY_BOOLEAN, config);
 		model.setName("temp");
 		// parso con ctwedge
 		CitModel citmodel = Utility.loadModel(model.toString());

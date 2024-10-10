@@ -8,17 +8,25 @@ import generators.GeneratorConfiguration;
 import main.BenchmarkGeneratorCLI;
 import models.Model;
 
-public class ModelFactory extends AbstractCandidateFactory<Model>{
+public class ModelFactory extends AbstractCandidateFactory<Model> {
+
+	GeneratorConfiguration config;
+
+	public void setGeneratorConfiguration(GeneratorConfiguration config) {
+		this.config = config;
+	}
 
 	@Override
 	public Model generateRandomCandidate(Random rng) {
 		BenchmarkGeneratorCLI cliGenerator = new BenchmarkGeneratorCLI();
 		Model m = null;
 		try {
-			int oldNBenchmarks = GeneratorConfiguration.N_BENCHMARKS;
-			GeneratorConfiguration.N_BENCHMARKS = 1;
-			cliGenerator.generateIPMs();
-			GeneratorConfiguration.N_BENCHMARKS = oldNBenchmarks;
+			int oldNBenchmarks = this.config.N_BENCHMARKS;
+			this.config.CHECK_TEST_RATIO = false;
+			this.config.N_BENCHMARKS = 1;
+			cliGenerator.generateIPMs(this.config);
+			this.config.N_BENCHMARKS = oldNBenchmarks;
+			System.out.println("*******************" + cliGenerator.getModelsList().size());
 			m = cliGenerator.getModelsList().get(0);
 		} catch (Exception e) {
 			e.printStackTrace();

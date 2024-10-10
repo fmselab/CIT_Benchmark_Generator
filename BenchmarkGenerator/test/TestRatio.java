@@ -20,9 +20,10 @@ public class TestRatio {
 	 */
 	@Test
 	public void test() throws InterruptedException, InvalidConfigurationException, IOException {
-		GeneratorConfiguration.MAX_CARDINALITY = 300;
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		config.MAX_CARDINALITY = 300;
 		Generator gWC = new WithConstraintGenerator();
-		Model m1 = gWC.generate(Category.ALSO_ENUMS);
+		Model m1 = gWC.generate(Category.ALSO_ENUMS, config);
 		m1.setName("HIGHLY_CONSTRAINED_" + 0);
 		if (m1.getHighestCardinality() < 127) {
 			System.out.println(m1.toString());

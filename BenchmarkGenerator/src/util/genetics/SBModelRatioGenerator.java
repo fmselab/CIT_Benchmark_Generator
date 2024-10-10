@@ -15,7 +15,13 @@ import org.uncommons.watchmaker.framework.operators.EvolutionPipeline;
 import org.uncommons.watchmaker.framework.selection.RouletteWheelSelection;
 import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
+import generators.GeneratorConfiguration;
+import generators.Track;
 import models.Model;
+import util.genetics.mutations.ConstraintAdderMutation;
+import util.genetics.mutations.ConstraintRemoverMutation;
+import util.genetics.mutations.ParameterAdderMutation;
+import util.genetics.mutations.ConstraintSubstitutionMutation;
 
 /**
  * Simple evolutionary algorithm that evolves a population of randomly-generated
@@ -31,39 +37,50 @@ public final class SBModelRatioGenerator {
 	 * default of "HELLOW WORLD" is used instead.
 	 * 
 	 * @param args The target String (as an array of words).
-	 * @throws IOException 
-	 * @throws InvalidConfigurationException 
-	 * @throws InterruptedException 
+	 * @throws IOException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
 	 */
-	public Model mutate(double targetRatio) throws InterruptedException, InvalidConfigurationException, IOException {
-		Model result = evolveModel(targetRatio);
+	public Model mutate(GeneratorConfiguration config)
+			throws InterruptedException, InvalidConfigurationException, IOException {
+		Model result = evolveModel(config);
 		System.out.println("Evolution result: " + result.getTestValidityRatio());
 		return result;
 	}
 
-	public static Model evolveModel(double targetRatio) {
-		
+	public static Model evolveModel(GeneratorConfiguration config) {
+
 		ModelFactory factory = new ModelFactory();
-	
+		factory.setGeneratorConfiguration(config);
+
 		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>(2);
-		operators.add(new ParameterAdderMutation());
-		operators.add(new ConstraintAdderMutation());
+		operators.add(new ParameterAdderMutation(0.3f));
+		operators.add(new ConstraintAdderMutation(0.2f));
+		operators.add(new ConstraintRemoverMutation(0.4f));
+		operators.add(new ConstraintSubstitutionMutation(0.4f));
+		// operators.add(new ParameterRemoverMutation());
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
-		
-		
-		
+
 		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline,
-				new ModelEvaluator(targetRatio), new RouletteWheelSelection(), new MersenneTwisterRNG());	
-		
+				new ModelEvaluator(config.RATIO_TEST), new RouletteWheelSelection(), new MersenneTwisterRNG());
+
 		engine.addEvolutionObserver(new EvolutionLogger());
-		return engine.evolve(10, 				// 100 individuals in the population.
-				5, 								// 5% elitism.
-				new TargetFitness(targetRatio, true));
-		
+		return engine.evolve(50, // 100 individuals in the population.
+				5, // 5% elitism.
+				new TargetFitness(0, false));
+
 	}
-	
+
 	public static void main(String[] args) {
-		System.out.println(evolveModel(0.3));
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		config.CHECK_TEST_RATIO = true;
+		config.CHECK_TUPLE_RATIO = false;
+		config.RATIO_TEST = 0.5;
+		config.N_PARAMS_MIN = 2;
+		config.P = 0.90;
+		config.N_PARAMS_MAX = 30;
+		config.TRACK = Track.MCAC;
+		System.out.println(evolveModel(config));
 	}
 
 	/**

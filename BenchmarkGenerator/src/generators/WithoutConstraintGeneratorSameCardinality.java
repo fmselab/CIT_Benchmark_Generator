@@ -21,10 +21,11 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 	 * 
 	 * @param type the type of models to be generated (with booleans, with
 	 *             enumeratives, with integers, ...)
+	 * @param config the generator configuration
 	 * @return the generated IPM
 	 */
 	@Override
-	public Model generate(Category type) {
+	public Model generate(Category type, GeneratorConfiguration config) {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		// The model with a unique name
 		Model m = new Model(type);
@@ -34,12 +35,12 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 		ArrayList<String> names = new ArrayList<>();
 
 		// Number of parameters
-		int n = Randomizer.generate(GeneratorConfiguration.N_PARAMS_MIN, GeneratorConfiguration.N_PARAMS_MAX);
+		int n = Randomizer.generate(m.getGeneratorConfiguration().N_PARAMS_MIN, m.getGeneratorConfiguration().N_PARAMS_MAX);
 		int from = 0;
 
 		// Cardinality
-		int cardinality = Randomizer.generate(GeneratorConfiguration.MIN_CARDINALITY,
-				GeneratorConfiguration.MAX_CARDINALITY);
+		int cardinality = Randomizer.generate(m.getGeneratorConfiguration().MIN_CARDINALITY,
+				m.getGeneratorConfiguration().MAX_CARDINALITY);
 
 		// Generate the benchmark
 		switch (type) {
@@ -81,8 +82,8 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 						break;
 					case 1:
 						// Define a new integer parameter
-						from = Randomizer.generate(GeneratorConfiguration.LOWER_BOUND_INT,
-								GeneratorConfiguration.UPPER_BOUND_INT);
+						from = Randomizer.generate(m.getGeneratorConfiguration().LOWER_BOUND_INT,
+								m.getGeneratorConfiguration().UPPER_BOUND_INT);
 
 						ParameterToModelAdder.addIntegerParameter(m, cardinality, from, names, i);
 						break;
