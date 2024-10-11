@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import generators.Track;
 import models.Model;
 
@@ -41,7 +42,8 @@ public class ConstraintAndToOrMutation extends ConstraintOperatorSubstitutionMut
 			return m;
 
 		// Constrained tracks
-		Model mTemp = changeOperator(m, rng, " AND ", " OR ");
+		CtWedgeFactoryImpl factory = new CtWedgeFactoryImpl();
+		Model mTemp = changeOperator(m, rng, factory.createAndExpression(), factory.createOrExpression());
 
 		return mTemp;
 	}

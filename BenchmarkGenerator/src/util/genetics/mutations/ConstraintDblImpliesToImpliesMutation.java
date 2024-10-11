@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import ctwedge.ctWedge.ImpliesExpression;
+import ctwedge.ctWedge.ImpliesOperator;
+import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import generators.Track;
 import models.Model;
 
@@ -41,7 +44,12 @@ public class ConstraintDblImpliesToImpliesMutation extends ConstraintOperatorSub
 			return m;
 
 		// Constrained tracks
-		Model mTemp = changeOperator(m, rng, " <=> ", " => ");
+		CtWedgeFactoryImpl factory = new CtWedgeFactoryImpl();
+		ImpliesExpression dbl = factory.createImpliesExpression();
+		ImpliesExpression single = factory.createImpliesExpression();
+		dbl.setOp(ImpliesOperator.IFF);
+		single.setOp(ImpliesOperator.IMPL);
+		Model mTemp = changeOperator(m, rng, dbl, single);
 
 		return mTemp;
 	}
