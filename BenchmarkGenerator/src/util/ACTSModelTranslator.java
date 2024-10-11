@@ -28,9 +28,9 @@ public class ACTSModelTranslator {
 	 * Construct an ACTSModelTranslator object
 	 */
 	public ACTSModelTranslator() {
-		
+
 	}
-	
+
 	/**
 	 * Given a model and a destination path, it saves the model in the ACTS format
 	 * 

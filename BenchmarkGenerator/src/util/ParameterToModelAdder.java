@@ -59,7 +59,7 @@ public class ParameterToModelAdder {
 				e.setName("PAR" + i + "_" + j);
 				elemsList.add(e);
 			}
-			((EnumerativeImpl)p).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
+			((EnumerativeImpl) p).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
 		} else {
 			Stream<Dictionary> dictStream = m.getGeneratorConfiguration().DICTIONARY.stream()
 					.filter(x -> x.getType().equalsIgnoreCase("Enum") && !names.contains(x.getName())
@@ -73,14 +73,14 @@ public class ParameterToModelAdder {
 			Dictionary dict = dictStream.findAny().orElse(alternative);
 			names.add(dict.getName());
 			p.setName(dict.getName());
-			
+
 			List<Element> elemsList = new ArrayList<>();
 			for (int j = 0; j < card; j++) {
 				Element e = new CtWedgeFactoryImpl().createElement();
 				e.setName(dict.values.get(j));
 				elemsList.add(e);
 			}
-			((EnumerativeImpl)p).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
+			((EnumerativeImpl) p).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
 		}
 		m.addParameter(p);
 	}

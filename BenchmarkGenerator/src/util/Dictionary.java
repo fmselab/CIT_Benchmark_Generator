@@ -26,11 +26,11 @@ public class Dictionary {
 	/**
 	 * Instantiates a new dictionary.
 	 *
-	 * @param name the name of the parameter
-	 * @param type the type of the parameter
+	 * @param name       the name of the parameter
+	 * @param type       the type of the parameter
 	 * @param lowerBound the lower bound of the parameter
 	 * @param upperBound the upper bound of the parameter
-	 * @param values the values of the parameter
+	 * @param values     the values of the parameter
 	 */
 	public Dictionary(String name, String type, int lowerBound, int upperBound, ArrayList<String> values) {
 		super();
@@ -40,7 +40,7 @@ public class Dictionary {
 		this.upperBound = upperBound;
 		this.values = values;
 	}
-	
+
 	/**
 	 * Instantiates a new dictionary - boolean version.
 	 *
@@ -52,11 +52,11 @@ public class Dictionary {
 		this.type = "Boolean";
 		this.values = null;
 	}
-	
+
 	/**
 	 * Instantiates a new dictionary - enum version.
 	 *
-	 * @param name the name of the parameter
+	 * @param name   the name of the parameter
 	 * @param values the values of the parameter
 	 */
 	public Dictionary(String name, ArrayList<String> values) {
@@ -67,10 +67,11 @@ public class Dictionary {
 		this.upperBound = -1;
 		this.values = values;
 	}
+
 	/**
 	 * Instantiates a new dictionary - Integer version.
 	 *
-	 * @param name the name of the parameter
+	 * @param name       the name of the parameter
 	 * @param lowerBound the lower bound of the parameter
 	 * @param upperBound the upper bound of the parameter
 	 */
@@ -184,16 +185,17 @@ public class Dictionary {
 				+ upperBound + ", values=" + values + "]";
 	}
 
-	/** 
+	/**
 	 * Adds a new value to the possible ones
+	 * 
 	 * @param value the value
 	 */
 	public void addValue(String value) {
 		if (this.values == null)
 			this.values = new ArrayList<>();
-		
+
 		this.values.add(value);
-		
+
 	}
 
 }

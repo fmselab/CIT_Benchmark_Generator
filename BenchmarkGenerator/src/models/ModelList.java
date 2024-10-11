@@ -34,7 +34,7 @@ public class ModelList implements Iterable<Model> {
 	public void addModel(Model m) {
 		models.add(m);
 	}
-	
+
 	/**
 	 * Add all the models to the list
 	 * 
@@ -42,7 +42,7 @@ public class ModelList implements Iterable<Model> {
 	 */
 	public void addModel(ArrayList<Model> list) {
 		models.addAll(list);
-	}			
+	}
 
 	/**
 	 * Returns a model from the list, given its name

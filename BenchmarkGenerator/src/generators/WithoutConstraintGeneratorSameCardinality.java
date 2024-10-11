@@ -19,8 +19,8 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 	/**
 	 * Generate an IPM and force all parameters to be of the same cardinality
 	 * 
-	 * @param type the type of models to be generated (with booleans, with
-	 *             enumeratives, with integers, ...)
+	 * @param type   the type of models to be generated (with booleans, with
+	 *               enumeratives, with integers, ...)
 	 * @param config the generator configuration
 	 * @return the generated IPM
 	 */
@@ -30,12 +30,13 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 		// The model with a unique name
 		Model m = new Model(type);
 		m.setName("model" + timestamp.getTime());
-		
+
 		// The list of already used names
 		ArrayList<String> names = new ArrayList<>();
 
 		// Number of parameters
-		int n = Randomizer.generate(m.getGeneratorConfiguration().N_PARAMS_MIN, m.getGeneratorConfiguration().N_PARAMS_MAX);
+		int n = Randomizer.generate(m.getGeneratorConfiguration().N_PARAMS_MIN,
+				m.getGeneratorConfiguration().N_PARAMS_MAX);
 		int from = 0;
 
 		// Cardinality
@@ -59,7 +60,8 @@ public class WithoutConstraintGeneratorSameCardinality implements Generator {
 					ParameterToModelAdder.addBooleanParameter(m, names, i);
 				} else {
 					// Define a new enumerative parameter
-					ParameterToModelAdder.addEnumerativeParameter(m, cardinality, names, i);				}
+					ParameterToModelAdder.addEnumerativeParameter(m, cardinality, names, i);
+				}
 			}
 			break;
 

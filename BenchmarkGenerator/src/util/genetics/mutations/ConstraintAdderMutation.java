@@ -6,13 +6,13 @@ import java.util.Random;
 
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
+import ctwedge.ctWedge.Constraint;
 import generators.GeneratorWithConstraintsInterface;
 import generators.Track;
 import generators.WithConstraintGenerator;
 import generators.WithConstraintGeneratorCNF;
 import generators.WithConstraintGeneratorFT;
 import models.Model;
-import models.constraints.Constraint;
 
 public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 

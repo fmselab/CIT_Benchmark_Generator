@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.sosy_lab.common.ShutdownManager;
 import org.sosy_lab.common.configuration.Configuration;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -26,15 +28,15 @@ import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 import org.sosy_lab.java_smt.api.SolverException;
 
-import ctwedge.ctWedge.Bool;
 import ctwedge.ctWedge.CitModel;
-import ctwedge.ctWedge.Enumerative;
+import ctwedge.ctWedge.Constraint;
+import ctwedge.ctWedge.CtWedgePackage;
 import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
+import ctwedge.ctWedge.impl.CitModelImpl;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
-import ctwedge.util.ParameterElementsGetterAsStrings;
 import ctwedge.util.ParameterSize;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
@@ -47,7 +49,6 @@ import generators.Randomizer;
 import generators.Track;
 import kali.util.Operations;
 import main.BenchmarkGeneratorCLI;
-import models.constraints.Constraint;
 import util.ACTSModelTranslator;
 import util.ModelConfigurationExtractor;
 import util.ParameterToModelAdder;
@@ -61,10 +62,7 @@ import util.ParameterToModelAdder;
  * @author andrea
  *
  */
-public class Model {
-	private String name;
-	private List<Parameter> paramsList;
-	private List<Constraint> constraintsList;
+public class Model extends CitModelImpl {
 	private List<Integer> validityTests;
 	private boolean isRatioExact;
 	private Category category;
@@ -85,8 +83,9 @@ public class Model {
 	 * Build an empty model.
 	 */
 	public Model(Category category) {
-		paramsList = new ArrayList<>();
-		constraintsList = new ArrayList<>();
+		super();
+		parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, CtWedgePackage.CIT_MODEL__PARAMETERS);
+		constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, CtWedgePackage.CIT_MODEL__CONSTRAINTS);
 		validityTests = new ArrayList<Integer>();
 		name = "";
 		isRatioExact = false;
@@ -137,7 +136,7 @@ public class Model {
 	 * @param p the parameter
 	 */
 	public void addParameter(Parameter p) {
-		this.paramsList.add(p);
+		this.parameters.add(p);
 	}
 
 	/**
@@ -209,7 +208,7 @@ public class Model {
 	 * @param p the parameter
 	 */
 	public void removeParameter(Parameter p) {
-		this.paramsList.remove(p);
+		this.parameters.remove(p);
 	}
 
 	/**
@@ -218,7 +217,7 @@ public class Model {
 	 * @param p the constraint
 	 */
 	public void addConstraint(Constraint p) {
-		this.constraintsList.add(p);
+		this.constraints.add(p);
 	}
 
 	/**
@@ -228,8 +227,8 @@ public class Model {
 	 * @param d the new constraint
 	 */
 	public void changeConstraint(Constraint s, Constraint d) {
-		this.constraintsList.remove(s);
-		this.constraintsList.add(d);
+		this.constraints.remove(s);
+		this.constraints.add(d);
 	}
 
 	/**
@@ -239,8 +238,8 @@ public class Model {
 	 * @param d the new parameter
 	 */
 	public void changeParameter(Parameter s, Parameter d) {
-		this.paramsList.remove(s);
-		this.paramsList.add(d);
+		this.parameters.remove(s);
+		this.parameters.add(d);
 	}
 
 	/**
@@ -249,7 +248,7 @@ public class Model {
 	 * @param p the constraint
 	 */
 	public void removeConstraint(Constraint p) {
-		this.constraintsList.remove(p);
+		this.constraints.remove(p);
 	}
 
 	/**
@@ -258,29 +257,7 @@ public class Model {
 	 * @return the model as a string in CTWedge format
 	 */
 	public String toString() {
-		String model;
-
-		model = "Model " + this.name + "\nParameters:\n";
-
-		for (Parameter p : paramsList) {
-			if (p instanceof Bool)
-				model += p.getName() + ": Boolean \n";
-			else if (p instanceof Enumerative) {
-				List<String> values = ParameterElementsGetterAsStrings.instance.caseParameter(p);
-				model += p.getName() + ": {" + String.join(",", values) + "} \n";
-			} else {
-				model += p.getName() + ": [" + ((Range) p).getBegin() + " .. " + ((Range) p).getEnd() + "] \n";
-			}
-		}
-		if (!constraintsList.isEmpty()) {
-			model += "\nConstraints:\n";
-
-			for (Constraint c : constraintsList) {
-				model += "# " + c.toString() + " #\n";
-			}
-		}
-
-		return model;
+		return new ModelUtils(this).serializeToString().replace(" Constraints :", " \nConstraints :").replace(" Parameters :", " \nParameters :");
 	}
 
 	/**
@@ -289,7 +266,7 @@ public class Model {
 	 * @return a random Parameter
 	 */
 	public Parameter getRandomParamenter() {
-		return paramsList.get(Randomizer.generate(0, paramsList.size() - 1));
+		return parameters.get(Randomizer.generate(0, parameters.size() - 1));
 	}
 
 	/**
@@ -300,7 +277,7 @@ public class Model {
 	 *         given argument
 	 */
 	public Parameter getRandomParamenterOfClass(Parameter similar) {
-		List<Parameter> filtered = paramsList.stream().filter(x -> (x.getClass().equals(similar.getClass())))
+		List<Parameter> filtered = parameters.stream().filter(x -> (x.getClass().equals(similar.getClass())))
 				.collect(Collectors.toList());
 		Parameter selected = filtered.get(Randomizer.generate(0, filtered.size() - 1));
 		return selected;
@@ -319,7 +296,7 @@ public class Model {
 		try {
 			// If the model contains at least one integer, we cannot deal with it. Throw an
 			// exception and manage it differently
-			for (Parameter p : paramsList)
+			for (Parameter p : parameters)
 				if (p instanceof Range)
 					throw new NotConvertableModel("Computation of the ratio interrupted");
 
@@ -437,12 +414,11 @@ public class Model {
 	 */
 	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
 		// Define the model as a CitModel
-		CitModel loadModel = Utility.loadModel(this.toString());
-		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(loadModel);
+		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(this);
 		if (extractor.getModelType() != Track.NUMC)
-			return Operations.getTupleValidityRatioFromModel(loadModel);
+			return Operations.getTupleValidityRatioFromModel(this);
 		else
-			return kali.util.Operations.getTupleValidityRatioFromModel(loadModel);
+			return kali.util.Operations.getTupleValidityRatioFromModel(this);
 	}
 
 	/**
@@ -452,7 +428,7 @@ public class Model {
 	 */
 	public int getHighestCardinality() {
 		int max = 0;
-		for (Parameter p : paramsList) {
+		for (Parameter p : parameters) {
 			int cardinality = ParameterSize.eInstance.caseParameter(p);
 			if (cardinality > max)
 				max = cardinality;
@@ -467,7 +443,7 @@ public class Model {
 	 */
 	public int getLowestCardinality() {
 		int min = Integer.MAX_VALUE;
-		for (Parameter p : paramsList) {
+		for (Parameter p : parameters) {
 			int cardinality = ParameterSize.eInstance.caseParameter(p);
 			if (cardinality < min)
 				min = cardinality;
@@ -567,8 +543,7 @@ public class Model {
 	 */
 	private ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
 		// Build the CIT Model
-		CitModel citModel = Utility.loadModel(toString());
-		System.out.println(toString());
+		CitModel citModel = this;
 
 		// Set up the SMT Solver context and parameters
 		Configuration config = Configuration.defaultConfiguration();
@@ -591,8 +566,8 @@ public class Model {
 	 * 
 	 * @return the list of constraints
 	 */
-	public List<Constraint> getConstraints() {
-		return this.constraintsList;
+	public EList<Constraint> getConstraints() {
+		return this.constraints;
 	}
 
 	/**
@@ -600,15 +575,15 @@ public class Model {
 	 * 
 	 * @return the list of parameters
 	 */
-	public List<Parameter> getParameters() {
-		return this.paramsList;
+	public EList<Parameter> getParameters() {
+		return this.parameters;
 	}
 
 	/**
 	 * Removes a randomly chosen parameter from the model
 	 */
 	public void removeRandomParameter() {
-		this.paramsList.remove(new Random().nextInt(0, this.paramsList.size() - 1));
+		this.parameters.remove(new Random().nextInt(0, this.parameters.size() - 1));
 	}
 
 	/**
@@ -617,7 +592,7 @@ public class Model {
 	 * @param nConstraint the index of the constraint
 	 */
 	public void removeConstraint(int nConstraint) {
-		this.constraintsList.remove(nConstraint);
+		this.constraints.remove(nConstraint);
 	}
 
 }

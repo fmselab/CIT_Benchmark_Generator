@@ -9,7 +9,6 @@ import models.Model;
 
 public class ConstraintDblImpliesToImpliesMutation extends ConstraintOperatorSubstitutionMutation {
 
-
 	/**
 	 * Builds a new ConstraintImpliesToDblImpliesMutation object
 	 * 

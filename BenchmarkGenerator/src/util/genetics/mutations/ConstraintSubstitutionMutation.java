@@ -6,13 +6,13 @@ import java.util.Random;
 
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
+import ctwedge.ctWedge.Constraint;
 import generators.GeneratorWithConstraintsInterface;
 import generators.Track;
 import generators.WithConstraintGenerator;
 import generators.WithConstraintGeneratorCNF;
 import generators.WithConstraintGeneratorFT;
 import models.Model;
-import models.constraints.Constraint;
 
 public class ConstraintSubstitutionMutation implements EvolutionaryOperator<Model> {
 
@@ -55,8 +55,6 @@ public class ConstraintSubstitutionMutation implements EvolutionaryOperator<Mode
 		// Constrained tracks
 		Model mTemp = m;
 		int nConstraint = rng.nextInt(0, m.getConstraints().size());
-		mTemp.removeConstraint(nConstraint);
-
 		GeneratorWithConstraintsInterface gen;
 
 		if (m.getGeneratorConfiguration().CNF)
@@ -69,7 +67,7 @@ public class ConstraintSubstitutionMutation implements EvolutionaryOperator<Mode
 		int complexity = rng.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
 				m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY + 1);
 		Constraint c = gen.generateConstraintFromComplexity(mTemp, complexity);
-		mTemp.addConstraint(c);
+		mTemp.changeConstraint(m.getConstraints().get(nConstraint), c);
 
 		return mTemp;
 	}

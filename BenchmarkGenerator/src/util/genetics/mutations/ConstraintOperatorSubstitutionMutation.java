@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
+import ctwedge.ctWedge.Constraint;
 import models.Model;
-import models.constraints.Constraint;
 
 public abstract class ConstraintOperatorSubstitutionMutation implements EvolutionaryOperator<Model> {
 
@@ -42,10 +42,10 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 
 	Model changeOperator(Model m, Random rng, String from, String to) {
 		Model mTemp = m;
-		
+
 		List<Constraint> constraintList = mTemp.getConstraints();
 		constraintList = constraintList.stream().filter(x -> x.toString().contains(from)).collect(Collectors.toList());
-		
+
 		if (constraintList.size() > 0) {
 			// Choose randomly one of the constraints including the operator
 			int constraintIndexToUpdate = rng.nextInt(0, constraintList.size());
@@ -53,11 +53,11 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 			int countOperator = StringUtils.countMatches(constraintList.get(constraintIndexToUpdate).toString(), from);
 			// Choose which one to update
 			int operatorIndex = rng.nextInt(0, countOperator);
-			
+
 			int i = 0;
 			for (Constraint c : m.getConstraints()) {
 				if (c.toString().equals(constraintList.get(constraintIndexToUpdate).toString())) {
-					
+
 					break;
 				}
 				i++;

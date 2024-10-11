@@ -18,8 +18,8 @@ public class WithoutConstraintGenerator implements Generator {
 	/**
 	 * Generate an IPM
 	 * 
-	 * @param type the type of models to be generated (with booleans, with
-	 *             enumeratives, with integers, ...)
+	 * @param type   the type of models to be generated (with booleans, with
+	 *               enumeratives, with integers, ...)
 	 * @param config the generator configuration used for generating the model
 	 * @return the generated IPM
 	 */
@@ -35,8 +35,9 @@ public class WithoutConstraintGenerator implements Generator {
 		ArrayList<String> names = new ArrayList<>();
 
 		// Number of parameters
-		int n = Randomizer.generate(m.getGeneratorConfiguration().N_PARAMS_MIN, m.getGeneratorConfiguration().N_PARAMS_MAX);
-		for (int i = 0;i<n; i++) {
+		int n = Randomizer.generate(m.getGeneratorConfiguration().N_PARAMS_MIN,
+				m.getGeneratorConfiguration().N_PARAMS_MAX);
+		for (int i = 0; i < n; i++) {
 			m.addNewRandomParameter(names);
 		}
 

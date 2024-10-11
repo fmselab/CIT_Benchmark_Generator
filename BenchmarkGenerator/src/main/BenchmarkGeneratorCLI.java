@@ -261,7 +261,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(modelPath);
 		GeneratorConfiguration config = new GeneratorConfiguration();
-		
+
 		config.N_PARAMS_MAX = extractor.getNumParams();
 		config.N_PARAMS_MIN = extractor.getNumParams();
 		config.MAX_CARDINALITY = extractor.getMaximumCardinality();
@@ -280,7 +280,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		config.TRACK = extractor.getModelType();
 		config.FORBIDDEN_TUPLES = extractor.hasForbiddenTuples();
 		config.CNF = extractor.isCNF();
-		
+
 		return config;
 	}
 
@@ -575,11 +575,12 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * This method sets the dictionary for test generation
 	 * 
 	 * @param selectedFile the file containing the dictionary
-	 * @param config the generator configuration
+	 * @param config       the generator configuration
 	 * @return the generator configuration
 	 * @throws FileNotFoundException
 	 */
-	public static GeneratorConfiguration setDictionary(String selectedFile, GeneratorConfiguration config) throws FileNotFoundException {
+	public static GeneratorConfiguration setDictionary(String selectedFile, GeneratorConfiguration config)
+			throws FileNotFoundException {
 		BufferedReader br = new BufferedReader(new FileReader(selectedFile));
 		Type listOfMyClassObject = new TypeToken<ArrayList<Dictionary>>() {
 		}.getType();

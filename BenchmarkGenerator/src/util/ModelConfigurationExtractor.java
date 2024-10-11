@@ -452,12 +452,12 @@ public class ModelConfigurationExtractor {
 			return true;
 		return false;
 	}
-	
+
 	/**
 	 * Returns whether the model expresses the constraints only in CNF
 	 * 
-	 * @return TRUE if the model expresses the constraints only in CNF,
-	 *         FALSE otherwise
+	 * @return TRUE if the model expresses the constraints only in CNF, FALSE
+	 *         otherwise
 	 */
 	public boolean isCNF() {
 		CTWedgeModelAnalyzer analyzer = new AllInCNF();

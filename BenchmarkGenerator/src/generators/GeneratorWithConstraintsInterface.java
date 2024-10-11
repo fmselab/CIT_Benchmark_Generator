@@ -1,7 +1,7 @@
 package generators;
 
+import ctwedge.ctWedge.Constraint;
 import models.Model;
-import models.constraints.Constraint;
 
 public interface GeneratorWithConstraintsInterface extends Generator {
 

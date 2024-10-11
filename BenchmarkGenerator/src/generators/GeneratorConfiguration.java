@@ -40,5 +40,5 @@ public class GeneratorConfiguration {
 	public boolean FORBIDDEN_TUPLES = false;
 	public boolean CNF = false;
 	public ArrayList<Dictionary> DICTIONARY = null;
-	
+
 }
