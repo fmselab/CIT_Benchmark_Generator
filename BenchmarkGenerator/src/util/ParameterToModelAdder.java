@@ -1,11 +1,16 @@
 package util;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
-import models.BooleanParameter;
-import models.EnumerativeParameter;
-import models.IntegerParameter;
+import ctwedge.ctWedge.Bool;
+import ctwedge.ctWedge.CtWedgePackage;
+import ctwedge.ctWedge.Element;
+import ctwedge.ctWedge.Enumerative;
+import ctwedge.ctWedge.Range;
+import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
+import ctwedge.ctWedge.impl.EnumerativeImpl;
 import models.Model;
 
 public class ParameterToModelAdder {
@@ -20,13 +25,17 @@ public class ParameterToModelAdder {
 	 */
 	public static void addBooleanParameter(Model m, ArrayList<String> names, int i) {
 		if (m.getGeneratorConfiguration().DICTIONARY == null) {
-			m.addParameter(new BooleanParameter("Par" + i));
+			Bool p = new CtWedgeFactoryImpl().createBool();
+			p.setName("Par" + i);
+			m.addParameter(p);
 		} else {
 			Stream<Dictionary> dictStream = m.getGeneratorConfiguration().DICTIONARY.stream()
 					.filter(x -> x.getType().equalsIgnoreCase("Boolean") && !names.contains(x.getName()));
 			Dictionary dict = dictStream.findAny().orElse(new Dictionary("Par" + i));
 			names.add(dict.getName());
-			m.addParameter(new BooleanParameter(dict.getName()));
+			Bool p = new CtWedgeFactoryImpl().createBool();
+			p.setName(dict.getName());
+			m.addParameter(p);
 		}
 	}
 
@@ -40,12 +49,17 @@ public class ParameterToModelAdder {
 	 * @param i     the index
 	 */
 	public static void addEnumerativeParameter(Model m, int card, ArrayList<String> names, int i) {
-		EnumerativeParameter p = null;
+		Enumerative p = new CtWedgeFactoryImpl().createEnumerative();
 
 		if (m.getGeneratorConfiguration().DICTIONARY == null) {
-			p = new EnumerativeParameter("Par" + i);
-			for (int j = 0; j < card; j++)
-				p.addValue("PAR" + i + "_" + j);
+			p.setName("Par" + i);
+			List<Element> elemsList = new ArrayList<>();
+			for (int j = 0; j < card; j++) {
+				Element e = new CtWedgeFactoryImpl().createElement();
+				e.setName("PAR" + i + "_" + j);
+				elemsList.add(e);
+			}
+			((EnumerativeImpl)p).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
 		} else {
 			Stream<Dictionary> dictStream = m.getGeneratorConfiguration().DICTIONARY.stream()
 					.filter(x -> x.getType().equalsIgnoreCase("Enum") && !names.contains(x.getName())
@@ -58,9 +72,15 @@ public class ParameterToModelAdder {
 
 			Dictionary dict = dictStream.findAny().orElse(alternative);
 			names.add(dict.getName());
-			p = new EnumerativeParameter(dict.getName());
-			for (int j = 0; j < card; j++)
-				p.addValue(dict.values.get(j));
+			p.setName(dict.getName());
+			
+			List<Element> elemsList = new ArrayList<>();
+			for (int j = 0; j < card; j++) {
+				Element e = new CtWedgeFactoryImpl().createElement();
+				e.setName(dict.values.get(j));
+				elemsList.add(e);
+			}
+			((EnumerativeImpl)p).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
 		}
 		m.addParameter(p);
 	}
@@ -77,7 +97,11 @@ public class ParameterToModelAdder {
 	 */
 	public static void addIntegerParameter(Model m, int card, int from, ArrayList<String> names, int i) {
 		if (m.getGeneratorConfiguration().DICTIONARY == null) {
-			m.addParameter(new IntegerParameter("Par" + i, from, from + card - 1));
+			Range p = new CtWedgeFactoryImpl().createRange();
+			p.setBegin(from);
+			p.setEnd(from + card - 1);
+			p.setName("Par" + i);
+			m.addParameter(p);
 		} else {
 			Stream<Dictionary> dictStream = m.getGeneratorConfiguration().DICTIONARY.stream()
 					.filter(x -> x.getType().equalsIgnoreCase("Integer") && !names.contains(x.getName())
@@ -85,10 +109,13 @@ public class ParameterToModelAdder {
 
 			// If no available parameter is found, this is the alternative
 			Dictionary alternative = new Dictionary("Par" + i, from, from + card - 1);
-
 			Dictionary dict = dictStream.findAny().orElse(alternative);
 			names.add(dict.getName());
-			m.addParameter(new IntegerParameter(dict.getName(), dict.getLowerBound(), dict.getUpperBound()));
+			Range p = new CtWedgeFactoryImpl().createRange();
+			p.setBegin(dict.getLowerBound());
+			p.setEnd(dict.getUpperBound());
+			p.setName(dict.getName());
+			m.addParameter(p);
 		}
 	}
 }

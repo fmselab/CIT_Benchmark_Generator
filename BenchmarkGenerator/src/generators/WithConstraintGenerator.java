@@ -7,10 +7,15 @@ import models.constraints.DoubleImpliesConstraint;
 import models.constraints.ImpliesConstraint;
 import models.constraints.NotConstraint;
 import models.constraints.OrConstraint;
-import models.BooleanParameter;
-import models.EnumerativeParameter;
+
+import java.util.List;
+import java.util.Random;
+
+import ctwedge.ctWedge.Bool;
+import ctwedge.ctWedge.Enumerative;
+import ctwedge.ctWedge.Parameter;
+import ctwedge.util.ParameterElementsGetterAsStrings;
 import models.Model;
-import models.Parameter;
 
 /**
  * Generates a new model with constraints, and with parameters of the category
@@ -81,15 +86,17 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 			p = m.getRandomParamenter();
 
 			// Extract the operation
-			int upperBound = (p instanceof BooleanParameter || p instanceof EnumerativeParameter) ? 1 : 5;
+			int upperBound = (p instanceof Bool || p instanceof Enumerative) ? 1 : 5;
 			operation = Randomizer.generate(0, upperBound);
+			List<String> parameterValues = ParameterElementsGetterAsStrings.instance.caseParameter(p);
+			String value = parameterValues.get(new Random().nextInt(0, parameterValues.size()));
 
 			switch (operation) {
 			case 0:
 				// =
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c).setExpression(p.getName() + " = " + p.getRandomValue());
+					((AtomicConstraint) c).setExpression(p.getName() + " = " + value);
 				} else {
 					((AtomicConstraint) c)
 							.setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getName());
@@ -100,7 +107,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 				// !=
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c).setExpression(p.getName() + " != " + p.getRandomValue());
+					((AtomicConstraint) c).setExpression(p.getName() + " != " + value);
 				} else {
 					((AtomicConstraint) c)
 							.setExpression(p.getName() + " != " + m.getRandomParamenterOfClass(p).getName());
@@ -111,7 +118,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 				// >
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c).setExpression(p.getName() + " > " + p.getRandomValue());
+					((AtomicConstraint) c).setExpression(p.getName() + " > " + value);
 				} else {
 					((AtomicConstraint) c)
 							.setExpression(p.getName() + " > " + m.getRandomParamenterOfClass(p).getName());
@@ -122,7 +129,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 				// >=
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c).setExpression(p.getName() + " >= " + p.getRandomValue());
+					((AtomicConstraint) c).setExpression(p.getName() + " >= " + value);
 				} else {
 					((AtomicConstraint) c)
 							.setExpression(p.getName() + " >= " + m.getRandomParamenterOfClass(p).getName());
@@ -133,7 +140,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 				// <
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c).setExpression(p.getName() + " < " + p.getRandomValue());
+					((AtomicConstraint) c).setExpression(p.getName() + " < " + value);
 				} else {
 					((AtomicConstraint) c)
 							.setExpression(p.getName() + " < " + m.getRandomParamenterOfClass(p).getName());
@@ -144,7 +151,7 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 				// <=
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-					((AtomicConstraint) c).setExpression(p.getName() + " <= " + p.getRandomValue());
+					((AtomicConstraint) c).setExpression(p.getName() + " <= " + value);
 				} else {
 					((AtomicConstraint) c)
 							.setExpression(p.getName() + " <= " + m.getRandomParamenterOfClass(p).getName());

@@ -13,16 +13,16 @@ import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
+import ctwedge.ctWedge.Bool;
+import ctwedge.ctWedge.Enumerative;
+import ctwedge.ctWedge.Parameter;
+import ctwedge.ctWedge.Range;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.smt.SMTConstraintTranslator;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
-import models.BooleanParameter;
-import models.EnumerativeParameter;
-import models.IntegerParameter;
 import models.Model;
-import models.Parameter;
 import util.ModelConfigurationExtractor;
 
 /**
@@ -148,8 +148,8 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives or Integers
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter
-						|| p instanceof IntegerParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative
+						|| p instanceof Range);
 			}
 
 			// Check that the model have been exported
@@ -268,8 +268,8 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives or Integers
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter
-						|| p instanceof IntegerParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative
+						|| p instanceof Range);
 			}
 
 			// Check that the model have been exported
@@ -381,8 +381,8 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives or Integers
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter
-						|| p instanceof IntegerParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative
+						|| p instanceof Range);
 			}
 
 			// Check that the model have been exported
@@ -480,7 +480,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have not been exported
@@ -575,7 +575,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have not been exported
@@ -678,7 +678,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check the ratio
@@ -771,7 +771,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter);
+				assertTrue(p instanceof Bool);
 			}
 
 			// Check that the model have not been exported
@@ -863,7 +863,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter);
+				assertTrue(p instanceof Bool);
 			}
 
 			// Check that the model have not been exported
@@ -962,7 +962,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives or Integers
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter);
+				assertTrue(p instanceof Bool);
 			}
 
 			// Check that the model have been exported
@@ -1048,7 +1048,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans or enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have been exported accordingly to the request
@@ -1127,7 +1127,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans or enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have been exported accordingly to the request
@@ -1197,7 +1197,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter);
+				assertTrue(p instanceof Bool);
 			}
 
 			// Check that the model have been exported accordingly to the request
@@ -1280,7 +1280,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter);
+				assertTrue(p instanceof Bool);
 			}
 
 			// Check the ratio
@@ -1374,7 +1374,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans or enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have been exported accordingly to the request
@@ -1452,7 +1452,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans or enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have been exported accordingly to the request
@@ -1522,7 +1522,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Booleans
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter);
+				assertTrue(p instanceof Bool);
 			}
 
 			// Check that the model have been exported accordingly to the request
@@ -1624,7 +1624,7 @@ public class TestBenchmarkGeneratorCLI {
 
 			// Check that the parameters are all Boolean or Enumeratives
 			for (Parameter p : m.getParameters()) {
-				assertTrue(p instanceof BooleanParameter || p instanceof EnumerativeParameter);
+				assertTrue(p instanceof Bool || p instanceof Enumerative);
 			}
 
 			// Check that the model have not been exported

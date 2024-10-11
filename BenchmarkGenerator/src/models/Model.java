@@ -26,10 +26,16 @@ import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
 import org.sosy_lab.java_smt.api.SolverException;
 
+import ctwedge.ctWedge.Bool;
 import ctwedge.ctWedge.CitModel;
+import ctwedge.ctWedge.Enumerative;
+import ctwedge.ctWedge.Parameter;
+import ctwedge.ctWedge.Range;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
+import ctwedge.util.ParameterElementsGetterAsStrings;
+import ctwedge.util.ParameterSize;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
 import ctwedge.util.smt.SMTModelTranslator;
@@ -88,17 +94,16 @@ public class Model {
 		this.category = category;
 		this.config = new GeneratorConfiguration();
 	}
-	
+
 	/**
-	 * Set the generator configuration 
+	 * Set the generator configuration
 	 * 
 	 * @param config the configuration
 	 */
 	public void setGeneratorConfiguration(GeneratorConfiguration config) {
 		this.config = config;
 	}
-	
-	
+
 	/**
 	 * Set the generator configuration
 	 * 
@@ -159,8 +164,7 @@ public class Model {
 				ParameterToModelAdder.addBooleanParameter(this, names, parameterNumber);
 			else {
 				// Define a new enumerative parameter
-				nValues = Randomizer.generate(config.MIN_CARDINALITY,
-						config.MAX_CARDINALITY);
+				nValues = Randomizer.generate(config.MIN_CARDINALITY, config.MAX_CARDINALITY);
 				ParameterToModelAdder.addEnumerativeParameter(this, nValues, names, parameterNumber);
 			}
 			break;
@@ -176,18 +180,15 @@ public class Model {
 				break;
 			case 1:
 				// Define a new enumerative parameter
-				nValues = Randomizer.generate(config.MIN_CARDINALITY,
-						config.MAX_CARDINALITY);
+				nValues = Randomizer.generate(config.MIN_CARDINALITY, config.MAX_CARDINALITY);
 				ParameterToModelAdder.addEnumerativeParameter(this, nValues, names, parameterNumber);
 				break;
 			case 2:
 				// Define a new integer parameter
 				boolean computeParams = true;
 				while (computeParams) {
-					nValues = Randomizer.generate(config.MIN_CARDINALITY,
-							config.MAX_CARDINALITY - 1);
-					from = Randomizer.generate(config.LOWER_BOUND_INT,
-							config.UPPER_BOUND_INT);
+					nValues = Randomizer.generate(config.MIN_CARDINALITY, config.MAX_CARDINALITY - 1);
+					from = Randomizer.generate(config.LOWER_BOUND_INT, config.UPPER_BOUND_INT);
 
 					if (from <= from + nValues && from + nValues <= config.UPPER_BOUND_INT)
 						computeParams = false;
@@ -262,7 +263,14 @@ public class Model {
 		model = "Model " + this.name + "\nParameters:\n";
 
 		for (Parameter p : paramsList) {
-			model += p.toString();
+			if (p instanceof Bool)
+				model += p.getName() + ": Boolean \n";
+			else if (p instanceof Enumerative) {
+				List<String> values = ParameterElementsGetterAsStrings.instance.caseParameter(p);
+				model += p.getName() + ": {" + String.join(",", values) + "} \n";
+			} else {
+				model += p.getName() + ": [" + ((Range) p).getBegin() + " .. " + ((Range) p).getEnd() + "] \n";
+			}
 		}
 		if (!constraintsList.isEmpty()) {
 			model += "\nConstraints:\n";
@@ -312,7 +320,7 @@ public class Model {
 			// If the model contains at least one integer, we cannot deal with it. Throw an
 			// exception and manage it differently
 			for (Parameter p : paramsList)
-				if (p instanceof IntegerParameter)
+				if (p instanceof Range)
 					throw new NotConvertableModel("Computation of the ratio interrupted");
 
 			// First save the CTWedge file
@@ -366,7 +374,7 @@ public class Model {
 				} catch (InterruptedException e) {
 					f.delete();
 					throw new NotConvertableModel("Computation of the ratio interrupted");
-				} 
+				}
 				f.delete();
 			} catch (IOException e) {
 				f.delete();
@@ -401,8 +409,8 @@ public class Model {
 		validityTests.clear();
 		LOGGER.debug("Test validity ratio computed using Monte Carlo Approximation");
 		ModelUtils mu = new ModelUtils(loadModel);
-		int T = (int) Math.ceil((1 / config.RATIO_TEST)
-				* ((4 * Math.log(2 / (1 - config.P))) / (Math.pow(config.EPSILON, 2))));
+		int T = (int) Math
+				.ceil((1 / config.RATIO_TEST) * ((4 * Math.log(2 / (1 - config.P))) / (Math.pow(config.EPSILON, 2))));
 		for (int i = 0; i < T; i++) {
 			Test t = mu.getRandomTestFromModel();
 			RuleEvaluator evaluator = new RuleEvaluator(t);
@@ -445,8 +453,9 @@ public class Model {
 	public int getHighestCardinality() {
 		int max = 0;
 		for (Parameter p : paramsList) {
-			if (p.getCardinality() > max)
-				max = p.getCardinality();
+			int cardinality = ParameterSize.eInstance.caseParameter(p);
+			if (cardinality > max)
+				max = cardinality;
 		}
 		return max;
 	}
@@ -459,8 +468,9 @@ public class Model {
 	public int getLowestCardinality() {
 		int min = Integer.MAX_VALUE;
 		for (Parameter p : paramsList) {
-			if (p.getCardinality() < min)
-				min = p.getCardinality();
+			int cardinality = ParameterSize.eInstance.caseParameter(p);
+			if (cardinality < min)
+				min = cardinality;
 		}
 		return min;
 	}
@@ -558,6 +568,7 @@ public class Model {
 	private ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
 		// Build the CIT Model
 		CitModel citModel = Utility.loadModel(toString());
+		System.out.println(toString());
 
 		// Set up the SMT Solver context and parameters
 		Configuration config = Configuration.defaultConfiguration();
@@ -592,7 +603,7 @@ public class Model {
 	public List<Parameter> getParameters() {
 		return this.paramsList;
 	}
-	
+
 	/**
 	 * Removes a randomly chosen parameter from the model
 	 */
@@ -606,7 +617,7 @@ public class Model {
 	 * @param nConstraint the index of the constraint
 	 */
 	public void removeConstraint(int nConstraint) {
-		this.constraintsList.remove(nConstraint);		
+		this.constraintsList.remove(nConstraint);
 	}
 
 }

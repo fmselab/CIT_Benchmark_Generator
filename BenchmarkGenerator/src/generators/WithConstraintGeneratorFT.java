@@ -1,7 +1,11 @@
 package generators;
 
+import java.util.List;
+import java.util.Random;
+
+import ctwedge.ctWedge.Parameter;
+import ctwedge.util.ParameterElementsGetterAsStrings;
 import models.Model;
-import models.Parameter;
 import models.constraints.AtomicConstraint;
 import models.constraints.Constraint;
 import models.constraints.NotConstraint;
@@ -75,7 +79,9 @@ public class WithConstraintGeneratorFT extends WithoutConstraintGenerator  imple
 			// Build the new atomic constraint
 			Constraint c1 = new AtomicConstraint();
 			if (Randomizer.generate(0, 1) == 0 || !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
-				((AtomicConstraint) c1).setExpression(p.getName() + " = " + p.getRandomValue());
+				List<String> parameterValues = ParameterElementsGetterAsStrings.instance.caseParameter(p);
+				String value = parameterValues.get(new Random().nextInt(0, parameterValues.size()));
+				((AtomicConstraint) c1).setExpression(p.getName() + " = " + value);
 			} else {
 				((AtomicConstraint) c1)
 						.setExpression(p.getName() + " = " + m.getRandomParamenterOfClass(p).getName());

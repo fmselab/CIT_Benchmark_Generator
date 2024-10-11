@@ -4,14 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
+import ctwedge.ctWedge.Bool;
 import ctwedge.ctWedge.CitModel;
+import ctwedge.ctWedge.Enumerative;
+import ctwedge.ctWedge.Parameter;
 import ctwedge.generator.acts.ACTSConstraintTranslator;
+import ctwedge.util.ParameterElementsGetterAsStrings;
 import ctwedge.util.ext.Utility;
-import models.BooleanParameter;
-import models.EnumerativeParameter;
 import models.Model;
-import models.Parameter;
 
 /**
  * This class provides a translator for models into ACTS format without any
@@ -57,16 +59,17 @@ public class ACTSModelTranslator {
 			for (Parameter parameter : model.getParameters()) {
 				// Check the parameter type
 				String ptypeStr = "";
-				if (parameter instanceof BooleanParameter)
+				if (parameter instanceof Bool)
 					ptypeStr = "boolean";
-				else if (parameter instanceof EnumerativeParameter)
+				else if (parameter instanceof Enumerative)
 					ptypeStr = "enum";
 				else
 					ptypeStr = "int";
 
 				ArrayList<String> validValues = new ArrayList<String>();
-				for (int i = 0; i < parameter.getValues().size(); i++) {
-					validValues.add(parameter.getValues().get(i));
+				List<String> values = ParameterElementsGetterAsStrings.instance.caseParameter(parameter);
+				for (int i = 0; i < values.size(); i++) {
+					validValues.add(values.get(i));
 				}
 				origStr = validValues.toString();
 				String valueStr = origStr.substring(1, origStr.length() - 1);
