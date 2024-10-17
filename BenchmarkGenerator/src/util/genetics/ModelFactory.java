@@ -24,7 +24,9 @@ public class ModelFactory extends AbstractCandidateFactory<Model> {
 			int oldNBenchmarks = this.config.N_BENCHMARKS;
 			this.config.CHECK_TEST_RATIO = false;
 			this.config.N_BENCHMARKS = 1;
-			cliGenerator.generateIPMs(this.config);
+			do {
+				cliGenerator.generateIPMs(this.config);
+			} while (cliGenerator.getModelsList().size() == 0);
 			this.config.N_BENCHMARKS = oldNBenchmarks;
 			System.out.println("*******************" + cliGenerator.getModelsList().size());
 			m = cliGenerator.getModelsList().get(0);

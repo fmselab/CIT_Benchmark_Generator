@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import ctwedge.ctWedge.Constraint;
@@ -50,7 +48,7 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 		List<Constraint> constraintList = mTemp.getConstraints();
 		final Set<Constraint> constraintsWithOperators = new HashSet<>();
 		final Expression fromE = from;
-		// List of constraints containing the searched
+		// List of constraints containing the searched operator
 		constraintList.stream().forEach(x -> x.eAllContents().forEachRemaining(z -> {
 			if (z.getClass().equals(fromE.getClass()))
 				if (fromE instanceof ImpliesExpression && z instanceof ImpliesExpression) {
@@ -68,19 +66,9 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 			int constraintIndexInList = mTemp.getConstraints()
 					.indexOf(constraintsWithOperators.toArray()[constraintIndexToUpdate]);
 
-			// Count how many operators there are
-			int countOperator = StringUtils.countMatches(constraintList.get(constraintIndexToUpdate).toString(), from);
-			// Choose which one to update
-			int operatorIndex = rng.nextInt(0, countOperator);
-
-			int i = 0;
-			for (Constraint c : m.getConstraints()) {
-				if (c.toString().equals(constraintList.get(constraintIndexToUpdate).toString())) {
-
-					break;
-				}
-				i++;
-			}
+			ConstraintSubstitutorVisitor visitor = new ConstraintSubstitutorVisitor(from, to);
+			m.changeConstraint(m.getConstraints().get(constraintIndexInList),
+					visitor.doSwitch(m.getConstraints().get(constraintIndexInList)));
 		}
 		return mTemp;
 	}

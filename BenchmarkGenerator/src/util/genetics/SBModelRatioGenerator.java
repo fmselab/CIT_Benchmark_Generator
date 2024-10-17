@@ -19,6 +19,10 @@ import generators.GeneratorConfiguration;
 import generators.Track;
 import models.Model;
 import util.genetics.mutations.ConstraintAdderMutation;
+import util.genetics.mutations.ConstraintAndToOrMutation;
+import util.genetics.mutations.ConstraintDblImpliesToImpliesMutation;
+import util.genetics.mutations.ConstraintImpliesToDblImpliesMutation;
+import util.genetics.mutations.ConstraintOrToAndMutation;
 import util.genetics.mutations.ConstraintRemoverMutation;
 import util.genetics.mutations.ParameterAdderMutation;
 import util.genetics.mutations.ConstraintSubstitutionMutation;
@@ -58,6 +62,10 @@ public final class SBModelRatioGenerator {
 		operators.add(new ConstraintAdderMutation(0.2f));
 		operators.add(new ConstraintRemoverMutation(0.4f));
 		operators.add(new ConstraintSubstitutionMutation(0.4f));
+		operators.add(new ConstraintAndToOrMutation(0.4f));
+		operators.add(new ConstraintOrToAndMutation(0.4f));
+		operators.add(new ConstraintImpliesToDblImpliesMutation(0.4f));
+		operators.add(new ConstraintDblImpliesToImpliesMutation(0.4f));
 		// operators.add(new ParameterRemoverMutation());
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
 
