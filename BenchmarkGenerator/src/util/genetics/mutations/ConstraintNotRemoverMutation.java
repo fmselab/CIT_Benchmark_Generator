@@ -9,23 +9,23 @@ import java.util.Set;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import ctwedge.ctWedge.Constraint;
-import ctwedge.ctWedge.Expression;
-import ctwedge.ctWedge.ImpliesExpression;
+import ctwedge.ctWedge.NotExpression;
+import generators.Track;
 import models.Model;
 
-public abstract class ConstraintOperatorSubstitutionMutation implements EvolutionaryOperator<Model> {
+public class ConstraintNotRemoverMutation implements EvolutionaryOperator<Model> {
 
 	/**
 	 * The probability for applying the mutation
 	 */
-	float probability;
+	private float probability;
 
 	/**
-	 * Builds a new ConstraintOperatorSubstitutionMutation object
+	 * Builds a new ConstraintRemoverMutation object
 	 * 
 	 * @param p the probability for applying the mutation
 	 */
-	public ConstraintOperatorSubstitutionMutation(float p) {
+	public ConstraintNotRemoverMutation(float p) {
 		this.probability = p;
 	}
 
@@ -40,24 +40,22 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 
 	}
 
-	abstract Model mutateModel(Model m, Random rng);
+	private Model mutateModel(Model m, Random rng) {
+		Track track = m.getGeneratorConfiguration().TRACK;
+		// Unconstrained tracks do not support this mutation
+		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
+			return m;
+		}
 
-	Model changeOperator(Model m, Random rng, Expression from, Expression to) {
+		// Check the probability
+		if (rng.nextFloat(0, 1) < probability)
+			return m;
+
 		Model mTemp = m;
-
-		List<Constraint> constraintList = mTemp.getConstraints();
 		final Set<Constraint> constraintsWithOperators = new HashSet<>();
-		final Expression fromE = from;
-		// List of constraints containing the searched operator
-		constraintList.stream().forEach(x -> x.eAllContents().forEachRemaining(z -> {
-			if (z.getClass().equals(fromE.getClass()))
-				if (fromE instanceof ImpliesExpression && z instanceof ImpliesExpression) {
-					if (((ImpliesExpression) z).getOp().equals(((ImpliesExpression) fromE).getOp())) {
-						constraintsWithOperators.add(x);
-					}
-				} else {
-					constraintsWithOperators.add(x);
-				}
+		m.getConstraints().stream().forEach(x -> x.eAllContents().forEachRemaining(z -> {
+			if (z instanceof NotExpression)
+				constraintsWithOperators.add(x);
 		}));
 
 		if (constraintsWithOperators.size() > 0) {
@@ -65,8 +63,9 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 			int constraintIndexToUpdate = rng.nextInt(0, constraintsWithOperators.size());
 			int constraintIndexInList = mTemp.getConstraints()
 					.indexOf(constraintsWithOperators.toArray()[constraintIndexToUpdate]);
+			
 
-			ConstraintSubstitutorVisitor visitor = new ConstraintSubstitutorVisitor(from, to);
+			ConstraintNotRemoverVisitor visitor = new ConstraintNotRemoverVisitor();
 			mTemp.changeConstraint(mTemp.getConstraints().get(constraintIndexInList),
 					visitor.doSwitch(mTemp.getConstraints().get(constraintIndexInList)));
 		}

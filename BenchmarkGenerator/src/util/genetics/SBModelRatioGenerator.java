@@ -22,10 +22,12 @@ import util.genetics.mutations.ConstraintAdderMutation;
 import util.genetics.mutations.ConstraintAndToOrMutation;
 import util.genetics.mutations.ConstraintDblImpliesToImpliesMutation;
 import util.genetics.mutations.ConstraintImpliesToDblImpliesMutation;
+import util.genetics.mutations.ConstraintNotRemoverMutation;
 import util.genetics.mutations.ConstraintOrToAndMutation;
 import util.genetics.mutations.ConstraintRemoverMutation;
 import util.genetics.mutations.ParameterAdderMutation;
 import util.genetics.mutations.ConstraintSubstitutionMutation;
+import util.genetics.mutations.ConstraintToNotMutation;
 
 /**
  * Simple evolutionary algorithm that evolves a population of randomly-generated
@@ -66,6 +68,8 @@ public final class SBModelRatioGenerator {
 		operators.add(new ConstraintOrToAndMutation(0.4f));
 		operators.add(new ConstraintImpliesToDblImpliesMutation(0.4f));
 		operators.add(new ConstraintDblImpliesToImpliesMutation(0.4f));
+		operators.add(new ConstraintNotRemoverMutation(0.4f));
+		operators.add(new ConstraintToNotMutation(0.4f));
 		// operators.add(new ParameterRemoverMutation());
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
 
