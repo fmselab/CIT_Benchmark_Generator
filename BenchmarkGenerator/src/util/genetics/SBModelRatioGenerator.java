@@ -26,6 +26,7 @@ import util.genetics.mutations.ConstraintNotRemoverMutation;
 import util.genetics.mutations.ConstraintOrToAndMutation;
 import util.genetics.mutations.ConstraintRemoverMutation;
 import util.genetics.mutations.ParameterAdderMutation;
+import util.genetics.mutations.ParameterExtenderMutation;
 import util.genetics.mutations.ConstraintSubstitutionMutation;
 import util.genetics.mutations.ConstraintToNotMutation;
 
@@ -59,7 +60,7 @@ public final class SBModelRatioGenerator {
 		ModelFactory factory = new ModelFactory();
 		factory.setGeneratorConfiguration(config);
 
-		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>(2);
+		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>();
 		operators.add(new ParameterAdderMutation(0.3f));
 		operators.add(new ConstraintAdderMutation(0.2f));
 		operators.add(new ConstraintRemoverMutation(0.4f));
@@ -70,6 +71,7 @@ public final class SBModelRatioGenerator {
 		operators.add(new ConstraintDblImpliesToImpliesMutation(0.4f));
 		operators.add(new ConstraintNotRemoverMutation(0.4f));
 		operators.add(new ConstraintToNotMutation(0.4f));
+		operators.add(new ParameterExtenderMutation(0.4f));
 		// operators.add(new ParameterRemoverMutation());
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
 
@@ -77,7 +79,7 @@ public final class SBModelRatioGenerator {
 				new ModelEvaluator(config.RATIO_TEST), new RouletteWheelSelection(), new MersenneTwisterRNG());
 
 		engine.addEvolutionObserver(new EvolutionLogger());
-		return engine.evolve(50, // 100 individuals in the population.
+		return engine.evolve(10, // 100 individuals in the population.
 				5, // 5% elitism.
 				new TargetFitness(0, false));
 
