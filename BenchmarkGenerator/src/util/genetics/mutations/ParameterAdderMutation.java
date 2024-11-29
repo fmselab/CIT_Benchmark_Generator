@@ -43,11 +43,13 @@ public class ParameterAdderMutation implements EvolutionaryOperator<Model> {
 		if (rng.nextFloat(0, 1) < probability)
 			return m;
 
-		int nParams = rng.nextInt(0, m.getGeneratorConfiguration().N_PARAMS_MAX - m.getParameters().size());
-		System.out.println("****** Adding " + nParams + " parameters");
-		for (int i = 0; i < nParams; i++)
-			mTemp.addNewRandomParameter(
-					(ArrayList<String>) m.getParameters().stream().map(x -> x.getName()).collect(Collectors.toList()));
+		if (m.getParameters().size() < m.getGeneratorConfiguration().N_PARAMS_MAX) {
+			int nParams = rng.nextInt(0, m.getGeneratorConfiguration().N_PARAMS_MAX - m.getParameters().size());
+			System.out.println("****** Adding " + nParams + " parameters");
+			for (int i = 0; i < nParams; i++)
+				mTemp.addNewRandomParameter((ArrayList<String>) m.getParameters().stream().map(x -> x.getName())
+						.collect(Collectors.toList()));
+		}
 		return mTemp;
 	}
 

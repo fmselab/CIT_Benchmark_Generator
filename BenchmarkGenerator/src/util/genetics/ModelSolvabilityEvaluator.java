@@ -33,10 +33,12 @@ public class ModelSolvabilityEvaluator implements FitnessEvaluator<Model> {
 	@Override
 	public double getFitness(Model candidate, List<? extends Model> population) {
 		try {
-			if (!candidate.isSolvable())
-				return 1;
+			if (!candidate.isSolvable()) {
+				return candidate.getNotCardinality();
+			}
 			return 0;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 1;
 		}
 	}

@@ -16,6 +16,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.xtext.EcoreUtil2;
 import org.sosy_lab.common.ShutdownManager;
 import org.sosy_lab.common.configuration.Configuration;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -30,10 +31,14 @@ import org.sosy_lab.java_smt.api.SolverException;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.ctWedge.Constraint;
+import ctwedge.ctWedge.CtWedgeFactory;
 import ctwedge.ctWedge.CtWedgePackage;
+import ctwedge.ctWedge.Expression;
+import ctwedge.ctWedge.NotExpression;
 import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CitModelImpl;
+import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
@@ -84,8 +89,10 @@ public class Model extends CitModelImpl {
 	 */
 	public Model(Category category) {
 		super();
-		parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, CtWedgePackage.CIT_MODEL__PARAMETERS);
-		constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, CtWedgePackage.CIT_MODEL__CONSTRAINTS);
+		parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this,
+				CtWedgePackage.CIT_MODEL__PARAMETERS);
+		constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this,
+				CtWedgePackage.CIT_MODEL__CONSTRAINTS);
 		validityTests = new ArrayList<Integer>();
 		name = "";
 		isRatioExact = false;
@@ -257,7 +264,8 @@ public class Model extends CitModelImpl {
 	 * @return the model as a string in CTWedge format
 	 */
 	public String toString() {
-		return new ModelUtils(this).serializeToString().replace(" Constraints :", " \nConstraints :").replace(" Parameters :", " \nParameters :");
+		return new ModelUtils(this).serializeToString().replace(" Constraints :", " \nConstraints :")
+				.replace(" Parameters :", " \nParameters :");
 	}
 
 	/**
@@ -525,8 +533,9 @@ public class Model extends CitModelImpl {
 			ProverEnvironment prover = buildProverEnvironmentFromModel();
 
 			// Verify if it is empty
-			if (prover.isUnsat())
+			if (prover.isUnsat()) {
 				isSolvable = false;
+			}
 			else
 				isSolvable = true;
 		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
@@ -535,15 +544,37 @@ public class Model extends CitModelImpl {
 		return isSolvable;
 	}
 
+	public int getNotCardinality() {
+		// Build the CIT Model
+		Model m = new Model(this.category);
+		m.setName(this.getName());
+		for (Parameter p : this.getParameters())
+			m.addParameter(EcoreUtil2.cloneIfContained(p));
+
+		for (int i = 0; i < this.getConstraints().size(); i++) {
+			Expression ex = EcoreUtil2.cloneIfContained((Expression)this.getConstraints().get(i));
+			m.addConstraint(ex);
+		}
+
+		try {
+			ProverEnvironment prover = buildProverEnvironmentFromModel(m);
+
+			if (prover.isUnsat()) {
+				return Integer.parseInt(prover.getStatistics().get(":Core>Propagations"));
+			}
+		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 	/**
 	 * Builds the prover environment from the model
 	 * 
 	 * @return the prover environment
 	 * @throws InvalidConfigurationException
 	 */
-	private ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
-		// Build the CIT Model
-		CitModel citModel = this;
+	private ProverEnvironment buildProverEnvironmentFromModel(CitModel citModel) throws InvalidConfigurationException {
 
 		// Set up the SMT Solver context and parameters
 		Configuration config = Configuration.defaultConfiguration();
@@ -559,6 +590,16 @@ public class Model extends CitModelImpl {
 
 		prover = trans.createCtxFromModel(citModel, citModel.getConstraints(), ctx, prover);
 		return prover;
+	}
+
+	/**
+	 * Builds the prover environment from the model
+	 * 
+	 * @return the prover environment
+	 * @throws InvalidConfigurationException
+	 */
+	private ProverEnvironment buildProverEnvironmentFromModel() throws InvalidConfigurationException {
+		return buildProverEnvironmentFromModel(this);
 	}
 
 	/**

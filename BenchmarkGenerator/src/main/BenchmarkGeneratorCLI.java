@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import org.apache.log4j.Level;
@@ -13,6 +14,14 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
+import org.uncommons.maths.random.MersenneTwisterRNG;
+import org.uncommons.watchmaker.framework.AbstractEvolutionEngine;
+import org.uncommons.watchmaker.framework.EvolutionEngine;
+import org.uncommons.watchmaker.framework.EvolutionaryOperator;
+import org.uncommons.watchmaker.framework.GenerationalEvolutionEngine;
+import org.uncommons.watchmaker.framework.operators.EvolutionPipeline;
+import org.uncommons.watchmaker.framework.selection.RouletteWheelSelection;
+import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,6 +42,18 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import util.Dictionary;
 import util.ModelConfigurationExtractor;
+import util.genetics.ModelFactory;
+import util.genetics.mutations.ConstraintAdderMutation;
+import util.genetics.mutations.ConstraintAndToOrMutation;
+import util.genetics.mutations.ConstraintDblImpliesToImpliesMutation;
+import util.genetics.mutations.ConstraintImpliesToDblImpliesMutation;
+import util.genetics.mutations.ConstraintNotRemoverMutation;
+import util.genetics.mutations.ConstraintOrToAndMutation;
+import util.genetics.mutations.ConstraintRemoverMutation;
+import util.genetics.mutations.ConstraintSubstitutionMutation;
+import util.genetics.mutations.ConstraintToNotMutation;
+import util.genetics.mutations.ParameterAdderMutation;
+import util.genetics.mutations.ParameterExtenderMutation;
 
 public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
@@ -308,7 +329,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN, config);
+			if (config.USE_SEARCH)
+				m1 = generateWithGeneratorAndSearch(g, Category.ONLY_BOOLEAN, config);
+			else
+				m1 = generateWithGenerator(g, Category.ONLY_BOOLEAN, config, config.CHECK_SOLVABLE);
 			if (m1 != null) {
 				m1.setName(Track.BOOLC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
@@ -337,6 +361,28 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @throws IOException
 	 */
 	private Model generateWithGenerator(Generator generator, Category category, GeneratorConfiguration config)
+			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
+		return generateWithGenerator(generator, category, config, true);
+	}
+
+	/**
+	 * Generates a model with a given generator and category, and verifies its
+	 * solvability
+	 * 
+	 * @param generator       the generator
+	 * @param category        the category
+	 * @param checkTupleRatio check the tuple validity ratio?
+	 * @param checkTestRatio  check the test validity ratio?
+	 * @param config          the generator configuration
+	 * @param checkSolvable   whether to chech or not the solvabillity
+	 * @return the model
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
+	private Model generateWithGenerator(Generator generator, Category category, GeneratorConfiguration config,
+			Boolean checkSolvable)
 			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
 		boolean isSolvable = false;
 		Model m = null;
@@ -379,11 +425,54 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 				}
 			}
 			i++;
-			if (!isSolvable) {
+			if (!isSolvable && checkSolvable) {
 				LOGGER.debug("Generated a non solvable / compliant model. Trying another one");
 				m = null;
 			}
-		} while (!isSolvable && i < config.N_ATTEMPTS);
+		} while ((checkSolvable && !isSolvable) && i < config.N_ATTEMPTS);
+		return m;
+	}
+
+	/**
+	 * Generates a model with a given generator and category, and verifies its
+	 * solvability
+	 * 
+	 * @param generator       the generator
+	 * @param category        the category
+	 * @param checkTupleRatio check the tuple validity ratio?
+	 * @param checkTestRatio  check the test validity ratio?
+	 * @param config          the generator configuration
+	 * @return the model
+	 * @throws SolverException
+	 * @throws InvalidConfigurationException
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
+	private Model generateWithGeneratorAndSearch(Generator generator, Category category, GeneratorConfiguration config)
+			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
+		// Set evolution strategies
+		ModelFactory factory = new ModelFactory();
+		factory.setGeneratorConfiguration(config);
+		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>();
+		operators.add(new ParameterAdderMutation(config.PROBABILITY_MUTATION));
+		//operators.add(new ConstraintAdderMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintRemoverMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintSubstitutionMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintAndToOrMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintOrToAndMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintImpliesToDblImpliesMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintDblImpliesToImpliesMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintNotRemoverMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ConstraintToNotMutation(config.PROBABILITY_MUTATION));
+		operators.add(new ParameterExtenderMutation(config.PROBABILITY_MUTATION));
+		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
+		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline, config.FITNESS,
+				new RouletteWheelSelection(), new MersenneTwisterRNG());
+		((AbstractEvolutionEngine<Model>) engine).setSingleThreaded(true);
+		Model m = engine.evolve(10, 9, new TargetFitness(0, false));
+		if (m == null || !m.isSolvable())
+			return null;
+
 		return m;
 	}
 
@@ -411,7 +500,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config);
+			if (config.USE_SEARCH)
+				m1 = generateWithGeneratorAndSearch(g, Category.ALSO_ENUMS, config);
+			else
+				m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config);
 			if (m1 != null) {
 				m1.setName(Track.MCAC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
@@ -448,7 +540,10 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
 			// Keep generating the same model until a solvable one is found
-			m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL, config);
+			if (config.USE_SEARCH)
+				m1 = generateWithGeneratorAndSearch(g, Category.CONSTRAINTS_WITH_RELATIONAL, config);
+			else
+				m1 = generateWithGenerator(g, Category.CONSTRAINTS_WITH_RELATIONAL, config);
 			if (m1 != null) {
 				m1.setName(Track.NUMC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());
@@ -587,5 +682,12 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		ArrayList<Dictionary> dict = new Gson().fromJson(br, listOfMyClassObject);
 		config.DICTIONARY = dict;
 		return config;
+	}
+
+	/**
+	 * Clears the model list
+	 */
+	public void clearModelsList() {
+		this.modelsList.clear();
 	}
 }

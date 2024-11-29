@@ -2,6 +2,9 @@ package generators;
 
 import java.util.ArrayList;
 
+import org.uncommons.watchmaker.framework.FitnessEvaluator;
+
+import models.Model;
 import util.Dictionary;
 
 /**
@@ -12,6 +15,7 @@ import util.Dictionary;
  */
 public class GeneratorConfiguration {
 
+	public Boolean CHECK_SOLVABLE = true;
 	public int N_BENCHMARKS = 1;
 	public int N_PARAMS_MAX = 500;
 	public int N_PARAMS_MIN = 1;
@@ -40,5 +44,8 @@ public class GeneratorConfiguration {
 	public boolean FORBIDDEN_TUPLES = false;
 	public boolean CNF = false;
 	public ArrayList<Dictionary> DICTIONARY = null;
+	public boolean USE_SEARCH = false;
+	public float PROBABILITY_MUTATION = 0;
+	public FitnessEvaluator<Model> FITNESS = null;
 
 }

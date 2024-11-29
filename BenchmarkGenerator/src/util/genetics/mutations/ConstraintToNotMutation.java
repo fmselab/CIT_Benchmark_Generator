@@ -54,7 +54,7 @@ public class ConstraintToNotMutation implements EvolutionaryOperator<Model> {
 		// Constrained tracks
 		Model mTemp = m;
 
-		int nConstraint = rng.nextInt(0, m.getConstraints().size());
+		int nConstraint = rng.nextInt(0, m.getConstraints().size()-1);
 		System.out.println("****** Negating the " + nConstraint + "-th constraint");
 
 		CtWedgeFactory factory = new CtWedgeFactoryImpl();

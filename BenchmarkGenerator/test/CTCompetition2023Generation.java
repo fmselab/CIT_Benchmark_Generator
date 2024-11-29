@@ -35,10 +35,6 @@ public class CTCompetition2023Generation {
 		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
 		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
 
-		// Using v in the range [2, 15]
-		config.MIN_CARDINALITY = 2;
-		config.MAX_CARDINALITY = 15;
-
 		// Generate
 		generator.generateBOOLC(config);
 	}
