@@ -54,20 +54,22 @@ public class ConstraintSubstitutionMutation implements EvolutionaryOperator<Mode
 
 		// Constrained tracks
 		Model mTemp = m;
-		int nConstraint = rng.nextInt(0, m.getConstraints().size());
-		GeneratorWithConstraintsInterface gen;
-
-		if (m.getGeneratorConfiguration().CNF)
-			gen = new WithConstraintGeneratorCNF();
-		else if (m.getGeneratorConfiguration().FORBIDDEN_TUPLES)
-			gen = new WithConstraintGeneratorFT();
-		else
-			gen = new WithConstraintGenerator();
-
-		int complexity = rng.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
-				m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY + 1);
-		Constraint c = gen.generateConstraintFromComplexity(mTemp, complexity);
-		mTemp.changeConstraint(m.getConstraints().get(nConstraint), c);
+		if (m.getConstraints().size() > 0) {
+			int nConstraint = rng.nextInt(0, m.getConstraints().size());
+			GeneratorWithConstraintsInterface gen;
+	
+			if (m.getGeneratorConfiguration().CNF)
+				gen = new WithConstraintGeneratorCNF();
+			else if (m.getGeneratorConfiguration().FORBIDDEN_TUPLES)
+				gen = new WithConstraintGeneratorFT();
+			else
+				gen = new WithConstraintGenerator();
+	
+			int complexity = rng.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
+					m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY + 1);
+			Constraint c = gen.generateConstraintFromComplexity(mTemp, complexity);
+			mTemp.changeConstraint(m.getConstraints().get(nConstraint), c);
+		}
 
 		return mTemp;
 	}

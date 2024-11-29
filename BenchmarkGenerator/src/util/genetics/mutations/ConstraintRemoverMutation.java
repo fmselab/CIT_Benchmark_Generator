@@ -49,11 +49,13 @@ public class ConstraintRemoverMutation implements EvolutionaryOperator<Model> {
 
 		// Constrained tracks
 		Model mTemp = m;
-
-		int nConstraint = rng.nextInt(0, m.getConstraints().size());
-		System.out.println("****** Removing the " + nConstraint + "-th constraint");
-
-		mTemp.removeConstraint(nConstraint);
+		
+		if (m.getConstraints().size() > m.getGeneratorConfiguration().N_CONSTRAINTS_MIN) {
+			int nConstraint = rng.nextInt(0, m.getConstraints().size());
+			System.out.println("****** Removing the " + nConstraint + "-th constraint");
+	
+			mTemp.removeConstraint(nConstraint);
+		}
 
 		return mTemp;
 	}
