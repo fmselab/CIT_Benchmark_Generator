@@ -31,14 +31,11 @@ import org.sosy_lab.java_smt.api.SolverException;
 
 import ctwedge.ctWedge.CitModel;
 import ctwedge.ctWedge.Constraint;
-import ctwedge.ctWedge.CtWedgeFactory;
 import ctwedge.ctWedge.CtWedgePackage;
 import ctwedge.ctWedge.Expression;
-import ctwedge.ctWedge.NotExpression;
 import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CitModelImpl;
-import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
