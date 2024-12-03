@@ -14,6 +14,7 @@ import ctwedge.ctWedge.ImpliesOperator;
 import ctwedge.ctWedge.NotExpression;
 import ctwedge.ctWedge.Operators;
 import ctwedge.ctWedge.Parameter;
+import ctwedge.ctWedge.RelationalExpression;
 import ctwedge.ctWedge.impl.AndExpressionImpl;
 import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import ctwedge.ctWedge.impl.ImpliesExpressionImpl;
@@ -94,148 +95,152 @@ public class WithConstraintGenerator extends WithoutConstraintGenerator implemen
 			List<String> parameterValues = ParameterElementsGetterAsStrings.instance.caseParameter(p);
 			String value = parameterValues.get(new Random().nextInt(0, parameterValues.size()));
 
-			EqualExpression exp = factory.createEqualExpression();
+			Expression exp = factory.createEqualExpression();
 			switch (operation) {
 			case 0:
 				// =
-				exp.setOp(Operators.EQ);
+				((EqualExpression)exp).setOp(Operators.EQ);
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0
 						|| !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(value);
-					exp.setRight(right);
+					((EqualExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((EqualExpression)exp).setLeft(left);
 				} else {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(m.getRandomParamenterOfClass(p).getName());
-					exp.setRight(right);
+					((EqualExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((EqualExpression)exp).setLeft(left);
 				}
 
 			case 1:
 				// !=
-				exp.setOp(Operators.NE);
+				((EqualExpression)exp).setOp(Operators.NE);
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0
 						|| !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(value);
-					exp.setRight(right);
+					((EqualExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((EqualExpression)exp).setLeft(left);
 				} else {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(m.getRandomParamenterOfClass(p).getName());
-					exp.setRight(right);
+					((EqualExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((EqualExpression)exp).setLeft(left);
 				}
 				break;
 
 			case 2:
 				// >
-				exp.setOp(Operators.GT);
+				exp = factory.createRelationalExpression();
+				((RelationalExpression)exp).setOp(Operators.GT);
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0
 						|| !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(value);
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				} else {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(m.getRandomParamenterOfClass(p).getName());
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				}
 				break;
 
 			case 3:
 				// >=
-				exp.setOp(Operators.GE);
+				exp = factory.createRelationalExpression();
+				((RelationalExpression)exp).setOp(Operators.GE);
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0
 						|| !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(value);
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				} else {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(m.getRandomParamenterOfClass(p).getName());
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				}
 				break;
 
 			case 4:
 				// <
-				exp.setOp(Operators.LT);
+				exp = factory.createRelationalExpression();
+				((RelationalExpression)exp).setOp(Operators.LT);
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0
 						|| !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(value);
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				} else {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(m.getRandomParamenterOfClass(p).getName());
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				}
 				break;
 
 			case 5:
 				// <=
-				exp.setOp(Operators.LE);
+				exp = factory.createRelationalExpression();
+				((RelationalExpression)exp).setOp(Operators.LE);
 				// 50% comparison between parameters, 50% between parameter and its value
 				if (Randomizer.generate(0, 1) == 0
 						|| !m.getGeneratorConfiguration().USE_CONSTRAINTS_BETWEEN_PARAMETERS) {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(value);
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				} else {
 					AtomicPredicate right = factory.createAtomicPredicate();
 					right.setName(m.getRandomParamenterOfClass(p).getName());
-					exp.setRight(right);
+					((RelationalExpression)exp).setRight(right);
 
 					AtomicPredicate left = factory.createAtomicPredicate();
 					left.setName(p.getName());
-					exp.setLeft(left);
+					((RelationalExpression)exp).setLeft(left);
 				}
 				break;
 			}

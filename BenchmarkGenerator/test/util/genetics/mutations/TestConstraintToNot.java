@@ -1,0 +1,170 @@
+package util.genetics.mutations;
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+import java.util.Random;
+
+import org.junit.Test;
+import org.sosy_lab.common.configuration.InvalidConfigurationException;
+import org.sosy_lab.java_smt.api.SolverException;
+
+import ctwedge.ctWedge.NotExpression;
+import generators.GeneratorConfiguration;
+import generators.Track;
+import main.BenchmarkGeneratorCLI;
+import models.Model;
+
+public class TestConstraintToNot {
+	@Test
+	public void test_mutateModel_MCAC()
+			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		Model m;
+		// Using k in the range [6, 30]
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
+		// Using c in the range [1, 100]
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
+		// Using d in the range [1, 20]
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		// Using v in the range [2, 15]
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
+		// Do not export models as files
+		config.ALWAYS_EXPORT = false;
+		config.N_ATTEMPTS = 10;
+		config.N_BENCHMARKS = 1;
+		config.TRACK = Track.MCAC;
+
+		BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
+		do {
+			generator.generateIPMs(config);
+		} while (generator.getModelsList().size() == 0);
+		m = generator.getModelsList().get(0);
+		Random rng = new Random();
+		ConstraintToNotMutation pam = new ConstraintToNotMutation(1.0f);
+		Model mTemp = pam.mutateModel(m, rng);
+		// The number of constraints must not change
+		assert (mTemp.getConstraints().size() == m.getConstraints().size());
+
+		// Now count the number of nots in old constraints
+		int oldNots = 0;
+		for (int i = 0; i < m.getConstraints().size(); i++) {
+			if (m.getConstraints().get(i) instanceof NotExpression)
+				oldNots++;
+		}
+
+		// Now count the number of nots in new constraints
+		int newNots = 0;
+		for (int i = 0; i < mTemp.getConstraints().size(); i++) {
+			if (mTemp.getConstraints().get(i) instanceof NotExpression)
+				newNots++;
+		}
+		// The new model must have one additional not
+		assertEquals(oldNots, newNots - 1);
+	}
+
+	@Test
+	public void test_mutateModel_BOOLC()
+			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		Model m;
+		// Using k in the range [6, 30]
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
+		// Using c in the range [1, 100]
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
+		// Using d in the range [1, 20]
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		// Using v in the range [2, 15]
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
+		// Do not export models as files
+		config.ALWAYS_EXPORT = false;
+		config.N_ATTEMPTS = 10;
+		config.N_BENCHMARKS = 1;
+		config.TRACK = Track.BOOLC;
+
+		BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
+		do {
+			generator.generateIPMs(config);
+		} while (generator.getModelsList().size() == 0);
+		m = generator.getModelsList().get(0);
+		Random rng = new Random();
+		ConstraintToNotMutation pam = new ConstraintToNotMutation(1.0f);
+		Model mTemp = pam.mutateModel(m, rng);
+		// The number of constraints must not change
+		assert (mTemp.getConstraints().size() == m.getConstraints().size());
+
+		// Now count the number of nots in old constraints
+		int oldNots = 0;
+		for (int i = 0; i < m.getConstraints().size(); i++) {
+			if (m.getConstraints().get(i) instanceof NotExpression)
+				oldNots++;
+		}
+
+		// Now count the number of nots in new constraints
+		int newNots = 0;
+		for (int i = 0; i < mTemp.getConstraints().size(); i++) {
+			if (mTemp.getConstraints().get(i) instanceof NotExpression)
+				newNots++;
+		}
+		// The new model must have one additional not
+		assertEquals(oldNots, newNots - 1);
+	}
+
+	@Test
+	public void test_mutateModel_NUMC()
+			throws IOException, InvalidConfigurationException, SolverException, InterruptedException {
+		GeneratorConfiguration config = new GeneratorConfiguration();
+		Model m;
+		// Using k in the range [6, 30]
+		config.N_PARAMS_MAX = 30;
+		config.N_PARAMS_MIN = 6;
+		// Using c in the range [1, 100]
+		config.N_CONSTRAINTS_MIN = 1;
+		config.N_CONSTRAINTS_MAX = 100;
+		// Using d in the range [1, 20]
+		config.MIN_CONSTRAINTS_COMPLEXITY = 1;
+		config.MAX_CONSTRAINTS_COMPLEXITY = 20;
+		// Using v in the range [2, 15]
+		config.MIN_CARDINALITY = 2;
+		config.MAX_CARDINALITY = 15;
+		// Do not export models as files
+		config.ALWAYS_EXPORT = false;
+		config.N_ATTEMPTS = 10;
+		config.N_BENCHMARKS = 1;
+		config.TRACK = Track.NUMC;
+
+		BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
+		do {
+			generator.generateIPMs(config);
+		} while (generator.getModelsList().size() == 0);
+		m = generator.getModelsList().get(0);
+		Random rng = new Random();
+		ConstraintToNotMutation pam = new ConstraintToNotMutation(1.0f);
+		Model mTemp = pam.mutateModel(m, rng);
+		// The number of constraints must not change
+		assert (mTemp.getConstraints().size() == m.getConstraints().size());
+
+		// Now count the number of nots in old constraints
+		int oldNots = 0;
+		for (int i = 0; i < m.getConstraints().size(); i++) {
+			if (m.getConstraints().get(i) instanceof NotExpression)
+				oldNots++;
+		}
+
+		// Now count the number of nots in new constraints
+		int newNots = 0;
+		for (int i = 0; i < mTemp.getConstraints().size(); i++) {
+			if (mTemp.getConstraints().get(i) instanceof NotExpression)
+				newNots++;
+		}
+		// The new model must have one additional not
+		assertEquals(oldNots, newNots - 1);
+	}
+}

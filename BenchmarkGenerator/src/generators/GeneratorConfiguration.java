@@ -45,7 +45,17 @@ public class GeneratorConfiguration {
 	public boolean CNF = false;
 	public ArrayList<Dictionary> DICTIONARY = null;
 	public boolean USE_SEARCH = false;
-	public float PROBABILITY_MUTATION = 0;
+	public float PROBABILITY_PARADD = 0;
+	public float PROBABILITY_PAREXT = 0;
+	public float PROBABILITY_CNSTRADD = 0;
+	public float PROBABILITY_CNSTRDEL = 0;
+	public float PROBABILITY_CNSTRSUBST = 0;
+	public float PROBABILITY_ANDTOOR = 0;
+	public float PROBABILITY_ORTOAND = 0;
+	public float PROBABILITY_IMPLTODBL = 0;
+	public float PROBABILITY_DBLTOIMPL = 0;
+	public float PROBABILITY_NOTADD = 0;
+	public float PROBABILITY_NOTDEL = 0;
 	public FitnessEvaluator<Model> FITNESS = null;
 
 }

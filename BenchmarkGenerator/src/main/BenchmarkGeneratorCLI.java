@@ -21,6 +21,7 @@ import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 import org.uncommons.watchmaker.framework.GenerationalEvolutionEngine;
 import org.uncommons.watchmaker.framework.operators.EvolutionPipeline;
 import org.uncommons.watchmaker.framework.selection.RouletteWheelSelection;
+import org.uncommons.watchmaker.framework.termination.Stagnation;
 import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 import com.google.gson.Gson;
@@ -454,22 +455,34 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		ModelFactory factory = new ModelFactory();
 		factory.setGeneratorConfiguration(config);
 		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>();
-		operators.add(new ParameterAdderMutation(config.PROBABILITY_MUTATION));
-		//operators.add(new ConstraintAdderMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintRemoverMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintSubstitutionMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintAndToOrMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintOrToAndMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintImpliesToDblImpliesMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintDblImpliesToImpliesMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintNotRemoverMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ConstraintToNotMutation(config.PROBABILITY_MUTATION));
-		operators.add(new ParameterExtenderMutation(config.PROBABILITY_MUTATION));
+		if (config.PROBABILITY_PARADD > 0)
+			operators.add(new ParameterAdderMutation(config.PROBABILITY_PARADD));
+		if (config.PROBABILITY_CNSTRADD > 0)
+			operators.add(new ConstraintAdderMutation(config.PROBABILITY_CNSTRADD));
+		if (config.PROBABILITY_CNSTRDEL > 0)
+			operators.add(new ConstraintRemoverMutation(config.PROBABILITY_CNSTRDEL));
+		if (config.PROBABILITY_CNSTRSUBST > 0)
+			operators.add(new ConstraintSubstitutionMutation(config.PROBABILITY_CNSTRSUBST));
+		if (config.PROBABILITY_ANDTOOR > 0)
+			operators.add(new ConstraintAndToOrMutation(config.PROBABILITY_ANDTOOR));
+		if (config.PROBABILITY_ORTOAND > 0)
+			operators.add(new ConstraintOrToAndMutation(config.PROBABILITY_ORTOAND));
+		if (config.PROBABILITY_IMPLTODBL > 0)
+			operators.add(new ConstraintImpliesToDblImpliesMutation(config.PROBABILITY_IMPLTODBL));
+		if (config.PROBABILITY_DBLTOIMPL > 0)
+			operators.add(new ConstraintDblImpliesToImpliesMutation(config.PROBABILITY_DBLTOIMPL));
+		if (config.PROBABILITY_NOTDEL > 0)
+			operators.add(new ConstraintNotRemoverMutation(config.PROBABILITY_NOTDEL));
+		if (config.PROBABILITY_NOTADD > 0)
+			operators.add(new ConstraintToNotMutation(config.PROBABILITY_NOTADD));
+		if (config.PROBABILITY_PAREXT > 0)
+			operators.add(new ParameterExtenderMutation(config.PROBABILITY_PAREXT));
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
 		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline, config.FITNESS,
 				new RouletteWheelSelection(), new MersenneTwisterRNG());
 		((AbstractEvolutionEngine<Model>) engine).setSingleThreaded(true);
-		Model m = engine.evolve(10, 9, new TargetFitness(0, false));
+		Model m = engine.evolve(10, 9, new TargetFitness(0, false), 
+				new Stagnation(100, false));
 		if (m == null || !m.isSolvable())
 			return null;
 
@@ -503,7 +516,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 			if (config.USE_SEARCH)
 				m1 = generateWithGeneratorAndSearch(g, Category.ALSO_ENUMS, config);
 			else
-				m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config);
+				m1 = generateWithGenerator(g, Category.ALSO_ENUMS, config, config.CHECK_SOLVABLE);
 			if (m1 != null) {
 				m1.setName(Track.MCAC + "_" + i);
 				LOGGER.debug("Added a new model: " + m1.getName());

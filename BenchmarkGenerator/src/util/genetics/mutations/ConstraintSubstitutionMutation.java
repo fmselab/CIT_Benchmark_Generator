@@ -49,11 +49,11 @@ public class ConstraintSubstitutionMutation implements EvolutionaryOperator<Mode
 		}
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) < probability)
+		if (rng.nextFloat(0, 1) > probability)
 			return m;
 
 		// Constrained tracks
-		Model mTemp = m;
+		Model mTemp = (Model) m.clone();
 		if (m.getConstraints().size() > 0) {
 			int nConstraint = rng.nextInt(0, m.getConstraints().size());
 			GeneratorWithConstraintsInterface gen;
@@ -68,6 +68,7 @@ public class ConstraintSubstitutionMutation implements EvolutionaryOperator<Mode
 			int complexity = rng.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
 					m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY + 1);
 			Constraint c = gen.generateConstraintFromComplexity(mTemp, complexity);
+			System.out.println("****** Substituting a Constraint");
 			mTemp.changeConstraint(m.getConstraints().get(nConstraint), c);
 		}
 

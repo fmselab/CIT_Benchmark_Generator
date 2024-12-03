@@ -48,10 +48,10 @@ public class ConstraintNotRemoverMutation implements EvolutionaryOperator<Model>
 		}
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) < probability)
+		if (rng.nextFloat(0, 1) > probability)
 			return m;
 
-		Model mTemp = m;
+		Model mTemp = (Model) m.clone();
 		final Set<Constraint> constraintsWithOperators = new HashSet<>();
 		m.getConstraints().stream().forEach(x -> x.eAllContents().forEachRemaining(z -> {
 			if (z instanceof NotExpression)
@@ -61,9 +61,10 @@ public class ConstraintNotRemoverMutation implements EvolutionaryOperator<Model>
 		if (constraintsWithOperators.size() > 0) {
 			// Choose randomly one of the constraints including the operator
 			int constraintIndexToUpdate = rng.nextInt(0, constraintsWithOperators.size());
-			int constraintIndexInList = mTemp.getConstraints()
+			int constraintIndexInList = m.getConstraints()
 					.indexOf(constraintsWithOperators.toArray()[constraintIndexToUpdate]);
 			
+			System.out.println("****** Removing a NOT");
 
 			ConstraintNotRemoverVisitor visitor = new ConstraintNotRemoverVisitor();
 			mTemp.changeConstraint(mTemp.getConstraints().get(constraintIndexInList),

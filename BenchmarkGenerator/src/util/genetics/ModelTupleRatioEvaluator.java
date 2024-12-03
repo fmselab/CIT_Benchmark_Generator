@@ -13,7 +13,7 @@ import models.Model;
  * 
  * @author Andrea Bombarda
  */
-public class ModelEvaluator implements FitnessEvaluator<Model> {
+public class ModelTupleRatioEvaluator implements FitnessEvaluator<Model> {
 	private final double targetRatio;
 
 	/**
@@ -22,7 +22,7 @@ public class ModelEvaluator implements FitnessEvaluator<Model> {
 	 * 
 	 * @param targetRatio The target of the evolution.
 	 */
-	public ModelEvaluator(double targetRatio) {
+	public ModelTupleRatioEvaluator(double targetRatio) {
 		this.targetRatio = targetRatio;
 	}
 
@@ -40,11 +40,15 @@ public class ModelEvaluator implements FitnessEvaluator<Model> {
 	@Override
 	public double getFitness(Model candidate, List<? extends Model> population) {
 		try {
-			if (!candidate.isSolvable())
-				return 1;
-			double distance = candidate.getApproximateTestValidityRatio() - targetRatio;
-			if (distance < 0)
-				return 0;
+			if (!candidate.isSolvable()) {
+				double fitness = candidate.getNotCardinality();
+				System.out.println("Fitness: " + fitness);
+				return fitness;
+			}
+			double ratio = candidate.getTupleValidityRatio();
+			System.out.println("Tuple Ratio: " + ratio);
+			double distance = Math.abs(ratio - targetRatio);
+			System.out.println("Fitness: " + distance);
 			return distance;
 		} catch (Exception e) {
 			return 1;

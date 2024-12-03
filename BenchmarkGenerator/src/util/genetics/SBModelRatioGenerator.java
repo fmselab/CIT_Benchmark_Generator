@@ -76,7 +76,7 @@ public final class SBModelRatioGenerator {
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
 
 		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline,
-				new ModelEvaluator(config.RATIO_TEST), new RouletteWheelSelection(), new MersenneTwisterRNG());
+				new ModelTupleRatioEvaluator(config.RATIO_TEST), new RouletteWheelSelection(), new MersenneTwisterRNG());
 
 		engine.addEvolutionObserver(new EvolutionLogger());
 		return engine.evolve(10, // 100 individuals in the population.

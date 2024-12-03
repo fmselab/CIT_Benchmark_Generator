@@ -24,13 +24,17 @@ public class ConstraintAndToOrMutation extends ConstraintOperatorSubstitutionMut
 
 		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
 		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
+			try {
+				mutatedPopulation.add(mutateModel(m, rng));
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		}
 		return mutatedPopulation;
 
 	}
 
-	Model mutateModel(Model m, Random rng) {
+	Model mutateModel(Model m, Random rng) throws CloneNotSupportedException {
 		Track track = m.getGeneratorConfiguration().TRACK;
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
@@ -38,11 +42,12 @@ public class ConstraintAndToOrMutation extends ConstraintOperatorSubstitutionMut
 		}
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) < probability)
+		if (rng.nextFloat(0, 1) > probability)
 			return m;
 
 		// Constrained tracks
 		CtWedgeFactoryImpl factory = new CtWedgeFactoryImpl();
+		System.out.println("****** Changing AND in OR");
 		Model mTemp = changeOperator(m, rng, factory.createAndExpression(), factory.createOrExpression());
 
 		return mTemp;

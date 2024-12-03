@@ -30,6 +30,13 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 		this.probability = p;
 	}
 
+	/**
+	 * Apply the mutation to the selected candidates
+	 * 
+	 * @param selectedCandidates the selected candidates
+	 * @param rng                the random
+	 * @return the mutated population
+	 */
 	@Override
 	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
 
@@ -41,7 +48,14 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 
 	}
 
-	private Model mutateModel(Model m, Random rng) {
+	/*
+	 * Mutate the model by adding a constraint
+	 * 
+	 * @param m the model to mutate
+	 * @param rng the random number generator
+	 * @return the mutated model
+	 */
+	public Model mutateModel(Model m, Random rng) {
 		Track track = m.getGeneratorConfiguration().TRACK;
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
@@ -49,11 +63,11 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 		}
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) < probability)
+		if (rng.nextFloat(0, 1) > probability)
 			return m;
 
 		// Constrained tracks
-		Model mTemp = m;
+		Model mTemp = (Model) m.clone();
 		GeneratorWithConstraintsInterface gen;
 
 		if (m.getGeneratorConfiguration().CNF)
@@ -63,9 +77,8 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 		else
 			gen = new WithConstraintGenerator();
 
-		int nConstraints = rng.nextInt(0, m.getGeneratorConfiguration().N_CONSTRAINTS_MAX - m.getConstraints().size());
-		System.out.println("****** Adding " + nConstraints + " constraints");
-		for (int i = 0; i < nConstraints; i++) {
+		if (m.getGeneratorConfiguration().N_CONSTRAINTS_MAX > m.getConstraints().size()) {
+			System.out.println("****** Adding a constraint");
 			int complexity = rng.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
 					m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY + 1);
 			Constraint c = gen.generateConstraintFromComplexity(mTemp, complexity);
@@ -73,6 +86,7 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 		}
 
 		return mTemp;
+
 	}
 
 }

@@ -16,6 +16,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.sosy_lab.common.ShutdownManager;
 import org.sosy_lab.common.configuration.Configuration;
@@ -32,13 +33,16 @@ import org.sosy_lab.java_smt.api.SolverException;
 import ctwedge.ctWedge.CitModel;
 import ctwedge.ctWedge.Constraint;
 import ctwedge.ctWedge.CtWedgePackage;
+import ctwedge.ctWedge.Element;
 import ctwedge.ctWedge.Expression;
 import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CitModelImpl;
+import ctwedge.ctWedge.impl.EnumerativeImpl;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
+import ctwedge.util.ParameterElementsGetterAsStrings;
 import ctwedge.util.ParameterSize;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
@@ -48,11 +52,9 @@ import ctwedge.util.validator.RuleEvaluator;
 import generators.Category;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
-import generators.Track;
 import kali.util.Operations;
 import main.BenchmarkGeneratorCLI;
 import util.ACTSModelTranslator;
-import util.ModelConfigurationExtractor;
 import util.ParameterToModelAdder;
 
 /**
@@ -203,7 +205,6 @@ public class Model extends CitModelImpl {
 			}
 			break;
 		}
-
 	}
 
 	/**
@@ -284,6 +285,8 @@ public class Model extends CitModelImpl {
 	public Parameter getRandomParamenterOfClass(Parameter similar) {
 		List<Parameter> filtered = parameters.stream().filter(x -> (x.getClass().equals(similar.getClass())))
 				.collect(Collectors.toList());
+		if (filtered == null || filtered.size() < 1)
+			return null;
 		Parameter selected = filtered.get(Randomizer.generate(0, filtered.size() - 1));
 		return selected;
 	}
@@ -418,12 +421,7 @@ public class Model extends CitModelImpl {
 	 * @throws InvalidConfigurationException
 	 */
 	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
-		// Define the model as a CitModel
-		ModelConfigurationExtractor extractor = new ModelConfigurationExtractor(this);
-		if (extractor.getModelType() != Track.NUMC)
-			return Operations.getTupleValidityRatioFromModel(this);
-		else
-			return kali.util.Operations.getTupleValidityRatioFromModel(this);
+		return Operations.getTupleValidityRatioFromModel(this);
 	}
 
 	/**
@@ -532,37 +530,12 @@ public class Model extends CitModelImpl {
 			// Verify if it is empty
 			if (prover.isUnsat()) {
 				isSolvable = false;
-			}
-			else
+			} else
 				isSolvable = true;
 		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
 			e.printStackTrace();
 		}
 		return isSolvable;
-	}
-
-	public int getNotCardinality() {
-		// Build the CIT Model
-		Model m = new Model(this.category);
-		m.setName(this.getName());
-		for (Parameter p : this.getParameters())
-			m.addParameter(EcoreUtil2.cloneIfContained(p));
-
-		for (int i = 0; i < this.getConstraints().size(); i++) {
-			Expression ex = EcoreUtil2.cloneIfContained((Expression)this.getConstraints().get(i));
-			m.addConstraint(ex);
-		}
-
-		try {
-			ProverEnvironment prover = buildProverEnvironmentFromModel(m);
-
-			if (prover.isUnsat()) {
-				return Integer.parseInt(prover.getStatistics().get(":Core>Propagations"));
-			}
-		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
-			e.printStackTrace();
-		}
-		return 0;
 	}
 
 	/**
@@ -632,5 +605,73 @@ public class Model extends CitModelImpl {
 	public void removeConstraint(int nConstraint) {
 		this.constraints.remove(nConstraint);
 	}
+	
+	/**
+	 * Clone the model
+	 * 
+	 * @return the cloned model
+	 */
+	@Override
+	public Object clone() {
+		CitModel model = EcoreUtil.copy((CitModelImpl)this);
+		Model m = getModelFromCitModel(model);
+		m.category = this.category;
+		m.config = this.config;
+		m.isRatioExact = this.isRatioExact;
+		m.validityTests = this.validityTests;
+		return m;
+	}
+	
+	
+	
+	public int getNotCardinality() throws CloneNotSupportedException {
+		// Build the CIT Model
+		Model m = (Model) clone();
+//		Model m = new Model(this.category);
+//		m.setName(this.getName());
+//		for (Parameter p : this.getParameters())
+//			m.addParameter(EcoreUtil2.cloneIfContained(p));
+//
+//		for (int i = 0; i < this.getConstraints().size(); i++) {
+//			Expression ex = EcoreUtil2.cloneIfContained((Expression) this.getConstraints().get(i));
+//			m.addConstraint(ex);
+//		}
+
+		try {
+			ProverEnvironment prover = buildProverEnvironmentFromModel(m);
+
+			if (prover.isUnsat()) {
+				return Integer.parseInt(prover.getStatistics().get(":Core>Propagations"));
+			}
+		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	
+
+	private Model getModelFromCitModel(CitModel mod) {
+		Model m = new Model(this.category);
+		m.setName(this.getName());
+		for (Parameter p : mod.getParameters()) {
+			Parameter pNew = EcoreUtil2.cloneIfContained(p);
+			if (p instanceof EnumerativeImpl) {
+				List<Element> elemsList = new ArrayList<>();
+				for (Element e : ((EnumerativeImpl) p).getElements()) {
+					elemsList.add(EcoreUtil2.cloneIfContained(e));
+				}
+				((EnumerativeImpl) pNew).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, elemsList);
+			}
+			m.addParameter(pNew);
+		}
+
+		for (int i = 0; i < mod.getConstraints().size(); i++) {
+			Expression ex = EcoreUtil2.cloneIfContained((Expression) this.getConstraints().get(i));
+			m.addConstraint(ex);
+		}
+		return m;
+	}
+
 
 }

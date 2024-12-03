@@ -9,6 +9,9 @@ import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import models.Model;
 
+/**
+ * Mutation that adds a parameter to the model
+ */
 public class ParameterAdderMutation implements EvolutionaryOperator<Model> {
 
 	/**
@@ -25,6 +28,12 @@ public class ParameterAdderMutation implements EvolutionaryOperator<Model> {
 		this.probability = p;
 	}
 
+	/**
+	 * Apply the mutation to the selected candidates
+	 * 
+	 * @param selectedCandidates the selected candidates
+	 * @param rng                the random number generator
+	 */
 	@Override
 	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
 
@@ -36,19 +45,24 @@ public class ParameterAdderMutation implements EvolutionaryOperator<Model> {
 
 	}
 
-	private Model mutateModel(Model m, Random rng) {
-		Model mTemp = m;
+	/**
+	 * Mutate the model by adding a parameter
+	 * 
+	 * @param m   the model to mutate
+	 * @param rng the random number generator
+	 * @return the mutated model
+	 */
+	public Model mutateModel(Model m, Random rng) {
+		Model mTemp = (Model) m.clone();
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) < probability)
+		if (rng.nextFloat(0, 1) > probability)
 			return m;
 
-		if (m.getParameters().size() < m.getGeneratorConfiguration().N_PARAMS_MAX) {
-			int nParams = rng.nextInt(0, m.getGeneratorConfiguration().N_PARAMS_MAX - m.getParameters().size());
-			System.out.println("****** Adding " + nParams + " parameters");
-			for (int i = 0; i < nParams; i++)
-				mTemp.addNewRandomParameter((ArrayList<String>) m.getParameters().stream().map(x -> x.getName())
-						.collect(Collectors.toList()));
+		if (m.getParameters().size() < mTemp.getGeneratorConfiguration().N_PARAMS_MAX) {
+			System.out.println("****** Adding a parameter");
+			mTemp.addNewRandomParameter((ArrayList<String>) mTemp.getParameters().stream().map(x -> x.getName())
+					.collect(Collectors.toList()));
 		}
 		return mTemp;
 	}

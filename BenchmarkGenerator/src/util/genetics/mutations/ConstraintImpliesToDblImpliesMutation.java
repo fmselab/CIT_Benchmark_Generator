@@ -26,13 +26,17 @@ public class ConstraintImpliesToDblImpliesMutation extends ConstraintOperatorSub
 
 		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
 		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
+			try {
+				mutatedPopulation.add(mutateModel(m, rng));
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		}
 		return mutatedPopulation;
 
 	}
 
-	Model mutateModel(Model m, Random rng) {
+	Model mutateModel(Model m, Random rng) throws CloneNotSupportedException {
 		Track track = m.getGeneratorConfiguration().TRACK;
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
@@ -40,7 +44,7 @@ public class ConstraintImpliesToDblImpliesMutation extends ConstraintOperatorSub
 		}
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) < probability)
+		if (rng.nextFloat(0, 1) > probability)
 			return m;
 
 		// Constrained tracks
@@ -49,6 +53,7 @@ public class ConstraintImpliesToDblImpliesMutation extends ConstraintOperatorSub
 		ImpliesExpression single = factory.createImpliesExpression();
 		dbl.setOp(ImpliesOperator.IFF);
 		single.setOp(ImpliesOperator.IMPL);
+		System.out.println("****** Changing IMPL in DBLIMP");
 		Model mTemp = changeOperator(m, rng, single, dbl);
 	
 		return mTemp;

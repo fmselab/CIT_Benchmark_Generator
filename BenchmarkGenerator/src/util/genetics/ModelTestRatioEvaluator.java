@@ -42,8 +42,8 @@ public class ModelTestRatioEvaluator implements FitnessEvaluator<Model> {
 		// FIXME
 		try {
 			if (!candidate.isSolvable())
-				return 1;
-			double distance = Math.abs(candidate.getApproximateTestValidityRatio() - targetRatio);
+				return candidate.getNotCardinality();
+			double distance = Math.abs(candidate.getTestValidityRatio() - targetRatio);
 			if (distance < 0)
 				return 0;
 			return distance;

@@ -34,16 +34,20 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 
 		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
 		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
+			try {
+				mutatedPopulation.add(mutateModel(m, rng));
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 		}
 		return mutatedPopulation;
 
 	}
 
-	abstract Model mutateModel(Model m, Random rng);
+	abstract Model mutateModel(Model m, Random rng) throws CloneNotSupportedException;
 
-	Model changeOperator(Model m, Random rng, Expression from, Expression to) {
-		Model mTemp = m;
+	Model changeOperator(Model m, Random rng, Expression from, Expression to) throws CloneNotSupportedException {
+		Model mTemp = (Model) m.clone();
 
 		List<Constraint> constraintList = mTemp.getConstraints();
 		final Set<Constraint> constraintsWithOperators = new HashSet<>();
