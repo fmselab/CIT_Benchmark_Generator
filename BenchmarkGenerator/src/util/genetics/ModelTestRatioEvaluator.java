@@ -41,11 +41,15 @@ public class ModelTestRatioEvaluator implements FitnessEvaluator<Model> {
 	public double getFitness(Model candidate, List<? extends Model> population) {
 		// FIXME
 		try {
-			if (!candidate.isSolvable())
-				return candidate.getNotCardinality();
-			double distance = Math.abs(candidate.getTestValidityRatio() - targetRatio);
-			if (distance < 0)
-				return 0;
+			if (!candidate.isSolvable()) {
+				double fitness = candidate.getNotCardinality();
+				System.out.println("Fitness: " + fitness);
+				return fitness;
+			}
+			double ratio = candidate.getApproximateTestValidityRatio();
+			System.out.println("Tuple Ratio: " + ratio);
+			double distance = Math.abs(ratio - targetRatio);
+			System.out.println("Fitness: " + distance);
 			return distance;
 		} catch (Exception e) {
 			return 1;

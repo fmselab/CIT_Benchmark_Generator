@@ -24,17 +24,13 @@ public class ConstraintOrToAndMutation extends ConstraintOperatorSubstitutionMut
 
 		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
 		for (Model m : selectedCandidates) {
-			try {
-				mutatedPopulation.add(mutateModel(m, rng));
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+			mutatedPopulation.add(mutateModel(m, rng));
 		}
 		return mutatedPopulation;
 
 	}
 
-	Model mutateModel(Model m, Random rng) throws CloneNotSupportedException {
+	Model mutateModel(Model m, Random rng) {
 		Track track = m.getGeneratorConfiguration().TRACK;
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {

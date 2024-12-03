@@ -46,7 +46,7 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Evolutio
 
 	abstract Model mutateModel(Model m, Random rng) throws CloneNotSupportedException;
 
-	Model changeOperator(Model m, Random rng, Expression from, Expression to) throws CloneNotSupportedException {
+	Model changeOperator(Model m, Random rng, Expression from, Expression to) {
 		Model mTemp = (Model) m.clone();
 
 		List<Constraint> constraintList = mTemp.getConstraints();

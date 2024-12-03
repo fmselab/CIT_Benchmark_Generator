@@ -481,8 +481,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline, config.FITNESS,
 				new RouletteWheelSelection(), new MersenneTwisterRNG());
 		((AbstractEvolutionEngine<Model>) engine).setSingleThreaded(true);
-		Model m = engine.evolve(10, 9, new TargetFitness(0, false), 
-				new Stagnation(100, false));
+		Model m = engine.evolve(10, 5, new TargetFitness(0.02, false), 
+				new Stagnation(20, false));
 		if (m == null || !m.isSolvable())
 			return null;
 

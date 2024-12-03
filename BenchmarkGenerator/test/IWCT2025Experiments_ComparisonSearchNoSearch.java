@@ -12,6 +12,7 @@ import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
 import util.genetics.ModelSolvabilityEvaluator;
+import util.genetics.ModelTestRatioEvaluator;
 import util.genetics.ModelTupleRatioEvaluator;
 
 public class IWCT2025Experiments_ComparisonSearchNoSearch {
@@ -38,7 +39,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 		config.MAX_CARDINALITY = 15;
 		// Do not export models as files
 		config.ALWAYS_EXPORT = false;
-		config.N_ATTEMPTS = 10;
+		config.N_ATTEMPTS = 20;
 		// Probability of applying each genetic operator
 		config.PROBABILITY_PARADD = 0.5f;
 		config.PROBABILITY_PAREXT = 0.5f;
@@ -54,6 +55,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 		// Ratio
 		config.CHECK_TUPLE_RATIO = false;
 		config.RATIO = 0.1;
+		config.RATIO_TEST = 0.1;
 	}
 
 	@Test
@@ -73,7 +75,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.PROBABILITY_PAREXT = 0;
 			config.PROBABILITY_CNSTRADD = 0;
 			config.FITNESS = new ModelSolvabilityEvaluator();
 			generator.clearModelsList();
@@ -84,6 +85,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int searchBasedApproach = generator.getModelsList().size();
 			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
 					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
 			writer.flush();
 		}
 
@@ -111,8 +113,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.PROBABILITY_PARADD = 0;
-			config.PROBABILITY_PAREXT = 0;
 			config.FITNESS = new ModelTupleRatioEvaluator(config.RATIO);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
@@ -122,10 +122,84 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int searchBasedApproach = generator.getModelsList().size();
 			writer.append(config.TRACK.name() + ";TUPLERATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
 					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
 		}
 
 		writer.close();
 
+	}
+	
+	@Test
+	public void test_NUMC_testRatio()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_NUMC_" + OUTPUT_FILE)));
+		config.TRACK = Track.NUMC;
+		// Check ratio tuple
+		config.CHECK_TEST_RATIO = true;
+
+		for (int i = 0; i < REPETITIONS; i++) {
+			config.USE_SEARCH = false;
+
+			long timeOriginalApproach;
+			long timeSearchBasedApproach;
+			long end;
+			long start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			int originalApproach = generator.getModelsList().size();
+			timeOriginalApproach = end - start;
+			config.USE_SEARCH = true;
+			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO);
+			generator.clearModelsList();
+			start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			timeSearchBasedApproach = end - start;
+			int searchBasedApproach = generator.getModelsList().size();
+			writer.append(config.TRACK.name() + ";TESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
+					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
+		}
+
+		writer.close();
+	}
+	
+	@Test
+	public void test_BOOLC_testRatio()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_BOOLC_" + OUTPUT_FILE)));
+		config.TRACK = Track.BOOLC;
+		// Check ratio tuple
+		config.CHECK_TEST_RATIO = true;
+
+		for (int i = 0; i < REPETITIONS; i++) {
+			config.USE_SEARCH = false;
+
+			long timeOriginalApproach;
+			long timeSearchBasedApproach;
+			long end;
+			long start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			int originalApproach = generator.getModelsList().size();
+			timeOriginalApproach = end - start;
+			config.USE_SEARCH = true;
+			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO);
+			generator.clearModelsList();
+			start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			timeSearchBasedApproach = end - start;
+			int searchBasedApproach = generator.getModelsList().size();
+			writer.append(config.TRACK.name() + ";TESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
+					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
+		}
+
+		writer.close();
 	}
 
 	@Test
@@ -156,6 +230,8 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int searchBasedApproach = generator.getModelsList().size();
 			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
 					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
 		}
 
 		writer.close();
@@ -190,6 +266,8 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int searchBasedApproach = generator.getModelsList().size();
 			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
 					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
 		}
 
 		writer.close();
@@ -212,6 +290,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
+			config.PROBABILITY_CNSTRADD = 0;
 			config.FITNESS = new ModelSolvabilityEvaluator();
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
@@ -221,6 +300,8 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			int searchBasedApproach = generator.getModelsList().size();
 			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
 					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
 		}
 
 		writer.close();

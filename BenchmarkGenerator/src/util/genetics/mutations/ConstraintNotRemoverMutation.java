@@ -40,7 +40,7 @@ public class ConstraintNotRemoverMutation implements EvolutionaryOperator<Model>
 
 	}
 
-	private Model mutateModel(Model m, Random rng) {
+	Model mutateModel(Model m, Random rng) {
 		Track track = m.getGeneratorConfiguration().TRACK;
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {

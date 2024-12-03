@@ -25,6 +25,7 @@ import org.sosy_lab.common.log.BasicLogManager;
 import org.sosy_lab.common.log.LogManager;
 import org.sosy_lab.java_smt.SolverContextFactory;
 import org.sosy_lab.java_smt.SolverContextFactory.Solvers;
+import org.sosy_lab.java_smt.api.BooleanFormula;
 import org.sosy_lab.java_smt.api.ProverEnvironment;
 import org.sosy_lab.java_smt.api.SolverContext;
 import org.sosy_lab.java_smt.api.SolverContext.ProverOptions;
@@ -52,6 +53,7 @@ import ctwedge.util.validator.RuleEvaluator;
 import generators.Category;
 import generators.GeneratorConfiguration;
 import generators.Randomizer;
+import generators.Track;
 import kali.util.Operations;
 import main.BenchmarkGeneratorCLI;
 import util.ACTSModelTranslator;
@@ -421,7 +423,10 @@ public class Model extends CitModelImpl {
 	 * @throws InvalidConfigurationException
 	 */
 	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
-		return Operations.getTupleValidityRatioFromModel(this);
+		if (this.config.TRACK != Track.NUMC)
+			return pMedici.util.Operations.getTupleValidityRatioFromModel(this);
+		else
+			return Operations.getTupleValidityRatioFromModel(this);
 	}
 
 	/**
@@ -553,7 +558,8 @@ public class Model extends CitModelImpl {
 		ShutdownManager shutdown = ShutdownManager.create();
 		SolverContext ctx = SolverContextFactory.createSolverContext(config, logger, shutdown.getNotifier(),
 				Solvers.SMTINTERPOL);
-		ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS);
+		ProverEnvironment prover = ctx.newProverEnvironment(ProverOptions.GENERATE_MODELS,
+				ProverOptions.GENERATE_UNSAT_CORE);
 
 		// Create the context
 		SMTModelTranslator trans = new SMTModelTranslator(EnumTreatment.INTEGER);
@@ -605,7 +611,7 @@ public class Model extends CitModelImpl {
 	public void removeConstraint(int nConstraint) {
 		this.constraints.remove(nConstraint);
 	}
-	
+
 	/**
 	 * Clone the model
 	 * 
@@ -613,7 +619,7 @@ public class Model extends CitModelImpl {
 	 */
 	@Override
 	public Object clone() {
-		CitModel model = EcoreUtil.copy((CitModelImpl)this);
+		CitModel model = EcoreUtil.copy((CitModelImpl) this);
 		Model m = getModelFromCitModel(model);
 		m.category = this.category;
 		m.config = this.config;
@@ -621,35 +627,24 @@ public class Model extends CitModelImpl {
 		m.validityTests = this.validityTests;
 		return m;
 	}
-	
-	
-	
+
 	public int getNotCardinality() throws CloneNotSupportedException {
 		// Build the CIT Model
 		Model m = (Model) clone();
-//		Model m = new Model(this.category);
-//		m.setName(this.getName());
-//		for (Parameter p : this.getParameters())
-//			m.addParameter(EcoreUtil2.cloneIfContained(p));
-//
-//		for (int i = 0; i < this.getConstraints().size(); i++) {
-//			Expression ex = EcoreUtil2.cloneIfContained((Expression) this.getConstraints().get(i));
-//			m.addConstraint(ex);
-//		}
 
 		try {
 			ProverEnvironment prover = buildProverEnvironmentFromModel(m);
 
 			if (prover.isUnsat()) {
-				return Integer.parseInt(prover.getStatistics().get(":Core>Propagations"));
+				List<BooleanFormula> unsatCore = prover.getUnsatCore();
+				return unsatCore.size();
+				// return Integer.parseInt(prover.getStatistics().get(":Core>Propagations"));
 			}
 		} catch (InvalidConfigurationException | SolverException | InterruptedException e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
-	
-	
 
 	private Model getModelFromCitModel(CitModel mod) {
 		Model m = new Model(this.category);
@@ -672,6 +667,5 @@ public class Model extends CitModelImpl {
 		}
 		return m;
 	}
-
 
 }

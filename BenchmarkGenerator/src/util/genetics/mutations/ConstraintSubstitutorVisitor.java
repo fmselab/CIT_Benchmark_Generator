@@ -1,5 +1,7 @@
 package util.genetics.mutations;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import ctwedge.ctWedge.AndExpression;
 import ctwedge.ctWedge.AtomicPredicate;
 import ctwedge.ctWedge.Constraint;
@@ -76,7 +78,8 @@ public class ConstraintSubstitutorVisitor extends CtWedgeSwitch<Expression> {
 	 */
 	@Override
 	public Expression caseAtomicPredicate(AtomicPredicate atom) {
-		return atom;
+		AtomicPredicate newAtom = EcoreUtil.copy(atom);
+		return newAtom;
 	}
 
 	/**
