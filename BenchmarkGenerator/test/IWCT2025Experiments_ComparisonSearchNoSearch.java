@@ -39,7 +39,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 		config.MAX_CARDINALITY = 15;
 		// Do not export models as files
 		config.ALWAYS_EXPORT = false;
-		config.N_ATTEMPTS = 20;
+		config.N_ATTEMPTS = 10;
 		// Probability of applying each genetic operator
 		config.PROBABILITY_PARADD = 0.5f;
 		config.PROBABILITY_PAREXT = 0.5f;
