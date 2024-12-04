@@ -55,6 +55,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 		// Ratio
 		config.CHECK_TUPLE_RATIO = false;
 		config.RATIO = 0.1;
+		config.EPSILON = 0.02;
 		config.RATIO_TEST = 0.1;
 	}
 
@@ -258,6 +259,42 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch {
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
 			config.FITNESS = new ModelTupleRatioEvaluator(config.RATIO);
+			generator.clearModelsList();
+			start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			timeSearchBasedApproach = end - start;
+			int searchBasedApproach = generator.getModelsList().size();
+			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
+					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
+		}
+
+		writer.close();
+	}
+	
+	@Test
+	public void test_MCAC_test()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_MCAC_" + OUTPUT_FILE)));
+		config.TRACK = Track.MCAC;
+		// Check ratio tuple
+		config.CHECK_TEST_RATIO = true;
+
+		for (int i = 0; i < REPETITIONS; i++) {
+			config.USE_SEARCH = false;
+
+			long timeOriginalApproach;
+			long timeSearchBasedApproach;
+			long end;
+			long start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			int originalApproach = generator.getModelsList().size();
+			timeOriginalApproach = end - start;
+			config.USE_SEARCH = true;
+			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);

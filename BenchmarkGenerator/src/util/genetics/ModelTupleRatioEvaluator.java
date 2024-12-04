@@ -41,7 +41,7 @@ public class ModelTupleRatioEvaluator implements FitnessEvaluator<Model> {
 	public double getFitness(Model candidate, List<? extends Model> population) {
 		try {
 			if (!candidate.isSolvable()) {
-				double fitness = candidate.getNotCardinality();
+				double fitness = candidate.getUnsatCoreSize();
 				System.out.println("Fitness: " + fitness);
 				return fitness;
 			}

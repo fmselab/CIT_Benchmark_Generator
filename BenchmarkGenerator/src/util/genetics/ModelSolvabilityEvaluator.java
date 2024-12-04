@@ -34,11 +34,10 @@ public class ModelSolvabilityEvaluator implements FitnessEvaluator<Model> {
 	public double getFitness(Model candidate, List<? extends Model> population) {
 		try {
 			if (!candidate.isSolvable()) {
-				double notCardinality = candidate.getNotCardinality();
-				System.out.println(notCardinality);
-				return notCardinality;
+				double unsatCoreSize = candidate.getUnsatCoreSize();
+				System.out.println(unsatCoreSize);
+				return unsatCoreSize;
 			}
-			System.out.println("####### SOLVABLE");
 			return 0;
 		} catch (Exception e) {
 			e.printStackTrace();

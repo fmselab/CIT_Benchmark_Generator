@@ -21,6 +21,7 @@ import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 import org.uncommons.watchmaker.framework.GenerationalEvolutionEngine;
 import org.uncommons.watchmaker.framework.operators.EvolutionPipeline;
 import org.uncommons.watchmaker.framework.selection.RouletteWheelSelection;
+import org.uncommons.watchmaker.framework.termination.ElapsedTime;
 import org.uncommons.watchmaker.framework.termination.Stagnation;
 import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
@@ -401,7 +402,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 					try {
 						double ratio = m.getTupleValidityRatio();
 						LOGGER.debug("TUPLE VALIDITY RATIO " + Double.toString(ratio));
-						if (ratio > config.RATIO)
+						if (Math.abs(ratio - config.RATIO) > config.EPSILON)
 							isSolvable = false;
 					} catch (InterruptedException e) {
 					}
@@ -415,7 +416,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 					// If the ratio is exact, it means that it has been computed with the MDD, thus
 					// we can use it to decide whether the model is correct or not. Otherwise, we
 					// can only work with probabilities
-					if (m.isRatioExact() && ratio > config.RATIO_TEST)
+					if (m.isRatioExact() && Math.abs(ratio - config.RATIO_TEST) > config.EPSILON)
 						isSolvable = false;
 					else {
 						// The ratio is not exact. But we can check the interval based on EPSILON
@@ -487,7 +488,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		else
 			targetFitness = 0.0;
 		Model m = engine.evolve(10, 5, new TargetFitness(targetFitness, false), 
-				new Stagnation(20, false));
+				new Stagnation(20, false),
+				new ElapsedTime(600000));
 		if (m == null || !m.isSolvable())
 			return null;
 

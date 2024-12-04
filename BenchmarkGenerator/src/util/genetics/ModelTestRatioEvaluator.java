@@ -42,7 +42,7 @@ public class ModelTestRatioEvaluator implements FitnessEvaluator<Model> {
 		// FIXME
 		try {
 			if (!candidate.isSolvable()) {
-				double fitness = candidate.getNotCardinality();
+				double fitness = candidate.getUnsatCoreSize();
 				System.out.println("Fitness: " + fitness);
 				return fitness;
 			}

@@ -43,7 +43,6 @@ import ctwedge.ctWedge.impl.EnumerativeImpl;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
-import ctwedge.util.ParameterElementsGetterAsStrings;
 import ctwedge.util.ParameterSize;
 import ctwedge.util.Test;
 import ctwedge.util.ext.Utility;
@@ -628,7 +627,7 @@ public class Model extends CitModelImpl {
 		return m;
 	}
 
-	public int getNotCardinality() throws CloneNotSupportedException {
+	public int getUnsatCoreSize() throws CloneNotSupportedException {
 		// Build the CIT Model
 		Model m = (Model) clone();
 
