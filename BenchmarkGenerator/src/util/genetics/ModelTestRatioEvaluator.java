@@ -46,7 +46,7 @@ public class ModelTestRatioEvaluator implements FitnessEvaluator<Model> {
 				System.out.println("Fitness: " + fitness);
 				return fitness;
 			}
-			double ratio = candidate.getApproximateTestValidityRatio();
+			double ratio = candidate.getTestValidityRatio();
 			System.out.println("Tuple Ratio: " + ratio);
 			double distance = Math.abs(ratio - targetRatio);
 			System.out.println("Fitness: " + distance);

@@ -40,6 +40,7 @@ import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CitModelImpl;
 import ctwedge.ctWedge.impl.EnumerativeImpl;
+import ctwedge.generator.medici.MediciCITGenerator;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
@@ -308,11 +309,14 @@ public class Model extends CitModelImpl {
 			for (Parameter p : parameters)
 				if (p instanceof Range)
 					throw new NotConvertableModel("Computation of the ratio interrupted");
+			
+			MediciCITGenerator gen = new MediciCITGenerator();
+			String mediciModel = gen.translateModel(this, false);
 
 			// First save the CTWedge file
-			File f = new File(getName() + ".ctw");
+			File f = new File(getName() + ".medici");
 			FileWriter fo = new FileWriter(f);
-			fo.write(toString());
+			fo.write(mediciModel);
 			fo.close();
 			LOGGER.debug("Test validity ratio computed using MEDICI. The model has been written in the " + getName()
 					+ ".ctw file");
@@ -322,9 +326,7 @@ public class Model extends CitModelImpl {
 			command.add(System.getProperty("user.dir") + "/medici");
 			// --- Model
 			command.add("--m");
-			command.add(getName() + ".ctw");
-			// --- Use CTWedge input format
-			command.add("--ctw");
+			command.add(getName() + ".medici");
 			// --- Do not generate
 			command.add("--donotgenerate");
 			LOGGER.debug("Executing command " + command);

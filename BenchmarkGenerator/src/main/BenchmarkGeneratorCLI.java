@@ -16,6 +16,7 @@ import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 import org.uncommons.maths.random.MersenneTwisterRNG;
 import org.uncommons.watchmaker.framework.AbstractEvolutionEngine;
+import org.uncommons.watchmaker.framework.CachingFitnessEvaluator;
 import org.uncommons.watchmaker.framework.EvolutionEngine;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 import org.uncommons.watchmaker.framework.GenerationalEvolutionEngine;
@@ -479,16 +480,16 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		if (config.PROBABILITY_PAREXT > 0)
 			operators.add(new ParameterExtenderMutation(config.PROBABILITY_PAREXT));
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
-		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline, config.FITNESS,
-				new RouletteWheelSelection(), new MersenneTwisterRNG());
+		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline,
+				new CachingFitnessEvaluator<Model>(config.FITNESS), new RouletteWheelSelection(),
+				new MersenneTwisterRNG());
 		((AbstractEvolutionEngine<Model>) engine).setSingleThreaded(true);
 		double targetFitness;
 		if (config.CHECK_TEST_RATIO || config.CHECK_TUPLE_RATIO)
 			targetFitness = config.EPSILON;
 		else
 			targetFitness = 0.0;
-		Model m = engine.evolve(10, 5, new TargetFitness(targetFitness, false), 
-				new Stagnation(20, false),
+		Model m = engine.evolve(10, 5, new TargetFitness(targetFitness, false), new Stagnation(20, false),
 				new ElapsedTime(600000));
 		if (m == null || !m.isSolvable())
 			return null;
