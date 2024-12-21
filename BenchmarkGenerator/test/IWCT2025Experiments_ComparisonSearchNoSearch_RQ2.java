@@ -87,6 +87,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 		config.TRACK = track;
 		for (int i = 0; i < REPETITIONS; i++) {
 			config.USE_SEARCH = false;
+			config.CHECK_SOLVABLE = true;
 
 			long timeOriginalApproach;
 			long timeSearchBasedApproach;
@@ -99,11 +100,12 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 					generator.generateIPMs(config);
 				} while (generator.getModelsList().size() == 0);
 				countOriginal++;
-			} while (countOriginal < TARGET);
+			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
 			config.PROBABILITY_CNSTRADD = 0;
+			config.CHECK_SOLVABLE = false;
 			config.FITNESS = new ModelSolvabilityEvaluator();
 			int countSearch = 0;
 			start = System.currentTimeMillis();
@@ -113,7 +115,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 					generator.generateIPMs(config);
 				} while (generator.getModelsList().size() == 0);
 				countSearch++;
-			} while (countSearch < TARGET);
+			} while (countSearch < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
 			writer.append(config.TRACK.name() + ";SOLVABILITY;" + countOriginal + ";" + timeOriginalApproach + ";"
@@ -124,19 +126,19 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 
 		writer.close();
 	}
-	
+
 	@Test
 	public void test_BOOLC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		tupleRatio(Track.BOOLC);
 	}
-	
+
 	@Test
 	public void test_MCAC_tuple()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		tupleRatio(Track.MCAC);
 	}
-	
+
 	@Test
 	public void test_NUMC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
@@ -145,12 +147,14 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 
 	public void tupleRatio(Track track)
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_" + track.name() + "_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(
+				new FileWriter(new File("Tuple_" + track.name() + "_" + OUTPUT_FILE)));
 		config.TRACK = track;
 		// Check ratio tuple
 		config.CHECK_TUPLE_RATIO = true;
 		for (int i = 0; i < REPETITIONS; i++) {
 			config.USE_SEARCH = false;
+			config.CHECK_SOLVABLE = true;
 
 			long timeOriginalApproach;
 			long timeSearchBasedApproach;
@@ -161,9 +165,11 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 				do {
 					generator = new BenchmarkGeneratorCLI();
 					generator.generateIPMs(config);
-				} while (generator.getModelsList().size() == 0);
-				countOriginal++;
-			} while (countOriginal < TARGET);
+				} while (generator.getModelsList().size() == 0
+						&& System.currentTimeMillis() - start < TIMEOUT * TARGET);
+				if (generator.getModelsList().size() > 0)
+					countOriginal++;
+			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
@@ -174,9 +180,11 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 				do {
 					generator = new BenchmarkGeneratorCLI();
 					generator.generateIPMs(config);
-				} while (generator.getModelsList().size() == 0);
-				countSearch++;
-			} while (countSearch < TARGET);
+				} while (generator.getModelsList().size() == 0
+						&& System.currentTimeMillis() - start < TIMEOUT * TARGET);
+				if (generator.getModelsList().size() > 0)
+					countSearch++;
+			} while (countSearch < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
 			writer.append(config.TRACK.name() + ";TUPLERATIO;" + countOriginal + ";" + timeOriginalApproach + ";"
@@ -199,21 +207,23 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		testRatio(Track.BOOLC);
 	}
-	
+
 	@Test
 	public void test_MCAC_test()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		testRatio(Track.MCAC);
 	}
-	
+
 	public void testRatio(Track track)
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_" + track.name() + "_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(
+				new FileWriter(new File("Test_" + track.name() + "_" + OUTPUT_FILE)));
 		config.TRACK = track;
 		// Check ratio tuple
 		config.CHECK_TEST_RATIO = true;
 		for (int i = 0; i < REPETITIONS; i++) {
 			config.USE_SEARCH = false;
+			config.CHECK_SOLVABLE = true;
 
 			long timeOriginalApproach;
 			long timeSearchBasedApproach;
@@ -226,7 +236,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 					generator.generateIPMs(config);
 				} while (generator.getModelsList().size() == 0);
 				countOriginal++;
-			} while (countOriginal < TARGET);
+			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
@@ -239,7 +249,7 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 					generator.generateIPMs(config);
 				} while (generator.getModelsList().size() == 0);
 				countSearch++;
-			} while (countSearch < TARGET);
+			} while (countSearch < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
 			writer.append(config.TRACK.name() + ";TESTRATIO;" + countOriginal + ";" + timeOriginalApproach + ";"
@@ -250,8 +260,5 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 
 		writer.close();
 	}
-	
-
-	
 
 }

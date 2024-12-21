@@ -309,9 +309,10 @@ public class Model extends CitModelImpl {
 			for (Parameter p : parameters)
 				if (p instanceof Range)
 					throw new NotConvertableModel("Computation of the ratio interrupted");
-			
+
 			MediciCITGenerator gen = new MediciCITGenerator();
 			String mediciModel = gen.translateModel(this, false);
+			boolean stopped = false;
 
 			// First save the CTWedge file
 			File f = new File(getName() + ".medici");
@@ -354,19 +355,24 @@ public class Model extends CitModelImpl {
 							sizeWConstraints = new BigDecimal((line.split(" ")[2]));
 							if (sizeWConstraints.doubleValue() == 0.0)
 								throw new NotConvertableModel("Computation of the ratio interrupted");
+							p.destroy();
+							stopped = true;
 						}
 					}
 					bri.close();
-					p.waitFor();
+					if (!stopped)
+						p.waitFor();
 					System.out.println("command finished ");
 				} catch (InterruptedException e) {
 					f.delete();
-					throw new NotConvertableModel("Computation of the ratio interrupted");
+					if (!stopped)
+						throw new NotConvertableModel("Computation of the ratio interrupted");
 				}
 				f.delete();
 			} catch (IOException e) {
 				f.delete();
-				throw new NotConvertableModel("Computation of the ratio interrupted");
+				if (!stopped)
+					throw new NotConvertableModel("Computation of the ratio interrupted");
 			}
 			// Compute ratio
 			double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
@@ -422,10 +428,91 @@ public class Model extends CitModelImpl {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
+	 * @throws IOException 
 	 */
-	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException {
+	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		if (this.config.TRACK != Track.NUMC)
-			return pMedici.util.Operations.getTupleValidityRatioFromModel(this);
+			try {
+				// If the model contains at least one integer, we cannot deal with it. Throw an
+				// exception and manage it differently
+				for (Parameter p : parameters)
+					if (p instanceof Range)
+						throw new NotConvertableModel("Computation of the ratio interrupted");
+
+				MediciCITGenerator gen = new MediciCITGenerator();
+				String mediciModel = gen.translateModel(this, false);
+				boolean stopped = false;
+
+				// First save the CTWedge file
+				File f = new File(getName() + ".medici");
+				FileWriter fo = new FileWriter(f);
+				fo.write(mediciModel);
+				fo.close();
+				LOGGER.debug("Tuple validity ratio computed using MEDICI. The model has been written in the " + getName()
+						+ ".ctw file");
+
+				// Now call MEDICI
+				List<String> command = new ArrayList<String>();
+				command.add(System.getProperty("user.dir") + "/medici");
+				// --- Model
+				command.add("--m");
+				command.add(getName() + ".medici");
+				// --- Do not generate
+				command.add("--donotgenerate");
+				LOGGER.debug("Executing command " + command);
+
+				// Run
+				BigDecimal sizeWoConstraints = new BigDecimal(-1);
+				BigDecimal sizeWConstraints = new BigDecimal(-1);
+				try {
+					ProcessBuilder pc = new ProcessBuilder(command);
+					pc.command(command);
+					pc.redirectError();
+					Process p = pc.start();
+					try {
+						BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+						String line;
+						while ((line = bri.readLine()) != null) {
+							LOGGER.debug(line);
+							// save to file
+							if (line.contains("Generated tuples for 2-wise with cardinality")) {
+								sizeWoConstraints = new BigDecimal((line.split(" ")[6]));
+								if (sizeWoConstraints.doubleValue() == 0.0)
+									throw new NotConvertableModel("Computation of the ratio interrupted");
+							}
+							if (line.contains("size dopo controllo copribilita")) {
+								sizeWConstraints = new BigDecimal((line.split(" ")[4]));
+								if (sizeWConstraints.doubleValue() == 0.0)
+									throw new NotConvertableModel("Computation of the ratio interrupted");
+								p.destroy();
+								stopped = true;
+							}
+						}
+						bri.close();
+						if (!stopped)
+							p.waitFor();
+						System.out.println("command finished ");
+					} catch (InterruptedException e) {
+						f.delete();
+						if (!stopped)
+							throw new NotConvertableModel("Computation of the ratio interrupted");
+					}
+					f.delete();
+				} catch (IOException e) {
+					f.delete();
+					if (!stopped)
+						throw new NotConvertableModel("Computation of the ratio interrupted");
+				}
+				// Compute ratio
+				double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
+				if (ratio < 0)
+					throw new NotConvertableModel("Computation of the ratio failed");
+				isRatioExact = true;
+				LOGGER.debug("Ratio: " + ratio);
+				return ratio;
+			} catch (NotConvertableModel ex) {
+				return getApproximateTestValidityRatio();
+			}
 		else
 			return Operations.getTupleValidityRatioFromModel(this);
 	}
