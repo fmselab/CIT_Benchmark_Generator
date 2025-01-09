@@ -33,13 +33,15 @@ long_format = experiments.melt(
 # Create the boxplot
 plt.figure(figsize=(3.5, 2.3))
 sns.boxplot(data=long_format, x='Type', y='Value', palette='Set2', width=0.4)
-plt.xticks([0, 1], ['Original', 'Search'], fontsize=8)
+params = {'mathtext.default': 'regular' }          
+plt.rcParams.update(params)
+plt.xticks([0, 1], ['BENCIGEN', '$BENCIGEN_S$'], fontsize=8)
 plt.xlabel('Approach', fontsize=8)
 plt.xticks(fontsize=8)
 plt.yticks(fontsize=8)
 plt.ylabel('# Compliant IPMs', fontsize=8)
 plt.tight_layout()
-plt.savefig('images/RQ1_A.pdf', dpi=300)
+plt.savefig('images/RQ1_A.pdf', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Compute the average number of compliant IPMs
@@ -61,8 +63,8 @@ long_df = experiments.melt(
 
 # Replace methodology names for better readability
 long_df['Methodology'] = long_df['Methodology'].replace({
-    'nCompliantOriginal': 'Original',
-    'nCompliantSearch': 'Search'
+    'nCompliantOriginal': 'BENCIGEN',
+    'nCompliantSearch': '$BENCIGEN_S$'
 })
 
 # Create the boxplot
@@ -83,7 +85,7 @@ plt.legend(title='Methodology', fontsize=8)
 plt.xticks(fontsize=8)
 plt.yticks(fontsize=8)
 plt.tight_layout()
-plt.savefig('images/RQ1_B.pdf', dpi=300)
+plt.savefig('images/RQ1_B.pdf', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Compute the average number of compliant IPMs per goal
