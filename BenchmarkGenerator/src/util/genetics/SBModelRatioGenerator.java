@@ -39,14 +39,7 @@ import util.genetics.mutations.ConstraintToNotMutation;
 public final class SBModelRatioGenerator {
 
 	/**
-	 * Entry point for the sample application. Any data specified on the command
-	 * line is considered to be the target String. If no target is specified, a
-	 * default of "HELLOW WORLD" is used instead.
-	 * 
-	 * @param args The target String (as an array of words).
-	 * @throws IOException
-	 * @throws InvalidConfigurationException
-	 * @throws InterruptedException
+	 * The main method that starts the evolution process.
 	 */
 	public Model mutate(GeneratorConfiguration config)
 			throws InterruptedException, InvalidConfigurationException, IOException {
@@ -72,7 +65,6 @@ public final class SBModelRatioGenerator {
 		operators.add(new ConstraintNotRemoverMutation(0.4f));
 		operators.add(new ConstraintToNotMutation(0.4f));
 		operators.add(new ParameterExtenderMutation(0.4f));
-		// operators.add(new ParameterRemoverMutation());
 		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
 
 		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline,

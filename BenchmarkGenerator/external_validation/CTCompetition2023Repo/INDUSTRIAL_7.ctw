@@ -95,7 +95,7 @@ Constraints:
  # !(p17=true) or p18=true #
  # (p15=true) or !(p19=true) #
  # !(p11=true) or p15=true #
- # (p10=true) or !(p16=true)) #
+ # (p10=true) or !(p16=true) #
  # (p13=true) or !(p21=true) #
  # (p13=true) or !(p22=true) #
  # (p13=true) or !(p23=true) #

@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
-import ctwedge.generator.util.ParameterSize;
+import ctwedge.util.ParameterSize;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
