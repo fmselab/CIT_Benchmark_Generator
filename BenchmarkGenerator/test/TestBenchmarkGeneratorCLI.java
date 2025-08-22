@@ -190,7 +190,7 @@ public class TestBenchmarkGeneratorCLI {
 		config.TRACK = Track.NUMC;
 
 		// Check both ratios
-		config.P = N;
+		config.P = P;
 		config.EPSILON = EPSILON;
 		config.RATIO_TEST = RATIO_TEST;
 		config.RATIO = RATIO_TUPLE;
@@ -618,7 +618,7 @@ public class TestBenchmarkGeneratorCLI {
 		config.TRACK = Track.MCAC;
 
 		// Check both ratios
-		config.P = N;
+		config.P = P;
 		config.EPSILON = EPSILON;
 		config.RATIO_TEST = RATIO_TEST;
 		config.RATIO = RATIO_TUPLE;
@@ -811,7 +811,7 @@ public class TestBenchmarkGeneratorCLI {
 		config.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		config.P = N;
+		config.P = P;
 		config.EPSILON = EPSILON;
 		config.RATIO_TEST = RATIO_TEST;
 		config.RATIO = RATIO_TUPLE;
@@ -911,7 +911,7 @@ public class TestBenchmarkGeneratorCLI {
 		config.TRACK = Track.BOOLC;
 
 		// TestValidityRatio
-		config.P = N;
+		config.P = P;
 		config.EPSILON = EPSILON;
 		config.RATIO_TEST = RATIO_TEST;
 		config.CHECK_TUPLE_RATIO = false;
@@ -1234,7 +1234,7 @@ public class TestBenchmarkGeneratorCLI {
 		config.TRACK = Track.BOOLC;
 
 		// Check both ratios
-		config.P = N;
+		config.P = P;
 		config.EPSILON = EPSILON;
 		config.RATIO_TEST = RATIO_TEST;
 		config.RATIO = RATIO_TUPLE;
@@ -1554,7 +1554,7 @@ public class TestBenchmarkGeneratorCLI {
 		config.TRACK = Track.MCAC;
 
 		// TestValidityRatio
-		config.P = N;
+		config.P = P;
 		config.EPSILON = EPSILON;
 		config.RATIO_TEST = RATIO_TEST;
 		config.CHECK_TUPLE_RATIO = false;
