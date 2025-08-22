@@ -38,7 +38,7 @@ public class TestBenchmarkGeneratorCLI {
 	 * Constants for test execution, as presented in the paper
 	 */
 	static int N_BENCHMARKS = 10;
-	static int N = 1000;
+	static double P = 0.75;
 	static double EPSILON = 0.1;
 	static double RATIO_TUPLE = 0.3;
 	static double RATIO_TEST = 0.1;
