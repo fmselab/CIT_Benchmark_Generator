@@ -57,6 +57,11 @@ import util.genetics.mutations.ConstraintSubstitutionMutation;
 import util.genetics.mutations.ConstraintToNotMutation;
 import util.genetics.mutations.ParameterAdderMutation;
 import util.genetics.mutations.ParameterExtenderMutation;
+import util.genetics.problems.ModelProblem;
+import util.genetics.problems.ModelRatioProblem;
+import util.genetics.problems.ModelSolvabilityProblem;
+import util.genetics.problems.ModelTestRatioProblem;
+import util.genetics.problems.ModelTupleRatioProblem;
 
 public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
@@ -453,7 +458,22 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 */
 	private Model generateWithGeneratorAndSearch(Generator generator, Category category, GeneratorConfiguration config)
 			throws InvalidConfigurationException, SolverException, InterruptedException, IOException {
+		// Choose the right problem
+		ModelProblem problem;
+		if (config.CHECK_TEST_RATIO && !config.CHECK_TUPLE_RATIO)
+            problem = new ModelTestRatioProblem(config.RATIO_TEST, config);
+        else if (config.CHECK_TUPLE_RATIO && !config.CHECK_TEST_RATIO)
+            problem = new ModelTupleRatioProblem(config.RATIO, config);
+        else if (config.CHECK_TUPLE_RATIO && config.CHECK_TEST_RATIO)
+        	problem = new ModelRatioProblem(config.RATIO, config.RATIO_TEST, config);
+        else
+            problem = new ModelSolvabilityProblem(config);
+		
+		
+		
 		// Set evolution strategies
+		
+		
 		ModelFactory factory = new ModelFactory();
 		factory.setGeneratorConfiguration(config);
 		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>();

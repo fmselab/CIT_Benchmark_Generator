@@ -3,7 +3,7 @@ package util.genetics.problems;
 import generators.GeneratorConfiguration;
 import util.genetics.solution.ModelSolution;
 
-public abstract class ModelRatioProblem extends ModelProblem {
+public class ModelRatioProblem extends ModelProblem {
 
 	private static final long serialVersionUID = 1L;
 	private final double targetTupleRatio;
