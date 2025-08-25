@@ -46,6 +46,7 @@ import picocli.CommandLine.Parameters;
 import util.Dictionary;
 import util.ModelConfigurationExtractor;
 import util.genetics.ModelFactory;
+import util.genetics.SBModelRatioGenerator;
 import util.genetics.mutations.ConstraintAdderMutation;
 import util.genetics.mutations.ConstraintAndToOrMutation;
 import util.genetics.mutations.ConstraintDblImpliesToImpliesMutation;
@@ -469,48 +470,11 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
         else
             problem = new ModelSolvabilityProblem(config);
 		
+		// Evolve the model
+		// TODO: To add a maximum time for the evolution (60 seconds for each model)
+		Model m = SBModelRatioGenerator.evolveModel(config, problem);
 		
 		
-		// Set evolution strategies
-		
-		
-		ModelFactory factory = new ModelFactory();
-		factory.setGeneratorConfiguration(config);
-		List<EvolutionaryOperator<Model>> operators = new ArrayList<EvolutionaryOperator<Model>>();
-		if (config.PROBABILITY_PARADD > 0)
-			operators.add(new ParameterAdderMutation(config.PROBABILITY_PARADD));
-		if (config.PROBABILITY_CNSTRADD > 0)
-			operators.add(new ConstraintAdderMutation(config.PROBABILITY_CNSTRADD));
-		if (config.PROBABILITY_CNSTRDEL > 0)
-			operators.add(new ConstraintRemoverMutation(config.PROBABILITY_CNSTRDEL));
-		if (config.PROBABILITY_CNSTRSUBST > 0)
-			operators.add(new ConstraintSubstitutionMutation(config.PROBABILITY_CNSTRSUBST));
-		if (config.PROBABILITY_ANDTOOR > 0)
-			operators.add(new ConstraintAndToOrMutation(config.PROBABILITY_ANDTOOR));
-		if (config.PROBABILITY_ORTOAND > 0)
-			operators.add(new ConstraintOrToAndMutation(config.PROBABILITY_ORTOAND));
-		if (config.PROBABILITY_IMPLTODBL > 0)
-			operators.add(new ConstraintImpliesToDblImpliesMutation(config.PROBABILITY_IMPLTODBL));
-		if (config.PROBABILITY_DBLTOIMPL > 0)
-			operators.add(new ConstraintDblImpliesToImpliesMutation(config.PROBABILITY_DBLTOIMPL));
-		if (config.PROBABILITY_NOTDEL > 0)
-			operators.add(new ConstraintNotRemoverMutation(config.PROBABILITY_NOTDEL));
-		if (config.PROBABILITY_NOTADD > 0)
-			operators.add(new ConstraintToNotMutation(config.PROBABILITY_NOTADD));
-		if (config.PROBABILITY_PAREXT > 0)
-			operators.add(new ParameterExtenderMutation(config.PROBABILITY_PAREXT));
-		EvolutionaryOperator<Model> pipeline = new EvolutionPipeline<Model>(operators);
-		EvolutionEngine<Model> engine = new GenerationalEvolutionEngine<Model>(factory, pipeline,
-				new CachingFitnessEvaluator<Model>(config.FITNESS), new RouletteWheelSelection(),
-				new MersenneTwisterRNG());
-		((AbstractEvolutionEngine<Model>) engine).setSingleThreaded(true);
-		double targetFitness;
-		if (config.CHECK_TEST_RATIO || config.CHECK_TUPLE_RATIO)
-			targetFitness = config.EPSILON;
-		else
-			targetFitness = 0.0;
-		Model m = engine.evolve(10, 5, new TargetFitness(targetFitness, false), new Stagnation(20, false),
-				new ElapsedTime(600000));
 		if (m == null || !m.isSolvable())
 			return null;
 

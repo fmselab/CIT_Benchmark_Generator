@@ -35,17 +35,17 @@ public final class SBModelRatioGenerator {
 	public static Model evolveModel(GeneratorConfiguration config, ModelProblem problem) {
 
 		MutationOperator<ModelSolution> mutation = new CompositeMutation(List.of(
-				new ParameterAdderMutation(0.3f),
-				new ConstraintAdderMutation(0.2f),
-				new ConstraintRemoverMutation(0.4f),
-				new ConstraintSubstitutionMutation(0.4f),
-				new ConstraintAndToOrMutation(0.4f),
-				new ConstraintOrToAndMutation(0.4f),
-				new ConstraintImpliesToDblImpliesMutation(0.4f),
-				new ConstraintDblImpliesToImpliesMutation(0.4f),
-				new ConstraintNotRemoverMutation(0.4f),
-				new ConstraintToNotMutation(0.4f),
-				new ParameterExtenderMutation(0.4f)
+				new ParameterAdderMutation(config.PROBABILITY_PARADD),
+				new ConstraintAdderMutation(config.PROBABILITY_CNSTRADD),
+				new ConstraintRemoverMutation(config.PROBABILITY_CNSTRDEL),
+				new ConstraintSubstitutionMutation(config.PROBABILITY_CNSTRSUBST),
+				new ConstraintAndToOrMutation(config.PROBABILITY_ANDTOOR),
+				new ConstraintOrToAndMutation(config.PROBABILITY_ORTOAND),
+				new ConstraintImpliesToDblImpliesMutation(config.PROBABILITY_IMPLTODBL),
+				new ConstraintDblImpliesToImpliesMutation(config.PROBABILITY_DBLTOIMPL),
+				new ConstraintNotRemoverMutation(config.PROBABILITY_NOTDEL),
+				new ConstraintToNotMutation(config.PROBABILITY_NOTADD),
+				new ParameterExtenderMutation(config.PROBABILITY_PAREXT)
 			));
 
 		CrossoverOperator<ModelSolution> crossover = new ModelCrossover();
