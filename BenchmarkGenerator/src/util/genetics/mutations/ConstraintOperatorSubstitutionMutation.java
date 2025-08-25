@@ -1,13 +1,11 @@
 package util.genetics.mutations;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import ctwedge.ctWedge.Constraint;
 import ctwedge.ctWedge.Expression;
@@ -34,22 +32,44 @@ public abstract class ConstraintOperatorSubstitutionMutation implements Mutation
 		this.probability = p;
 	}
 
+	/**
+	 * Executes the mutation
+	 * 
+	 * @param solution the solution to be mutated
+	 * @return the mutation solution
+	 */
 	@Override
-	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
-
-		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
-		for (Model m : selectedCandidates) {
-			try {
-				mutatedPopulation.add(mutateModel(m, rng));
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+	public ModelSolution execute(ModelSolution solution) {
+		Model m = solution.getModel();
+		Model mutated;
+		ModelSolution mutatedSolution = null;
+		try {
+			mutated = mutateModel(m);
+			mutatedSolution = new ModelSolution(mutated, solution.variables().size(),
+					solution.objectives().length);
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
 		}
-		return mutatedPopulation;
-
+		return mutatedSolution;
 	}
 
-	abstract Model mutateModel(Model m, Random rng) throws CloneNotSupportedException;
+	/**
+	 * Gets the mutation probability
+	 * 
+	 * @return the probability
+	 */
+	@Override
+	public double mutationProbability() {
+		return probability;
+	}
+
+	/**
+	 * Mutate the model by substituting an operator in a constraint
+	 * 
+	 * @param m the model to mutate *
+	 * @return the mutated model
+	 */
+	abstract Model mutateModel(Model m) throws CloneNotSupportedException;
 
 	Model changeOperator(Model m, Random rng, Expression from, Expression to) {
 		Model mTemp = (Model) m.clone();

@@ -1,25 +1,15 @@
 package util.genetics.mutations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import org.eclipse.xtext.EcoreUtil2;
-
-import ctwedge.ctWedge.CtWedgePackage;
-import ctwedge.ctWedge.Element;
-import ctwedge.ctWedge.Enumerative;
-import ctwedge.ctWedge.Parameter;
-import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
-import ctwedge.ctWedge.impl.EnumerativeImpl;
-import ctwedge.ctWedge.impl.RangeImpl;
-import ctwedge.util.ParameterElementsGetterAsStrings;
 import generators.Track;
 import models.Model;
 import util.genetics.solution.ModelSolution;
 
 public class ConstraintAndToOrMutation extends ConstraintOperatorSubstitutionMutation {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Builds a new ConstraintImpliesToDblImpliesMutation object
