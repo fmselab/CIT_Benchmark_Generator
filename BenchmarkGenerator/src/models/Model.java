@@ -310,14 +310,12 @@ public class Model extends CitModelImpl {
 				if (p instanceof Range)
 					throw new NotConvertableModel("Computation of the ratio interrupted");
 
-			MediciCITGenerator gen = new MediciCITGenerator();
-			String mediciModel = gen.translateModel(this, false);
 			boolean stopped = false;
 
 			// First save the CTWedge file
-			File f = new File(getName() + ".medici");
+			File f = new File(getName() + ".ctw");
 			FileWriter fo = new FileWriter(f);
-			fo.write(mediciModel);
+			fo.write(this.toString());
 			fo.close();
 			LOGGER.debug("Test validity ratio computed using MEDICI. The model has been written in the " + getName()
 					+ ".ctw file");
@@ -327,7 +325,8 @@ public class Model extends CitModelImpl {
 			command.add(System.getProperty("user.dir") + "/medici");
 			// --- Model
 			command.add("--m");
-			command.add(getName() + ".medici");
+			command.add(getName() + ".ctw");
+			command.add("--ctw");
 			// --- Do not generate
 			command.add("--donotgenerate");
 			LOGGER.debug("Executing command " + command);
@@ -439,14 +438,12 @@ public class Model extends CitModelImpl {
 					if (p instanceof Range)
 						throw new NotConvertableModel("Computation of the ratio interrupted");
 
-				MediciCITGenerator gen = new MediciCITGenerator();
-				String mediciModel = gen.translateModel(this, false);
 				boolean stopped = false;
 
 				// First save the CTWedge file
-				File f = new File(getName() + ".medici");
+				File f = new File(getName() + ".ctw");
 				FileWriter fo = new FileWriter(f);
-				fo.write(mediciModel);
+				fo.write(this.toString());
 				fo.close();
 				LOGGER.debug("Tuple validity ratio computed using MEDICI. The model has been written in the " + getName()
 						+ ".ctw file");
@@ -456,7 +453,8 @@ public class Model extends CitModelImpl {
 				command.add(System.getProperty("user.dir") + "/medici");
 				// --- Model
 				command.add("--m");
-				command.add(getName() + ".medici");
+				command.add(getName() + ".ctw");
+				command.add("--ctw");
 				// --- Do not generate
 				command.add("--donotgenerate");
 				LOGGER.debug("Executing command " + command);

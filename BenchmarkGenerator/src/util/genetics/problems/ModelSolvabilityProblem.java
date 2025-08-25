@@ -48,6 +48,7 @@ public class ModelSolvabilityProblem extends ModelProblem {
 				System.out.println(unsatCoreSize);
 				return unsatCoreSize;
 			}
+			System.out.println("----- Model is solvable -----");
 			return 0;
 		} catch (Exception e) {
 			e.printStackTrace();

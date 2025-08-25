@@ -24,25 +24,22 @@ public class ModelSolution extends AbstractSolution<Model> {
 
 	@Override
 	public List<Model> variables() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.variables();
 	}
 
 	@Override
 	public double[] objectives() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.objectives();
 	}
 
 	@Override
 	public double[] constraints() {
-		return null;
+		return super.constraints();
 	}
 
 	@Override
 	public Map<Object, Object> attributes() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.attributes();
 	}
 
 	@Override
