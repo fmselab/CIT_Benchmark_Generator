@@ -1,11 +1,8 @@
 package util.genetics.mutations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import generators.Track;
 import models.Model;
@@ -28,34 +25,41 @@ public class ConstraintRemoverMutation implements MutationOperator<ModelSolution
 	public ConstraintRemoverMutation(float p) {
 		this.probability = p;
 	}
-
+	
 	/**
-	 * Apply the mutation to the selected candidates
+	 * Executes the mutation
 	 * 
-	 * @param selectedCandidates the selected candidates
-	 * @param rng                the random
-	 * @return the mutated population
+	 * @param solution the solution to be mutated
+	 * @return the mutation solution
 	 */
 	@Override
-	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
+	public ModelSolution execute(ModelSolution solution) {
+		Model m = solution.getModel();
+		Model mutated = mutateModel(m);
+		ModelSolution mutatedSolution = new ModelSolution(mutated, solution.variables().size(),
+				solution.objectives().length);
+		return mutatedSolution;
+	}
 
-		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
-		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
-		}
-		return mutatedPopulation;
-
+	/**
+	 * Gets the mutation probability
+	 * 
+	 * @return the probability
+	 */
+	@Override
+	public double mutationProbability() {
+		return probability;
 	}
 
 	/**
 	 * Mutate the model by removing a constraint
 	 * 
-	 * @param m   the model to mutate
-	 * @param rng the random number generator
+	 * @param m the model to mutate	 * 
 	 * @return the mutated model
 	 */
-	public Model mutateModel(Model m, Random rng) {
+	public Model mutateModel(Model m) {
 		Track track = m.getGeneratorConfiguration().TRACK;
+		Random rng = new Random();
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
 			return m;
@@ -78,5 +82,4 @@ public class ConstraintRemoverMutation implements MutationOperator<ModelSolution
 
 		return mTemp;
 	}
-
 }

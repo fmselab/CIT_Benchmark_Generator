@@ -1,12 +1,8 @@
 package util.genetics.mutations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import ctwedge.ctWedge.Constraint;
 import generators.GeneratorWithConstraintsInterface;
@@ -61,47 +57,14 @@ public class ConstraintSubstitutionMutation implements MutationOperator<ModelSol
 	}
 
 	/**
-	 * Mutate the model by adding a parameter
+	 * Mutate the model by substituting a constraint
 	 * 
 	 * @param m the model to mutate	 * 
 	 * @return the mutated model
 	 */
 	public Model mutateModel(Model m) {
-		Model mTemp = (Model) m.clone();
-		Random rng = new Random();
-
-		// Check the probability
-		if (rng.nextFloat(0, 1) > probability)
-			return m;
-
-		if (m.getParameters().size() < mTemp.getGeneratorConfiguration().N_PARAMS_MAX) {
-			System.out.println("****** Adding a parameter");
-			mTemp.addNewRandomParameter((ArrayList<String>) mTemp.getParameters().stream().map(x -> x.getName())
-					.collect(Collectors.toList()));
-		}
-		return mTemp;
-	}
-	
-	
-	
-	
-	
-	
-	
-
-	@Override
-	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
-
-		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
-		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
-		}
-		return mutatedPopulation;
-
-	}
-
-	private Model mutateModel(Model m, Random rng) {
 		Track track = m.getGeneratorConfiguration().TRACK;
+		Random rng = new Random();
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
 			return m;
@@ -133,5 +96,4 @@ public class ConstraintSubstitutionMutation implements MutationOperator<ModelSol
 
 		return mTemp;
 	}
-
 }
