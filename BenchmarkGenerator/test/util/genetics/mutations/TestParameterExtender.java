@@ -2,7 +2,6 @@ package util.genetics.mutations;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Random;
 
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -43,9 +42,8 @@ public class TestParameterExtender {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ParameterExtenderMutation pam = new ParameterExtenderMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		int bigger = 0;
 		for (int i = 0; i < m.getParameters().size(); i++) {
 			// Names of the parameters must be the same
@@ -88,9 +86,8 @@ public class TestParameterExtender {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ParameterExtenderMutation pam = new ParameterExtenderMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		for (int i = 0; i < m.getParameters().size(); i++) {
 			// Names of the parameters must be the same
 			assertEquals(m.getParameters().get(i).getName(), mTemp.getParameters().get(i).getName());
@@ -130,9 +127,8 @@ public class TestParameterExtender {
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
 		System.out.println(m.toString());
-		Random rng = new Random();
 		ParameterExtenderMutation pam = new ParameterExtenderMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		int bigger = 0;
 		for (int i = 0; i < m.getParameters().size(); i++) {
 			// Names of the parameters must be the same

@@ -3,7 +3,6 @@ package util.genetics.mutations;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Random;
 
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -44,9 +43,8 @@ public class TestConstraintRemover {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ConstraintRemoverMutation pam = new ConstraintRemoverMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		if (m.getConstraints().size() > mTemp.getGeneratorConfiguration().N_CONSTRAINTS_MIN)
 			assertEquals(m.getConstraints().size() - 1, mTemp.getConstraints().size());
 		else
@@ -81,9 +79,8 @@ public class TestConstraintRemover {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ConstraintRemoverMutation pam = new ConstraintRemoverMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		if (m.getConstraints().size() > mTemp.getGeneratorConfiguration().N_CONSTRAINTS_MIN)
 			assertEquals(m.getConstraints().size() - 1, mTemp.getConstraints().size());
 		else
@@ -118,9 +115,8 @@ public class TestConstraintRemover {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ConstraintRemoverMutation pam = new ConstraintRemoverMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		if (m.getConstraints().size() > mTemp.getGeneratorConfiguration().N_CONSTRAINTS_MIN)
 			assertEquals(m.getConstraints().size() - 1, mTemp.getConstraints().size());
 		else

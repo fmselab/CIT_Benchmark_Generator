@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 import org.apache.log4j.Level;
@@ -14,17 +13,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
-import org.uncommons.maths.random.MersenneTwisterRNG;
-import org.uncommons.watchmaker.framework.AbstractEvolutionEngine;
-import org.uncommons.watchmaker.framework.CachingFitnessEvaluator;
-import org.uncommons.watchmaker.framework.EvolutionEngine;
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
-import org.uncommons.watchmaker.framework.GenerationalEvolutionEngine;
-import org.uncommons.watchmaker.framework.operators.EvolutionPipeline;
-import org.uncommons.watchmaker.framework.selection.RouletteWheelSelection;
-import org.uncommons.watchmaker.framework.termination.ElapsedTime;
-import org.uncommons.watchmaker.framework.termination.Stagnation;
-import org.uncommons.watchmaker.framework.termination.TargetFitness;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,19 +33,7 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import util.Dictionary;
 import util.ModelConfigurationExtractor;
-import util.genetics.ModelFactory;
 import util.genetics.SBModelRatioGenerator;
-import util.genetics.mutations.ConstraintAdderMutation;
-import util.genetics.mutations.ConstraintAndToOrMutation;
-import util.genetics.mutations.ConstraintDblImpliesToImpliesMutation;
-import util.genetics.mutations.ConstraintImpliesToDblImpliesMutation;
-import util.genetics.mutations.ConstraintNotRemoverMutation;
-import util.genetics.mutations.ConstraintOrToAndMutation;
-import util.genetics.mutations.ConstraintRemoverMutation;
-import util.genetics.mutations.ConstraintSubstitutionMutation;
-import util.genetics.mutations.ConstraintToNotMutation;
-import util.genetics.mutations.ParameterAdderMutation;
-import util.genetics.mutations.ParameterExtenderMutation;
 import util.genetics.problems.ModelProblem;
 import util.genetics.problems.ModelRatioProblem;
 import util.genetics.problems.ModelSolvabilityProblem;
@@ -473,7 +449,6 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		// Evolve the model
 		// TODO: To add a maximum time for the evolution (60 seconds for each model)
 		Model m = SBModelRatioGenerator.evolveModel(config, problem);
-		
 		
 		if (m == null || !m.isSolvable())
 			return null;

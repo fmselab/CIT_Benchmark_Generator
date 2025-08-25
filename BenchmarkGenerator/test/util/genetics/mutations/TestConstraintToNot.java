@@ -2,7 +2,6 @@ package util.genetics.mutations;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Random;
 
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -43,9 +42,8 @@ public class TestConstraintToNot {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ConstraintToNotMutation pam = new ConstraintToNotMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		// The number of constraints must not change
 		assert (mTemp.getConstraints().size() == m.getConstraints().size());
 
@@ -94,9 +92,8 @@ public class TestConstraintToNot {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ConstraintToNotMutation pam = new ConstraintToNotMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		// The number of constraints must not change
 		assert (mTemp.getConstraints().size() == m.getConstraints().size());
 
@@ -145,9 +142,8 @@ public class TestConstraintToNot {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ConstraintToNotMutation pam = new ConstraintToNotMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		// The number of constraints must not change
 		assert (mTemp.getConstraints().size() == m.getConstraints().size());
 

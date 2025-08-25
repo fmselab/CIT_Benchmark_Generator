@@ -3,7 +3,6 @@ package util.genetics.mutations;
 import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-import java.util.Random;
 
 import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
@@ -44,9 +43,8 @@ public class TestParameterAdder {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ParameterAdderMutation pam = new ParameterAdderMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		if (m.getParameters().size() < mTemp.getGeneratorConfiguration().N_PARAMS_MAX)
 			assertEquals(m.getParameters().size() + 1, mTemp.getParameters().size());
 		else
@@ -82,9 +80,8 @@ public class TestParameterAdder {
 			generator.generateIPMs(config);
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
-		Random rng = new Random();
 		ParameterAdderMutation pam = new ParameterAdderMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		if (m.getParameters().size() < mTemp.getGeneratorConfiguration().N_PARAMS_MAX)
 			assertEquals(m.getParameters().size() + 1, mTemp.getParameters().size());
 		else
@@ -120,9 +117,8 @@ public class TestParameterAdder {
 		} while (generator.getModelsList().size() == 0);
 		m = generator.getModelsList().get(0);
 		System.out.println(m.toString());
-		Random rng = new Random();
 		ParameterAdderMutation pam = new ParameterAdderMutation(1.0f);
-		Model mTemp = pam.mutateModel(m, rng);
+		Model mTemp = pam.mutateModel(m);
 		System.out.println(mTemp.toString());
 		if (m.getParameters().size() < mTemp.getGeneratorConfiguration().N_PARAMS_MAX)
 			assertEquals(m.getParameters().size() + 1, mTemp.getParameters().size());
