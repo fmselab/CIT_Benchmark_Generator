@@ -27,9 +27,7 @@ import util.genetics.mutations.ConstraintToNotMutation;
 import util.genetics.mutations.ParameterAdderMutation;
 import util.genetics.mutations.ParameterExtenderMutation;
 import util.genetics.problems.ModelProblem;
-import util.genetics.problems.ModelSolvabilityProblem;
 import util.genetics.problems.ModelTestRatioProblem;
-import util.genetics.problems.ModelTupleRatioProblem;
 import util.genetics.solution.ModelSolution;
 
 public final class SBModelRatioGenerator {
@@ -60,6 +58,7 @@ public final class SBModelRatioGenerator {
 			        .setOffspringPopulationSize(1)
 			        .build();		
 		
+		@SuppressWarnings("unused")
 		AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm).execute();
 		List<ModelSolution> population = algorithm.result();
 		return population.get(0).getModel();

@@ -40,7 +40,6 @@ import ctwedge.ctWedge.Parameter;
 import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CitModelImpl;
 import ctwedge.ctWedge.impl.EnumerativeImpl;
-import ctwedge.generator.medici.MediciCITGenerator;
 import ctwedge.generator.pict.PICTGenerator;
 import ctwedge.util.ModelUtils;
 import ctwedge.util.NotConvertableModel;
