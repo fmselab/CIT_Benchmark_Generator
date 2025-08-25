@@ -1,4 +1,4 @@
-package util.genetics.mutations;
+package util.genetics.mutations.visitors;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 

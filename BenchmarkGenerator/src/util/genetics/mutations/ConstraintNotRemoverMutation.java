@@ -6,14 +6,19 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import ctwedge.ctWedge.Constraint;
 import ctwedge.ctWedge.NotExpression;
 import generators.Track;
 import models.Model;
+import util.genetics.mutations.visitors.ConstraintNotRemoverVisitor;
+import util.genetics.solution.ModelSolution;
 
-public class ConstraintNotRemoverMutation implements EvolutionaryOperator<Model> {
+public class ConstraintNotRemoverMutation implements MutationOperator<ModelSolution> {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The probability for applying the mutation

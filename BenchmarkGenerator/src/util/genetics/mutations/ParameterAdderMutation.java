@@ -1,19 +1,20 @@
 package util.genetics.mutations;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
+import org.uma.jmetal.operator.mutation.MutationOperator;
 
 import models.Model;
+import util.genetics.solution.ModelSolution;
 
 /**
  * Mutation that adds a parameter to the model
  */
-public class ParameterAdderMutation implements EvolutionaryOperator<Model> {
+public class ParameterAdderMutation implements MutationOperator<ModelSolution> {
 
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The probability for applying the mutation
 	 */
@@ -27,33 +28,41 @@ public class ParameterAdderMutation implements EvolutionaryOperator<Model> {
 	public ParameterAdderMutation(float p) {
 		this.probability = p;
 	}
-
+	
 	/**
-	 * Apply the mutation to the selected candidates
+	 * Executes the mutation
 	 * 
-	 * @param selectedCandidates the selected candidates
-	 * @param rng                the random number generator
+	 * @param solution the solution to be mutated
+	 * @return the mutation solution
 	 */
 	@Override
-	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
+	public ModelSolution execute(ModelSolution solution) {
+		Model m = solution.getModel();
+		Model mutated = mutateModel(m);
+		ModelSolution mutatedSolution = new ModelSolution(mutated, solution.variables().size(),
+				solution.objectives().length);
+		return mutatedSolution;
+	}
 
-		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
-		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
-		}
-		return mutatedPopulation;
-
+	/**
+	 * Gets the mutation probability
+	 * 
+	 * @return the probability
+	 */
+	@Override
+	public double mutationProbability() {
+		return probability;
 	}
 
 	/**
 	 * Mutate the model by adding a parameter
 	 * 
-	 * @param m   the model to mutate
-	 * @param rng the random number generator
+	 * @param m the model to mutate	 * 
 	 * @return the mutated model
 	 */
-	public Model mutateModel(Model m, Random rng) {
+	public Model mutateModel(Model m) {
 		Model mTemp = (Model) m.clone();
+		Random rng = new Random();
 
 		// Check the probability
 		if (rng.nextFloat(0, 1) > probability)

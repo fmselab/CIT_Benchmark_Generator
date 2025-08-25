@@ -6,14 +6,19 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
+import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import ctwedge.ctWedge.Constraint;
 import ctwedge.ctWedge.Expression;
 import ctwedge.ctWedge.ImpliesExpression;
 import models.Model;
+import util.genetics.mutations.visitors.ConstraintSubstitutorVisitor;
+import util.genetics.solution.ModelSolution;
 
-public abstract class ConstraintOperatorSubstitutionMutation implements EvolutionaryOperator<Model> {
+public abstract class ConstraintOperatorSubstitutionMutation implements MutationOperator<ModelSolution> {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The probability for applying the mutation

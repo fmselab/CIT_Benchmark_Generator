@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uncommons.watchmaker.framework.EvolutionaryOperator;
 
 import generators.Track;
 import models.Model;
+import util.genetics.solution.ModelSolution;
 
-public class ConstraintRemoverMutation implements EvolutionaryOperator<Model> {
+public class ConstraintRemoverMutation implements MutationOperator<ModelSolution> {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The probability for applying the mutation

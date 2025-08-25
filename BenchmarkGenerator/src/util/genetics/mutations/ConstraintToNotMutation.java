@@ -1,11 +1,9 @@
 package util.genetics.mutations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import org.eclipse.xtext.EcoreUtil2;
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
+import org.uma.jmetal.operator.mutation.MutationOperator;
 
 import ctwedge.ctWedge.CtWedgeFactory;
 import ctwedge.ctWedge.Expression;
@@ -13,11 +11,14 @@ import ctwedge.ctWedge.NotExpression;
 import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import generators.Track;
 import models.Model;
+import util.genetics.solution.ModelSolution;
 
 /**
  * Mutation that changes a constraint to its negation
  */
-public class ConstraintToNotMutation implements EvolutionaryOperator<Model> {
+public class ConstraintToNotMutation implements MutationOperator<ModelSolution> {
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * The probability for applying the mutation
@@ -34,32 +35,40 @@ public class ConstraintToNotMutation implements EvolutionaryOperator<Model> {
 	}
 
 	/**
-	 * Apply the mutation to the selected candidates
+	 * Executes the mutation
 	 * 
-	 * @param selectedCandidates the selected candidates
-	 * @param rng                the random number generator
-	 * @return the mutated population
+	 * @param solution the solution to be mutated
+	 * @return the mutation solution
 	 */
 	@Override
-	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
-
-		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
-		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
-		}
-		return mutatedPopulation;
-
+	public ModelSolution execute(ModelSolution solution) {
+		Model m = solution.getModel();
+		Model mutated = mutateModel(m);
+		ModelSolution mutatedSolution = new ModelSolution(mutated, solution.variables().size(),
+				solution.objectives().length);
+		return mutatedSolution;
 	}
 
 	/**
-	 * Mutate the model by changing a constraint to its negation
+	 * Gets the mutation probability
 	 * 
-	 * @param m   the model to mutate
-	 * @param rng the random number generator
+	 * @return the probability
+	 */
+	@Override
+	public double mutationProbability() {
+		return probability;
+	}
+
+	/**
+	 * Mutate the model by negating a constraint
+	 * 
+	 * @param m the model to mutate	 * 
 	 * @return the mutated model
 	 */
-	public Model mutateModel(Model m, Random rng) {
+	public Model mutateModel(Model m) {
 		Track track = m.getGeneratorConfiguration().TRACK;
+		Random rng = new Random();
+		
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
 			return m;

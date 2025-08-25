@@ -1,10 +1,8 @@
 package util.genetics.mutations;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import org.uncommons.watchmaker.framework.EvolutionaryOperator;
+import org.uma.jmetal.operator.mutation.MutationOperator;
 
 import ctwedge.ctWedge.Constraint;
 import generators.GeneratorWithConstraintsInterface;
@@ -13,9 +11,11 @@ import generators.WithConstraintGenerator;
 import generators.WithConstraintGeneratorCNF;
 import generators.WithConstraintGeneratorFT;
 import models.Model;
+import util.genetics.solution.ModelSolution;
 
-public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
+public class ConstraintAdderMutation implements MutationOperator<ModelSolution> {
 
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The probability for applying the mutation
 	 */
@@ -31,31 +31,39 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 	}
 
 	/**
-	 * Apply the mutation to the selected candidates
+	 * Executes the mutation
 	 * 
-	 * @param selectedCandidates the selected candidates
-	 * @param rng                the random
-	 * @return the mutated population
+	 * @param solution the solution to be mutated
+	 * @return the mutation solution
 	 */
 	@Override
-	public List<Model> apply(List<Model> selectedCandidates, Random rng) {
-
-		List<Model> mutatedPopulation = new ArrayList<Model>(selectedCandidates.size());
-		for (Model m : selectedCandidates) {
-			mutatedPopulation.add(mutateModel(m, rng));
-		}
-		return mutatedPopulation;
-
+	public ModelSolution execute(ModelSolution solution) {
+		Model m = solution.getModel();
+		Model mutated = mutateModel(m);
+		ModelSolution mutatedSolution = new ModelSolution(mutated, solution.variables().size(),
+				solution.objectives().length);
+		return mutatedSolution;
 	}
 
-	/*
+	/**
+	 * Gets the mutation probability
+	 * 
+	 * @return the probability
+	 */
+	@Override
+	public double mutationProbability() {
+		return probability;
+	}
+
+	/**
 	 * Mutate the model by adding a constraint
 	 * 
-	 * @param m the model to mutate
-	 * @param rng the random number generator
+	 * @param m the model to mutate	 * 
 	 * @return the mutated model
 	 */
-	public Model mutateModel(Model m, Random rng) {
+	public Model mutateModel(Model m) {
+		Random rn = new Random();
+		
 		Track track = m.getGeneratorConfiguration().TRACK;
 		// Unconstrained tracks do not support this mutation
 		if (track == Track.MCA || track == Track.UNIFORM_ALL || track == Track.UNIFORM_BOOLEAN) {
@@ -63,7 +71,7 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 		}
 
 		// Check the probability
-		if (rng.nextFloat(0, 1) > probability)
+		if (rn.nextFloat(0, 1) > probability)
 			return m;
 
 		// Constrained tracks
@@ -79,14 +87,13 @@ public class ConstraintAdderMutation implements EvolutionaryOperator<Model> {
 
 		if (m.getGeneratorConfiguration().N_CONSTRAINTS_MAX > m.getConstraints().size()) {
 			System.out.println("****** Adding a constraint");
-			int complexity = rng.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
+			int complexity = rn.nextInt(m.getGeneratorConfiguration().MIN_CONSTRAINTS_COMPLEXITY,
 					m.getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY + 1);
 			Constraint c = gen.generateConstraintFromComplexity(mTemp, complexity);
 			mTemp.addConstraint(c);
 		}
 
 		return mTemp;
-
 	}
 
 }
