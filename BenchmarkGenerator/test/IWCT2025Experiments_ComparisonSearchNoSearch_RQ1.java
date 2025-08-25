@@ -11,9 +11,6 @@ import org.sosy_lab.java_smt.api.SolverException;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
-import util.genetics.ModelSolvabilityEvaluator;
-import util.genetics.ModelTestRatioEvaluator;
-import util.genetics.ModelTupleRatioEvaluator;
 
 public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 
@@ -79,7 +76,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
 			config.PROBABILITY_CNSTRADD = 0;
-			config.FITNESS = new ModelSolvabilityEvaluator();
 			generator = new BenchmarkGeneratorCLI();
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
@@ -117,7 +113,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTupleRatioEvaluator(config.RATIO);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
@@ -155,7 +150,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO_TEST);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator = new BenchmarkGeneratorCLI();
@@ -194,7 +188,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			timeOriginalApproach = end - start;
 			System.out.println("Search approach");
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTupleRatioEvaluator(config.RATIO);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
@@ -230,7 +223,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO_TEST);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
@@ -266,7 +258,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
 			config.PROBABILITY_CNSTRADD = 0;
-			config.FITNESS = new ModelSolvabilityEvaluator();
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator = new BenchmarkGeneratorCLI();
@@ -303,7 +294,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTupleRatioEvaluator(config.RATIO);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
@@ -339,7 +329,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO_TEST);
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
@@ -374,7 +363,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ1 {
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
 			config.PROBABILITY_CNSTRADD = 0;
-			config.FITNESS = new ModelSolvabilityEvaluator();
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
 			generator = new BenchmarkGeneratorCLI();

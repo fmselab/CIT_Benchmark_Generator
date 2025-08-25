@@ -11,9 +11,6 @@ import org.sosy_lab.java_smt.api.SolverException;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
-import util.genetics.ModelSolvabilityEvaluator;
-import util.genetics.ModelTestRatioEvaluator;
-import util.genetics.ModelTupleRatioEvaluator;
 
 public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 
@@ -106,7 +103,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 			config.USE_SEARCH = true;
 			config.PROBABILITY_CNSTRADD = 0;
 			config.CHECK_SOLVABLE = false;
-			config.FITNESS = new ModelSolvabilityEvaluator();
 			int countSearch = 0;
 			start = System.currentTimeMillis();
 			do {
@@ -173,7 +169,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 			end = System.currentTimeMillis();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTupleRatioEvaluator(config.RATIO);
 			int countSearch = 0;
 			start = System.currentTimeMillis();
 			do {
@@ -240,7 +235,6 @@ public class IWCT2025Experiments_ComparisonSearchNoSearch_RQ2 {
 			end = System.currentTimeMillis();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
-			config.FITNESS = new ModelTestRatioEvaluator(config.RATIO_TEST);
 			int countSearch = 0;
 			start = System.currentTimeMillis();
 			do {
