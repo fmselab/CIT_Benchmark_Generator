@@ -2,9 +2,6 @@ package generators;
 
 import java.util.ArrayList;
 
-import org.uncommons.watchmaker.framework.FitnessEvaluator;
-
-import models.Model;
 import util.Dictionary;
 
 /**
@@ -56,6 +53,8 @@ public class GeneratorConfiguration {
 	public float PROBABILITY_DBLTOIMPL = 0;
 	public float PROBABILITY_NOTADD = 0;
 	public float PROBABILITY_NOTDEL = 0;
-	public FitnessEvaluator<Model> FITNESS = null;
-
+    public int POPULATION_SIZE = 100;
+    public int OFFSPRING_SIZE = 100;
+	public int MATING_POOL_SIZE = 100;
+	public int MAX_EVALUATIONS = 10000;
 }

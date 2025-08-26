@@ -1,5 +1,8 @@
 package util.genetics.problems;
 
+import org.uma.jmetal.algorithm.Algorithm;
+import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
+import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.problem.Problem;
 
 import generators.GeneratorConfiguration;
@@ -11,9 +14,13 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 
 	private static final long serialVersionUID = 1L;
 	GeneratorConfiguration config;
+	NSGAII<ModelSolution> algorithm;
+	private MutationOperator<ModelSolution> mutation;
 
 	public ModelProblem(GeneratorConfiguration config) {
 		this.config = config;
+		this.algorithm = null;
+		this.setMutation(null);
 	}
 
 	@Override
@@ -118,6 +125,23 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 		} catch (Exception e) {
 			return 1;
 		}
+	}
+
+	/**
+	 * Returns the algorithm set for this problem
+	 * 
+	 * @return the algorithm
+	 */
+	public Algorithm<?> getAlgorithm() {
+		return algorithm;
+	}
+
+	public MutationOperator<ModelSolution> getMutation() {
+		return mutation;
+	}
+
+	public void setMutation(MutationOperator<ModelSolution> mutation) {
+		this.mutation = mutation;
 	}
 
 }
