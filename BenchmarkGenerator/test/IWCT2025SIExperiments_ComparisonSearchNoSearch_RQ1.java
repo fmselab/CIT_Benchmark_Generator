@@ -60,7 +60,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_BOOLC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("BOOLC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("BOOLC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.BOOLC;
 		for (int i = 0; i < REPETITIONS; i++) {
 			config.USE_SEARCH = false;
@@ -96,7 +96,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_BOOLC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_BOOLC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_BOOLC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.BOOLC;
 		// Check ratio tuple
 		config.CHECK_TUPLE_RATIO = true;
@@ -132,7 +132,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_NUMC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_NUMC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_NUMC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.NUMC;
 		// Check ratio tuple
 		config.CHECK_TEST_RATIO = true;
@@ -169,7 +169,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_NUMC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_NUMC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_NUMC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.NUMC;
 		// Check ratio tuple
 		config.CHECK_TUPLE_RATIO = true;
@@ -206,7 +206,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_BOOLC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_BOOLC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_BOOLC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.BOOLC;
 		// Check ratio tuple
 		config.CHECK_TEST_RATIO = true;
@@ -241,7 +241,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_MCAC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("MCAC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("MCAC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.MCAC;
 
 		for (int i = 0; i < REPETITIONS; i++) {
@@ -277,7 +277,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_MCAC_tuple()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_MCAC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_MCAC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.MCAC;
 		// Check ratio tuple
 		config.CHECK_TUPLE_RATIO = true;
@@ -312,7 +312,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_MCAC_test()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_MCAC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_MCAC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.MCAC;
 		// Check ratio tuple
 		config.CHECK_TEST_RATIO = true;
@@ -347,7 +347,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_NUMC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("NUMC_" + OUTPUT_FILE)));
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("NUMC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.NUMC;
 
 		for (int i = 0; i < REPETITIONS; i++) {
