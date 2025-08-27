@@ -95,7 +95,7 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 			System.out.println("Fitness: " + distance);
 			return distance;
 		} catch (Exception e) {
-			return 1;
+			return candidate.getModel().getConstraints().size();
 		}
 	}
 
@@ -123,7 +123,7 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 			System.out.println("Fitness: " + distance);
 			return distance;
 		} catch (Exception e) {
-			return 1;
+			return candidate.getModel().getConstraints().size();
 		}
 	}
 
