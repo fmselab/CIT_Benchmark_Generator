@@ -426,9 +426,10 @@ public class Model extends CitModelImpl {
 	 * @throws InterruptedException
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public double getTupleValidityRatio() throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
+	public double getTupleValidityRatio()
+			throws InterruptedException, InvalidConfigurationException, SolverException, IOException {
 		if (this.config.TRACK != Track.NUMC)
 			try {
 				// If the model contains at least one integer, we cannot deal with it. Throw an
@@ -444,8 +445,8 @@ public class Model extends CitModelImpl {
 				FileWriter fo = new FileWriter(f);
 				fo.write(this.toString());
 				fo.close();
-				LOGGER.debug("Tuple validity ratio computed using MEDICI. The model has been written in the " + getName()
-						+ ".ctw file");
+				LOGGER.debug("Tuple validity ratio computed using MEDICI. The model has been written in the "
+						+ getName() + ".ctw file");
 
 				// Now call MEDICI
 				List<String> command = new ArrayList<String>();
@@ -483,6 +484,9 @@ public class Model extends CitModelImpl {
 									throw new NotConvertableModel("Computation of the ratio interrupted");
 								p.destroy();
 								stopped = true;
+							}
+							if (line.contains("ERRORE constraints generano modello sempre falso") && isSolvable()) {
+								return Operations.getTupleValidityRatioFromModel(this);
 							}
 						}
 						bri.close();
