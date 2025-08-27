@@ -359,7 +359,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 	 * @param checkTupleRatio check the tuple validity ratio?
 	 * @param checkTestRatio  check the test validity ratio?
 	 * @param config          the generator configuration
-	 * @param checkSolvable   whether to chech or not the solvabillity
+	 * @param checkSolvable   whether to check or not the solvabillity
 	 * @return the model
 	 * @throws SolverException
 	 * @throws InvalidConfigurationException
@@ -447,11 +447,33 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
             problem = new ModelSolvabilityProblem(config);
 		
 		// Evolve the model
-		// TODO: To add a maximum time for the evolution (60 seconds for each model)
 		Model m = SBModelRatioGenerator.evolveModel(config, problem);
 		
+		// The model must always be solvable
 		if (m == null || !m.isSolvable())
 			return null;
+		
+		// Check the tuple validity ratio
+		if (config.CHECK_TUPLE_RATIO) {
+			LOGGER.debug("Checking TUPLE VALIDITY RATIO");
+			try {
+				double ratio = m.getTupleValidityRatio();
+				LOGGER.debug("TUPLE VALIDITY RATIO " + Double.toString(ratio));
+				if (Math.abs(ratio - config.RATIO) > config.EPSILON)
+					return null;
+			} catch (InterruptedException e) {
+				return null;
+			}
+		}
+		
+		// Check the test validity ratio
+		if (config.CHECK_TEST_RATIO) {
+			LOGGER.debug("Checking TEST VALIDITY RATIO");
+			double ratio = m.getTestValidityRatio();
+			LOGGER.debug("TEST VALIDITY RATIO " + Double.toString(ratio));
+			if (Math.abs(ratio - config.RATIO_TEST) > config.EPSILON)
+				return null;
+		}
 
 		return m;
 	}
