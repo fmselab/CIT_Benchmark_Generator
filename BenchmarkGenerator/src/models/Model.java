@@ -356,6 +356,11 @@ public class Model extends CitModelImpl {
 							p.destroy();
 							stopped = true;
 						}
+						if (line.contains("ERRORE constraints generano modello sempre falso") && isSolvable()) {
+							isRatioExact = false;
+							f.delete();
+							return getApproximateTestValidityRatio();
+						}
 					}
 					bri.close();
 					if (!stopped)
@@ -486,6 +491,7 @@ public class Model extends CitModelImpl {
 								stopped = true;
 							}
 							if (line.contains("ERRORE constraints generano modello sempre falso") && isSolvable()) {
+								f.delete();
 								return Operations.getTupleValidityRatioFromModel(this);
 							}
 						}

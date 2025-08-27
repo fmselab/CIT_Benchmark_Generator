@@ -25,12 +25,12 @@ public class GeneratorConfiguration {
 	public int MAX_CONSTRAINTS_COMPLEXITY = 10;
 	public int MIN_CONSTRAINTS_COMPLEXITY = 1;
 	public boolean USE_CONSTRAINTS_BETWEEN_PARAMETERS = false;
-	public double RATIO = 0.01;
-	public double RATIO_TEST = 0.01;
-	public double TIMEOUT = 6.0;
+	public double RATIO = 0.10;
+	public double RATIO_TEST = 0.10;
+	public double TIMEOUT = 60000;
 	public Track TRACK = Track.BOOLC;
 	public double P = 0.10;
-	public double EPSILON = 0.1;
+	public double EPSILON = 0.05;
 	public boolean ACTS = false;
 	public boolean CTWEDGE = false;
 	public boolean PICT = false;
