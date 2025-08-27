@@ -508,7 +508,7 @@ public class Model extends CitModelImpl {
 				LOGGER.debug("Ratio: " + ratio);
 				return ratio;
 			} catch (NotConvertableModel ex) {
-				return getApproximateTestValidityRatio();
+				return Operations.getTupleValidityRatioFromModel(this);
 			}
 		else
 			return Operations.getTupleValidityRatioFromModel(this);
