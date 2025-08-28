@@ -21,6 +21,7 @@ import util.genetics.mutations.ConstraintSubstitutionMutation;
 import util.genetics.mutations.ConstraintToNotMutation;
 import util.genetics.mutations.ParameterAdderMutation;
 import util.genetics.mutations.ParameterExtenderMutation;
+import util.genetics.mutations.ParameterShrinkerMutation;
 import util.genetics.solution.ModelSolution;
 
 public class ModelSolvabilityProblem extends ModelProblem {
@@ -42,7 +43,8 @@ public class ModelSolvabilityProblem extends ModelProblem {
 				new ConstraintDblImpliesToImpliesMutation(config.PROBABILITY_DBLTOIMPL),
 				new ConstraintNotRemoverMutation(config.PROBABILITY_NOTDEL),
 				new ConstraintToNotMutation(config.PROBABILITY_NOTADD),
-				new ParameterExtenderMutation(config.PROBABILITY_PAREXT))));
+				new ParameterExtenderMutation(config.PROBABILITY_PAREXT),
+				new ParameterShrinkerMutation(config.PROBABILITY_PARSHR))));
 
 		// Set the algorithm to use in this problem
 		this.algorithm = new NSGAIISolvability(this, config.MAX_EVALUATIONS, config.POPULATION_SIZE,

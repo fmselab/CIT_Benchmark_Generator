@@ -37,7 +37,7 @@ public class GeneratorConfiguration {
 	public boolean CHECK_TUPLE_RATIO = false;
 	public boolean CHECK_TEST_RATIO = false;
 	public boolean ALWAYS_EXPORT = true;
-	public int N_ATTEMPTS = 10;
+	public int N_ATTEMPTS = 50;
 	public boolean FORBIDDEN_TUPLES = false;
 	public boolean CNF = false;
 	public ArrayList<Dictionary> DICTIONARY = null;
@@ -53,8 +53,9 @@ public class GeneratorConfiguration {
 	public float PROBABILITY_DBLTOIMPL = 0.5f;
 	public float PROBABILITY_NOTADD = 0.5f;
 	public float PROBABILITY_NOTDEL = 0.5f;
-    public int POPULATION_SIZE = 1000;
-    public int OFFSPRING_SIZE = 100;
-	public int MATING_POOL_SIZE = 100;
-	public int MAX_EVALUATIONS = 100000;
+	public float PROBABILITY_PARSHR = 0.5f;
+    public int POPULATION_SIZE = 10;
+    public int OFFSPRING_SIZE = 5;
+	public int MATING_POOL_SIZE = 10;
+	public int MAX_EVALUATIONS = 1000;
 }

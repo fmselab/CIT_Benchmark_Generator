@@ -15,7 +15,7 @@ import main.BenchmarkGeneratorCLI;
 public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
-	static int REPETITIONS = 10;
+	static int REPETITIONS = 100;
 	static String OUTPUT_FILE = "Experiments.csv";
 	GeneratorConfiguration config = new GeneratorConfiguration();
 
@@ -49,12 +49,14 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 		config.PROBABILITY_DBLTOIMPL = 0.5f;
 		config.PROBABILITY_NOTADD = 0.5f;
 		config.PROBABILITY_NOTDEL = 0.5f;
+		config.PROBABILITY_PARSHR = 0.5f;
 		// Ratio
 		config.CHECK_TUPLE_RATIO = false;
-		config.RATIO = 0.1;
+		config.CHECK_TEST_RATIO = false;
+		config.RATIO = 0.2;
 		config.P = 0.1;
 		config.EPSILON = 0.05;
-		config.RATIO_TEST = 0.1;
+		config.RATIO_TEST = 0.2;
 	}
 
 	@Test

@@ -41,6 +41,7 @@ public class TestGenModel {
 		
 		Model model = g.generate(Category.ONLY_BOOLEAN, config);
 		model.setName("temp");
+
 		// parso con ctwedge
 		CitModel citmodel = Utility.loadModel(model.toString());
 		//
