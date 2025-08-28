@@ -448,6 +448,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 		
 		// Evolve the model
 		Model m = SBModelRatioGenerator.evolveModel(config, problem);
+		LOGGER.debug("Evolved model: " + m.toString());
 		
 		// The model must always be solvable
 		if (m == null || !m.isSolvable())
