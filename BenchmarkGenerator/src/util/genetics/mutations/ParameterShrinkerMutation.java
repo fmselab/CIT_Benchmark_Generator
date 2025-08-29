@@ -7,7 +7,6 @@ import java.util.Random;
 import org.eclipse.xtext.EcoreUtil2;
 import org.uma.jmetal.operator.mutation.MutationOperator;
 
-import ctwedge.ctWedge.Constraint;
 import ctwedge.ctWedge.CtWedgePackage;
 import ctwedge.ctWedge.Element;
 import ctwedge.ctWedge.Enumerative;
@@ -16,6 +15,7 @@ import ctwedge.ctWedge.Range;
 import ctwedge.ctWedge.impl.CtWedgeFactoryImpl;
 import ctwedge.ctWedge.impl.EnumerativeImpl;
 import ctwedge.ctWedge.impl.RangeImpl;
+import ctwedge.util.ModelUtils;
 import ctwedge.util.ParameterElementsGetterAsStrings;
 import models.Model;
 import util.genetics.solution.ModelSolution;
@@ -103,11 +103,13 @@ public class ParameterShrinkerMutation implements MutationOperator<ModelSolution
 
 				// Check that the parameter is not used in constraints
 				int elemIndex = rng.nextInt(0, elemsList.size());
+				String paramName = param.getName();
+				ModelUtils utils = new ModelUtils(m);
 				boolean found = false;
-				for (Constraint c : mTemp.getConstraints()) {
-					if (c.eContents().contains(mTemp.getParameters().get(elemIndex)))
+				String modelConstraintsAsString = utils.serializeToString().split(" Constraints :")[1];
+				if (modelConstraintsAsString.contains(" " + paramName + " "))
 						found = true;
-				}
+				
 
 				if (!found) 
 					newElemsList.remove(elemIndex);
@@ -115,7 +117,7 @@ public class ParameterShrinkerMutation implements MutationOperator<ModelSolution
 				((EnumerativeImpl) param).eSet(CtWedgePackage.ENUMERATIVE__ELEMENTS, newElemsList);
 			}
 		} else {
-			// Extend a range
+			// Shrink a range
 			param = mTemp.getRandomParamenterOfClass(new CtWedgeFactoryImpl().createRange());
 			if (param == null)
 				return m;

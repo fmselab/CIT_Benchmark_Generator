@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.sosy_lab.common.configuration.InvalidConfigurationException;
 import org.sosy_lab.java_smt.api.SolverException;
 
+import ctwedge.util.ModelUtils;
 import generators.GeneratorConfiguration;
 import generators.Track;
 import main.BenchmarkGeneratorCLI;
@@ -42,5 +43,7 @@ public class TestParameterRemover {
 		ParameterRemoverMutation pam = new ParameterRemoverMutation(1.0f);
 		Model mTemp = pam.mutateModel(m);
 		assert(mTemp.getParameters().size() == m.getParameters().size() - 1);
+		ModelUtils util = new ModelUtils(mTemp);
+		System.out.println(util.serializeToString());
 	}
 }

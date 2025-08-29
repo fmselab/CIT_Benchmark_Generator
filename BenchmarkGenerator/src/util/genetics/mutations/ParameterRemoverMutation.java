@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.uma.jmetal.operator.mutation.MutationOperator;
 
-import ctwedge.ctWedge.Constraint;
+import ctwedge.util.ModelUtils;
 import models.Model;
 import util.genetics.solution.ModelSolution;
 
@@ -71,11 +71,13 @@ public class ParameterRemoverMutation implements MutationOperator<ModelSolution>
 		int index = rng.nextInt(0, m.getParameters().size());
 
 		// Check that the parameter is not used in constraints
+		String paramName = mTemp.getParameters().get(index).getName();
+		ModelUtils utils = new ModelUtils(m);
 		boolean found = false;
-		for (Constraint c : mTemp.getConstraints()) {
-			if (c.eContents().contains(mTemp.getParameters().get(index)))
+		String modelConstraintsAsString = utils.serializeToString().split(" Constraints :")[1];
+		if (modelConstraintsAsString.contains(" " + paramName + " "))
 				found = true;
-		}
+
 
 		// If the parameter is used in constraints, do nothing, otherwise remove the
 		// parameter
