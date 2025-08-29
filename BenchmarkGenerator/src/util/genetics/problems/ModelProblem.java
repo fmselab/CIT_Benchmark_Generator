@@ -16,11 +16,15 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 	GeneratorConfiguration config;
 	NSGAII<ModelSolution> algorithm;
 	private MutationOperator<ModelSolution> mutation;
+	int nVariables;
+	int nObjectives;
 
-	public ModelProblem(GeneratorConfiguration config) {
+	public ModelProblem(GeneratorConfiguration config, int nVariables, int nObjectives) {
 		this.config = config;
 		this.algorithm = null;
 		this.setMutation(null);
+		this.nVariables = nVariables;
+		this.nObjectives = nObjectives;
 	}
 
 	@Override
@@ -54,7 +58,7 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 		}
 
 		// Return the model solution
-		ModelSolution solution = new ModelSolution(m, 1, 1);
+		ModelSolution solution = new ModelSolution(m, this.nVariables, this.nObjectives);
 		return solution;
 	}
 

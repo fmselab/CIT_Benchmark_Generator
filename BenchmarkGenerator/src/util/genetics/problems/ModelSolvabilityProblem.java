@@ -27,10 +27,9 @@ import util.genetics.solution.ModelSolution;
 public class ModelSolvabilityProblem extends ModelProblem {
 
 	private static final long serialVersionUID = 1L;
-	
 
 	public ModelSolvabilityProblem(GeneratorConfiguration config) {
-		super(config);
+		super(config, 1, 1);
 
 		// Set the mutations to use
 		this.setMutation(new CompositeMutation(List.of(new ParameterAdderMutation(config.PROBABILITY_PARADD),

@@ -44,8 +44,8 @@ public class ModelSolution extends AbstractSolution<Model> {
 
 	@Override
 	public Solution<Model> copy() {
-		// TODO Auto-generated method stub
-		return null;
+		Model m = (Model) this.getModel().clone();
+		return new ModelSolution(m, this.variables().size(), this.objectives().length);
 	}
 
 	public Model getModel() {

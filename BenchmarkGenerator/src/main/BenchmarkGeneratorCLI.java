@@ -325,7 +325,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 				modelsList.add(m1);
 
 				// Export the model
-				exportModel(m1);
+				if(config.ALWAYS_EXPORT)
+					exportModel(m1);
 			}
 		}
 	}
@@ -514,7 +515,8 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 				modelsList.add(m1);
 
 				// Export the model
-				exportModel(m1);
+				if (config.ALWAYS_EXPORT)
+					exportModel(m1);
 			}
 		}
 	}

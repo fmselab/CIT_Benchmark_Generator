@@ -30,7 +30,7 @@ public class ModelTestRatioProblem extends ModelProblem {
 	private final double targetRatio;
 
 	public ModelTestRatioProblem(double targetRatio, GeneratorConfiguration config) {
-		super(config);
+		super(config, 1, 1);
 		this.targetRatio = targetRatio;
 		// Set the mutations to use
 		this.setMutation(new CompositeMutation(List.of(new ParameterAdderMutation(config.PROBABILITY_PARADD),

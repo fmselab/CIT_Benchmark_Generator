@@ -55,7 +55,7 @@ public class GeneratorConfiguration {
 	public float PROBABILITY_NOTDEL = 0.5f;
 	public float PROBABILITY_PARSHR = 0.5f;
     public int POPULATION_SIZE = 10;
-    public int OFFSPRING_SIZE = 5;
+    public int OFFSPRING_SIZE = 10;
 	public int MATING_POOL_SIZE = 10;
 	public int MAX_EVALUATIONS = 1000;
 }

@@ -31,7 +31,7 @@ public class ModelRatioProblem extends ModelProblem {
 	private final double targetTestRatio;
 
 	public ModelRatioProblem(double targetTupleRatio, double targetTestRatio, GeneratorConfiguration config) {
-		super(config);
+		super(config, 2, 2);
 		this.targetTupleRatio = targetTupleRatio;
 		this.targetTestRatio = targetTestRatio;
 

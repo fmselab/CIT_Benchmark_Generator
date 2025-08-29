@@ -763,4 +763,8 @@ public class Model extends CitModelImpl {
 		return m;
 	}
 
+	public Category getCategory() {
+		return this.category;
+	}
+
 }

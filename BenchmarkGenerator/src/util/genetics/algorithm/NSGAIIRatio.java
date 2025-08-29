@@ -1,6 +1,8 @@
 package util.genetics.algorithm;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.operator.crossover.CrossoverOperator;
@@ -19,6 +21,9 @@ public class NSGAIIRatio extends NSGAII<ModelSolution> {
 	private double timeout;
 	// Time at which we started the algorithm
 	private long initTime;
+	
+	private int stagnationCounter = 0;
+    private double bestSoFar = Double.POSITIVE_INFINITY;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public NSGAIIRatio(Problem<ModelSolution> problem, int maxEvaluations, int populationSize, int matingPoolSize,
@@ -74,5 +79,33 @@ public class NSGAIIRatio extends NSGAII<ModelSolution> {
 		initTime = System.currentTimeMillis();
 		super.run();
 	}
+	
+	@Override
+    protected void updateProgress() {
+        super.updateProgress();
+
+        double best = result().stream()
+                .mapToDouble(s -> s.objectives()[0])
+                .min()
+                .orElse(Double.POSITIVE_INFINITY);
+
+        if (best < bestSoFar - 1e-9) {
+            bestSoFar = best;
+            stagnationCounter = 0;
+        } else {
+            stagnationCounter++;
+        }
+
+        if (stagnationCounter >= 40) {
+            System.out.println("Stagnation detected, reinitializing population");
+            List<ModelSolution> newPopulation = new ArrayList<>();
+            for (int i = 0; i < getMaxPopulationSize(); i++) {
+                newPopulation.add(getProblem().createSolution());
+            }
+            setPopulation(newPopulation);
+
+            stagnationCounter = 0;
+        }
+    }
 
 }
