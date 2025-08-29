@@ -21,6 +21,7 @@ import util.genetics.mutations.ConstraintSubstitutionMutation;
 import util.genetics.mutations.ConstraintToNotMutation;
 import util.genetics.mutations.ParameterAdderMutation;
 import util.genetics.mutations.ParameterExtenderMutation;
+import util.genetics.mutations.ParameterRemoverMutation;
 import util.genetics.mutations.ParameterShrinkerMutation;
 import util.genetics.solution.ModelSolution;
 
@@ -47,7 +48,8 @@ public class ModelRatioProblem extends ModelProblem {
 				new ConstraintNotRemoverMutation(config.PROBABILITY_NOTDEL),
 				new ConstraintToNotMutation(config.PROBABILITY_NOTADD),
 				new ParameterExtenderMutation(config.PROBABILITY_PAREXT),
-				new ParameterShrinkerMutation(config.PROBABILITY_PARSHR))));
+				new ParameterShrinkerMutation(config.PROBABILITY_PARSHR),
+				new ParameterRemoverMutation(config.PROBABILITY_PARREM))));
 
 		// Set the algorithm to use in this problem
 		this.algorithm = new NSGAIIRatio(this, config.MAX_EVALUATIONS, config.POPULATION_SIZE,
