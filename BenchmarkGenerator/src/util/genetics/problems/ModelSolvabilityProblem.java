@@ -95,7 +95,8 @@ public class ModelSolvabilityProblem extends ModelProblem {
 			return 0;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 1;
+			return candidate.getModel().getConstraints().size()
+					* candidate.getModel().getGeneratorConfiguration().MAX_CONSTRAINTS_COMPLEXITY;
 		}
 	}
 }
