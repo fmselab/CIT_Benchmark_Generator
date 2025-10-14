@@ -15,13 +15,13 @@ import main.BenchmarkGeneratorCLI;
 public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
-	static int REPETITIONS = 100;
+	static int REPETITIONS = 10;
 	static String OUTPUT_FILE = "Experiments.csv";
 	GeneratorConfiguration config = new GeneratorConfiguration();
 
 	@Before
 	public void setUp() {
-		config.N_BENCHMARKS = 50;
+		config.N_BENCHMARKS = 100;
 		// Using k in the range [6, 30]
 		config.N_PARAMS_MAX = 30;
 		config.N_PARAMS_MIN = 6;
@@ -57,6 +57,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 		config.P = 0.1;
 		config.EPSILON = 0.05;
 		config.RATIO_TEST = 0.2;
+		config.POPULATION_SIZE = 100;
 	}
 
 	@Test
@@ -110,6 +111,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			long timeSearchBasedApproach;
 			long end;
 			long start = System.currentTimeMillis();
+			generator = new BenchmarkGeneratorCLI();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			int originalApproach = generator.getModelsList().size();
@@ -117,6 +119,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			config.USE_SEARCH = true;
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
+			generator = new BenchmarkGeneratorCLI();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
@@ -220,6 +223,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			long timeSearchBasedApproach;
 			long end;
 			long start = System.currentTimeMillis();
+			generator = new BenchmarkGeneratorCLI();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			int originalApproach = generator.getModelsList().size();
@@ -227,6 +231,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			config.USE_SEARCH = true;
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
+			generator = new BenchmarkGeneratorCLI();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
@@ -277,7 +282,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	}
 
 	@Test
-	public void test_MCAC_tuple()
+	public void test_MCAC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_MCAC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.MCAC;
@@ -290,6 +295,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			long timeOriginalApproach;
 			long timeSearchBasedApproach;
 			long end;
+			generator = new BenchmarkGeneratorCLI();
 			long start = System.currentTimeMillis();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
@@ -297,12 +303,13 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
 			generator.clearModelsList();
+			generator = new BenchmarkGeneratorCLI();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
 			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TUPERATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
+			writer.append(config.TRACK.name() + ";TUPLERATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
 					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
 			generator.clearModelsList();
 			writer.flush();
@@ -312,7 +319,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	}
 	
 	@Test
-	public void test_MCAC_test()
+	public void test_MCAC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_MCAC_SI_" + OUTPUT_FILE)));
 		config.TRACK = Track.MCAC;
@@ -326,6 +333,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			long timeSearchBasedApproach;
 			long end;
 			long start = System.currentTimeMillis();
+			generator = new BenchmarkGeneratorCLI();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			int originalApproach = generator.getModelsList().size();
@@ -333,6 +341,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			config.USE_SEARCH = true;
 			generator.clearModelsList();
 			start = System.currentTimeMillis();
+			generator = new BenchmarkGeneratorCLI();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
@@ -382,4 +391,42 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 
 	}
 
+	
+	@Test
+	public void test_BOOLC_testtuple()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("TestTuple_BOOLC_SI_" + OUTPUT_FILE)));
+		config.TRACK = Track.BOOLC;
+		// Check ratio tuple
+		config.CHECK_TEST_RATIO = true;
+		config.CHECK_TUPLE_RATIO = true;
+
+		for (int i = 0; i < REPETITIONS; i++) {
+			config.USE_SEARCH = false;
+
+			long timeOriginalApproach;
+			long timeSearchBasedApproach;
+			long end;
+			long start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			int originalApproach = generator.getModelsList().size();
+			timeOriginalApproach = end - start;
+			config.USE_SEARCH = true;
+			generator.clearModelsList();
+			start = System.currentTimeMillis();
+			generator.generateIPMs(config);
+			end = System.currentTimeMillis();
+			timeSearchBasedApproach = end - start;
+			int searchBasedApproach = generator.getModelsList().size();
+			writer.append(config.TRACK.name() + ";TUPLETESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
+					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			generator.clearModelsList();
+			writer.flush();
+		}
+
+		writer.close();
+
+	}
+	
 }

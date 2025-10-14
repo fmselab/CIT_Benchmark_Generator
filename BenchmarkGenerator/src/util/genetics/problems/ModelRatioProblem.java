@@ -3,6 +3,7 @@ package util.genetics.problems;
 import java.util.List;
 
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
+import org.uma.jmetal.operator.selection.impl.NaryTournamentSelection;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import generators.GeneratorConfiguration;
@@ -49,12 +50,12 @@ public class ModelRatioProblem extends ModelProblem {
 				new ConstraintToNotMutation(config.PROBABILITY_NOTADD),
 				new ParameterExtenderMutation(config.PROBABILITY_PAREXT),
 				new ParameterShrinkerMutation(config.PROBABILITY_PARSHR),
-				new ParameterRemoverMutation(config.PROBABILITY_PARREM))));
+				new ParameterRemoverMutation(config.PROBABILITY_PARREM)), this));
 
 		// Set the algorithm to use in this problem
 		this.algorithm = new NSGAIIRatio(this, config.MAX_EVALUATIONS, config.POPULATION_SIZE,
 				config.MATING_POOL_SIZE, config.OFFSPRING_SIZE, new ModelCrossover(), this.getMutation(),
-				new BinaryTournamentSelection<>(), new ModelDominanceComparator(),
+				new NaryTournamentSelection<>(config.MATING_POOL_SIZE, new ModelDominanceComparator()), new ModelDominanceComparator(),
 				new SequentialSolutionListEvaluator<>(), config.TIMEOUT);
 	}
 
@@ -75,8 +76,8 @@ public class ModelRatioProblem extends ModelProblem {
 
 	@Override
 	public ModelSolution evaluate(ModelSolution solution) {
-		double fitnessTest = getTestFitness(solution, targetTestRatio);
-		double fitnessTuple = getTupleFitness(solution, targetTupleRatio);
+		double fitnessTest = Math.abs(getTestFitness(solution, targetTestRatio));
+		double fitnessTuple = Math.abs(getTupleFitness(solution, targetTupleRatio));
 		setObjectives(solution, fitnessTest, fitnessTuple);
 		return solution;
 	}

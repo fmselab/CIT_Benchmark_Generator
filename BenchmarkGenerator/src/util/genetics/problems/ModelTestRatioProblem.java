@@ -3,6 +3,7 @@ package util.genetics.problems;
 import java.util.List;
 
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
+import org.uma.jmetal.operator.selection.impl.NaryTournamentSelection;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import generators.GeneratorConfiguration;
@@ -46,12 +47,12 @@ public class ModelTestRatioProblem extends ModelProblem {
 				new ConstraintToNotMutation(config.PROBABILITY_NOTADD),
 				new ParameterExtenderMutation(config.PROBABILITY_PAREXT),
 				new ParameterShrinkerMutation(config.PROBABILITY_PARSHR),
-				new ParameterRemoverMutation(config.PROBABILITY_PARREM))));
+				new ParameterRemoverMutation(config.PROBABILITY_PARREM)), this));
 
 		// Set the algorithm to use in this problem
 		this.algorithm = new NSGAIITestRatio(this, config.MAX_EVALUATIONS, config.POPULATION_SIZE,
 				config.MATING_POOL_SIZE, config.OFFSPRING_SIZE, new ModelCrossover(), this.getMutation(),
-				new BinaryTournamentSelection<>(), new ModelDominanceComparator(),
+				new NaryTournamentSelection<>(config.MATING_POOL_SIZE, new ModelDominanceComparator()), new ModelDominanceComparator(),
 				new SequentialSolutionListEvaluator<>(), config.TIMEOUT);
 	}
 
@@ -72,7 +73,7 @@ public class ModelTestRatioProblem extends ModelProblem {
 
 	@Override
 	public ModelSolution evaluate(ModelSolution solution) {
-		double fitness = getTestFitness(solution, targetRatio);
+		double fitness = Math.abs(getTestFitness(solution, targetRatio));
 		setObjectives(solution, fitness);
 		return solution;
 	}

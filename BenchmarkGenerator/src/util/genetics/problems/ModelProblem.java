@@ -95,7 +95,7 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 			}
 			double ratio = candidate.getModel().getTupleValidityRatio();
 			System.out.println("Tuple Ratio: " + ratio);
-			double distance = Math.abs(ratio - targetTupleRatio);
+			double distance = ratio - targetTupleRatio;
 			System.out.println("Fitness: " + distance);
 			return distance;
 		} catch (Exception e) {
@@ -123,7 +123,7 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 			}
 			double ratio = candidate.getModel().getTestValidityRatio();
 			System.out.println("Tuple Ratio: " + ratio);
-			double distance = Math.abs(ratio - targetTestRatio);
+			double distance = ratio - targetTestRatio;
 			System.out.println("Fitness: " + distance);
 			return distance;
 		} catch (Exception e) {
