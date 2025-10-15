@@ -73,7 +73,7 @@ public class NSGAIISolvability extends NSGAII<ModelSolution> {
                 .min()
                 .orElse(Double.POSITIVE_INFINITY);
 
-        if (best < bestSoFar - 1e-9) {
+        if (best < bestSoFar - 1e-7) {
             bestSoFar = best;
             stagnationCounter = 0;
         } else {

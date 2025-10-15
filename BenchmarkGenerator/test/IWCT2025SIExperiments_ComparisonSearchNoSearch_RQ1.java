@@ -186,6 +186,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			long timeSearchBasedApproach;
 			long end;
 			System.out.println("Original approach");
+			generator = new BenchmarkGeneratorCLI();
 			long start = System.currentTimeMillis();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
@@ -194,6 +195,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			System.out.println("Search approach");
 			config.USE_SEARCH = true;
 			generator.clearModelsList();
+			generator = new BenchmarkGeneratorCLI();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
@@ -427,6 +429,12 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 
 		writer.close();
 
+	}
+	
+	public static void main(String[] args) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
+		tester.setUp();
+		tester.test_NUMC_tupleRatio();
 	}
 	
 }

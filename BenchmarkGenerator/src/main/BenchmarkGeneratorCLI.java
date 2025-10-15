@@ -544,6 +544,7 @@ public class BenchmarkGeneratorCLI implements Callable<Integer> {
 
 		for (int i = 0; i < config.N_BENCHMARKS; i++) {
 			Model m1;
+			System.out.println("GENERATING MODEL " + i + "/" + config.N_BENCHMARKS);
 			// Keep generating the same model until a solvable one is found
 			if (config.USE_SEARCH)
 				m1 = generateWithGeneratorAndSearch(g, Category.CONSTRAINTS_WITH_RELATIONAL, config);
