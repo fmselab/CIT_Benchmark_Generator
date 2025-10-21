@@ -310,94 +310,94 @@ public class Model extends CitModelImpl {
 		if (this.testValidityRatio != -1)
 			return this.testValidityRatio;
 
-		try {
-			// If the model contains at least one integer, we cannot deal with it. Throw an
-			// exception and manage it differently
-			for (Parameter p : parameters)
-				if (p instanceof Range)
-					throw new NotConvertableModel("Computation of the ratio interrupted");
-
-			boolean stopped = false;
-
-			// First save the CTWedge file
-			File f = new File(getName() + ".ctw");
-			FileWriter fo = new FileWriter(f);
-			fo.write(this.toString());
-			fo.close();
-			LOGGER.debug("Test validity ratio computed using MEDICI. The model has been written in the " + getName()
-					+ ".ctw file");
-
-			// Now call MEDICI
-			List<String> command = new ArrayList<String>();
-			command.add(System.getProperty("user.dir") + "/medici");
-			// --- Model
-			command.add("--m");
-			command.add(getName() + ".ctw");
-			command.add("--ctw");
-			// --- Do not generate
-			command.add("--donotgenerate");
-			LOGGER.debug("Executing command " + command);
-
-			// Run
-			BigDecimal sizeWoConstraints = new BigDecimal(-1);
-			BigDecimal sizeWConstraints = new BigDecimal(-1);
-			try {
-				ProcessBuilder pc = new ProcessBuilder(command);
-				pc.command(command);
-				pc.redirectError();
-				Process p = pc.start();
-				try {
-					BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
-					String line;
-					while ((line = bri.readLine()) != null) {
-						LOGGER.debug(line);
-						// save to file
-						if (line.contains("Cardinalita di partenza")) {
-							sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
-							if (sizeWoConstraints.doubleValue() == 0.0)
-								throw new NotConvertableModel("Computation of the ratio interrupted");
-						}
-						if (line.contains("Cardinalita finale")) {
-							sizeWConstraints = new BigDecimal((line.split(" ")[2]));
-							if (sizeWConstraints.doubleValue() == 0.0)
-								throw new NotConvertableModel("Computation of the ratio interrupted");
-							p.destroy();
-							stopped = true;
-						}
-						if (line.contains("ERRORE constraints generano modello sempre falso") && isSolvable()) {
-							isRatioExact = false;
-							f.delete();
-							return getApproximateTestValidityRatio();
-						}
-					}
-					bri.close();
-					if (!stopped)
-						p.waitFor();
-					System.out.println("command finished ");
-				} catch (InterruptedException e) {
-					f.delete();
-					if (!stopped)
-						throw new NotConvertableModel("Computation of the ratio interrupted");
-				}
-				f.delete();
-			} catch (IOException e) {
-				f.delete();
-				if (!stopped)
-					throw new NotConvertableModel("Computation of the ratio interrupted");
-			}
-			// Compute ratio
-			double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
-			if (ratio < 0)
-				throw new NotConvertableModel("Computation of the ratio failed");
-			isRatioExact = true;
-			LOGGER.debug("Ratio: " + ratio);
-			this.testValidityRatio = ratio;
-			return ratio;
-		} catch (NotConvertableModel ex) {
+//		try {
+//			// If the model contains at least one integer, we cannot deal with it. Throw an
+//			// exception and manage it differently
+//			for (Parameter p : parameters)
+//				if (p instanceof Range)
+//					throw new NotConvertableModel("Computation of the ratio interrupted");
+//
+//			boolean stopped = false;
+//
+//			// First save the CTWedge file
+//			File f = new File(getName() + ".ctw");
+//			FileWriter fo = new FileWriter(f);
+//			fo.write(this.toString());
+//			fo.close();
+//			LOGGER.debug("Test validity ratio computed using MEDICI. The model has been written in the " + getName()
+//					+ ".ctw file");
+//
+//			// Now call MEDICI
+//			List<String> command = new ArrayList<String>();
+//			command.add(System.getProperty("user.dir") + "/medici");
+//			// --- Model
+//			command.add("--m");
+//			command.add(getName() + ".ctw");
+//			command.add("--ctw");
+//			// --- Do not generate
+//			command.add("--donotgenerate");
+//			LOGGER.debug("Executing command " + command);
+//
+//			// Run
+//			BigDecimal sizeWoConstraints = new BigDecimal(-1);
+//			BigDecimal sizeWConstraints = new BigDecimal(-1);
+//			try {
+//				ProcessBuilder pc = new ProcessBuilder(command);
+//				pc.command(command);
+//				pc.redirectError();
+//				Process p = pc.start();
+//				try {
+//					BufferedReader bri = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//					String line;
+//					while ((line = bri.readLine()) != null) {
+//						LOGGER.debug(line);
+//						// save to file
+//						if (line.contains("Cardinalita di partenza")) {
+//							sizeWoConstraints = new BigDecimal((line.split(" ")[3]));
+//							if (sizeWoConstraints.doubleValue() == 0.0)
+//								throw new NotConvertableModel("Computation of the ratio interrupted");
+//						}
+//						if (line.contains("Cardinalita finale")) {
+//							sizeWConstraints = new BigDecimal((line.split(" ")[2]));
+//							if (sizeWConstraints.doubleValue() == 0.0)
+//								throw new NotConvertableModel("Computation of the ratio interrupted");
+//							p.destroy();
+//							stopped = true;
+//						}
+//						if (line.contains("ERRORE constraints generano modello sempre falso") && isSolvable()) {
+//							isRatioExact = false;
+//							f.delete();
+//							return getApproximateTestValidityRatio();
+//						}
+//					}
+//					bri.close();
+//					if (!stopped)
+//						p.waitFor();
+//					System.out.println("command finished ");
+//				} catch (InterruptedException e) {
+//					f.delete();
+//					if (!stopped)
+//						throw new NotConvertableModel("Computation of the ratio interrupted");
+//				}
+//				f.delete();
+//			} catch (IOException e) {
+//				f.delete();
+//				if (!stopped)
+//					throw new NotConvertableModel("Computation of the ratio interrupted");
+//			}
+//			// Compute ratio
+//			double ratio = sizeWConstraints.divide(sizeWoConstraints, MathContext.DECIMAL128).doubleValue();
+//			if (ratio < 0)
+//				throw new NotConvertableModel("Computation of the ratio failed");
+//			isRatioExact = true;
+//			LOGGER.debug("Ratio: " + ratio);
+//			this.testValidityRatio = ratio;
+//			return ratio;
+//		} catch (NotConvertableModel ex) {
 			double ratio = getApproximateTestValidityRatio();
 			this.testValidityRatio = ratio;
 			return ratio;
-		}
+//		}
 	}
 
 	/**

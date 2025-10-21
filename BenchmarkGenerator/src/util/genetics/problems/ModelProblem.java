@@ -39,7 +39,10 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 		try {
 			int oldNBenchmarks = this.config.N_BENCHMARKS;
 			int nAttempts = this.config.N_ATTEMPTS;
+			boolean oldCheckTestRatio = this.config.CHECK_TEST_RATIO;
+			boolean oldCheckTupleRatio = this.config.CHECK_TUPLE_RATIO;
 			this.config.CHECK_TEST_RATIO = false;
+			this.config.CHECK_TUPLE_RATIO = false;
 			this.config.N_BENCHMARKS = 1;
 			this.config.N_ATTEMPTS = 1;
 			this.config.USE_SEARCH = false;
@@ -51,6 +54,8 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 			this.config.CHECK_SOLVABLE = true;
 			this.config.N_BENCHMARKS = oldNBenchmarks;
 			this.config.N_ATTEMPTS = nAttempts;
+			this.config.CHECK_TEST_RATIO = oldCheckTestRatio;
+			this.config.CHECK_TUPLE_RATIO = oldCheckTupleRatio;
 			m = cliGenerator.getModelsList().get(0);
 		} catch (Exception e) {
 			e.printStackTrace();

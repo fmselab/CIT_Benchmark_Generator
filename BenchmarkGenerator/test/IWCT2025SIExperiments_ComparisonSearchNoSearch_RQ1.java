@@ -55,7 +55,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 		config.CHECK_TEST_RATIO = false;
 		config.RATIO = 0.2;
 		config.P = 0.1;
-		config.EPSILON = 0.05;
+		config.EPSILON = 0.1;
 		config.RATIO_TEST = 0.2;
 		config.POPULATION_SIZE = 100;
 	}
@@ -63,345 +63,102 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_BOOLC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("BOOLC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.BOOLC;
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-			
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			config.PROBABILITY_CNSTRADD = 0;
-			generator = new BenchmarkGeneratorCLI();
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
-
+		runTests(Track.BOOLC, false, false, 0.0, 0.0);
 	}
 
 	@Test
 	public void test_BOOLC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_BOOLC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.BOOLC;
-		// Check ratio tuple
-		config.CHECK_TUPLE_RATIO = true;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TUPLERATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
-
+		runTests(Track.BOOLC, false, true, 0.2, 0.2);
 	}
 	
 	@Test
 	public void test_NUMC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_NUMC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.NUMC;
-		// Check ratio tuple
-		config.CHECK_TEST_RATIO = true;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
+		runTests(Track.NUMC, true, false, 0.2, 0.2);
 	}
 	
 	@Test
 	public void test_NUMC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_NUMC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.NUMC;
-		// Check ratio tuple
-		config.CHECK_TUPLE_RATIO = true;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			System.out.println("Original approach");
-			generator = new BenchmarkGeneratorCLI();
-			long start = System.currentTimeMillis();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			System.out.println("Search approach");
-			config.USE_SEARCH = true;
-			generator.clearModelsList();
-			generator = new BenchmarkGeneratorCLI();
-			start = System.currentTimeMillis();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TUPLERATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
+		runTests(Track.NUMC, false, true, 0.2, 0.2);
 	}
 	
 	@Test
 	public void test_BOOLC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_BOOLC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.BOOLC;
-		// Check ratio tuple
-		config.CHECK_TEST_RATIO = true;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
+		runTests(Track.BOOLC, true, false, 0.2, 0.2);
 	}
 
 	@Test
 	public void test_MCAC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("MCAC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.MCAC;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			config.PROBABILITY_CNSTRADD = 0;
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
+		runTests(Track.MCAC, false, false, 0.0, 0.0);
 	}
 
 	@Test
 	public void test_MCAC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Tuple_MCAC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.MCAC;
-		// Check ratio tuple
-		config.CHECK_TUPLE_RATIO = true;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			generator = new BenchmarkGeneratorCLI();
-			long start = System.currentTimeMillis();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			generator.clearModelsList();
-			generator = new BenchmarkGeneratorCLI();
-			start = System.currentTimeMillis();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TUPLERATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
+		runTests(Track.MCAC, false, true, 0.2, 0.2);
 	}
 	
 	@Test
 	public void test_MCAC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("Test_MCAC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.MCAC;
-		// Check ratio tuple
-		config.CHECK_TEST_RATIO = true;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
+		runTests(Track.MCAC, true, false, 0.2, 0.2);
 	}
 
 	@Test
 	public void test_NUMC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("NUMC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.NUMC;
-
-		for (int i = 0; i < REPETITIONS; i++) {
-			config.USE_SEARCH = false;
-			long timeOriginalApproach;
-			long timeSearchBasedApproach;
-			long end;
-			long start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			int originalApproach = generator.getModelsList().size();
-			timeOriginalApproach = end - start;
-			config.USE_SEARCH = true;
-			config.PROBABILITY_CNSTRADD = 0;
-			generator.clearModelsList();
-			start = System.currentTimeMillis();
-			generator = new BenchmarkGeneratorCLI();
-			generator.generateIPMs(config);
-			end = System.currentTimeMillis();
-			timeSearchBasedApproach = end - start;
-			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";SOLVABILITY;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
-			writer.flush();
-		}
-
-		writer.close();
-
+		runTests(Track.NUMC, false, false, 0.0, 0.0);
 	}
 
 	
 	@Test
+	public void test_MCAC_testtuple()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.MCAC, true, true, 0.3, 0.3);
+	}
+	
+	@Test
+	public void test_NUMC_testtuple()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.NUMC, true, true, 0.3, 0.3);
+	}
+	
+	@Test
 	public void test_BOOLC_testtuple()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		BufferedWriter writer = new BufferedWriter(new FileWriter(new File("TestTuple_BOOLC_SI_" + OUTPUT_FILE)));
-		config.TRACK = Track.BOOLC;
+		runTests(Track.BOOLC, true, true, 0.3, 0.3);
+	}
+	
+	public void runTests(Track track, boolean useTestRatio, boolean useTupleRatio, double testRatio, double tupleRatio) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		config.TRACK = track;
+		String fileName = "";
+		String entryName = "";
+		
+		if (useTestRatio && useTupleRatio) {
+			fileName = "TestTuple_";
+			entryName = "TUPLETESTRATIO";
+		} else if (useTestRatio) {
+			fileName = "Test_";
+			entryName = "TESTRATIO";
+		} else if (useTupleRatio) {
+			fileName = "Tuple_";
+			entryName = "TUPLERATIO";
+		} else {
+			fileName = "Solvability_";
+			entryName = "SOLVABILITY";
+		}
+		
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(fileName + config.TRACK.name() + "_SI_" + OUTPUT_FILE)));
+		
 		// Check ratio tuple
-		config.CHECK_TEST_RATIO = true;
-		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = useTestRatio;
+		config.CHECK_TUPLE_RATIO = useTupleRatio;
+		config.RATIO = tupleRatio;
+		config.RATIO_TEST = testRatio;
 
 		for (int i = 0; i < REPETITIONS; i++) {
 			config.USE_SEARCH = false;
@@ -409,32 +166,40 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 			long timeOriginalApproach;
 			long timeSearchBasedApproach;
 			long end;
+			generator = new BenchmarkGeneratorCLI();
 			long start = System.currentTimeMillis();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			int originalApproach = generator.getModelsList().size();
 			timeOriginalApproach = end - start;
 			config.USE_SEARCH = true;
+			generator = new BenchmarkGeneratorCLI();
+			writer.append(config.TRACK.name() + ";" + entryName + ";" + originalApproach + ";" + timeOriginalApproach + ";BENCIGEN;\n");
 			generator.clearModelsList();
+			writer.flush();
 			start = System.currentTimeMillis();
 			generator.generateIPMs(config);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
 			int searchBasedApproach = generator.getModelsList().size();
-			writer.append(config.TRACK.name() + ";TUPLETESTRATIO;" + originalApproach + ";" + timeOriginalApproach + ";"
-					+ searchBasedApproach + ";" + timeSearchBasedApproach + ";\n");
+			writer.append(config.TRACK.name() + ";" + entryName + ";" + searchBasedApproach + ";" + timeSearchBasedApproach + ";BENCIGENSMO;\n");
 			generator.clearModelsList();
 			writer.flush();
 		}
 
 		writer.close();
-
 	}
 	
 	public static void main(String[] args) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
 		tester.setUp();
-		tester.test_NUMC_tupleRatio();
+		tester.test_MCAC_testtuple();
+		tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
+		tester.setUp();
+		tester.test_NUMC_testtuple();
+		tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
+		tester.setUp();
+		tester.test_BOOLC_testtuple();
 	}
 	
 }

@@ -33,6 +33,7 @@ public class NSGAIIRatio extends NSGAII<ModelSolution> {
 		super(problem, maxEvaluations, populationSize, matingPoolSize, offspringPopulationSize, crossoverOperator,
 				mutationOperator, selectionOperator, dominanceComparator, evaluator);
 		this.timeout = timeout;
+		initTime = System.currentTimeMillis();
 	}
 
 	/**
