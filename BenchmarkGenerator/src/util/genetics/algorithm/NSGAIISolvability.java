@@ -50,8 +50,9 @@ public class NSGAIISolvability extends NSGAII<ModelSolution> {
 		boolean stoppingConditionReached = super.isStoppingConditionReached();
 		boolean timedOut = elapsedTime > timeout;
 		boolean isOneSolutionOk = this.population.stream().anyMatch(s -> s.objectives()[0] == 0.0);
-		boolean condition = stoppingConditionReached || timedOut || isOneSolutionOk;		
-
+	
+		boolean condition = stoppingConditionReached || timedOut || isOneSolutionOk;	
+		
 		return condition;
 	}
 

@@ -16,7 +16,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 
 	BenchmarkGeneratorCLI generator = new BenchmarkGeneratorCLI();
 	static int REPETITIONS = 10;
-	static String OUTPUT_FILE = "Experiments.csv";
+	static String OUTPUT_FILE = "Experiments_RQ1.csv";
 	GeneratorConfiguration config = new GeneratorConfiguration();
 
 	@Before
@@ -54,7 +54,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 		config.CHECK_TUPLE_RATIO = false;
 		config.CHECK_TEST_RATIO = false;
 		config.RATIO = 0.2;
-		config.P = 0.1;
+		config.P = 0.9;
 		config.EPSILON = 0.1;
 		config.RATIO_TEST = 0.2;
 		config.POPULATION_SIZE = 100;

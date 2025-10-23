@@ -29,7 +29,7 @@ public class GeneratorConfiguration {
 	public double RATIO_TEST = 0.10;
 	public double TIMEOUT = 60000;
 	public Track TRACK = Track.BOOLC;
-	public double P = 0.10;
+	public double P = 0.90;
 	public double EPSILON = 0.05;
 	public boolean ACTS = false;
 	public boolean CTWEDGE = false;
