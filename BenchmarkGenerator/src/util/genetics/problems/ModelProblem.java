@@ -127,7 +127,7 @@ public abstract class ModelProblem implements Problem<ModelSolution> {
 				return fitness;
 			}
 			double ratio = candidate.getModel().getTestValidityRatio();
-			System.out.println("Tuple Ratio: " + ratio);
+			System.out.println("Test Ratio: " + ratio);
 			double distance = ratio - targetTestRatio;
 			System.out.println("Fitness: " + distance);
 			return distance;

@@ -60,6 +60,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 		config.EPSILON = 0.1;
 		config.RATIO_TEST = 0.2;
 		config.POPULATION_SIZE = 100;
+		config.TIMEOUT = 600000;
 	}
 
 	@Test
@@ -132,7 +133,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 	}
 
 	@Test
-	public void test_MCAC_tuple()
+	public void test_MCAC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		tupleRatio(Track.MCAC);
 	}
@@ -145,14 +146,15 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 
 	public void tupleRatio(Track track)
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		
 		BufferedWriter writer = new BufferedWriter(
 				new FileWriter(new File("Tuple_" + track.name() + "_" + OUTPUT_FILE)));
 		config.TRACK = track;
 		// Check ratio tuple
 		config.CHECK_TUPLE_RATIO = true;
+		config.N_BENCHMARKS = 1;
 		for (int i = 0; i < REPETITIONS; i++) {
 			config.USE_SEARCH = false;
-			config.CHECK_SOLVABLE = true;
 
 			long timeOriginalApproach;
 			long timeSearchBasedApproach;
@@ -163,13 +165,13 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 				do {
 					generator = new BenchmarkGeneratorCLI();
 					generator.generateIPMs(config);
-				} while (generator.getModelsList().size() == 0
-						&& System.currentTimeMillis() - start < TIMEOUT * TARGET);
-				if (generator.getModelsList().size() > 0)
-					countOriginal++;
+				} while (generator.getModelsList().size() == 0);
+				countOriginal++;
 			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeOriginalApproach = end - start;
+			writer.append(config.TRACK.name() + ";TUPLERATIO;" + countOriginal + ";" + timeOriginalApproach + ";BENCIGEN;\n");
+			writer.flush();
 			config.USE_SEARCH = true;
 			int countSearch = 0;
 			start = System.currentTimeMillis();
@@ -177,17 +179,15 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 				do {
 					generator = new BenchmarkGeneratorCLI();
 					generator.generateIPMs(config);
-				} while (generator.getModelsList().size() == 0
-						&& System.currentTimeMillis() - start < TIMEOUT * TARGET);
-				if (generator.getModelsList().size() > 0)
-					countSearch++;
+				} while (generator.getModelsList().size() == 0);
+				System.out.println("************************* GENERATED " + countSearch+1 + " ##################");
+				countSearch++;
 			} while (countSearch < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
-			writer.append(config.TRACK.name() + ";TUPLERATIO;" + countOriginal + ";" + timeOriginalApproach + ";"
-					+ countSearch + ";" + timeSearchBasedApproach + ";\n");
-			generator.clearModelsList();
+			writer.append(config.TRACK.name() + ";TUPLERATIO;" + countSearch + ";" + timeSearchBasedApproach + ";BENCIGENSMO;\n");
 			writer.flush();
+			generator.clearModelsList();
 		}
 
 		writer.close();
@@ -203,6 +203,12 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 	public void test_BOOLC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		testRatio(Track.BOOLC);
+	}
+	
+	@Test
+	public void test_BOOLC_tupleTestRatio()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.BOOLC);
 	}
 
 	@Test
@@ -251,6 +257,61 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 			end = System.currentTimeMillis();
 			timeSearchBasedApproach = end - start;
 			writer.append(config.TRACK.name() + ";TESTRATIO;" + countSearch + ";" + timeSearchBasedApproach + ";BENCIGENSMO;\n");
+			writer.flush();
+			generator.clearModelsList();
+		}
+
+		writer.close();
+	}
+	
+	public void tupleTestRatio(Track track)
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		
+		BufferedWriter writer = new BufferedWriter(
+				new FileWriter(new File("TestTuple_" + track.name() + "_" + OUTPUT_FILE)));
+		config.TRACK = track;
+		// Check ratio tuple
+		config.CHECK_TUPLE_RATIO = true;
+		config.CHECK_TEST_RATIO = true;
+		config.RATIO = 0.3; 
+		config.RATIO_TEST = 0.3;
+		config.P = 0.9;
+		config.EPSILON = 0.1;
+		config.N_BENCHMARKS = 1;
+		for (int i = 0; i < REPETITIONS; i++) {
+			config.USE_SEARCH = false;
+
+			long timeOriginalApproach;
+			long timeSearchBasedApproach;
+			long end;
+			long start = System.currentTimeMillis();
+//			int countOriginal = 0;
+//			do {
+//				do {
+//					generator = new BenchmarkGeneratorCLI();
+//					generator.generateIPMs(config);
+//				} while (generator.getModelsList().size() == 0);
+//				countOriginal++;
+//			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
+//			end = System.currentTimeMillis();
+//			timeOriginalApproach = end - start;
+//			writer.append(config.TRACK.name() + ";TUPLETESTRATIO;" + countOriginal + ";" + timeOriginalApproach + ";BENCIGEN;\n");
+//			writer.flush();
+			config.USE_SEARCH = true;
+			int countSearch = 0;
+			start = System.currentTimeMillis();
+			do {
+				do {
+					System.err.println("************************* GENERATING " + (countSearch+1) + " ##################");
+					generator = new BenchmarkGeneratorCLI();
+					generator.generateIPMs(config);
+				} while (generator.getModelsList().size() == 0);
+				System.err.println("************************* GENERATED " + (countSearch+1) + " ##################");
+				countSearch++;
+			} while (countSearch < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
+			end = System.currentTimeMillis();
+			timeSearchBasedApproach = end - start;
+			writer.append(config.TRACK.name() + ";TUPLETESTRATIO;" + countSearch + ";" + timeSearchBasedApproach + ";BENCIGENSMO;\n");
 			writer.flush();
 			generator.clearModelsList();
 		}

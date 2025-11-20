@@ -67,6 +67,19 @@ public class NSGAIIRatio extends NSGAII<ModelSolution> {
 			}
 		}
 		boolean condition = stoppingConditionReached || timedOut || (isOneSolutionWithCorrectRatio);
+		
+		// Print the reason for stopping
+		if (condition) {
+			if (stoppingConditionReached) {
+				System.err.println("Stopping condition reached: maximum evaluations reached.");
+			}
+			if (timedOut) {
+				System.err.println("Stopping condition reached: timeout reached.");
+			}
+			if (isOneSolutionWithCorrectRatio) {
+				System.err.println("Stopping condition reached: found solution with correct ratios.");
+			}
+		}
 
 		return condition;
 	}

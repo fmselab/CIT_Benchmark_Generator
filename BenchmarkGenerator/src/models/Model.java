@@ -533,12 +533,12 @@ public class Model extends CitModelImpl {
 //				LOGGER.debug("Ratio: " + ratio);
 //				this.tupleValidityRatio = ratio;
 //				return ratio;
-				double ratio = Operations.getTupleValidityRatioFromModel(this);
+				double ratio = pMedici.util.Operations.getTupleValidityRatioFromModel(this);
 				System.out.println(ratio);
 				this.tupleValidityRatio = ratio;
 				return ratio;
 			} catch (NotConvertableModel ex) {
-				double ratio = Operations.getTupleValidityRatioFromModel(this);
+				double ratio = pMedici.util.Operations.getTupleValidityRatioFromModel(this);
 				System.out.println(ratio);
 				this.tupleValidityRatio = ratio;
 				return ratio;
