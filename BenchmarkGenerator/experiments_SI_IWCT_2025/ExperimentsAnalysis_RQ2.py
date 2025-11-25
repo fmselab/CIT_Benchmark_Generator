@@ -55,7 +55,7 @@ plt.ylabel('Time [ms]', fontsize=8)
 plt.yscale('log')
 # Update legend with mathtext formatting
 handles, labels = plt.gca().get_legend_handles_labels()
-plt.legend(handles=handles, labels=[r'$BENCIGEN$',r'$BENCIGEN_S$',r'$BENCIGEN_{SMO}$'], title='Approach', fontsize=8,loc='lower left')
+plt.legend(handles=handles, labels=[r'$BENCIGEN$',r'$BENCIGEN_S$',r'$BENCIGEN_{SMO}$'], title='Approach', fontsize=8,loc='lower right')
 plt.yticks(fontsize=8)
 plt.xticks(fontsize=8)
 plt.tight_layout()
@@ -115,10 +115,23 @@ for goal in goal_order:
 # Do a wilcoxon signed-rank test to compare the three approaches per goal
 for goal in goal_order:
     subset = experiments[experiments['goal'] == goal]
-    if (goal != 'Both ratios'):
+    try:
         test(subset[subset['approach'] == 'BENCIGEN']['nCompliant'], subset[subset['approach'] == 'BENCIGENS']['nCompliant'],f"BENCIGEN vs BENCIGEN_S for {goal}")
+    except ValueError as e:
+        print(f"Could not perform test for BENCIGEN vs BENCIGEN_S for {goal}: {e}")
+        continue
+
+    try:
         test(subset[subset['approach'] == 'BENCIGENS']['nCompliant'], subset[subset['approach'] == 'BENCIGENSMO']['nCompliant'],f"BENCIGEN_S vs BENCIGEN_SMO for {goal}")
-    test(subset[subset['approach'] == 'BENCIGEN']['nCompliant'], subset[subset['approach'] == 'BENCIGENSMO']['nCompliant'],f"BENCIGEN vs BENCIGEN_SMO for {goal}")
+    except ValueError as e:
+        print(f"Could not perform test for BENCIGEN_S vs BENCIGEN_SMO for {goal}: {e}")
+        continue
+
+    try:
+        test(subset[subset['approach'] == 'BENCIGEN']['nCompliant'], subset[subset['approach'] == 'BENCIGENSMO']['nCompliant'],f"BENCIGEN vs BENCIGEN_SMO for {goal}")
+    except ValueError as e:
+        print(f"Could not perform test for BENCIGEN vs BENCIGEN_SMO for {goal}: {e}")
+        continue
 
 """ 
 # Reshape the data into a long format for Seaborn
