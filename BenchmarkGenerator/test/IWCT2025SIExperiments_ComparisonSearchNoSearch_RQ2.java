@@ -208,7 +208,55 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 	@Test
 	public void test_BOOLC_tupleTestRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		tupleTestRatio(Track.BOOLC);
+		tupleTestRatio(Track.BOOLC, 0.2, 0.2);
+	}
+	
+	@Test
+	public void test_MCAC_tupleTestRatio()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.MCAC, 0.2, 0.2);
+	}
+	
+	@Test
+	public void test_NUMC_tupleTestRatio()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.NUMC, 0.2, 0.2);
+	}
+	
+	@Test
+	public void test_BOOLC_tupleTestRatio28()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.BOOLC, 0.2, 0.8);
+	}
+	
+	@Test
+	public void test_MCAC_tupleTestRatio28()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.MCAC, 0.2, 0.8);
+	}
+	
+	@Test
+	public void test_NUMC_tupleTestRatio28()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.NUMC, 0.2, 0.8);
+	}
+	
+	@Test
+	public void test_BOOLC_tupleTestRatio82()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.BOOLC, 0.8, 0.2);
+	}
+	
+	@Test
+	public void test_MCAC_tupleTestRatio82()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.MCAC, 0.8, 0.2);
+	}
+	
+	@Test
+	public void test_NUMC_tupleTestRatio82()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		tupleTestRatio(Track.NUMC, 0.8, 0.2);
 	}
 
 	@Test
@@ -264,7 +312,7 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 		writer.close();
 	}
 	
-	public void tupleTestRatio(Track track)
+	public void tupleTestRatio(Track track, double ratioTest, double ratioTuple)
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		
 		BufferedWriter writer = new BufferedWriter(
@@ -273,8 +321,8 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 		// Check ratio tuple
 		config.CHECK_TUPLE_RATIO = true;
 		config.CHECK_TEST_RATIO = true;
-		config.RATIO = 0.3; 
-		config.RATIO_TEST = 0.3;
+		config.RATIO = ratioTuple; 
+		config.RATIO_TEST = ratioTest;
 		config.P = 0.9;
 		config.EPSILON = 0.1;
 		config.N_BENCHMARKS = 1;
@@ -285,18 +333,18 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ2 {
 			long timeSearchBasedApproach;
 			long end;
 			long start = System.currentTimeMillis();
-//			int countOriginal = 0;
-//			do {
-//				do {
-//					generator = new BenchmarkGeneratorCLI();
-//					generator.generateIPMs(config);
-//				} while (generator.getModelsList().size() == 0);
-//				countOriginal++;
-//			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
-//			end = System.currentTimeMillis();
-//			timeOriginalApproach = end - start;
-//			writer.append(config.TRACK.name() + ";TUPLETESTRATIO;" + countOriginal + ";" + timeOriginalApproach + ";BENCIGEN;\n");
-//			writer.flush();
+			int countOriginal = 0;
+			do {
+				do {
+					generator = new BenchmarkGeneratorCLI();
+					generator.generateIPMs(config);
+				} while (generator.getModelsList().size() == 0);
+				countOriginal++;
+			} while (countOriginal < TARGET && System.currentTimeMillis() - start < TIMEOUT * TARGET);
+			end = System.currentTimeMillis();
+			timeOriginalApproach = end - start;
+			writer.append(config.TRACK.name() + ";TUPLETESTRATIO;" + countOriginal + ";" + timeOriginalApproach + ";BENCIGEN;\n");
+			writer.flush();
 			config.USE_SEARCH = true;
 			int countSearch = 0;
 			start = System.currentTimeMillis();

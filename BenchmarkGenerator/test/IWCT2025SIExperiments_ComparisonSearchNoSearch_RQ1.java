@@ -63,92 +63,128 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	@Test
 	public void test_BOOLC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.BOOLC, false, false, 0.0, 0.0);
+		runTests(Track.BOOLC, false, false, 0.0, 0.0, "");
 	}
 
 	@Test
 	public void test_BOOLC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.BOOLC, false, true, 0.2, 0.2);
+		runTests(Track.BOOLC, false, true, 0.2, 0.2, "");
 	}
 	
 	@Test
 	public void test_NUMC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.NUMC, true, false, 0.2, 0.2);
+		runTests(Track.NUMC, true, false, 0.2, 0.2, "");
 	}
 	
 	@Test
 	public void test_NUMC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.NUMC, false, true, 0.2, 0.2);
+		runTests(Track.NUMC, false, true, 0.2, 0.2, "");
 	}
 	
 	@Test
 	public void test_BOOLC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.BOOLC, true, false, 0.2, 0.2);
+		runTests(Track.BOOLC, true, false, 0.2, 0.2, "");
 	}
 
 	@Test
 	public void test_MCAC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.MCAC, false, false, 0.0, 0.0);
+		runTests(Track.MCAC, false, false, 0.0, 0.0, "");
 	}
 
 	@Test
 	public void test_MCAC_tupleRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.MCAC, false, true, 0.2, 0.2);
+		runTests(Track.MCAC, false, true, 0.2, 0.2, "");
 	}
 	
 	@Test
 	public void test_MCAC_testRatio()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.MCAC, true, false, 0.2, 0.2);
+		runTests(Track.MCAC, true, false, 0.2, 0.2, "");
 	}
 
 	@Test
 	public void test_NUMC_solvable()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.NUMC, false, false, 0.0, 0.0);
+		runTests(Track.NUMC, false, false, 0.0, 0.0, "");
 	}
 
 	
 	@Test
 	public void test_MCAC_testtuple()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.MCAC, true, true, 0.3, 0.3);
+		runTests(Track.MCAC, true, true, 0.2, 0.2, "");
 	}
 	
 	@Test
 	public void test_NUMC_testtuple()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.NUMC, true, true, 0.3, 0.3);
+		runTests(Track.NUMC, true, true, 0.2, 0.2, "");
 	}
 	
 	@Test
 	public void test_BOOLC_testtuple()
 			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
-		runTests(Track.BOOLC, true, true, 0.3, 0.3);
+		runTests(Track.BOOLC, true, true, 0.2, 0.2, "");
 	}
 	
-	public void runTests(Track track, boolean useTestRatio, boolean useTupleRatio, double testRatio, double tupleRatio) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+	@Test
+	public void test_MCAC_test2tuple8()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.MCAC, true, true, 0.2, 0.8, "28");
+	}
+	
+	@Test
+	public void test_NUMC_test2tuple8()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.NUMC, true, true, 0.2, 0.8, "28");
+	}
+	
+	@Test
+	public void test_BOOLC_test2tuple8()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.BOOLC, true, true, 0.2, 0.8, "28");
+	}
+	
+	@Test
+	public void test_MCAC_test8tuple2()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.MCAC, true, true, 0.8, 0.2, "82");
+	}
+	
+	@Test
+	public void test_NUMC_test8tuple2()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.NUMC, true, true, 0.8, 0.2, "82");
+	}
+	
+	@Test
+	public void test_BOOLC_test8tuple2()
+			throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
+		runTests(Track.BOOLC, true, true, 0.8, 0.2, "82");
+	}
+	
+	public void runTests(Track track, boolean useTestRatio, boolean useTupleRatio, double testRatio, double tupleRatio, String postFix) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		config.TRACK = track;
 		String fileName = "";
 		String entryName = "";
 		
 		if (useTestRatio && useTupleRatio) {
-			fileName = "TestTuple_";
+			fileName = "TestTuple"+ postFix+"_";
 			entryName = "TUPLETESTRATIO";
 		} else if (useTestRatio) {
-			fileName = "Test_";
+			fileName = "Test"+ postFix+"_";
 			entryName = "TESTRATIO";
 		} else if (useTupleRatio) {
-			fileName = "Tuple_";
+			fileName = "Tuple"+ postFix+"_";
 			entryName = "TUPLERATIO";
 		} else {
-			fileName = "Solvability_";
+			fileName = "Solvability"+ postFix+"_";
 			entryName = "SOLVABILITY";
 		}
 		
@@ -192,14 +228,14 @@ public class IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 {
 	
 	public static void main(String[] args) throws IOException, InterruptedException, InvalidConfigurationException, SolverException {
 		IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1 tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
+//		tester.setUp();
+//		tester.test_MCAC_test2tuple8();
+//		tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
 		tester.setUp();
-		tester.test_MCAC_testtuple();
+		tester.test_NUMC_test2tuple8();
 		tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
-		tester.setUp();
-		tester.test_NUMC_testtuple();
-		tester = new IWCT2025SIExperiments_ComparisonSearchNoSearch_RQ1();
-		tester.setUp();
-		tester.test_BOOLC_testtuple();
+//		tester.setUp();
+//		tester.test_BOOLC_test2tuple8();
 	}
 	
 }
